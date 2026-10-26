@@ -65,6 +65,16 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .lead p.summary { font-size: 13px; color: var(--ink-2); }
 .pre { padding-left: 18px; font-size: 13px; } .list h2 { font-size: 15px; margin: 12px 0 4px; }
 .lead p { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 65ch; }
+.st-link { color: inherit; text-decoration: none; }
+.st-link:hover { text-decoration: underline; }
+.store-dir { display: grid; gap: 14px; margin-block: 8px 18px; }
+.store-dir section { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 14px; }
+.store-dir h2 { margin: 0 0 8px; font-size: 15px; display: flex; justify-content: space-between; align-items: baseline; }
+.store-dir h2 small { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+.store-dir ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.store-dir a { display: inline-flex; gap: 6px; align-items: baseline; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; font-size: 13px; color: var(--ink); }
+.store-dir a span { font-family: var(--font-num); font-size: 11px; color: var(--red); }
+.store-dir a.zero span { color: var(--ink-2); }
 .links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
 .links a { color: var(--ink-2); }
 .links b { font-weight: 700; color: var(--ink); }
@@ -506,7 +516,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function needs(it, tag) { return (it.tags || []).indexOf(tag) >= 0; }
   function isNew(it) { return it.found_at && Date.now() - Date.parse(it.found_at) < 24 * 3600e3; }
 
-  function inGame() { return items.filter(function (i) { return i.game === st.game && (i._end == null || i._end > Date.now()); }); }
+  function inGame() { return items.filter(function (i) { return i.game === st.game && (!LOCK.store || i.spath === LOCK.store) && (i._end == null || i._end > Date.now()); }); }
 
   // Amazonの招待リクエスト（ネット抽選の一番上に固定する券）
   function invites() { return (DATA.amazonInvites || {})[st.game] || []; }
@@ -615,7 +625,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var cd = countdown(it._end), done = !!applied[it.key], cal = gcal(it);
     return '<article class="ticket' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
       '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
-      '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + esc(it.store) +
+      '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + '</div>' +
         '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +

@@ -48,6 +48,11 @@ def load_images() -> dict:
     return {k: v for k, v in (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).items() if v}
 
 
+def store_path(store):
+    """お店ごとのページ（店名の空白を無視して同じ店は同じページ）"""
+    return f"store/{sha(normalize(store or '').replace(' ', ''))[:8]}/"
+
+
 def series_path(game, series):
     return f"{GAME_SLUG[game]}/s-{sha(normalize(series))[:8]}/"
 
@@ -173,8 +178,10 @@ def _menu(items, games, g, here=""):
                         for a in sorted(acnt, key=lambda a: list(PREF).index(a)))
         area_html = (f'<section class="m-sec"><h3>店頭抽選を地域でさがす<small>{len(acnt)}都道府県</small></h3>'
                      f'<div class="m-area">{chips}</div></section>')
+    store_html = ('<section class="m-sec"><h3>お店からさがす</h3>'
+                  '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
-            f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}</nav>')
+            f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}{store_html}</nav>')
 
 
 def _amz(q, tag):
@@ -352,6 +359,8 @@ def build(settings=None, out_dir=None, sample=None):
             r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
             if not row["image"] and r.get("image"):
                 row["image"], row["img_url"] = r["image"], r.get("url")
+            if row.get("store"):
+                row["spath"] = store_path(row["store"])
             items.append(row)
 
     # 中身が変わっていなければ「最終更新」も据え置き（無駄な再公開をしない）
@@ -493,6 +502,69 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
                 "links": _menu(items, games, g), "root": "/"}, ai,
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (f"{a}の店頭抽選", f"{slug}/area/{PREF[a]}/")])
+
+    # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
+    # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
+    reg = {} if sample is not None else load_json("stores.json", {})
+    today_s = now().date().isoformat()
+    for i in items:
+        if not i.get("spath"):
+            continue
+        r = reg.setdefault(i["spath"], {})
+        r.update(name=i["store"], last=today_s, game=r.get("game") or i["game"])
+        if i.get("channel") == "store" and i.get("area"):
+            r["area"] = i["area"]
+    reg = {k: v for k, v in reg.items() if (now().date() - __import__("datetime").date.fromisoformat(v["last"])).days <= 45}
+    if sample is None:
+        save_json("stores.json", reg)
+    by_store = {}
+    for i in items:
+        by_store.setdefault(i.get("spath"), []).append(i)
+    for path, r in reg.items():
+        si = by_store.get(path, [])
+        name = r["name"]
+        gs = [g for g in games if any(i["game"] == g for i in si)] or [r.get("game") or games[0]]
+        g0 = max(gs, key=lambda g: sum(1 for i in si if i["game"] == g))
+        ch = "store" if sum(1 for i in si if i.get("channel") == "store") * 2 > len(si) or (not si and r.get("area")) else "online"
+        words = "・".join(GAME_SHORT[g] for g in gs)
+        area = r.get("area")
+        where = f"（{area}）" if area else ""
+        near = [(v["name"], "/" + k) for k, v in reg.items() if area and v.get("area") == area and k != path][:12]
+        links = _menu(items, games, g0) + (_links(f"{area}のほかのお店", near) if near else "")
+        if si:
+            lead = f"{name}{where}で受付中の{words}の抽選は{len(si)}件です。締切・応募方法・本人確認や会員の条件をまとめています。"
+        else:
+            lead = (f"{name}{where}で現在受付中の抽選はありません。最近まで抽選がありました。"
+                    "新しい抽選が見つかり次第、このページに自動で追加されます。")
+        write(path, {"game": g0, "store": path, "channel": ch}, {
+            "title": f"{name}の{words}抽選情報【{md}更新】" + (f"受付中{len(si)}件" if si else "受付状況") + "｜トレカ抽選ナビ",
+            "desc": f"【{md}更新】{name}{where}の{words}の抽選販売・予約抽選" + (f"{len(si)}件" if si else "") +
+                    "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
+            "summary": summary(si, f"{name}の抽選"),
+            "h1": f"{name}の抽選情報", "lead": lead,
+            "links": links, "root": "/"}, si,
+            [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
+
+    # 店舗一覧（都道府県別。ネット抽選のお店と複数地域のお店は最後）
+    groups = {}
+    for path, r in reg.items():
+        groups.setdefault(r.get("area") or "ネット・複数地域", []).append((path, r))
+    order = [p for p in PREF if p in groups] + (["ネット・複数地域"] if "ネット・複数地域" in groups else [])
+    secs = []
+    for a in order:
+        lst = sorted(groups[a], key=lambda pr: (-len(by_store.get(pr[0], [])), pr[1]["name"]))
+        chips = "".join(f'<li><a href="/{escape(p)}"{"" if by_store.get(p) else " class=\"zero\""}>{escape(r["name"])}'
+                        f'<span>{len(by_store.get(p, []))}</span></a></li>' for p, r in lst)
+        secs.append(f'<section><h2>{escape(a)}<small>{len(lst)}店舗</small></h2><ul>{chips}</ul></section>')
+    write("store/", {"game": games[0]}, {
+        "title": f"店舗一覧｜ポケカ・ワンピカードの抽選をしているお店【{md}更新】｜トレカ抽選ナビ",
+        "desc": f"【{md}更新】ポケカ・ワンピカードの抽選をしている（最近していた）お店{len(reg)}店舗を都道府県別に一覧にしました。お店を選ぶと、そのお店の受付中の抽選が見られます。",
+        "summary": f"最近抽選があったお店は{len(reg)}店舗です。数字は受付中の抽選の件数です。",
+        "h1": "抽選をしているお店の一覧",
+        "lead": "お店を選ぶと、そのお店で受付中の抽選（締切・応募方法・条件）が見られます。",
+        "aff": f'<div class="store-dir">{"".join(secs)}</div>',
+        "links": _menu(items, games, games[0]), "root": "/"}, items,
+        [("トップ", ""), ("店舗一覧", "store/")])
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
     import shutil
