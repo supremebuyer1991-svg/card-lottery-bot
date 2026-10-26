@@ -4,6 +4,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import common
 common.STATE_DIR = Path(tempfile.mkdtemp())
+import classify as _cl
+_cl.load_overrides = lambda: {}  # 実際の決まりファイルは使わない
 from classify import classify
 from common import save_json, load_json, load_settings
 
@@ -30,4 +32,11 @@ assert classify(s, ask=fake) == 0 and len(calls) == 1
 L["b"]["product"] = "BOX（店頭受け取り）"; save_json("lotteries.json", L)
 classify(s, ask=lambda r: [{"id": 0, "channel": "store", "area": None}])
 assert load_json("lotteries.json", {})["b"]["channel"] == "store"
+# 人が確認した決まり（config/channel_overrides.yaml）がAIより優先される
+import classify as cl
+cl.load_overrides = lambda: {"TierOne 浜松店": "store"}
+save_json("lotteries.json", {"t": {"store": "TierOne 浜松店", "product": "OP-17", "channel": "online", "status": "listed"}})
+cl.classify(s, ask=lambda r: [{"id": 0, "channel": "online", "area": "静岡県"}])
+L = load_json("lotteries.json", {})
+assert L["t"]["channel"] == "store" and L["t"]["area"] == "静岡県", L
 print("CLASSIFY ALL OK")

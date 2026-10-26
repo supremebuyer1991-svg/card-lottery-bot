@@ -75,15 +75,45 @@ def _ask(rows):
     return out
 
 
+def load_overrides():
+    """config/channel_overrides.yaml：人が確認した決まり（店名 → online / store）"""
+    import yaml
+    from common import ROOT
+    p = ROOT / "config" / "channel_overrides.yaml"
+    if not p.exists():
+        return {}
+    y = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    out = {}
+    for ch in ("online", "store"):
+        for name in y.get(ch) or []:
+            out[str(name).strip()] = ch
+    return out
+
+
+def apply_overrides(lots, ov):
+    n = 0
+    for it in lots.values():
+        ch = ov.get((it.get("store") or "").strip())
+        if ch and it.get("channel") != ch:
+            it["channel"] = ch
+            if ch == "online":
+                it["area"] = None
+            n += 1
+    return n
+
+
 def classify(settings, ask=None, batch=40, max_batches=20):
     """未判定の抽選だけをAIで判定して lotteries.json に書き戻す。戻り値: 変更した件数"""
+    lots = load_json("lotteries.json", {})
+    ov = load_overrides()
+    changed = apply_overrides(lots, ov)  # 人が確認した決まりが最優先
     if ask is None:
         if not os.environ.get("ANTHROPIC_API_KEY"):
-            return 0
+            if changed:
+                save_json("lotteries.json", lots)
+            return changed
         ask = _ask
-    lots = load_json("lotteries.json", {})
     todo = [it for it in lots.values() if it.get("status") in ACTIVE and it.get("cls") != _fingerprint(it)]
-    changed = 0
     for b in range(min(max_batches, (len(todo) + batch - 1) // batch)):
         chunk = todo[b * batch:(b + 1) * batch]
         rows = "\n".join(
@@ -103,6 +133,8 @@ def classify(settings, ask=None, batch=40, max_batches=20):
             except (KeyError, ValueError, IndexError, TypeError):
                 continue
             ch = r.get("channel")
+            if (it.get("store") or "").strip() in ov:
+                ch = ov[(it.get("store") or "").strip()]  # 決まりがある店はAIの判定を使わない
             if ch in ("online", "store") and ch != it.get("channel"):
                 log(f"振り分け: {it.get('store')} {it.get('channel')} → {ch}")
                 it["channel"] = ch
