@@ -321,6 +321,11 @@ input[type="search"] { flex: 1 1 160px; }
 .acts { padding: 12px 14px 12px 0; display: grid; gap: 6px; align-content: center; justify-items: stretch; }
 .go { display: inline-block; text-align: center; text-decoration: none; background: var(--red); color: #fff; font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
 .go:hover { filter: brightness(1.08); }
+/* 応募ボタン：ロゴの「抽選」と同じ抽選券の形（左右に切り欠き） */
+.go.tk { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-radius: 4px; padding: 9px 14px 9px 16px; font-weight: 900; letter-spacing: .04em;
+  -webkit-mask: radial-gradient(circle 6px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 6px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 6px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 6px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat; }
+.go.tk i { font-style: normal; font-weight: 700; opacity: .85; }
 .mini { display: flex; gap: 6px; justify-content: center; }
 .mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; }
 .mini button[aria-pressed="true"] { color: var(--done); border-color: var(--done); font-weight: 700; }
@@ -659,7 +664,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
         (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
       '</div></div>' +
-      '<div class="acts">' + (it.url ? '<a class="go" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募ページへ</a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
+      '<div class="acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
         '<div class="mini"><button type="button" class="ap" aria-pressed="' + done + '">' + (done ? "応募済み ✓" : "応募済みにする") + '</button>' +
         (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") + '</div></div>' +
     '</article>';
