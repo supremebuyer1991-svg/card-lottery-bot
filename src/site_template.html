@@ -216,6 +216,9 @@ input[type="search"] { flex: 1 1 160px; }
 .row.scroll::-webkit-scrollbar { display: none; }
 .toggle { flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; user-select: none; }
 .toggle input { accent-color: var(--red); margin: 0; }
+.toggle.sort { padding-right: 6px; border-color: var(--ink); }
+.toggle.sort span { color: var(--ink-2); font-size: 12px; }
+.toggle.sort select { border: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 700; padding: 0 2px; cursor: pointer; }
 .toggle:has(input:checked) { border-color: var(--ink); }
 .hint { font-size: 12px; color: var(--ink-2); }
 
@@ -414,6 +417,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
     <div class="row scroll">
+      <label class="toggle sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="new">新しい順</option></select></label>
       <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
       <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
       <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
@@ -590,7 +594,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if ($("f-today").checked && !isToday(i._end)) return false;
       if (q && (i.store + " " + i.product + " " + (i.series || "")).toLowerCase().indexOf(q) < 0) return false;
       return true;
-    }).sort(function (a, b) { return (a._end == null ? 9e15 : a._end) - (b._end == null ? 9e15 : b._end); });
+    }).sort($("f-sort").value === "new"
+      ? function (a, b) { return Date.parse(b.found_at || 0) - Date.parse(a.found_at || 0); }   // 新しく見つかった順
+      : function (a, b) { return (a._end == null ? 9e15 : a._end) - (b._end == null ? 9e15 : b._end); });  // 締切が近い順
   }
 
   function thumb(it) {
@@ -750,6 +756,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
   $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
+  $("f-sort").value = load("lot_sort", "end") === "new" ? "new" : "end";
+  $("f-sort").addEventListener("change", function () { save("lot_sort", $("f-sort").value); render(); });
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest("button.ap"); if (!b) return;
     var k = b.closest(".ticket").dataset.key;
