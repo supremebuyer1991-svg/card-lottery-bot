@@ -122,7 +122,7 @@ def _frame(title, kicker=None, sub=None):
     # フッター
     d.rectangle((0, H - 96, W, H), fill=RED)
     d.text((60, H - 48), "@pokepi_tcg", font=F(32, "Black"), fill=(255, 255, 255), anchor="lm")
-    d.text((W - 60, H - 48), "toreca-chusen-navi.pages.dev", font=F(28, "Bold"), fill=(255, 255, 255), anchor="rm")
+    d.text((W - 60, H - 48), "tcg-chusen.com", font=F(30, "Bold"), fill=(255, 255, 255), anchor="rm")
     return img, y + 30
 
 

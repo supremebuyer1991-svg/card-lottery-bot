@@ -324,7 +324,7 @@ def active_series(settings=None):
 
 def build(settings=None, out_dir=None, sample=None):
     s = settings or load_settings()
-    site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
+    site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
     tag = os.environ.get("AMAZON_TAG") or s.get("amazon_tag")
     raff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or s.get("rakuten_affiliate_id") or "").strip()
     out = Path(out_dir or ROOT / "site")

@@ -12,7 +12,7 @@ from common import ROOT, load_settings, log
 def main():
     s = load_settings()
     key = s.get("indexnow_key")
-    site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
+    site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
     sm = ROOT / "site" / "sitemap.xml"
     if not key or not site or not sm.exists():
         return

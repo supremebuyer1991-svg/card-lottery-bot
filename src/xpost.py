@@ -28,7 +28,7 @@ def x_len(text: str) -> int:
 
 
 def public_site(settings):
-    return (os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
+    return (settings.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
 
 
 def page_url(it, settings):
