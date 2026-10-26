@@ -216,9 +216,12 @@ input[type="search"] { flex: 1 1 160px; }
 .row.scroll::-webkit-scrollbar { display: none; }
 .toggle { flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; user-select: none; }
 .toggle input { accent-color: var(--red); margin: 0; }
-.toggle.sort { padding-right: 6px; border-color: var(--ink); }
-.toggle.sort span { color: var(--ink-2); font-size: 12px; }
-.toggle.sort select { border: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 700; padding: 0 2px; cursor: pointer; }
+.sortbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 14px; }
+.sortbar #list-n { font-size: 13px; color: var(--ink-2); }
+.sortbar #list-n b { color: var(--ink); font-family: var(--font-num); font-size: 15px; margin-right: 2px; }
+.sortbar .sort { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 6px 4px 12px; }
+.sortbar .sort span { color: var(--ink-2); font-size: 12px; }
+.sortbar .sort select { border: 0; background: transparent; color: var(--ink); font: inherit; font-weight: 700; padding: 0 2px; cursor: pointer; }
 .toggle:has(input:checked) { border-color: var(--ink); }
 .hint { font-size: 12px; color: var(--ink-2); }
 
@@ -417,7 +420,6 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
     <div class="row scroll">
-      <label class="toggle sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label>
       <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
       <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
       <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
@@ -430,6 +432,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   <div class="region" id="region" hidden></div>
   <div class="series" id="series"></div>
   </section>
+  <div class="sortbar"><span id="list-n"></span><label class="sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label></div>
   <div class="list" id="list">__PRERENDER__</div>
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
@@ -724,6 +727,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") : "";
     // 一覧
     var list = filtered(), html = "";
+    $("list-n").innerHTML = "<b>" + list.length + "</b>件";
     if (!list.length) {
       html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
     } else if (st.channel === "store" && !st.area) {
