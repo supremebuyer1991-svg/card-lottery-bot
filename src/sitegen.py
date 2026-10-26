@@ -371,15 +371,14 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "aff": _flow_ad(prods_of(g), f"いま抽選が多い{short}の弾を通販でチェック") + _supply_ad(short, name, tag, raff, prices, g)}
+                "aff": _supply_ad(short, name, tag, raff, prices, g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
                        h1="トレカの抽選・予約情報まとめ",
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
-            top["aff"] = _flow_ad(sorted(sum((prods_of(x) for x in games), []), key=lambda p: -p[4]),
-                                  "いま抽選が多い弾を通販でチェック") + _supply_ad(short, name, tag, raff, prices, g)
+            top["aff"] = _supply_ad(short, name, tag, raff, prices, g)
             write("", {}, top, items)
 
         for x in series:

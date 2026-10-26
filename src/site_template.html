@@ -125,6 +125,34 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 
 /* サマリー */
 /* 受付中〜弾の切り替えをまとめる色付きの箱 */
+/* 締切間近・新着（横スワイプ） */
+.hot { margin-top: 14px; }
+.hot-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.hot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.hot-b { min-width: 0; }
+.hot-b h2 { margin: 0; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.hot-b h2 span { font-family: var(--font-num); font-size: 11px; font-weight: 600; color: var(--card); background: var(--ink-2); border-radius: 999px; padding: 1px 7px; }
+.hot-b.soon h2 span { background: var(--red); }
+.hot-b.fresh .hc::before { background: var(--red); }
+.hot-b.soon .hc::before { background: var(--amber); }
+.hot-h small { font-size: 11px; color: var(--ink-2); }
+.hot-row { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px 6px; scroll-snap-type: x proximity; scroll-padding-inline: 16px; }
+.hot-row::-webkit-scrollbar { display: none; }
+.hc { flex: none; width: 168px; scroll-snap-align: start; display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--ink);
+  background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 10px 12px; position: relative; }
+.hc::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0; background: var(--rule); }
+.hc-top { display: flex; align-items: center; gap: 6px; }
+.hc-top.soon ~ *, .hc-top.soon { }
+.hc-cd { font-family: var(--font-num); font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.hc-top.soon .hc-cd { color: var(--red); }
+.hc-top.near .hc-cd { color: var(--amber); }
+.hc .nw { font-size: 10px; background: var(--red); color: #fff; border-radius: 3px; padding: 0 5px; }
+.hc-s { font-size: 13px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.hc-p { font-size: 12px; color: var(--ink-2); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hc-f { display: flex; gap: 4px; align-items: center; margin-top: 2px; }
+.hc-f i { font-style: normal; font-size: 10px; font-weight: 700; border-radius: 3px; padding: 1px 5px; color: #fff; }
+.hc-f i.st { background: var(--ink); } .hc-f i.sh { background: var(--done); }
+.hc-f em { font-style: normal; font-size: 10px; color: var(--ink-2); }
 .panel { margin-top: 16px; padding: 12px; border-radius: 16px; background: linear-gradient(180deg, var(--red-soft), var(--navy-soft));
   border: 1px solid var(--rule); box-shadow: 0 1px 2px rgb(22 28 46 / .05); }
 .panel .stats { margin-block: 0 10px; background: var(--rule); }
@@ -331,6 +359,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     <p>__LEAD__</p>
     __AFF__
   </section>
+  <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
   <section class="panel" aria-label="絞り込み">
   <div class="stats" id="stats"></div>
 
@@ -564,6 +593,32 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     '</article>';
   }
 
+  // 締切間近・新着の抽選（それぞれ別の欄・横にスワイプ）
+  function hotCard(i, isFresh) {
+    var cd = countdown(i._end), isStore = i.channel === "store";
+    return '<a class="hc" href="' + esc(i.url || "#") + '" target="_blank" rel="noopener">' +
+      '<span class="hc-top ' + cd.cls + '">' + (isFresh ? '<b class="nw">NEW</b>' : "") +
+        '<span class="hc-cd" data-end="' + (i._end || "") + '">' + cd.text + '</span></span>' +
+      '<b class="hc-s">' + esc(i.store) + '</b>' +
+      '<span class="hc-p">' + esc(i.series || i.product) + '</span>' +
+      '<span class="hc-f"><i class="' + (isStore ? "st" : "sh") + '">' + (isStore ? "店頭受取" : "発送") + '</i>' +
+        (isStore && i.area ? '<em>' + esc(i.area) + '</em>' : "") + '</span></a>';
+  }
+  function hotBlock(cls, title, note, list, isFresh) {
+    if (!list.length) return "";
+    return '<div class="hot-b ' + cls + '"><div class="hot-h"><h2>' + title + '<span>' + list.length + '</span></h2><small>' + note + '</small></div>' +
+      '<div class="hot-row">' + list.map(function (i) { return hotCard(i, isFresh); }).join("") + '</div></div>';
+  }
+  function renderHot() {
+    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var soon = g.filter(function (i) { return i._end && i._end > now && i._end - now < 48 * 3600e3; })
+      .sort(function (a, b) { return a._end - b._end; }).slice(0, 12);
+    var fresh = g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); }).slice(0, 12);
+    var html = hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false) + hotBlock("fresh", "新着", "24時間以内に見つかった抽選", fresh, true);
+    $("hot").hidden = !html;
+    $("hot").innerHTML = html;
+  }
+
   function render() {
     if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, region: st.region, area: st.area });
     var g = inGame();
@@ -620,6 +675,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       html = (st.channel === "online" ? inviteTicket() : "") + withAds(list, { n: 0, recent: [] });
     }
     $("list").innerHTML = html;
+    renderHot();
   }
 
   // イベント
@@ -658,6 +714,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     document.querySelectorAll(".cd[data-end]").forEach(function (el) {
       var t = Number(el.dataset.end); if (!t) return;
       var c = countdown(t); el.textContent = c.text; el.parentNode.className = "stub " + c.cls;
+    });
+    document.querySelectorAll(".hc-cd[data-end]").forEach(function (el) {
+      var t = Number(el.dataset.end); if (!t) return;
+      var c = countdown(t); el.textContent = c.text; el.parentNode.className = "hc-top " + c.cls;
     });
   }, 1000);
 
