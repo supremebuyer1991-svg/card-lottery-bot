@@ -31,6 +31,7 @@ button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:
 button.ok{background:#2e7d32}
 .xbtn{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold;text-decoration:none}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
 .empty{color:var(--sub);font-size:14px}
+.basis{color:var(--sub);font-size:13px;margin:8px 0 0}.basis a{color:var(--accent)}
 .now{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 .card h2{gap:8px}.card h2 small{text-align:right;flex:none}
 </style></head><body>
@@ -38,7 +39,7 @@ button.ok{background:#2e7d32}
 <p class="sub">開いた時点の件数で作っています。「Xで開く」→ そのまま投稿、または閉じる時に「下書きを保存」。データ更新：<span id="upd"></span></p>
 <div id="cards"></div>
 <script>
-const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__;
+const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__;
 const GS={pokemon:"ポケカ",onepiece:"ワンピカード",dragonball:"DBフュージョンワールド"};
 const SLUG={pokemon:"pokeka",onepiece:"onepiece",dragonball:"fusionworld"};
 const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピカード #ワンピカード抽選",dragonball:"#フュージョンワールド #DBFW"};
@@ -149,12 +150,16 @@ for(const g of Object.keys(GS)){
 }
 // 今の時間におすすめの下書きを上に（同じ中では元の順）
 cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
+// 話題ネタ（AIの下書き。リンクなし。内容を確認してから投稿）は一番上に
+const tr=(TRENDS.items||[]).slice().reverse();
+for(const x of tr)cards.unshift({h:`🔥話題ネタ：${(x.topic||"").replace(/</g,"&lt;")}`,hint:x.type,t:x.text,hot:false,trend:x});
 const root=document.getElementById("cards");
+if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
-for(const {h,hint,t,hot} of cards){
+for(const {h,hint,t,hot,trend} of cards){
  const d=document.createElement("div");d.className="card";
  const n=xlen(t);
- d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea><div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
+ d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
  const ta=d.querySelector("textarea"),b=d.querySelector("button");
  const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
@@ -163,6 +168,16 @@ for(const {h,hint,t,hot} of cards){
 }
 </script></body></html>
 """
+
+
+def _trends():
+    """話題ネタの下書き（2日以上前のものは出さない）"""
+    from common import load_json, parse_dt, now
+    d = load_json("x_trends.json", {})
+    g = parse_dt(d.get("generated"))
+    if not g or (now() - g).total_seconds() > 36 * 3600:
+        return {}
+    return {"generated": d["generated"], "items": d.get("items", [])}
 
 
 def build_x_draft(out, items, site, updated):
@@ -177,5 +192,6 @@ def build_x_draft(out, items, site, updated):
         data.append(row)
     html = (TEMPLATE.replace("__SITE__", json.dumps(site or ""))
             .replace("__ITEMS__", json.dumps(data, ensure_ascii=False))
-            .replace("__UPDATED__", json.dumps(updated or "")))
+            .replace("__UPDATED__", json.dumps(updated or ""))
+            .replace("__TRENDS__", json.dumps(_trends(), ensure_ascii=False).replace("</", "<\\/")))
     (out / "x-draft.html").write_text(html, encoding="utf-8")

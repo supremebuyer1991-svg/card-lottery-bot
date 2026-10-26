@@ -6,6 +6,7 @@ from collect import collect
 from approve import approve
 from xpost import post_all, post_daily_summary
 from xbuzz import post_buzz
+from xtrend import update_trends
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -47,6 +48,10 @@ def main():
             rakuten.supply_prices(s, list(s["game_names"]))  # サプライの楽天最安値（1日1回）
         except Exception as e:
             log(f"楽天: スキップ {e}")
+        try:
+            update_trends(s)  # Xで話題のネタから投稿文の下書き（下書きページに出す）
+        except Exception as e:
+            log(f"話題ネタ: スキップ {e}")
         build_site(s)  # 自作サイト（site/index.html）を書き出し
     log("完了")
 
