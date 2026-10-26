@@ -150,6 +150,20 @@ def _menu(items, games, g, here=""):
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}</nav>')
 
 
+def _amz(q, tag):
+    return f"https://www.amazon.co.jp/s?k={quote(q)}&tag={quote(tag)}"
+
+
+def _aff_box(title, links, tag):
+    """Amazonの紹介枠（PR表記つき）。links: [(ラベル, 検索語, 主ボタンか)]"""
+    if not tag:
+        return ""
+    btns = "".join(
+        f'<a class="{"pri" if main else ""}" href="{escape(_amz(q, tag))}" target="_blank" rel="nofollow sponsored noopener">{escape(lb)}</a>'
+        for lb, q, main in links)
+    return f'<aside class="affbox"><div class="affh"><b>{escape(title)}</b><span>PR</span></div><div class="affb">{btns}</div></aside>'
+
+
 def build(settings=None, out_dir=None, sample=None):
     s = settings or load_settings()
     site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
@@ -205,7 +219,10 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"{short}の抽選・予約情報まとめ",
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
-                "links": _menu(items, games, g), "root": "/"}
+                "links": _menu(items, games, g), "root": "/",
+                "aff": _aff_box(f"{short}のサプライをさがす", [
+                    ("スリーブ", f"{name} スリーブ", True), ("デッキケース", f"{name} デッキケース", False),
+                    ("ローダー", f"{name} ローダー", False), ("ストレージ", f"{name} ストレージボックス", False)], tag)}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
@@ -216,9 +233,10 @@ def build(settings=None, out_dir=None, sample=None):
 
         for x in series:
             si = [i for i in gi if i.get("series") == x]
-            aff = (f'<p class="aff"><a href="https://www.amazon.co.jp/s?k={quote(x)}&tag={escape(tag)}" '
-                   f'target="_blank" rel="nofollow sponsored noopener">「{escape(x)}」をAmazonで探す</a></p>'
-                   if tag else "")
+            aff = _aff_box(f"「{x}」を通販でさがす", [
+                (f"Amazonで「{x}」を見る", f"{name} {x}", True),
+                ("スリーブ", f"{name} スリーブ", False),
+                ("ローダー・ケース", f"{name} ローダー", False)], tag)
             write(series_path(g, x), {"game": g, "series": x}, {
                 "title": f"{x} 抽選・予約情報まとめ【{len(si)}件受付中・締切順】｜トレカ抽選ナビ",
                 "desc": f"{name}「{x}」の抽選・予約情報を店舗別・締切順にまとめています。ネット・店頭（都道府県別）、"
