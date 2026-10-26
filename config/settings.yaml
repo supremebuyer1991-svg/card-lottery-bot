@@ -3,7 +3,7 @@
 auto_approve: true        # true=見つけたら即投稿（テスト用捨てアカ向け） / false=GitHubのIssueで承認制
 dry_run: false            # true=XにもWPにも投稿せず、ログに出すだけ
 min_confidence: 0.7       # AI抽出の自信度がこれ未満は投稿しない（承認待ちに回す）
-max_posts_per_run: 3      # 1回の実行で投稿する最大数（連投による凍結対策）
+max_posts_per_run: 0      # 1回の実行で投稿する最大数（0＝自動投稿を停止中。再開するなら 3 に戻す）
 remind_hours_before: 24   # 締切の何時間前にリマインド投稿するか
 
 # --- X API の費用対策（従量課金） ---
