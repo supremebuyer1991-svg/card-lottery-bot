@@ -211,6 +211,7 @@ input[type="search"] { flex: 1 1 160px; }
 .store { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .badge { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; }
 .badge.new { background: var(--red); color: var(--card); }
+.ticket.feed .pr-note { font-family: var(--font-num); font-size: 10px; letter-spacing: .06em; color: var(--ink-2); }
 .ticket.feed .cd { color: var(--ink-2); font-size: 15px; }
 .go.amz { background: #ffd814; color: #0f1111; border: 1px solid #fcd200; }
 .badge.pr { background: var(--navy-soft); color: var(--ink-2); font-family: var(--font-num); }
@@ -467,9 +468,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var g2 = { pokemon: "ポケモンカードゲーム", onepiece: "ONE PIECEカードゲーム", dragonball: "ドラゴンボールスーパーカードゲーム フュージョンワールド" }[st.game] || g;
     return '<article class="ticket feed">' +
       '<div class="stub"><span class="cd-l">在庫</span><span class="cd">通販</span><span class="dl">随時</span></div>' +
-      '<div class="body"><div class="info"><div class="store">Amazon<span class="badge pr">PR</span></div>' +
+      '<div class="body"><div class="info"><div class="store">Amazon</div>' +
       '<div class="product">' + esc(g2) + '「' + esc(best || "最新弾") + '」の通販・予約</div>' +
-      '<div class="flow"><span>Web購入</span><i aria-hidden="true">→</i><span class="sh">発送</span></div></div></div>' +
+      '<div class="flow"><span>Web購入</span><i aria-hidden="true">→</i><span class="sh">発送</span></div>' +
+      '<div class="pr-note">PR</div></div></div>' +
       '<div class="acts"><a class="go amz" href="' + esc(url) + '" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a></div>' +
     '</article>';
   }
