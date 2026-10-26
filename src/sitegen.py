@@ -49,7 +49,7 @@ def load_images() -> dict:
 
 
 # チェーン（店名で判定）。big=True は「おすすめ」（全国の多くの店舗で抽選をするので応募のチャンスが多い）
-# おすすめ：ヤマダ・ジョーシン・ビックカメラ・ヨドバシ・エディオン・ゲオ・トイザらス
+# おすすめ：ヤマダ・ジョーシン・ビックカメラ・ヨドバシ・エディオン・ゲオ・トイザらス・古本市場
 CHAINS = [
     ("yamada", "ヤマダデンキ", r"ヤマダ(電機|デンキ)|YAMADA|LABI", True),
     ("biccamera", "ビックカメラ", r"ビックカメラ|BicCamera|コジマ", True),
@@ -63,7 +63,7 @@ CHAINS = [
     ("aeon", "イオン", r"イオン|AEON", False),
     ("toysrus", "トイザらス", r"トイザらス|Toys\s*R\s*Us", True),
     ("bookoff", "ブックオフ", r"ブックオフ|BOOKOFF|BOOK OFF", False),
-    ("furuichi", "古本市場・ふるいち", r"古本市場|ふるいち", False),
+    ("furuichi", "古本市場・ふるいち", r"古本市場|ふるいち", True),
     ("hobbyoff", "ホビーオフ", r"ホビーオフ|ハードオフ|オフハウス", False),
     ("kiddyland", "キデイランド", r"キデ?[イィ]ランド|KIDDY\s*LAND", False),
     ("pokemoncenter", "ポケモンセンター", r"ポケモンセンター", False),
