@@ -16,7 +16,9 @@ post_link: false            # 個別告知にリンクを付けるか（リン�
 quote_source: false         # 店舗の告知ポストを引用する（自動化ラベル付きアカウントは引用不可＝403になるのでオフ）
 summary_hours: []           # 自動のまとめ投稿（リンク付き・1件約$0.20）。空＝オフ（手動運用：サイトの /x-draft.html からコピペ）。自動にするなら [7, 15, 23] のように時刻を入れる
 
-site_public_url: ""        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う
+site_public_url: ""
+google_site_verification: ""   # Google Search Console の「HTMLタグ」の content="…" の中身を入れる
+indexnow_key: "267f260c7ca339b86fc2279efeb66039"   # IndexNow（Bing等にページの更新を知らせる）の鍵。変えなくてOK        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う
 site_url: ""              # WordPressのURL（例 https://example.com）。空ならWP更新はスキップ
 
 hashtags:

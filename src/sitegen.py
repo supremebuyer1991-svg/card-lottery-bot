@@ -61,39 +61,64 @@ def prerender(items) -> str:
     """JSが動く前（＝検索エンジンが最初に読む）一覧。JSが動くと本来の表示に置き換わる"""
     if not items:
         return '<div class="empty">現在受付中の抽選はありません。</div>'
-    rows = []
-    for i in sorted(items, key=lambda x: x.get("end") or "9999")[:200]:
-        where = f"［{i['area']}］" if i.get("channel") == "store" and i.get("area") else ""
-        link = f' <a href="{escape(i["url"])}" rel="noopener">応募ページ</a>' if i.get("url") else ""
-        rows.append(f"<li><b>{escape(where + i['store'])}</b> {escape(i['product'])}"
-                    f" ／ 締切 {_fmt(i.get('end'))}{link}</li>")
-    return f'<ul class="pre">{"".join(rows)}</ul>'
+    out = []
+    for ch, title in (("online", "ネット抽選（当選後に発送）"), ("store", "店頭抽選（受け取りは店頭）")):
+        rows = []
+        for i in sorted([i for i in items if (i.get("channel") == "store") == (ch == "store")],
+                        key=lambda x: x.get("end") or "9999")[:150]:
+            where = f"［{i['area']}］" if ch == "store" and i.get("area") else ""
+            dt = parse_dt(i.get("end"))
+            when = f'<time datetime="{dt.isoformat()}">{_fmt(i.get("end"))}</time>' if dt else "締切 要確認"
+            link = f' <a href="{escape(i["url"])}" rel="nofollow noopener">応募ページ</a>' if i.get("url") else ""
+            rows.append(f"<li><b>{escape(where + i['store'])}</b> {escape(i.get('product') or '')} ／ 締切 {when}{link}</li>")
+        if rows:
+            out.append(f'<h2>{title}</h2><ul class="pre">{"".join(rows)}</ul>')
+    return "".join(out)
 
 
 def page(data: dict, meta: dict, standalone=True) -> str:
     base = meta.get("root", "/")
     canon = meta.get("canonical")
+    site = meta.get("site", "")
     head = []
     if canon:
         head += [f'<link rel="canonical" href="{escape(canon)}">',
                  f'<meta property="og:url" content="{escape(canon)}">']
+    og_img = f"{site}/og.png" if site else "/og.png"
     head += [f'<meta property="og:title" content="{escape(meta["title"])}">',
              f'<meta property="og:description" content="{escape(meta["desc"])}">',
-             '<meta property="og:type" content="website">', '<meta name="twitter:card" content="summary">']
+             '<meta property="og:type" content="website">', '<meta property="og:site_name" content="トレカ抽選ナビ">',
+             '<meta property="og:locale" content="ja_JP">',
+             f'<meta property="og:image" content="{escape(og_img)}">', '<meta property="og:image:width" content="1200">',
+             '<meta property="og:image:height" content="630">',
+             '<meta name="twitter:card" content="summary_large_image">',
+             f'<meta name="twitter:image" content="{escape(og_img)}">',
+             '<meta name="theme-color" content="#c8102e">',
+             '<link rel="icon" href="/favicon.svg" type="image/svg+xml">', '<link rel="icon" href="/favicon.png" sizes="48x48">',
+             '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+             '<meta name="robots" content="index,follow,max-image-preview:large">']
+    if meta.get("verify"):
+        head.append(f'<meta name="google-site-verification" content="{escape(meta["verify"])}">')
+    for ld in meta.get("ld") or []:
+        head.append('<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>")
     body = TEMPLATE.read_text(encoding="utf-8")
     for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]),
                  "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]),
-                 "__LEAD__": escape(meta["lead"]), "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__SUPPLY__": meta.get("supply", ""),
+                 "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
+                 "__CRUMBS__": meta.get("crumbs", ""),
+                 "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__SUPPLY__": meta.get("supply", ""),
                  "__PRERENDER__": meta.get("prerender", "")}.items():
         body = body.replace(k, v)
     body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
     if not standalone:
         return body
+    # テンプレートの <header> より前（title・meta・CSS）は <head> に入れる（検索エンジンは <head> の中を読む）
+    cut = body.index("<header")
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             '<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}'
             ':root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>'
-            f'</head><body>{body}</body></html>')
+            f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
 
 
 def _links(title, pairs):
@@ -338,14 +363,67 @@ def build(settings=None, out_dir=None, sample=None):
                    "gameUrls": {g: f"/{GAME_SLUG[g]}/" for g in games}, "items": items,
                    "gameNames": {g: s["game_names"][g] for g in games}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
+    upd = parse_dt(updated) or now()
+    md = f"{upd.month}/{upd.day}"
+    verify = s.get("google_site_verification") or os.environ.get("GOOGLE_SITE_VERIFICATION") or ""
+    game_counts = {g: sum(1 for i in items if i["game"] == g) for g in games}
 
-    def write(path, lock, meta, subset):
+    def summary(sub, what):
+        """ページごとの要約文（件数・一番近い締切・店頭が多い都道府県）。検索結果にも使われる独自の文章"""
+        if not sub:
+            return f"現在受付中の{what}はありません。新しい抽選が見つかり次第、自動で追加されます。"
+        on = sum(1 for i in sub if i.get("channel") != "store")
+        txt = f"現在受付中の{what}は{len(sub)}件" + (f"（ネット抽選{on}件・店頭抽選{len(sub) - on}件）。" if 0 < on < len(sub) else "。")
+        soon = sorted([i for i in sub if parse_dt(i.get("end"))], key=lambda i: i["end"])
+        if soon:
+            i = soon[0]
+            txt += f"締切が一番近いのは{i['store']}の「{i.get('series') or i.get('product')}」（{_fmt(i['end'])}締切）。"
+        cnt = {}
+        for i in sub:
+            if i.get("channel") == "store" and i.get("area"):
+                cnt[i["area"]] = cnt.get(i["area"], 0) + 1
+        top3 = sorted(cnt, key=lambda a: -cnt[a])[:3]
+        if top3:
+            txt += "店頭抽選が多い地域は" + "・".join(f"{a}（{cnt[a]}件）" for a in top3) + "です。"
+        return txt
+
+    def crumbs(trail):
+        """パンくず（画面）と構造化データ。trail: [(名前, パス)]"""
+        html = '<nav class="crumbs" aria-label="パンくず">' + " › ".join(
+            (f'<a href="/{escape(p)}">{escape(n)}</a>' if k < len(trail) - 1 else f"<span>{escape(n)}</span>")
+            for k, (n, p) in enumerate(trail)) + "</nav>"
+        ld = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": k + 1, "name": n, "item": f"{site}/{p}"} for k, (n, p) in enumerate(trail)]}
+        return html, ld
+
+    def item_list(sub, title):
+        rows = sorted([i for i in sub if parse_dt(i.get("end"))], key=lambda i: i["end"])[:20]
+        return {"@context": "https://schema.org", "@type": "ItemList", "name": title, "numberOfItems": len(sub),
+                "itemListElement": [{"@type": "ListItem", "position": k + 1,
+                                     "name": f"{i['store']} {i.get('series') or i.get('product')}（{_fmt(i['end'])}締切）",
+                                     **({"url": i["url"]} if i.get("url") else {})} for k, i in enumerate(rows)]}
+
+    def write(path, lock, meta, subset, trail=None):
         p = out / path / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         meta["canonical"] = f"{site}/{path}" if site else None
+        meta["site"], meta["verify"] = site, verify
         meta["prerender"] = prerender(subset)
-        p.write_text(page({**common_data, "lock": lock}, meta), encoding="utf-8")
-        urls.append(f"{site}/{path}")
+        ld = [item_list(subset, meta["h1"])]
+        if trail:
+            meta["crumbs"], bl = crumbs(trail)
+            ld.insert(0, bl)
+        if not path:
+            ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "name": "トレカ抽選ナビ", "url": f"{site}/",
+                          "inLanguage": "ja", "description": meta["desc"]})
+        meta["ld"] = ld
+        # ページを軽くする：そのページのゲームの抽選だけを埋め込む（トップは最初のゲームだけ。ほかのゲームはタブで移動）
+        g0 = lock.get("game") or games[0]
+        data = {**common_data, "lock": lock, "items": [i for i in items if i["game"] == g0], "gameCounts": game_counts,
+                "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
+        p.write_text(page(data, meta), encoding="utf-8")
+        last = max([i.get("found_at") or "" for i in subset] + [""]) or updated
+        urls.append((f"{site}/{path}", (last or updated)[:10]))
 
     def prods_of(game):
         cnt = {}
@@ -364,17 +442,22 @@ def build(settings=None, out_dir=None, sample=None):
         areas = sorted({i["area"] for i in gi if i.get("channel") == "store" and i.get("area") in PREF},
                        key=lambda a: list(PREF).index(a))
         online = sum(1 for i in gi if i.get("channel") != "store")
-        meta = {"title": f"{short}抽選・予約情報まとめ【最新・締切順】｜トレカ抽選ナビ",
-                "desc": f"{name}の抽選・予約情報を締切が近い順にまとめています。ネット抽選{online}件、"
-                        f"店頭抽選{len(gi) - online}件を掲載。本人確認・会員の有無で絞り込めます。",
+        today = sum(1 for i in gi if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date())
+        meta = {"title": f"{short}抽選情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{name}（{short}）の抽選販売・予約抽選を締切が近い順にまとめ。ネット抽選{online}件・"
+                        f"店頭抽選{len(gi) - online}件を掲載、都道府県別・弾別・本人確認や会員の有無で絞り込めます。30分ごとに自動更新。",
+                "summary": summary(gi, f"{short}の抽選"),
                 "h1": f"{short}の抽選・予約情報まとめ",
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
                 "supply": _supply_ad(short, name, tag, raff, prices, g)}
-        write(f"{slug}/", {"game": g}, dict(meta), gi)
+        write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
-            top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
+            top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピカードの抽選情報まとめ【{md}更新】締切が近い順",
+                       desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
+                            f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
+                       summary=summary(items, "トレカの抽選"),
                        h1="トレカの抽選・予約情報まとめ",
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
@@ -385,23 +468,35 @@ def build(settings=None, out_dir=None, sample=None):
             si = [i for i in gi if i.get("series") == x]
             rr = (rk if sample is None else {}).get(f"{g}|{x}") or {}
             aff = _product_ad(x, name, rr, tag, raff)
+            alias = (s.get("rakuten_aliases") or {}).get(x)
             write(series_path(g, x), {"game": g, "series": x}, {
-                "title": f"{x} 抽選・予約情報まとめ【{len(si)}件受付中・締切順】｜トレカ抽選ナビ",
-                "desc": f"{name}「{x}」の抽選・予約情報を店舗別・締切順にまとめています。ネット・店頭（都道府県別）、"
-                        "本人確認・会員カードの有無もひと目で分かります。",
+                "title": f"{x}の抽選・予約情報【{md}更新】受付中{len(si)}件・締切順｜{short}｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
+                        f"の抽選販売・予約抽選{len(si)}件を締切順にまとめ。ネット・店頭（都道府県別）、本人確認・会員カードの有無もひと目で分かります。",
+                "summary": summary(si, f"「{x}」の抽選"),
                 "h1": f"「{x}」の抽選・予約情報",
                 "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
                 "aff": aff, "links": _menu(items, games, g, "/" + series_path(g, x)),
-                "root": "/"}, si)
+                "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
         for a in areas:
             ai = [i for i in gi if i.get("channel") == "store" and i.get("area") == a]
             write(f"{slug}/area/{PREF[a]}/", {"game": g, "channel": "store", "area": a}, {
-                "title": f"{a}の{short}店頭抽選まとめ【{len(ai)}件・締切順】｜トレカ抽選ナビ",
-                "desc": f"{a}の店舗で受付中の{name}の店頭抽選・抽選券配布の情報を締切順にまとめています。",
+                "title": f"{a}の{short}店頭抽選まとめ【{md}更新】{len(ai)}件・締切順｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{a}の店舗で受付中の{name}（{short}）の店頭抽選・抽選券配布{len(ai)}件を締切順にまとめ。"
+                        "Web応募で店頭受取の抽選も含みます。",
+                "summary": summary(ai, f"{a}の{short}店頭抽選"),
                 "h1": f"{a}の{short}店頭抽選",
                 "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
-                "links": _menu(items, games, g), "root": "/"}, ai)
+                "links": _menu(items, games, g), "root": "/"}, ai,
+                [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (f"{a}の店頭抽選", f"{slug}/area/{PREF[a]}/")])
+
+    # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
+    import shutil
+    for f in (ROOT / "src" / "static").glob("*"):
+        shutil.copy(f, out / f.name)
+    if s.get("indexnow_key"):
+        (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
 
     # X手動投稿用の下書きページ（検索に載せない・サイトマップにも入れない）
     from xdraft import build_x_draft
@@ -410,7 +505,7 @@ def build(settings=None, out_dir=None, sample=None):
     if site:
         (out / "sitemap.xml").write_text(
             '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{updated[:10]}</lastmod></url>" for u in urls)
+            + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in urls)
             + "</urlset>\n", encoding="utf-8")
         (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /x-draft.html\nSitemap: {site}/sitemap.xml\n", encoding="utf-8")
 

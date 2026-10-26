@@ -56,6 +56,10 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .logo .t::after { content: ""; position: absolute; top: 4px; bottom: 4px; right: 7px; border-right: 1.5px dashed rgb(255 255 255 / .55); }
 .lead { margin-block: 18px 0; display: grid; gap: 6px; }
 .lead h1 { font-family: var(--font-body); font-weight: 700; letter-spacing: .01em; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.crumbs { font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px; }
+.crumbs a { color: var(--ink-2); }
+.lead p.summary { font-size: 13px; color: var(--ink-2); }
+.pre { padding-left: 18px; font-size: 13px; } .list h2 { font-size: 15px; margin: 12px 0 4px; }
 .lead p { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 65ch; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
 .links a { color: var(--ink-2); }
@@ -372,9 +376,11 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 <main class="wrap">
   <section class="news" id="news" aria-label="更新情報" hidden><div class="news-h"><b>更新情報</b><span id="news-n"></span></div><div class="news-win"><ul id="news-list"></ul></div></section>
   <section class="lead">
+    __CRUMBS__
     <h1>__H1__</h1>
     <p id="updated"></p>
     <p>__LEAD__</p>
+    <p class="summary">__SUMMARY__</p>
     __AFF__
   </section>
   <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
@@ -441,6 +447,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   var st = Object.assign({ game: GAMES[0].id, channel: "online", region: "", area: "", q: "", series: "" },
     LOCK.game ? {} : load("lot_view", {}), LOCK);
   if (!LOCK.game && location.hash && GAMES.some(function (g) { return "#" + g.id === location.hash; })) st.game = location.hash.slice(1);
+  // このページに入っていないゲームが選ばれていたら、入っているゲームに戻す（ほかのゲームはタブでそのページへ）
+  if (items.length && !items.some(function (i) { return i.game === st.game; })) st.game = items[0].game;
 
   var $ = function (id) { return document.getElementById(id); };
   var REGIONS = [
@@ -644,7 +652,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var gs = st.series ? g.filter(function (i) { return i.series === st.series; }) : g;
     // ゲームタブ
     $("games").innerHTML = GAMES.map(function (x) {
-      var n = items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length;
+      var n = items.some(function (i) { return i.game === x.id; })
+        ? items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length
+        : ((DATA.gameCounts || {})[x.id] || 0);
       return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.name) + '<span class="n">' + n + '</span></button>';
     }).join("");
     // サマリー
@@ -702,7 +712,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   // イベント
   $("games").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-g]"); if (!b) return;
-    if (DATA.gameUrls && DATA.gameUrls[b.dataset.g] && LOCK.game) { location.href = DATA.gameUrls[b.dataset.g]; return; }
+    if (DATA.gameUrls && DATA.gameUrls[b.dataset.g] && (LOCK.game || !items.some(function (i) { return i.game === b.dataset.g; }))) { location.href = DATA.gameUrls[b.dataset.g]; return; }
     st.game = b.dataset.g; st.series = ""; st.area = ""; st.region = ""; render();
   });
   $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });

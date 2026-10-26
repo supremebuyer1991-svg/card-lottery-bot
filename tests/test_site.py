@@ -25,7 +25,11 @@ assert "sitemap.xml" in files and "robots.txt" in files and ".changed" in files
 assert sum(1 for f in files if f.startswith("pokeka/s-")) == 2 and any(f.startswith("onepiece/s-") for f in files)
 sp = next(out.glob("pokeka/s-*/index.html"))
 seriesA = [p for p in out.glob("pokeka/s-*/index.html") if "「弾A」の抽選" in p.read_text()][0].read_text()
-assert "<title>弾A 抽選・予約情報まとめ【2件受付中" in seriesA                  # 終了・保留は載せない
+assert re.search(r"<title>弾Aの抽選・予約情報【\d+/\d+更新】受付中2件", seriesA)       # 終了・保留は載せない
+head = seriesA[:seriesA.index("</head>")]                                          # title・説明・正規URLは <head> の中
+assert "<title>" in head and 'name="description"' in head and 'rel="canonical"' in head and 'og:image' in head
+assert '"BreadcrumbList"' in head and '"ItemList"' in head and 'class="crumbs"' in seriesA and 'class="summary"' in seriesA
+assert (out / "og.png").exists() and (out / "favicon.svg").exists()
 assert "ヨドバシ" in seriesA and "終了店" not in re.sub(r'<script type="application/json".*?</script>', "", seriesA, flags=re.S)
 assert 'rel="canonical" href="https://example.jp/pokeka/s-' in seriesA and "tag=t-22" in seriesA
 osaka = (out / "pokeka/area/osaka/index.html").read_text()

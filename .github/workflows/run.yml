@@ -68,6 +68,11 @@ jobs:
           # 初回だけサイトの置き場所を自動で作る（2回目以降は「もうある」で何もしない）
           npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || true
           npx --yes wrangler@4 pages deploy site --project-name="$PROJECT" --branch=main
+      - name: notify search engines (IndexNow)
+        if: hashFiles('site/.changed') != ''
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: python src/indexnow.py || true
       - name: save state
         run: |
           git config user.name "bot"
