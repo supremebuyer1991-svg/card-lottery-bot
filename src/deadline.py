@@ -37,9 +37,23 @@ PROMPT = """トレカの抽選販売の告知です。この抽選の「応募�
 """
 
 
+def _image_block(u):
+    """画像はダウンロードしてAIに直接渡す（URLだとXの画像が読めないことがある）"""
+    import base64
+    try:
+        r = requests.get(u + ("&" if "?" in u else "?") + "name=large" if "pbs.twimg.com" in u and "name=" not in u else u,
+                         timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+        ct = r.headers.get("content-type", "").split(";")[0]
+        if r.status_code == 200 and ct in ("image/jpeg", "image/png", "image/gif", "image/webp") and len(r.content) < 4_500_000:
+            return {"type": "image", "source": {"type": "base64", "media_type": ct, "data": base64.b64encode(r.content).decode()}}
+    except Exception as e:
+        log(f"締切の調査: 画像の取得失敗 {u[:60]} {e}")
+    return {"type": "image", "source": {"type": "url", "url": u}}
+
+
 def _ask(text, images, it, posted):
     key = os.environ.get("ANTHROPIC_API_KEY")
-    content = [{"type": "image", "source": {"type": "url", "url": u}} for u in images[:3]]
+    content = [_image_block(u) for u in images[:4]]
     content.append({"type": "text", "text": PROMPT.format(
         posted=posted or now().date().isoformat(), today=now().date().isoformat(),
         store=it.get("store"), product=it.get("product"), text=text[:6000])})
@@ -106,14 +120,14 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         if not os.environ.get("ANTHROPIC_API_KEY"):
             return 0
         ask = _ask
-    limit = limit or settings.get("deadline_checks_per_run", 30)
+    limit = limit or settings.get("deadline_checks_per_run", 80)
     lots = load_json("lotteries.json", {})
     todo = []
     for it in lots.values():
         if it.get("status") not in ACTIVE or it.get("end"):
             continue
         t = parse_dt(it.get("deadline_checked_at"))
-        if t and (now() - t).total_seconds() < 24 * 3600:
+        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 2:
             continue
         url = it.get("url") or ""
         if _tweet_id(url) or any(h in url for h in PAGE_HOSTS):
@@ -149,6 +163,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         else:
             text, src = _page_text(it["url"], fetcher), "応募ページ"
         it["deadline_checked_at"] = now().isoformat()
+        it["deadline_v"] = 2
         if not text and not imgs:
             continue
         try:
@@ -156,6 +171,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         except Exception as e:
             log(f"締切の調査: AI失敗 {e}")
             continue
+        it["deadline_note"] = (f"画像{len(imgs)}枚・" if imgs else "画像なし・") + ((r.get("evidence") or "締切の記載なし")[:30])
         end = parse_dt(r.get("end"))
         found = parse_dt(it.get("found_at"))
         if end and (not found or end > found.replace(year=found.year - 1)):
