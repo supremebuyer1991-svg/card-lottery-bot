@@ -125,6 +125,21 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 
 /* サマリー */
 /* 受付中〜弾の切り替えをまとめる色付きの箱 */
+/* 更新情報（5行で流れる） */
+.news { margin-top: 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+.news-h { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font-size: 12px; border-bottom: 1px solid var(--rule); background: var(--navy-soft); }
+.news-h b { font-size: 12px; } .news-h span { color: var(--ink-2); font-size: 11px; }
+.news-win { --row: 30px; height: calc(var(--row) * 5); overflow: hidden; }
+.news.still .news-win { height: auto; }
+#news-list { list-style: none; margin: 0; padding: 0; will-change: transform; }
+#news-list li { height: var(--row); border-bottom: 1px dashed var(--rule); }
+#news-list a { height: 100%; display: flex; align-items: center; gap: 8px; padding: 0 12px; text-decoration: none; color: var(--ink); font-size: 12.5px; }
+#news-list i { flex: none; font-style: normal; font-size: 11px; font-weight: 700; min-width: 44px; text-align: center; border-radius: 4px; padding: 2px 6px; font-variant-numeric: tabular-nums; }
+#news-list .add i { background: var(--red); color: #fff; }
+#news-list .end i { background: var(--amber); color: #fff; }
+#news-list span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#news-list em { font-style: normal; color: var(--red); font-weight: 700; }
+
 /* 締切間近・新着（横スワイプ） */
 .hot { margin-top: 14px; }
 .hot-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
@@ -353,6 +368,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 </header>
 
 <main class="wrap">
+  <section class="news" id="news" aria-label="更新情報" hidden><div class="news-h"><b>更新情報</b><span id="news-n"></span></div><div class="news-win"><ul id="news-list"></ul></div></section>
   <section class="lead">
     <h1>__H1__</h1>
     <p id="updated"></p>
@@ -676,6 +692,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     }
     $("list").innerHTML = html;
     renderHot();
+    renderNews();
   }
 
   // イベント
@@ -708,6 +725,53 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       img.parentNode.innerHTML = '<span class="ph">' + esc(img.alt) + '</span>';
     }
   }, true);
+
+  // 更新情報（5行の枠で下から上に流れる）：新しく追加された抽選・まもなく受付終了の抽選
+  var NEWS_ROWS = 5, newsKey = "";
+  function leftText(ms) {
+    var m = Math.max(1, Math.round(ms / 60e3));
+    return m < 60 ? m + "分" : Math.floor(m / 60) + "時間" + (m % 60 ? (m % 60) + "分" : "");
+  }
+  function renderNews() {
+    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var ending = g.filter(function (i) { return i._end && i._end > now && i._end - now <= 3 * 3600e3; })
+      .sort(function (a, b) { return a._end - b._end; }).slice(0, 10)
+      .map(function (i) { return { i: i, cls: "end", tag: "残り" + leftText(i._end - now), t: '<b>' + esc(i.store) + '</b>「' + esc(i.series || i.product) + '」まもなく受付終了！' }; });
+    var added = g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); }).slice(0, 10)
+      .map(function (i) { return { i: i, cls: "add", tag: "追加", t: '<b>' + esc(i.store) + '</b>「' + esc(i.series || i.product) + '」の抽選情報' }; });
+    var rows = [], k = 0;
+    while (rows.length < 20 && (k < ending.length || k < added.length)) {  // 交互に並べる
+      if (k < ending.length) rows.push(ending[k]);
+      if (k < added.length) rows.push(added[k]);
+      k++;
+    }
+    var key = st.game + rows.map(function (r) { return r.i.key + r.cls; }).join();
+    $("news").hidden = !rows.length;
+    $("news-n").textContent = rows.length ? "終了間近 " + ending.length + "件・新着 " + added.length + "件" : "";
+    var html = rows.map(function (r) {
+      return '<li class="' + r.cls + '"><a href="' + esc(r.i.url) + '" target="_blank" rel="noopener"><i>' + esc(r.tag) + '</i><span>' + r.t + '</span></a></li>';
+    }).join("");
+    if (key !== newsKey) { newsKey = key; $("news-list").innerHTML = html; $("news").classList.toggle("still", rows.length <= NEWS_ROWS); }
+    else {  // 並びはそのまま、残り時間の文字だけ更新
+      var lis = $("news-list").children, tmp = document.createElement("ul"); tmp.innerHTML = html;
+      var byKey = {}; [].forEach.call(tmp.children, function (li, n) { byKey[rows[n].i.key + rows[n].cls] = li.innerHTML; });
+      [].forEach.call(lis, function (li) { if (li.dataset.k && byKey[li.dataset.k]) li.innerHTML = byKey[li.dataset.k]; });
+    }
+    [].forEach.call($("news-list").children, function (li, n) { if (!li.dataset.k && rows[n]) li.dataset.k = rows[n].i.key + rows[n].cls; });
+  }
+  // 3.5秒ごとに1行ずつ上へ（触っている間・動きを減らす設定のときは止める）
+  var newsPaused = false;
+  ["mouseenter", "touchstart", "focusin"].forEach(function (ev) { $("news").addEventListener(ev, function () { newsPaused = true; }, { passive: true }); });
+  ["mouseleave", "touchend", "focusout"].forEach(function (ev) { $("news").addEventListener(ev, function () { setTimeout(function () { newsPaused = false; }, 1500); }, { passive: true }); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setInterval(function () {
+    var ul = $("news-list");
+    if (reduce || newsPaused || $("news").hidden || ul.children.length <= NEWS_ROWS) return;
+    var h = ul.firstElementChild.offsetHeight;
+    ul.style.transition = "transform .5s ease"; ul.style.transform = "translateY(-" + h + "px)";
+    setTimeout(function () { ul.style.transition = "none"; ul.appendChild(ul.firstElementChild); ul.style.transform = "none"; }, 520);
+  }, 3500);
+  setInterval(renderNews, 30000);
 
   // カウントダウンを1秒ごとに更新
   setInterval(function () {
