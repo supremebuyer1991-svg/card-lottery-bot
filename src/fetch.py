@@ -182,6 +182,11 @@ def cardchusen_items(html: str, base_url: str) -> list:
             "member": ("card" if channel == "store" else "account") if "会員" in conds else "none",
             "confidence": 0.95,
         }
+        if not art.get("data-entry-end"):
+            # 締切の入っていない抽選：カードに書かれている文字を残す（期間の読み取り用）
+            txt = art.get_text(" ", strip=True)
+            item["period_text"] = txt[:300]
+            item["attrs"] = {k: v for k, v in art.attrs.items() if k.startswith("data-")}
         if not item["product"]:
             continue
         key = art.get("id") or url
