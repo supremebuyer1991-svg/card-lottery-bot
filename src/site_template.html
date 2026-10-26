@@ -681,9 +681,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
     } else if (st.channel === "store" && !st.area) {
       var by = {};
-      var MULTI = "複数店舗", UNKNOWN = "地域不明", cnt = { n: 0, recent: [] };
-      list.forEach(function (i) { var k = i.area || (isMulti(i) ? MULTI : UNKNOWN); (by[k] = by[k] || []).push(i); });
-      var rank = function (a) { var x = PREF_ORDER.indexOf(a); return x >= 0 ? x : a === MULTI ? 98 : 99; };
+      // 都道府県が1つに決まらない抽選（全国チェーン・複数店舗など）は「複数地域」として一番上に
+      var MULTI = "複数地域", cnt = { n: 0, recent: [] };
+      list.forEach(function (i) { var k = i.area || MULTI; (by[k] = by[k] || []).push(i); });
+      var rank = function (a) { var x = PREF_ORDER.indexOf(a); return x >= 0 ? x : -1; };
       Object.keys(by).sort(function (a, b) { return rank(a) - rank(b); }).forEach(function (a) {
         html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + withAds(by[a], cnt);
       });

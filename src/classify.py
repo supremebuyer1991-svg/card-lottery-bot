@@ -90,9 +90,30 @@ def load_overrides():
     return out
 
 
+def load_area_overrides():
+    """config/area_overrides.yaml：店名 → 都道府県"""
+    import yaml
+    from common import ROOT
+    p = ROOT / "config" / "area_overrides.yaml"
+    return {str(k).strip(): v for k, v in ((yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}).items() if v in PREFS}
+
+
 def apply_overrides(lots, ov):
     n = 0
+    areas = load_area_overrides()
     for it in lots.values():
+        # 都道府県の書き方をそろえる（東京→東京都、大阪→大阪府 など）。都道府県でない値は消す
+        ar = (it.get("area") or "").strip()
+        if ar and ar not in PREFS:
+            fixed = next((p for p in PREFS if p.rstrip("都府県") == ar.rstrip("都府県") and ar.rstrip("都府県")), None)
+            it["area"] = fixed
+            n += 1
+        a = areas.get((it.get("store") or "").strip())
+        if a and it.get("area") != a:
+            it["area"] = a
+            if it.get("channel") != "online":
+                it["channel"] = "store"
+            n += 1
         ch = ov.get((it.get("store") or "").strip())
         if ch and it.get("channel") != ch:
             it["channel"] = ch
