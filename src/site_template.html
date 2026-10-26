@@ -168,6 +168,8 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 .hc-f i { font-style: normal; font-size: 10px; font-weight: 700; border-radius: 3px; padding: 1px 5px; color: #fff; }
 .hc-f i.st { background: var(--ink); } .hc-f i.sh { background: var(--done); }
 .hc-f em { font-style: normal; font-size: 10px; color: var(--ink-2); }
+.supply-slot:empty { display: none; }
+.supply-slot .ad { margin-top: 14px; }
 .panel { margin-top: 16px; padding: 12px; border-radius: 16px; background: linear-gradient(180deg, var(--red-soft), var(--navy-soft));
   border: 1px solid var(--rule); box-shadow: 0 1px 2px rgb(22 28 46 / .05); }
 .panel .stats { margin-block: 0 10px; background: var(--rule); }
@@ -376,6 +378,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     __AFF__
   </section>
   <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
+  <div class="supply-slot">__SUPPLY__</div>
   <section class="panel" aria-label="絞り込み">
   <div class="stats" id="stats"></div>
 
