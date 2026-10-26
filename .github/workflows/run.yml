@@ -1,0 +1,66 @@
+name: card-lottery-bot
+
+on:
+  schedule:
+    # 日本時間 7:00〜24:59 の30分ごと（UTCで記述）
+    - cron: "*/30 0-15,22-23 * * *"
+  workflow_dispatch:      # 手動実行ボタン
+  issues:
+    types: [labeled]      # 承認ラベルを付けたら即投稿
+
+concurrency:
+  group: bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      HAS_CF: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          AUTO_APPROVE: ${{ vars.AUTO_APPROVE }}
+          DRY_RUN: ${{ vars.DRY_RUN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+        run: |
+          if [ "${{ github.event_name }}" = "issues" ]; then
+            python src/main.py publish
+          else
+            python src/main.py all
+          fi
+      - name: deploy site (Cloudflare Pages)
+        if: ${{ hashFiles('site/.changed') != '' && env.HAS_CF == 'true' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=${{ vars.CF_PROJECT || 'toreca-chusen' }} --branch=main
+      - name: save state
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state/
+          git diff --cached --quiet || (git commit -m "update state" && git push)
