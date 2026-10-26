@@ -54,6 +54,7 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .links a { color: var(--ink-2); }
 .links b { font-weight: 700; color: var(--ink); }
 .aff { font-size: 13px; }
+.foot-nav { display: grid; gap: 8px; padding-block: 8px 12px; border-bottom: 1px solid var(--rule); margin-bottom: 4px; }
 .aff a { color: var(--red); font-weight: 700; }
 .pre { display: grid; gap: 6px; }
 .pre li { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 8px 12px; list-style: none; }
@@ -79,7 +80,9 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
 select, input[type="search"] { font: inherit; font-size: 14px; color: var(--ink); background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; min-width: 0; }
 input[type="search"] { flex: 1 1 160px; }
-.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; user-select: none; }
+.row.scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; }
+.row.scroll::-webkit-scrollbar { display: none; }
+.toggle { flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; user-select: none; }
 .toggle input { accent-color: var(--red); margin: 0; }
 .toggle:has(input:checked) { border-color: var(--ink); }
 .hint { font-size: 12px; color: var(--ink-2); }
@@ -88,6 +91,7 @@ input[type="search"] { flex: 1 1 160px; }
 .series { display: flex; gap: 8px; flex-wrap: wrap; margin-block: 14px 4px; }
 .series button { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
 .series button[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.series button.more { border-style: dashed; color: var(--ink-2); }
 .series .c { font-family: var(--font-num); font-size: 11px; color: var(--ink-2); margin-left: 4px; }
 .series button[aria-pressed="true"] .c { color: inherit; opacity: .7; }
 
@@ -160,7 +164,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   <section class="lead">
     <h1>__H1__</h1>
     <p>__LEAD__</p>
-    __LINKS__
+    __AFF__
   </section>
   <div class="stats" id="stats"></div>
 
@@ -173,7 +177,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <select id="area" aria-label="都道府県" hidden></select>
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
-    <div class="row">
+    <div class="row scroll">
       <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
       <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
       <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
@@ -187,6 +191,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   <div class="list" id="list">__PRERENDER__</div>
 
   <footer>
+    <div class="foot-nav">__LINKS__</div>
     <p>※本サイトはプロモーション（広告）を含みます。</p>
     <p>情報は自動で収集し30分ごとに更新しています。応募条件・期間は変更される場合があるため、応募前に必ず各店舗の公式ページでご確認ください。</p>
     <p>「応募済み」の印はこの端末のブラウザにだけ保存されます。</p>
@@ -270,8 +275,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   function thumb(it) {
     var alt = esc(it.series || it.product);
-    return '<div class="thumb">' + (it.image ? '<img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy">'
-      : '<span class="ph">' + alt + '</span>') + '</div>';
+    if (!it.image) return "";
+    return '<div class="thumb"><img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy"></div>';
   }
   function reqs(it) {
     var id = it.id_check === true ? '<span class="pill need">本人確認 必要</span>'
@@ -280,6 +285,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       : it.member === "account" ? '<span class="pill need">会員登録 必要</span>'
       : it.member === "none" ? '<span class="pill ok">会員 不要</span>' : '<span class="pill unk">会員 不明</span>';
     return '<div class="req">' + id + mem + '</div>';
+  }
+  var TAGWORDS = ["会員", "本人確認", "SNS応募", "アプリ", "レシート", "整理券", "購入履歴"];
+  function condText(it) {
+    return (it.conditions || "").split(" ／ ").filter(function (p) {
+      return !p.split("・").every(function (w) { return TAGWORDS.indexOf(w.trim()) >= 0; });
+    }).join(" ／ ");
   }
   function otherTags(it) { return (it.tags || []).filter(function (t) { return ["会員", "本人確認"].indexOf(t) < 0; }); }
 
@@ -292,7 +303,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + '</div>' +
         '<div class="product">' + esc(it.product) + '</div>' + reqs(it) +
         (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
-        (it.conditions ? '<div class="cond">' + esc(it.conditions) + '</div>' : "") +
+        (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
       '</div></div>' +
       '<div class="acts">' + (it.url ? '<a class="go" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募ページへ</a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
         '<div class="mini"><button type="button" class="ap" aria-pressed="' + done + '">' + (done ? "応募済み ✓" : "応募済みにする") + '</button>' +
@@ -303,16 +314,17 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function render() {
     if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, area: st.area });
     var g = inGame();
+    var gs = st.series ? g.filter(function (i) { return i.series === st.series; }) : g;
     // ゲームタブ
     $("games").innerHTML = GAMES.map(function (x) {
       var n = items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length;
       return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.name) + '<span class="n">' + n + '</span></button>';
     }).join("");
     // サマリー
-    var today = g.filter(function (i) { return isToday(i._end); }).length;
-    var fresh = g.filter(isNew).length;
-    var unapplied = g.filter(function (i) { return !applied[i.key]; }).length;
-    $("stats").innerHTML = '<div><b>' + g.length + '</b><span>受付中</span></div>' +
+    var today = gs.filter(function (i) { return isToday(i._end); }).length;
+    var fresh = gs.filter(isNew).length;
+    var unapplied = gs.filter(function (i) { return !applied[i.key]; }).length;
+    $("stats").innerHTML = '<div><b>' + gs.length + '</b><span>受付中</span></div>' +
       '<div class="hot"><b>' + today + '</b><span>今日締切</span></div>' +
       '<div><b>' + unapplied + '</b><span>あなたが未応募</span></div>';
     void fresh;
@@ -331,7 +343,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var names = Object.keys(ser).sort(function (a, b) { return ser[b] - ser[a]; });
     if (st.series && !ser[st.series]) st.series = "";
     $("series").innerHTML = names.length ? '<button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
-      names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") : "";
+      names.slice(0, st.moreSeries ? names.length : 8).concat(st.series && names.indexOf(st.series) >= 8 && !st.moreSeries ? [st.series] : []).map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") +
+      (names.length > 8 ? '<button type="button" class="more" data-more="1">' + (st.moreSeries ? "閉じる" : "ほかの弾 " + (names.length - 8) + "件 ▾") + '</button>' : "") : "";
     // 一覧
     var list = filtered(), html = "";
     if (!list.length) {
@@ -357,7 +370,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });
   $("area").addEventListener("change", function () { st.area = this.value; render(); });
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
-  $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
+  $("series").addEventListener("click", function (e) { if (e.target.closest("button[data-more]")) { st.moreSeries = !st.moreSeries; render(); return; } var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest("button.ap"); if (!b) return;

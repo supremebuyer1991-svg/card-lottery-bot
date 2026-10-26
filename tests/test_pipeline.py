@@ -121,15 +121,18 @@ assert "from:ONEPIECE_tcg" in build_query({"accounts": ["@ONEPIECE_tcg"], "keywo
 approve(s)
 c2 = FakeClient()
 post_all(s, client=c2)
-assert c2.quotes == ["1850000000000000001"] and "店舗の告知" in c2.sent[0]
+assert c2.quotes == [None] and "店舗の告知" not in c2.sent[0]   # 引用はオフ（自動化アカウントは他人のポストを引用できない）
 assert "http" not in c2.sent[0]                              # 個別告知はリンク無し（安い）
 
-# 1日1回のまとめ投稿
+# まとめ投稿：既定はオフ（手動運用）→ 時刻を入れると各枠1回だけ
 import common as cm
 xpost.now = lambda: cm.now().replace(hour=21)
 c3 = FakeClient()
-xpost.post_daily_summary(s, client=c3); xpost.post_daily_summary(s, client=c3)
-assert len(c3.sent) == 1 and "https://example.com/pokeca-lottery/" in c3.sent[0], c3.sent
+xpost.post_daily_summary(s, client=c3)
+assert c3.sent == []                                          # summary_hours が空なら投稿しない
+s2 = dict(s, summary_hours=[7, 15])
+xpost.post_daily_summary(s2, client=c3); xpost.post_daily_summary(s2, client=c3)
+assert len(c3.sent) == 1 and "http" in c3.sent[0], c3.sent
 print("\n--- X由来の投稿サンプル ---\n" + c2.sent[0] + "\n\n--- まとめ投稿 ---\n" + c3.sent[0])
 
 print("\n--- 投稿サンプル ---\n" + c.sent[0] + "\n\n" + c.sent[2])

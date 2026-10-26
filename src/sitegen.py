@@ -83,7 +83,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
     body = TEMPLATE.read_text(encoding="utf-8")
     for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]),
                  "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]),
-                 "__LEAD__": escape(meta["lead"]), "__LINKS__": meta.get("links", ""),
+                 "__LEAD__": escape(meta["lead"]), "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""),
                  "__PRERENDER__": meta.get("prerender", "")}.items():
         body = body.replace(k, v)
     body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
@@ -181,7 +181,7 @@ def build(settings=None, out_dir=None, sample=None):
                         "本人確認・会員カードの有無もひと目で分かります。",
                 "h1": f"「{x}」の抽選・予約情報",
                 "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
-                "links": aff + _links("ほかの弾", [(y, "/" + series_path(g, y)) for y in series if y != x]),
+                "aff": aff, "links": _links("ほかの弾", [(y, "/" + series_path(g, y)) for y in series if y != x]),
                 "root": "/"}, si)
 
         for a in areas:
