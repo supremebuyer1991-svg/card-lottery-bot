@@ -5,7 +5,7 @@ from extract import extract
 from fetch_x import search as x_search
 
 
-SEEN_VERSION = 2
+SEEN_VERSION = 3
 
 
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:
@@ -92,6 +92,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 chunk = [t] if t else []
             if fresh:
                 log(f"{sid}: 新規・変更 {len(fresh)}件 / 全{len(cur)}件")
+                log(f"  見本: {fresh[0][:200]!r}")
 
         for text, url in texts:
             try:

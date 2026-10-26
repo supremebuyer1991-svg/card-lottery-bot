@@ -16,6 +16,7 @@ PROMPT = """あなたはトレカ抽選情報の抽出係です。以下のテ�
 - 大会・イベント参加の抽選、プレゼントキャンペーン、受付終了済みのものは除外
 - テキストに書かれていない情報は推測せず null にする（日付を作らない）
 - 日時はISO 8601形式（例 2026-11-02T23:59:00+09:00）。年が省略されていれば今日（{today}）基準で補う
+- 「今日 20:59」「明日 23:59」「残り15時間」のような書き方は、現在時刻（{nowtime}）を基準に日時へ直す
 - url は応募ページか店舗の告知ページ（[関連リンク]に店舗のURLがあれば必ずそれを使う）。無ければ記事URL
 - 「=====」で区切られた各ブロックは別々の抽選。応募URL があればそれを url にする
 - まとめ記事の場合、記事内の「抽選」の項目を店舗ごとに1件ずつ出す。「在庫あり」「先着販売」「再販」は抽選ではないので除外
@@ -60,7 +61,7 @@ def extract(text: str, game: str, game_name: str, source_name: str, source_url: 
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
         raise RuntimeError("ANTHROPIC_API_KEY が未設定です")
-    prompt = PROMPT.format(game_name=game_name, today=now().date().isoformat(),
+    prompt = PROMPT.format(game_name=game_name, today=now().date().isoformat(), nowtime=now().strftime("%Y-%m-%d %H:%M"),
                            source_name=source_name, source_url=source_url, text=text[:15000])
     r = requests.post(API_URL, timeout=90, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
@@ -70,6 +71,8 @@ def extract(text: str, game: str, game_name: str, source_name: str, source_url: 
     res = r.json()
     raw = "".join(b.get("text", "") for b in res.get("content", []))
     items = _parse(raw)
+    if not items:
+        log(f"  ※AIの返事（先頭）: {raw[:150]!r}")
     if res.get("stop_reason") == "max_tokens":
         log(f"  ※AIの返事が長すぎて途中で切れました（救出 {len(items)}件）")
     valid = ("pokemon", "onepiece", "dragonball")

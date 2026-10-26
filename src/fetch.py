@@ -67,6 +67,14 @@ def article_links(html: str, base_url: str, keywords: list, limit: int = 10) -> 
 COUNTDOWN = re.compile(r"残り\s*\d+\s*(日|時間|分|秒)|あと\s*\d+\s*(日|時間|分)")
 
 
+EXCLUDE_LINK = ("方法", "詳細", "みる", "見る", "確認")
+
+
+def _is_apply(label: str, link_text: str) -> bool:
+    """「抽選に応募する！」のような応募ボタンだけを対象にする（「応募方法をみる」は除外）"""
+    return link_text in label and not any(x in label for x in EXCLUDE_LINK)
+
+
 def cards(html: str, base_url: str, link_text: str = "応募") -> list:
     """一覧型サイト用：応募ボタン1つごとに、そのボタンを含む「カード」のテキストを切り出す
     戻り値: [(キー=応募URL, 正規化テキストのハッシュ, テキスト)]"""
@@ -74,9 +82,18 @@ def cards(html: str, base_url: str, link_text: str = "応募") -> list:
     for t in soup(["script", "style", "noscript", "svg"]):
         t.decompose()
     host = requests.compat.urlparse(base_url).netloc
+
+    def apply_links(node):
+        out = set()
+        for x in node.find_all("a", href=True):
+            href = requests.compat.urljoin(base_url, x["href"])
+            if _is_apply(x.get_text(" ", strip=True), link_text) and requests.compat.urlparse(href).netloc != host:
+                out.add(href)
+        return out
+
     out, seen = [], set()
     for a in soup.find_all("a", href=True):
-        if link_text not in a.get_text(" ", strip=True):
+        if not _is_apply(a.get_text(" ", strip=True), link_text):
             continue
         href = requests.compat.urljoin(base_url, a["href"])
         if requests.compat.urlparse(href).netloc == host or href in seen:
@@ -85,10 +102,7 @@ def cards(html: str, base_url: str, link_text: str = "応募") -> list:
         box = a
         # 応募ボタンを1つだけ含む、いちばん外側の要素まで広げる＝そのカード
         while box.parent is not None and box.parent.name not in ("body", "html", "[document]"):
-            n = len({requests.compat.urljoin(base_url, x["href"]) for x in box.parent.find_all("a", href=True)
-                     if link_text in x.get_text(" ", strip=True)
-                     and requests.compat.urlparse(requests.compat.urljoin(base_url, x["href"])).netloc != host})
-            if n > 1:
+            if len(apply_links(box.parent)) > 1:
                 break
             box = box.parent
         text = " / ".join(t for t in box.get_text("\n", strip=True).splitlines() if t)
