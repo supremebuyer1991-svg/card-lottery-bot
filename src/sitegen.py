@@ -437,7 +437,7 @@ def build(settings=None, out_dir=None, sample=None):
 
     common_data = {"sample": False, "updated": updated,
                    "games": [{"id": g, "name": GAME_SHORT[g]} for g in games],
-                   "gameUrls": {g: f"/{GAME_SLUG[g]}/" for g in games}, "items": items,
+                   "gameUrls": {"all": "/", **{g: f"/{GAME_SLUG[g]}/" for g in games}}, "items": items,
                    "gameNames": {g: s["game_names"][g] for g in games}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
     upd = parse_dt(updated) or now()
@@ -496,8 +496,11 @@ def build(settings=None, out_dir=None, sample=None):
         meta["ld"] = ld
         # ページを軽くする：そのページのゲームの抽選だけを埋め込む（トップは最初のゲームだけ。ほかのゲームはタブで移動）
         g0 = lock.get("game") or games[0]
-        data = {**common_data, "lock": lock, "items": [i for i in items if i["game"] == g0], "gameCounts": game_counts,
-                "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
+        if not path:  # トップ＝総合（3つのゲームの抽選を全部入れて「すべて」タブで開く）
+            data = {**common_data, "lock": lock, "items": items, "gameCounts": game_counts, "allLoaded": True, "defaultGame": "all"}
+        else:
+            data = {**common_data, "lock": lock, "items": [i for i in items if i["game"] == g0], "gameCounts": game_counts,
+                    "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
         p.write_text(page(data, meta), encoding="utf-8")
         last = max([i.get("found_at") or "" for i in subset] + [""]) or updated
         urls.append((f"{site}/{path}", (last or updated)[:10]))

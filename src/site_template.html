@@ -292,6 +292,7 @@ input[type="search"] { flex: 1 1 160px; }
 .badge.new { background: var(--red); color: var(--card); }
 .rec-note { margin: 6px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--amber-soft); color: var(--ink); font-size: 13px; line-height: 1.6; }
 .rec-note b { color: var(--amber); margin-right: 6px; }
+.badge.gm { background: var(--navy-soft); color: var(--ink); }
 .badge.rec { background: var(--amber-soft); color: var(--amber); }
 .ticket.feed .pr-note { font-family: var(--font-num); font-size: 10px; letter-spacing: .06em; color: var(--ink-2); }
 .ticket.feed .cd { color: var(--ink-2); font-size: 15px; }
@@ -456,6 +457,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   "use strict";
   var DATA = JSON.parse(document.getElementById("data").textContent);
   var GAMES = DATA.games; // [{id, name}]
+  var TABS = [{ id: "all", name: "すべて" }].concat(GAMES);  // 一番左は3つのゲームをまとめた総合
+  var GSHORT = {}; GAMES.forEach(function (g) { GSHORT[g.id] = g.name; });
   var NOW0 = Date.now();
   // サンプル表示では締切を「今からの時間」で持たせ、いつ開いても動いて見えるようにする
   var items = DATA.items.map(function (it) {
@@ -473,11 +476,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   var applied = load("lot_applied", {});
   var LOCK = DATA.lock || {};
-  var st = Object.assign({ game: GAMES[0].id, channel: "online", region: "", area: "", q: "", series: "" },
-    LOCK.game ? {} : load("lot_view", {}), LOCK);
+  var st = Object.assign({ game: DATA.defaultGame || GAMES[0].id, channel: "online", region: "", area: "", q: "", series: "" },
+    LOCK.game ? {} : (function (v) { if (DATA.defaultGame) delete v.game; return v; })(load("lot_view", {})), LOCK);  // トップは毎回「すべて」で開く
   if (!LOCK.game && location.hash && GAMES.some(function (g) { return "#" + g.id === location.hash; })) st.game = location.hash.slice(1);
   // このページに入っていないゲームが選ばれていたら、入っているゲームに戻す（ほかのゲームはタブでそのページへ）
-  if (items.length && !items.some(function (i) { return i.game === st.game; })) st.game = items[0].game;
+  if (st.game === "all" && !DATA.allLoaded) st.game = items.length ? items[0].game : GAMES[0].id;
+  if (st.game !== "all" && items.length && !items.some(function (i) { return i.game === st.game; })) st.game = items[0].game;
 
   var $ = function (id) { return document.getElementById(id); };
   var REGIONS = [
@@ -527,10 +531,16 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function needs(it, tag) { return (it.tags || []).indexOf(tag) >= 0; }
   function isNew(it) { return it.found_at && Date.now() - Date.parse(it.found_at) < 24 * 3600e3; }
 
-  function inGame() { return items.filter(function (i) { return i.game === st.game && (!LOCK.store || i.spath === LOCK.store) && (!LOCK.chain || i.chain === LOCK.chain) && (i._end == null || i._end > Date.now()); }); }
+  function inGame() { return items.filter(function (i) { return (st.game === "all" || i.game === st.game) && (!LOCK.store || i.spath === LOCK.store) && (!LOCK.chain || i.chain === LOCK.chain) && (i._end == null || i._end > Date.now()); }); }
 
   // Amazonの招待リクエスト（ネット抽選の一番上に固定する券）
-  function invites() { return (DATA.amazonInvites || {})[st.game] || []; }
+  function invites() {
+    var inv = DATA.amazonInvites || {};
+    if (st.game !== "all") return inv[st.game] || [];
+    var seen = {}, out = [];
+    GAMES.forEach(function (g) { (inv[g.id] || []).forEach(function (x) { if (!seen[x.name]) { seen[x.name] = 1; out.push(x); } }); });
+    return out;
+  }
   function inviteTicket() {
     var list = invites(), q = st.q.trim().toLowerCase();
     if (!list.length || !DATA.amazonTag) return "";
@@ -642,6 +652,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return '<article class="ticket' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
       '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
       '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
+        (st.game === "all" && GSHORT[it.game] ? '<span class="badge gm g-' + esc(it.game) + '">' + esc(GSHORT[it.game]) + '</span>' : "") +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
         '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +
@@ -688,7 +699,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var g = inGame();
     var gs = st.series ? g.filter(function (i) { return i.series === st.series; }) : g;
     // ゲームタブ
-    $("games").innerHTML = GAMES.map(function (x) {
+    $("games").innerHTML = TABS.map(function (x) {
+      if (x.id === "all") {
+        var na = DATA.allLoaded ? items.filter(function (i) { return i._end == null || i._end > Date.now(); }).length
+          : Object.keys(DATA.gameCounts || {}).reduce(function (a, k) { return a + DATA.gameCounts[k]; }, 0);
+        return '<button role="tab" type="button" data-g="all" aria-selected="' + (st.game === "all") + '">すべて<span class="n">' + na + '</span></button>';
+      }
       var n = items.some(function (i) { return i.game === x.id; })
         ? items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length
         : ((DATA.gameCounts || {})[x.id] || 0);
@@ -752,7 +768,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   // イベント
   $("games").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-g]"); if (!b) return;
-    if (DATA.gameUrls && DATA.gameUrls[b.dataset.g] && (LOCK.game || !items.some(function (i) { return i.game === b.dataset.g; }))) { location.href = DATA.gameUrls[b.dataset.g]; return; }
+    var gid = b.dataset.g, loaded = gid === "all" ? DATA.allLoaded : items.some(function (i) { return i.game === gid; });
+    if (DATA.gameUrls && DATA.gameUrls[gid] && (LOCK.game || !loaded)) { location.href = DATA.gameUrls[gid]; return; }
     st.game = b.dataset.g; st.series = ""; st.area = ""; st.region = ""; render();
   });
   $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });
