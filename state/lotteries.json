@@ -3350,7 +3350,7 @@
     "store": "おじゃま館 長居店",
     "product": "ポケモンカード MEGA 拡張パック「メガブレイブ」",
     "series": "メガブレイブ",
-    "end": "",
+    "end": "2026-08-09T23:45:00+09:00",
     "url": "https://x.com/ojamanagai/status/2085612703763300667",
     "x_post": "https://x.com/ojamanagai/status/2085612703763300667",
     "channel": "store",
@@ -3369,17 +3369,19 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e3cd6768a7961427",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047140+09:00",
     "multi": false,
     "cls": "9908545b436b",
-    "deadline_checked_at": "2026-10-27T00:15:50.838071+09:00"
+    "deadline_checked_at": "2026-10-27T00:15:50.838071+09:00",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107211+09:00"
   },
   "ab933657593075fc": {
     "store": "おじゃま館 長居店",
     "product": "ポケモンカード MEGA 拡張パック「メガシンフォニア」",
     "series": "メガシンフォニア",
-    "end": "",
+    "end": "2026-08-09T23:45:00+09:00",
     "url": "https://x.com/ojamanagai/status/2085612703763300667",
     "x_post": "https://x.com/ojamanagai/status/2085612703763300667",
     "channel": "store",
@@ -3398,11 +3400,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ab933657593075fc",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047160+09:00",
     "multi": false,
     "cls": "80f8e0d9b285",
-    "deadline_checked_at": "2026-10-27T00:15:53.650350+09:00"
+    "deadline_checked_at": "2026-10-27T00:15:53.650350+09:00",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107222+09:00"
   },
   "bf77120132780b21": {
     "store": "メディオ! 西市",
@@ -3440,7 +3444,7 @@
     "store": "メディオ! 西市",
     "product": "ポケモンカード MEGA 拡張パック「メガブレイブ」",
     "series": "メガブレイブ",
-    "end": "",
+    "end": "2026-08-09T23:45:00+09:00",
     "url": "https://x.com/m_nisi3/status/2085594582935613735",
     "x_post": "https://x.com/m_nisi3/status/2085594582935613735",
     "channel": "store",
@@ -3459,17 +3463,19 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "598cb27a68fba0bb",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047193+09:00",
     "multi": false,
     "cls": "52d773493567",
-    "deadline_checked_at": "2026-10-27T00:15:59.487171+09:00"
+    "deadline_checked_at": "2026-10-27T00:15:59.487171+09:00",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107226+09:00"
   },
   "7113f8807af4f92b": {
     "store": "メディオ! 西市",
     "product": "ポケモンカード MEGA 拡張パック「メガシンフォニア」",
     "series": "メガシンフォニア",
-    "end": "",
+    "end": "2026-08-09T23:45:00+09:00",
     "url": "https://x.com/m_nisi3/status/2085594582935613735",
     "x_post": "https://x.com/m_nisi3/status/2085594582935613735",
     "channel": "store",
@@ -3488,11 +3494,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "7113f8807af4f92b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047208+09:00",
     "multi": false,
     "cls": "cde24c00a977",
-    "deadline_checked_at": "2026-10-27T00:16:02.548195+09:00"
+    "deadline_checked_at": "2026-10-27T00:16:02.548195+09:00",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107230+09:00"
   },
   "dd32a2f21c975c19": {
     "store": "三洋堂トレカ館 穂積店",
@@ -4209,7 +4217,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047665+09:00",
     "multi": false,
-    "cls": "cd9aeb78c47d"
+    "cls": "cd9aeb78c47d",
+    "deadline_checked_at": "2026-10-27T00:23:38.922951+09:00"
   },
   "ef463c2be3fc5146": {
     "store": "ホビーサーチ",
@@ -4284,7 +4293,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047713+09:00",
     "multi": false,
-    "cls": "ea31f06695ff"
+    "cls": "ea31f06695ff",
+    "deadline_checked_at": "2026-10-27T00:23:41.013328+09:00"
   },
   "50b180537a57ea5d": {
     "store": "トクジロー浦安店",
@@ -4311,7 +4321,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047729+09:00",
     "multi": false,
-    "cls": "e55f55f88dd8"
+    "cls": "e55f55f88dd8",
+    "deadline_checked_at": "2026-10-27T00:23:42.603958+09:00"
   },
   "3bc9493ecfa00bef": {
     "store": "ふるいちトップブックス佐渡佐和田店",
@@ -4336,7 +4347,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047745+09:00",
     "multi": false,
-    "cls": "49614f24adfa"
+    "cls": "49614f24adfa",
+    "deadline_checked_at": "2026-10-27T00:23:46.591233+09:00"
   },
   "3b9d45a63decec1b": {
     "store": "革命オリパ",
@@ -4360,7 +4372,8 @@
     "key": "3b9d45a63decec1b",
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047764+09:00",
-    "cls": "92e4d0ca6b36"
+    "cls": "92e4d0ca6b36",
+    "deadline_checked_at": "2026-10-27T00:23:48.679214+09:00"
   },
   "a45f4b91f29a5ce2": {
     "store": "レッドハウス（青森県八戸市）",
@@ -4387,7 +4400,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047780+09:00",
     "multi": false,
-    "cls": "e9b7e7947f5f"
+    "cls": "e9b7e7947f5f",
+    "deadline_checked_at": "2026-10-27T00:23:52.041573+09:00"
   },
   "3933da5aa20479d8": {
     "store": "ノジマオンライン",
@@ -4413,7 +4427,8 @@
     "key": "3933da5aa20479d8",
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047796+09:00",
-    "cls": "4b83a55a274e"
+    "cls": "4b83a55a274e",
+    "deadline_checked_at": "2026-10-27T00:23:56.356300+09:00"
   },
   "ae0cf876e11ad06d": {
     "store": "Amazon",
@@ -4464,7 +4479,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047828+09:00",
     "multi": false,
-    "cls": "bcdc18a1670a"
+    "cls": "bcdc18a1670a",
+    "deadline_checked_at": "2026-10-27T00:23:58.960392+09:00"
   },
   "5640496b1d1f9c39": {
     "store": "バトロコ新浜松駅前",
@@ -4519,7 +4535,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047864+09:00",
     "multi": false,
-    "cls": "3835fefd815c"
+    "cls": "3835fefd815c",
+    "deadline_checked_at": "2026-10-27T00:24:01.758378+09:00"
   },
   "9785fa213cb434a2": {
     "store": "Amazon",
@@ -5584,7 +5601,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048606+09:00",
     "multi": false,
-    "cls": "6d8c1d41262d"
+    "cls": "6d8c1d41262d",
+    "deadline_checked_at": "2026-10-27T00:24:04.641016+09:00"
   },
   "43ed05ce3439a7fc": {
     "store": "ふるいちトップブックス港北ミナモ店",
@@ -5609,7 +5627,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048623+09:00",
     "multi": false,
-    "cls": "febd493e2591"
+    "cls": "febd493e2591",
+    "deadline_checked_at": "2026-10-27T00:24:08.224020+09:00"
   },
   "f5ec2595eeafaa66": {
     "store": "古本市場緑橋店",
@@ -5634,7 +5653,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048640+09:00",
     "multi": false,
-    "cls": "4d0a1df338d6"
+    "cls": "4d0a1df338d6",
+    "deadline_checked_at": "2026-10-27T00:24:11.391375+09:00"
   },
   "9ae4e39e90eab7fc": {
     "store": "古本市場緑橋店",
@@ -5659,7 +5679,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048656+09:00",
     "multi": false,
-    "cls": "0ad3aa2d9ad1"
+    "cls": "0ad3aa2d9ad1",
+    "deadline_checked_at": "2026-10-27T00:24:15.464654+09:00"
   },
   "1c197c652d60055f": {
     "store": "カードボックス刈谷店（本の王国＆すまいるキング）",
@@ -5684,7 +5705,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048673+09:00",
     "multi": false,
-    "cls": "d7c4ca494af3"
+    "cls": "d7c4ca494af3",
+    "deadline_checked_at": "2026-10-27T00:24:18.393244+09:00"
   },
   "0cc2e366cc5fc119": {
     "store": "TSUTAYA籠原店",
@@ -5709,13 +5731,14 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048691+09:00",
     "multi": false,
-    "cls": "9517ac7894d2"
+    "cls": "9517ac7894d2",
+    "deadline_checked_at": "2026-10-27T00:24:21.807078+09:00"
   },
   "2ce7c9873ed16da0": {
     "store": "おたいち三重本店",
     "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」【再入荷】",
     "series": "ストームエメラルダ",
-    "end": "",
+    "end": "2026-08-16T23:00:00+09:00",
     "url": "https://x.com/otaichimiecard/status/2087177322021679388",
     "x_post": "https://x.com/otaichimiecard/status/2087177322021679388",
     "channel": "store",
@@ -5731,10 +5754,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "2ce7c9873ed16da0",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048707+09:00",
     "multi": false,
-    "cls": "672fb5ff28de"
+    "cls": "672fb5ff28de",
+    "deadline_checked_at": "2026-10-27T00:24:24.403908+09:00",
+    "start": "2026-08-12T10:00:00+09:00",
+    "end_from": "Xの告知（応募期間 8月16日23:00まで）",
+    "closed_at": "2026-10-27T00:25:26.107348+09:00"
   },
   "711bfe5e9fbd7a40": {
     "store": "ビックカメラ浜松店",
@@ -5761,7 +5788,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048725+09:00",
     "multi": false,
-    "cls": "ea666ad22d37"
+    "cls": "ea666ad22d37",
+    "deadline_checked_at": "2026-10-27T00:24:27.489187+09:00"
   },
   "af2507436fd9cf9e": {
     "store": "ブックオフ相模大野店【トレカ】",
@@ -5786,7 +5814,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048749+09:00",
     "multi": false,
-    "cls": "ce6756715265"
+    "cls": "ce6756715265",
+    "deadline_checked_at": "2026-10-27T00:24:30.506757+09:00"
   },
   "8b99a834140643b5": {
     "store": "TSUTAYA枚方ベルパルレ",
@@ -5813,7 +5842,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048766+09:00",
     "multi": false,
-    "cls": "3d609c12b518"
+    "cls": "3d609c12b518",
+    "deadline_checked_at": "2026-10-27T00:24:34.052920+09:00"
   },
   "8a383a2874797500": {
     "store": "カードショップまんがく",
@@ -5840,7 +5870,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048783+09:00",
     "multi": false,
-    "cls": "eec450c2e24c"
+    "cls": "eec450c2e24c",
+    "deadline_checked_at": "2026-10-27T00:24:36.808629+09:00"
   },
   "7268bcd21e6eb193": {
     "store": "おたいち三重本店",
@@ -5865,13 +5896,14 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048800+09:00",
     "multi": false,
-    "cls": "5f53755c3f28"
+    "cls": "5f53755c3f28",
+    "deadline_checked_at": "2026-10-27T00:24:39.601308+09:00"
   },
   "88220ec11a9b74be": {
     "store": "ビッグバントレカ館柏林台店",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
     "series": "30周年パック",
-    "end": "",
+    "end": "2026-09-06T23:59:00+09:00",
     "url": "https://x.com/trecakan_hkrn/status/2092824426433659045",
     "x_post": "https://x.com/trecakan_hkrn/status/2092824426433659045",
     "channel": "store",
@@ -5887,16 +5919,19 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "88220ec11a9b74be",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048817+09:00",
     "multi": false,
-    "cls": "14c02a2ac668"
+    "cls": "14c02a2ac668",
+    "deadline_checked_at": "2026-10-27T00:24:43.168548+09:00",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107357+09:00"
   },
   "b493af36141eb3a3": {
     "store": "ビッグバントレカ館柏林台店",
     "product": "ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー",
     "series": "30周年エーフィ・ブラッキーデッキ",
-    "end": "",
+    "end": "2026-09-06T23:59:00+09:00",
     "url": "https://x.com/trecakan_hkrn/status/2092824426433659045",
     "x_post": "https://x.com/trecakan_hkrn/status/2092824426433659045",
     "channel": "store",
@@ -5912,10 +5947,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "b493af36141eb3a3",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048835+09:00",
     "multi": false,
-    "cls": "06e5f4af3d81"
+    "cls": "06e5f4af3d81",
+    "deadline_checked_at": "2026-10-27T00:24:45.692198+09:00",
+    "end_from": "Xの告知（抽選期間：9/6(日)まで）",
+    "closed_at": "2026-10-27T00:25:26.107360+09:00"
   },
   "e2fecb38b17b317a": {
     "store": "トレカエース下館店",
@@ -5940,7 +5978,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048851+09:00",
     "multi": false,
-    "cls": "bedee879fcfe"
+    "cls": "bedee879fcfe",
+    "deadline_checked_at": "2026-10-27T00:24:48.309020+09:00"
   },
   "c6b8edfa65baf8f9": {
     "store": "ホビースクエアにしな",
@@ -5965,7 +6004,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048867+09:00",
     "multi": false,
-    "cls": "15cc09658a3a"
+    "cls": "15cc09658a3a",
+    "deadline_checked_at": "2026-10-27T00:24:51.604718+09:00"
   },
   "13a793c5f5529a99": {
     "store": "ホビースクエアにしな",
@@ -5990,7 +6030,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048883+09:00",
     "multi": false,
-    "cls": "503e9ea6a028"
+    "cls": "503e9ea6a028",
+    "deadline_checked_at": "2026-10-27T00:24:54.924998+09:00"
   },
   "3c36c9b5799f0a80": {
     "store": "トレカエースそよら成田ニュータウン店",
@@ -6015,7 +6056,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048899+09:00",
     "multi": false,
-    "cls": "4c9df334785c"
+    "cls": "4c9df334785c",
+    "deadline_checked_at": "2026-10-27T00:24:58.209542+09:00"
   },
   "032634253beffb42": {
     "store": "ホビーショップ スーパーフリークス岡山店",
@@ -6040,7 +6082,8 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.048921+09:00",
     "multi": false,
-    "cls": "272fd7c33ff7"
+    "cls": "272fd7c33ff7",
+    "deadline_checked_at": "2026-10-27T00:25:02.004390+09:00"
   },
   "4183205feacfd1dd": {
     "store": "ホビーショップ スーパーフリークス岡山店",
@@ -12971,7 +13014,7 @@
     "store": "おたいち三重本店",
     "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-16T23:00:00+09:00",
     "url": "https://x.com/otaichimiecard/status/2087177322021679388",
     "x_post": "https://x.com/otaichimiecard/status/2087177322021679388",
     "channel": "store",
@@ -12987,10 +13030,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "47afcc9999069aa3",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885891+09:00",
     "multi": false,
-    "cls": "ca77c3cde7fd"
+    "cls": "ca77c3cde7fd",
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-10-27T00:25:26.107681+09:00"
   },
   "d860d41e85027b5f": {
     "store": "TCバトロコ富山駅前",
@@ -18673,5 +18718,59 @@
     "found_at": "2026-10-27T00:15:10.560162+09:00",
     "multi": false,
     "cls": "2840e42e20b2"
+  },
+  "5a13e496390b27a6": {
+    "store": "BIGMAGIC なんば店",
+    "product": "『30th CELEBRATION』",
+    "series": "30th CELEBRATION",
+    "start": null,
+    "end": "2026-10-27T19:59:00+09:00",
+    "announce": "2026-10-28",
+    "method": "Web",
+    "conditions": null,
+    "url": "https://livepocket.jp/e/ld6d8",
+    "x_post": "https://x.com/AfroTCG/status/2114739277578080440",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "大阪府",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.85,
+    "source": "X 抽選情報アカウント",
+    "source_url": "https://x.com/",
+    "no_quote": true,
+    "key": "5a13e496390b27a6",
+    "status": "approved",
+    "found_at": "2026-10-27T00:23:23.077715+09:00",
+    "multi": false,
+    "cls": "8da7fb8f8575"
+  },
+  "afdb9f450c8b3276": {
+    "store": "BIGMAGIC なんば店",
+    "product": "『ストームエメラルダ』",
+    "series": "ストームエメラルダ",
+    "start": null,
+    "end": "2026-10-27T19:59:00+09:00",
+    "announce": "2026-10-28",
+    "method": "Web",
+    "conditions": null,
+    "url": "https://livepocket.jp/e/ld6d8",
+    "x_post": "https://x.com/AfroTCG/status/2114739277578080440",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "大阪府",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.85,
+    "source": "X 抽選情報アカウント",
+    "source_url": "https://x.com/",
+    "no_quote": true,
+    "key": "afdb9f450c8b3276",
+    "status": "approved",
+    "found_at": "2026-10-27T00:23:23.077752+09:00",
+    "multi": false,
+    "cls": "72a697fabcd1"
   }
 }
