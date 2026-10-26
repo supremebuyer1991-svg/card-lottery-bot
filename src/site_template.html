@@ -56,6 +56,9 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .logo .t::after { content: ""; position: absolute; top: 4px; bottom: 4px; right: 7px; border-right: 1.5px dashed rgb(255 255 255 / .55); }
 .lead { margin-block: 18px 0; display: grid; gap: 6px; }
 .lead h1 { font-family: var(--font-body); font-weight: 700; letter-spacing: .01em; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.about { margin: 8px 0 18px; padding: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); }
+.about h2 { margin: 0; font-size: 14px; color: var(--ink); }
+.about p { margin: 0; }
 .crumbs { font-size: 12px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px; }
 .crumbs a { color: var(--ink-2); }
 .lead p.summary { font-size: 13px; color: var(--ink-2); }
@@ -379,8 +382,6 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     __CRUMBS__
     <h1>__H1__</h1>
     <p id="updated"></p>
-    <p>__LEAD__</p>
-    <p class="summary">__SUMMARY__</p>
     __AFF__
   </section>
   <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
@@ -412,6 +413,11 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   <div class="list" id="list">__PRERENDER__</div>
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
+  <section class="about" aria-label="このページについて">
+    <h2>このページについて</h2>
+    <p>__LEAD__</p>
+    <p class="summary">__SUMMARY__</p>
+  </section>
   <footer>
     <div class="foot-nav">__LINKS__</div>
     <p>※本サイトはプロモーション（広告）を含みます。</p>

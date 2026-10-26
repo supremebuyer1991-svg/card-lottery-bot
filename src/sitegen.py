@@ -458,7 +458,7 @@ def build(settings=None, out_dir=None, sample=None):
                        desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
                             f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
                        summary=summary(items, "トレカの抽選"),
-                       h1="トレカの抽選・予約情報まとめ",
+                       h1="トレカの抽選情報まとめ",
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["supply"] = _supply_ad(short, name, tag, raff, prices, g)
