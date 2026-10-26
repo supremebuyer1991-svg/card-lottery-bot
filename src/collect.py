@@ -88,9 +88,6 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if prev.get(key) != h:
                     direct.append(item)
             live[src["name"]] = keys
-            dbg = [{"store": it.get("store"), "product": it.get("product"), "text": it.get("period_text"), "attrs": it.get("attrs")}
-                   for _, _, it in cardchusen_items(body, src["url"]) if it.get("period_text")]
-            save_json(f"debug_{sid}.json", {"count_all": len(cur), "no_end": len(dbg), "samples": dbg[:25]})
             seen[sid] = cur
             log(f"{sid}: 直接読み取り 新規・変更 {len(direct)}件 / 全{len(cur)}件")
         elif src["type"] == "html_cards":
