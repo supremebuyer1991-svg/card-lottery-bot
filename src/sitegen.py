@@ -84,9 +84,7 @@ CHAINS = [
 
 
 def _rec_note(cname):
-    return ('<p class="rec-note"><b>★おすすめ</b>' + escape(cname) +
-            'は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。'
-            '入荷数が多い大手は狙い目と言われることもあります。</p>')
+    return '<p class="rec-note"><b>★おすすめ</b></p>'
 
 
 def chain_of(store):
@@ -597,8 +595,7 @@ def build(settings=None, out_dir=None, sample=None):
         c = chain_of(name)
         links = _menu(items, games, g0) + (_links(f"{area}のほかのお店", near) if near else "") + (
             _links("同じチェーン", [(f"{CHAIN[c][1]}の抽選をすべて見る", f"/chain/{c}/")]) if c else "")
-        rec = (f"【おすすめ】{CHAIN[c][1]}は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。"
-               if c and CHAIN[c][3] else "")
+        rec = ""
         if si:
             lead = rec + f"{name}{where}で受付中の{words}の抽選は{len(si)}件です。締切・応募方法・本人確認や会員の条件をまとめています。"
         else:
@@ -630,8 +627,7 @@ def build(settings=None, out_dir=None, sample=None):
         ch = "store" if sum(1 for i in ci if i.get("channel") == "store") * 2 > len(ci) else "online"
         words = "・".join(GAME_SHORT[g] for g in gs)
         sts = sorted(chain_stores.get(slug, []), key=lambda pr: (-len(by_store.get(pr[0], [])), pr[1]["name"]))
-        rec = (f"【おすすめ】{cname}は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。"
-               "入荷数が多い大手は狙い目と言われることもあります。" if big else "")
+        rec = ""
         lead = (rec + f"いま受付中の{cname}の{words}の抽選は{len(ci)}件です。"
                 if ci else rec + f"{cname}で現在受付中の抽選はありません。新しい抽選が見つかり次第、自動で追加されます。")
         stl = _links(f"{cname}の店舗（{len(sts)}店）", [(r["name"], "/" + p) for p, r in sts[:40]]) if sts else ""
@@ -663,7 +659,7 @@ def build(settings=None, out_dir=None, sample=None):
         "h1": "抽選をしているお店の一覧",
         "lead": "お店を選ぶと、そのお店で受付中の抽選（締切・応募方法・条件）が見られます。",
         "aff": '<div class="store-dir">' + (
-            '<section><h2>チェーンからさがす<small>★＝大手（全国で抽選・チャンス多め）</small></h2><ul>' +
+            '<section><h2>チェーンからさがす<small>★＝おすすめ</small></h2><ul>' +
             "".join(f'<li><a href="/chain/{sl}/"{"" if n else " class=\"zero\""}>{"★" if bg else ""}{escape(nm)}<span>{n}</span></a></li>'
                     for sl, nm, bg, n in sorted(chain_links, key=lambda x: (not x[2], -x[3]))) + '</ul></section>'
             if chain_links else "") + f'{"".join(secs)}</div>',

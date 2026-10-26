@@ -630,7 +630,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
       '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
-        (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec" title="全国の多くの店舗で抽選をする大手チェーン（応募のチャンスが多い）">おすすめ</span>' : "") + '</div>' +
+        (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
         '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +
         (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
         (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
