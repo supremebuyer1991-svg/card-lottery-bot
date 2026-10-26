@@ -141,14 +141,16 @@ SUPPLY = {  # ジャンル: (検索語, 商品名に入っているべき語)。
     "ストレージ": ("ストレージ", ("ストレージ",)),
 }
 # カード用ではないとはっきり分かる物だけ除く（スマホ・PC・服・腕カバーなど）と、中古・オリパなど
-SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋", "シングル",
+SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋", "シングル", "仕切り板", "仕切りP", "スタンド仕切り", "セパレーター", "チェキ",
              "スマホ", "スマートフォン", "iPhone", "アイフォン", "Android", "Galaxy", "Xperia", "AQUOS", "Pixel",
              "PC", "パソコン", "ノート", "MacBook", "Mac", "タブレット", "iPad", "Surface", "Kindle", "インチ",
              "アームカバー", "アームスリーブ", "腕", "袖", "シャツ", "ニット", "ブラウス", "ワンピース 半袖", "レディース", "メンズ",
              "コンプレッション", "サポーター", "インナー", "肘", "膝", "日焼け", "UV手袋", "冷感",
              "ワイン", "ボトル", "カップ", "スリーブ缶", "レコード", "LP", "ストレージ容量", "SSD", "HDD", "USB", "microSD", "GB", "TB",
              "ソファ", "クッション", "収納ボックス 衣類", "フィルムスリーブ", "ネガ")
-CARD_NO = re.compile(r"\b[A-Z]{1,3}\d{2}-\d{3}\b|\b(SR|SEC|SAR|UR|AR|RR)\b")
+CARD_NO = re.compile(  # シングルカードの型番（E1-24, BT6-017, ST10-013, D-BT06/056, SAST-JP006, RD/KP18-JP016, RP-048 など）とレアリティ
+    r"\b[A-Z]{1,4}\d{1,3}-\d{2,3}\b|\b[A-Z]-[A-Z]{2}\d{2}/\d{2,3}\b|\b[A-Z]{2,4}\d{0,2}-[A-Z]{2}\d{3}\b|\bRP-\d{3}\b"
+    r"|\b(SR|SEC|SAR|UR|AR|RR|SSR|CHR|CSR)\b|プロモーション|プロモ|パラレル|シングル|リソース")
 
 
 def _head(name, n=28):
@@ -188,12 +190,12 @@ def supply_prices(settings, games, session=None, sleep=1.1):
     if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
         return cache
     aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
-    budget = settings.get("rakuten_price_calls_per_run", 20)
+    budget = settings.get("rakuten_price_calls_per_run", 30)
     for genre, (word, must) in SUPPLY.items():
         c = cache.get(genre)
         if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).total_seconds() < 20 * 3600:
             continue  # 1日1回
-        if budget < 4:
+        if budget < 6:
             break
         try:
             budget -= 1
@@ -209,7 +211,7 @@ def supply_prices(settings, games, session=None, sleep=1.1):
             cache[genre] = {"price": None, "fetched_at": now().isoformat()}
             continue
         cands, failed = [], False
-        for page in (1, 2, 3):
+        for page in (1, 2, 3, 4, 5):
             budget -= 1
             try:
                 items = search(word, dict(settings, _sort="+itemPrice", _page=page, _genre=gid), session)

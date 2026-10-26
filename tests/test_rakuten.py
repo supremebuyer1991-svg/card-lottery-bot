@@ -87,7 +87,7 @@ sup = [
     {"itemName": "ポケモンカードゲーム デッキシールド", "itemPrice": 440, "itemUrl": "https://i/5"},
 ]
 fs5 = FakeSession(sup)
-p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=4), ["pokemon", "onepiece"], session=fs5, sleep=0)
+p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=6), ["pokemon", "onepiece"], session=fs5, sleep=0)
 assert fs5.calls[0][1]["keyword"] == "トレカ スリーブ"                      # まずトレカ用品のジャンルを調べる
 assert fs5.calls[1][1]["keyword"] == "スリーブ" and fs5.calls[1][1]["sort"] == "+itemPrice" and fs5.calls[1][1]["genreId"] == "123"
 assert p["スリーブ"]["price"] == 110, p                 # スマホ・腕カバー・中古は除外。デッキシールドは名前にスリーブが無いので対象外
