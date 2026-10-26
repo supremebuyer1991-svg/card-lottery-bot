@@ -37,7 +37,7 @@ PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選�
 3. multi（channel が store のときだけ）
   - 1つの抽選が複数の店舗で行われる（「〇〇各店」「A店・B店」「全店」など）なら true、1店舗なら false
 
-出力は JSON 配列のみ: [{{"id": 番号, "channel": "online または store", "area": "都道府県 or null", "multi": true/false}}]
+出力は JSON 配列のみ: [{{"id": 番号, "channel": "online または store", "area": "都道府県 or null", "multi": true}}]（multi は true か false）
 
 --- 抽選一覧 ---
 {rows}
@@ -57,8 +57,22 @@ def _ask(rows):
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API エラー {r.status_code}: {r.text[:200]}")
     raw = "".join(b.get("text", "") for b in r.json().get("content", []))
-    m = re.search(r"\[.*\]", raw, re.S)
-    return json.loads(m.group(0)) if m else []
+    # 1件ずつ取り出す（JSON全体が少し崩れていても、読める行は使う）
+    out, dec, i = [], json.JSONDecoder(), 0
+    while True:
+        i = raw.find("{", i)
+        if i < 0:
+            break
+        try:
+            obj, end = dec.raw_decode(raw, i)
+            if isinstance(obj, dict) and "id" in obj:
+                out.append(obj)
+            i = end
+        except json.JSONDecodeError:
+            i += 1
+    if not out:
+        log(f"振り分け: AIの返事を読めませんでした {raw[:120]!r}")
+    return out
 
 
 def classify(settings, ask=None, batch=40, max_batches=20):
@@ -79,8 +93,10 @@ def classify(settings, ask=None, batch=40, max_batches=20):
         try:
             res = ask(rows)
         except Exception as e:
-            log(f"振り分け: スキップ {e}")
-            break
+            log(f"振り分け: この{len(chunk)}件はスキップ {e}")
+            if "401" in str(e) or "403" in str(e) or "credit" in str(e).lower():
+                break  # 鍵や残高の問題なら、その回はやめる
+            continue
         for r in res:
             try:
                 it = chunk[int(r["id"])]
