@@ -35,7 +35,7 @@ wp_pages:
 amazon_tag: "st9994ststst-22"
 
 # 楽天：商品画像と楽天リンク（アプリID・アクセスキーは GitHub Secrets の RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY）
-rakuten_affiliate_id: ""        # 楽天アフィリエイトID（例 1a2b3c4d.5e6f7a8b.1a2b3c4d.5e6f7a8b）
+rakuten_affiliate_id: "0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"  # 楽天アフィリエイトID
 rakuten_refresh_days: 3         # 1つの弾の画像を何日ごとに取り直すか
 rakuten_max_calls_per_run: 8    # 1回の実行で楽天に問い合わせる最大数
 
