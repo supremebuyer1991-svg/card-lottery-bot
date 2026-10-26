@@ -124,6 +124,14 @@ nav.games button[aria-selected="true"] { color: var(--ink); border-bottom-color:
 nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; color: var(--ink-2); }
 
 /* サマリー */
+/* 受付中〜弾の切り替えをまとめる色付きの箱 */
+.panel { margin-top: 16px; padding: 12px; border-radius: 16px; background: linear-gradient(180deg, var(--red-soft), var(--navy-soft));
+  border: 1px solid var(--rule); box-shadow: 0 1px 2px rgb(22 28 46 / .05); }
+.panel .stats { margin-block: 0 10px; background: var(--rule); }
+.panel .filters { position: static; background: transparent; border-bottom: 0; padding-block: 0; }
+.panel .row.scroll { margin-inline: -12px; padding-inline: 12px; }
+.panel .region { margin-top: 10px; }
+.panel .series { margin: 10px -12px 0; padding: 2px 12px 2px; scroll-padding-inline: 12px; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-block: 16px 12px; }
 .stats div { background: var(--card); padding: 10px 14px; }
 .stats b { display: block; font-family: var(--font-num); font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1.2; }
@@ -323,6 +331,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     <p>__LEAD__</p>
     __AFF__
   </section>
+  <section class="panel" aria-label="絞り込み">
   <div class="stats" id="stats"></div>
 
   <div class="filters">
@@ -345,6 +354,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   <div class="region" id="region" hidden></div>
   <div class="series" id="series"></div>
+  </section>
   <div class="list" id="list">__PRERENDER__</div>
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
@@ -569,7 +579,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var unapplied = gs.filter(function (i) { return !applied[i.key]; }).length;
     $("stats").innerHTML = '<div><b>' + gs.length + '</b><span>受付中</span></div>' +
       '<div class="hot"><b>' + today + '</b><span>今日締切</span></div>' +
-      '<div><b>' + unapplied + '</b><span>あなたが未応募</span></div>';
+      '<div><b>' + unapplied + '</b><span>未応募</span></div>';
     void fresh;
     // チャネル
     [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
