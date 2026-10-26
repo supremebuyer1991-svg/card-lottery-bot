@@ -85,7 +85,7 @@ def ext(text, game, gname, sname, url):
             {"store": "B店", "product": "テスト弾", "end": e, "url": url, "confidence": 0.9, "game": "pokemon"}]
 src = [{"id": "idx", "game": "auto", "name": "まとめ", "type": "html_index", "url": "https://site.example/cat",
         "link_keywords": ["ポケモンカード"], "quote": False, "hide_source_url": True}]
-common.save_json("seen.json", {"idx": {}})
+common.save_json("seen.json", {"_v": 5, "idx": {}})
 new = collect(src, s, extractor=ext, fetcher=fetcher)
 assert opened == ["https://site.example/cat", "https://site.example/a/1"], opened   # 無関係・外部記事は開かない
 by = {i["store"]: i for i in new}

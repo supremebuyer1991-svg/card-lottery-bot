@@ -37,7 +37,7 @@ def fake_extract(text, game, gname, sname, url):
 src = [{"id": "t", "game": "pokemon", "name": "テスト", "type": "html", "url": "https://example.com"}]
 html = "<html><body><p>抽選のお知らせ</p><a href='/lot'>抽選はこちら</a></body></html>"
 
-common.save_json("seen.json", {"t": "x"})  # 初回扱いにしない（初回の挙動は下で別に確認）
+common.save_json("seen.json", {"_v": 5, "t": "x"})  # 初回扱いにしない（初回の挙動は下で別に確認）
 new = collect(src, s, extractor=fake_extract, fetcher=lambda u: html)
 assert len(new) == 3, new                       # 締切済みは除外
 assert collect(src, s, extractor=fake_extract, fetcher=lambda u: html) == []  # 変化なし→再抽出しない
@@ -110,7 +110,7 @@ xsrc = [{"id": "xs", "game": "pokemon", "name": "X", "type": "x", "keywords": "�
         {"id": "xe", "game": "pokemon", "name": "X空", "type": "x", "accounts": [], "keywords": "抽選"},
         {"id": "xd", "game": "pokemon", "name": "無効", "type": "x", "enabled": False, "keywords": "抽選"}]
 fx = FakeX()
-common.save_json("seen.json", {"xs": None})
+common.save_json("seen.json", {"_v": 5, "xs": None})
 assert len(collect(xsrc, s, extractor=fake_x_extract, x_client=fx)) == 1
 assert len(fx.calls) == 1                                    # 空アカウント・無効ソースは呼ばない
 assert "-当選" in fx.calls[0]["query"] and "has:links" in fx.calls[0]["query"]

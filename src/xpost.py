@@ -55,11 +55,20 @@ def quote_id(it, settings):
     return m.group(1) if (m and settings.get("quote_source", True)) else None
 
 
+def short_product(it):
+    """投稿用の商品名。短い弾名があればそれを使い、無ければカッコ内の細かい説明を省く"""
+    if it.get("series"):
+        return it["series"]
+    p = it.get("product") or ""
+    p = re.sub(r"[（(][^）)]{8,}[）)]", "", p).strip()
+    return p[:40] + ("…" if len(p) > 40 else "")
+
+
 def compose(it, settings, remind=False):
     is_store = it.get("channel") == "store"
     head = "⏰締切まもなく" if remind else ("🏪店頭抽選" if is_store else "🎯抽選受付中")
     area = f"［{it['area']}］" if is_store and it.get("area") else ""
-    lines = [f"【{head}】{area}{it['store']}", it["product"], f"締切：{fmt_dt(it.get('end'))}"]
+    lines = [f"【{head}】{area}{it['store']}", short_product(it), f"締切：{fmt_dt(it.get('end'))}"]
     req = []
     if it.get("id_check") is not None:
         req.append("本人確認" + ("あり" if it["id_check"] else "なし"))

@@ -34,8 +34,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 continue
             if newest:
                 seen[sid] = newest
-            if posts:  # まとめて1回のAI呼び出しで抽出
-                texts.append(("\n\n=====\n\n".join(t for t, _ in posts), "https://x.com/"))
+            for i in range(0, len(posts), 5):  # 5件ずつAIへ（多すぎると返事が途中で切れる）
+                texts.append(("\n\n=====\n\n".join(t for t, _ in posts[i:i + 5]), "https://x.com/"))
             body = None
         else:
             try:
