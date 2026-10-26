@@ -3584,12 +3584,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "6fec6755189184b5",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047258+09:00",
     "cls": "2a24233e50ac",
-    "deadline_checked_at": "2026-10-27T00:39:42.392861+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切・受付期間の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:04.161999+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489413+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "10b8e082c8441ae9": {
     "store": "カードラボ宇都宮店",
@@ -3628,7 +3630,7 @@
     "store": "レッドハウス（青森県八戸市）",
     "product": "ポケモンカードゲーム MEGA 拡張パック「メガブレイブ」",
     "series": "メガブレイブ",
-    "end": "",
+    "end": "2026-08-12T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2086692179259560315",
     "x_post": "https://x.com/ledhouse2011/status/2086692179259560315",
     "channel": "store",
@@ -3646,19 +3648,21 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "efb06afa76546528",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047291+09:00",
     "multi": false,
     "cls": "bc09c8814bc3",
-    "deadline_checked_at": "2026-10-27T00:39:47.450948+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募締切の記載なし(発表8/12のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:06.337626+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・抽選発表8/12 発表日から推定",
+    "end_from": "Xの告知（抽選発表8/12 発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.489430+09:00"
   },
   "396cfb56f3ec1ef2": {
     "store": "レッドハウス（青森県八戸市）",
     "product": "ポケモンカードゲーム MEGA 拡張パック「メガシンフォニア」",
     "series": "メガシンフォニア",
-    "end": "",
+    "end": "2026-08-12T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2086692032601588080",
     "x_post": "https://x.com/ledhouse2011/status/2086692032601588080",
     "channel": "store",
@@ -3676,13 +3680,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "396cfb56f3ec1ef2",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047307+09:00",
     "multi": false,
     "cls": "34715e149e8c",
-    "deadline_checked_at": "2026-10-27T00:39:50.606433+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募締切の記載なし(発表8/12・受取〜8/23のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:10.387586+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切記載なし、発表日8/12から推定",
+    "end_from": "Xの告知（締切記載なし、発表日8/12から推定）",
+    "closed_at": "2026-10-27T03:02:28.489438+09:00"
   },
   "ff538894405b2b47": {
     "store": "おたちゅう。秋葉原5号店",
@@ -3739,10 +3745,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "d6e0972a9695c529",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047341+09:00",
     "multi": false,
-    "cls": "359da94e19e3"
+    "cls": "359da94e19e3",
+    "closed_at": "2026-10-27T03:02:28.489447+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "ddfec7f3a2665ded": {
     "store": "トレカライザス ネットショップ",
@@ -3863,12 +3871,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c3352fe7021e801a",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047426+09:00",
     "cls": "d94cabe29773",
-    "deadline_checked_at": "2026-10-27T00:40:05.850751+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・応募期間の記載なし(発売日9/16のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:13.224515+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・締切の記載なし(発売日9/16のみ)",
+    "closed_at": "2026-10-27T03:02:28.489457+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "3409f0dd28df1df9": {
     "store": "トレカカフェ クラブクラブ",
@@ -3890,12 +3900,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "3409f0dd28df1df9",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047444+09:00",
     "cls": "e479a699b28e",
-    "deadline_checked_at": "2026-10-27T00:40:07.928886+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・応募期間の記載なし(発売日9/16のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:14.987006+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489466+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "dc5437055d92d714": {
     "store": "ノジマオンライン",
@@ -3945,12 +3957,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e35f72855744b16c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047476+09:00",
     "cls": "a8ece80850b3",
-    "deadline_checked_at": "2026-10-27T00:40:11.135997+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付期間の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:16.579129+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489478+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "9370d7c4757575da": {
     "store": "ポケ堂高崎店",
@@ -3974,13 +3988,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "9370d7c4757575da",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047492+09:00",
     "multi": false,
     "cls": "de7ba595cbc3",
-    "deadline_checked_at": "2026-10-27T00:40:14.465961+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付期間の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:18.597075+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489486+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "49e0a0a112193ae8": {
     "store": "ポケ堂高崎店",
@@ -4004,13 +4020,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "49e0a0a112193ae8",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047509+09:00",
     "multi": false,
     "cls": "2ff891829993",
-    "deadline_checked_at": "2026-10-27T00:40:16.234463+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・画像・本文に応募期間の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:21.398845+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切・発表日の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489494+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "48594a6b2b4c9b66": {
     "store": "カードショップIRODORI（イロドリ）",
@@ -4034,12 +4052,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "48594a6b2b4c9b66",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047526+09:00",
     "cls": "9c44f630b0a2",
-    "deadline_checked_at": "2026-10-27T00:40:18.135918+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:23.419461+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切・発表日の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489502+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "1164d848306d39fd": {
     "store": "ポケ堂秋葉原店",
@@ -4063,13 +4083,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "1164d848306d39fd",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047542+09:00",
     "multi": false,
     "cls": "a1d2a648d511",
-    "deadline_checked_at": "2026-10-27T00:40:19.617764+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の日時の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:24.470686+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489509+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "7b65d87ffaaadb7d": {
     "store": "カードラッシュ秋葉原2号店",
@@ -4093,16 +4115,18 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "7b65d87ffaaadb7d",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047559+09:00",
     "multi": false,
-    "cls": "123579046862"
+    "cls": "123579046862",
+    "closed_at": "2026-10-27T03:02:28.489517+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "e1765db64e533b02": {
     "store": "カードラッシュ秋葉原0号店TC",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（店頭抽選販売・当選者は9/17から1週間以内に店頭で購入）",
     "series": "30周年パック",
-    "end": "",
+    "end": "2026-09-16T00:00:00+09:00",
     "url": "https://x.com/cardrush_akiba0/status/2099688171546230956",
     "x_post": "https://x.com/cardrush_akiba0/status/2099688171546230956",
     "channel": "store",
@@ -4120,13 +4144,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e1765db64e533b02",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047577+09:00",
     "multi": false,
     "cls": "ccc97c15cae8",
-    "deadline_checked_at": "2026-10-27T00:40:23.050347+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(9/16は当選連絡)"
+    "deadline_checked_at": "2026-10-27T02:59:25.761272+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・発表日から推定:9/16までにDM連絡",
+    "end_from": "Xの告知（発表日から推定:9/16までにDM連絡）",
+    "closed_at": "2026-10-27T03:02:28.489524+09:00"
   },
   "c5186a5017dfb13a": {
     "store": "カードコレクト秋葉原 -HANARE-",
@@ -4150,13 +4176,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c5186a5017dfb13a",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047594+09:00",
     "multi": false,
     "cls": "22a77d154c24",
-    "deadline_checked_at": "2026-10-27T00:40:25.607425+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の日時の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:29.111681+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし（画像は商品画像のみ）",
+    "closed_at": "2026-10-27T03:02:28.489531+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "6e2aa1a7684f5ef4": {
     "store": "カードコレクト秋葉原 -CHIKA-",
@@ -4180,19 +4208,21 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "6e2aa1a7684f5ef4",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047615+09:00",
     "multi": false,
     "cls": "ccc48a740f43",
-    "deadline_checked_at": "2026-10-27T00:40:27.269147+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:31.478163+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489540+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "c196f01594bbddc1": {
     "store": "カードショップポンポコ",
     "product": "ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー",
     "series": "30周年エーフィ・ブラッキーデッキ",
-    "end": "",
+    "end": "2026-10-02T00:00:00+09:00",
     "url": "https://x.com/CardshopPonpoko/status/2105262320670957652",
     "x_post": "https://x.com/CardshopPonpoko/status/2105262320670957652",
     "channel": "store",
@@ -4210,12 +4240,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c196f01594bbddc1",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047632+09:00",
     "cls": "e61887c2547f",
-    "deadline_checked_at": "2026-10-27T00:40:29.043322+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(10/2は当選連絡)"
+    "deadline_checked_at": "2026-10-27T02:59:33.207619+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・発表日から推定(10/2までにDM連絡)",
+    "end_from": "Xの告知（発表日から推定(10/2までにDM連絡)）",
+    "closed_at": "2026-10-27T03:02:28.489547+09:00"
   },
   "4b91106c0c5141c7": {
     "store": "シンソク池袋2号店",
@@ -4239,13 +4271,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "4b91106c0c5141c7",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047649+09:00",
     "multi": false,
     "cls": "281a9c427133",
-    "deadline_checked_at": "2026-10-27T00:40:31.186518+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・日時の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:36.073011+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489555+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "7ea311cf6e812d9e": {
     "store": "シンソク秋葉原5号店",
@@ -4269,13 +4303,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "7ea311cf6e812d9e",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047665+09:00",
     "multi": false,
     "cls": "cd9aeb78c47d",
-    "deadline_checked_at": "2026-10-27T00:40:33.305407+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付期間の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:37.998602+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489563+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "ef463c2be3fc5146": {
     "store": "ホビーサーチ",
@@ -4347,13 +4383,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "f0e8dccd39583556",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047713+09:00",
     "multi": false,
     "cls": "ea31f06695ff",
-    "deadline_checked_at": "2026-10-27T00:40:38.307113+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T02:59:39.782337+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489578+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "50b180537a57ea5d": {
     "store": "トクジロー浦安店",
@@ -4377,13 +4415,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "50b180537a57ea5d",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047729+09:00",
     "multi": false,
     "cls": "e55f55f88dd8",
-    "deadline_checked_at": "2026-10-27T00:40:40.358262+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募期間の記載なし（10/16～18は来店期間）"
+    "deadline_checked_at": "2026-10-27T02:59:41.483685+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・応募締切の記載なし（10/16～18は来店期間）",
+    "closed_at": "2026-10-27T03:02:28.489585+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "3bc9493ecfa00bef": {
     "store": "ふるいちトップブックス佐渡佐和田店",
@@ -4405,13 +4445,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "3bc9493ecfa00bef",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047745+09:00",
     "multi": false,
     "cls": "49614f24adfa",
-    "deadline_checked_at": "2026-10-27T00:40:42.866666+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・本文に受付期間の記載なし(画像未確認)"
+    "deadline_checked_at": "2026-10-27T02:59:43.816112+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489593+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "3b9d45a63decec1b": {
     "store": "革命オリパ",
@@ -4433,18 +4475,20 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "3b9d45a63decec1b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047764+09:00",
     "cls": "92e4d0ca6b36",
-    "deadline_checked_at": "2026-10-27T00:40:44.474727+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募受付終了まで1ヶ月ほど"
+    "deadline_checked_at": "2026-10-27T02:59:45.516483+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・終了まで1ヶ月ほど(日付なし)",
+    "closed_at": "2026-10-27T03:02:28.489601+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "a45f4b91f29a5ce2": {
     "store": "レッドハウス（青森県八戸市）",
     "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX（6,000円税込・お一人様1BOX）",
     "series": "ストームエメラルダ",
-    "end": "",
+    "end": "2026-10-02T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2105230709401194693",
     "x_post": "https://x.com/ledhouse2011/status/2105230709401194693",
     "channel": "store",
@@ -4462,13 +4506,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "a45f4b91f29a5ce2",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047780+09:00",
     "multi": false,
     "cls": "e9b7e7947f5f",
-    "deadline_checked_at": "2026-10-27T00:40:46.930875+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募締切の記載なし(抽選発表10/2のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:48.351983+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・発表日から推定(抽選発表10/2)",
+    "end_from": "Xの告知（発表日から推定(抽選発表10/2)）",
+    "closed_at": "2026-10-27T03:02:28.489608+09:00"
   },
   "3933da5aa20479d8": {
     "store": "ノジマオンライン",
@@ -4495,9 +4541,9 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047796+09:00",
     "cls": "4b83a55a274e",
-    "deadline_checked_at": "2026-10-27T00:40:52.931233+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・終了は不定期（締切の記載なし）"
+    "deadline_checked_at": "2026-10-27T02:59:53.469444+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・終了時期は不定期と記載"
   },
   "ae0cf876e11ad06d": {
     "store": "Amazon",
@@ -4549,9 +4595,9 @@
     "found_at": "2026-10-26T18:20:17.047828+09:00",
     "multi": false,
     "cls": "bcdc18a1670a",
-    "deadline_checked_at": "2026-10-27T00:40:54.209505+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・本文に受付期間の記載なし・画像も未確認"
+    "deadline_checked_at": "2026-10-27T02:59:54.567749+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・本文に締切の記載なし（画像未確認）"
   },
   "5640496b1d1f9c39": {
     "store": "バトロコ新浜松駅前",
@@ -4585,7 +4631,7 @@
     "store": "レッドハウス（青森県八戸市）",
     "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX（6,000円税込・お一人様1BOXまで・店頭引き渡しのみ）",
     "series": "ストームエメラルダ",
-    "end": "",
+    "end": "2026-10-24T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2113489825257161000",
     "x_post": "https://x.com/ledhouse2011/status/2113489825257161000",
     "channel": "store",
@@ -4603,13 +4649,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "5fcc45e3bea39770",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047864+09:00",
     "multi": false,
     "cls": "3835fefd815c",
-    "deadline_checked_at": "2026-10-27T00:40:55.842523+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募締切の記載なし(抽選発表10/24 12時頃のみ)"
+    "deadline_checked_at": "2026-10-27T02:59:57.240503+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・抽選発表:10/24 発表日から推定",
+    "end_from": "Xの告知（抽選発表:10/24 発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.489631+09:00"
   },
   "9785fa213cb434a2": {
     "store": "Amazon",
@@ -5795,13 +5843,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "1c197c652d60055f",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048673+09:00",
     "multi": false,
     "cls": "d7c4ca494af3",
-    "deadline_checked_at": "2026-10-27T00:41:12.695428+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募期間の記載なし"
+    "deadline_checked_at": "2026-10-27T03:00:00.371749+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・応募締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489858+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "0cc2e366cc5fc119": {
     "store": "TSUTAYA籠原店",
@@ -5869,7 +5919,7 @@
     "store": "ブックオフ相模大野店【トレカ】",
     "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（再販分）",
     "series": "ストームエメラルダ",
-    "end": "",
+    "end": "2026-08-28T00:00:00+09:00",
     "url": "https://x.com/bookoff_oono/status/2089996516589232454",
     "x_post": "https://x.com/bookoff_oono/status/2089996516589232454",
     "channel": "store",
@@ -5885,13 +5935,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "af2507436fd9cf9e",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048749+09:00",
     "multi": false,
     "cls": "ce6756715265",
-    "deadline_checked_at": "2026-10-27T00:41:18.929185+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・本ポスト配信～規定数配布終了"
+    "deadline_checked_at": "2026-10-27T03:00:03.399877+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・当選発表8/28、発表日から推定",
+    "end_from": "Xの告知（当選発表8/28、発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.489869+09:00"
   },
   "8b99a834140643b5": {
     "store": "TSUTAYA枚方ベルパルレ",
@@ -5948,13 +6000,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "8a383a2874797500",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048783+09:00",
     "multi": false,
     "cls": "eec450c2e24c",
-    "deadline_checked_at": "2026-10-27T00:41:26.559946+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・日時の記載なし(期間限定のみ)"
+    "deadline_checked_at": "2026-10-27T03:00:07.114582+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489877+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "7268bcd21e6eb193": {
     "store": "おたいち三重本店",
@@ -6195,19 +6249,21 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "d6bccd7c0fedb1f6",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048956+09:00",
     "multi": false,
     "cls": "d8d42d544154",
-    "deadline_checked_at": "2026-10-27T00:41:52.706653+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:00:09.134049+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(発売9/16のみ)",
+    "closed_at": "2026-10-27T03:02:28.489889+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "ca34fe210e01c844": {
     "store": "モトナワールド各店",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（5パック）／プレミアムデッキセット「エーフィ・ブラッキー」",
     "series": null,
-    "end": "",
+    "end": "2026-09-14T00:00:00+09:00",
     "url": "https://x.com/motonaworld_m/status/2096055719002792179",
     "x_post": "https://x.com/motonaworld_m/status/2096055719002792179",
     "channel": "store",
@@ -6223,13 +6279,16 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ca34fe210e01c844",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048973+09:00",
     "multi": true,
     "cls": "1bf0c81728c3",
-    "deadline_checked_at": "2026-10-27T00:41:54.464705+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・無くなり次第終了(配布開始9/5 11:00)"
+    "deadline_checked_at": "2026-10-27T03:00:11.513183+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・発表日から推定(9/14発表)",
+    "start": "2026-09-05T11:00:00+09:00",
+    "end_from": "Xの告知（発表日から推定(9/14発表)）",
+    "closed_at": "2026-10-27T03:02:28.489896+09:00"
   },
   "9e6d301507e2b4df": {
     "store": "文教堂 あきる野店【トレカ】",
@@ -6253,13 +6312,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "9e6d301507e2b4df",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048990+09:00",
     "multi": false,
     "cls": "76c987aea5b1",
-    "deadline_checked_at": "2026-10-27T00:41:58.028893+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付締切の記載なし(発売日9/16のみ)"
+    "deadline_checked_at": "2026-10-27T03:00:15.002437+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし（発売日9/16のみ）",
+    "closed_at": "2026-10-27T03:02:28.489904+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "6323b39fe1ca07ea": {
     "store": "カードボックスあづみ野店",
@@ -6281,13 +6342,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "6323b39fe1ca07ea",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049005+09:00",
     "multi": false,
     "cls": "e111d3442342",
-    "deadline_checked_at": "2026-10-27T00:41:59.439189+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・期間の記載なし"
+    "deadline_checked_at": "2026-10-27T03:00:17.070578+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の日時の記載なし",
+    "closed_at": "2026-10-27T03:02:28.489912+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "37f30f0d7d9f6708": {
     "store": "カードラボ鹿児島店",
@@ -6324,7 +6387,7 @@
     "store": "ブックオフ相模大野店",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込・お1人様/1グループ/1世帯1BOXまで・現金支払いのみ・シュリンクを外してのお渡し）",
     "series": "30周年パック",
-    "end": "",
+    "end": "2026-09-15T00:00:00+09:00",
     "url": "https://x.com/bookoff_oono/status/2097630780503769119",
     "x_post": "https://x.com/bookoff_oono/status/2097630780503769119",
     "channel": "store",
@@ -6344,19 +6407,21 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "43afda3ed4fc953b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049038+09:00",
     "multi": false,
     "cls": "8e5d9b1d4dcc",
-    "deadline_checked_at": "2026-10-27T00:42:12.921598+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・本ポスト配信〜規定数配布終了"
+    "deadline_checked_at": "2026-10-27T03:00:19.290152+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・当選発表9/15、発表日から推定",
+    "end_from": "Xの告知（当選発表9/15、発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.489919+09:00"
   },
   "ac5d81bd5db6cb81": {
     "store": "ブックオフ相模大野店",
     "product": "ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー（6,200円税込・お1人様/1グループ/1世帯1点まで・現金支払いのみ・シュリンクを外してのお渡し）",
     "series": "30周年エーフィ・ブラッキーデッキ",
-    "end": "",
+    "end": "2026-09-15T00:00:00+09:00",
     "url": "https://x.com/bookoff_oono/status/2097630780503769119",
     "x_post": "https://x.com/bookoff_oono/status/2097630780503769119",
     "channel": "store",
@@ -6376,13 +6441,16 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ac5d81bd5db6cb81",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049057+09:00",
     "multi": false,
     "cls": "02d7ce7bc25c",
-    "deadline_checked_at": "2026-10-27T00:42:17.233192+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・本ポスト配信〜規定数配布終了"
+    "deadline_checked_at": "2026-10-27T03:00:24.707235+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・発表日から推定:当選発表9/15",
+    "start": "2026-09-09T00:00:00+09:00",
+    "end_from": "Xの告知（発表日から推定:当選発表9/15）",
+    "closed_at": "2026-10-27T03:02:28.489926+09:00"
   },
   "e4ae9aa94541cc4c": {
     "store": "BOOKOFF SUPER BAZAAR 17号前橋リリカ店（トレカ）",
@@ -6406,10 +6474,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e4ae9aa94541cc4c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049076+09:00",
     "multi": false,
-    "cls": "266fdde0aab6"
+    "cls": "266fdde0aab6",
+    "closed_at": "2026-10-27T03:02:28.489933+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "572a68e3b802c492": {
     "store": "カードラボ秋葉原ラジオ会館本店",
@@ -6446,7 +6516,7 @@
     "store": "ブックオフ横浜中山店",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（おひとり様1BOX・現金のみ）",
     "series": "30周年パック",
-    "end": "",
+    "end": "2026-09-15T00:00:00+09:00",
     "url": "https://x.com/BoMidoKei370/status/2098290441196371971",
     "x_post": "https://x.com/BoMidoKei370/status/2098290441196371971",
     "channel": "store",
@@ -6465,19 +6535,22 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "252f4e24b7b4fab5",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049110+09:00",
     "multi": false,
     "cls": "965c1f5d2725",
-    "deadline_checked_at": "2026-10-27T00:42:22.616644+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・9月11日15時～準備数配布次第終了"
+    "deadline_checked_at": "2026-10-27T03:00:30.172568+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・当選発表9/15 発表日から推定",
+    "start": "2026-09-11T15:00:00+09:00",
+    "end_from": "Xの告知（当選発表9/15 発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.489941+09:00"
   },
   "816dcec8d9b50635": {
     "store": "ブックオフ横浜中山店",
     "product": "ポケモンカードゲーム MEGA 30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー（おひとり様1個・現金のみ）",
     "series": "30周年エーフィ・ブラッキーデッキ",
-    "end": "",
+    "end": "2026-09-15T00:00:00+09:00",
     "url": "https://x.com/BoMidoKei370/status/2098290441196371971",
     "x_post": "https://x.com/BoMidoKei370/status/2098290441196371971",
     "channel": "store",
@@ -6496,13 +6569,16 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "816dcec8d9b50635",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049126+09:00",
     "multi": false,
     "cls": "e28467bf2f43",
-    "deadline_checked_at": "2026-10-27T00:42:25.856045+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・9月11日15時〜準備数配布次第終了"
+    "deadline_checked_at": "2026-10-27T03:00:35.141362+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・発表日から推定(当選発表9/15)",
+    "start": "2026-09-11T15:00:00+09:00",
+    "end_from": "Xの告知（発表日から推定(当選発表9/15)）",
+    "closed_at": "2026-10-27T03:02:28.489947+09:00"
   },
   "1682d816277f7543": {
     "store": "ホビーショップタムタム神戸三宮店",
@@ -6608,13 +6684,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "049986977c35d80c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.049209+09:00",
     "multi": false,
     "cls": "3b8ae1bd4713",
-    "deadline_checked_at": "2026-10-27T00:42:35.769226+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・本日10:30より受付開始（締切記載なし）"
+    "deadline_checked_at": "2026-10-27T03:00:38.978192+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・本日10:30より受付開始(締切記載なし)",
+    "closed_at": "2026-10-27T03:02:28.489962+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "571e243fcba8e99d": {
     "store": "TC バトロコ旭川駅前",
@@ -6640,9 +6718,9 @@
     "found_at": "2026-10-26T18:20:17.049227+09:00",
     "multi": false,
     "cls": "19159ce164bd",
-    "deadline_checked_at": "2026-10-27T00:42:37.816931+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付期間の記載なし（発売日10/16のみ）"
+    "deadline_checked_at": "2026-10-27T03:00:40.701473+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・画像・本文に応募締切の記載なし"
   },
   "f4fdd25eee180bcc": {
     "store": "文教堂 あきる野店",
@@ -6668,9 +6746,9 @@
     "found_at": "2026-10-26T18:20:17.049249+09:00",
     "multi": false,
     "cls": "e07a84a5292e",
-    "deadline_checked_at": "2026-10-27T00:42:39.589444+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(発売10/16のみ)"
+    "deadline_checked_at": "2026-10-27T03:00:43.172194+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(10/16は発売日)"
   },
   "153876db210d140e": {
     "store": "ブックオフ相模大野店",
@@ -6699,9 +6777,9 @@
     "found_at": "2026-10-26T18:20:17.049266+09:00",
     "multi": false,
     "cls": "6ce81d593681",
-    "deadline_checked_at": "2026-10-27T00:42:44.165610+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付締切の記載なし(購入期間のみ)"
+    "deadline_checked_at": "2026-10-27T03:00:46.750539+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(購入期間のみ)"
   },
   "80935f7970d60131": {
     "store": "シーガル名取店",
@@ -6783,9 +6861,9 @@
     "found_at": "2026-10-26T18:20:17.049318+09:00",
     "multi": false,
     "cls": "eca7c385587a",
-    "deadline_checked_at": "2026-10-27T00:42:47.400420+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・応募受付の記載なし。10/17 9:00より販売"
+    "deadline_checked_at": "2026-10-27T03:00:48.862909+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・応募締切の記載なし(10/17 9:00より販売)"
   },
   "78151ecf214947b9": {
     "store": "TSUTAYA森町店トレカコーナー",
@@ -12637,9 +12715,9 @@
     "found_at": "2026-10-26T18:20:21.885581+09:00",
     "multi": false,
     "cls": "2418086d9753",
-    "deadline_checked_at": "2026-10-27T00:42:52.277428+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・本文に受付期間の記載なし"
+    "deadline_checked_at": "2026-10-27T03:00:54.566820+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・締切の記載なし(フォーム受付終了表示のみ)"
   },
   "44b33d784698affb": {
     "store": "カードラボ所沢店",
@@ -12711,7 +12789,7 @@
     "store": "TSUTAYAサンリブきふね店",
     "product": "ONE PIECEカードゲーム ブースターパック「世界最強の戦士」[OP-17]",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-14T00:00:00+09:00",
     "url": "https://x.com/TSUTAYA_kifune/status/2085632152545452223",
     "x_post": "https://x.com/TSUTAYA_kifune/status/2085632152545452223",
     "channel": "store",
@@ -12729,13 +12807,16 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "0b96c341a9798d61",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885631+09:00",
     "multi": false,
     "cls": "5a77ce7f4c8b",
-    "deadline_checked_at": "2026-10-27T00:42:57.268083+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・〜応募者150名で終了"
+    "deadline_checked_at": "2026-10-27T03:00:57.195326+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・応募者150名で終了/発表日から推定",
+    "start": "2026-08-08T00:00:00+09:00",
+    "end_from": "Xの告知（応募者150名で終了/発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.490793+09:00"
   },
   "b4051df25890b4ed": {
     "store": "TC バトロコ秋田駅前",
@@ -12761,8 +12842,8 @@
     "found_at": "2026-10-26T18:20:21.885648+09:00",
     "multi": false,
     "cls": "d4bcd7410b23",
-    "deadline_checked_at": "2026-10-27T00:43:04.859618+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:01.101054+09:00",
+    "deadline_v": 4
   },
   "f8658c5de60e9d79": {
     "store": "草叢BOOKS各務原店",
@@ -12786,10 +12867,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "f8658c5de60e9d79",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885664+09:00",
     "multi": false,
-    "cls": "676475b12c9c"
+    "cls": "676475b12c9c",
+    "closed_at": "2026-10-27T03:02:28.490805+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "db4cc18d0dec1f15": {
     "store": "フタバ図書TSUTAYA Alti福山店",
@@ -12877,12 +12960,14 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "37bb41bfa67258b4",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885714+09:00",
     "cls": "0ae4fda7d43e",
-    "deadline_checked_at": "2026-10-27T00:43:04.859869+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の日時の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:01.101388+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の日時の記載なし",
+    "closed_at": "2026-10-27T03:02:28.490815+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "1f90fa8ca0f7ffa7": {
     "store": "八文字屋北店（Cardbox）",
@@ -12904,10 +12989,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "1f90fa8ca0f7ffa7",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885731+09:00",
     "multi": false,
-    "cls": "a737b268bb82"
+    "cls": "a737b268bb82",
+    "closed_at": "2026-10-27T03:02:28.490823+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "5fd3b4ee37d23e0e": {
     "store": "ブックオフ富士中島店",
@@ -12994,13 +13081,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "91139608e191e384",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885778+09:00",
     "multi": false,
     "cls": "8415a93c8ca2",
-    "deadline_checked_at": "2026-10-27T00:43:08.809351+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし（受付開始致しましたのみ）"
+    "deadline_checked_at": "2026-10-27T03:01:03.418182+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし（受付開始のみ）",
+    "closed_at": "2026-10-27T03:02:28.490832+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "3988171594ba538d": {
     "store": "ホビーオフ東橋本店",
@@ -13117,13 +13206,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "bc0e6522ad21d7d7",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885842+09:00",
     "multi": false,
     "cls": "9f59e49fb180",
-    "deadline_checked_at": "2026-10-27T00:43:18.465184+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:06.250648+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.490840+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "2e64c5de3dec3e53": {
     "store": "文教堂行徳店（トレカ）",
@@ -13145,13 +13236,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "2e64c5de3dec3e53",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885859+09:00",
     "multi": false,
     "cls": "033b3b18bda4",
-    "deadline_checked_at": "2026-10-27T00:43:20.384887+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・本文に締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:07.820298+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・締切の記載なし（画像未確認）",
+    "closed_at": "2026-10-27T03:02:28.490848+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "3f9e21bd708e4d3e": {
     "store": "TSUTAYA田上店",
@@ -13235,8 +13328,8 @@
     "found_at": "2026-10-26T18:20:21.885907+09:00",
     "multi": false,
     "cls": "a08b12a520cf",
-    "deadline_checked_at": "2026-10-27T00:45:09.862089+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:10.295525+09:00",
+    "deadline_v": 4
   },
   "fcc23a2b08cf8095": {
     "store": "桃太郎王国 市原店",
@@ -13322,10 +13415,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "e2263d16d79a5b73",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885954+09:00",
     "multi": false,
-    "cls": "6b20631663a9"
+    "cls": "6b20631663a9",
+    "closed_at": "2026-10-27T03:02:28.490861+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "f371ddef3548e30b": {
     "store": "カードボックス天理店",
@@ -13382,13 +13477,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "e37ee050b18b6bc6",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885987+09:00",
     "multi": false,
     "cls": "2f376678bedb",
-    "deadline_checked_at": "2026-10-27T00:45:17.691590+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・100名に達した時点で配布終了"
+    "deadline_checked_at": "2026-10-27T03:01:10.295858+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(100名で配布終了)",
+    "closed_at": "2026-10-27T03:02:28.490869+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "43ddd9583d513e46": {
     "store": "ブックオフ飯塚店",
@@ -13428,7 +13525,7 @@
     "store": "ブックオフ相模大野店",
     "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-21T00:00:00+09:00",
     "url": "https://x.com/bookoff_oono/status/2088529648783433874",
     "x_post": "https://x.com/bookoff_oono/status/2088529648783433874",
     "channel": "store",
@@ -13444,13 +13541,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "3af3f5ea4de305b8",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886017+09:00",
     "multi": false,
     "cls": "56be78d0d4a7",
-    "deadline_checked_at": "2026-10-27T00:45:27.377030+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・配布期間:本ポスト配信〜配布終了まで"
+    "deadline_checked_at": "2026-10-27T03:01:14.419119+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・当選発表8月21日 発表日から推定",
+    "end_from": "Xの告知（当選発表8月21日 発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.490877+09:00"
   },
   "5fdf8fd3160ec8a5": {
     "store": "TSUTAYA福井高柳店",
@@ -13476,9 +13575,9 @@
     "found_at": "2026-10-26T18:20:21.886033+09:00",
     "multi": false,
     "cls": "edec8a400409",
-    "deadline_checked_at": "2026-10-27T00:45:34.918681+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像0/0枚読込・受付期間の記載なし(フォーム受付終了表示のみ)"
+    "deadline_checked_at": "2026-10-27T03:01:21.666014+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像0/0枚読込・締切の日時の記載なし"
   },
   "e5d8912eedf53edd": {
     "store": "ビックカメラAKIBA",
@@ -13535,8 +13634,8 @@
     "found_at": "2026-10-26T18:20:21.886064+09:00",
     "multi": false,
     "cls": "d6ecb311f6ff",
-    "deadline_checked_at": "2026-10-27T00:45:40.341214+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:23.611470+09:00",
+    "deadline_v": 4
   },
   "d690e5fcb8896426": {
     "store": "カードショップIRODORI 南浦和店",
@@ -13560,13 +13659,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d690e5fcb8896426",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886080+09:00",
     "multi": false,
     "cls": "a28d13896b1a",
-    "deadline_checked_at": "2026-10-27T00:45:40.341367+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:23.611702+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切・発表日の記載なし",
+    "closed_at": "2026-10-27T03:02:28.490892+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "2a9d4914d424d7f5": {
     "store": "バトロコsatellite渋谷駅前店",
@@ -13592,8 +13693,8 @@
     "found_at": "2026-10-26T18:20:21.886097+09:00",
     "multi": false,
     "cls": "984e508d9deb",
-    "deadline_checked_at": "2026-10-27T00:45:44.144705+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:28.175294+09:00",
+    "deadline_v": 4
   },
   "63cc55503625a653": {
     "store": "TCバトロコ渋谷センター街",
@@ -13619,14 +13720,14 @@
     "found_at": "2026-10-26T18:20:21.886114+09:00",
     "multi": false,
     "cls": "d22dddd4eae3",
-    "deadline_checked_at": "2026-10-27T00:45:44.723809+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:28.855032+09:00",
+    "deadline_v": 4
   },
   "5fdc4f6c5c2ade75": {
     "store": "レッドハウス（青森県八戸市）",
     "product": "ONE PIECEカードゲーム ブースターパック「世界最強の戦士」【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-21T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2089248267762889175",
     "x_post": "https://x.com/ledhouse2011/status/2089248267762889175",
     "channel": "store",
@@ -13644,13 +13745,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "5fdc4f6c5c2ade75",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886131+09:00",
     "multi": false,
     "cls": "75e379f9a17b",
-    "deadline_checked_at": "2026-10-27T00:45:44.723888+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募の締切日時の記載なし(発表8/21のみ)"
+    "deadline_checked_at": "2026-10-27T03:01:28.855284+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・抽選発表8/21 発表日から推定",
+    "end_from": "Xの告知（抽選発表8/21 発表日から推定）",
+    "closed_at": "2026-10-27T03:02:28.490907+09:00"
   },
   "53c326d6eefde891": {
     "store": "ブックオフ松戸駅東口店",
@@ -13710,8 +13813,8 @@
     "found_at": "2026-10-26T18:20:21.886163+09:00",
     "multi": false,
     "cls": "946caff5645b",
-    "deadline_checked_at": "2026-10-27T00:45:49.282266+09:00",
-    "deadline_v": 3
+    "deadline_checked_at": "2026-10-27T03:01:39.585620+09:00",
+    "deadline_v": 4
   },
   "1f086c088fdc23af": {
     "store": "カードショップBambi",
@@ -13733,9 +13836,11 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "1f086c088fdc23af",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886179+09:00",
-    "cls": "0d9fabd22137"
+    "cls": "0d9fabd22137",
+    "closed_at": "2026-10-27T03:02:28.490919+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "bfe5e3c02e2115ef": {
     "store": "ビックカメラ名古屋駅西店",
@@ -13819,13 +13924,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "7f05770bd2215426",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886228+09:00",
     "multi": false,
     "cls": "75d38ef2373e",
-    "deadline_checked_at": "2026-10-27T00:45:55.453317+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(発売日8/22のみ)"
+    "deadline_checked_at": "2026-10-27T03:01:39.585841+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(8/22は発売日)",
+    "closed_at": "2026-10-27T03:02:28.490927+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "284f0f28210b9bb9": {
     "store": "カードラッシュ秋葉原0号店TC",
@@ -13849,13 +13956,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "284f0f28210b9bb9",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886244+09:00",
     "multi": false,
     "cls": "0f4fe9aa5a6c",
-    "deadline_checked_at": "2026-10-27T00:45:57.556697+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・受付締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:41.170078+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(発売日8/22のみ)",
+    "closed_at": "2026-10-27T03:02:28.490935+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "7199770abc054bf3": {
     "store": "カードラッシュ秋葉原2号店",
@@ -13879,10 +13988,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "7199770abc054bf3",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886262+09:00",
     "multi": false,
-    "cls": "30b3e85097d0"
+    "cls": "30b3e85097d0",
+    "closed_at": "2026-10-27T03:02:28.490943+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "f33f2c35bd3a5706": {
     "store": "バトロコミニ前橋荒牧店",
@@ -13950,7 +14061,7 @@
     "store": "お宝創庫安城店",
     "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-19T00:00:00+09:00",
     "url": "https://x.com/otasou_anjyou/status/2090010455200895003",
     "x_post": "https://x.com/otasou_anjyou/status/2090010455200895003",
     "channel": "store",
@@ -13969,13 +14080,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "a6ba0c75089a06a6",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886310+09:00",
     "multi": false,
     "cls": "2d9248ab7f7f",
-    "deadline_checked_at": "2026-10-27T00:46:05.684283+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募期間の記載なし(当選通知08/19発信のみ)"
+    "deadline_checked_at": "2026-10-27T03:01:42.929043+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・当選通知は08/19(水)に発信(発表日から推定)",
+    "end_from": "Xの告知（当選通知は08/19(水)に発信(発表日）",
+    "closed_at": "2026-10-27T03:02:28.490951+09:00"
   },
   "ab524204351b195a": {
     "store": "カードランド秋葉原店",
@@ -13999,13 +14112,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "ab524204351b195a",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886326+09:00",
     "multi": false,
     "cls": "5a5fdcf9a651",
-    "deadline_checked_at": "2026-10-27T00:46:07.845485+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:44.977945+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.490958+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "c0d30078887fdc7b": {
     "store": "ビッグワンTSUTAYA さくら店",
@@ -14029,9 +14144,11 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c0d30078887fdc7b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886343+09:00",
-    "cls": "298f630d0388"
+    "cls": "298f630d0388",
+    "closed_at": "2026-10-27T03:02:28.490966+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "63e2e041f43c3bd8": {
     "store": "おたちゅう。秋葉原5号店",
@@ -14086,13 +14203,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "641b1792ccdfb381",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886376+09:00",
     "multi": false,
     "cls": "c22b6d1c33fb",
-    "deadline_checked_at": "2026-10-27T00:46:13.052736+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:46.624740+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・当日朝9時15分より整理券配布(締切記載なし)",
+    "closed_at": "2026-10-27T03:02:28.490974+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "6a8eb83cc0e6b2f8": {
     "store": "ふるいちトップブックス港北ミナモ店",
@@ -14525,13 +14644,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "08d5eea22cc411dd",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886642+09:00",
     "multi": false,
     "cls": "4bcd5c56f36b",
-    "deadline_checked_at": "2026-10-27T00:46:38.421268+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:01:52.103169+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "closed_at": "2026-10-27T03:02:28.490997+09:00",
+    "closed_reason": "告知の投稿から21日以上たって締切不明"
   },
   "9b77dc73a695e6e5": {
     "store": "マックスゲーム浜松町店",
@@ -14688,7 +14809,7 @@
     "store": "ブックオフ横浜中山店",
     "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】",
     "series": "ヒロインズエディション vol.2",
-    "end": "",
+    "end": "2026-10-30T00:00:00+09:00",
     "url": "https://x.com/BoMidoKei370/status/2111336404500320617",
     "x_post": "https://x.com/BoMidoKei370/status/2111336404500320617",
     "channel": "store",
@@ -14711,9 +14832,11 @@
     "found_at": "2026-10-26T18:20:21.886764+09:00",
     "multi": false,
     "cls": "007d74affe6f",
-    "deadline_checked_at": "2026-10-27T00:46:42.442112+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・配布期間10月17日15時〜配布終了次第終了"
+    "deadline_checked_at": "2026-10-27T03:01:54.328282+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・発表日から推定 当選発表10/30",
+    "start": "2026-10-17T15:00:00+09:00",
+    "end_from": "Xの告知（発表日から推定 当選発表10/30）"
   },
   "5260f4382862af56": {
     "store": "TCバトロコ旭川駅前",
@@ -14739,15 +14862,15 @@
     "found_at": "2026-10-26T18:20:21.886782+09:00",
     "multi": false,
     "cls": "6dcf00637f4e",
-    "deadline_checked_at": "2026-10-27T00:46:45.020153+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募期間の記載なし（発売日のみ）"
+    "deadline_checked_at": "2026-10-27T03:01:57.483510+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし（発売日10/31のみ）"
   },
   "754a97e754113021": {
     "store": "TSUTAYAサンリブきふね店",
     "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition Vol.2」【EB-05】（箱無し・当選数10名）",
     "series": "ヒロインズエディション vol.2",
-    "end": "",
+    "end": "2026-10-30T00:00:00+09:00",
     "url": "https://x.com/TSUTAYA_kifune/status/2113586230822686891",
     "x_post": "https://x.com/TSUTAYA_kifune/status/2113586230822686891",
     "channel": "store",
@@ -14770,9 +14893,11 @@
     "found_at": "2026-10-26T18:20:21.886801+09:00",
     "multi": false,
     "cls": "3fa160ae5e74",
-    "deadline_checked_at": "2026-10-27T00:46:46.515730+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像2/2枚読込・9:00〜配布100名で終了"
+    "deadline_checked_at": "2026-10-27T03:01:59.514981+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像2/2枚読込・配布100名で終了/発表日から推定",
+    "start": "2026-10-24T09:00:00+09:00",
+    "end_from": "Xの告知（配布100名で終了/発表日から推定）"
   },
   "f2f6ba8a44e84216": {
     "store": "文教堂 あきる野店【トレカ】",
@@ -14800,9 +14925,9 @@
     "found_at": "2026-10-26T18:20:21.886820+09:00",
     "multi": false,
     "cls": "a6f776e518dc",
-    "deadline_checked_at": "2026-10-27T00:46:49.444390+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の日時の記載なし"
+    "deadline_checked_at": "2026-10-27T03:02:03.131695+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし(受付開始しましたのみ)"
   },
   "bc4a76ceb036bc2a": {
     "store": "ブックオフ相模大野店",
@@ -14832,15 +14957,15 @@
     "found_at": "2026-10-26T18:20:21.886839+09:00",
     "multi": false,
     "cls": "bf24c71996b9",
-    "deadline_checked_at": "2026-10-27T00:46:51.251390+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・配布期間:本ポスト配信〜配布終了まで"
+    "deadline_checked_at": "2026-10-27T03:02:04.941448+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・締切の記載なし"
   },
   "1f9f1daf23910fcb": {
     "store": "レッドハウス（青森県八戸市）",
     "product": "ONE PIECEカードゲーム スペシャルボックス「ONE PIECE HEROINES PRECIOUS BOX」（公認店限定・8,470円税込・お一人様1個・現金払いのみ）",
     "series": null,
-    "end": "",
+    "end": "2026-10-30T00:00:00+09:00",
     "url": "https://x.com/ledhouse2011/status/2114564920889278877",
     "x_post": "https://x.com/ledhouse2011/status/2114564920889278877",
     "channel": "store",
@@ -14862,9 +14987,10 @@
     "found_at": "2026-10-26T18:20:21.886856+09:00",
     "multi": false,
     "cls": "690119239b7f",
-    "deadline_checked_at": "2026-10-27T00:46:58.053950+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・応募締切の記載なし(抽選発表10/30のみ)"
+    "deadline_checked_at": "2026-10-27T03:02:09.446115+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・発表日から推定 抽選発表10/30",
+    "end_from": "Xの告知（発表日から推定 抽選発表10/30）"
   },
   "96e3ec76eadd8e14": {
     "store": "ビックカメラ鹿児島中央駅店",
@@ -15530,9 +15656,9 @@
     "found_at": "2026-10-26T19:34:57.203540+09:00",
     "multi": false,
     "cls": "6712be2b3706",
-    "deadline_checked_at": "2026-10-27T00:47:01.257348+09:00",
-    "deadline_v": 3,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_checked_at": "2026-10-27T03:02:11.904616+09:00",
+    "deadline_v": 4,
+    "deadline_note": "画像1/1枚読込・抽選の詳細は未定と記載"
   },
   "8f2b64aa2767c0ce": {
     "store": "古本市場・ふるいち",
