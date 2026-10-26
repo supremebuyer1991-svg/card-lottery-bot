@@ -5,6 +5,7 @@ from common import load_settings, load_sources, log
 from collect import collect
 from approve import approve
 from xpost import post_all, post_daily_summary
+from xbuzz import post_buzz
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -36,6 +37,10 @@ def main():
         approve(s)
         post_all(s)
         post_daily_summary(s)
+        try:
+            post_buzz(s)  # 1日1回、リンクなしの反応狙い投稿（buzz_hour 時〜）
+        except Exception as e:
+            log(f"バズ投稿: スキップ {e}")
         update_pages(s)
         try:
             rakuten.update(s, active_series(s))  # 楽天の商品画像（キー未登録なら何もしない）
