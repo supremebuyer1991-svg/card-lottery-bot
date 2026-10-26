@@ -47,7 +47,9 @@ document.getElementById("upd").textContent=UPDATED?new Date(UPDATED).toLocaleStr
 const end=i=>i.end?new Date(i.end):null;
 const active=ITEMS.filter(i=>{const e=end(i);return !e||e>now;});
 const fmt=e=>e?`${e.getMonth()+1}/${e.getDate()}(${W[(e.getDay()+6)%7]})${String(e.getHours()).padStart(2,"0")}:${String(e.getMinutes()).padStart(2,"0")}`:"公式で確認";
-const name=i=>{if(i.series)return i.series;let p=(i.product||"").replace(/[（(][^）)]{8,}[）)]/g,"").trim();return p.length>30?p.slice(0,30)+"…":p;};
+const name=i=>{if(i.series)return i.series;let p=(i.product||"");const q=p.match(/[「『]([^」』]{2,})[」』]/);if(q)p=q[1];
+ p=p.replace(/[（(][^）)]{8,}[）)]/g,"").replace(/^(ポケモンカードゲーム|ONE PIECEカードゲーム|ドラゴンボール.{0,12}フュージョンワールド)\\s*/,"").replace(/^(MEGA\\s*)?(拡張パック|強化拡張パック|ブースターパック|プレミアムブースター)\\s*/,"").trim();
+ return p.length>20?p.slice(0,20)+"…":p;};
 const xlen=t=>{let n=0;for(const w of t.split(/(\\s+)/)){if(w.startsWith("http")){n+=23;continue;}for(const c of w){n+=/[^\\x00-\\x7F]/.test(c)?2:1;}}return n;};
 const cards=[];
 const hr=now.getHours();
@@ -58,7 +60,8 @@ const nm=x=>x.names.length>1?`${x.names[0]} ほか${x.names.length-1}種`:x.name
 // 投稿のおすすめ時間（時）。今の時間に合う下書きを上に並べる
 const add=(h,hint,t,hours)=>{if(t)cards.push({h,hint,t,hot:(hours||[]).includes(hr)});};
 // 280字（日本語は1字=2）に収まるまで行を足す
-const fit=(head,lines,tail)=>{let body=[];for(const l of lines){const t=[head,...body,l,tail].join("\\n");if(xlen(t)>280)break;body.push(l);}return body.length?[head,...body,tail].join("\\n"):"";};
+const fit=(head,lines,tail)=>{let body=[];const mk=b=>[head,"",...b,"",tail].join("\\n");for(const l of lines){if(xlen(mk([...body,l]))>280)break;body.push(l);}return body.length?mk(body):"";};
+const foot=(cta,url,tags)=>`${cta}👇\\n${url}\\n\\n${tags}`;
 const link=g=>`${SITE}/${SLUG[g]}/`;
 const where=i=>i.channel==="store"?(i.area||"複数地域"):"ネット・発送";
 const sameDay=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
@@ -73,7 +76,7 @@ const REG=[["北海道・東北",/北海道|青森|岩手|宮城|秋田|山形|�
   .sort((a,b)=>new Date(b.found_at)-new Date(a.found_at))
   ;
  for(const x of byStore(li).slice(0,3)){const i=x.i;
-  const t=`【抽選速報】${GS[i.game]}「${nm(x)}」\\n📍${i.store}（${where(i)}）\\n⏰締切：${fmt(end(i))}\\n応募条件・方法はこちら👇\\n${i.spath?SITE+"/"+i.spath:link(i.game)}\\n${TAG[i.game]}`;
+  const t=`🚨抽選速報｜${GS[i.game]}\\n\\n「${nm(x)}」\\n\\n📍${i.store}（${where(i)}）\\n⏰${fmt(end(i))} 締切\\n\\n`+foot("応募条件・方法はこちら",i.spath?SITE+"/"+i.spath:link(i.game),TAG[i.game]);
   add(`速報：${i.store}`,"見つけてすぐ出すのが一番伸びる",t,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]);
  }
 }
@@ -82,21 +85,21 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),now)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：本日締切`,"昼〜夕方に（応募忘れの人向け）",
-  fit(`【本日締切⏰】${GS[g]}の抽選 ${li.length}件｜${md}`,byStore(li).map(x=>`・${x.i.store}／${nm(x)}　${hm(end(x.i))}まで`),`まだ間に合う👇\\n${link(g)}\\n${TAG[g]}`),[11,12,13,14,15,16,17,18]);
+  fit(`⏰本日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("まだ間に合います",link(g),TAG[g])),[11,12,13,14,15,16,17,18]);
 }
 // 3) 明日締切（ゲーム別。夜に出して「明日忘れずに」）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),tmr)).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：明日締切`,"夜に（翌日のリマインド）",
-  fit(`【明日締切】${GS[g]}の抽選 ${li.length}件｜${tmr.getMonth()+1}/${tmr.getDate()}`,byStore(li).map(x=>`・${x.i.store}／${nm(x)}　${hm(end(x.i))}まで`),`今夜のうちに応募👇\\n${link(g)}\\n${TAG[g]}`),[19,20,21,22,23]);
+  fit(`📅明日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("今夜のうちに応募しておこう",link(g),TAG[g])),[19,20,21,22,23]);
 }
 // 4) ネット抽選（発送）まとめ（全国の人が応募できるので反応が広い）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&i.channel==="online"&&(!end(i)||end(i)-now>1*H)).sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
  if(li.length<2)continue;
  add(`${GS[g]}：ネット抽選（発送）`,"全国の人に届く・いつでも",
-  fit(`【${GS[g]}｜家から応募できるネット抽選 ${li.length}件】`,byStore(li).map(x=>`・${x.i.store}／${nm(x)}　〜${fmt(end(x.i))}`),`当選したら自宅に発送📦\\n${link(g)}\\n${TAG[g]}`),[7,8,12,21,22]);
+  fit(`📦家から応募できる｜${GS[g]}のネット抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot("当選したら自宅に届きます",link(g),TAG[g])),[7,8,12,21,22]);
 }
 // 5) 地域別の店頭抽選（受付中が多い地域を上位3つ）
 {
@@ -105,7 +108,7 @@ for(const g of Object.keys(GS)){
  for(const [r,li] of by){
   li.sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
   add(`店頭抽選：${r}`,"地域名で検索する人に届く",
-   fit(`【${r}の店頭抽選｜受付中${li.length}件】`,li.map(i=>`・${i.area.replace(/[都府県]$/,"")}｜${i.store}（${GS[i.game]}）〜${fmt(end(i))}`),`お近くの店舗を探す👇\\n${SITE}/\\n#ポケカ抽選 #ワンピカード抽選 #${r.split("・")[0]}`),[12,18,19,20]);
+   fit(`🏪${r}の店頭抽選｜受付中 ${li.length}件`,byStore(li).map(x=>`・${x.i.area.replace(/[都府県]$/,"")}｜${x.i.store}（〜${fmt(end(x.i))}）`),foot("お近くの店舗を探す",SITE+"/",`#ポケカ抽選 #ワンピカード抽選 #${r.split("・")[0]}`)),[12,18,19,20]);
  }
 }
 // 6) まとめ
@@ -114,7 +117,7 @@ for(const g of Object.keys(GS)){
  for(const g of Object.keys(GS)){const n=active.filter(i=>i.game===g).length;if(n){parts.push(`${GS[g]} ${n}件`);tags.push(TAG[g].split(" ")[0]);}}
  const soon=active.filter(i=>end(i)&&end(i)-now<24*H).length;
  if(parts.length){
-  const t=`【トレカ抽選まとめ｜${md} ${hr}時時点】\\n受付中：${parts.join("／")}`+(soon?`\\n⏰締切24時間以内：${soon}件`:"")+`\\n条件・締切・店舗を一覧でチェック👇\\n${SITE}/\\n${tags.join(" ")}`;
+  const t=`📋トレカ抽選まとめ｜${md} ${hr}時時点\\n\\n受付中の抽選\\n`+parts.map(x=>"・"+x).join("\\n")+(soon?`\\n\\n⏰24時間以内に締切：${soon}件`:"")+`\\n\\n`+foot("条件・締切・店舗を一覧でチェック",SITE+"/",tags.join(" "));
   add("まとめ投稿（サイトトップへ）","1日2〜3回おすすめ",t,[8,12,20]);
  }
 }
@@ -123,7 +126,7 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)); // 1時間以内に締切のものは除く（投稿しても間に合わない）
  if(!li.length)continue;
  add(`${GS[g]}：締切間近トップ5`,"締切前の夕方〜夜に",
-  fit(`【${GS[g]}｜締切が近い抽選 ${md}】`,byStore(li).slice(0,5).map(x=>`・${x.i.store}／${nm(x)}　〜${fmt(end(x.i))}`),`全${active.filter(i=>i.game===g).length}件の一覧👇\\n${link(g)}\\n${TAG[g]}`),[17,18,19,20,21]);
+  fit(`⏳締切が近い抽選｜${GS[g]}`,byStore(li).slice(0,5).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot(`受付中 全${active.filter(i=>i.game===g).length}件の一覧`,link(g),TAG[g])),[17,18,19,20,21]);
 }
 // 8) 弾ごと（受付中が多い弾を各ゲーム上位3つ。弾ページ＝アフィリンクのあるページへ送る）
 for(const g of Object.keys(GS)){
@@ -134,14 +137,14 @@ for(const g of Object.keys(GS)){
   if(li.length<2)continue;
   const seen=new Set();const soon=li.filter(i=>end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)).filter(i=>!seen.has(skey(i))&&seen.add(skey(i)));
   add(`${GS[g]}：「${sr}」（弾ページへ）`,"狙ってる人が多い弾は反応◎",
-   fit(`【${GS[g]}「${sr}」抽選まとめ｜受付中${li.length}件】`,soon.map(i=>`・${i.store}　〜${fmt(end(i))}`),`他の店舗・条件・応募方法👇\\n${SITE}/${li[0].spath}\\n${TAG[g]}`)||`【${GS[g]}「${sr}」抽選まとめ｜受付中${li.length}件】\\n他の店舗・条件・応募方法👇\\n${SITE}/${li[0].spath}\\n${TAG[g]}`,[12,19,20,21]);
+   fit(`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件`,soon.map(i=>`・${i.store}（〜${fmt(end(i))}）`),foot("ほかの店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]))||`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件\\n\\n`+foot("店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]),[12,19,20,21]);
  }
 }
 // 9) 新着（24時間以内に見つかったもの）
 {
  const li=active.filter(i=>i.found_at&&now-new Date(i.found_at)<24*H).sort((a,b)=>new Date(b.found_at)-new Date(a.found_at));
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
-  fit(`【新着の抽選 ${md}｜${li.length}件】`,byStore(li).map(x=>`・${GS[x.i.game]}｜${x.i.store}／${nm(x)}　〜${fmt(end(x.i))}`),`条件・応募方法はこちら👇\\n${SITE}/\\n#ポケカ #ワンピカード`),[7,8,9]);
+  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9]);
 }
 // 今の時間におすすめの下書きを上に（同じ中では元の順）
 cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
