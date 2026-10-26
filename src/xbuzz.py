@@ -53,7 +53,7 @@ def _ranking(items, day, tags):
         return None
     medals = ["🥇", "🥈", "🥉"]
     body = "\n".join(f"{medals[n]}{s}｜{c}店舗" for n, (s, c) in enumerate(top))
-    return f"いま抽選している店舗が多い弾（{SHORT[g]}）\n\n{body}\n\nみんなはどれ狙い？\n\n{tags[g]}"
+    return f"いま抽選している店舗が多い弾（{SHORT[g]}）\n\n{body}\n\n1位はさすがに強い\n\n{tags[g]}"
 
 
 def _question(items, day, tags):
@@ -62,9 +62,9 @@ def _question(items, day, tags):
     if not top or top[0][1] < 3:
         return None
     s, c = top[0]
-    return (f"「{s}」の抽選、何店舗応募しました？\n\n"
-            f"いま分かっているだけで{c}店舗が受付中です。\n\n"
-            f"当たった人はリプで教えてください🙏\n\n{tags[g]}")
+    return (f"「{s}」の抽選\n\n"
+            f"いま分かってるだけで{c}店舗が受付中。\n\n"
+            f"ここまで多いと、どれか1つは当たってほしい🙏\n\n{tags[g]}")
 
 
 def _numbers(items, day, tags):
@@ -77,7 +77,7 @@ def _numbers(items, day, tags):
              f"・家から応募できるネット抽選：{net}件", f"・お店で受け取る店頭抽選：{len(items) - net}件"]
     if today:
         lines += ["", f"そのうち今日締切が{len(today)}件⏰"]
-    lines += ["", "応募し忘れ、ないですか？", "", "#ポケカ抽選 #ワンピカード抽選"]
+    lines += ["", "締切は思ってるより早く来る", "", "#ポケカ抽選 #ワンピカード抽選"]
     return "\n".join(lines)
 
 
@@ -88,12 +88,12 @@ def _prefecture(items, day, tags):
         return None
     body = "\n".join(f"{n + 1}位 {p}｜{k}件" for n, (p, k) in enumerate(top))
     return (f"店頭抽選がいちばん多い都道府県は…\n\n{body}\n\n"
-            f"あなたの地域は多い？少ない？\n\n#ポケカ抽選 #ワンピカード抽選")
+            f"近くに店がない人は、ネット抽選のほうが狙い目\n\n#ポケカ抽選 #ワンピカード抽選")
 
 
 def _aruaru(items, day, tags):
     a = ARUARU[(day // 5) % len(ARUARU)]
-    return "トレカ抽選あるある\n\n" + "\n".join("・" + x for x in a) + "\n\nほかにある？😂\n\n#ポケカ #ワンピカード"
+    return "トレカ抽選あるある\n\n" + "\n".join("・" + x for x in a) + "\n\n全部やったことある😂\n\n#ポケカ #ワンピカード"
 
 
 TYPES = [_ranking, _question, _numbers, _prefecture, _aruaru]
