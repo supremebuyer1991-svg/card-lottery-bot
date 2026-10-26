@@ -75,6 +75,34 @@ def _is_apply(label: str, link_text: str) -> bool:
     return link_text in label and not any(x in label for x in EXCLUDE_LINK)
 
 
+def product_of(box, base_url: str, host: str) -> str:
+    """そのカードの商品名を探す。カードの中 → 直前の商品見出し（商品ページへのリンクや画像）の順"""
+    base_path = requests.compat.urlparse(base_url).path.rstrip("/")
+
+    def is_product_link(t):
+        if t.name != "a" or not t.get("href"):
+            return False
+        u = requests.compat.urlparse(requests.compat.urljoin(base_url, t["href"]))
+        p = u.path.rstrip("/")
+        return u.netloc == host and p.startswith(base_path + "/") and p.count("/") == base_path.count("/") + 1
+
+    def name_of(a):
+        label = a.get_text(" ", strip=True)
+        img = a.find("img")
+        alt = img.get("alt", "").strip() if img else ""
+        slug = requests.compat.urlparse(a["href"]).path.rstrip("/").split("/")[-1]
+        return " ".join(x for x in (label, alt) if x) or slug
+
+    inside = box.find(is_product_link)
+    if inside:
+        return name_of(inside)
+    prev = box.find_previous(is_product_link)
+    if prev:
+        return name_of(prev)
+    img = box.find_previous("img", alt=True)
+    return img.get("alt", "").strip() if img else ""
+
+
 def cards(html: str, base_url: str, link_text: str = "応募") -> list:
     """一覧型サイト用：応募ボタン1つごとに、そのボタンを含む「カード」のテキストを切り出す
     戻り値: [(キー=応募URL, 正規化テキストのハッシュ, テキスト)]"""
@@ -106,6 +134,7 @@ def cards(html: str, base_url: str, link_text: str = "応募") -> list:
                 break
             box = box.parent
         text = " / ".join(t for t in box.get_text("\n", strip=True).splitlines() if t)
-        text = f"{text}\n応募URL: {href}"
+        prod = product_of(box, base_url, host)
+        text = (f"商品: {prod}\n" if prod else "") + f"{text}\n応募URL: {href}"
         out.append((href, sha256(COUNTDOWN.sub("", text).encode()).hexdigest()[:16], text))
     return out

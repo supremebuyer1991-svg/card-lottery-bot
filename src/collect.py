@@ -5,7 +5,7 @@ from extract import extract
 from fetch_x import search as x_search
 
 
-SEEN_VERSION = 3
+SEEN_VERSION = 4
 
 
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:

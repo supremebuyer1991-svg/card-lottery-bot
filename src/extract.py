@@ -18,7 +18,7 @@ PROMPT = """あなたはトレカ抽選情報の抽出係です。以下のテ�
 - 日時はISO 8601形式（例 2026-11-02T23:59:00+09:00）。年が省略されていれば今日（{today}）基準で補う
 - 「今日 20:59」「明日 23:59」「残り15時間」のような書き方は、現在時刻（{nowtime}）を基準に日時へ直す
 - url は応募ページか店舗の告知ページ（[関連リンク]に店舗のURLがあれば必ずそれを使う）。無ければ記事URL
-- 「=====」で区切られた各ブロックは別々の抽選。応募URL があればそれを url にする
+- 「=====」で区切られた各ブロックは別々の抽選。応募URL があればそれを url にする。「商品:」の行があればそれが商品名
 - まとめ記事の場合、記事内の「抽選」の項目を店舗ごとに1件ずつ出す。「在庫あり」「先着販売」「再販」は抽選ではないので除外
 - テキストがXのポストの場合、店舗や公式アカウント本人の告知を優先し、個人の伝聞・噂は confidence を低く。x_post にはそのポストURLを入れる
 - 実店舗（店頭応募・抽選券・整理券など）の抽選も対象。channel は "store"、store は「チェーン名＋支店名」（例: イオン〇〇店）、area は都道府県。ネット応募なら channel は "online"
@@ -54,7 +54,15 @@ def _parse(raw: str) -> list:
                 i = end
             except json.JSONDecodeError:
                 i += 1
-    return [d for d in data if isinstance(d, dict) and d.get("store") and d.get("product")]
+    out = []
+    for d in data:
+        if not isinstance(d, dict) or not d.get("store"):
+            continue
+        if not d.get("product") and d.get("series"):
+            d["product"] = d["series"]  # 商品名が無ければ弾名で代用
+        if d.get("product"):
+            out.append(d)
+    return out
 
 
 def extract(text: str, game: str, game_name: str, source_name: str, source_url: str) -> list:
