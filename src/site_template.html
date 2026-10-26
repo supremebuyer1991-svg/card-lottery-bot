@@ -91,6 +91,7 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .seg { display: inline-flex; background: var(--navy-soft); border-radius: 999px; padding: 3px; }
 .seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 999px; color: var(--ink-2); cursor: pointer; }
+.seg button small { display: block; font-size: 10px; font-weight: 500; line-height: 1.1; color: var(--ink-2); }
 .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
 select, input[type="search"] { font: inherit; font-size: 14px; color: var(--ink); background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; min-width: 0; }
 input[type="search"] { flex: 1 1 160px; }
@@ -153,6 +154,11 @@ input[type="search"] { flex: 1 1 160px; }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .thumb .pr { position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; background: #bf0000; padding: 2px 4px; border-top-left-radius: 4px; }
 .thumb .ph { font-family: var(--font-body); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
+.flow { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.flow i { font-style: normal; opacity: .6; }
+.flow span { border-radius: 4px; padding: 1px 6px; background: var(--navy-soft); }
+.flow .st { background: var(--ink); color: var(--card); }
+.flow .sh { background: var(--done); color: #fff; }
 .req { display: flex; gap: 6px; flex-wrap: wrap; }
 .pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 9px; border: 1px solid transparent; white-space: nowrap; }
 .pill.need { background: var(--amber-soft); color: var(--amber); }
@@ -259,8 +265,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   <div class="filters">
     <div class="row">
       <div class="seg" id="channel">
-        <button type="button" data-v="online" aria-pressed="true">ネット抽選</button>
-        <button type="button" data-v="store" aria-pressed="false">店頭抽選</button>
+        <button type="button" data-v="online" aria-pressed="true" title="当選したら自宅に発送">ネット抽選<small>発送</small></button>
+        <button type="button" data-v="store" aria-pressed="false" title="受け取りは店頭（応募はWeb・アプリ・店頭など）">店頭抽選<small>店頭受取</small></button>
       </div>
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
@@ -398,6 +404,15 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       : it.member === "none" ? '<span class="pill ok">会員 不要</span>' : '<span class="pill unk">会員 不明</span>';
     return '<div class="req">' + id + mem + '</div>';
   }
+  // 応募のしかた → 受け取り方（例：Web応募 → 店頭受取）
+  function flow(it) {
+    var m = it.method || "", tg = (it.tags || []).join(" ");
+    var how = /SNS|X抽選|ポスト|リポスト/.test(m + tg) ? "SNS応募" : /アプリ/.test(m) ? "アプリ応募"
+      : /店頭|整理券|抽選券/.test(m + tg) ? "店頭応募" : (m || it.channel === "online") ? "Web応募" : "";
+    var get = it.channel === "store" ? "店頭受取" : "発送";
+    return '<div class="flow">' + (how ? '<span>' + how + '</span><i aria-hidden="true">→</i>' : "") +
+      '<span class="' + (it.channel === "store" ? "st" : "sh") + '">' + get + '</span></div>';
+  }
   var TAGWORDS = ["会員", "本人確認", "SNS応募", "アプリ", "レシート", "整理券", "購入履歴"];
   function condText(it) {
     return (it.conditions || "").split(" ／ ").filter(function (p) {
@@ -413,7 +428,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + esc(it.store) +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + '</div>' +
-        '<div class="product">' + esc(it.product) + '</div>' + reqs(it) +
+        '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +
         (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
         (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
       '</div></div>' +
