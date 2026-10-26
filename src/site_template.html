@@ -3,7 +3,8 @@
 <meta name="description" content="__DESC__">
 __HEADMETA__
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93">
 <style>
 /* Layout: 抽選券の半券を縦に積んだリスト。左端に締切カウント、右端に応募ボタン。上部に絞り込みを固定 */
 :root {
@@ -45,10 +46,16 @@ a { color: inherit; }
 header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 14px 6px; flex-wrap: wrap; }
 .home { text-decoration: none; }
-.logo { font-family: var(--font-display); font-weight: 400; font-size: 24px; letter-spacing: .02em; }
-.logo span { color: var(--red); }
+/* ロゴ：「抽選」を赤い半券（左右の切り欠き＋切り取り線）に。字体は Dela Gothic One */
+.logo { display: inline-flex; flex-direction: column; gap: 4px; color: var(--ink); }
+.logo small { font-family: var(--font-num); font-size: 9px; font-weight: 600; letter-spacing: .22em; color: var(--ink-2); line-height: 1; }
+.logo .w { display: flex; align-items: center; font-family: "Dela Gothic One", "Hiragino Sans", "Noto Sans JP", sans-serif; font-weight: 400; font-size: 24px; letter-spacing: -.01em; line-height: 1; }
+.logo .t { position: relative; margin: 0 5px; background: var(--red); color: #fff; padding: 5px 13px 6px 11px; border-radius: 4px;
+  -webkit-mask: radial-gradient(circle 5px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 5px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 5px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 5px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat; }
+.logo .t::after { content: ""; position: absolute; top: 4px; bottom: 4px; right: 7px; border-right: 1.5px dashed rgb(255 255 255 / .55); }
 .lead { margin-block: 18px 0; display: grid; gap: 6px; }
-.lead h1 { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.lead h1 { font-family: var(--font-body); font-weight: 700; letter-spacing: .01em; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
 .lead p { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 65ch; }
 .links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
 .links a { color: var(--ink-2); }
@@ -99,7 +106,7 @@ input[type="search"] { flex: 1 1 160px; }
 
 /* 一覧：抽選券 */
 .list { display: grid; gap: 10px; padding-block: 12px 32px; }
-.group-h { font-family: var(--font-display); font-weight: 400; font-size: 16px; margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
+.group-h { font-family: var(--font-body); font-weight: 700; font-size: 16px; margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
 .group-h small { font-family: var(--font-num); font-size: 12px; color: var(--ink-2); }
 .ticket { display: grid; grid-template-columns: 112px 1fr auto; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; position: relative; }
 .ticket.applied { opacity: .55; }
@@ -116,7 +123,7 @@ input[type="search"] { flex: 1 1 160px; }
 .info { min-width: 0; display: grid; gap: 4px; flex: 1; }
 .thumb { flex: none; width: 76px; aspect-ratio: 1; border-radius: 8px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.thumb .ph { font-family: var(--font-display); font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
+.thumb .ph { font-family: var(--font-body); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
 .req { display: flex; gap: 6px; flex-wrap: wrap; }
 .pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 9px; border: 1px solid transparent; white-space: nowrap; }
 .pill.need { background: var(--amber-soft); color: var(--amber); }
@@ -192,7 +199,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
   .cd { font-size: 15px; }
   .thumb { width: 60px; }
-  .logo { font-size: 20px; }
+  .logo .w { font-size: 21px; }
   .lead h1 { font-size: 19px; }
   .stats b { font-size: 18px; }
 }
@@ -202,7 +209,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <a href="__ROOT__" class="home"><span class="logo">トレカ<span>抽選</span>ナビ</span></a>
+      <a href="__ROOT__" class="home" aria-label="トレカ抽選ナビ トップへ"><span class="logo"><small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></span></a>
       <div class="brand-r">
         <button type="button" class="menu-btn" id="menu-open" aria-haspopup="dialog"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>さがす</button></div>
     </div>
