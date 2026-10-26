@@ -14,6 +14,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         seen = {"_v": SEEN_VERSION}
     lots = load_json("lotteries.json", {})
     new_items = []
+    live = {}  # cardchusen：今回の一覧に載っている抽選のキー（情報元ごと）。載っていない抽選は終了とみなす
     # 弾名の表記ゆれをそろえる（スペース・大文字小文字違いは同じ弾として扱う）
     series_names = {normalize(i.get("series")): i["series"] for i in lots.values() if i.get("series")}
 
@@ -78,12 +79,15 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             # cardchusen：整理済みデータを直接読む（AI不要・無料）
             prev = seen.get(sid) if isinstance(seen.get(sid), dict) else {}
             cur = {}
+            keys = set()
             for key, h, item in cardchusen_items(body, src["url"]):
                 cur[key] = h
+                item.update(game=item.get("game") or (game if game != "auto" else "pokemon"),
+                            source=src["name"], source_url=src["url"])
+                keys.add(lottery_key(item))
                 if prev.get(key) != h:
-                    item.update(game=item.get("game") or (game if game != "auto" else "pokemon"),
-                                source=src["name"], source_url=src["url"])
                     direct.append(item)
+            live[src["name"]] = keys
             seen[sid] = cur
             log(f"{sid}: 直接読み取り 新規・変更 {len(direct)}件 / 全{len(cur)}件")
         elif src["type"] == "html_cards":
@@ -143,6 +147,18 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 lots[k] = it
                 new_items.append(it)
                 log(f"新規: [{it['game']}] {it['store']} / {it['product']} 締切={it.get('end')}")
+
+    # cardchusen の一覧から消えた抽選は終了（締切が書かれていない古い抽選が残り続けないように）
+    for name, keys in live.items():
+        if len(keys) < 30:
+            continue  # 読み込みが不完全かもしれない時は何もしない
+        gone = [i for i in lots.values() if i.get("source") == name and i.get("status") in ("listed", "posted", "approved", "new", "pending")
+                and i.get("key") not in keys]
+        for i in gone:
+            i["status"] = "closed" if i["status"] in ("listed", "posted") else "expired"
+            i["closed_reason"] = "情報元の一覧から消えた"
+        if gone:
+            log(f"{name}: 一覧から消えた {len(gone)}件を終了に")
 
     save_json("seen.json", seen)
     save_json("lotteries.json", lots)
