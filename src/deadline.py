@@ -14,13 +14,17 @@ import requests
 
 from common import load_json, save_json, now, parse_dt, log
 from extract import API_URL, MODEL
+
+# 画像の文字（告知ポスター）を読むので、ふだんより強いモデルを使う（1つの告知につき1回だけ）
+VISION_MODEL = os.environ.get("DEADLINE_MODEL", "claude-sonnet-5-5")
 from fetch import get, html_to_text
 
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
 PAGE_HOSTS = ("livepocket.jp", "docs.google.com", "forms.gle", "customform.jp", "e-starbox.com", "membercard.jp")
 
 PROMPT = """トレカの抽選販売の告知です。この抽選の「応募の受付締切」の日時を読み取ってください。
-画像（告知画像）にだけ書かれていることも多いので、画像もよく見てください。
+画像（告知画像）にだけ書かれていることが多いので、画像の文字を隅々まで読んでください。
+「受付期間」「応募期間」「抽選期間」「申込期間」「〇/〇(〇)〜〇/〇(〇)」「〇日〇時まで」などの書き方があります。期間が「A〜B」なら B が締切です。
 
 ルール:
 - 受付締切（応募期間・申込期間・受付期間の終わり）だけ。当選発表日・購入期間・発売日・引き換え期間は締切ではない
@@ -45,7 +49,8 @@ def _image_block(u):
                          timeout=20, headers={"User-Agent": "Mozilla/5.0"})
         ct = r.headers.get("content-type", "").split(";")[0]
         if r.status_code == 200 and ct in ("image/jpeg", "image/png", "image/gif", "image/webp") and len(r.content) < 4_500_000:
-            return {"type": "image", "source": {"type": "base64", "media_type": ct, "data": base64.b64encode(r.content).decode()}}
+            return {"type": "image", "_ok": True,
+                    "source": {"type": "base64", "media_type": ct, "data": base64.b64encode(r.content).decode()}}
     except Exception as e:
         log(f"締切の調査: 画像の取得失敗 {u[:60]} {e}")
     return {"type": "image", "source": {"type": "url", "url": u}}
@@ -54,22 +59,31 @@ def _image_block(u):
 def _ask(text, images, it, posted):
     key = os.environ.get("ANTHROPIC_API_KEY")
     content = [_image_block(u) for u in images[:4]]
+    got = sum(1 for c in content if c.pop("_ok", False))
     content.append({"type": "text", "text": PROMPT.format(
         posted=posted or now().date().isoformat(), today=now().date().isoformat(),
         store=it.get("store"), product=it.get("product"), text=text[:6000])})
     r = requests.post(API_URL, timeout=90, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
-    }, json={"model": MODEL, "max_tokens": 400, "messages": [{"role": "user", "content": content}]})
+    }, json={"model": VISION_MODEL, "max_tokens": 500, "messages": [{"role": "user", "content": content}]})
+    if r.status_code == 404 or (r.status_code == 400 and "model" in r.text):
+        r = requests.post(API_URL, timeout=90, headers={  # モデル名が使えない時はふだんのモデルで
+            "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
+        }, json={"model": MODEL, "max_tokens": 500, "messages": [{"role": "user", "content": content}]})
     if r.status_code >= 400 and images:
-        return _ask(text, [], it, posted)  # 画像が読めない時は本文だけで
+        res = _ask(text, [], it, posted)  # 画像が読めない時は本文だけで
+        res["_img"] = f"画像を送れず({r.status_code})"
+        return res
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API エラー {r.status_code}: {r.text[:200]}")
     raw = "".join(b.get("text", "") for b in r.json().get("content", []))
     m = re.search(r"\{.*\}", raw, re.S)
     try:
-        return json.loads(m.group(0)) if m else {}
+        res = json.loads(m.group(0)) if m else {}
     except json.JSONDecodeError:
-        return {}
+        res = {}
+    res["_img"] = f"画像{got}/{len(images[:4])}枚読込"
+    return res
 
 
 def _tweet_id(url):
@@ -127,7 +141,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         if it.get("status") not in ACTIVE or it.get("end"):
             continue
         t = parse_dt(it.get("deadline_checked_at"))
-        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 2:
+        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 3:
             continue
         url = it.get("url") or ""
         if _tweet_id(url) or any(h in url for h in PAGE_HOSTS):
@@ -163,7 +177,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         else:
             text, src = _page_text(it["url"], fetcher), "応募ページ"
         it["deadline_checked_at"] = now().isoformat()
-        it["deadline_v"] = 2
+        it["deadline_v"] = 3
         if not text and not imgs:
             continue
         try:
@@ -171,7 +185,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         except Exception as e:
             log(f"締切の調査: AI失敗 {e}")
             continue
-        it["deadline_note"] = (f"画像{len(imgs)}枚・" if imgs else "画像なし・") + ((r.get("evidence") or "締切の記載なし")[:30])
+        it["deadline_note"] = (r.get("_img") or ("画像なし" if not imgs else "")) + "・" + ((r.get("evidence") or "締切の記載なし")[:30])
         end = parse_dt(r.get("end"))
         found = parse_dt(it.get("found_at"))
         if end and (not found or end > found.replace(year=found.year - 1)):
