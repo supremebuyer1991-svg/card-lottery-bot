@@ -283,6 +283,9 @@ input[type="search"] { flex: 1 1 160px; }
 .store { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .badge { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; }
 .badge.new { background: var(--red); color: var(--card); }
+.rec-note { margin: 6px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--amber-soft); color: var(--ink); font-size: 13px; line-height: 1.6; }
+.rec-note b { color: var(--amber); margin-right: 6px; }
+.badge.rec { background: var(--amber-soft); color: var(--amber); }
 .ticket.feed .pr-note { font-family: var(--font-num); font-size: 10px; letter-spacing: .06em; color: var(--ink-2); }
 .ticket.feed .cd { color: var(--ink-2); font-size: 15px; }
 .go.amz { background: #ffd814; color: #0f1111; border: 1px solid #fcd200; }
@@ -516,7 +519,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function needs(it, tag) { return (it.tags || []).indexOf(tag) >= 0; }
   function isNew(it) { return it.found_at && Date.now() - Date.parse(it.found_at) < 24 * 3600e3; }
 
-  function inGame() { return items.filter(function (i) { return i.game === st.game && (!LOCK.store || i.spath === LOCK.store) && (i._end == null || i._end > Date.now()); }); }
+  function inGame() { return items.filter(function (i) { return i.game === st.game && (!LOCK.store || i.spath === LOCK.store) && (!LOCK.chain || i.chain === LOCK.chain) && (i._end == null || i._end > Date.now()); }); }
 
   // Amazonの招待リクエスト（ネット抽選の一番上に固定する券）
   function invites() { return (DATA.amazonInvites || {})[st.game] || []; }
@@ -627,7 +630,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
       '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
-        (isNew(it) ? '<span class="badge new">NEW</span>' : "") + '</div>' +
+        (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec" title="全国の多くの店舗で抽選をする大手チェーン（応募のチャンスが多い）">おすすめ</span>' : "") + '</div>' +
         '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +
         (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
         (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +

@@ -48,6 +48,58 @@ def load_images() -> dict:
     return {k: v for k, v in (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).items() if v}
 
 
+# チェーン（店名で判定）。big=True は「おすすめ」（全国の多くの店舗で抽選をするので応募のチャンスが多い）
+# おすすめ：ヤマダ・ジョーシン・ビックカメラ・ヨドバシ・エディオン・ゲオ・トイザらス
+CHAINS = [
+    ("yamada", "ヤマダデンキ", r"ヤマダ(電機|デンキ)|YAMADA|LABI", True),
+    ("biccamera", "ビックカメラ", r"ビックカメラ|BicCamera|コジマ", True),
+    ("yodobashi", "ヨドバシカメラ", r"ヨドバシ", True),
+    ("edion", "エディオン", r"エディオン|EDION", True),
+    ("joshin", "ジョーシン", r"ジョーシン|Joshin", True),
+    ("ksdenki", "ケーズデンキ", r"ケーズデンキ", False),
+    ("nojima", "ノジマ", r"ノジマ", False),
+    ("tsutaya", "TSUTAYA", r"TSUTAYA|ツタヤ|蔦屋", False),
+    ("geo", "ゲオ", r"ゲオ|\bGEO\b", True),
+    ("aeon", "イオン", r"イオン|AEON", False),
+    ("toysrus", "トイザらス", r"トイザらス|Toys\s*R\s*Us", True),
+    ("bookoff", "ブックオフ", r"ブックオフ|BOOKOFF|BOOK OFF", False),
+    ("furuichi", "古本市場・ふるいち", r"古本市場|ふるいち", False),
+    ("hobbyoff", "ホビーオフ", r"ホビーオフ|ハードオフ|オフハウス", False),
+    ("kiddyland", "キデイランド", r"キデ?[イィ]ランド|KIDDY\s*LAND", False),
+    ("pokemoncenter", "ポケモンセンター", r"ポケモンセンター", False),
+    ("amazon", "Amazon", r"Amazon|アマゾン", False),
+    ("sevennet", "セブンネット", r"セブンネット|セブン-?イレブン", False),
+    ("cardlabo", "カードラボ", r"カードラボ", False),
+    ("surugaya", "駿河屋", r"駿河屋", False),
+    ("bigmagic", "BIGMAGIC", r"BIG\s*MAGIC|ビッグマジック", False),
+    ("yellowsubmarine", "イエローサブマリン", r"イエローサブマリン", False),
+    ("dragonstar", "ドラゴンスター", r"ドラゴンスター", False),
+    ("sanyodo", "三洋堂", r"三洋堂", False),
+    ("batoroco", "バトロコ", r"バトロコ", False),
+    ("miraiya", "未来屋書店", r"未来屋", False),
+    ("wondergoo", "WonderGOO", r"WonderGOO|ワンダーグー", False),
+    ("jumpshop", "ジャンプショップ", r"ジャンプショップ", False),
+    ("dmm", "DMM", r"DMM", False),
+]
+
+
+def _rec_note(cname):
+    return ('<p class="rec-note"><b>★おすすめ</b>' + escape(cname) +
+            'は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。'
+            '入荷数が多い大手は狙い目と言われることもあります。</p>')
+
+
+def chain_of(store):
+    import re
+    for slug, name, pat, big in CHAINS:
+        if re.search(pat, store or "", re.I):
+            return slug
+    return None
+
+
+CHAIN = {c[0]: c for c in CHAINS}
+
+
 def store_path(store):
     """お店ごとのページ（店名の空白を無視して同じ店は同じページ）"""
     return f"store/{sha(normalize(store or '').replace(' ', ''))[:8]}/"
@@ -178,8 +230,15 @@ def _menu(items, games, g, here=""):
                         for a in sorted(acnt, key=lambda a: list(PREF).index(a)))
         area_html = (f'<section class="m-sec"><h3>店頭抽選を地域でさがす<small>{len(acnt)}都道府県</small></h3>'
                      f'<div class="m-area">{chips}</div></section>')
-    store_html = ('<section class="m-sec"><h3>お店からさがす</h3>'
-                  '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a></div></section>')
+    ccnt = {}
+    for i in items:
+        if i.get("chain"):
+            ccnt[i["chain"]] = ccnt.get(i["chain"], 0) + 1
+    top = sorted(ccnt, key=lambda c: (not CHAIN[c][3], -ccnt[c]))[:10]
+    store_html = ('<section class="m-sec"><h3>お店からさがす<small>★＝大手・おすすめ</small></h3>'
+                  '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a>' +
+                  "".join(f'<a href="/chain/{c}/">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{ccnt[c]}</span></a>' for c in top) +
+                  '</div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}{store_html}</nav>')
 
@@ -361,6 +420,11 @@ def build(settings=None, out_dir=None, sample=None):
                 row["image"], row["img_url"] = r["image"], r.get("url")
             if row.get("store"):
                 row["spath"] = store_path(row["store"])
+                ch_ = chain_of(row["store"])
+                if ch_:
+                    row["chain"] = ch_
+                    if CHAIN[ch_][3]:
+                        row["rec"] = True  # 大手チェーン（おすすめ）
             items.append(row)
 
     # 中身が変わっていなければ「最終更新」も据え置き（無駄な再公開をしない）
@@ -530,9 +594,13 @@ def build(settings=None, out_dir=None, sample=None):
         area = r.get("area")
         where = f"（{area}）" if area else ""
         near = [(v["name"], "/" + k) for k, v in reg.items() if area and v.get("area") == area and k != path][:12]
-        links = _menu(items, games, g0) + (_links(f"{area}のほかのお店", near) if near else "")
+        c = chain_of(name)
+        links = _menu(items, games, g0) + (_links(f"{area}のほかのお店", near) if near else "") + (
+            _links("同じチェーン", [(f"{CHAIN[c][1]}の抽選をすべて見る", f"/chain/{c}/")]) if c else "")
+        rec = (f"【おすすめ】{CHAIN[c][1]}は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。"
+               if c and CHAIN[c][3] else "")
         if si:
-            lead = f"{name}{where}で受付中の{words}の抽選は{len(si)}件です。締切・応募方法・本人確認や会員の条件をまとめています。"
+            lead = rec + f"{name}{where}で受付中の{words}の抽選は{len(si)}件です。締切・応募方法・本人確認や会員の条件をまとめています。"
         else:
             lead = (f"{name}{where}で現在受付中の抽選はありません。最近まで抽選がありました。"
                     "新しい抽選が見つかり次第、このページに自動で追加されます。")
@@ -542,8 +610,40 @@ def build(settings=None, out_dir=None, sample=None):
                     "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
             "summary": summary(si, f"{name}の抽選"),
             "h1": f"{name}の抽選情報", "lead": lead,
+            "aff": _rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "",
             "links": links, "root": "/"}, si,
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
+
+    # --- チェーンごとのページ（/chain/xxx/）---
+    chain_stores = {}
+    for path, r in reg.items():
+        c = chain_of(r["name"])
+        if c:
+            chain_stores.setdefault(c, []).append((path, r))
+    chain_links = []
+    for slug, cname, pat, big in CHAINS:
+        ci = [i for i in items if i.get("chain") == slug]
+        if not ci and slug not in chain_stores:
+            continue
+        gs = [g for g in games if any(i["game"] == g for i in ci)] or [games[0]]
+        g0 = max(gs, key=lambda g: sum(1 for i in ci if i["game"] == g))
+        ch = "store" if sum(1 for i in ci if i.get("channel") == "store") * 2 > len(ci) else "online"
+        words = "・".join(GAME_SHORT[g] for g in gs)
+        sts = sorted(chain_stores.get(slug, []), key=lambda pr: (-len(by_store.get(pr[0], [])), pr[1]["name"]))
+        rec = (f"【おすすめ】{cname}は全国の多くの店舗で同時に抽選をすることが多く、応募できるチャンスが多いお店です。"
+               "入荷数が多い大手は狙い目と言われることもあります。" if big else "")
+        lead = (rec + f"いま受付中の{cname}の{words}の抽選は{len(ci)}件です。"
+                if ci else rec + f"{cname}で現在受付中の抽選はありません。新しい抽選が見つかり次第、自動で追加されます。")
+        stl = _links(f"{cname}の店舗（{len(sts)}店）", [(r["name"], "/" + p) for p, r in sts[:40]]) if sts else ""
+        write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
+            "title": f"{cname}の{words}抽選情報【{md}更新】" + (f"受付中{len(ci)}件・" if ci else "") + "店舗別・締切順｜トレカ抽選ナビ",
+            "desc": f"【{md}更新】{cname}の{words}の抽選販売・予約抽選" + (f"{len(ci)}件" if ci else "") +
+                    "を店舗別・締切順にまとめ。Web応募・店頭応募、受け取り方法、本人確認・会員の条件もひと目で分かります。",
+            "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピカード抽選情報", "lead": lead,
+            "aff": _rec_note(cname) if big else "",
+            "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
+            [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/")])
+        chain_links.append((slug, cname, big, len(ci)))
 
     # 店舗一覧（都道府県別。ネット抽選のお店と複数地域のお店は最後）
     groups = {}
@@ -562,7 +662,11 @@ def build(settings=None, out_dir=None, sample=None):
         "summary": f"最近抽選があったお店は{len(reg)}店舗です。数字は受付中の抽選の件数です。",
         "h1": "抽選をしているお店の一覧",
         "lead": "お店を選ぶと、そのお店で受付中の抽選（締切・応募方法・条件）が見られます。",
-        "aff": f'<div class="store-dir">{"".join(secs)}</div>',
+        "aff": '<div class="store-dir">' + (
+            '<section><h2>チェーンからさがす<small>★＝大手（全国で抽選・チャンス多め）</small></h2><ul>' +
+            "".join(f'<li><a href="/chain/{sl}/"{"" if n else " class=\"zero\""}>{"★" if bg else ""}{escape(nm)}<span>{n}</span></a></li>'
+                    for sl, nm, bg, n in sorted(chain_links, key=lambda x: (not x[2], -x[3]))) + '</ul></section>'
+            if chain_links else "") + f'{"".join(secs)}</div>',
         "links": _menu(items, games, games[0]), "root": "/"}, items,
         [("トップ", ""), ("店舗一覧", "store/")])
 
