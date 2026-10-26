@@ -31,6 +31,7 @@ button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:
 button.ok{background:#2e7d32}
 .xbtn{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold;text-decoration:none}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
 .empty{color:var(--sub);font-size:14px}
+.shot{margin:10px 0 0}.shot img{width:100%;max-width:360px;border-radius:10px;border:1px solid var(--line);display:block}.shot figcaption{color:var(--sub);font-size:12px;margin-top:4px}
 .basis{color:var(--sub);font-size:13px;margin:8px 0 0}.basis a{color:var(--accent)}
 .now{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 .card h2{gap:8px}.card h2 small{text-align:right;flex:none}
@@ -39,7 +40,7 @@ button.ok{background:#2e7d32}
 <p class="sub">開いた時点の件数で作っています。「Xで開く」→ そのまま投稿、または閉じる時に「下書きを保存」。データ更新：<span id="upd"></span></p>
 <div id="cards"></div>
 <script>
-const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__;
+const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__);
 const GS={pokemon:"ポケカ",onepiece:"ワンピカード",dragonball:"DBフュージョンワールド"};
 const SLUG={pokemon:"pokeka",onepiece:"onepiece",dragonball:"fusionworld"};
 const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピカード #ワンピカード抽選",dragonball:"#フュージョンワールド #DBFW"};
@@ -60,7 +61,7 @@ const skey=i=>(i.store||"").replace(/[\\s　]/g,"");
 const byStore=li=>{const m=new Map();for(const i of li){const k=skey(i);if(!m.has(k))m.set(k,{i,names:[]});const n=name(i);if(!m.get(k).names.includes(n))m.get(k).names.push(n);}return [...m.values()];};
 const nm=x=>x.names.length>1?`${x.names[0]} ほか${x.names.length-1}種`:x.names[0];
 // 投稿のおすすめ時間（時）。今の時間に合う下書きを上に並べる
-const add=(h,hint,t,hours)=>{if(t)cards.push({h,hint,t,hot:(hours||[]).includes(hr)});};
+const add=(h,hint,t,hours,img)=>{if(t)cards.push({h,hint,t,hot:(hours||[]).includes(hr),img});};
 // 280字（日本語は1字=2）に収まるまで行を足す
 const fit=(head,lines,tail)=>{let body=[];const mk=b=>[head,"",...b,"",tail].join("\\n");for(const l of lines){if(xlen(mk([...body,l]))>280)break;body.push(l);}return body.length?mk(body):"";};
 const foot=(cta,url,tags)=>`${cta}👇\\n${url}\\n\\n${tags}`;
@@ -87,21 +88,21 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),now)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：本日締切`,"昼〜夕方に（応募忘れの人向け）",
-  fit(`⏰本日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("まだ間に合います",link(g),TAG[g])),[11,12,13,14,15,16,17,18]);
+  fit(`⏰本日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("まだ間に合います",link(g),TAG[g])),[11,12,13,14,15,16,17,18],`today-${g}`);
 }
 // 3) 明日締切（ゲーム別。夜に出して「明日忘れずに」）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),tmr)).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：明日締切`,"夜に（翌日のリマインド）",
-  fit(`📅明日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("今夜のうちに応募しておこう",link(g),TAG[g])),[19,20,21,22,23]);
+  fit(`📅明日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("今夜のうちに応募しておこう",link(g),TAG[g])),[19,20,21,22,23],`tomorrow-${g}`);
 }
 // 4) ネット抽選（発送）まとめ（全国の人が応募できるので反応が広い）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&i.channel==="online"&&(!end(i)||end(i)-now>1*H)).sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
  if(li.length<2)continue;
  add(`${GS[g]}：ネット抽選（発送）`,"全国の人に届く・いつでも",
-  fit(`📦家から応募できる｜${GS[g]}のネット抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot("当選したら自宅に届きます",link(g),TAG[g])),[7,8,12,21,22]);
+  fit(`📦家から応募できる｜${GS[g]}のネット抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot("当選したら自宅に届きます",link(g),TAG[g])),[7,8,12,21,22],`net-${g}`);
 }
 // 5) 地域別の店頭抽選（受付中が多い地域を上位3つ）
 {
@@ -128,7 +129,7 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)); // 1時間以内に締切のものは除く（投稿しても間に合わない）
  if(!li.length)continue;
  add(`${GS[g]}：締切間近トップ5`,"締切前の夕方〜夜に",
-  fit(`⏳締切が近い抽選｜${GS[g]}`,byStore(li).slice(0,5).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot(`受付中 全${active.filter(i=>i.game===g).length}件の一覧`,link(g),TAG[g])),[17,18,19,20,21]);
+  fit(`⏳締切が近い抽選｜${GS[g]}`,byStore(li).slice(0,5).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot(`受付中 全${active.filter(i=>i.game===g).length}件の一覧`,link(g),TAG[g])),[17,18,19,20,21],`soon-${g}`);
 }
 // 8) 弾ごと（受付中が多い弾を各ゲーム上位3つ。弾ページ＝アフィリンクのあるページへ送る）
 for(const g of Object.keys(GS)){
@@ -146,20 +147,20 @@ for(const g of Object.keys(GS)){
 {
  const li=active.filter(i=>i.found_at&&now-new Date(i.found_at)<24*H).sort((a,b)=>new Date(b.found_at)-new Date(a.found_at));
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
-  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9]);
+  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9],"fresh");
 }
 // 今の時間におすすめの下書きを上に（同じ中では元の順）
 cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
 // 話題ネタ（AIの下書き。リンクなし。内容を確認してから投稿）は一番上に
-const tr=(TRENDS.items||[]).slice().reverse();
-for(const x of tr)cards.unshift({h:`🔥話題ネタ：${(x.topic||"").replace(/</g,"&lt;")}`,hint:x.type,t:x.text,hot:false,trend:x});
+const tr=(TRENDS.items||[]).map((x,k)=>({...x,_k:k})).reverse();
+for(const x of tr)cards.unshift({img:`trend-${x._k}`,h:`🔥話題ネタ：${(x.topic||"").replace(/</g,"&lt;")}`,hint:x.type,t:x.text,hot:false,trend:x});
 const root=document.getElementById("cards");
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
-for(const {h,hint,t,hot,trend} of cards){
+for(const {h,hint,t,hot,trend,img} of cards){
  const d=document.createElement("div");d.className="card";
  const n=xlen(t);
- d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
+ d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}${img&&IMGS.has(img)?`<figure class="shot"><img src="x-img/${img}.png?v=${encodeURIComponent(UPDATED)}" alt="投稿用の画像" loading="lazy"><figcaption>画像を長押し →「写真に保存」→ 投稿する時に添付</figcaption></figure>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
  const ta=d.querySelector("textarea"),b=d.querySelector("button");
  const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
@@ -180,6 +181,96 @@ def _trends():
     return {"generated": d["generated"], "items": d.get("items", [])}
 
 
+WEEK = "月火水木金土日"
+
+
+def _name(i):
+    """JS の name() と同じ短い商品名"""
+    import re
+    if i.get("series"):
+        return i["series"]
+    p = i.get("product") or ""
+    q = re.search(r"[「『]([^」』]{2,})[」』]", p)
+    if q:
+        p = q.group(1)
+    p = re.sub(r"[（(][^）)]{8,}[）)]", "", p)
+    p = re.sub(r"^(ポケモンカードゲーム|ONE PIECEカードゲーム|ドラゴンボール.{0,12}フュージョンワールド)\s*", "", p)
+    p = re.sub(r"^(MEGA\s*)?(拡張パック|強化拡張パック|ブースターパック|プレミアムブースター)\s*", "", p).strip()
+    return p[:20] + "…" if len(p) > 20 else p
+
+
+def _rows(li, end_of):
+    """同じ店は1行に。[(左の締切, 店名, 商品)]"""
+    import re
+    from common import now
+    m = {}
+    for i in li:
+        k = re.sub(r"\s", "", i.get("store") or "")
+        if k not in m:
+            m[k] = (i, [])
+        n = _name(i)
+        if n not in m[k][1]:
+            m[k][1].append(n)
+    out, t = [], now()
+    for i, names in m.values():
+        e = end_of(i)
+        if not e:
+            left = "締切\n公式で確認"
+        elif e.date() == t.date():
+            left = f"今日\n{e:%H:%M}"
+        elif (e.date() - t.date()).days == 1:
+            left = f"明日\n{e:%H:%M}"
+        else:
+            left = f"{e.month}/{e.day}({WEEK[e.weekday()]})\n{e:%H:%M}"
+        out.append((left, i.get("store") or "", names[0] + (f" ほか{len(names) - 1}種" if len(names) > 1 else "")))
+    return out
+
+
+def build_images(out, items):
+    """下書きに付ける画像（/x-img/*.png）。キーは下書きページの JS と合わせる"""
+    import ximage
+    from datetime import timedelta
+    from common import now, parse_dt, load_json
+    d = out / "x-img"
+    d.mkdir(exist_ok=True)
+    for f in d.glob("*.png"):
+        f.unlink()
+    t = now()
+    end = lambda i: parse_dt(i.get("end"))
+    act = [i for i in items if not end(i) or end(i) > t]
+    made = []
+
+    def save(key, *a, **k):
+        try:
+            (d / f"{key}.png").write_bytes(ximage.render(*a, **k))
+            made.append(key)
+        except Exception as e:
+            from common import log
+            log(f"下書き画像 {key}: 失敗 {e}")
+
+    for g, short in GAME_SHORT.items():
+        gi = [i for i in act if i.get("game") == g]
+        later = lambda i: end(i) and end(i) - t > timedelta(hours=1)
+        for key, kick, cond, sub in (
+                ("today", "本日締切", lambda i: later(i) and end(i).date() == t.date(), "まだ間に合う抽選（締切が早い順）"),
+                ("tomorrow", "明日締切", lambda i: end(i) and end(i).date() == (t + timedelta(days=1)).date(), "今夜のうちに応募しておこう"),
+                ("soon", "締切間近", later, "締切が早い順"),
+                ("net", "ネット抽選", lambda i: i.get("channel") == "online" and (not end(i) or later(i)), "家から応募・当選したら発送")):
+            li = sorted([i for i in gi if cond(i)], key=lambda i: end(i) or t + timedelta(days=999))
+            rows = _rows(li, end)
+            if rows:
+                save(f"{key}-{g}", "list", f"{short}の抽選 {len(li)}件", rows, kicker=kick, sub=sub)
+    fresh = sorted([i for i in act if parse_dt(i.get("found_at")) and t - parse_dt(i["found_at"]) < timedelta(hours=24)],
+                   key=lambda i: parse_dt(i["found_at"]), reverse=True)
+    if fresh:
+        save("fresh", "list", f"新着の抽選 {len(fresh)}件", _rows(fresh, end), kicker="新着", sub="24時間以内に見つかった抽選")
+    for k, x in enumerate((load_json("x_trends.json", {}).get("items") or [])[:6]):
+        lines = [l for l in x.get("text", "").split("\n") if l.strip() and not l.strip().startswith("#")]
+        if lines:
+            save(f"trend-{k}", "text", x.get("topic") or lines[0], lines[:4], kicker=x.get("type") or "話題")
+    return made
+
+
 def build_x_draft(out, items, site, updated):
     """items: sitegen の items（受付中のみ）。/x-draft.html を書き出す"""
     from sitegen import series_path  # 弾ページのURL（sitegen から呼ばれるので読み込み済み）
@@ -190,8 +281,15 @@ def build_x_draft(out, items, site, updated):
         if i.get("series"):
             row["spath"] = series_path(i["game"], i["series"])
         data.append(row)
+    try:
+        imgs = build_images(out, items)
+    except Exception as e:
+        from common import log
+        log(f"下書き画像: スキップ {e}")
+        imgs = []
     html = (TEMPLATE.replace("__SITE__", json.dumps(site or ""))
             .replace("__ITEMS__", json.dumps(data, ensure_ascii=False))
             .replace("__UPDATED__", json.dumps(updated or ""))
+            .replace("__IMGS__", json.dumps(imgs))
             .replace("__TRENDS__", json.dumps(_trends(), ensure_ascii=False).replace("</", "<\\/")))
     (out / "x-draft.html").write_text(html, encoding="utf-8")

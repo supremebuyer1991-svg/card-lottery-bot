@@ -107,6 +107,31 @@ def _client():
         access_token=os.environ["X_ACCESS_TOKEN"], access_token_secret=os.environ["X_ACCESS_SECRET"])
 
 
+def upload_image(png):
+    """画像をXにアップロードして media_id を返す（失敗したら None＝画像なしで投稿）"""
+    try:
+        import requests
+        from requests_oauthlib import OAuth1
+        auth = OAuth1(os.environ["X_API_KEY"], os.environ["X_API_SECRET"],
+                      os.environ["X_ACCESS_TOKEN"], os.environ["X_ACCESS_SECRET"])
+        r = requests.post("https://api.x.com/2/media/upload", auth=auth, timeout=60,
+                          files={"media": ("post.png", png, "image/png")},
+                          data={"media_category": "tweet_image", "media_type": "image/png"})
+        if r.status_code < 300:
+            j = r.json()
+            mid = (j.get("data") or {}).get("id") or j.get("media_id_string")
+            if mid:
+                return str(mid)
+        log(f"画像アップロード失敗(v2) {r.status_code}: {r.text[:200]}")
+        import tweepy, io  # 旧方式でもう一度
+        api = tweepy.API(tweepy.OAuth1UserHandler(os.environ["X_API_KEY"], os.environ["X_API_SECRET"],
+                                                  os.environ["X_ACCESS_TOKEN"], os.environ["X_ACCESS_SECRET"]))
+        return str(api.media_upload(filename="post.png", file=io.BytesIO(png)).media_id)
+    except Exception as e:
+        log(f"画像アップロード失敗: {e}")
+        return None
+
+
 def post_all(settings, client=None):
     lots = load_json("lotteries.json", {})
     budget = settings.get("max_posts_per_run", 3)

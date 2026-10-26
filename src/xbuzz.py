@@ -99,6 +99,45 @@ def _aruaru(items, day, tags):
 TYPES = [_ranking, _question, _numbers, _prefecture, _aruaru]
 
 
+def image_spec(kind, items, day):
+    """投稿に付ける画像の中身（ximage.render に渡す）"""
+    if kind == "ranking":
+        g = ["pokemon", "onepiece"][day % 2]
+        return ("ranking", "抽選している店舗が多い弾", [(s, f"{c}店舗") for s, c in _series_rank(items, g)],
+                SHORT[g], "いま受付中の抽選から集計")
+    if kind == "question":
+        g = ["onepiece", "pokemon"][day % 2]
+        s, c = _series_rank(items, g)[0]
+        return ("stat", f"「{s}」の抽選", [("いま受付中の店舗", f"{c}店舗")], SHORT[g], None)
+    if kind == "numbers":
+        t = now()
+        net = sum(1 for i in items if i.get("channel") == "online")
+        today = sum(1 for i in items if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == t.date())
+        return ("stat", "トレカの抽選、全国で受付中", [("受付中の抽選", f"{len(items)}件"), ("ネット抽選", str(net)),
+                ("店頭抽選", str(len(items) - net)), ("今日締切", str(today))], "今日の数字", None)
+    if kind == "prefecture":
+        c = Counter(i["area"] for i in items if i.get("channel") == "store" and i.get("area"))
+        return ("ranking", "店頭抽選が多い都道府県", [(p, f"{k}件") for p, k in c.most_common(5)], "店頭抽選", "いま受付中の抽選から集計")
+    if kind == "aruaru":
+        return ("text", "トレカ抽選あるある", ARUARU[(day // 5) % len(ARUARU)], "あるある", None)
+    return None
+
+
+def buzz_image(lots, settings, day=None):
+    """今日のバズ投稿の (種類, 文, 画像PNG)。画像が作れない時は None"""
+    kind, text = compose_buzz(lots, settings, day)
+    if not text:
+        return None, None, None
+    day = now().toordinal() if day is None else day
+    try:
+        import ximage
+        k, title, rows, kicker, sub = image_spec(kind, _active(lots), day)
+        return kind, text, ximage.render(k, title, rows, kicker=kicker, sub=sub)
+    except Exception as e:
+        log(f"バズ投稿: 画像を作れず {e}")
+        return kind, text, None
+
+
 def compose_buzz(lots, settings, day=None):
     items = _active(lots)
     day = now().toordinal() if day is None else day
@@ -122,7 +161,7 @@ def post_buzz(settings, client=None):
     today = t.date().isoformat()
     if meta.get("buzz_date") == today:
         return
-    kind, text = compose_buzz(load_json("lotteries.json", {}), settings)
+    kind, text, png = buzz_image(load_json("lotteries.json", {}), settings)
     if not text:
         return
     dry = settings.get("dry_run") or (client is None and not os.environ.get("X_API_KEY"))
@@ -132,13 +171,15 @@ def post_buzz(settings, client=None):
     if client is None:
         client = _client()
     try:
-        client.create_tweet(text=text)
+        from xpost import upload_image
+        media = upload_image(png) if png else None
+        client.create_tweet(text=text, media_ids=[media] if media else None)
     except Exception as e:
         log(f"バズ投稿失敗: {e}")
         if "duplicate" not in str(e).lower():
             return  # 失敗（重複以外）は次の実行でもう一度
     else:
-        log(f"バズ投稿OK（{kind}）")
+        log(f"バズ投稿OK（{kind}・画像{'あり' if png else 'なし'}）")
     meta["buzz_date"] = today
     meta["buzz_last"] = {"kind": kind, "text": text}
     save_json("x_meta.json", meta)

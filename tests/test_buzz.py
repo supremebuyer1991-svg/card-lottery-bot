@@ -14,4 +14,8 @@ for d in range(5):
 assert len(kinds) == 5, kinds
 k, t = xbuzz.compose_buzz({}, s, day=0)
 assert k == "aruaru"  # データが無くても、あるあるは出せる
+# 画像も作れる（PNG）
+for d in range(5):
+    k, t, png = xbuzz.buzz_image(lots, s, day=d)
+    assert png and png[:4] == b"\x89PNG", k
 print("ok")
