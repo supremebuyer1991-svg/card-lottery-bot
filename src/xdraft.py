@@ -65,6 +65,18 @@ for(const g of Object.keys(GS)){
  const t=`【${GS[g]}｜締切が近い抽選 ${now.getMonth()+1}/${now.getDate()}】\\n`+li.map(i=>`・${i.store}／${name(i)}　〜${fmt(end(i))}`).join("\\n")+`\\n全${active.filter(i=>i.game===g).length}件の一覧👇\\n${SITE}/${SLUG[g]}/\\n${TAG[g]}`;
  cards.push([`${GS[g]}：締切間近トップ5`,"締切前の夕方〜夜に",t]);
 }
+// 2.5) 弾ごと（受付中が多い弾を各ゲーム上位3つ。弾ページ＝アフィリンクのあるページへ送る）
+for(const g of Object.keys(GS)){
+ const by={};
+ for(const i of active){if(i.game!==g||!i.series||!i.spath)continue;(by[i.series]=by[i.series]||[]).push(i);}
+ const top=Object.entries(by).sort((a,b)=>b[1].length-a[1].length).slice(0,3);
+ for(const [sr,li] of top){
+  if(li.length<2)continue;
+  const seen=new Set();const soon=li.filter(i=>end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)).filter(i=>!seen.has(i.store)&&seen.add(i.store)).slice(0,4);
+  const t=`【${GS[g]}「${sr}」抽選まとめ｜受付中${li.length}件】\\n`+soon.map(i=>`・${i.store}　〜${fmt(end(i))}`).join("\\n")+`\\n他の店舗・条件・応募方法👇\\n${SITE}/${li[0].spath}\\n${TAG[g]}`;
+  cards.push([`${GS[g]}：「${sr}」（弾ページへ）`,"狙ってる人が多い弾は反応◎",t]);
+ }
+}
 // 3) 新着（24時間以内に見つかったもの）
 {
  const li=active.filter(i=>i.found_at&&now-new Date(i.found_at)<24*H).sort((a,b)=>new Date(b.found_at)-new Date(a.found_at)).slice(0,5);
@@ -90,8 +102,14 @@ for(const [h,hint,t] of cards){
 
 def build_x_draft(out, items, site, updated):
     """items: sitegen の items（受付中のみ）。/x-draft.html を書き出す"""
+    from sitegen import series_path  # 弾ページのURL（sitegen から呼ばれるので読み込み済み）
     keep = ("game", "store", "product", "series", "end", "found_at")
-    data = [{k: i.get(k) for k in keep} for i in items]
+    data = []
+    for i in items:
+        row = {k: i.get(k) for k in keep}
+        if i.get("series"):
+            row["spath"] = series_path(i["game"], i["series"])
+        data.append(row)
     html = (TEMPLATE.replace("__SITE__", json.dumps(site or ""))
             .replace("__ITEMS__", json.dumps(data, ensure_ascii=False))
             .replace("__UPDATED__", json.dumps(updated or "")))
