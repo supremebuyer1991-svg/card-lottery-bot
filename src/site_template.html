@@ -417,7 +417,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
     <div class="row scroll">
-      <label class="toggle sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="new">新しい順</option></select></label>
+      <label class="toggle sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label>
       <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
       <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
       <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
@@ -594,9 +594,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if ($("f-today").checked && !isToday(i._end)) return false;
       if (q && (i.store + " " + i.product + " " + (i.series || "")).toLowerCase().indexOf(q) < 0) return false;
       return true;
-    }).sort($("f-sort").value === "new"
-      ? function (a, b) { return Date.parse(b.found_at || 0) - Date.parse(a.found_at || 0); }   // 新しく見つかった順
-      : function (a, b) { return (a._end == null ? 9e15 : a._end) - (b._end == null ? 9e15 : b._end); });  // 締切が近い順
+    }).sort(function (a, b) {
+      var byEnd = (a._end == null ? 9e15 : a._end) - (b._end == null ? 9e15 : b._end);
+      if ($("f-sort").value === "new") return Date.parse(b.found_at || 0) - Date.parse(a.found_at || 0);  // 新しく見つかった順
+      if ($("f-sort").value === "rec") return (b.rec ? 1 : 0) - (a.rec ? 1 : 0) || byEnd;  // おすすめのお店が上、その中は締切が近い順
+      return byEnd;  // 締切が近い順
+    });
   }
 
   function thumb(it) {
@@ -727,8 +730,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       var by = {};
       // 都道府県が1つに決まらない抽選（全国チェーン・複数店舗など）は「複数地域」として一番上に
       var MULTI = "複数地域", cnt = { n: 0, recent: [] };
-      list.forEach(function (i) { var k = i.area || MULTI; (by[k] = by[k] || []).push(i); });
-      var rank = function (a) { var x = PREF_ORDER.indexOf(a); return x >= 0 ? x : -1; };
+      // おすすめ順の時は、おすすめのお店を地域に関係なく一番上の欄にまとめる
+      var REC = "★おすすめのお店", recFirst = $("f-sort").value === "rec";
+      list.forEach(function (i) { var k = recFirst && i.rec ? REC : (i.area || MULTI); (by[k] = by[k] || []).push(i); });
+      var rank = function (a) { if (a === REC) return -2; var x = PREF_ORDER.indexOf(a); return x >= 0 ? x : -1; };
       Object.keys(by).sort(function (a, b) { return rank(a) - rank(b); }).forEach(function (a) {
         html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + withAds(by[a], cnt);
       });
@@ -756,7 +761,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
   $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
-  $("f-sort").value = load("lot_sort", "end") === "new" ? "new" : "end";
+  $("f-sort").value = ["end", "rec", "new"].indexOf(load("lot_sort", "end")) >= 0 ? load("lot_sort", "end") : "end";
   $("f-sort").addEventListener("change", function () { save("lot_sort", $("f-sort").value); render(); });
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest("button.ap"); if (!b) return;
