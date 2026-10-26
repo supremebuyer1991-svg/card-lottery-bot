@@ -6,6 +6,7 @@ X手動投稿用の下書きページ（/x-draft.html）を作る。
 ・「コピー」ボタンで文面をそのままXアプリに貼れる。手動投稿はAPI料金がかからないのでリンクを自由に付けられる
 """
 import json
+import re
 from html import escape
 
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "DBフュージョンワールド"}
@@ -32,6 +33,7 @@ button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:
 button.ok{background:#2e7d32}
 .xbtn{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold;text-decoration:none}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
 .empty{color:var(--sub);font-size:14px}
+.mk summary{font-weight:bold;cursor:pointer}.mk #mk-out .card{margin:12px 0 0}
 .shot{margin:10px 0 0}.shot img{width:100%;max-width:360px;border-radius:10px;border:1px solid var(--line);display:block}.shot figcaption{color:var(--sub);font-size:12px;margin-top:4px}
 .basis{color:var(--sub);font-size:13px;margin:8px 0 0}.basis a{color:var(--accent)}
 .now{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:1px}
@@ -39,9 +41,15 @@ button.ok{background:#2e7d32}
 </style></head><body>
 <h1>X投稿 下書き（非公開ページ）</h1>
 <p class="sub">開いた時点の件数で作っています。「Xで開く」→ そのまま投稿、または閉じる時に「下書きを保存」。データ更新：<span id="upd"></span></p>
+<details class="card mk" id="mk"><summary>📈 今日の相場をつくる（スニダンの共有文を貼る）</summary>
+<p class="sub">スニダンのアプリで商品ごとに「共有」→「コピー」して、ここにまとめて貼ってください。前日比は、前の日にここで貼った値段と比べます。</p>
+<textarea id="mk-in" placeholder="ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」ボックス&#10;現在価格: ¥25,300~&#10;…&#10;https://snkrdunk.com/apparels/881421?ref=share"></textarea>
+<div class="row"><button type="button" id="mk-go">相場の投稿をつくる</button><span class="len" id="mk-msg"></span></div>
+<div id="mk-out"></div></details>
 <div id="cards"></div>
 <script>
-const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__), BUZZ=__BUZZ__;
+const MKP=__MKPRODUCTS__;
+const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__), BUZZ=__BUZZ__, MARKET=__MARKET__;
 const GS={pokemon:"ポケカ",onepiece:"ワンピカード",dragonball:"DBフュージョンワールド"};
 const SLUG={pokemon:"pokeka",onepiece:"onepiece",dragonball:"fusionworld"};
 const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピカード #ワンピカード抽選",dragonball:"#フュージョンワールド #DBFW"};
@@ -150,6 +158,50 @@ for(const g of Object.keys(GS)){
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
   fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9],"fresh");
 }
+// --- 今日の相場（スニダンの共有文から） ---
+function mkCard(h,hint,t){
+ const d=document.createElement("div");d.className="card";const n=xlen(t);
+ d.innerHTML=`<h2><span>${h}</span><small>${hint}</small></h2><textarea></textarea><div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280</span></div>`;
+ const ta=d.querySelector("textarea"),b=d.querySelector("button"),xa=d.querySelector(".xbtn");ta.value=t;
+ const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
+ b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";setTimeout(()=>{b.textContent="コピー";},1500);};
+ ta.oninput=()=>{setX();const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=m+"/280";s.className="len "+(m>280?"over":"");};
+ return d;
+}
+function mkParse(src){
+ const segs=src.split(/現在価格\s*[:：]/);const out=[];
+ for(let k=1;k<segs.length;k++){
+  const before=segs[k-1].split("\\n").map(s=>s.trim()).filter(s=>s&&!s.startsWith("#")&&!/https?:|招待コード|商品詳細/.test(s));
+  const raw=before[before.length-1]||"";const pm=segs[k].match(/[¥￥]\s*([0-9,]+)/);const im=segs[k].match(/apparels\/(\d+)/);
+  if(!pm)continue;
+  const price=parseInt(pm[1].replace(/,/g,""),10);
+  let p=MKP.find(x=>im&&x.id===im[1])||MKP.find(x=>raw.includes(x.name));
+  const name=p?p.name:raw.replace(/ポケモンカードゲーム|ONE PIECEカードゲーム|MEGA|拡張パック|ブースターパック|[「」『』]/g,"").replace(/ボックス/g,"").trim();
+  const game=p?p.game:(/ONE ?PIECE|ワンピ/i.test(raw)?"onepiece":"pokemon");
+  out.push({key:p?p.name:name,name:p&&p.label?p.label:name,kind:p?p.kind:(/ボックス|BOX/i.test(raw)?"BOX":""),msrp:p?p.msrp:null,price,game});
+ }
+ return out;
+}
+document.getElementById("mk-go").onclick=()=>{
+ const rows=mkParse(document.getElementById("mk-in").value),msg=document.getElementById("mk-msg"),box=document.getElementById("mk-out");box.innerHTML="";
+ if(!rows.length){msg.textContent="「現在価格」が見つかりません。共有の文をそのまま貼ってください";return;}
+ const _d=new Date(),today=`${_d.getFullYear()}-${String(_d.getMonth()+1).padStart(2,"0")}-${String(_d.getDate()).padStart(2,"0")}`;let hist={};try{hist=JSON.parse(localStorage.getItem("mk_hist")||"{}");}catch(e){}
+ const prevDay=Object.keys(hist).filter(d=>d<today).sort().pop();const prev=prevDay?hist[prevDay]:{};
+ hist[today]=Object.assign(hist[today]||{},Object.fromEntries(rows.map(r=>[r.key,r.price])));
+ const keep=Object.keys(hist).sort().slice(-60);hist=Object.fromEntries(keep.map(d=>[d,hist[d]]));try{localStorage.setItem("mk_hist",JSON.stringify(hist));}catch(e){}
+ const TG={pokemon:"#ポケカ #ポケカ相場",onepiece:"#ワンピカード #ワンピカード相場",dragonball:"#フュージョンワールド"};
+ const sg=v=>v===0?"±0":(v>0?"+":"-")+Math.abs(v).toLocaleString();
+ for(const g of Object.keys(GS)){
+  const li=rows.filter(r=>r.game===g);if(!li.length)continue;
+  const lines=li.map(r=>{const lb=(!r.kind||r.name.endsWith(r.kind))?r.name:`${r.name} ${r.kind}`;const df=prev[r.key]!=null?r.price-prev[r.key]:null;
+   return lb+(r.msrp?`　定価${r.msrp.toLocaleString()}円`:"")+`\\n→ ${r.price.toLocaleString()}円`+(df!=null?`（前日比 ${sg(df)}）`:"");});
+  const head=`📈今日の相場｜${GS[g]}（${now.getMonth()+1}/${now.getDate()}）`,tail=`スニダン調べ\\n\\n${TG[g]}`;
+  const mk=b=>head+"\\n\\n"+b.join("\\n")+"\\n\\n"+tail;const parts=[[]];
+  for(const l of lines){if(parts[parts.length-1].length&&xlen(mk([...parts[parts.length-1],l]))>280)parts.push([]);parts[parts.length-1].push(l);}
+  parts.forEach((b,k)=>box.appendChild(mkCard(`📈今日の相場：${GS[g]}${parts.length>1?`（その${k+1}）`:""}`,"貼った値段から作成",mk(b))));
+ }
+ msg.textContent=`${rows.length}件の値段を読み取りました`+(prevDay?`（前日比は${prevDay.slice(5).replace("-","/")}と比較）`:"（前日比は明日から）");
+};
 // 今の時間におすすめの下書きを上に（同じ中では元の順）
 cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
 // 話題ネタ（AIの下書き。リンクなし。内容を確認してから投稿）は一番上に
@@ -157,7 +209,8 @@ const tr=(TRENDS.items||[]).map((x,k)=>({...x,_k:k})).reverse();
 for(const x of tr)cards.unshift({img:`trend-${x._k}`,h:`🔥話題ネタ：${(x.topic||"").replace(/</g,"&lt;")}`,hint:x.type,t:x.text,hot:false,trend:x});
 // リンクなしの「ひとこと投稿」（今日の型が先頭）。話題ネタの次に並べる
 const BN={ranking:"弾のランキング",question:"店舗数",numbers:"全国の件数",prefecture:"都道府県ランキング",aruaru:"あるある"};
-cards.splice(tr.length,0,...BUZZ.map((b,k)=>({h:`💬ひとこと：${BN[b.kind]||b.kind}`,hint:k?"リンクなし":"リンクなし・今日のおすすめ",t:b.text,hot:false,img:`buzz-${b.kind}`})));
+cards.splice(tr.length,0,...MARKET.map(m=>({h:`📈今日の相場：${GS[m.game]}${m.part?`（その${m.part}）`:""}`,hint:"1日1回・朝〜昼に",t:m.t||m.text,hot:[8,9,10,11,12].includes(hr),img:`market-${m.game}`})));
+cards.splice(tr.length+MARKET.length,0,...BUZZ.map((b,k)=>({h:`💬ひとこと：${BN[b.kind]||b.kind}`,hint:k?"リンクなし":"リンクなし・今日のおすすめ",t:b.text,hot:false,img:`buzz-${b.kind}`})));
 const root=document.getElementById("cards");
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
@@ -268,6 +321,37 @@ def build_images(out, items):
                    key=lambda i: parse_dt(i["found_at"]), reverse=True)
     if fresh:
         save("fresh", "list", f"新着の抽選 {len(fresh)}件", _rows(fresh, end), kicker="新着", sub="24時間以内に見つかった抽選")
+    market = []
+    try:  # 今日の相場（スニダン）
+        import market as mk
+        from xpost import x_len
+        tags = {"pokemon": "#ポケカ #ポケカ相場", "onepiece": "#ワンピカード #ワンピカード相場", "dragonball": "#フュージョンワールド"}
+        for g, short in GAME_SHORT.items():
+            rows, d0 = mk.today_rows(g)
+            if not rows:
+                continue
+            dd = parse_dt(d0 + "T00:00:00+09:00")
+            sign = lambda v: "±0" if v == 0 else f"{v:+,}"
+            label = lambda n, k: n if (not k or n.endswith(k)) else f"{n} {k}"
+            lines = [label(n, k) + (f"　定価{m:,}円" if m else "") + f"\n→ {v:,}円" + (f"（前日比 {sign(df)}）" if df is not None else "")
+                     for n, k, m, v, df, _ in rows]
+            head, tail = f"📈今日の相場｜{short}（{dd.month}/{dd.day}）", f"スニダン調べ\n\n{tags.get(g, '')}"
+            body = []
+            mk_t = lambda b: head + "\n\n" + "\n".join(b) + "\n\n" + tail
+            parts = [[]]  # 280字に入らなければ2つ目の投稿に分ける
+            for l in lines:
+                if parts[-1] and x_len(mk_t(parts[-1] + [l])) > 280:
+                    parts.append([])
+                parts[-1].append(l)
+            texts = [mk_t(b) for b in parts]
+            save(f"market-{g}", "list", f"{short}の今日の相場", [
+                ("前日比\n" + (sign(df) if df is not None else "-"), label(n, k), f"相場 {v:,}円" + (f" ／ 定価 {m:,}円" if m else ""))
+                for n, k, m, v, df, _ in rows], kicker="今日の相場", sub="スニダンの最安値（新品）")
+            for k, tx in enumerate(texts):
+                market.append({"game": g, "text": tx, "part": k + 1 if len(texts) > 1 else 0})
+    except Exception as e:
+        from common import log
+        log(f"相場の下書き: 失敗 {e}")
     buzz = []
     try:  # リンクなしの「ひとこと投稿」（5つの型）
         import xbuzz
@@ -284,7 +368,7 @@ def build_images(out, items):
         lines = [l for l in x.get("text", "").split("\n") if l.strip() and not l.strip().startswith("#")]
         if lines:
             save(f"trend-{k}", "text", x.get("topic") or lines[0], lines[:4], kicker=x.get("type") or "話題")
-    return made, buzz
+    return made, buzz, market
 
 
 def build_x_draft(out, items, site, updated):
@@ -298,15 +382,24 @@ def build_x_draft(out, items, site, updated):
             row["spath"] = series_path(i["game"], i["series"])
         data.append(row)
     try:
-        imgs, buzz = build_images(out, items)
+        imgs, buzz, market = build_images(out, items)
     except Exception as e:
         from common import log
         log(f"下書き画像: スキップ {e}")
-        imgs, buzz = [], []
-    html = (TEMPLATE.replace("__SITE__", json.dumps(site or ""))
+        imgs, buzz, market = [], [], []
+    try:
+        import market as mk
+        mkp = [{"game": p.get("game"), "name": p["name"], "label": p.get("label") or "", "kind": p.get("kind") or "",
+                "msrp": p.get("msrp") or mk.msrp_from_lotteries(p["name"]),
+                "id": (re.search(r"apparels/(\d+)", p.get("url") or "") or [None, None])[1]} for p in mk.products()]
+    except Exception:
+        mkp = []
+    html = (TEMPLATE.replace("__MKPRODUCTS__", json.dumps(mkp, ensure_ascii=False))
+            .replace("__SITE__", json.dumps(site or ""))
             .replace("__ITEMS__", json.dumps(data, ensure_ascii=False))
             .replace("__UPDATED__", json.dumps(updated or ""))
             .replace("__IMGS__", json.dumps(imgs))
+            .replace("__MARKET__", json.dumps(market, ensure_ascii=False).replace("</", "<\\/"))
             .replace("__BUZZ__", json.dumps(buzz, ensure_ascii=False).replace("</", "<\\/"))
             .replace("__TRENDS__", json.dumps(_trends(), ensure_ascii=False).replace("</", "<\\/")))
     (out / "x-draft.html").write_text(html, encoding="utf-8")

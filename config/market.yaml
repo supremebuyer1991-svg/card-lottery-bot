@@ -1,0 +1,13 @@
+# 「今日の相場」に出す商品（スニダンの商品ページ）
+# url：スニダンのアプリの商品ページで「共有」→「リンクをコピー」したURL
+# msrp：定価（税込・円）。空なら抽選の告知に書いてある値段から拾う
+# label：投稿に出す短い名前（無ければ name）
+# スニダンへのアクセスは1日1回・1件ずつ10秒あけて・10件まで（多く見すぎない）
+products:
+  - {game: pokemon, name: "30th CELEBRATION", kind: BOX, url: "https://snkrdunk.com/apparels/881421", msrp: 7200}
+  - {game: pokemon, name: "ハドウシーカー", kind: BOX, url: "", msrp: }
+  - {game: pokemon, name: "30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー", label: "エーフィ・ブラッキーデッキ", kind: "", url: "https://snkrdunk.com/apparels/881423", msrp: }
+  - {game: pokemon, name: "御三家カードセット", kind: セット, url: "", msrp: }
+  - {game: pokemon, name: "ストームエメラルダ", kind: BOX, url: "https://snkrdunk.com/apparels/846048", msrp: }
+  - {game: onepiece, name: "世界最強の戦士", kind: BOX, url: "", msrp: }
+  - {game: onepiece, name: "ヒロインズエディション vol.2", kind: BOX, url: "", msrp: }
