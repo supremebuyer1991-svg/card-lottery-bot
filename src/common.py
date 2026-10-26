@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # GitHubに登録したキーに、貼り付け時の空白・改行・引用符・「Bearer 」が混ざっていても動くように掃除する
 _SECRET_NAMES = ("ANTHROPIC_API_KEY", "X_API_KEY", "X_API_SECRET", "X_ACCESS_TOKEN", "X_ACCESS_SECRET",
-                 "X_BEARER_TOKEN", "WP_USER", "WP_URL", "SITE_URL", "AMAZON_TAG")
+                 "X_BEARER_TOKEN", "WP_USER", "WP_URL", "SITE_URL", "AMAZON_TAG",
+                 "RAKUTEN_APP_ID", "RAKUTEN_ACCESS_KEY", "RAKUTEN_AFFILIATE_ID")
 for _k in _SECRET_NAMES:
     _v = os.environ.get(_k)
     if _v:

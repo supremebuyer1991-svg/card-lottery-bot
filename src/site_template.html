@@ -66,6 +66,8 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .affh span { font-family: var(--font-num); font-size: 10px; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; }
 .affb { display: flex; flex-wrap: wrap; gap: 6px; }
 .affb a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 11px; }
+.affb a.rak { flex: 1 1 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: #bf0000; border-color: #bf0000; color: #fff; padding: 8px 12px; }
+.affb a.rak img { width: 40px; height: 40px; object-fit: contain; background: #fff; border-radius: 4px; }
 .affb a.pri { flex: 1 1 100%; text-align: center; background: #ff9900; border-color: #ff9900; color: #111; padding: 9px 12px; }
 .aff a { color: var(--red); font-weight: 700; }
 .pre { display: grid; gap: 6px; }
@@ -147,7 +149,9 @@ input[type="search"] { flex: 1 1 160px; }
 .body { padding: 12px 14px; min-width: 0; display: flex; gap: 12px; align-items: flex-start; }
 .info { min-width: 0; display: grid; gap: 4px; flex: 1; }
 .thumb { flex: none; width: 76px; aspect-ratio: 1; border-radius: 8px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
+.thumb { position: relative; background: #fff; border: 1px solid var(--rule); }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.thumb .pr { position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; background: #bf0000; padding: 2px 4px; border-top-left-radius: 4px; }
 .thumb .ph { font-family: var(--font-body); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
 .req { display: flex; gap: 6px; flex-wrap: wrap; }
 .pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 9px; border: 1px solid transparent; white-space: nowrap; }
@@ -373,7 +377,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function thumb(it) {
     var alt = esc(it.series || it.product);
     if (!it.image) return "";
-    return '<div class="thumb"><img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy"></div>';
+    var img = '<img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy">';
+    return it.img_url ? '<a class="thumb" href="' + esc(it.img_url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="pr">楽天</span></a>'
+      : '<div class="thumb">' + img + '</div>';
   }
   function reqs(it) {
     var id = it.id_check === true ? '<span class="pill need">本人確認 必要</span>'

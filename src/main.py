@@ -6,7 +6,8 @@ from collect import collect
 from approve import approve
 from xpost import post_all, post_daily_summary
 from wp import update_pages
-from sitegen import build as build_site
+from sitegen import build as build_site, active_series
+import rakuten
 
 
 def main():
@@ -21,6 +22,10 @@ def main():
         post_all(s)
         post_daily_summary(s)
         update_pages(s)
+        try:
+            rakuten.update(s, active_series(s))  # 楽天の商品画像（キー未登録なら何もしない）
+        except Exception as e:
+            log(f"楽天: スキップ {e}")
         build_site(s)  # 自作サイト（site/index.html）を書き出し
     log("完了")
 

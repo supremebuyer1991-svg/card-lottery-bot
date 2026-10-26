@@ -21,7 +21,7 @@ from common import ROOT, load_json, save_json, load_settings, now, parse_dt, sha
 TEMPLATE = Path(__file__).with_name("site_template.html")
 ACTIVE = ("approved", "posted", "listed")
 FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tags", "url",
-          "channel", "area", "found_at", "id_check", "member", "image")
+          "channel", "area", "found_at", "id_check", "member", "image", "img_url")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "フュージョンワールド"}
 PREF = {
@@ -164,6 +164,21 @@ def _aff_box(title, links, tag):
     return f'<aside class="affbox"><div class="affh"><b>{escape(title)}</b><span>PR</span></div><div class="affb">{btns}</div></aside>'
 
 
+def active_series(settings=None):
+    """{game: [弾名（受付中が多い順）]}"""
+    s = settings or load_settings()
+    cnt = {}
+    for i in load_json("lotteries.json", {}).values():
+        if i.get("status") not in ACTIVE or not i.get("series"):
+            continue
+        e = parse_dt(i.get("end"))
+        if e and e < now():
+            continue
+        cnt.setdefault(i["game"], {}).setdefault(i["series"], 0)
+        cnt[i["game"]][i["series"]] += 1
+    return {g: sorted(c, key=lambda x: -c[x]) for g, c in cnt.items() if g in s["game_names"]}
+
+
 def build(settings=None, out_dir=None, sample=None):
     s = settings or load_settings()
     site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
@@ -175,6 +190,7 @@ def build(settings=None, out_dir=None, sample=None):
         items = sample
     else:
         images = load_images()
+        rk = load_json("rakuten.json", {})  # 楽天の商品画像（rakuten.py が取得）
         items = []
         for i in load_json("lotteries.json", {}).values():
             if i.get("status") not in ACTIVE:
@@ -184,6 +200,9 @@ def build(settings=None, out_dir=None, sample=None):
                 continue
             row = {k: i.get(k) for k in FIELDS}
             row["image"] = row.get("image") or images.get(i.get("series") or "")
+            r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
+            if not row["image"] and r.get("image"):
+                row["image"], row["img_url"] = r["image"], r.get("url")
             items.append(row)
 
     # 中身が変わっていなければ「最終更新」も据え置き（無駄な再公開をしない）
@@ -237,6 +256,14 @@ def build(settings=None, out_dir=None, sample=None):
                 (f"Amazonで「{x}」を見る", f"{name} {x}", True),
                 ("スリーブ", f"{name} スリーブ", False),
                 ("ローダー・ケース", f"{name} ローダー", False)], tag)
+            rr = (load_json("rakuten.json", {}) if sample is None else {}).get(f"{g}|{x}") or {}
+            if rr.get("url"):
+                img = f'<img src="{escape(rr["image"])}" alt="" loading="lazy">' if rr.get("image") else ""
+                btn = (f'<a class="rak" href="{escape(rr["url"])}" target="_blank" rel="nofollow sponsored noopener">'
+                       f'{img}<span>楽天市場で見る</span></a>')
+                aff = aff.replace('<div class="affb">', '<div class="affb">' + btn, 1) if aff else (
+                    f'<aside class="affbox"><div class="affh"><b>「{escape(x)}」を通販でさがす</b><span>PR</span></div>'
+                    f'<div class="affb">{btn}</div></aside>')
             write(series_path(g, x), {"game": g, "series": x}, {
                 "title": f"{x} 抽選・予約情報まとめ【{len(si)}件受付中・締切順】｜トレカ抽選ナビ",
                 "desc": f"{name}「{x}」の抽選・予約情報を店舗別・締切順にまとめています。ネット・店頭（都道府県別）、"
