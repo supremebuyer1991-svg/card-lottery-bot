@@ -81,6 +81,8 @@ def page(data: dict, meta: dict, standalone=True) -> str:
     canon = meta.get("canonical")
     site = meta.get("site", "")
     head = []
+    if site:  # 古いアドレス（*.pages.dev）で開かれたら、同じページの独自ドメインへ移動
+        head.append('<script>if(/\\.pages\\.dev$/.test(location.hostname))location.replace(%s+location.pathname+location.search+location.hash)</script>' % json.dumps(site))
     if canon:
         head += [f'<link rel="canonical" href="{escape(canon)}">',
                  f'<meta property="og:url" content="{escape(canon)}">']

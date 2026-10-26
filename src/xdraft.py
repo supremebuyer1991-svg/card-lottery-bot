@@ -15,6 +15,7 @@ TEMPLATE = """<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<script>if(/\\.pages\\.dev$/.test(location.hostname))location.replace("https://tcg-chusen.com"+location.pathname+location.search)</script>
 <title>X投稿下書き｜トレカ抽選ナビ（非公開）</title>
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--ink:#1a1a1a;--sub:#666;--line:#e3e5e8;--accent:#C8102E}
