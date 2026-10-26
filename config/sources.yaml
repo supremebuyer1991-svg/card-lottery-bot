@@ -112,6 +112,38 @@ sources:
     keywords: '(抽選 OR 応募 OR 締切 OR 受付 OR has:links)'
     max_results: 20
 
+  # --- 大手チェーンの公式（おすすめのお店）---
+  # 公式Xアカウント（ID は記事で確認できたものだけ）：ポケモンセンター・ゲオ・古本市場
+  - id: x_chain_official
+    game: auto
+    name: X 大手チェーン公式
+    type: x
+    quote: false
+    accounts: ["pokemoncenterPR", "GEO_official", "furu1tenpo"]
+    keywords: '(ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド OR 抽選)'
+    max_results: 20
+
+  # 公式アカウントが確認できないチェーンは、店名＋カード＋抽選で検索（各店舗の公式アカウントの告知も拾える）
+  - id: x_chain_search
+    game: auto
+    name: X 大手チェーンの抽選
+    type: x
+    keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター) (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード) 抽選'
+    max_results: 20
+
+  # 公式サイトの抽選ページ（ページの中身が変わった時だけAIが読む）
+  - id: pokemoncenter_lottery
+    game: pokemon
+    name: ポケモンセンターオンライン 抽選
+    type: html
+    url: https://www.pokemoncenter-online.com/lottery/apply.html
+
+  - id: yodobashi_lottery
+    game: auto
+    name: ヨドバシ.com 抽選
+    type: html
+    url: https://limited.yodobashi.com/entry/shared/
+
   # --- X（LivePocketの応募リンク付きの告知）：古本市場・TSUTAYA・キデイランドなどがよく使う ---
   # LivePocketのページには受付期間が書いてあるので、締切も取れる
   - id: x_livepocket
