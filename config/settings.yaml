@@ -1,0 +1,55 @@
+# 動作設定（環境変数で上書き可：AUTO_APPROVE / DRY_RUN）
+
+auto_approve: true        # true=見つけたら即投稿（テスト用捨てアカ向け） / false=GitHubのIssueで承認制
+dry_run: false            # true=XにもWPにも投稿せず、ログに出すだけ
+min_confidence: 0.7       # AI抽出の自信度がこれ未満は投稿しない（承認待ちに回す）
+max_posts_per_run: 3      # 1回の実行で投稿する最大数（連投による凍結対策）
+remind_hours_before: 24   # 締切の何時間前にリマインド投稿するか
+
+# --- X API の費用対策（従量課金） ---
+x_read_budget_per_day: 300  # Xから読む投稿の1日上限（1件 約$0.005 → 300件で約$1.5/日）
+post_link: false            # 個別告知にリンクを付けるか（リンク付き投稿は1件 約$0.20と高い）
+quote_source: true          # 店舗の告知ポストを引用リポストする（一次情報が見えて信用UP）
+summary_hour: 20            # この時刻以降に1日1回、WPまとめページへのリンク付きまとめを投稿
+
+site_public_url: ""        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う
+site_url: ""              # WordPressのURL（例 https://example.com）。空ならWP更新はスキップ
+
+hashtags:
+  pokemon: "#ポケカ #ポケカ抽選"
+  onepiece: "#ワンピカード #ワンピカード抽選"
+  dragonball: "#フュージョンワールド #DBFW"
+
+game_names:
+  pokemon: ポケモンカード
+  onepiece: ワンピースカード
+  dragonball: ドラゴンボール フュージョンワールド
+
+# WPまとめページのスラッグ（ゲームごとに1ページ自動更新）
+wp_pages:
+  pokemon: pokeca-lottery
+  onepiece: onepiece-card-lottery
+  dragonball: dbfw-lottery
+
+# Amazonアソシエイトのトラッキングタグ（例 xxxx-22）。入れると弾ごとの記事にAmazon検索リンクを自動で付ける
+amazon_tag: ""
+
+# 弾ごとの記事を入れるWPカテゴリのID（WP管理画面→投稿→カテゴリーで確認。空なら未分類）
+wp_categories:
+  pokemon: null
+  onepiece: null
+  dragonball: null
+
+# まとめページ下部に表示するアフィリンク（もしも/Amazon/楽天のリンクを貼る）
+affiliate:
+  pokemon:
+    - label: ポケカ 最新弾をAmazonで見る
+      url: ""
+    - label: スリーブ・ローダー等のサプライ
+      url: ""
+  onepiece:
+    - label: ワンピカード 最新弾をAmazonで見る
+      url: ""
+  dragonball:
+    - label: フュージョンワールド 最新弾をAmazonで見る
+      url: ""

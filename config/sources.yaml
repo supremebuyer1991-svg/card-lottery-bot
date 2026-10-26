@@ -1,0 +1,162 @@
+# 監視対象。type: html = ページ変化を検知 / rss = 新着記事を検知
+# game: pokemon / onepiece / dragonball
+# ※ 店舗ページはURLが変わりやすいので、追加したら1回 DRY_RUN で動作確認してください
+
+sources:
+  # --- 公式サイト（新弾情報・公式抽選） ---
+  - id: pokeca_official
+    game: pokemon
+    name: ポケモンカード公式 お知らせ
+    type: html
+    url: https://www.pokemon-card.com/info/
+
+  - id: onepiece_official
+    game: onepiece
+    name: ONE PIECEカードゲーム公式
+    type: html
+    url: https://www.onepiece-cardgame.com/
+
+  - id: dbfw_official
+    game: dragonball
+    name: ドラゴンボール フュージョンワールド公式
+    type: html
+    url: https://www.dbs-cardgame.com/fw/jp/
+
+  # --- ニュース横断検索（各店舗の抽選開始ニュースを拾う） ---
+  - id: gnews_pokeca
+    game: pokemon
+    name: Googleニュース「ポケカ 抽選」
+    type: rss
+    url: https://news.google.com/rss/search?q=%E3%83%9D%E3%82%B1%E3%82%AB+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_onepiece
+    game: onepiece
+    name: Googleニュース「ワンピカード 抽選」
+    type: rss
+    url: https://news.google.com/rss/search?q=%E3%83%AF%E3%83%B3%E3%83%94%E3%82%AB%E3%83%BC%E3%83%89+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_dbfw
+    game: dragonball
+    name: Googleニュース「フュージョンワールド 抽選」
+    type: rss
+    url: https://news.google.com/rss/search?q=%E3%83%95%E3%83%A5%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  # --- X（キーワード検索）：店舗・ショップの抽選告知ポストを拾う ---
+  # 当選報告・譲渡・買取などの雑談は自動で除外、リンク付きポストだけに絞っています
+  - id: x_pokeca
+    game: pokemon
+    name: X「ポケカ 抽選」
+    type: x
+    keywords: '(ポケカ OR ポケモンカード) (抽選 OR 抽選販売) (受付 OR 応募)'
+    max_results: 20
+
+  - id: x_onepiece
+    game: onepiece
+    name: X「ワンピカード 抽選」
+    type: x
+    keywords: '(ワンピカード OR ワンピースカード OR "ONE PIECEカード") 抽選 (受付 OR 応募)'
+    max_results: 20
+
+  - id: x_dbfw
+    game: dragonball
+    name: X「フュージョンワールド 抽選」
+    type: x
+    keywords: '(フュージョンワールド OR ドラゴンボールカード) 抽選 (受付 OR 応募)'
+    max_results: 20
+
+  # --- X（実店舗の店頭抽選）：画像だけの告知も多いのでリンク必須にしない ---
+  - id: x_shop_pokeca
+    game: pokemon
+    name: X 実店舗抽選「ポケカ」
+    type: x
+    require_links: false
+    keywords: '(ポケカ OR ポケモンカード) (店頭抽選 OR 抽選券 OR 整理券 OR 店頭応募 OR 抽選販売) 店'
+    max_results: 20
+
+  - id: x_shop_onepiece
+    game: onepiece
+    name: X 実店舗抽選「ワンピカード」
+    type: x
+    require_links: false
+    keywords: '(ワンピカード OR ワンピースカード) (店頭抽選 OR 抽選券 OR 整理券 OR 店頭応募 OR 抽選販売) 店'
+    max_results: 15
+
+  - id: x_shop_dbfw
+    game: dragonball
+    name: X 実店舗抽選「フュージョンワールド」
+    type: x
+    require_links: false
+    keywords: '(フュージョンワールド OR ドラゴンボールカード) (店頭抽選 OR 抽選券 OR 整理券 OR 店頭応募 OR 抽選販売) 店'
+    max_results: 10
+
+  # --- X（店舗アカウント指定）：一番精度が高い。普段見ている店舗アカを追加 ---
+  # accounts に @ID を並べると、そのアカウントの「抽選」を含む投稿だけを拾います
+  - id: x_store_accounts
+    game: pokemon
+    name: X 店舗アカウント
+    type: x
+    enabled: false          # アカウントを書いたら true に
+    accounts: []            # 例: ["ID1", "ID2"]（@は付けても付けなくてもOK）
+    keywords: '抽選 (ポケカ OR ポケモンカード)'
+    max_results: 20
+
+  # --- X（抽選情報まとめアカウント）：ネタ元として拾うだけ。引用はしない ---
+  # game: auto = ポストごとにAIがポケカ/ワンピ/DBを判別
+  - id: x_info_accounts
+    game: auto
+    name: X 抽選情報アカウント
+    type: x
+    quote: false
+    accounts: ["chang_tingyao"]
+    keywords: '抽選'
+    max_results: 20
+
+  # ワンピカード公式アカウント（公式の抽選・新商品告知）
+  - id: x_onepiece_official
+    game: onepiece
+    name: X ワンピカード公式
+    type: x
+    accounts: ["ONEPIECE_tcg"]
+    keywords: '(抽選 OR 予約)'
+    max_results: 10
+
+  # --- 他の抽選まとめサイト：ネタ元として事実（店舗・締切・応募URL）だけ拾う ---
+  # 文章は一切転載しない。投稿・記事のリンクは店舗の応募ページにし、このサイトの記事URLは載せない
+  # ※ フッターの「利用規約」で自動取得が禁止されていたら enabled: false に
+  - id: nyuka_now
+    game: auto
+    name: 入荷Now 入荷情報
+    type: html_index
+    url: https://nyuka-now.com/archives/category/restock
+    link_keywords: ["ポケモンカード", "ポケカ", "ワンピース", "ドラゴンボール", "フュージョンワールド"]
+    max_articles: 8
+    quote: false
+    hide_source_url: true
+
+  # --- カード抽選まとめサイト（一覧型）：応募URL単位で新着・変更だけ拾う ---
+  # ネット抽選・店頭抽選の両方が載っている。投稿・記事のリンクは各店の応募先にする
+  # ※ サイトの利用規約で自動取得が禁止されていたら enabled: false に
+  - id: cardchusen_pokeka
+    game: pokemon
+    name: カード抽選まとめ ポケカ
+    type: html_cards
+    url: https://cardchusen.com/pokeka
+    card_link_text: 応募
+    quote: false
+    hide_source_url: true
+
+  - id: cardchusen_onepiece
+    game: onepiece
+    name: カード抽選まとめ ワンピ
+    type: html_cards
+    url: https://cardchusen.com/onepiece
+    card_link_text: 応募
+    quote: false
+    hide_source_url: true
+
+  # --- 店舗の抽選ページ（URLを確認して追加。例） ---
+  # - id: pokecen_lottery
+  #   game: pokemon
+  #   name: ポケモンセンターオンライン 抽選
+  #   type: html
+  #   url: https://（ポケセンオンラインの抽選一覧ページURL）

@@ -1,0 +1,389 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="__DESC__">
+__HEADMETA__
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: 抽選券の半券を縦に積んだリスト。左端に締切カウント、右端に応募ボタン。上部に絞り込みを固定 */
+:root {
+  --paper: #f3f4f7;      /* 背景：わずかに青みのある紙 */
+  --card: #ffffff;
+  --ink: #161c2e;        /* 文字：紺がかった墨 */
+  --ink-2: #545c73;
+  --rule: #dfe2ea;
+  --red: #c8102e;        /* 抽選の赤（主役の色） */
+  --red-soft: #fbe7ea;
+  --amber: #a85d00;      /* 締切が迫っている */
+  --amber-soft: #fff1dc;
+  --navy-soft: #e6e9f2;
+  --done: #2f7a4f;
+  --font-display: "Dela Gothic One", "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10131c; --card: #181c28; --ink: #eceef5; --ink-2: #a3aac0; --rule: #2a3043;
+    --red: #ff5a6e; --red-soft: #3a1820; --amber: #ffb547; --amber-soft: #3a2a12; --navy-soft: #232a3d; --done: #5cc78a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10131c; --card: #181c28; --ink: #eceef5; --ink-2: #a3aac0; --rule: #2a3043;
+  --red: #ff5a6e; --red-soft: #3a1820; --amber: #ffb547; --amber-soft: #3a2a12; --navy-soft: #232a3d; --done: #5cc78a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+.wrap { max-width: 880px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 4px; }
+
+/* ヘッダー */
+header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 14px 6px; flex-wrap: wrap; }
+.home { text-decoration: none; }
+.logo { font-family: var(--font-display); font-weight: 400; font-size: 24px; letter-spacing: .02em; }
+.logo span { color: var(--red); }
+.lead { margin-block: 18px 0; display: grid; gap: 6px; }
+.lead h1 { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.lead p { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 65ch; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
+.links a { color: var(--ink-2); }
+.links b { font-weight: 700; color: var(--ink); }
+.aff { font-size: 13px; }
+.aff a { color: var(--red); font-weight: 700; }
+.pre { display: grid; gap: 6px; }
+.pre li { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 8px 12px; list-style: none; }
+.brand p { margin: 0; color: var(--ink-2); font-size: 12px; }
+.sample { margin: 0 0 8px; font-size: 12px; color: var(--amber); background: var(--amber-soft); padding: 4px 10px; border-radius: 6px; display: inline-block; }
+nav.games { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+nav.games button { flex: none; border: 0; background: none; font: inherit; font-weight: 700; color: var(--ink-2); padding: 10px 12px 12px; cursor: pointer; border-bottom: 3px solid transparent; }
+nav.games button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--red); }
+nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; color: var(--ink-2); }
+
+/* サマリー */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-block: 16px 12px; }
+.stats div { background: var(--card); padding: 10px 14px; }
+.stats b { display: block; font-family: var(--font-num); font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.stats .hot b { color: var(--red); }
+.stats span { font-size: 12px; color: var(--ink-2); }
+
+/* 絞り込み（固定） */
+.filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 8px; display: grid; gap: 8px; border-bottom: 1px solid var(--rule); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.seg { display: inline-flex; background: var(--navy-soft); border-radius: 999px; padding: 3px; }
+.seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 999px; color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+select, input[type="search"] { font: inherit; font-size: 14px; color: var(--ink); background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; min-width: 0; }
+input[type="search"] { flex: 1 1 160px; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--red); margin: 0; }
+.toggle:has(input:checked) { border-color: var(--ink); }
+.hint { font-size: 12px; color: var(--ink-2); }
+
+/* 弾ごとのリンク */
+.series { display: flex; gap: 8px; flex-wrap: wrap; margin-block: 14px 4px; }
+.series button { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.series button[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.series .c { font-family: var(--font-num); font-size: 11px; color: var(--ink-2); margin-left: 4px; }
+.series button[aria-pressed="true"] .c { color: inherit; opacity: .7; }
+
+/* 一覧：抽選券 */
+.list { display: grid; gap: 10px; padding-block: 12px 32px; }
+.group-h { font-family: var(--font-display); font-weight: 400; font-size: 16px; margin: 14px 0 0; display: flex; align-items: baseline; gap: 8px; }
+.group-h small { font-family: var(--font-num); font-size: 12px; color: var(--ink-2); }
+.ticket { display: grid; grid-template-columns: 112px 1fr auto; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; position: relative; }
+.ticket.applied { opacity: .55; }
+.stub { padding: 12px 10px; border-right: 2px dashed var(--rule); display: grid; align-content: center; gap: 2px; text-align: center; position: relative; }
+.stub::before, .stub::after { content: ""; position: absolute; right: -9px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 1px solid var(--rule); }
+.stub::before { top: -9px; clip-path: inset(50% 0 0 0); }
+.stub::after { bottom: -9px; clip-path: inset(0 0 50% 0); }
+.cd { font-family: var(--font-num); font-weight: 600; font-size: 17px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.cd-l { font-size: 11px; color: var(--ink-2); }
+.dl { font-family: var(--font-num); font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.soon .cd { color: var(--red); }
+.near .cd { color: var(--amber); }
+.body { padding: 12px 14px; min-width: 0; display: flex; gap: 12px; align-items: flex-start; }
+.info { min-width: 0; display: grid; gap: 4px; flex: 1; }
+.thumb { flex: none; width: 76px; aspect-ratio: 1; border-radius: 8px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.thumb .ph { font-family: var(--font-display); font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
+.req { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 9px; border: 1px solid transparent; white-space: nowrap; }
+.pill.need { background: var(--amber-soft); color: var(--amber); }
+.pill.ok { background: transparent; color: var(--done); border-color: var(--done); }
+.pill.unk { background: transparent; color: var(--ink-2); border-color: var(--rule); font-weight: 500; }
+.store { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; }
+.badge.new { background: var(--red); color: var(--card); }
+.badge.area { background: var(--navy-soft); color: var(--ink); }
+.product { color: var(--ink-2); font-size: 14px; overflow-wrap: anywhere; }
+.tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.tag { font-size: 11px; border: 1px solid var(--rule); border-radius: 4px; padding: 0 6px; color: var(--ink-2); }
+.cond { font-size: 12px; color: var(--ink-2); overflow-wrap: anywhere; }
+.acts { padding: 12px 14px 12px 0; display: grid; gap: 6px; align-content: center; justify-items: stretch; }
+.go { display: inline-block; text-align: center; text-decoration: none; background: var(--red); color: #fff; font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
+.go:hover { filter: brightness(1.08); }
+.mini { display: flex; gap: 6px; justify-content: center; }
+.mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.mini button[aria-pressed="true"] { color: var(--done); border-color: var(--done); font-weight: 700; }
+.empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--rule); border-radius: 10px; }
+
+footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display: grid; gap: 6px; }
+@media (max-width: 560px) {
+  .ticket { grid-template-columns: 92px 1fr; }
+  .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
+  .cd { font-size: 15px; }
+  .thumb { width: 60px; }
+  .logo { font-size: 20px; }
+  .lead h1 { font-size: 19px; }
+  .stats b { font-size: 18px; }
+}
+@media (prefers-reduced-motion: no-preference) { .ticket { transition: opacity .2s; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <a href="__ROOT__" class="home"><span class="logo">トレカ<span>抽選</span>ナビ</span></a>
+      <p id="updated"></p>
+    </div>
+    <p class="sample" id="sample" hidden>表示しているのはサンプルデータです</p>
+    <nav class="games" role="tablist" id="games"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="lead">
+    <h1>__H1__</h1>
+    <p>__LEAD__</p>
+    __LINKS__
+  </section>
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <div class="row">
+      <div class="seg" id="channel">
+        <button type="button" data-v="online" aria-pressed="true">ネット抽選</button>
+        <button type="button" data-v="store" aria-pressed="false">店頭抽選</button>
+      </div>
+      <select id="area" aria-label="都道府県" hidden></select>
+      <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
+    </div>
+    <div class="row">
+      <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
+      <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
+      <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
+      <label class="toggle"><input type="checkbox" id="f-nocard"> 会員カード不要</label>
+      <label class="toggle"><input type="checkbox" id="f-noapp"> アプリ不要</label>
+      <label class="toggle"><input type="checkbox" id="f-today"> 今日締切</label>
+    </div>
+  </div>
+
+  <div class="series" id="series"></div>
+  <div class="list" id="list">__PRERENDER__</div>
+
+  <footer>
+    <p>※本サイトはプロモーション（広告）を含みます。</p>
+    <p>情報は自動で収集し30分ごとに更新しています。応募条件・期間は変更される場合があるため、応募前に必ず各店舗の公式ページでご確認ください。</p>
+    <p>「応募済み」の印はこの端末のブラウザにだけ保存されます。</p>
+  </footer>
+</main>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("data").textContent);
+  var GAMES = DATA.games; // [{id, name}]
+  var NOW0 = Date.now();
+  // サンプル表示では締切を「今からの時間」で持たせ、いつ開いても動いて見えるようにする
+  var items = DATA.items.map(function (it) {
+    var o = Object.assign({}, it);
+    if (DATA.sample) {
+      o.end = o.end_h == null ? null : new Date(NOW0 + o.end_h * 3600e3).toISOString();
+      o.found_at = new Date(NOW0 - (o.found_h || 48) * 3600e3).toISOString();
+    }
+    o._end = o.end ? Date.parse(o.end) : null;
+    return o;
+  });
+
+  function load(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var applied = load("lot_applied", {});
+  var LOCK = DATA.lock || {};
+  var st = Object.assign({ game: GAMES[0].id, channel: "online", area: "", q: "", series: "" },
+    LOCK.game ? {} : load("lot_view", {}), LOCK);
+  if (!LOCK.game && location.hash && GAMES.some(function (g) { return "#" + g.id === location.hash; })) st.game = location.hash.slice(1);
+
+  var $ = function (id) { return document.getElementById(id); };
+  var WEEK = "日月火水木金土";
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fmtDate(t) {
+    if (t == null) return "締切 要確認";
+    var d = new Date(t);
+    return (d.getMonth() + 1) + "/" + d.getDate() + "(" + WEEK[d.getDay()] + ") " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+  }
+  function countdown(t) {
+    if (t == null) return { text: "—", cls: "" };
+    var ms = t - Date.now();
+    if (ms <= 0) return { text: "受付終了", cls: "" };
+    var h = Math.floor(ms / 3600e3), m = Math.floor(ms % 3600e3 / 60e3), s = Math.floor(ms % 60e3 / 1e3);
+    if (h < 24) return { text: String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0"), cls: "soon" };
+    var d = Math.floor(h / 24);
+    return { text: d + "日 " + (h % 24) + "時間", cls: d < 3 ? "near" : "" };
+  }
+  function gcal(it) {
+    if (it._end == null) return null;
+    var z = function (t) { return new Date(t).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
+    var title = "【締切】" + it.store + " " + (it.series || it.product) + " 抽選";
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(title) +
+      "&dates=" + z(it._end - 3600e3) + "/" + z(it._end) + "&details=" + encodeURIComponent((it.url || "") + "\n" + (it.conditions || ""));
+  }
+  function isToday(t) { if (t == null) return false; var a = new Date(t), b = new Date(); return a.toDateString() === b.toDateString(); }
+  function needs(it, tag) { return (it.tags || []).indexOf(tag) >= 0; }
+  function isNew(it) { return it.found_at && Date.now() - Date.parse(it.found_at) < 24 * 3600e3; }
+
+  function inGame() { return items.filter(function (i) { return i.game === st.game && (i._end == null || i._end > Date.now()); }); }
+
+  function filtered() {
+    var q = st.q.trim().toLowerCase();
+    return inGame().filter(function (i) {
+      if ((i.channel === "store" ? "store" : "online") !== st.channel) return false;
+      if (st.channel === "store" && st.area && i.area !== st.area) return false;
+      if (st.series && i.series !== st.series) return false;
+      if ($("f-unapplied").checked && applied[i.key]) return false;
+      if ($("f-noid").checked && i.id_check !== false) return false;
+      if ($("f-nomember").checked && i.member !== "none") return false;
+      if ($("f-nocard").checked && i.member === "card") return false;
+      if ($("f-noapp").checked && needs(i, "アプリ")) return false;
+      if ($("f-today").checked && !isToday(i._end)) return false;
+      if (q && (i.store + " " + i.product + " " + (i.series || "")).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    }).sort(function (a, b) { return (a._end == null ? 9e15 : a._end) - (b._end == null ? 9e15 : b._end); });
+  }
+
+  function thumb(it) {
+    var alt = esc(it.series || it.product);
+    return '<div class="thumb">' + (it.image ? '<img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy">'
+      : '<span class="ph">' + alt + '</span>') + '</div>';
+  }
+  function reqs(it) {
+    var id = it.id_check === true ? '<span class="pill need">本人確認 必要</span>'
+      : it.id_check === false ? '<span class="pill ok">本人確認 不要</span>' : '<span class="pill unk">本人確認 不明</span>';
+    var mem = it.member === "card" ? '<span class="pill need">会員カード 必要</span>'
+      : it.member === "account" ? '<span class="pill need">会員登録 必要</span>'
+      : it.member === "none" ? '<span class="pill ok">会員 不要</span>' : '<span class="pill unk">会員 不明</span>';
+    return '<div class="req">' + id + mem + '</div>';
+  }
+  function otherTags(it) { return (it.tags || []).filter(function (t) { return ["会員", "本人確認"].indexOf(t) < 0; }); }
+
+  function ticket(it) {
+    var cd = countdown(it._end), done = !!applied[it.key], cal = gcal(it);
+    return '<article class="ticket' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
+      '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
+      '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + esc(it.store) +
+        (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
+        (isNew(it) ? '<span class="badge new">NEW</span>' : "") + '</div>' +
+        '<div class="product">' + esc(it.product) + '</div>' + reqs(it) +
+        (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
+        (it.conditions ? '<div class="cond">' + esc(it.conditions) + '</div>' : "") +
+      '</div></div>' +
+      '<div class="acts">' + (it.url ? '<a class="go" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募ページへ</a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
+        '<div class="mini"><button type="button" class="ap" aria-pressed="' + done + '">' + (done ? "応募済み ✓" : "応募済みにする") + '</button>' +
+        (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") + '</div></div>' +
+    '</article>';
+  }
+
+  function render() {
+    if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, area: st.area });
+    var g = inGame();
+    // ゲームタブ
+    $("games").innerHTML = GAMES.map(function (x) {
+      var n = items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length;
+      return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.name) + '<span class="n">' + n + '</span></button>';
+    }).join("");
+    // サマリー
+    var today = g.filter(function (i) { return isToday(i._end); }).length;
+    var fresh = g.filter(isNew).length;
+    var unapplied = g.filter(function (i) { return !applied[i.key]; }).length;
+    $("stats").innerHTML = '<div><b>' + g.length + '</b><span>受付中</span></div>' +
+      '<div class="hot"><b>' + today + '</b><span>今日締切</span></div>' +
+      '<div><b>' + unapplied + '</b><span>あなたが未応募</span></div>';
+    void fresh;
+    // チャネル
+    [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
+    // 都道府県
+    var areas = Array.from(new Set(g.filter(function (i) { return i.channel === "store" && i.area; }).map(function (i) { return i.area; }))).sort();
+    $("area").hidden = st.channel !== "store";
+    $("area").innerHTML = '<option value="">全国の店頭抽選</option>' + areas.map(function (a) {
+      var n = g.filter(function (i) { return i.channel === "store" && i.area === a; }).length;
+      return '<option value="' + esc(a) + '"' + (a === st.area ? " selected" : "") + '>' + esc(a) + "（" + n + "）</option>";
+    }).join("");
+    // 弾
+    var ser = {};
+    g.forEach(function (i) { if (i.series) ser[i.series] = (ser[i.series] || 0) + 1; });
+    var names = Object.keys(ser).sort(function (a, b) { return ser[b] - ser[a]; });
+    if (st.series && !ser[st.series]) st.series = "";
+    $("series").innerHTML = names.length ? '<button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
+      names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") : "";
+    // 一覧
+    var list = filtered(), html = "";
+    if (!list.length) {
+      html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
+    } else if (st.channel === "store" && !st.area) {
+      var by = {};
+      list.forEach(function (i) { (by[i.area || "地域不明"] = by[i.area || "地域不明"] || []).push(i); });
+      Object.keys(by).sort().forEach(function (a) {
+        html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + by[a].map(ticket).join("");
+      });
+    } else {
+      html = list.map(ticket).join("");
+    }
+    $("list").innerHTML = html;
+  }
+
+  // イベント
+  $("games").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-g]"); if (!b) return;
+    if (DATA.gameUrls && DATA.gameUrls[b.dataset.g] && LOCK.game) { location.href = DATA.gameUrls[b.dataset.g]; return; }
+    st.game = b.dataset.g; st.series = ""; st.area = ""; render();
+  });
+  $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });
+  $("area").addEventListener("change", function () { st.area = this.value; render(); });
+  $("q").addEventListener("input", function () { st.q = this.value; render(); });
+  $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
+  ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
+  $("list").addEventListener("click", function (e) {
+    var b = e.target.closest("button.ap"); if (!b) return;
+    var k = b.closest(".ticket").dataset.key;
+    if (applied[k]) delete applied[k]; else applied[k] = Date.now();
+    save("lot_applied", applied); render();
+  });
+
+  // 画像が読めなければ弾名の表示に戻す
+  document.addEventListener("error", function (e) {
+    var img = e.target;
+    if (img.tagName === "IMG" && img.parentNode.classList.contains("thumb")) {
+      img.parentNode.innerHTML = '<span class="ph">' + esc(img.alt) + '</span>';
+    }
+  }, true);
+
+  // カウントダウンを1秒ごとに更新
+  setInterval(function () {
+    document.querySelectorAll(".cd[data-end]").forEach(function (el) {
+      var t = Number(el.dataset.end); if (!t) return;
+      var c = countdown(t); el.textContent = c.text; el.parentNode.className = "stub " + c.cls;
+    });
+  }, 1000);
+
+  $("sample").hidden = !DATA.sample;
+  $("updated").textContent = "最終更新 " + fmtDate(DATA.sample ? NOW0 : Date.parse(DATA.updated));
+  render();
+})();
+</script>

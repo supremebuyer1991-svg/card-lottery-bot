@@ -1,0 +1,78 @@
+"""設定・状態ファイル・共通ユーティリティ"""
+import hashlib
+import json
+import os
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parent.parent
+JST = timezone(timedelta(hours=9))
+STATE_DIR = ROOT / "state"
+
+
+def now() -> datetime:
+    return datetime.now(JST)
+
+
+def _env_bool(name, default):
+    v = os.environ.get(name)
+    if v is None or v == "":
+        return default
+    return v.lower() in ("1", "true", "yes", "on")
+
+
+def load_settings() -> dict:
+    s = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))
+    s["auto_approve"] = _env_bool("AUTO_APPROVE", s.get("auto_approve", False))
+    s["dry_run"] = _env_bool("DRY_RUN", s.get("dry_run", False))
+    s["site_url"] = os.environ.get("WP_URL") or s.get("site_url") or ""
+    return s
+
+
+def load_sources() -> list:
+    return yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8"))["sources"]
+
+
+def load_json(name, default):
+    p = STATE_DIR / name
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    return default
+
+
+def save_json(name, data):
+    STATE_DIR.mkdir(exist_ok=True)
+    (STATE_DIR / name).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def sha(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def normalize(s: str) -> str:
+    return "".join((s or "").lower().split())
+
+
+def lottery_key(item: dict) -> str:
+    """同じ抽選を一意に判定するキー（ゲーム＋店舗＋商品＋締切日）"""
+    end = (item.get("end") or "")[:10]
+    return sha("|".join([item.get("game", ""), normalize(item.get("store")),
+                         normalize(item.get("product")), end]))
+
+
+def parse_dt(s):
+    if not s:
+        return None
+    try:
+        dt = datetime.fromisoformat(s)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=JST)
+    return dt
+
+
+def log(*a):
+    print(f"[{now():%m-%d %H:%M}]", *a, flush=True)

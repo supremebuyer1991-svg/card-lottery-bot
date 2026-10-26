@@ -1,0 +1,79 @@
+"""承認：自動承認 or GitHub Issue での手動承認
+手動モードでは新着ごとにIssueが立つ → スマホのGitHubアプリで
+  ラベル「approved」を付ける = 投稿OK / ラベルなしでClose = 却下
+"""
+import os
+
+import requests
+
+from common import load_json, save_json, parse_dt, now, log
+
+GH = "https://api.github.com"
+
+
+def _gh(method, path, **kw):
+    repo, token = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_TOKEN")
+    if not (repo and token):
+        return None
+    r = requests.request(method, f"{GH}/repos/{repo}{path}", timeout=30, headers={
+        "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, **kw)
+    r.raise_for_status()
+    return r.json()
+
+
+def _issue_body(it):
+    return "\n".join([
+        f"- ゲーム: {it['game']}", f"- 店舗: {it['store']}", f"- 商品: {it['product']}",
+        f"- 受付: {it.get('start')} 〜 {it.get('end')}", f"- 当選発表: {it.get('announce')}",
+        f"- 方法: {it.get('method')}", f"- 条件: {it.get('conditions')}",
+        f"- URL: {it.get('url')}", f"- 出典: {it.get('source')} {it.get('source_url')}",
+        f"- AI自信度: {it.get('confidence')}", "",
+        "投稿OKならラベル `approved` を付けてください。不要ならそのままCloseで却下。",
+        f"<!-- key:{it['key']} -->"])
+
+
+def approve(settings):
+    lots = load_json("lotteries.json", {})
+    minc = settings.get("min_confidence", 0.7)
+
+    for it in lots.values():
+        if it["status"] != "new":
+            continue
+        ok = float(it.get("confidence") or 0) >= minc and it.get("end")
+        if settings["auto_approve"] and ok:
+            it["status"] = "approved"
+            continue
+        # 手動承認（自動モードでも自信度不足・締切不明はここに回す）
+        it["status"] = "pending"
+        try:
+            res = _gh("POST", "/issues", json={
+                "title": f"[抽選候補] {it['store']} / {it['product']}",
+                "body": _issue_body(it), "labels": ["candidate", it["game"]]})
+            if res:
+                it["issue"] = res["number"]
+        except Exception as e:
+            log(f"Issue作成失敗: {e}")
+
+    # Issueの状態を反映
+    for it in lots.values():
+        if it["status"] != "pending" or not it.get("issue"):
+            continue
+        try:
+            iss = _gh("GET", f"/issues/{it['issue']}")
+        except Exception as e:
+            log(f"Issue取得失敗: {e}")
+            continue
+        if not iss:
+            continue
+        labels = {l["name"] for l in iss.get("labels", [])}
+        if "approved" in labels:
+            it["status"] = "approved"
+        elif iss.get("state") == "closed":
+            it["status"] = "rejected"
+
+    # 締切が過ぎたものは期限切れに
+    for it in lots.values():
+        end = parse_dt(it.get("end"))
+        if end and end < now() and it["status"] in ("new", "pending", "approved", "posted", "listed"):
+            it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
+    save_json("lotteries.json", lots)

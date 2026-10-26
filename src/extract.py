@@ -1,0 +1,71 @@
+"""Claude APIで、ページ本文から抽選情報を構造化して取り出す"""
+import json
+import os
+import re
+
+import requests
+
+from common import now
+
+API_URL = "https://api.anthropic.com/v1/messages"
+MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
+
+PROMPT = """あなたはトレカ抽選情報の抽出係です。以下のテキストから「現在受付中、またはこれから受付が始まる、{game_name}の商品の抽選販売・抽選予約」だけを抜き出してください。
+
+ルール:
+- 大会・イベント参加の抽選、プレゼントキャンペーン、受付終了済みのものは除外
+- テキストに書かれていない情報は推測せず null にする（日付を作らない）
+- 日時はISO 8601形式（例 2026-11-02T23:59:00+09:00）。年が省略されていれば今日（{today}）基準で補う
+- url は応募ページか店舗の告知ページ（[関連リンク]に店舗のURLがあれば必ずそれを使う）。無ければ記事URL
+- 「=====」で区切られた各ブロックは別々の抽選。応募URL があればそれを url にする
+- まとめ記事の場合、記事内の「抽選」の項目を店舗ごとに1件ずつ出す。「在庫あり」「先着販売」「再販」は抽選ではないので除外
+- テキストがXのポストの場合、店舗や公式アカウント本人の告知を優先し、個人の伝聞・噂は confidence を低く。x_post にはそのポストURLを入れる
+- 実店舗（店頭応募・抽選券・整理券など）の抽選も対象。channel は "store"、store は「チェーン名＋支店名」（例: イオン〇〇店）、area は都道府県。ネット応募なら channel は "online"
+- confidence は 0〜1。店舗名・商品名・締切がそろって明記されていれば高く
+
+出力は次のJSON配列のみ（該当なしなら []）:
+[{{"store":"店舗名","product":"商品名","series":"弾・商品シリーズ名だけ（例: 拡張パック「〇〇」BOX → 〇〇。分からなければ null）","start":"受付開始 or null","end":"受付締切 or null","announce":"当選発表 or null","method":"アプリ/Web/店頭 など or null","conditions":"会員限定など応募条件の要約 or null","url":"URL or null","x_post":"告知ポストのURL or null","game":"pokemon / onepiece / dragonball のどれか","channel":"online または store","area":"実店舗の都道府県 or null","id_check":"本人確認が必要なら true、不要と明記なら false、書かれていなければ null","member":"会員カード提示が必要なら card、会員登録（アカウント）が必要なら account、不要と明記なら none、書かれていなければ null","tags":["応募に必要なものを次から選ぶ: 会員, アプリ, 本人確認, 購入履歴, レシート, SNS応募, 整理券"],"confidence":0.0}}]
+
+出典: {source_name} ({source_url})
+--- テキスト ---
+{text}
+"""
+
+
+def _parse(raw: str) -> list:
+    m = re.search(r"\[.*\]", raw, re.S)
+    if not m:
+        return []
+    try:
+        data = json.loads(m.group(0))
+    except json.JSONDecodeError:
+        return []
+    out = []
+    for d in data if isinstance(data, list) else []:
+        if isinstance(d, dict) and d.get("store") and d.get("product"):
+            out.append(d)
+    return out
+
+
+def extract(text: str, game: str, game_name: str, source_name: str, source_url: str) -> list:
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        raise RuntimeError("ANTHROPIC_API_KEY が未設定です")
+    prompt = PROMPT.format(game_name=game_name, today=now().date().isoformat(),
+                           source_name=source_name, source_url=source_url, text=text[:15000])
+    r = requests.post(API_URL, timeout=90, headers={
+        "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
+    }, json={"model": MODEL, "max_tokens": 2000, "messages": [{"role": "user", "content": prompt}]})
+    r.raise_for_status()
+    raw = "".join(b.get("text", "") for b in r.json().get("content", []))
+    items = _parse(raw)
+    valid = ("pokemon", "onepiece", "dragonball")
+    for it in items:
+        if game != "auto" or it.get("game") not in valid:
+            it["game"] = game
+        if it["game"] not in valid:
+            continue
+        it["source"] = source_name
+        it["source_url"] = source_url
+        it["url"] = it.get("url") or it.get("x_post") or source_url
+    return [i for i in items if i["game"] in valid]
