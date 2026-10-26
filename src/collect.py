@@ -1,11 +1,11 @@
 """収集：各ソースを見て、新しい抽選を state/lotteries.json に追加する"""
 from common import (load_json, save_json, sha, lottery_key, parse_dt, now, log, normalize)
-from fetch import get, html_to_text, parse_rss, article_links, cards
+from fetch import get, html_to_text, parse_rss, article_links, cards, cardchusen_items
 from extract import extract
 from fetch_x import search as x_search
 
 
-SEEN_VERSION = 4
+SEEN_VERSION = 5
 
 
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:
@@ -23,6 +23,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         sid, game = src["id"], src["game"]
         gname = settings["game_names"].get(game) or "・".join(settings["game_names"].values())
         texts = []  # (テキスト, 出典URL)
+        direct = []  # AIを通さずに読めた抽選
         first_run = sid not in seen  # 初回は既存の抽選を一気に拾うので、Xには流さずWP掲載だけにする
 
         if src["type"] == "x":
@@ -73,6 +74,18 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if prev.get(url) != cur[url]:
                     texts.append((text, url))
             seen[sid] = cur
+        elif src["type"] == "html_cards" and "board-card" in body and cardchusen_items(body, src["url"]):
+            # cardchusen：整理済みデータを直接読む（AI不要・無料）
+            prev = seen.get(sid) if isinstance(seen.get(sid), dict) else {}
+            cur = {}
+            for key, h, item in cardchusen_items(body, src["url"]):
+                cur[key] = h
+                if prev.get(key) != h:
+                    item.update(game=item.get("game") or (game if game != "auto" else "pokemon"),
+                                source=src["name"], source_url=src["url"])
+                    direct.append(item)
+            seen[sid] = cur
+            log(f"{sid}: 直接読み取り 新規・変更 {len(direct)}件 / 全{len(cur)}件")
         elif src["type"] == "html_cards":
             # 一覧型サイト：カード（応募URL単位）で差分を取り、新規・変更分だけをまとめてAIへ
             prev = seen.get(sid) if isinstance(seen.get(sid), dict) else {}
@@ -94,6 +107,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 log(f"{sid}: 新規・変更 {len(fresh)}件 / 全{len(cur)}件")
                 log(f"  見本: {fresh[0][:200]!r}")
 
+        batches = []
         for text, url in texts:
             try:
                 items = extractor(text, game, gname, src["name"], url)
@@ -101,6 +115,10 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 log(f"抽出失敗 {sid}: {e}")
                 continue
             log(f"  {sid}: AIが {len(items)}件 抽出")
+            batches.append((items, url))
+        if direct:
+            batches.append((direct, None))
+        for items, url in batches:
             for it in items:
                 end = parse_dt(it.get("end"))
                 if end and end < now():

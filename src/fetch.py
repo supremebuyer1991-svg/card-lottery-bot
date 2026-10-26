@@ -1,4 +1,5 @@
 """ページ取得（アクセスは控えめに：1ソース1リクエスト、UA明示）"""
+import json
 import re
 import time
 from hashlib import sha256
@@ -137,4 +138,53 @@ def cards(html: str, base_url: str, link_text: str = "応募") -> list:
         prod = product_of(box, base_url, host)
         text = (f"商品: {prod}\n" if prod else "") + f"{text}\n応募URL: {href}"
         out.append((href, sha256(COUNTDOWN.sub("", text).encode()).hexdigest()[:16], text))
+    return out
+
+
+def cardchusen_items(html: str, base_url: str) -> list:
+    """cardchusen.com 専用：各抽選カードに埋め込まれた整理済みデータをそのまま読む（AI不要）
+    戻り値: [(キー, ハッシュ, 抽選データ)]"""
+    from sitegen import PREF
+    romaji = {v: k for k, v in PREF.items()}
+    soup = BeautifulSoup(html, "html.parser")
+    out = []
+    for art in soup.select("article.board-card[data-entry-end]"):
+        cta = art.select_one("a.board-card__cta[href]")
+        store_el = art.select_one(".board-card__store")
+        if not cta or not store_el:
+            continue
+        url = requests.compat.urljoin(base_url, cta["href"])
+        media = art.select_one(".board-card__media")
+        label = (media.get("aria-label", "") if media else "").replace("のパック情報を見る", "").strip()
+        official = (store_el.get("title") or "").strip()
+        series = label if label and len(label) <= 24 else None
+        conds = [c.get_text(strip=True) for c in art.select(".board-cond__txt")]
+        areas = [romaji[a] for a in (art.get("data-area") or "").split() if a in romaji]
+        kind = art.get("data-lottery-type") or "online"
+        channel = "store" if kind == "store" or (kind == "other" and len(areas) == 1) else "online"
+        method = art.select_one(".board-card__method")
+        cond_txt = "・".join(conds) if conds else None
+        if len(areas) > 1:
+            cond_txt = ((cond_txt + " ／ ") if cond_txt else "") + "対象地域：" + "・".join(areas)
+        item = {
+            "store": store_el.get_text(strip=True),
+            "product": official or label or series,
+            "series": series,
+            "end": art["data-entry-end"],
+            "url": url,
+            "x_post": url if "x.com/" in url and "/status/" in url else None,
+            "channel": channel,
+            "area": areas[0] if len(areas) == 1 else None,
+            "method": method.get_text(strip=True) if method else None,
+            "conditions": cond_txt,
+            "tags": conds,
+            "id_check": "本人確認" in conds,
+            "member": ("card" if channel == "store" else "account") if "会員" in conds else "none",
+            "confidence": 0.95,
+        }
+        if not item["product"]:
+            continue
+        key = art.get("id") or url
+        h = sha256(json.dumps(item, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
+        out.append((key, h, item))
     return out
