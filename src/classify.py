@@ -20,7 +20,7 @@ PREFS = ("北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 
          "石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 "
          "岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県").split()
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
-VERSION = 1  # 判定ルールを変えたら上げる（全件を判定し直す）
+VERSION = 2  # 判定ルールを変えたら上げる（全件を判定し直す）
 
 PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選について次の2つを判定してください。
 
@@ -31,8 +31,10 @@ PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選�
 2. area（channel が store のときだけ）
   - 店名・支店名・カッコ内の地名・商業施設名から都道府県を判定（例: シーガル名取店→宮城県、ホビーショップタムタム神戸三宮店→兵庫県、ブックオフ横浜中山店→神奈川県、ジャスティス（大阪）→大阪府）
   - 複数の都道府県にまたがる「各店」や、地名が無く判断できないものは null。推測に自信がなければ null
+3. multi（channel が store のときだけ）
+  - 1つの抽選が複数の店舗で行われる（「〇〇各店」「A店・B店」「全店」など）なら true、1店舗なら false
 
-出力は JSON 配列のみ: [{{"id": 番号, "channel": "online または store", "area": "都道府県 or null"}}]
+出力は JSON 配列のみ: [{{"id": 番号, "channel": "online または store", "area": "都道府県 or null", "multi": true/false}}]
 
 --- 抽選一覧 ---
 {rows}
@@ -89,6 +91,8 @@ def classify(settings, ask=None, batch=40, max_batches=6):
             if it.get("channel") == "store" and not it.get("area") and r.get("area") in PREFS:
                 it["area"] = r["area"]
                 changed += 1
+            if it.get("channel") == "store" and isinstance(r.get("multi"), bool):
+                it["multi"] = r["multi"]
             if it.get("channel") == "online":
                 it["area"] = None
             it["cls"] = _fingerprint(it)

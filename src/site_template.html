@@ -326,6 +326,15 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   var REG = {}, PREF_ORDER = [];
   REGIONS.forEach(function (r) { r[1].forEach(function (p) { REG[p] = r[0]; PREF_ORDER.push(p); }); });
   if (st.area && REG[st.area]) st.region = REG[st.area];
+  // 店頭抽選の対象の都道府県（1店舗なら area、複数店舗なら条件の「対象地域：〇〇・〇〇」から）
+  function areasOf(i) {
+    if (i.area) return [i.area];
+    var m = /対象地域[:：]([^／]+)/.exec(i.conditions || "");
+    return m ? m[1].split(/[・、,\s]+/).filter(function (p) { return REG[p]; }) : [];
+  }
+  function isMulti(i) {
+    return !i.area && (i.multi || areasOf(i).length > 1 || /各店|ほか|全店|複数|店舗共通|[・、].*店/.test(i.store || ""));
+  }
   var WEEK = "日月火水木金土";
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -360,8 +369,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var q = st.q.trim().toLowerCase();
     return inGame().filter(function (i) {
       if ((i.channel === "store" ? "store" : "online") !== st.channel) return false;
-      if (st.channel === "store" && st.area && i.area !== st.area) return false;
-      if (st.channel === "store" && !st.area && st.region && REG[i.area] !== st.region) return false;
+      if (st.channel === "store" && st.area && areasOf(i).indexOf(st.area) < 0) return false;
+      if (st.channel === "store" && !st.area && st.region && !areasOf(i).some(function (p) { return REG[p] === st.region; })) return false;
       if (st.series && i.series !== st.series) return false;
       if ($("f-unapplied").checked && applied[i.key]) return false;
       if ($("f-noid").checked && i.id_check !== false) return false;
@@ -435,8 +444,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
     // 店頭抽選：地方 → 都道府県
     var storeItems = g.filter(function (i) { return i.channel === "store" && (!st.series || i.series === st.series); });
-    var pc = {}; storeItems.forEach(function (i) { if (i.area) pc[i.area] = (pc[i.area] || 0) + 1; });
-    var rc = function (r) { return r[1].reduce(function (n, p) { return n + (pc[p] || 0); }, 0); };
+    var pc = {}; storeItems.forEach(function (i) { areasOf(i).forEach(function (p) { pc[p] = (pc[p] || 0) + 1; }); });
+    var rc = function (r) { return storeItems.filter(function (i) { return areasOf(i).some(function (p) { return REG[p] === r[0]; }); }).length; };
     var cur = REGIONS.filter(function (r) { return r[0] === st.region; })[0];
     var rh = '<div class="lbl">地域でしぼる<small>' + (st.area ? esc(st.area) : st.region ? esc(st.region) + "の全体" : "全国") + "を表示中</small></div>" +
       '<div class="r-row r-reg"><button type="button" data-r="" aria-pressed="' + (!st.region) + '">全国<span class="c">' + storeItems.length + "</span></button>" +
@@ -460,8 +469,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
     } else if (st.channel === "store" && !st.area) {
       var by = {};
-      list.forEach(function (i) { (by[i.area || "複数店舗・地域未確定"] = by[i.area || "複数店舗・地域未確定"] || []).push(i); });
-      Object.keys(by).sort(function (a, b) { var x = PREF_ORDER.indexOf(a), y = PREF_ORDER.indexOf(b); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); }).forEach(function (a) {
+      var MULTI = "複数店舗", UNKNOWN = "地域不明";
+      list.forEach(function (i) { var k = i.area || (isMulti(i) ? MULTI : UNKNOWN); (by[k] = by[k] || []).push(i); });
+      var rank = function (a) { var x = PREF_ORDER.indexOf(a); return x >= 0 ? x : a === MULTI ? 98 : 99; };
+      Object.keys(by).sort(function (a, b) { return rank(a) - rank(b); }).forEach(function (a) {
         html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + by[a].map(ticket).join("");
       });
     } else {

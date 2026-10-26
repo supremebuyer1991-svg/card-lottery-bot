@@ -21,7 +21,7 @@ from common import ROOT, load_json, save_json, load_settings, now, parse_dt, sha
 TEMPLATE = Path(__file__).with_name("site_template.html")
 ACTIVE = ("approved", "posted", "listed")
 FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tags", "url",
-          "channel", "area", "found_at", "id_check", "member", "image", "img_url")
+          "channel", "area", "found_at", "id_check", "member", "image", "img_url", "multi")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "フュージョンワールド"}
 PREF = {
