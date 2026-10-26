@@ -221,6 +221,52 @@ def _supply_ad(short, name, tag, aff):
             f'<div class="ad-sup ad-tiles"><div>{tiles}</div></div>{more}</aside>')
 
 
+AMZ_SHORT = ("amzn.to", "amzn.asia", "link.amazon", "a.co")
+
+
+def own_amazon_url(url, name, tag):
+    """Amazonのリンクを自分のタグ付きに作り直す（他人のタグ・短縮リンクは使わない）。Amazon以外はそのまま"""
+    import re
+    from urllib.parse import urlparse
+    if not url or not tag:
+        return url
+    host = urlparse(url).netloc.lower()
+    if "amazon." in host:
+        m = re.search(r"/(?:dp|gp/product)/([A-Z0-9]{10})", url)
+        return f"https://www.amazon.co.jp/dp/{m.group(1)}/?tag={quote(tag)}" if m else _amz(name, tag)
+    if host in AMZ_SHORT:  # 短縮リンクの中身（商品）は分からないので、商品名の検索にする
+        return _amz(name, tag)
+    return url
+
+
+def amazon_invites(items, tag):
+    """ネット抽選の一番上に固定する「Amazon 招待リクエスト」の券の中身。ゲームごとに [{name, url}]
+    商品ページ（/dp/）のあるものを先に、短縮リンクしかないものは同じ商品が無いときだけ（検索リンクで）入れる"""
+    import re
+    norm = lambda s: re.sub(r"[\s・「」『』()（）\-]", "", (s or "").lower())
+    rows = []
+    for i in items:
+        if "amazon" not in ((i.get("store") or "") + (i.get("url") or "")).lower() or i.get("channel") == "store":
+            continue
+        p = i.get("product") or ""
+        m = re.search(r"/(?:dp|gp/product)/([A-Z0-9]{10})", i.get("url") or "")
+        name = i.get("series") or p
+        sub = re.search(r"[（(]([^）)]{2,30})[）)]", p)
+        if sub and "招待" not in sub.group(1) and "BOX" not in sub.group(1):
+            name = f"{name}（{sub.group(1)}）"
+        rows.append((0 if m else 1, i["game"], m.group(1) if m else None, name, p, i.get("url")))
+    out = {}
+    for has_short, g, asin, name, p, url in sorted(rows, key=lambda r: r[0]):
+        lst = out.setdefault(g, [])
+        seen = " ".join(norm(x["name"]) + " " + norm(x["p"]) for x in lst)
+        if (asin and any(x["asin"] == asin for x in lst)) or any(x["name"] == name for x in lst):
+            continue
+        if not asin and norm(name) and norm(name) in seen:
+            continue  # 短縮リンクの商品が、商品ページのある行と同じなら入れない
+        lst.append({"asin": asin, "name": name, "p": p, "url": own_amazon_url(url, p or name, tag)})
+    return {g: [{"name": x["name"], "url": x["url"]} for x in v] for g, v in out.items()}
+
+
 def active_series(settings=None):
     """{game: [弾名（受付中が多い順）]}"""
     s = settings or load_settings()
@@ -259,6 +305,7 @@ def build(settings=None, out_dir=None, sample=None):
                 continue
             row = {k: i.get(k) for k in FIELDS}
             row["image"] = row.get("image") or images.get(i.get("series") or "")
+            row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)
             r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
             if not row["image"] and r.get("image"):
                 row["image"], row["img_url"] = r["image"], r.get("url")
@@ -272,7 +319,8 @@ def build(settings=None, out_dir=None, sample=None):
 
     common_data = {"sample": False, "updated": updated,
                    "games": [{"id": g, "name": GAME_SHORT[g]} for g in games],
-                   "gameUrls": {g: f"/{GAME_SLUG[g]}/" for g in games}, "items": items}
+                   "gameUrls": {g: f"/{GAME_SLUG[g]}/" for g in games}, "items": items,
+                   "gameNames": {g: s["game_names"][g] for g in games}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
 
     def write(path, lock, meta, subset):
