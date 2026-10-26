@@ -821,7 +821,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       k++;
     }
     var key = st.game + rows.map(function (r) { return r.i.key + r.cls; }).join();
-    $("news").hidden = !rows.length;
+    $("news").hidden = !rows.length || !DATA.defaultGame;  // 更新情報はトップ（総合）だけに出す
     $("news-n").textContent = rows.length ? "終了間近 " + ending.length + "件・新着 " + added.length + "件" : "";
     var html = rows.map(function (r) {
       return '<li class="' + r.cls + '"><a href="' + esc(r.i.url) + '" target="_blank" rel="noopener"><i>' + esc(r.tag) + '</i><span>' + r.t + '</span></a></li>';
