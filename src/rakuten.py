@@ -72,6 +72,8 @@ def search(keyword, settings, session=None):
     params = {"applicationId": app, "keyword": keyword, "format": "json", "formatVersion": 2,
               "hits": 30 if settings.get("_sort") else 20, "imageFlag": 1, "availability": 1,
               "sort": settings.get("_sort") or "standard", "page": settings.get("_page") or 1}
+    if settings.get("_genre"):
+        params["genreId"] = settings["_genre"]
     aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
     if aff:
         params["affiliateId"] = aff
@@ -139,7 +141,7 @@ SUPPLY = {  # ジャンル: (検索語, 商品名に入っているべき語)。
     "ストレージ": ("ストレージ", ("ストレージ",)),
 }
 # カード用ではないとはっきり分かる物だけ除く（スマホ・PC・服・腕カバーなど）と、中古・オリパなど
-SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋",
+SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋", "シングル",
              "スマホ", "スマートフォン", "iPhone", "アイフォン", "Android", "Galaxy", "Xperia", "AQUOS", "Pixel",
              "PC", "パソコン", "ノート", "MacBook", "Mac", "タブレット", "iPad", "Surface", "Kindle", "インチ",
              "アームカバー", "アームスリーブ", "腕", "袖", "シャツ", "ニット", "ブラウス", "ワンピース 半袖", "レディース", "メンズ",
@@ -169,9 +171,19 @@ def search_link(q, aff):
     return item_link(f"https://search.rakuten.co.jp/search/mall/{quote(q)}/?s=2", aff)
 
 
+def _find_genre(word, settings, session):
+    """「トレカ {word}」で普通に検索し、本物のトレカ用品（商品名に word とトレカ/カードがある物）が多い楽天のジャンルIDを返す"""
+    from collections import Counter
+    items = search(f"トレカ {word}", settings, session)
+    c = Counter(str(it.get("genreId")) for it in items
+                if it.get("genreId") and word in (it.get("itemName") or "")
+                and ("トレカ" in (it.get("itemName") or "") or "カード" in (it.get("itemName") or "")))
+    return c.most_common(1)[0][0] if c else None
+
+
 def supply_prices(settings, games, session=None, sleep=1.1):
     """state/rakuten_prices.json を更新して返す。{"スリーブ": {"price", "url", "name", "fetched_at"}}（全ゲーム共通）
-    楽天で「ジャンル名」だけを検索し、商品名にジャンル名が入っている物の最安値（送料別）"""
+    楽天の「トレカ用品のジャンル」の中で「ジャンル名」だけを検索し、商品名にその語がある物の最安値（商品価格の安い順＝送料は含まない）"""
     cache = load_json("rakuten_prices.json", {})
     if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
         return cache
@@ -181,31 +193,43 @@ def supply_prices(settings, games, session=None, sleep=1.1):
         c = cache.get(genre)
         if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).total_seconds() < 20 * 3600:
             continue  # 1日1回
-        if budget < 3:
+        if budget < 4:
             break
+        try:
+            budget -= 1
+            gid = _find_genre(word, settings, session)
+            time.sleep(sleep)
+        except Exception as e:
+            log(f"楽天価格: {genre} ジャンル取得失敗 {e}")
+            if "401" in str(e) or "403" in str(e):
+                return cache
+            continue
+        if not gid:
+            log(f"楽天価格: {genre} トレカ用品のジャンルが見つからない")
+            cache[genre] = {"price": None, "fetched_at": now().isoformat()}
+            continue
         cands, failed = [], False
         for page in (1, 2, 3):
             budget -= 1
             try:
-                items = search(word, dict(settings, _sort="+itemPrice", _page=page), session)
+                items = search(word, dict(settings, _sort="+itemPrice", _page=page, _genre=gid), session)
             except Exception as e:
                 log(f"楽天価格: {genre} 取得失敗 {e}")
-                if "401" in str(e) or "403" in str(e):
-                    return cache
                 failed = True
                 break
             cands += [(int(it["itemPrice"]), it.get("itemName"), it.get("itemUrl"))
                       for it in items if supply_ok(it.get("itemName"), must) and int(it.get("itemPrice") or 0) > 0]
             time.sleep(sleep)
             if cands or len(items) < 30:
-                break  # 安い順なので、見つかったらそれ以上は見なくてよい
+                break
         if failed and not cands:
             continue
         cands.sort()
         best = cands[0] if cands else None
-        cache[genre] = {"price": best[0] if best else None, "name": best[1] if best else None,
-                        "url": search_link(word, aff), "item_url": item_link(best[2], aff) if best and best[2] else None,
-                        "fetched_at": now().isoformat(), "top": [f"¥{p} {n[:50]}" for p, n, _ in cands[:5]]}
-        log(f"楽天価格: {genre} → " + (f"¥{best[0]} {best[1][:40]}" if best else "なし"))
+        from urllib.parse import quote
+        link = item_link(f"https://search.rakuten.co.jp/search/mall/{quote(word)}/{gid}/?s=2", aff)
+        cache[genre] = {"price": best[0] if best else None, "name": best[1] if best else None, "genre": gid,
+                        "url": link, "fetched_at": now().isoformat(), "top": [f"¥{p} {n[:50]}" for p, n, _ in cands[:5]]}
+        log(f"楽天価格: {genre}（ジャンル{gid}） → " + (f"¥{best[0]} {best[1][:40]}" if best else "なし"))
     save_json("rakuten_prices.json", cache)
     return cache

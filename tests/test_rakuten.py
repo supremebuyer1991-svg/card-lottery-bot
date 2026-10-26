@@ -83,13 +83,14 @@ sup = [
     {"itemName": "iPhone 15 スリーブケース", "itemPrice": 80, "itemUrl": "https://i/1"},
     {"itemName": "アームスリーブ 冷感 UVカット", "itemPrice": 90, "itemUrl": "https://i/2"},
     {"itemName": "【中古】カードスリーブ", "itemPrice": 50, "itemUrl": "https://i/3"},
-    {"itemName": "カードスリーブ 100枚入り", "itemPrice": 110, "itemUrl": "https://i/ok"},
+    {"itemName": "カードスリーブ 100枚入り", "itemPrice": 110, "itemUrl": "https://i/ok", "genreId": 123},
     {"itemName": "ポケモンカードゲーム デッキシールド", "itemPrice": 440, "itemUrl": "https://i/5"},
 ]
 fs5 = FakeSession(sup)
-p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=3), ["pokemon", "onepiece"], session=fs5, sleep=0)
-assert fs5.calls[0][1]["keyword"] == "スリーブ" and fs5.calls[0][1]["sort"] == "+itemPrice"
+p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=4), ["pokemon", "onepiece"], session=fs5, sleep=0)
+assert fs5.calls[0][1]["keyword"] == "トレカ スリーブ"                      # まずトレカ用品のジャンルを調べる
+assert fs5.calls[1][1]["keyword"] == "スリーブ" and fs5.calls[1][1]["sort"] == "+itemPrice" and fs5.calls[1][1]["genreId"] == "123"
 assert p["スリーブ"]["price"] == 110, p                 # スマホ・腕カバー・中古は除外。デッキシールドは名前にスリーブが無いので対象外
 assert "s%3D2" in p["スリーブ"]["url"] and "aaaa.bbbb" in p["スリーブ"]["url"]
-assert len(fs5.calls) == 1                               # 全ゲーム共通で1回（見つかったので2ページ目は見ない）
+assert len(fs5.calls) == 2                               # 全ゲーム共通（ジャンル調べ1回＋見つかったので1ページだけ）
 print("RAKUTEN ALL OK")
