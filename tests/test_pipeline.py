@@ -16,6 +16,7 @@ tmp = Path(tempfile.mkdtemp())
 common.STATE_DIR = tmp
 
 s = load_settings()
+s["max_posts_per_run"] = 3  # 本番設定で投稿を止めていてもテストは通常の上限で確認
 s["auto_approve"], s["dry_run"], s["site_url"] = True, False, "https://example.com"
 
 end = (now() + timedelta(hours=10)).isoformat(timespec="minutes")
