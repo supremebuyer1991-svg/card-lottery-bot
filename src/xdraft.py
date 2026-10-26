@@ -24,17 +24,18 @@ h1{font-size:18px;margin:0 0 4px}.sub{color:var(--sub);font-size:13px;margin:0 0
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
 .card h2{font-size:15px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:center}
 .card h2 small{color:var(--sub);font-weight:normal;font-size:12px}
-textarea{width:100%;box-sizing:border-box;min-height:9em;border:1px solid var(--line);border-radius:8px;padding:10px;
- font:15px/1.5 inherit;background:transparent;color:var(--ink);resize:vertical}
+textarea{width:100%;box-sizing:border-box;min-height:15em;border:1px solid var(--line);border-radius:8px;padding:10px;
+ font:15px/1.6 -apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:transparent;color:var(--ink);resize:vertical}
 .row{display:flex;gap:8px;margin-top:8px;align-items:center}
 button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold}
-button.ok{background:#2e7d32}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
+button.ok{background:#2e7d32}
+.xbtn{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold;text-decoration:none}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
 .empty{color:var(--sub);font-size:14px}
 .now{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 .card h2{gap:8px}.card h2 small{text-align:right;flex:none}
 </style></head><body>
 <h1>X投稿 下書き（非公開ページ）</h1>
-<p class="sub">開いた時点の件数で作っています。「コピー」→ Xアプリに貼り付けて投稿。データ更新：<span id="upd"></span></p>
+<p class="sub">開いた時点の件数で作っています。「Xで開く」→ そのまま投稿、または閉じる時に「下書きを保存」。データ更新：<span id="upd"></span></p>
 <div id="cards"></div>
 <script>
 const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__;
@@ -153,10 +154,11 @@ if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選があ
 for(const {h,hint,t,hot} of cards){
  const d=document.createElement("div");d.className="card";
  const n=xlen(t);
- d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea><div class="row"><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
+ d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea><div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
  const ta=d.querySelector("textarea"),b=d.querySelector("button");
+ const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
- ta.oninput=()=>{const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=m+"/280";s.className="len "+(m>280?"over":"");};
+ ta.oninput=()=>{setX();const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=m+"/280";s.className="len "+(m>280?"over":"");};
  root.appendChild(d);
 }
 </script></body></html>
