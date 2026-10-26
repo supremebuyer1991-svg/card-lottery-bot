@@ -15,6 +15,11 @@ save_json("lotteries.json", {
     "noend_old": {"status": "listed", "end": None, "found_at": iso(11), "store": "b", "product": "p"},
     "noend_new": {"status": "listed", "end": None, "found_at": iso(2), "store": "c", "product": "p"},
     "live": {"status": "listed", "end": (now() + timedelta(days=2)).isoformat(), "found_at": iso(1), "store": "d", "product": "p"},
+    # 投稿が2026-08-09のXの告知（情報元が載せたまま・見つけたのは昨日）→ 締切不明なら終了
+    "old_post": {"status": "listed", "end": None, "found_at": iso(1), "store": "f", "product": "p",
+                 "url": "https://x.com/lit_tenjin/status/2086377212266348799"},
+    "old_post_with_end": {"status": "listed", "end": (now() + timedelta(days=5)).isoformat(), "found_at": iso(1), "store": "g",
+                          "product": "p", "url": "https://x.com/lit_tenjin/status/2086377212266348799"},
     "old_closed": {"status": "closed", "end": iso(40), "closed_at": iso(35), "store": "e", "product": "p"},
 })
 approve.approve(s)
@@ -23,5 +28,7 @@ assert L["past"]["status"] == "closed"                 # 締切が過ぎた
 assert L["noend_old"]["status"] == "closed"            # 締切不明のまま10日
 assert L["noend_new"]["status"] == "listed"            # 締切不明でもまだ新しい
 assert L["live"]["status"] == "listed"
+assert L["old_post"]["status"] == "closed"            # 告知の投稿から21日以上・締切不明
+assert L["old_post_with_end"]["status"] == "listed"    # 締切が分かっていればそのまま
 assert "old_closed" not in L                           # 終了から30日でデータから削除
 print("EXPIRE OK")

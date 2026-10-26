@@ -11,6 +11,16 @@ from common import load_json, save_json, parse_dt, now, log
 GH = "https://api.github.com"
 
 
+
+def _post_date(url):
+    """XのポストのURLから投稿日時を出す（ポストIDに日時が入っている）"""
+    import re
+    from datetime import datetime, timezone
+    m = re.search(r"(?:x|twitter)\.com/[^/]+/status/(\d{15,})", url or "")
+    if not m:
+        return None
+    return datetime.fromtimestamp(((int(m.group(1)) >> 22) + 1288834974657) / 1000, timezone.utc)
+
 def _gh(method, path, **kw):
     repo, token = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_TOKEN")
     if not (repo and token):
@@ -73,16 +83,22 @@ def approve(settings):
 
     # 締切が過ぎたものは終了に。締切が書かれていないものは、見つけてから一定日数で終了に
     no_end_days = settings.get("no_end_expire_days", 10)
+    post_days = settings.get("no_end_post_days", 21)
     for it in lots.values():
         if it["status"] not in ("new", "pending", "approved", "posted", "listed"):
             continue
         end, found = parse_dt(it.get("end")), parse_dt(it.get("found_at"))
         too_old = not end and found and (now() - found).days >= no_end_days
-        if (end and end < now()) or too_old:
+        # Xの告知は投稿日が分かる。情報元が古い告知を載せたままでも、投稿から post_days 日で締切不明なら終了扱い
+        posted = _post_date(it.get("url"))
+        old_post = not end and posted and (now() - posted).days >= post_days
+        if (end and end < now()) or too_old or old_post:
             it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
             it["closed_at"] = now().isoformat()
             if too_old:
                 it["closed_reason"] = f"締切不明のまま{no_end_days}日経過"
+            elif old_post:
+                it["closed_reason"] = f"告知の投稿から{post_days}日以上たって締切不明"
 
     # 終了したものは一定日数たったらデータから削除（ファイルが大きくなり続けないように）
     purge_days = settings.get("purge_closed_days", 30)

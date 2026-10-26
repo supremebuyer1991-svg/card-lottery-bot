@@ -27,7 +27,7 @@ PROMPT = """トレカの抽選販売の告知です。この抽選の「応募�
 「受付期間」「応募期間」「抽選期間」「申込期間」「〇/〇(〇)〜〇/〇(〇)」「〇日〇時まで」などの書き方があります。期間が「A〜B」なら B が締切です。
 
 ルール:
-- 受付締切（応募期間・申込期間・受付期間の終わり）だけ。当選発表日・購入期間・発売日・引き換え期間は締切ではない
+- 受付締切（応募期間・申込期間・受付期間の終わり）だけ。当選発表日・購入期間・発売日・引き換え期間は締切ではない\n- ただし締切が書かれておらず「当選発表〇/〇」「結果発表〇/〇」だけが書かれている時は、発表日の 00:00 を end にし、evidence に「発表日から推定」と書く（発表の時点で受付は終わっているため）\n- 「〆」「締め」「〜〇/〇」「〇/〇まで」「〇日〇時迄」なども締切の書き方
 - 年が書かれていなければ、投稿日（{posted}）を基準に補う。時刻が無ければ 23:59
 - 書かれていなければ null（推測しない）
 - 今日は {today}
@@ -141,7 +141,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         if it.get("status") not in ACTIVE or it.get("end"):
             continue
         t = parse_dt(it.get("deadline_checked_at"))
-        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 3:
+        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 4:
             continue
         url = it.get("url") or ""
         if _tweet_id(url) or any(h in url for h in PAGE_HOSTS):
@@ -177,7 +177,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         else:
             text, src = _page_text(it["url"], fetcher), "応募ページ"
         it["deadline_checked_at"] = now().isoformat()
-        it["deadline_v"] = 3
+        it["deadline_v"] = 4
         if not text and not imgs:
             continue
         try:
