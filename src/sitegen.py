@@ -217,9 +217,9 @@ def _supply_ad(short, name, tag, aff, prices=None, game=None):
     prices = prices or {}
     tiles, dates = [], []
     for k in ("スリーブ", "ローダー", "デッキケース", "ストレージ"):
-        p = prices.get(f"{game}|{k}") or {}
+        p = prices.get(k) or prices.get(f"{game}|{k}") or {}
         if p.get("price") and p.get("url"):
-            href, price = p["url"], f'<small>楽天</small><strong>¥{p["price"]:,}〜</strong>'
+            href, price = p["url"], f'<small>楽天・送料別</small><strong>¥{p["price"]:,}〜</strong>'
             dates.append(p.get("fetched_at") or "")
         else:
             href = _amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff)
@@ -230,7 +230,7 @@ def _supply_ad(short, name, tag, aff, prices=None, game=None):
     note = ""
     if dates:
         d = parse_dt(max(dates))
-        note = f'<p class="ad-note">価格は楽天市場の{d.month}/{d.day}時点の最安値（送料は別の場合あり）</p>' if d else ""
+        note = f'<p class="ad-note">価格は楽天市場の{d.month}/{d.day}時点の最安値（税込・送料別）</p>' if d else ""
     return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(short)}のサプライをさがす</span></div>'
             f'<div class="ad-sup ad-tiles"><div>{"".join(tiles)}</div></div>{note}'
             + (f'<div class="ad-amz"><b>Amazonで見る</b>{amz}</div>' if amz else "") + '</aside>')

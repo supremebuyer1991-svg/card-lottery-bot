@@ -132,15 +132,20 @@ def update(settings, series_by_game, session=None, sleep=1.1):
 
 # ---- サプライの最安値（ジャンルごと・1日1回） ----
 # ジャンル: (検索語のリスト（{g}=ゲーム名）, 商品名の頭にあるべき語)
-SUPPLY = {
-    "スリーブ": (["{g} スリーブ", "トレカ スリーブ 100枚"], ("スリーブ", "デッキシールド", "プロテクター")),
-    "ローダー": (["{g} ローダー", "トップローダー トレカ"], ("ローダー",)),
-    "デッキケース": (["{g} デッキケース", "トレカ デッキケース"], ("デッキケース", "デッキボックス")),
-    "ストレージ": (["{g} ストレージボックス", "トレカ ストレージボックス"], ("ストレージ",)),
+SUPPLY = {  # ジャンル: (検索語, 商品名に入っているべき語)。検索語はジャンル名だけ（ゲーム名は付けない）
+    "スリーブ": ("スリーブ", ("スリーブ",)),
+    "ローダー": ("ローダー", ("ローダー",)),
+    "デッキケース": ("デッキケース", ("デッキケース",)),
+    "ストレージ": ("ストレージ", ("ストレージ",)),
 }
-SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋", "まとめ売り", "シングル", "拡張パック", "ブースター", "未開封BOX",
-             "仕切り", "セパレーター", "スタンド", "ディスプレイ", "スーパーレア", "シークレット", "プロモ", "レアカード", "のみの販売",
-             "サンプル", "見本", "ステッカー", "シール", "ファイル", "バインダー", "リフィル")
+# カード用ではないとはっきり分かる物だけ除く（スマホ・PC・服・腕カバーなど）と、中古・オリパなど
+SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋",
+             "スマホ", "スマートフォン", "iPhone", "アイフォン", "Android", "Galaxy", "Xperia", "AQUOS", "Pixel",
+             "PC", "パソコン", "ノート", "MacBook", "Mac", "タブレット", "iPad", "Surface", "Kindle", "インチ",
+             "アームカバー", "アームスリーブ", "腕", "袖", "シャツ", "ニット", "ブラウス", "ワンピース 半袖", "レディース", "メンズ",
+             "コンプレッション", "サポーター", "インナー", "肘", "膝", "日焼け", "UV手袋", "冷感",
+             "ワイン", "ボトル", "カップ", "スリーブ缶", "レコード", "LP", "ストレージ容量", "SSD", "HDD", "USB", "microSD", "GB", "TB",
+             "ソファ", "クッション", "収納ボックス 衣類", "フィルムスリーブ", "ネガ")
 CARD_NO = re.compile(r"\b[A-Z]{1,3}\d{2}-\d{3}\b|\b(SR|SEC|SAR|UR|AR|RR)\b")
 
 
@@ -151,7 +156,7 @@ def _head(name, n=28):
 
 
 def supply_ok(name, must):
-    if not any(w in _head(name) for w in must):
+    if not any(w in (name or "") for w in must):
         return False
     if any(w in (name or "") for w in SUPPLY_NG) or CARD_NO.search(name or ""):
         return False
@@ -165,45 +170,42 @@ def search_link(q, aff):
 
 
 def supply_prices(settings, games, session=None, sleep=1.1):
-    """state/rakuten_prices.json を更新して返す。{"pokemon|スリーブ": {"price", "url", "name", "fetched_at"}}"""
+    """state/rakuten_prices.json を更新して返す。{"スリーブ": {"price", "url", "name", "fetched_at"}}（全ゲーム共通）
+    楽天で「ジャンル名」だけを検索し、商品名にジャンル名が入っている物の最安値（送料別）"""
     cache = load_json("rakuten_prices.json", {})
     if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
         return cache
     aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
-    budget = settings.get("rakuten_price_calls_per_run", 40)
-    for game in games:
-        gname = settings["game_names"][game]
-        for genre, (queries, must) in SUPPLY.items():
-            k = f"{game}|{genre}"
-            c = cache.get(k)
-            if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).total_seconds() < 20 * 3600:
-                continue  # 1日1回
-            if budget < len(queries):
+    budget = settings.get("rakuten_price_calls_per_run", 20)
+    for genre, (word, must) in SUPPLY.items():
+        c = cache.get(genre)
+        if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).total_seconds() < 20 * 3600:
+            continue  # 1日1回
+        if budget < 3:
+            break
+        cands, failed = [], False
+        for page in (1, 2, 3):
+            budget -= 1
+            try:
+                items = search(word, dict(settings, _sort="+itemPrice", _page=page), session)
+            except Exception as e:
+                log(f"楽天価格: {genre} 取得失敗 {e}")
+                if "401" in str(e) or "403" in str(e):
+                    return cache
+                failed = True
                 break
-            cands, best_q, failed = [], None, False
-            for q in (x.format(g=gname) for x in queries):
-                for page in (1, 2):
-                    budget -= 1
-                    try:
-                        items = search(q, dict(settings, _sort="+itemPrice", _page=page), session)
-                    except Exception as e:
-                        log(f"楽天価格: {k} 取得失敗 {e}")
-                        if "401" in str(e) or "403" in str(e):
-                            return cache
-                        failed = True
-                        break
-                    good = [it for it in items if supply_ok(it.get("itemName"), must) and int(it.get("itemPrice") or 0) >= 80]
-                    cands += [(int(it["itemPrice"]), it.get("itemName"), q) for it in good]
-                    time.sleep(sleep)
-                    if good or len(items) < 30:
-                        break  # 安い順なので、見つかったらそれ以上は見なくてよい
-            if failed and not cands:
-                continue
-            cands.sort()
-            best = cands[0] if cands else None
-            cache[k] = {"price": best[0] if best else None, "name": best[1] if best else None,
-                        "url": search_link(best[2] if best else f"{gname} {genre}", aff), "fetched_at": now().isoformat(),
-                        "top": [f"¥{p} {n[:40]}" for p, n, _ in cands[:3]]}
-            log(f"楽天価格: {k} → " + (f"¥{best[0]} {best[1][:40]}" if best else "なし"))
+            cands += [(int(it["itemPrice"]), it.get("itemName"), it.get("itemUrl"))
+                      for it in items if supply_ok(it.get("itemName"), must) and int(it.get("itemPrice") or 0) > 0]
+            time.sleep(sleep)
+            if cands or len(items) < 30:
+                break  # 安い順なので、見つかったらそれ以上は見なくてよい
+        if failed and not cands:
+            continue
+        cands.sort()
+        best = cands[0] if cands else None
+        cache[genre] = {"price": best[0] if best else None, "name": best[1] if best else None,
+                        "url": search_link(word, aff), "item_url": item_link(best[2], aff) if best and best[2] else None,
+                        "fetched_at": now().isoformat(), "top": [f"¥{p} {n[:50]}" for p, n, _ in cands[:5]]}
+        log(f"楽天価格: {genre} → " + (f"¥{best[0]} {best[1][:40]}" if best else "なし"))
     save_json("rakuten_prices.json", cache)
     return cache
