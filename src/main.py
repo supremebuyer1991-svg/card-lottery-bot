@@ -8,6 +8,7 @@ from xpost import post_all, post_daily_summary
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
+from classify import classify
 
 
 def main():
@@ -18,6 +19,10 @@ def main():
         new = collect(load_sources(), s)
         log(f"新着 {len(new)} 件")
     if step in ("all", "publish"):
+        try:
+            classify(s)  # ネット（発送）／店頭（店頭受け取り）の振り分けと都道府県の補完
+        except Exception as e:
+            log(f"振り分け: スキップ {e}")
         approve(s)
         post_all(s)
         post_daily_summary(s)

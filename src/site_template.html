@@ -460,7 +460,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
     } else if (st.channel === "store" && !st.area) {
       var by = {};
-      list.forEach(function (i) { (by[i.area || "地域不明"] = by[i.area || "地域不明"] || []).push(i); });
+      list.forEach(function (i) { (by[i.area || "複数店舗・地域未確定"] = by[i.area || "複数店舗・地域未確定"] || []).push(i); });
       Object.keys(by).sort(function (a, b) { var x = PREF_ORDER.indexOf(a), y = PREF_ORDER.indexOf(b); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); }).forEach(function (a) {
         html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + by[a].map(ticket).join("");
       });
