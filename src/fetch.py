@@ -9,10 +9,16 @@ import requests
 from bs4 import BeautifulSoup
 
 UA = "Mozilla/5.0 (compatible; CardLotteryBot/1.0; +info-collector)"
+# 一部のサイト（LivePocketなど）はボット向けの名前だと中身を返さないので、普通のブラウザと同じ見え方で取る
+BROWSER = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) "
+                         "Version/17.5 Mobile/15E148 Safari/604.1",
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "ja-JP,ja;q=0.9"}
+BROWSER_HOSTS = ("livepocket.jp", "docs.google.com", "forms.gle", "customform.jp", "membercard.jp", "e-starbox.com")
 
 
 def get(url: str) -> str:
-    r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "ja"}, timeout=30)
+    h = BROWSER if any(x in url for x in BROWSER_HOSTS) else {"User-Agent": UA, "Accept-Language": "ja"}
+    r = requests.get(url, headers=h, timeout=30)
     r.raise_for_status()
     r.encoding = r.apparent_encoding or r.encoding
     time.sleep(2)  # 連続アクセスしない
@@ -22,10 +28,26 @@ def get(url: str) -> str:
 def html_to_text(html: str, base_url: str = "") -> str:
     """本文テキスト＋リンク一覧を返す（AIが抽選ページのURLを拾えるように）"""
     soup = BeautifulSoup(html, "html.parser")
+    # ページの説明（meta）と、機械向けのイベント情報（JSON-LD：受付期間 startDate/endDate が入っていることが多い）も読む
+    head = []
+    for m in soup.find_all("meta"):
+        if (m.get("name") or m.get("property") or "") in ("description", "og:title", "og:description") and m.get("content"):
+            head.append(m["content"].strip())
+    for sc in soup.find_all("script", type="application/ld+json"):
+        try:
+            d = json.loads(sc.string or "")
+            for e in (d if isinstance(d, list) else [d]):
+                if isinstance(e, dict) and any(e.get(k) for k in ("startDate", "endDate", "name")):
+                    head.append("[イベント情報] " + " / ".join(f"{k}: {e[k]}" for k in ("name", "startDate", "endDate") if e.get(k)))
+                for o in (e.get("offers") or []) if isinstance(e, dict) and isinstance(e.get("offers"), list) else []:
+                    if isinstance(o, dict) and (o.get("availabilityStarts") or o.get("availabilityEnds")):
+                        head.append(f"[受付] {o.get('name', '')} {o.get('availabilityStarts', '')} 〜 {o.get('availabilityEnds', '')}")
+        except Exception:
+            pass
     for t in soup(["script", "style", "noscript", "svg", "header", "footer", "nav"]):
         t.decompose()
     lines = [ln.strip() for ln in soup.get_text("\n").splitlines()]
-    text = "\n".join(ln for ln in lines if ln)
+    text = "\n".join(dict.fromkeys(head)) + ("\n\n" if head else "") + "\n".join(ln for ln in lines if ln)
     links = []
     for a in soup.find_all("a", href=True):
         label = a.get_text(" ", strip=True)

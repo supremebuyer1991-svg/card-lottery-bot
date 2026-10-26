@@ -50,7 +50,7 @@ def dedupe(settings=None):
     def merge(keep_k, k):
         nonlocal n
         keep, d = lots[keep_k], lots[k]
-        for f in ("area", "conditions", "url", "x_post", "image"):  # 残す方の空欄を補う
+        for f in ("area", "conditions", "url", "x_post", "image", "end", "apply_url"):  # 残す方の空欄を補う
             if not keep.get(f) and d.get(f):
                 keep[f] = d[f]
         d["status"], d["duplicate_of"] = "duplicate", keep_k
@@ -76,6 +76,22 @@ def dedupe(settings=None):
         for k in others:
             if k != target:
                 merge(target, k)
+    # 同じ応募ページ（LivePocket・フォームなど）から別々に拾った抽選は、カード抽選まとめの方にまとめる
+    # （Xから拾った方は店名が「朝霞」のように短かったり締切が空だったりするので、店名・締切ではまとまらない）
+    by_url = {}
+    for k, it in lots.items():
+        u = (it.get("url") or "").split("?")[0].rstrip("/")
+        if it.get("status") in ACTIVE and u and not re.search(r"(x|twitter)\.com/|amazon\.|amzn\.", u):
+            by_url.setdefault((it.get("game"), u), []).append(k)
+    for keys in by_url.values():
+        cc = [k for k in keys if str(lots[k].get("source", "")).startswith("カード抽選")]
+        others = [k for k in keys if k not in cc]
+        if not cc or not others:
+            continue
+        for k in others:
+            sk = norm_series(lots[k].get("series") or lots[k].get("product"), aliases)
+            same = [c for c in cc if norm_series(lots[c].get("series") or lots[c].get("product"), aliases) == sk]
+            merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
     if n:
         save_json("lotteries.json", lots)
         log(f"重複: {n}件をまとめました")

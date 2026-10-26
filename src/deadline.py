@@ -120,10 +120,17 @@ def _x_lookup(ids, settings, client=None):
     return out
 
 
+LAST_ERR = {}
+
+
 def _page_text(url, fetcher):
     try:
-        return html_to_text(fetcher(url), url)[:5000]
+        t = html_to_text(fetcher(url), url)[:5000]
+        if not t.strip():
+            LAST_ERR[url] = "応募ページの中身が空"
+        return t
     except Exception as e:
+        LAST_ERR[url] = f"応募ページを読めず（{str(e)[:40]}）"
         log(f"締切の調査: ページ取得失敗 {url[:60]} {e}")
         return ""
 
@@ -179,6 +186,7 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         it["deadline_checked_at"] = now().isoformat()
         it["deadline_v"] = 4
         if not text and not imgs:
+            it["deadline_note"] = LAST_ERR.get(it.get("url") or "", "読める内容なし")
             continue
         try:
             r = ask(text, imgs, it, posted)
