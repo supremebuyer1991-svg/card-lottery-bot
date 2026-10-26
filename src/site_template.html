@@ -93,6 +93,25 @@ input[type="search"] { flex: 1 1 160px; }
 .toggle:has(input:checked) { border-color: var(--ink); }
 .hint { font-size: 12px; color: var(--ink-2); }
 
+/* 店頭抽選：地方 → 都道府県の2段 */
+.region { margin-top: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 10px 0 12px; }
+.region .lbl { font-size: 12px; font-weight: 700; color: var(--ink-2); padding: 0 12px 6px; display: flex; justify-content: space-between; }
+.region .lbl small { font-weight: 500; }
+.r-row { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 12px; scroll-padding-inline: 12px; }
+.r-row::-webkit-scrollbar { display: none; }
+.r-row button { flex: none; font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--rule); background: var(--paper); color: var(--ink);
+  border-radius: 8px; padding: 7px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.r-row button .c { font-family: var(--font-num); font-size: 11px; color: var(--ink-2); }
+.r-row button[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.r-row button[aria-pressed="true"] .c { color: inherit; opacity: .7; }
+.r-row button:disabled { opacity: .4; cursor: default; }
+.r-pref { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule); }
+.r-row.r-reg { display: grid; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+.r-row.r-reg button { justify-content: center; padding: 8px 2px; font-size: 12px; letter-spacing: -.03em; white-space: nowrap; flex-direction: column; gap: 1px; line-height: 1.2; }
+.r-row.r-pref { flex-wrap: wrap; overflow: visible; }
+.r-pref button { background: var(--card); border-radius: 999px; font-weight: 500; padding: 5px 11px; }
+.r-pref button.all { font-weight: 700; }
+
 /* 弾の切り替え（横スワイプ） */
 .series { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 14px -16px 2px; padding: 2px 16px 6px; scroll-padding-inline: 16px; scroll-snap-type: x proximity; }
 .series::-webkit-scrollbar { display: none; }
@@ -233,7 +252,6 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         <button type="button" data-v="online" aria-pressed="true">ネット抽選</button>
         <button type="button" data-v="store" aria-pressed="false">店頭抽選</button>
       </div>
-      <select id="area" aria-label="都道府県" hidden></select>
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
     <div class="row scroll">
@@ -246,6 +264,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     </div>
   </div>
 
+  <div class="region" id="region" hidden></div>
   <div class="series" id="series"></div>
   <div class="list" id="list">__PRERENDER__</div>
 
@@ -281,11 +300,21 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   var applied = load("lot_applied", {});
   var LOCK = DATA.lock || {};
-  var st = Object.assign({ game: GAMES[0].id, channel: "online", area: "", q: "", series: "" },
+  var st = Object.assign({ game: GAMES[0].id, channel: "online", region: "", area: "", q: "", series: "" },
     LOCK.game ? {} : load("lot_view", {}), LOCK);
   if (!LOCK.game && location.hash && GAMES.some(function (g) { return "#" + g.id === location.hash; })) st.game = location.hash.slice(1);
 
   var $ = function (id) { return document.getElementById(id); };
+  var REGIONS = [
+    ["北海道・東北", ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"]],
+    ["関東", ["茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県"]],
+    ["中部", ["新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県"]],
+    ["近畿", ["三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県"]],
+    ["中国・四国", ["鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県"]],
+    ["九州・沖縄", ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"]]];
+  var REG = {}, PREF_ORDER = [];
+  REGIONS.forEach(function (r) { r[1].forEach(function (p) { REG[p] = r[0]; PREF_ORDER.push(p); }); });
+  if (st.area && REG[st.area]) st.region = REG[st.area];
   var WEEK = "日月火水木金土";
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -321,6 +350,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return inGame().filter(function (i) {
       if ((i.channel === "store" ? "store" : "online") !== st.channel) return false;
       if (st.channel === "store" && st.area && i.area !== st.area) return false;
+      if (st.channel === "store" && !st.area && st.region && REG[i.area] !== st.region) return false;
       if (st.series && i.series !== st.series) return false;
       if ($("f-unapplied").checked && applied[i.key]) return false;
       if ($("f-noid").checked && i.id_check !== false) return false;
@@ -372,7 +402,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }
 
   function render() {
-    if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, area: st.area });
+    if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, region: st.region, area: st.area });
     var g = inGame();
     var gs = st.series ? g.filter(function (i) { return i.series === st.series; }) : g;
     // ゲームタブ
@@ -390,13 +420,20 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     void fresh;
     // チャネル
     [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
-    // 都道府県
-    var areas = Array.from(new Set(g.filter(function (i) { return i.channel === "store" && i.area; }).map(function (i) { return i.area; }))).sort();
-    $("area").hidden = st.channel !== "store";
-    $("area").innerHTML = '<option value="">全国の店頭抽選</option>' + areas.map(function (a) {
-      var n = g.filter(function (i) { return i.channel === "store" && i.area === a; }).length;
-      return '<option value="' + esc(a) + '"' + (a === st.area ? " selected" : "") + '>' + esc(a) + "（" + n + "）</option>";
-    }).join("");
+    // 店頭抽選：地方 → 都道府県
+    var storeItems = g.filter(function (i) { return i.channel === "store" && (!st.series || i.series === st.series); });
+    var pc = {}; storeItems.forEach(function (i) { if (i.area) pc[i.area] = (pc[i.area] || 0) + 1; });
+    var rc = function (r) { return r[1].reduce(function (n, p) { return n + (pc[p] || 0); }, 0); };
+    var cur = REGIONS.filter(function (r) { return r[0] === st.region; })[0];
+    var rh = '<div class="lbl">地域でしぼる<small>' + (st.area ? esc(st.area) : st.region ? esc(st.region) + "の全体" : "全国") + "を表示中</small></div>" +
+      '<div class="r-row r-reg"><button type="button" data-r="" aria-pressed="' + (!st.region) + '">全国<span class="c">' + storeItems.length + "</span></button>" +
+      REGIONS.map(function (r) { var n = rc(r); return '<button type="button" data-r="' + r[0] + '" aria-pressed="' + (r[0] === st.region) + '"' + (n ? "" : " disabled") + ">" + r[0] + '<span class="c">' + n + "</span></button>"; }).join("") + "</div>";
+    if (cur) {
+      rh += '<div class="r-row r-pref"><button type="button" class="all" data-p="" aria-pressed="' + (!st.area) + '">' + cur[0] + '全体<span class="c">' + rc(cur) + "</span></button>" +
+        cur[1].map(function (p) { var n = pc[p] || 0; return '<button type="button" data-p="' + p + '" aria-pressed="' + (p === st.area) + '"' + (n ? "" : " disabled") + ">" + p.replace(/[都府県]$/, "") + '<span class="c">' + n + "</span></button>"; }).join("") + "</div>";
+    }
+    $("region").innerHTML = rh;
+    $("region").hidden = st.channel !== "store";
     // 弾
     var ser = {};
     g.forEach(function (i) { if (i.series) ser[i.series] = (ser[i.series] || 0) + 1; });
@@ -411,7 +448,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     } else if (st.channel === "store" && !st.area) {
       var by = {};
       list.forEach(function (i) { (by[i.area || "地域不明"] = by[i.area || "地域不明"] || []).push(i); });
-      Object.keys(by).sort().forEach(function (a) {
+      Object.keys(by).sort(function (a, b) { var x = PREF_ORDER.indexOf(a), y = PREF_ORDER.indexOf(b); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); }).forEach(function (a) {
         html += '<h2 class="group-h">' + esc(a) + '<small>' + by[a].length + '件</small></h2>' + by[a].map(ticket).join("");
       });
     } else {
@@ -424,10 +461,15 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("games").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-g]"); if (!b) return;
     if (DATA.gameUrls && DATA.gameUrls[b.dataset.g] && LOCK.game) { location.href = DATA.gameUrls[b.dataset.g]; return; }
-    st.game = b.dataset.g; st.series = ""; st.area = ""; render();
+    st.game = b.dataset.g; st.series = ""; st.area = ""; st.region = ""; render();
   });
   $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });
-  $("area").addEventListener("change", function () { st.area = this.value; render(); });
+  $("region").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || b.disabled) return;
+    if (b.hasAttribute("data-r")) { st.region = b.dataset.r; st.area = ""; }
+    else if (b.hasAttribute("data-p")) { st.area = b.dataset.p; }
+    render();
+  });
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
   $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
