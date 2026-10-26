@@ -85,6 +85,12 @@ def approve(settings):
     no_end_days = settings.get("no_end_expire_days", 10)
     post_days = settings.get("no_end_post_days", 21)
     manual = [u for u in (settings.get("closed_urls") or []) if u]
+    # 応募先が情報元の一覧ページそのもの（個別の告知ではない）＝AIがあいまいに作った抽選なので載せない
+    try:
+        from common import load_sources
+        index_urls = {s_["url"].rstrip("/") for s_ in load_sources() if s_.get("url") and s_.get("type") != "rss"}
+    except Exception:
+        index_urls = set()
     for it in lots.values():
         if it["status"] not in ("new", "pending", "approved", "posted", "listed"):
             continue
@@ -94,6 +100,10 @@ def approve(settings):
         posted = _post_date(it.get("url"))
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
+        if (it.get("url") or "").rstrip("/") in index_urls and not it.get("apply_url"):
+            it["status"] = "rejected"
+            it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
+            continue
         if (end and end < now()) or too_old or old_post or hand:
             it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
             it["closed_at"] = now().isoformat()

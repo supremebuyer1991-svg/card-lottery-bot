@@ -20,6 +20,8 @@ save_json("lotteries.json", {
                  "url": "https://x.com/lit_tenjin/status/2086377212266348799"},
     "old_post_with_end": {"status": "listed", "end": (now() + timedelta(days=5)).isoformat(), "found_at": iso(1), "store": "g",
                           "product": "p", "url": "https://x.com/lit_tenjin/status/2086377212266348799"},
+    "index": {"status": "listed", "end": None, "found_at": iso(1), "store": "ポケモンセンターオンライン", "product": "30周年商品",
+              "url": "https://www.pokemon-card.com/info/"},
     "old_closed": {"status": "closed", "end": iso(40), "closed_at": iso(35), "store": "e", "product": "p"},
 })
 approve.approve(s)
@@ -30,5 +32,6 @@ assert L["noend_new"]["status"] == "listed"            # 締切不明でもま�
 assert L["live"]["status"] == "listed"
 assert L["old_post"]["status"] == "closed"            # 告知の投稿から21日以上・締切不明
 assert L["old_post_with_end"]["status"] == "listed"    # 締切が分かっていればそのまま
+assert L["index"]["status"] == "rejected"             # 応募先が情報元の一覧ページ → 載せない
 assert "old_closed" not in L                           # 終了から30日でデータから削除
 print("EXPIRE OK")
