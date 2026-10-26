@@ -56,9 +56,9 @@ assert url.startswith("https://openapi.rakuten.co.jp/") and params["applicationI
 assert headers["accessKey"] == "pk_test" and headers["Referer"] == "https://toreca-chusen-navi.pages.dev/"
 assert params["affiliateId"] == "aaaa.bbbb" and "ポケモンカード テスト弾" == params["keyword"]
 r = c["pokemon|テスト弾"]
-assert r["url"] == "https://a/ok" and r["image"] == "https://img/ok.jpg?_ex=300x300", r   # オリパ・サプライ・別の弾は選ばない
+assert r["url"].startswith("https://hb.afl.rakuten.co.jp/hgc/aaaa.bbbb/?pc=https%3A%2F%2Fa%2Fok") and r["image"] == "https://img/ok.jpg?_ex=300x300", r   # オリパ・サプライ・別の弾は選ばない
 assert c["pokemon|存在しない弾"]["image"] == ""                                            # 見つからない弾も記録
-assert load_json("rakuten.json", {})["pokemon|テスト弾"]["url"] == "https://a/ok"
+assert load_json("rakuten.json", {})["pokemon|テスト弾"]["url"].endswith("a%2Fok")
 
 # 取り直し期間内はAPIを呼ばない
 fs2 = FakeSession(items)

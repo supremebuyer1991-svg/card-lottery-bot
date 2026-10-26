@@ -55,6 +55,17 @@ def _first_image(item):
     return re.sub(r"\?_ex=\d+x\d+", "", u) + "?_ex=300x300" if u else ""
 
 
+def item_link(url, aff):
+    """商品ページURLを、自分の楽天アフィリエイトIDのリンクで包む（楽天アフィリエイトの公式の形式）。
+    APIが返す affiliateUrl の中身（pc=商品ページ）を取り出して使う"""
+    from urllib.parse import urlparse, parse_qs, quote
+    if not url:
+        return ""
+    if "hb.afl.rakuten.co.jp" in url:
+        url = (parse_qs(urlparse(url).query).get("pc") or [url])[0]
+    return f"https://hb.afl.rakuten.co.jp/hgc/{aff}/?pc={quote(url, safe='')}&m={quote(url, safe='')}" if aff else url
+
+
 def search(keyword, settings, session=None):
     app, key = os.environ.get("RAKUTEN_APP_ID", "").strip(), os.environ.get("RAKUTEN_ACCESS_KEY", "").strip()
     site = (os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
@@ -105,7 +116,8 @@ def update(settings, series_by_game, session=None, sleep=1.1):
                     best = (sc, it)
             if best:
                 it = best[1]
-                cache[k] = {"image": _first_image(it), "url": it.get("affiliateUrl") or it.get("itemUrl"),
+                aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
+                cache[k] = {"image": _first_image(it), "url": item_link(it.get("itemUrl") or it.get("affiliateUrl"), aff),
                             "name": it.get("itemName"), "price": it.get("itemPrice"), "shop": it.get("shopName"),
                             "fetched_at": now().isoformat()}
                 log(f"楽天: {x} → {it.get('itemName', '')[:40]}")

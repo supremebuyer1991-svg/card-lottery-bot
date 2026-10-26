@@ -154,14 +154,56 @@ def _amz(q, tag):
     return f"https://www.amazon.co.jp/s?k={quote(q)}&tag={quote(tag)}"
 
 
-def _aff_box(title, links, tag):
-    """Amazonの紹介枠（PR表記つき）。links: [(ラベル, 検索語, 主ボタンか)]"""
-    if not tag:
+def _rak(q, aff):
+    """楽天の検索結果ページへのアフィリエイトリンク（楽天アフィリエイトの公式の形式）"""
+    u = f"https://search.rakuten.co.jp/search/mall/{quote(q)}/"
+    return f"https://hb.afl.rakuten.co.jp/hgc/{aff}/?pc={quote(u, safe='')}&m={quote(u, safe='')}" if aff else u
+
+
+# サプライのアイコン（自作の簡単な図形）
+_ICON = {
+    "スリーブ": '<rect x="7" y="4" width="14" height="20" rx="2"/><rect x="10" y="7" width="8" height="12" rx="1" opacity=".45"/>',
+    "ローダー": '<rect x="6" y="3" width="16" height="22" rx="2.5" stroke-width="2.4"/><rect x="10" y="7" width="8" height="12" rx="1" opacity=".45"/>',
+    "デッキケース": '<path d="M5 9h18v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M5 9l3-5h12l3 5"/><path d="M12 14h4"/>',
+    "ストレージ": '<rect x="3" y="10" width="22" height="14" rx="2"/><path d="M3 10l2-5h18l2 5"/><path d="M10 15h8"/>',
+}
+
+
+def _icon(k):
+    return (f'<svg viewBox="0 0 28 28" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" '
+            f'stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">{_ICON[k]}</svg>')
+
+
+_REL = 'target="_blank" rel="nofollow sponsored noopener"'
+
+
+def _product_ad(x, name, rr, tag, aff):
+    """弾ページの広告：商品写真＋楽天／Amazonのボタン＋一緒に使うサプライ"""
+    if not (tag or aff or rr.get("url")):
         return ""
-    btns = "".join(
-        f'<a class="{"pri" if main else ""}" href="{escape(_amz(q, tag))}" target="_blank" rel="nofollow sponsored noopener">{escape(lb)}</a>'
-        for lb, q, main in links)
-    return f'<aside class="affbox"><div class="affh"><b>{escape(title)}</b><span>PR</span></div><div class="affb">{btns}</div></aside>'
+    rak = rr.get("url") or _rak(f"{name} {x}", aff)
+    amz = _amz(f"{name} {x}", tag) if tag else ""
+    img = (f'<img src="{escape(rr["image"])}" alt="{escape(x)}" loading="lazy">' if rr.get("image")
+           else f'<span class="ph">{_icon("ストレージ")}</span>')
+    btns = (f'<a class="b-rak" href="{escape(rak)}" {_REL}>楽天市場で見る</a>' +
+            (f'<a class="b-amz" href="{escape(amz)}" {_REL}>Amazonで見る</a>' if amz else ""))
+    sup = "".join(f'<a href="{escape(_amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff))}" {_REL}>{_icon(k)}<span>{k}</span></a>'
+                  for k in ("スリーブ", "ローダー", "デッキケース"))
+    return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>抽選に外れても、通販で探せます</span></div>'
+            f'<div class="ad-main"><a class="ad-img" href="{escape(rak)}" {_REL}>{img}</a>'
+            f'<div class="ad-info"><small>{escape(name)}</small><b>{escape(x)}</b><div class="ad-btns">{btns}</div></div></div>'
+            f'<div class="ad-sup"><p>一緒にそろえたいサプライ</p><div>{sup}</div></div></aside>')
+
+
+def _supply_ad(short, name, tag, aff):
+    """ゲームページの広告：サプライを4つのタイルで"""
+    if not (tag or aff):
+        return ""
+    tiles = "".join(f'<a href="{escape(_amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff))}" {_REL}>{_icon(k)}<span>{k}</span></a>'
+                    for k in ("スリーブ", "ローダー", "デッキケース", "ストレージ"))
+    more = (f'<a class="ad-more" href="{escape(_rak(f"{name} サプライ", aff))}" {_REL}>楽天市場でサプライをまとめて見る</a>' if aff else "")
+    return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(short)}のサプライをさがす</span></div>'
+            f'<div class="ad-sup ad-tiles"><div>{tiles}</div></div>{more}</aside>')
 
 
 def active_series(settings=None):
@@ -183,6 +225,7 @@ def build(settings=None, out_dir=None, sample=None):
     s = settings or load_settings()
     site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
     tag = os.environ.get("AMAZON_TAG") or s.get("amazon_tag")
+    raff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or s.get("rakuten_affiliate_id") or "").strip()
     out = Path(out_dir or ROOT / "site")
     games = [g for g in s["game_names"]]
 
@@ -190,7 +233,8 @@ def build(settings=None, out_dir=None, sample=None):
         items = sample
     else:
         images = load_images()
-        rk = load_json("rakuten.json", {})  # 楽天の商品画像（rakuten.py が取得）
+        from rakuten import item_link
+        rk = {k: dict(v, url=item_link(v.get("url"), raff)) for k, v in load_json("rakuten.json", {}).items()}  # 楽天の商品画像＋自分のIDのリンク
         items = []
         for i in load_json("lotteries.json", {}).values():
             if i.get("status") not in ACTIVE:
@@ -239,9 +283,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "aff": _aff_box(f"{short}のサプライをさがす", [
-                    ("スリーブ", f"{name} スリーブ", True), ("デッキケース", f"{name} デッキケース", False),
-                    ("ローダー", f"{name} ローダー", False), ("ストレージ", f"{name} ストレージボックス", False)], tag)}
+                "aff": _supply_ad(short, name, tag, raff)}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
@@ -252,18 +294,8 @@ def build(settings=None, out_dir=None, sample=None):
 
         for x in series:
             si = [i for i in gi if i.get("series") == x]
-            aff = _aff_box(f"「{x}」を通販でさがす", [
-                (f"Amazonで「{x}」を見る", f"{name} {x}", True),
-                ("スリーブ", f"{name} スリーブ", False),
-                ("ローダー・ケース", f"{name} ローダー", False)], tag)
-            rr = (load_json("rakuten.json", {}) if sample is None else {}).get(f"{g}|{x}") or {}
-            if rr.get("url"):
-                img = f'<img src="{escape(rr["image"])}" alt="" loading="lazy">' if rr.get("image") else ""
-                btn = (f'<a class="rak" href="{escape(rr["url"])}" target="_blank" rel="nofollow sponsored noopener">'
-                       f'{img}<span>楽天市場で見る</span></a>')
-                aff = aff.replace('<div class="affb">', '<div class="affb">' + btn, 1) if aff else (
-                    f'<aside class="affbox"><div class="affh"><b>「{escape(x)}」を通販でさがす</b><span>PR</span></div>'
-                    f'<div class="affb">{btn}</div></aside>')
+            rr = (rk if sample is None else {}).get(f"{g}|{x}") or {}
+            aff = _product_ad(x, name, rr, tag, raff)
             write(series_path(g, x), {"game": g, "series": x}, {
                 "title": f"{x} 抽選・予約情報まとめ【{len(si)}件受付中・締切順】｜トレカ抽選ナビ",
                 "desc": f"{name}「{x}」の抽選・予約情報を店舗別・締切順にまとめています。ネット・店頭（都道府県別）、"
