@@ -54,10 +54,14 @@ jobs:
       - name: deploy site (Cloudflare Pages)
         if: env.HAS_CF == 'true' && (hashFiles('site/.changed') != '' || github.event_name == 'workflow_dispatch')
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PROJECT: ${{ vars.CF_PROJECT || 'toreca-chusen-navi' }}
         run: |
+          # 貼り付け時に混ざった空白・改行・「Bearer」などを取り除く
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          echo "トークンの文字数: ${#CLOUDFLARE_API_TOKEN}（通常40前後） / アカウントIDの文字数: ${#CLOUDFLARE_ACCOUNT_ID}（通常32）"
           # 初回だけサイトの置き場所を自動で作る（2回目以降は「もうある」で何もしない）
           npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || true
           npx --yes wrangler@4 pages deploy site --project-name="$PROJECT" --branch=main
