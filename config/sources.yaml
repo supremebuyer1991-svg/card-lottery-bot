@@ -118,7 +118,8 @@ sources:
     game: auto
     name: X LivePocket抽選
     type: x
-    keywords: 'url:livepocket.jp (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド) 抽選'
+    # LivePocket のURLはほぼ抽選の応募ページなので「抽選」という言葉が無くても拾う（カードの話であることだけ確認）
+    keywords: 'url:livepocket.jp (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド OR トレカ OR 拡張パック OR ブースターパック)'
     max_results: 20
 
   # ワンピカード公式アカウント（公式の抽選・新商品告知）
