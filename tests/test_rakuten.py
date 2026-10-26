@@ -85,11 +85,11 @@ sup = [
     {"itemName": "カードスリーブ 100枚入り ポケモンカード対応", "itemPrice": 199, "mediumImageUrls": ["x"]},
 ]
 fs5 = FakeSession(sup)
-p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=1), ["pokemon"], session=fs5, sleep=0)
+p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=2), ["pokemon"], session=fs5, sleep=0)
 assert fs5.calls[0][1]["sort"] == "+itemPrice"
 assert p["pokemon|スリーブ"]["price"] == 199, p          # 中古・パックは除外、正しい中で最安
 assert "s%3D2" in p["pokemon|スリーブ"]["url"] and "aaaa.bbbb" in p["pokemon|スリーブ"]["url"]
 fs6 = FakeSession(sup)
-rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=1), ["pokemon"], session=fs6, sleep=0)
+rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=2), ["pokemon"], session=fs6, sleep=0)
 assert fs6.calls and fs6.calls[0][1]["keyword"].endswith("ローダー")   # スリーブは今日はもう取らない
 print("RAKUTEN ALL OK")
