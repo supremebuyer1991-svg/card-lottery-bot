@@ -123,6 +123,28 @@ def image_spec(kind, items, day):
     return None
 
 
+def all_buzz(lots, settings, day=None):
+    """下書きページ用：5つの型それぞれの (種類, 文, 画像PNG)。今日の型が先頭"""
+    items = _active(lots)
+    day = now().toordinal() if day is None else day
+    tags = settings.get("hashtags", {})
+    out = []
+    for k in range(len(TYPES)):
+        f = TYPES[(day + k) % len(TYPES)]
+        text = f(items, day, tags)
+        if not text or x_len(text) > 280:
+            continue
+        kind, png = f.__name__.strip("_"), None
+        try:
+            import ximage
+            a, title, rows, kicker, sub = image_spec(kind, items, day)
+            png = ximage.render(a, title, rows, kicker=kicker, sub=sub)
+        except Exception as e:
+            log(f"ひとこと投稿の画像 {kind}: 失敗 {e}")
+        out.append((kind, text, png))
+    return out
+
+
 def buzz_image(lots, settings, day=None):
     """今日のバズ投稿の (種類, 文, 画像PNG)。画像が作れない時は None"""
     kind, text = compose_buzz(lots, settings, day)

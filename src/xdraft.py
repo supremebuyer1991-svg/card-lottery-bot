@@ -40,7 +40,7 @@ button.ok{background:#2e7d32}
 <p class="sub">開いた時点の件数で作っています。「Xで開く」→ そのまま投稿、または閉じる時に「下書きを保存」。データ更新：<span id="upd"></span></p>
 <div id="cards"></div>
 <script>
-const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__);
+const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__), BUZZ=__BUZZ__;
 const GS={pokemon:"ポケカ",onepiece:"ワンピカード",dragonball:"DBフュージョンワールド"};
 const SLUG={pokemon:"pokeka",onepiece:"onepiece",dragonball:"fusionworld"};
 const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピカード #ワンピカード抽選",dragonball:"#フュージョンワールド #DBFW"};
@@ -154,6 +154,9 @@ cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
 // 話題ネタ（AIの下書き。リンクなし。内容を確認してから投稿）は一番上に
 const tr=(TRENDS.items||[]).map((x,k)=>({...x,_k:k})).reverse();
 for(const x of tr)cards.unshift({img:`trend-${x._k}`,h:`🔥話題ネタ：${(x.topic||"").replace(/</g,"&lt;")}`,hint:x.type,t:x.text,hot:false,trend:x});
+// リンクなしの「ひとこと投稿」（今日の型が先頭）。話題ネタの次に並べる
+const BN={ranking:"弾のランキング",question:"店舗数",numbers:"全国の件数",prefecture:"都道府県ランキング",aruaru:"あるある"};
+cards.splice(tr.length,0,...BUZZ.map((b,k)=>({h:`💬ひとこと：${BN[b.kind]||b.kind}`,hint:k?"リンクなし":"リンクなし・今日のおすすめ",t:b.text,hot:false,img:`buzz-${b.kind}`})));
 const root=document.getElementById("cards");
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
@@ -264,11 +267,23 @@ def build_images(out, items):
                    key=lambda i: parse_dt(i["found_at"]), reverse=True)
     if fresh:
         save("fresh", "list", f"新着の抽選 {len(fresh)}件", _rows(fresh, end), kicker="新着", sub="24時間以内に見つかった抽選")
+    buzz = []
+    try:  # リンクなしの「ひとこと投稿」（5つの型）
+        import xbuzz
+        from common import load_settings
+        for kind, text, png in xbuzz.all_buzz(load_json("lotteries.json", {}), load_settings()):
+            if png:
+                (d / f"buzz-{kind}.png").write_bytes(png)
+                made.append(f"buzz-{kind}")
+            buzz.append({"kind": kind, "text": text})
+    except Exception as e:
+        from common import log
+        log(f"ひとこと投稿の下書き: 失敗 {e}")
     for k, x in enumerate((load_json("x_trends.json", {}).get("items") or [])[:6]):
         lines = [l for l in x.get("text", "").split("\n") if l.strip() and not l.strip().startswith("#")]
         if lines:
             save(f"trend-{k}", "text", x.get("topic") or lines[0], lines[:4], kicker=x.get("type") or "話題")
-    return made
+    return made, buzz
 
 
 def build_x_draft(out, items, site, updated):
@@ -282,14 +297,15 @@ def build_x_draft(out, items, site, updated):
             row["spath"] = series_path(i["game"], i["series"])
         data.append(row)
     try:
-        imgs = build_images(out, items)
+        imgs, buzz = build_images(out, items)
     except Exception as e:
         from common import log
         log(f"下書き画像: スキップ {e}")
-        imgs = []
+        imgs, buzz = [], []
     html = (TEMPLATE.replace("__SITE__", json.dumps(site or ""))
             .replace("__ITEMS__", json.dumps(data, ensure_ascii=False))
             .replace("__UPDATED__", json.dumps(updated or ""))
             .replace("__IMGS__", json.dumps(imgs))
+            .replace("__BUZZ__", json.dumps(buzz, ensure_ascii=False).replace("</", "<\\/"))
             .replace("__TRENDS__", json.dumps(_trends(), ensure_ascii=False).replace("</", "<\\/")))
     (out / "x-draft.html").write_text(html, encoding="utf-8")
