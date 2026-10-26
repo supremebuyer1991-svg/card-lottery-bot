@@ -9,6 +9,7 @@ from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
 from classify import classify
+from deadline import fill_deadlines
 
 
 def main():
@@ -19,6 +20,10 @@ def main():
         new = collect(load_sources(), s)
         log(f"新着 {len(new)} 件")
     if step in ("all", "publish"):
+        try:
+            fill_deadlines(s)  # 締切が分からない抽選は、Xの告知（本文・画像）や応募ページから読み取る
+        except Exception as e:
+            log(f"締切の調査: スキップ {e}")
         try:
             classify(s)  # ネット（発送）／店頭（店頭受け取り）の振り分けと都道府県の補完
         except Exception as e:

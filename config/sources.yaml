@@ -107,8 +107,17 @@ sources:
     name: X 抽選情報アカウント
     type: x
     quote: false
-    accounts: ["chang_tingyao"]
+    accounts: ["chang_tingyao", "AfroTCG", "Meisy_TCG_News"]
     keywords: '抽選'
+    max_results: 20
+
+  # --- X（LivePocketの応募リンク付きの告知）：古本市場・TSUTAYA・キデイランドなどがよく使う ---
+  # LivePocketのページには受付期間が書いてあるので、締切も取れる
+  - id: x_livepocket
+    game: auto
+    name: X LivePocket抽選
+    type: x
+    keywords: 'url:livepocket.jp (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド) 抽選'
     max_results: 20
 
   # ワンピカード公式アカウント（公式の抽選・新商品告知）
