@@ -157,34 +157,51 @@ def post_all(settings, client=None):
 
 
 def post_daily_summary(settings, client=None):
-    """1日1回、WPまとめページへのリンク付きでゲーム別の受付中件数を投稿（リンク付きは高いので1日1回に集約）"""
-    hour = settings.get("summary_hour", 20)
-    if not (public_site(settings) or settings.get("site_url")) or now().hour < hour:
+    """8時間ごと（summary_hours の各時刻以降に1回ずつ）、サイトへのリンク付きで受付中件数のまとめを投稿。
+    リンク付き投稿は1件約$0.20と高いので、個別告知にはリンクを付けず、ここに集約する（1日3件）。"""
+    if not (public_site(settings) or settings.get("site_url")):
         return
+    hours = sorted(settings.get("summary_hours") or [settings.get("summary_hour", 20)])
     meta = load_json("x_meta.json", {})
     today = now().date().isoformat()
-    if meta.get("summary_date") == today:
+    done = meta.get("summary_slots", {}).get(today, [])
+    due = [h for h in hours if now().hour >= h and h not in done]
+    if not due:
         return
+    slot = due[-1]  # 同じ日に取りこぼした枠があっても、出すのは1回だけ
+
     lots = load_json("lotteries.json", {})
+    active = [i for i in lots.values() if i["status"] in ("approved", "posted", "listed")
+              and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < now())]
+    if not active:
+        return
+    short = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "DBフュージョンワールド"}
+    parts, tags = [], []
+    for game in settings["game_names"]:
+        n = sum(1 for i in active if i["game"] == game)
+        if n:
+            parts.append(f"{short.get(game, game)} {n}件")
+            tags.append(settings["hashtags"][game].split()[0])
+    soon = sum(1 for i in active if parse_dt(i.get("end")) and
+               (parse_dt(i["end"]) - now()).total_seconds() < 86400)
+    t = now()
+    text = (f"【トレカ抽選まとめ｜{t.month}/{t.day} {t.hour}時時点】\n"
+            f"受付中：{'／'.join(parts)}"
+            + (f"\n⏰締切24時間以内：{soon}件" if soon else "")
+            + f"\n条件・締切・店舗を一覧でチェック👇\n{public_site(settings) or settings['site_url']}/\n"
+            + " ".join(tags))
+
     dry = settings["dry_run"] or (client is None and not os.environ.get("X_API_KEY"))
-    if not dry and client is None:
+    if dry:
+        log("DRY_RUN まとめ投稿:\n" + text)
+        return
+    if client is None:
         client = _client()
-    for game, name in settings["game_names"].items():
-        active = [i for i in lots.values() if i["game"] == game and i["status"] == "posted"]
-        if not active:
-            continue
-        soon = sum(1 for i in active if parse_dt(i.get("end")) and
-                   (parse_dt(i["end"]) - now()).total_seconds() < 86400)
-        text = (f"【{name}】今日時点で受付中の抽選は{len(active)}件"
-                + (f"（うち締切24時間以内 {soon}件）" if soon else "") +
-                f"\n応募漏れがないか一覧でチェック👇\n{page_url(active[0], settings)}\n{settings['hashtags'][game]}")
-        if dry:
-            log("DRY_RUN まとめ投稿:\n" + text)
-        else:
-            try:
-                client.create_tweet(text=text)
-            except Exception as e:
-                log(f"まとめ投稿失敗: {e}")
-    if not dry:
-        meta["summary_date"] = today
-        save_json("x_meta.json", meta)
+    try:
+        client.create_tweet(text=text)
+    except Exception as e:
+        log(f"まとめ投稿失敗: {e}")
+        return
+    log(f"まとめ投稿OK（{slot}時の枠）")
+    meta["summary_slots"] = {today: sorted(set(done) | set(h for h in hours if h <= slot))}
+    save_json("x_meta.json", meta)
