@@ -103,6 +103,53 @@ def _links(title, pairs):
             "".join(f'<a href="{escape(h)}">{escape(t)}</a>' for t, h in pairs) + "</nav>")
 
 
+GAME_EN = {"pokemon": "POKEMON CARD", "onepiece": "ONE PIECE CARD", "dragonball": "FUSION WORLD"}
+
+
+def _menu(items, games, g, here=""):
+    """「抽選をさがす」メニュー（ページ下部＋ヘッダーのメニューボタンで開くシート）。
+    タイトル（件数つきカード）／弾ごと（多い順・件数つき）／店頭抽選の地域"""
+    gi = [i for i in items if i["game"] == g]
+    slug = GAME_SLUG[g]
+    cards = []
+    for x in games:
+        n = sum(1 for i in items if i["game"] == x)
+        cur = ' aria-current="page"' if x == g else ""
+        cards.append(f'<a class="m-game g-{x}" href="/{GAME_SLUG[x]}/"{cur}><small>{GAME_EN[x]}</small>'
+                     f'<b>{escape(GAME_SHORT[x])}</b><span><em>{n}</em>件 受付中</span></a>')
+    cnt = {}
+    for i in gi:
+        if i.get("series"):
+            cnt[i["series"]] = cnt.get(i["series"], 0) + 1
+    ser = sorted(cnt, key=lambda x: -cnt[x])
+
+    def row(k, x):
+        href = "/" + series_path(g, x)
+        cur = ' aria-current="page"' if href == here else ""
+        return (f'<li><a href="{escape(href)}"{cur}><i>{k:02d}</i><b>{escape(x)}</b>'
+                f'<span>{cnt[x]}件</span></a></li>')
+    rows = [row(k, x) for k, x in enumerate(ser, 1)]
+    ser_html = ""
+    if rows:
+        ser_html = (f'<section class="m-sec"><h3>{escape(GAME_SHORT[g])}の弾ごと<small>受付中が多い順</small></h3>'
+                    f'<ol class="m-ser">{"".join(rows[:8])}</ol>'
+                    + (f'<details class="m-more"><summary>すべての弾を見る（{len(rows)}）</summary>'
+                       f'<ol class="m-ser" start="9">{"".join(rows[8:])}</ol></details>' if len(rows) > 8 else "")
+                    + '</section>')
+    acnt = {}
+    for i in gi:
+        if i.get("channel") == "store" and i.get("area") in PREF:
+            acnt[i["area"]] = acnt.get(i["area"], 0) + 1
+    area_html = ""
+    if acnt:
+        chips = "".join(f'<a href="/{slug}/area/{PREF[a]}/">{escape(a)}<span>{acnt[a]}</span></a>'
+                        for a in sorted(acnt, key=lambda a: list(PREF).index(a)))
+        area_html = (f'<section class="m-sec"><h3>店頭抽選を地域でさがす<small>{len(acnt)}都道府県</small></h3>'
+                     f'<div class="m-area">{chips}</div></section>')
+    return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
+            f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}</nav>')
+
+
 def build(settings=None, out_dir=None, sample=None):
     s = settings or load_settings()
     site = (os.environ.get("SITE_URL") or s.get("site_public_url") or "").rstrip("/")
@@ -151,8 +198,6 @@ def build(settings=None, out_dir=None, sample=None):
                         key=lambda x: -sum(1 for i in gi if i.get("series") == x))
         areas = sorted({i["area"] for i in gi if i.get("channel") == "store" and i.get("area") in PREF},
                        key=lambda a: list(PREF).index(a))
-        series_links = _links("弾ごと", [(x, "/" + series_path(g, x)) for x in series])
-        area_links = _links("店頭抽選（地域）", [(a, f"/{slug}/area/{PREF[a]}/") for a in areas])
         online = sum(1 for i in gi if i.get("channel") != "store")
         meta = {"title": f"{short}抽選・予約情報まとめ【最新・締切順】｜トレカ抽選ナビ",
                 "desc": f"{name}の抽選・予約情報を締切が近い順にまとめています。ネット抽選{online}件、"
@@ -160,14 +205,13 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"{short}の抽選・予約情報まとめ",
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
-                "links": series_links + area_links, "root": "/"}
+                "links": _menu(items, games, g), "root": "/"}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
                        h1="トレカの抽選・予約情報まとめ",
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
-            top["links"] = _links("タイトル", [(GAME_SHORT[x], f"/{GAME_SLUG[x]}/") for x in games]) + series_links
             write("", {}, top, items)
 
         for x in series:
@@ -181,7 +225,7 @@ def build(settings=None, out_dir=None, sample=None):
                         "本人確認・会員カードの有無もひと目で分かります。",
                 "h1": f"「{x}」の抽選・予約情報",
                 "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
-                "aff": aff, "links": _links("ほかの弾", [(y, "/" + series_path(g, y)) for y in series if y != x]),
+                "aff": aff, "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si)
 
         for a in areas:
@@ -191,7 +235,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "desc": f"{a}の店舗で受付中の{name}の店頭抽選・抽選券配布の情報を締切順にまとめています。",
                 "h1": f"{a}の{short}店頭抽選",
                 "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
-                "links": area_links, "root": "/"}, ai)
+                "links": _menu(items, games, g), "root": "/"}, ai)
 
     # X手動投稿用の下書きページ（検索に載せない・サイトマップにも入れない）
     from xdraft import build_x_draft
