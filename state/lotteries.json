@@ -8716,8 +8716,8 @@
     "end": "2026-10-27T23:59:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSegFOf5kq4B0BTGSI54DcSG4iHNLbUW8wlDg0dT7oSH0ZQsXw/viewform",
     "x_post": null,
-    "channel": "store",
-    "area": "滋賀県",
+    "channel": "online",
+    "area": null,
     "method": "オンライン",
     "conditions": null,
     "tags": [],
@@ -8731,7 +8731,6 @@
     "key": "b4e0a373a1697335",
     "status": "listed",
     "found_at": "2026-10-26T18:20:21.883020+09:00",
-    "multi": false,
     "cls": "67806a81ab78"
   },
   "3f7a15b201566f4c": {
@@ -9087,7 +9086,9 @@
     "no_quote": true,
     "key": "3f0bbc7d4024469f",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883271+09:00"
+    "found_at": "2026-10-26T18:20:21.883271+09:00",
+    "multi": false,
+    "cls": "77420087c24f"
   },
   "d23dbdb38c3fd390": {
     "store": "ブックオフ那覇小禄店",
@@ -9110,7 +9111,9 @@
     "no_quote": true,
     "key": "d23dbdb38c3fd390",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883288+09:00"
+    "found_at": "2026-10-26T18:20:21.883288+09:00",
+    "multi": false,
+    "cls": "39241e4f106b"
   },
   "f2b64a9361a53ad0": {
     "store": "Japan TCG Center 那覇沖映通り店",
@@ -9133,7 +9136,9 @@
     "no_quote": true,
     "key": "f2b64a9361a53ad0",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883307+09:00"
+    "found_at": "2026-10-26T18:20:21.883307+09:00",
+    "multi": false,
+    "cls": "8e89d8b743e2"
   },
   "d991afa633b82104": {
     "store": "ブックオフ宜野湾店",
@@ -9156,7 +9161,9 @@
     "no_quote": true,
     "key": "d991afa633b82104",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883326+09:00"
+    "found_at": "2026-10-26T18:20:21.883326+09:00",
+    "multi": false,
+    "cls": "6e320d3abd46"
   },
   "3b5115683cf86f6a": {
     "store": "ブックオフ具志川店",
@@ -9179,7 +9186,9 @@
     "no_quote": true,
     "key": "3b5115683cf86f6a",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883345+09:00"
+    "found_at": "2026-10-26T18:20:21.883345+09:00",
+    "multi": false,
+    "cls": "0ae70ffea156"
   },
   "a7b3424d5fb68f8c": {
     "store": "ブックオフ西友大森店",
@@ -9188,8 +9197,8 @@
     "end": "2026-10-28T17:00:00+09:00",
     "url": "https://x.com/bo_oomori_tcg/status/2114295912117969393",
     "x_post": "https://x.com/bo_oomori_tcg/status/2114295912117969393",
-    "channel": "online",
-    "area": null,
+    "channel": "store",
+    "area": "東京都",
     "method": "SNS応募",
     "conditions": "アプリ・SNS応募",
     "tags": [
@@ -9205,7 +9214,9 @@
     "no_quote": true,
     "key": "a7b3424d5fb68f8c",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883365+09:00"
+    "found_at": "2026-10-26T18:20:21.883365+09:00",
+    "multi": false,
+    "cls": "70075842ec43"
   },
   "d797f46420f7b268": {
     "store": "TSUTAYA須賀川店",
@@ -9214,7 +9225,7 @@
     "end": "2026-10-28T20:00:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSelvJzdpDH9bKDwOkyk_oHCfHA-v0sTc1lmICnkWcuAmAsP8g/viewform",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "福島県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -9231,7 +9242,9 @@
     "no_quote": true,
     "key": "d797f46420f7b268",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883383+09:00"
+    "found_at": "2026-10-26T18:20:21.883383+09:00",
+    "multi": false,
+    "cls": "c2475986e560"
   },
   "9efcdccc66f2faf9": {
     "store": "TSUTAYA須賀川店",
@@ -9240,7 +9253,7 @@
     "end": "2026-10-28T20:00:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSelvJzdpDH9bKDwOkyk_oHCfHA-v0sTc1lmICnkWcuAmAsP8g/viewform",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "福島県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -9257,7 +9270,9 @@
     "no_quote": true,
     "key": "9efcdccc66f2faf9",
     "status": "listed",
-    "found_at": "2026-10-26T18:20:21.883432+09:00"
+    "found_at": "2026-10-26T18:20:21.883432+09:00",
+    "multi": false,
+    "cls": "9050e40c6443"
   },
   "07c6ac80a65d870b": {
     "store": "MINT新宿店（新宿マルイアネックス7F）",
@@ -14947,7 +14962,7 @@
     "url": "https://livepocket.jp/e/9poxp",
     "x_post": "https://x.com/pachinker_m/status/2114671652936233407",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "愛知県",
     "id_check": null,
     "member": null,
@@ -14958,7 +14973,9 @@
     "key": "4a3cdd066cd7c97b",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460327+09:00",
-    "issue": 19
+    "issue": 19,
+    "multi": false,
+    "cls": "148a9d5a4358"
   },
   "56a59a5148dd902c": {
     "store": "ふるいち龍ヶ崎",
@@ -14972,7 +14989,7 @@
     "url": "https://livepocket.jp/e/jxvw7",
     "x_post": "https://x.com/pachinker_m/status/2114671312610500756",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "茨城県",
     "id_check": null,
     "member": null,
@@ -14983,7 +15000,9 @@
     "key": "56a59a5148dd902c",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460355+09:00",
-    "issue": 20
+    "issue": 20,
+    "multi": false,
+    "cls": "f74614d0647e"
   },
   "73ae7cebe7962484": {
     "store": "TSUTAYA姫路",
@@ -14997,7 +15016,7 @@
     "url": "https://livepocket.jp/e/tu07-",
     "x_post": "https://x.com/pachinker_m/status/2114671145861681428",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "兵庫県",
     "id_check": null,
     "member": null,
@@ -15008,7 +15027,9 @@
     "key": "73ae7cebe7962484",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460382+09:00",
-    "issue": 21
+    "issue": 21,
+    "multi": false,
+    "cls": "24be56aa73f0"
   },
   "f9c9855bfcb86efe": {
     "store": "TSUTAYA姫路",
@@ -15022,7 +15043,7 @@
     "url": "https://livepocket.jp/e/2n6im",
     "x_post": "https://x.com/pachinker_m/status/2114671145861681428",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "兵庫県",
     "id_check": null,
     "member": null,
@@ -15033,7 +15054,9 @@
     "key": "f9c9855bfcb86efe",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460406+09:00",
-    "issue": 22
+    "issue": 22,
+    "multi": false,
+    "cls": "5aa9b9db6265"
   },
   "5384b1d2672051b3": {
     "store": "TSUTAYA姫路",
@@ -15047,7 +15070,7 @@
     "url": "https://livepocket.jp/e/opr71",
     "x_post": "https://x.com/pachinker_m/status/2114671145861681428",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "兵庫県",
     "id_check": null,
     "member": null,
@@ -15058,7 +15081,9 @@
     "key": "5384b1d2672051b3",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460430+09:00",
-    "issue": 23
+    "issue": 23,
+    "multi": false,
+    "cls": "c306c4c1b880"
   },
   "91727efd6bd3ba32": {
     "store": "ふるいちイオンモール浜松志都呂店",
@@ -15124,7 +15149,7 @@
     "url": "https://x.com/pachinker_m/status/2114670470104813703",
     "x_post": "https://x.com/pachinker_m/status/2114670470104813703",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": null,
     "id_check": null,
     "member": null,
@@ -15135,7 +15160,9 @@
     "key": "b03f6b98d703d044",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460530+09:00",
-    "issue": 24
+    "issue": 24,
+    "multi": true,
+    "cls": "4cdb78de0baf"
   },
   "6da7aaabaa69f712": {
     "store": "TSUTAYA岡南",
@@ -15149,7 +15176,7 @@
     "url": "https://livepocket.jp/e/a1uzt",
     "x_post": "https://x.com/pachinker_m/status/2114669554484043830",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "岡山県",
     "id_check": null,
     "member": null,
@@ -15160,7 +15187,9 @@
     "key": "6da7aaabaa69f712",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460586+09:00",
-    "issue": 25
+    "issue": 25,
+    "multi": false,
+    "cls": "8bd1bcee2431"
   },
   "50413ef4d3a2d55c": {
     "store": "A福山",
@@ -15174,7 +15203,7 @@
     "url": "https://livepocket.jp/e/5zwx8",
     "x_post": "https://x.com/pachinker_m/status/2114669340331229387",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "広島県",
     "id_check": null,
     "member": null,
@@ -15185,7 +15214,9 @@
     "key": "50413ef4d3a2d55c",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460610+09:00",
-    "issue": 26
+    "issue": 26,
+    "multi": false,
+    "cls": "75021d69611d"
   },
   "631dd7862235d51e": {
     "store": "トレカステーション各店",
@@ -15199,7 +15230,7 @@
     "url": "https://livepocket.jp/e/4dmix",
     "x_post": "https://x.com/pachinker_m/status/2114668922570260987",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": null,
     "id_check": null,
     "member": null,
@@ -15210,7 +15241,9 @@
     "key": "631dd7862235d51e",
     "status": "pending",
     "found_at": "2026-10-26T19:59:32.460638+09:00",
-    "issue": 27
+    "issue": 27,
+    "multi": true,
+    "cls": "f69c5eaa7b4b"
   },
   "31c34ac1588a4396": {
     "store": "カードボックス横浜西口2号店",
@@ -15235,7 +15268,9 @@
     "key": "31c34ac1588a4396",
     "status": "pending",
     "found_at": "2026-10-26T20:06:12.943095+09:00",
-    "issue": 28
+    "issue": 28,
+    "multi": false,
+    "cls": "1aa80000696d"
   },
   "b5585eb463f552bc": {
     "store": "ヤマダ電機",
@@ -15262,7 +15297,9 @@
     "source_url": "https://x.com/",
     "key": "b5585eb463f552bc",
     "status": "approved",
-    "found_at": "2026-10-26T20:06:12.943150+09:00"
+    "found_at": "2026-10-26T20:06:12.943150+09:00",
+    "multi": false,
+    "cls": "344d7cfd9751"
   },
   "bf89809049a5786b": {
     "store": "ホビーステーション",
@@ -15287,7 +15324,9 @@
     "key": "bf89809049a5786b",
     "status": "pending",
     "found_at": "2026-10-26T20:06:12.943181+09:00",
-    "issue": 29
+    "issue": 29,
+    "multi": false,
+    "cls": "0f6ef589ffcc"
   },
   "d213c78832c81b3b": {
     "store": "トレカスタイル",
@@ -15312,7 +15351,8 @@
     "key": "d213c78832c81b3b",
     "status": "pending",
     "found_at": "2026-10-26T20:06:12.943214+09:00",
-    "issue": 30
+    "issue": 30,
+    "cls": "a0c03fa0aa3b"
   },
   "1259644740bbdaac": {
     "store": "カードボックス横浜西口2号店",
@@ -15336,7 +15376,9 @@
     "source_url": "https://x.com/",
     "key": "1259644740bbdaac",
     "status": "approved",
-    "found_at": "2026-10-26T20:06:27.380052+09:00"
+    "found_at": "2026-10-26T20:06:27.380052+09:00",
+    "multi": false,
+    "cls": "1aa80000696d"
   },
   "0c9443f95f0f58d9": {
     "store": "ヤマダ電機",
@@ -15363,7 +15405,9 @@
     "source_url": "https://x.com/",
     "key": "0c9443f95f0f58d9",
     "status": "approved",
-    "found_at": "2026-10-26T20:06:27.380100+09:00"
+    "found_at": "2026-10-26T20:06:27.380100+09:00",
+    "multi": false,
+    "cls": "77e852d24eec"
   },
   "2ffdb1f2a8a490fc": {
     "store": "ホビーステーション",
@@ -15388,7 +15432,9 @@
     "key": "2ffdb1f2a8a490fc",
     "status": "pending",
     "found_at": "2026-10-26T20:06:27.380128+09:00",
-    "issue": 31
+    "issue": 31,
+    "multi": false,
+    "cls": "0f6ef589ffcc"
   },
   "2b404f6173eaecfc": {
     "store": "ビックカメラAKIBA",
@@ -15413,7 +15459,9 @@
     "key": "2b404f6173eaecfc",
     "status": "pending",
     "found_at": "2026-10-26T20:06:32.918264+09:00",
-    "issue": 32
+    "issue": 32,
+    "multi": false,
+    "cls": "e3d92fbd999d"
   },
   "57f25ec106ce0dc3": {
     "store": "ビックカメラAKIBA",
@@ -15438,7 +15486,9 @@
     "key": "57f25ec106ce0dc3",
     "status": "pending",
     "found_at": "2026-10-26T20:06:40.040561+09:00",
-    "issue": 33
+    "issue": 33,
+    "multi": false,
+    "cls": "e3d92fbd999d"
   },
   "92a3492ad21a8ca8": {
     "store": "ビックカメラAKIBA",
@@ -15463,7 +15513,9 @@
     "key": "92a3492ad21a8ca8",
     "status": "pending",
     "found_at": "2026-10-26T20:06:40.040619+09:00",
-    "issue": 34
+    "issue": 34,
+    "multi": false,
+    "cls": "20e7480674b1"
   },
   "1e4929db963dbd99": {
     "store": "Luruna Card（るるなカード）",
@@ -15490,7 +15542,8 @@
     "key": "1e4929db963dbd99",
     "status": "pending",
     "found_at": "2026-10-26T20:35:54.702855+09:00",
-    "issue": 35
+    "issue": 35,
+    "cls": "ac634d0ac605"
   },
   "db77fdc4387017e8": {
     "store": "Amazon",
@@ -15515,7 +15568,8 @@
     "key": "db77fdc4387017e8",
     "status": "pending",
     "found_at": "2026-10-26T20:35:54.702915+09:00",
-    "issue": 36
+    "issue": 36,
+    "cls": "ec1eee680177"
   },
   "4c2eb15839ddabe8": {
     "store": "ブックイン金進堂長者原店",
@@ -15540,7 +15594,9 @@
     "key": "4c2eb15839ddabe8",
     "status": "pending",
     "found_at": "2026-10-26T20:36:02.249549+09:00",
-    "issue": 37
+    "issue": 37,
+    "multi": false,
+    "cls": "0617e9d6960b"
   },
   "c35876ae7d5b3409": {
     "store": "カードラボ名古屋駅前店",
@@ -15566,7 +15622,9 @@
     "source_url": "https://x.com/",
     "key": "c35876ae7d5b3409",
     "status": "approved",
-    "found_at": "2026-10-26T20:36:06.766798+09:00"
+    "found_at": "2026-10-26T20:36:06.766798+09:00",
+    "multi": false,
+    "cls": "254fce4dda12"
   },
   "022a5492d26662f7": {
     "store": "ツタヤ 仙台荒井店",
@@ -15607,7 +15665,7 @@
     "url": "https://www.c-labo.jp/shop/shizuoka/blog/622809/",
     "x_post": "https://x.com/shizuoka_labo/status/2114683207019086251",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "静岡県",
     "id_check": null,
     "member": null,
@@ -15620,7 +15678,9 @@
     "key": "fed1afcdaf8667e8",
     "status": "pending",
     "found_at": "2026-10-26T20:43:24.385170+09:00",
-    "issue": 38
+    "issue": 38,
+    "multi": false,
+    "cls": "05b7e8072155"
   },
   "5b02c45271cc4f9c": {
     "store": "TSUTAYA 積文館書店シュロアモール店",
@@ -15634,7 +15694,7 @@
     "url": "https://livepocket.jp/e/7-6bg",
     "x_post": "https://x.com/FSZep0CqmauUSFS/status/2114683185389072543",
     "game": "pokemon",
-    "channel": "online",
+    "channel": "store",
     "area": "福岡県",
     "id_check": null,
     "member": null,
@@ -15644,7 +15704,9 @@
     "source_url": "https://x.com/",
     "key": "5b02c45271cc4f9c",
     "status": "approved",
-    "found_at": "2026-10-26T20:43:24.385213+09:00"
+    "found_at": "2026-10-26T20:43:24.385213+09:00",
+    "multi": false,
+    "cls": "e6ae817a4b53"
   },
   "1302f1a881032458": {
     "store": "イオンスタイルオンライン",
@@ -15669,7 +15731,8 @@
     "key": "1302f1a881032458",
     "status": "pending",
     "found_at": "2026-10-26T20:43:24.385235+09:00",
-    "issue": 39
+    "issue": 39,
+    "cls": "d6d281ed6139"
   },
   "9234371bbec61ffe": {
     "store": "キッズリパブリック",
@@ -15694,7 +15757,8 @@
     "key": "9234371bbec61ffe",
     "status": "pending",
     "found_at": "2026-10-26T20:43:24.385254+09:00",
-    "issue": 40
+    "issue": 40,
+    "cls": "252d66d9e3ea"
   },
   "dff7b0721e3036a9": {
     "store": "イオン九州",
@@ -15719,7 +15783,9 @@
     "key": "dff7b0721e3036a9",
     "status": "pending",
     "found_at": "2026-10-26T20:43:24.385269+09:00",
-    "issue": 41
+    "issue": 41,
+    "multi": true,
+    "cls": "157c73853e4f"
   },
   "0db7dc469b8c8040": {
     "store": "イオン北海道",
@@ -15744,7 +15810,9 @@
     "key": "0db7dc469b8c8040",
     "status": "pending",
     "found_at": "2026-10-26T20:43:24.385284+09:00",
-    "issue": 42
+    "issue": 42,
+    "multi": true,
+    "cls": "3c8bd5b71894"
   },
   "79719b2cedf4b294": {
     "store": "カードラボ名古屋大須店",
@@ -15770,7 +15838,9 @@
     "source_url": "https://x.com/",
     "key": "79719b2cedf4b294",
     "status": "approved",
-    "found_at": "2026-10-26T20:43:32.012502+09:00"
+    "found_at": "2026-10-26T20:43:32.012502+09:00",
+    "multi": false,
+    "cls": "3cd08cd90a5e"
   },
   "766562689a469570": {
     "store": "カードラボ名古屋大須店",
@@ -15796,7 +15866,9 @@
     "source_url": "https://x.com/",
     "key": "766562689a469570",
     "status": "approved",
-    "found_at": "2026-10-26T20:43:32.012758+09:00"
+    "found_at": "2026-10-26T20:43:32.012758+09:00",
+    "multi": false,
+    "cls": "364ba9bd540d"
   },
   "a6bacc5b6314330b": {
     "store": "ツタヤ 仙台荒井店",
@@ -15846,7 +15918,8 @@
     "source_url": "https://x.com/",
     "key": "80ccad68623dd89c",
     "status": "approved",
-    "found_at": "2026-10-26T21:27:39.935509+09:00"
+    "found_at": "2026-10-26T21:27:39.935509+09:00",
+    "cls": "930851c1dbb0"
   },
   "bf2ad9a7eb0d3878": {
     "store": "CARD CREW",
@@ -15870,7 +15943,8 @@
     "source_url": "https://x.com/",
     "key": "bf2ad9a7eb0d3878",
     "status": "approved",
-    "found_at": "2026-10-26T21:27:39.935545+09:00"
+    "found_at": "2026-10-26T21:27:39.935545+09:00",
+    "cls": "8a03c354f502"
   },
   "147f25a178a7436b": {
     "store": "カードラボマルイ海老名店",
@@ -15884,7 +15958,7 @@
     "url": "https://www.c-labo.jp/blog/622795/",
     "x_post": "https://x.com/ebina_labo/status/2114688328759202135",
     "game": "onepiece",
-    "channel": "online",
+    "channel": "store",
     "area": "神奈川県",
     "id_check": null,
     "member": null,
@@ -15896,7 +15970,9 @@
     "source_url": "https://x.com/",
     "key": "147f25a178a7436b",
     "status": "approved",
-    "found_at": "2026-10-26T21:27:45.257609+09:00"
+    "found_at": "2026-10-26T21:27:45.257609+09:00",
+    "multi": false,
+    "cls": "bb9a28dc0abf"
   },
   "fef3d2a1af2ea9a2": {
     "store": "アルプラザ 平和堂（数店舗・店舗名未記載）",
@@ -15921,7 +15997,9 @@
     "key": "fef3d2a1af2ea9a2",
     "status": "pending",
     "found_at": "2026-10-26T21:28:00.091459+09:00",
-    "issue": 48
+    "issue": 48,
+    "multi": true,
+    "cls": "23c0b758eceb"
   },
   "ad5deef4c166ed37": {
     "store": "ふるいちイオンモール熱田店",
@@ -15945,7 +16023,9 @@
     "source_url": "https://x.com/",
     "key": "ad5deef4c166ed37",
     "status": "approved",
-    "found_at": "2026-10-26T21:28:00.091499+09:00"
+    "found_at": "2026-10-26T21:28:00.091499+09:00",
+    "multi": false,
+    "cls": "8ad82302699c"
   },
   "5cb8a9c792ad6e60": {
     "store": "ふるいちイオンモール熱田店",
@@ -15970,7 +16050,9 @@
     "key": "5cb8a9c792ad6e60",
     "status": "pending",
     "found_at": "2026-10-26T21:28:00.091514+09:00",
-    "issue": 49
+    "issue": 49,
+    "multi": false,
+    "cls": "94baad22d44c"
   },
   "86814604628dcba7": {
     "store": "古本市場 豊浜店",
@@ -16004,7 +16086,7 @@
     "end": "2026-10-27T19:59:00+09:00",
     "url": "https://livepocket.jp/e/ld6d8",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "大阪府",
     "method": "オンライン",
     "conditions": "会員",
@@ -16020,7 +16102,9 @@
     "no_quote": true,
     "key": "50aee1fed1a87a6a",
     "status": "approved",
-    "found_at": "2026-10-26T21:28:31.556216+09:00"
+    "found_at": "2026-10-26T21:28:31.556216+09:00",
+    "multi": false,
+    "cls": "545e459db16a"
   },
   "816972fce9d9b973": {
     "store": "ふるいちイオンモール熱田店",
@@ -16029,7 +16113,7 @@
     "end": "2026-10-29T21:01:00+09:00",
     "url": "https://livepocket.jp/e/0id4k",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "愛知県",
     "method": "オンライン",
     "conditions": "会員",
@@ -16045,7 +16129,9 @@
     "no_quote": true,
     "key": "816972fce9d9b973",
     "status": "approved",
-    "found_at": "2026-10-26T21:28:31.556247+09:00"
+    "found_at": "2026-10-26T21:28:31.556247+09:00",
+    "multi": false,
+    "cls": "622b880d0d41"
   },
   "0408d1ca289ef4f5": {
     "store": "ふるいちイオンモール熱田店",
@@ -16054,7 +16140,7 @@
     "end": "2026-10-29T21:01:00+09:00",
     "url": "https://livepocket.jp/e/63x1l",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "愛知県",
     "method": "オンライン",
     "conditions": "会員",
@@ -16070,7 +16156,9 @@
     "no_quote": true,
     "key": "0408d1ca289ef4f5",
     "status": "approved",
-    "found_at": "2026-10-26T21:28:31.556263+09:00"
+    "found_at": "2026-10-26T21:28:31.556263+09:00",
+    "multi": false,
+    "cls": "d32468f52338"
   },
   "5d21f16420b5151e": {
     "store": "カードボックス横浜西口2号店",
