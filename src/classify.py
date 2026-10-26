@@ -20,7 +20,7 @@ PREFS = ("北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 
          "石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 "
          "岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県").split()
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
-VERSION = 2  # 判定ルールを変えたら上げる（全件を判定し直す）
+VERSION = 3  # 判定ルールを変えたら上げる（全件を判定し直す）
 
 PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選について次の2つを判定してください。
 
@@ -29,8 +29,11 @@ PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選�
   - "store": 商品の受け取り・購入が店頭のみ（実店舗の支店名がある抽選。応募がWeb・アプリ・X・LINEでも、当選後に来店して購入・受け取りするものは store。「購入券」「購入権」「当選者は店頭で購入」「来店」も store）
   - 支店名（〇〇店、〇〇駅前、〇〇モール店 など）がある実店舗で、発送・配送と書かれていなければ store
 2. area（channel が store のときだけ）
-  - 店名・支店名・カッコ内の地名・商業施設名から都道府県を判定（例: シーガル名取店→宮城県、ホビーショップタムタム神戸三宮店→兵庫県、ブックオフ横浜中山店→神奈川県、ジャスティス（大阪）→大阪府）
-  - 複数の都道府県にまたがる「各店」や、地名が無く判断できないものは null。推測に自信がなければ null
+  - 店名・支店名・カッコ内の地名・駅名・市区町村名・商業施設名（ららぽーと〇〇、イオンモール〇〇 など）から都道府県を判定する。
+    一般的に知られている地名・施設なら積極的に判定してよい（例: シーガル名取店→宮城県、タムタム神戸三宮店→兵庫県、ブックオフ横浜中山店→神奈川県、
+    ジャスティス（大阪）→大阪府、キデイランド富士見／ららぽーと富士見店→埼玉県、ビックカメラ名古屋駅西店→愛知県、宝島岐阜本店→岐阜県）
+  - 一覧の中に同じ店の別表記で都道府県が分かるものがあれば、それに合わせる
+  - 複数の都道府県にまたがる「各店」や、地名がまったく無いものだけ null
 3. multi（channel が store のときだけ）
   - 1つの抽選が複数の店舗で行われる（「〇〇各店」「A店・B店」「全店」など）なら true、1店舗なら false
 
@@ -96,6 +99,13 @@ def classify(settings, ask=None, batch=40, max_batches=20):
             if it.get("channel") == "online":
                 it["area"] = None
             it["cls"] = _fingerprint(it)
+    # 同じ店（表記ゆれを除いて同名）で都道府県が分かっているものから補う
+    norm = lambda s: re.sub(r"[\s　・()（）「」【】-]", "", s or "")
+    known = {norm(i.get("store")): i["area"] for i in lots.values() if i.get("area") and i.get("channel") == "store"}
+    for it in lots.values():
+        if it.get("channel") == "store" and not it.get("area") and known.get(norm(it.get("store"))):
+            it["area"] = known[norm(it.get("store"))]
+            changed += 1
     if changed or todo:
         save_json("lotteries.json", lots)
     if todo:
