@@ -161,7 +161,9 @@ def post_daily_summary(settings, client=None):
     リンク付き投稿は1件約$0.20と高いので、個別告知にはリンクを付けず、ここに集約する（1日3件）。"""
     if not (public_site(settings) or settings.get("site_url")):
         return
-    hours = sorted(settings.get("summary_hours") or [settings.get("summary_hour", 20)])
+    hours = sorted(settings.get("summary_hours") or [])
+    if not hours:  # 空＝自動まとめはオフ（手動投稿で運用。/x-draft.html の下書きを使う）
+        return
     meta = load_json("x_meta.json", {})
     today = now().date().isoformat()
     done = meta.get("summary_slots", {}).get(today, [])

@@ -193,12 +193,16 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
                 "links": area_links, "root": "/"}, ai)
 
+    # X手動投稿用の下書きページ（検索に載せない・サイトマップにも入れない）
+    from xdraft import build_x_draft
+    build_x_draft(out, items, site, updated)
+
     if site:
         (out / "sitemap.xml").write_text(
             '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{updated[:10]}</lastmod></url>" for u in urls)
             + "</urlset>\n", encoding="utf-8")
-        (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {site}/sitemap.xml\n", encoding="utf-8")
+        (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /x-draft.html\nSitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
