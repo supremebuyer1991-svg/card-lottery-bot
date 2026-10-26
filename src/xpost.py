@@ -27,7 +27,17 @@ def x_len(text: str) -> int:
     return n
 
 
+def public_site(settings):
+    return (os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
+
+
 def page_url(it, settings):
+    own = public_site(settings)  # 自作サイト（トレカ抽選ナビ）を優先
+    if own:
+        from sitegen import series_path, GAME_SLUG
+        if it.get("series"):
+            return f"{own}/{series_path(it['game'], it['series'])}"
+        return f"{own}/{GAME_SLUG[it['game']]}/"
     site = settings.get("site_url")
     if site and it.get("series"):  # 弾ごとの記事へ
         from wp import series_slug
@@ -132,7 +142,7 @@ def post_all(settings, client=None):
 def post_daily_summary(settings, client=None):
     """1日1回、WPまとめページへのリンク付きでゲーム別の受付中件数を投稿（リンク付きは高いので1日1回に集約）"""
     hour = settings.get("summary_hour", 20)
-    if not settings.get("site_url") or now().hour < hour:
+    if not (public_site(settings) or settings.get("site_url")) or now().hour < hour:
         return
     meta = load_json("x_meta.json", {})
     today = now().date().isoformat()
