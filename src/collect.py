@@ -5,8 +5,13 @@ from extract import extract
 from fetch_x import search as x_search
 
 
+SEEN_VERSION = 2
+
+
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:
     seen = load_json("seen.json", {})
+    if seen.get("_v") != SEEN_VERSION:  # 仕組みを直した時は、もう一度全部読み直す
+        seen = {"_v": SEEN_VERSION}
     lots = load_json("lotteries.json", {})
     new_items = []
     # 弾名の表記ゆれをそろえる（スペース・大文字小文字違いは同じ弾として扱う）
@@ -78,8 +83,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                     fresh.append(text)
             seen[sid] = cur
             chunk = []
-            for t in fresh + [None]:  # 約8000字ずつに分けて抽出
-                if t is not None and sum(len(x) for x in chunk) + len(t) < 8000:
+            for t in fresh + [None]:  # 約3500字（10件前後）ずつに分けて抽出
+                if t is not None and sum(len(x) for x in chunk) + len(t) < 3500 and len(chunk) < 12:
                     chunk.append(t)
                     continue
                 if chunk:
@@ -94,6 +99,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             except Exception as e:
                 log(f"抽出失敗 {sid}: {e}")
                 continue
+            log(f"  {sid}: AIが {len(items)}件 抽出")
             for it in items:
                 end = parse_dt(it.get("end"))
                 if end and end < now():

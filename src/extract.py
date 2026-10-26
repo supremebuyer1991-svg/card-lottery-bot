@@ -5,7 +5,7 @@ import re
 
 import requests
 
-from common import now
+from common import now, log
 
 API_URL = "https://api.anthropic.com/v1/messages"
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
@@ -33,18 +33,27 @@ PROMPT = """あなたはトレカ抽選情報の抽出係です。以下のテ�
 
 
 def _parse(raw: str) -> list:
+    """AIの返事からJSONを取り出す。途中で切れていても、完成している分は救出する"""
     m = re.search(r"\[.*\]", raw, re.S)
-    if not m:
-        return []
-    try:
-        data = json.loads(m.group(0))
-    except json.JSONDecodeError:
-        return []
-    out = []
-    for d in data if isinstance(data, list) else []:
-        if isinstance(d, dict) and d.get("store") and d.get("product"):
-            out.append(d)
-    return out
+    data = None
+    if m:
+        try:
+            data = json.loads(m.group(0))
+        except json.JSONDecodeError:
+            data = None
+    if not isinstance(data, list):
+        data, dec, i = [], json.JSONDecoder(), 0
+        while True:
+            i = raw.find("{", i)
+            if i < 0:
+                break
+            try:
+                obj, end = dec.raw_decode(raw, i)
+                data.append(obj)
+                i = end
+            except json.JSONDecodeError:
+                i += 1
+    return [d for d in data if isinstance(d, dict) and d.get("store") and d.get("product")]
 
 
 def extract(text: str, game: str, game_name: str, source_name: str, source_url: str) -> list:
@@ -55,10 +64,14 @@ def extract(text: str, game: str, game_name: str, source_name: str, source_url: 
                            source_name=source_name, source_url=source_url, text=text[:15000])
     r = requests.post(API_URL, timeout=90, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
-    }, json={"model": MODEL, "max_tokens": 2000, "messages": [{"role": "user", "content": prompt}]})
-    r.raise_for_status()
-    raw = "".join(b.get("text", "") for b in r.json().get("content", []))
+    }, json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": prompt}]})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Claude API エラー {r.status_code}: {r.text[:300]}")
+    res = r.json()
+    raw = "".join(b.get("text", "") for b in res.get("content", []))
     items = _parse(raw)
+    if res.get("stop_reason") == "max_tokens":
+        log(f"  ※AIの返事が長すぎて途中で切れました（救出 {len(items)}件）")
     valid = ("pokemon", "onepiece", "dragonball")
     for it in items:
         if game != "auto" or it.get("game") not in valid:
