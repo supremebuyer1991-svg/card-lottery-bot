@@ -71,9 +71,24 @@ def approve(settings):
         elif iss.get("state") == "closed":
             it["status"] = "rejected"
 
-    # 締切が過ぎたものは期限切れに
+    # 締切が過ぎたものは終了に。締切が書かれていないものは、見つけてから一定日数で終了に
+    no_end_days = settings.get("no_end_expire_days", 10)
     for it in lots.values():
-        end = parse_dt(it.get("end"))
-        if end and end < now() and it["status"] in ("new", "pending", "approved", "posted", "listed"):
+        if it["status"] not in ("new", "pending", "approved", "posted", "listed"):
+            continue
+        end, found = parse_dt(it.get("end")), parse_dt(it.get("found_at"))
+        too_old = not end and found and (now() - found).days >= no_end_days
+        if (end and end < now()) or too_old:
             it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
+            it["closed_at"] = now().isoformat()
+            if too_old:
+                it["closed_reason"] = f"締切不明のまま{no_end_days}日経過"
+
+    # 終了したものは一定日数たったらデータから削除（ファイルが大きくなり続けないように）
+    purge_days = settings.get("purge_closed_days", 30)
+    for k in [k for k, it in lots.items() if it["status"] in ("closed", "expired", "rejected")]:
+        it = lots[k]
+        t = parse_dt(it.get("closed_at")) or parse_dt(it.get("end")) or parse_dt(it.get("found_at"))
+        if t and (now() - t).days >= purge_days:
+            del lots[k]
     save_json("lotteries.json", lots)

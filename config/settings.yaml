@@ -5,6 +5,8 @@ dry_run: false            # true=XにもWPにも投稿せず、ログに出す�
 min_confidence: 0.7       # AI抽出の自信度がこれ未満は投稿しない（承認待ちに回す）
 max_posts_per_run: 0      # 1回の実行で投稿する最大数（0＝自動投稿を停止中。再開するなら 3 に戻す）
 remind_hours_before: 24   # 締切の何時間前にリマインド投稿するか
+no_end_expire_days: 10    # 締切が書かれていない抽選は、見つけてからこの日数で終了にする
+purge_closed_days: 30     # 終了した抽選は、この日数たったらデータから削除する
 
 # --- X API の費用対策（従量課金） ---
 x_read_budget_per_day: 300  # Xから読む投稿の1日上限（1件 約$0.005 → 300件で約$1.5/日）

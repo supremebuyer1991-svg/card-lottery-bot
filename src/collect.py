@@ -157,6 +157,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         for i in gone:
             i["status"] = "closed" if i["status"] in ("listed", "posted") else "expired"
             i["closed_reason"] = "情報元の一覧から消えた"
+            i["closed_at"] = now().isoformat()
         if gone:
             log(f"{name}: 一覧から消えた {len(gone)}件を終了に")
 
