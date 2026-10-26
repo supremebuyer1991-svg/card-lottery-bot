@@ -8,6 +8,17 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# GitHubに登録したキーに、貼り付け時の空白・改行・引用符・「Bearer 」が混ざっていても動くように掃除する
+_SECRET_NAMES = ("ANTHROPIC_API_KEY", "X_API_KEY", "X_API_SECRET", "X_ACCESS_TOKEN", "X_ACCESS_SECRET",
+                 "X_BEARER_TOKEN", "WP_USER", "WP_URL", "SITE_URL", "AMAZON_TAG")
+for _k in _SECRET_NAMES:
+    _v = os.environ.get(_k)
+    if _v:
+        _v = _v.strip().strip('"').strip("'")
+        if _v.lower().startswith("bearer "):
+            _v = _v[7:]
+        os.environ[_k] = "".join(_v.split())
 JST = timezone(timedelta(hours=9))
 STATE_DIR = ROOT / "state"
 
