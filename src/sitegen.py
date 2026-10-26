@@ -195,6 +195,21 @@ def _product_ad(x, name, rr, tag, aff):
             f'<div class="ad-sup"><p>一緒にそろえたいサプライ</p><div>{sup}</div></div></aside>')
 
 
+def _flow_ad(prods, title):
+    """商品写真が横に流れる広告。prods: [(ゲーム略称, 弾名, 画像URL, 楽天リンク, 件数)]（画像のあるものだけ）"""
+    prods = [p for p in prods if p[2] and p[3]][:14]
+    if len(prods) < 3:
+        return ""
+    cards = "".join(
+        f'<a class="fi" href="{escape(u)}" {_REL}><span class="fi-img"><img src="{escape(img)}" alt="{escape(x)}" loading="lazy"></span>'
+        f'<small>{escape(g)}・抽選{n}件</small><b>{escape(x)}</b><em>楽天で見る</em></a>'
+        for g, x, img, u, n in prods)
+    sec = max(24, len(prods) * 5)  # 1枚あたり約5秒で流れる
+    return (f'<aside class="ad ad-flow"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(title)}</span></div>'
+            f'<div class="flow-wrap"><div class="flow-track" style="--sec:{sec}s">{cards}'
+            f'<span class="flow-dup" aria-hidden="true">{cards}</span></div></div></aside>')
+
+
 def _supply_ad(short, name, tag, aff):
     """ゲームページの広告：サプライを4つのタイルで"""
     if not (tag or aff):
@@ -268,6 +283,15 @@ def build(settings=None, out_dir=None, sample=None):
         p.write_text(page({**common_data, "lock": lock}, meta), encoding="utf-8")
         urls.append(f"{site}/{path}")
 
+    def prods_of(game):
+        cnt = {}
+        for i in items:
+            if i["game"] == game and i.get("series"):
+                cnt[i["series"]] = cnt.get(i["series"], 0) + 1
+        rk_ = rk if sample is None else {}
+        return [(GAME_SHORT[game], x, (rk_.get(f"{game}|{x}") or {}).get("image"), (rk_.get(f"{game}|{x}") or {}).get("url"), n)
+                for x, n in sorted(cnt.items(), key=lambda kv: -kv[1])]
+
     for g in games:
         gi = [i for i in items if i["game"] == g]
         name, short, slug = s["game_names"][g], GAME_SHORT[g], GAME_SLUG[g]
@@ -283,13 +307,15 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "aff": _supply_ad(short, name, tag, raff)}
+                "aff": _flow_ad(prods_of(g), f"いま抽選が多い{short}の弾を通販でチェック") + _supply_ad(short, name, tag, raff)}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
                        h1="トレカの抽選・予約情報まとめ",
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
+            top["aff"] = _flow_ad(sorted(sum((prods_of(x) for x in games), []), key=lambda p: -p[4]),
+                                  "いま抽選が多い弾を通販でチェック") + _supply_ad(short, name, tag, raff)
             write("", {}, top, items)
 
         for x in series:

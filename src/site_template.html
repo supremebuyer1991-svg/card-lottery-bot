@@ -88,6 +88,24 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
   background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; }
 .ad-sup a svg { color: var(--red); }
 .ad-sup a:hover, .ad-btns a:hover { filter: brightness(1.05); }
+/* 商品が横に流れる広告 */
+.flow-wrap { overflow: hidden; padding: 12px 0 14px; -webkit-mask: linear-gradient(90deg, #0000, #000 16px, #000 calc(100% - 16px), #0000); mask: linear-gradient(90deg, #0000, #000 16px, #000 calc(100% - 16px), #0000); }
+.flow-track { display: flex; width: max-content; animation: flow var(--sec, 40s) linear infinite; }
+.flow-dup { display: contents; }
+.flow-wrap:hover .flow-track, .flow-wrap:active .flow-track, .flow-wrap:focus-within .flow-track { animation-play-state: paused; }
+@keyframes flow { to { transform: translateX(-50%); } }
+.fi { flex: none; width: 128px; margin-left: 10px; display: grid; gap: 3px; text-decoration: none; color: var(--ink); }
+.fi-img { width: 128px; height: 128px; border-radius: 10px; background: #fff; border: 1px solid var(--rule); display: grid; place-items: center; overflow: hidden; }
+.fi-img img { width: 100%; height: 100%; object-fit: contain; transition: transform .2s; }
+.fi:hover .fi-img img { transform: scale(1.04); }
+.fi small { font-size: 10px; color: var(--ink-2); margin-top: 3px; }
+.fi b { font-size: 13px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 2.6em; }
+.fi em { font-style: normal; font-size: 11px; font-weight: 700; color: #bf0000; }
+@media (prefers-reduced-motion: reduce) {
+  .flow-wrap { overflow-x: auto; -webkit-mask: none; mask: none; }
+  .flow-track { animation: none; }
+  .flow-dup { display: none; }
+}
 .ad-more { display: block; text-align: center; font-size: 12px; font-weight: 700; color: #bf0000; text-decoration: none; padding: 0 14px 14px; }
 .aff a { color: var(--red); font-weight: 700; }
 .pre { display: grid; gap: 6px; }
