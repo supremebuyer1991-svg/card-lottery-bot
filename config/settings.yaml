@@ -9,7 +9,7 @@ remind_hours_before: 24   # 締切の何時間前にリマインド投稿する�
 # --- X API の費用対策（従量課金） ---
 x_read_budget_per_day: 300  # Xから読む投稿の1日上限（1件 約$0.005 → 300件で約$1.5/日）
 post_link: false            # 個別告知にリンクを付けるか（リンク付き投稿は1件 約$0.20と高い）
-quote_source: true          # 店舗の告知ポストを引用リポストする（一次情報が見えて信用UP）
+quote_source: false         # 店舗の告知ポストを引用する（自動化ラベル付きアカウントは引用不可＝403になるのでオフ）
 summary_hour: 20            # この時刻以降に1日1回、WPまとめページへのリンク付きまとめを投稿
 
 site_public_url: ""        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う

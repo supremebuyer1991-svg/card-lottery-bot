@@ -118,7 +118,15 @@ def post_all(settings, client=None):
         if dry:
             log("DRY_RUN 投稿:\n" + text + (f"\n（引用: {quote}）" if quote else ""))
             return "dry"
-        res = client.create_tweet(text=text, quote_tweet_id=quote)
+        try:
+            res = client.create_tweet(text=text, quote_tweet_id=quote)
+        except Exception as e:
+            # 自動化ラベル付きアカウントは他人のポストを引用できない（403）→ 引用なしで出し直す
+            if quote and "403" in str(e):
+                log("引用が拒否されたため引用なしで投稿します")
+                res = client.create_tweet(text=text)
+            else:
+                raise
         return str(res.data["id"])
 
     # 1) 締切が近い順に新着告知
