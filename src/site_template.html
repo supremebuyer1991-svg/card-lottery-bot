@@ -657,8 +657,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return '<div class="hot-b ' + cls + '"><div class="hot-h"><h2>' + title + '<span>' + list.length + '</span></h2><small>' + note + '</small></div>' +
       '<div class="hot-row">' + list.map(function (i) { return hotCard(i, isFresh); }).join("") + '</div></div>';
   }
+  function isAmazon(i) { return /amazon|amzn/i.test((i.store || "") + (i.url || "")); }
   function renderHot() {
-    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var now = Date.now(), g = inGame().filter(function (i) { return i.url && !isAmazon(i); });  // Amazonの招待は一覧の一番上の券にまとめているので出さない
     var soon = g.filter(function (i) { return i._end && i._end > now && i._end - now < 48 * 3600e3; })
       .sort(function (a, b) { return a._end - b._end; }).slice(0, 12);
     var fresh = g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); }).slice(0, 12);
@@ -768,7 +769,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return m < 60 ? m + "分" : Math.floor(m / 60) + "時間" + (m % 60 ? (m % 60) + "分" : "");
   }
   function renderNews() {
-    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var now = Date.now(), g = inGame().filter(function (i) { return i.url && !isAmazon(i); });
     var ending = g.filter(function (i) { return i._end && i._end > now && i._end - now <= 3 * 3600e3; })
       .sort(function (a, b) { return a._end - b._end; }).slice(0, 10)
       .map(function (i) { return { i: i, cls: "end", tag: "残り" + leftText(i._end - now), t: '<b>' + esc(i.store) + '</b>「' + esc(i.series || i.product) + '」まもなく受付終了！' }; });
