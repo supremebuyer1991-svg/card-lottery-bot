@@ -7,6 +7,7 @@ from approve import approve
 from xpost import post_all, post_daily_summary
 from xbuzz import post_buzz
 from xtrend import update_trends
+from pagecheck import check_pages
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -27,6 +28,10 @@ def main():
             fill_deadlines(s)  # 締切が分からない抽選は、Xの告知（本文・画像）や応募ページから読み取る
         except Exception as e:
             log(f"締切の調査: スキップ {e}")
+        try:
+            check_pages(s)  # 応募ページ（通販・フォーム・LivePocket）が受付終了になっていたら終了に
+        except Exception as e:
+            log(f"応募ページの確認: スキップ {e}")
         try:
             classify(s)  # ネット（発送）／店頭（店頭受け取り）の振り分けと都道府県の補完
         except Exception as e:
