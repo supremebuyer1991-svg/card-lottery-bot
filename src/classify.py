@@ -58,7 +58,7 @@ def _ask(rows):
     return json.loads(m.group(0)) if m else []
 
 
-def classify(settings, ask=None, batch=40, max_batches=6):
+def classify(settings, ask=None, batch=40, max_batches=20):
     """未判定の抽選だけをAIで判定して lotteries.json に書き戻す。戻り値: 変更した件数"""
     if ask is None:
         if not os.environ.get("ANTHROPIC_API_KEY"):
