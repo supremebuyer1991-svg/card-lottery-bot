@@ -86,7 +86,7 @@ def approve(settings):
 
     # 終了したものは一定日数たったらデータから削除（ファイルが大きくなり続けないように）
     purge_days = settings.get("purge_closed_days", 30)
-    for k in [k for k, it in lots.items() if it["status"] in ("closed", "expired", "rejected")]:
+    for k in [k for k, it in lots.items() if it["status"] in ("closed", "expired", "rejected", "duplicate")]:
         it = lots[k]
         t = parse_dt(it.get("closed_at")) or parse_dt(it.get("end")) or parse_dt(it.get("found_at"))
         if t and (now() - t).days >= purge_days:

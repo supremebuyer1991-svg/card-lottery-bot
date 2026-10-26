@@ -10,6 +10,7 @@ from sitegen import build as build_site, active_series
 import rakuten
 from classify import classify
 from deadline import fill_deadlines
+from dedupe import dedupe
 
 
 def main():
@@ -28,6 +29,10 @@ def main():
             classify(s)  # ネット（発送）／店頭（店頭受け取り）の振り分けと都道府県の補完
         except Exception as e:
             log(f"振り分け: スキップ {e}")
+        try:
+            dedupe(s)  # 別々の情報元から拾った同じ抽選を1件にまとめる
+        except Exception as e:
+            log(f"重複: スキップ {e}")
         approve(s)
         post_all(s)
         post_daily_summary(s)

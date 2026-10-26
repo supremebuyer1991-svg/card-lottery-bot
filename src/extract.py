@@ -85,7 +85,9 @@ def extract(text: str, game: str, game_name: str, source_name: str, source_url: 
         log(f"  ※AIの返事が長すぎて途中で切れました（救出 {len(items)}件）")
     valid = ("pokemon", "onepiece", "dragonball")
     for it in items:
-        if game != "auto" or it.get("game") not in valid:
+        # Xの検索は別のゲームの投稿も混ざるので、投稿の中身からAIが判定したゲームを優先する
+        from_x = source_name.startswith("X")
+        if it.get("game") not in valid or (game != "auto" and not from_x):
             it["game"] = game
         if it["game"] not in valid:
             continue
