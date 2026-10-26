@@ -159,8 +159,12 @@ def _head(name, n=28):
     return re.sub(r"\s+", " ", s).strip()[:n]
 
 
+HEAD_ONLY = ("ストレージ",)  # 商品名の最初の部分にジャンル名がある物だけ（専用品に限る）
+
+
 def supply_ok(name, must):
-    if not any(w in (name or "") for w in must):
+    where = _head(name, 20) if any(w in HEAD_ONLY for w in must) else (name or "")
+    if not any(w in where for w in must):
         return False
     if any(w in (name or "") for w in SUPPLY_NG) or CARD_NO.search(name or ""):
         return False
