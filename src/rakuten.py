@@ -16,12 +16,12 @@ from common import load_json, save_json, now, parse_dt, log
 
 ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 # 画像に使いたくない商品（オリパ・中古・バラ売り・サプライ等）
-NG_WORDS = ("オリパ", "オリジナルパック", "中古", "シングル", "バラ", "1パック", "スリーブ", "ローダー", "ケース",
+NG_WORDS = ("オリパ", "オリジナルパック", "中古", "シングル", "バラ", "ばら", "1パック", "5パック", "10パック", "15パック", "スリーブ", "ローダー", "ケース",
             "ファイル", "プレイマット", "福袋", "くじ", "まとめ売り", "空箱", "未開封品 ※")
 
 
 def _norm(s):
-    return re.sub(r"[\s「」『』()（）・×xX【】\[\]/／-]", "", unicodedata.normalize("NFKC", s or "")).lower()
+    return re.sub(r"[\s「」『』()（）・×xX【】\[\]/／&＆+＋-]", "", unicodedata.normalize("NFKC", s or "")).lower()
 
 
 def _score(item, series, game_name):
@@ -90,8 +90,9 @@ def update(settings, series_by_game, session=None, sleep=1.1):
             if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).days < days:
                 continue
             budget -= 1
+            alias = (settings.get("rakuten_aliases") or {}).get(x) or x  # 楽天での商品名が違う弾は別名で探す
             try:
-                items = search(f"{gname} {x}", settings, session)
+                items = search(f"{gname} {alias}", settings, session)
             except Exception as e:
                 log(f"楽天: {x} 取得失敗 {e}")
                 if "401" in str(e) or "403" in str(e):
@@ -99,7 +100,7 @@ def update(settings, series_by_game, session=None, sleep=1.1):
                 continue
             best = None
             for it in items:
-                sc = _score(it, x, gname)
+                sc = _score(it, alias, gname)
                 if sc is not None and (best is None or sc > best[0]):
                     best = (sc, it)
             if best:

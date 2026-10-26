@@ -38,6 +38,13 @@ amazon_tag: "st9994ststst-22"
 rakuten_affiliate_id: "0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"  # 楽天アフィリエイトID
 rakuten_refresh_days: 3         # 1つの弾の画像を何日ごとに取り直すか
 rakuten_max_calls_per_run: 8    # 1回の実行で楽天に問い合わせる最大数
+rakuten_aliases:                # 楽天での商品名がサイトの弾名と違うもの（弾名: 楽天で探す名前）
+  30周年パック: 30th CELEBRATION
+  30周年: 30th CELEBRATION
+  30周年御三家カードセット: 御三家
+  30周年エーフィ・ブラッキーデッキ: エーフィ ブラッキー
+  Heroines Edition vol.2: ヒロインズエディション
+  ヒロインズエディション vol.2: ヒロインズエディション
 
 # 弾ごとの記事を入れるWPカテゴリのID（WP管理画面→投稿→カテゴリーで確認。空なら未分類）
 wp_categories:
