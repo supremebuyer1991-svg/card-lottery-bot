@@ -15,6 +15,8 @@ save_json("lotteries.json", {
           "url": "https://x.com/furuichi/status/111"},
     "b": {"store": "TSUTAYA", "product": "OP-17", "status": "listed", "end": None, "found_at": now().isoformat(),
           "url": "https://livepocket.jp/e/abc"},
+    "a2": {"store": "古本市場 倉敷中島店", "product": "メガブレイブ", "status": "listed", "end": None, "found_at": now().isoformat(),
+           "url": "https://x.com/furuichi/status/111", "deadline_checked_at": now().isoformat()},
     "c": {"store": "済み", "product": "x", "status": "listed", "end": "2026-11-01T23:59:00+09:00", "url": "https://x.com/a/status/9"},
 })
 
@@ -40,7 +42,8 @@ def fake_ask(text, imgs, it, posted):
 fx = FakeX()
 n = deadline.fill_deadlines(s, ask=fake_ask, fetcher=lambda u: pages[u], x_client=fx)
 L = load_json("lotteries.json", {})
-assert n == 2, n
+assert n == 3, n
+assert L["a2"]["end"] == L["a"]["end"]                                                     # 同じポストの別商品にも同じ締切
 assert L["a"]["end"] == "2026-10-30T21:00:00+09:00" and "応募ページ" in L["a"]["end_from"]   # ポスト→LivePocketから
 assert L["a"]["apply_url"] == "https://livepocket.jp/e/xyz"
 assert L["b"]["end"] == "2026-11-03T23:59:00+09:00"                                        # LivePocketのページから

@@ -165,6 +165,17 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
             it["end_from"] = f"{src}（{(r.get('evidence') or '')[:20]}）"
             filled += 1
             log(f"締切の調査: {it.get('store')} → {it['end']}  {it['end_from']}")
+    # 同じ告知（同じポスト・同じ応募ページ）から出た抽選は、締切も同じ
+    by_url = {}
+    for it in lots.values():
+        if it.get("end") and it.get("end_from") and it.get("url"):
+            by_url.setdefault(it["url"], it)
+    for it in lots.values():
+        src = by_url.get(it.get("url") or "")
+        if it.get("status") in ACTIVE and not it.get("end") and src:
+            it["end"] = src["end"]
+            it["end_from"] = "同じ告知の別の商品から"
+            filled += 1
     save_json("lotteries.json", lots)
     log(f"締切の調査: {len(todo)}件を調べて {filled}件の締切が分かった")
     return filled
