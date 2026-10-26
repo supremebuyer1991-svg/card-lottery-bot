@@ -210,15 +210,30 @@ def _flow_ad(prods, title):
             f'<span class="flow-dup" aria-hidden="true">{cards}</span></div></div></aside>')
 
 
-def _supply_ad(short, name, tag, aff):
-    """ゲームページの広告：サプライを4つのタイルで"""
+def _supply_ad(short, name, tag, aff, prices=None, game=None):
+    """ゲームページの広告：サプライ4ジャンルのタイル。楽天の最安値があれば「¥199〜」を表示（押すと楽天の安い順）"""
     if not (tag or aff):
         return ""
-    tiles = "".join(f'<a href="{escape(_amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff))}" {_REL}>{_icon(k)}<span>{k}</span></a>'
-                    for k in ("スリーブ", "ローダー", "デッキケース", "ストレージ"))
-    more = (f'<a class="ad-more" href="{escape(_rak(f"{name} サプライ", aff))}" {_REL}>楽天市場でサプライをまとめて見る</a>' if aff else "")
+    prices = prices or {}
+    tiles, dates = [], []
+    for k in ("スリーブ", "ローダー", "デッキケース", "ストレージ"):
+        p = prices.get(f"{game}|{k}") or {}
+        if p.get("price") and p.get("url"):
+            href, price = p["url"], f'<small>楽天</small><strong>¥{p["price"]:,}〜</strong>'
+            dates.append(p.get("fetched_at") or "")
+        else:
+            href = _amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff)
+            price = ""
+        tiles.append(f'<a href="{escape(href)}" {_REL}>{_icon(k)}<span>{k}</span>{price}</a>')
+    amz = ("".join(f'<a href="{escape(_amz(f"{name} {k}", tag))}" {_REL}>{k}</a>'
+                   for k in ("スリーブ", "ローダー", "デッキケース", "ストレージ")) if tag else "")
+    note = ""
+    if dates:
+        d = parse_dt(max(dates))
+        note = f'<p class="ad-note">価格は楽天市場の{d.month}/{d.day}時点の最安値（送料は別の場合あり）</p>' if d else ""
     return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(short)}のサプライをさがす</span></div>'
-            f'<div class="ad-sup ad-tiles"><div>{tiles}</div></div>{more}</aside>')
+            f'<div class="ad-sup ad-tiles"><div>{"".join(tiles)}</div></div>{note}'
+            + (f'<div class="ad-amz"><b>Amazonで見る</b>{amz}</div>' if amz else "") + '</aside>')
 
 
 AMZ_SHORT = ("amzn.to", "amzn.asia", "link.amazon", "a.co")
@@ -290,6 +305,7 @@ def build(settings=None, out_dir=None, sample=None):
     out = Path(out_dir or ROOT / "site")
     games = [g for g in s["game_names"]]
 
+    prices = load_json("rakuten_prices.json", {}) if sample is None else {}  # サプライの楽天最安値
     if sample is not None:
         items = sample
     else:
@@ -355,7 +371,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "aff": _flow_ad(prods_of(g), f"いま抽選が多い{short}の弾を通販でチェック") + _supply_ad(short, name, tag, raff)}
+                "aff": _flow_ad(prods_of(g), f"いま抽選が多い{short}の弾を通販でチェック") + _supply_ad(short, name, tag, raff, prices, g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi)
         if g == games[0]:
             top = dict(meta, title="トレカ抽選ナビ｜ポケカ・ワンピカード・フュージョンワールドの抽選情報まとめ",
@@ -363,7 +379,7 @@ def build(settings=None, out_dir=None, sample=None):
                        lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["aff"] = _flow_ad(sorted(sum((prods_of(x) for x in games), []), key=lambda p: -p[4]),
-                                  "いま抽選が多い弾を通販でチェック") + _supply_ad(short, name, tag, raff)
+                                  "いま抽選が多い弾を通販でチェック") + _supply_ad(short, name, tag, raff, prices, g)
             write("", {}, top, items)
 
         for x in series:

@@ -29,6 +29,7 @@ def main():
         update_pages(s)
         try:
             rakuten.update(s, active_series(s))  # 楽天の商品画像（キー未登録なら何もしない）
+            rakuten.supply_prices(s, list(s["game_names"]))  # サプライの楽天最安値（1日1回）
         except Exception as e:
             log(f"楽天: スキップ {e}")
         build_site(s)  # 自作サイト（site/index.html）を書き出し

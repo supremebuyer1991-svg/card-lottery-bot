@@ -76,4 +76,20 @@ fs4 = FakeSession([], code=403)
 rakuten.update(s, {"dragonball": ["X", "Y", "Z"]}, session=fs4, sleep=0)
 assert len(fs4.calls) == 1
 
+# サプライの最安値
+os.environ["RAKUTEN_APP_ID"] = "uuid-app"; os.environ["RAKUTEN_ACCESS_KEY"] = "pk_test"
+sup = [
+    {"itemName": "【中古】ポケモンカード スリーブ", "itemPrice": 50, "mediumImageUrls": ["x"]},
+    {"itemName": "ポケモンカード 拡張パック スリーブ付き", "itemPrice": 120, "mediumImageUrls": ["x"]},
+    {"itemName": "ポケモンカードゲーム デッキシールド ピカチュウ", "itemPrice": 440, "mediumImageUrls": ["x"]},
+    {"itemName": "カードスリーブ 100枚入り ポケモンカード対応", "itemPrice": 199, "mediumImageUrls": ["x"]},
+]
+fs5 = FakeSession(sup)
+p = rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=1), ["pokemon"], session=fs5, sleep=0)
+assert fs5.calls[0][1]["sort"] == "+itemPrice"
+assert p["pokemon|スリーブ"]["price"] == 199, p          # 中古・パックは除外、正しい中で最安
+assert "s%3D2" in p["pokemon|スリーブ"]["url"] and "aaaa.bbbb" in p["pokemon|スリーブ"]["url"]
+fs6 = FakeSession(sup)
+rakuten.supply_prices(dict(s, rakuten_price_calls_per_run=1), ["pokemon"], session=fs6, sleep=0)
+assert fs6.calls and fs6.calls[0][1]["keyword"].endswith("ローダー")   # スリーブは今日はもう取らない
 print("RAKUTEN ALL OK")

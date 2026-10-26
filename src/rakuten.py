@@ -70,7 +70,8 @@ def search(keyword, settings, session=None):
     app, key = os.environ.get("RAKUTEN_APP_ID", "").strip(), os.environ.get("RAKUTEN_ACCESS_KEY", "").strip()
     site = (os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
     params = {"applicationId": app, "keyword": keyword, "format": "json", "formatVersion": 2,
-              "hits": 20, "imageFlag": 1, "availability": 1, "sort": "standard"}
+              "hits": 30 if settings.get("_sort") else 20, "imageFlag": 1, "availability": 1,
+              "sort": settings.get("_sort") or "standard"}
     aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
     if aff:
         params["affiliateId"] = aff
@@ -126,4 +127,58 @@ def update(settings, series_by_game, session=None, sleep=1.1):
                 log(f"楽天: {x} 該当なし")
             time.sleep(sleep)
     save_json("rakuten.json", cache)
+    return cache
+
+
+# ---- サプライの最安値（ジャンルごと・1日1回） ----
+SUPPLY = {  # ジャンル: (検索語, 商品名に含まれるべき語)
+    "スリーブ": ("スリーブ", ("スリーブ", "デッキシールド", "プロテクター")),
+    "ローダー": ("ローダー", ("ローダー",)),
+    "デッキケース": ("デッキケース", ("デッキケース", "デッキボックス")),
+    "ストレージ": ("ストレージボックス", ("ストレージ", "カードボックス", "収納")),
+}
+SUPPLY_NG = ("中古", "ジャンク", "訳あり", "オリパ", "福袋", "まとめ売り", "シングル", "パック", "BOX未開封", "拡張")
+
+
+def search_link(q, aff):
+    """楽天の検索結果（安い順）への自分のアフィリエイトリンク"""
+    from urllib.parse import quote
+    return item_link(f"https://search.rakuten.co.jp/search/mall/{quote(q)}/?s=2", aff)
+
+
+def supply_prices(settings, games, session=None, sleep=1.1):
+    """state/rakuten_prices.json を更新して返す。{"pokemon|スリーブ": {"price", "url", "name", "fetched_at"}}"""
+    cache = load_json("rakuten_prices.json", {})
+    if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
+        return cache
+    aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
+    budget = settings.get("rakuten_price_calls_per_run", 12)
+    for game in games:
+        gname = settings["game_names"][game]
+        for genre, (word, must) in SUPPLY.items():
+            if budget <= 0:
+                break
+            k = f"{game}|{genre}"
+            c = cache.get(k)
+            if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).total_seconds() < 20 * 3600:
+                continue  # 1日1回
+            budget -= 1
+            q = f"{gname} {word}"
+            try:
+                items = search(q, dict(settings, _sort="+itemPrice"), session)
+            except Exception as e:
+                log(f"楽天価格: {k} 取得失敗 {e}")
+                if "401" in str(e) or "403" in str(e):
+                    return cache
+                continue
+            ok = [it for it in items
+                  if any(w in (it.get("itemName") or "") for w in must)
+                  and not any(w in (it.get("itemName") or "") for w in SUPPLY_NG)
+                  and int(it.get("itemPrice") or 0) >= 100]
+            best = min(ok, key=lambda it: int(it["itemPrice"])) if ok else None
+            cache[k] = {"price": int(best["itemPrice"]) if best else None, "name": (best or {}).get("itemName"),
+                        "url": search_link(q, aff), "fetched_at": now().isoformat()}
+            log(f"楽天価格: {k} → " + (f"¥{best['itemPrice']} {best['itemName'][:30]}" if best else "なし"))
+            time.sleep(sleep)
+    save_json("rakuten_prices.json", cache)
     return cache
