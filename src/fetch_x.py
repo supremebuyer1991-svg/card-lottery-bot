@@ -17,7 +17,9 @@ def _client():
 def budget_left(settings) -> int:
     u = load_json("x_usage.json", {})
     used = u.get(now().date().isoformat(), 0)
-    return max(0, settings.get("x_read_budget_per_day", 300) - used)
+    today = now().date().isoformat()
+    limit = (settings.get("x_read_budget_by_date") or {}).get(today) or settings.get("x_read_budget_per_day", 300)
+    return max(0, limit - used)
 
 
 def _spend(n):
