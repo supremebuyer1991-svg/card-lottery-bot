@@ -10,6 +10,7 @@
   /sitemap.xml  /robots.txt
 """
 import json
+import re
 import os
 import sys
 from html import escape
@@ -413,6 +414,8 @@ def build(settings=None, out_dir=None, sample=None):
             row = {k: i.get(k) for k in FIELDS}
             row["image"] = row.get("image") or images.get(i.get("series") or "")
             row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)
+            if tag and re.search(r"amazon|アマゾン", row.get("store") or "", re.I) and "amazon." not in (row.get("url") or ""):
+                row["url"] = _amz(row.get("series") or row.get("product") or "", tag)  # XのURL（t.co）などは自分のタグ付きの検索に
             r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
             if not row["image"] and r.get("image"):
                 row["image"], row["img_url"] = r["image"], r.get("url")
