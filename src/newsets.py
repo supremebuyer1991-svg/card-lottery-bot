@@ -90,7 +90,7 @@ def find_snkr(sess, name):
     html = sess.get("https://snkrdunk.com/search", params={"keywords": name}, timeout=30).text
     for m in re.finditer(r'href=\\?"https://snkrdunk\.com/apparels/(\d+)\\?"[^>]*aria-label=\\?"([^"\\]+)', html):
         aid, label = m.group(1), unescape(m.group(2))
-        if name in label and re.search(r"ボックス|BOX", label) and not re.search(r"カートン|ケース|スリーブ|シングル|パック単品", label):
+        if name in label and re.search(r"ボックス|BOX", label) and not re.search(r"カートン|ケース|スリーブ|シングル|パック単品|英語版|海外版|韓国版|中国版|簡体|繁体|English", label):
             return int(aid)
     return None
 
