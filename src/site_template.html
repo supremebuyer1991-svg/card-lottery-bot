@@ -325,16 +325,18 @@ input[type="search"] { flex: 1 1 160px; }
 .tags { display: flex; gap: 4px; flex-wrap: wrap; }
 .tag { font-size: 11px; border: 1px solid var(--rule); border-radius: 4px; padding: 0 6px; color: var(--ink-2); }
 .cond { font-size: 12px; color: var(--ink-2); overflow-wrap: anywhere; }
-.acts { padding: 12px 14px 12px 0; display: grid; gap: 6px; align-content: center; justify-items: stretch; }
+.acts { padding: 12px 14px 12px 0; display: grid; grid-template-columns: repeat(2, minmax(84px, 1fr)); gap: 6px; align-content: center; justify-items: stretch; }
 .go { display: inline-block; text-align: center; text-decoration: none; background: var(--red); color: #fff; font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
 .go:hover { filter: brightness(1.08); }
 /* 応募ボタン：ロゴの「抽選」と同じ抽選券の形（左右に切り欠き） */
-.go.tk { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-radius: 4px; padding: 9px 14px 9px 16px; font-weight: 900; letter-spacing: .04em;
+.go.tk { display: flex; align-items: center; justify-content: center; gap: 4px; border-radius: 4px; padding: 6px 10px; font-size: 12.5px; font-weight: 900; letter-spacing: .02em;
   -webkit-mask: radial-gradient(circle 6px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 6px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
   mask: radial-gradient(circle 6px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 6px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat; }
 .go.tk i { font-style: normal; font-weight: 700; opacity: .85; }
-.mini { display: flex; gap: 6px; justify-content: center; }
-.mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; }
+/* 応募する・応募済み・カレンダー・詳しく を縦横2つずつ（2×2）で並べる */
+.mini { display: contents; }
+.mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 6px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; text-align: center; display: flex; align-items: center; justify-content: center; }
+.acts .hint { grid-column: 1 / -1; text-align: center; }
 .mini button[aria-pressed="true"] { color: var(--done); border-color: var(--done); font-weight: 700; }
 .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--rule); border-radius: 10px; }
 
@@ -389,7 +391,7 @@ dialog.sheet::backdrop { background: rgb(10 14 26 / .45); }
 footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display: grid; gap: 6px; }
 @media (max-width: 560px) {
   .ticket { grid-template-columns: 92px 1fr; }
-  .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
+  .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr 1fr; align-items: stretch; border-top: 1px dashed var(--rule); padding-top: 10px; }
   .cd { font-size: 15px; }
   .thumb { --tw: 72px; }
   .thumbs { --tw: 72px; --off: 10px; }
