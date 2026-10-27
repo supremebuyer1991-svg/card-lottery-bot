@@ -68,7 +68,7 @@ def onepiece_products(sess):
         html = sess.get(f"https://www.onepiece-cardgame.com/products/?page={page}&view=detail", timeout=30).text
         txt = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", " ", html)))
         for m in re.finditer(r"(ブースター) ((?:ブースターパック|エクストラブースター|プレミアムブースター) "
-                             r"[^発]{2,60}?) 発売日(\d{4})\.(\d{2})\.(\d{2})\S* メーカー希望小売価格([\d,]+円)", txt):
+                             r"[^発]{2,60}?) 発売日\s*(\d{4})\.(\d{2})\.(\d{2})\S*\s*メーカー希望小売価格\s*([\d,]+円)", txt):
             full = m.group(2).strip()
             code = (re.search(r"【([A-Z]{2,3}-\d{2})】", full) or [None, None])[1]
             name = re.sub(r"【[^】]+】", "", re.sub(r"^(ブースターパック|エクストラブースター|プレミアムブースター|スタートデッキ(EX)?)\s*", "", full)).strip()

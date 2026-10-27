@@ -75,6 +75,7 @@ CHAINS = [
     ("amazon", "Amazon", r"Amazon|アマゾン", False),
     ("sevennet", "セブンネット", r"セブンネット|セブン-?イレブン", False),
     ("cardlabo", "カードラボ", r"カードラボ", False),
+    ("cardcrew", "カードクルー（CARD CREW）", r"カードクルー|CARD\s*CREW", False),
     ("surugaya", "駿河屋", r"駿河屋", False),
     ("bigmagic", "BIGMAGIC", r"BIG\s*MAGIC|ビッグマジック", False),
     ("yellowsubmarine", "イエローサブマリン", r"イエローサブマリン", False),
