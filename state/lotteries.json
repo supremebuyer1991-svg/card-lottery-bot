@@ -25532,11 +25532,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "0a9ffeac6fdf12e4",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:15:40.386853+09:00",
     "multi": false,
     "cls": "f38070f7123c",
-    "issue": 131
+    "issue": 131,
+    "duplicate_of": "e7477fe758c686fd"
   },
   "4087ab93fad989e1": {
     "store": "ふるいち古本市場",
@@ -26659,5 +26660,62 @@
     "found_at": "2026-10-28T05:00:40.406792+09:00",
     "multi": false,
     "cls": "c99cc93687f4"
+  },
+  "e7477fe758c686fd": {
+    "store": "ブックオフ イオンモール成田店",
+    "product": "MEGA 拡張パック 30thCELEBRATION",
+    "series": "30th CELEBRATION",
+    "start": null,
+    "end": "2026-11-04",
+    "announce": null,
+    "method": "X（引用元フォロー＆リポスト）",
+    "conditions": "引用元のフォローとリポストが必要",
+    "url": "https://twitter.com/bookoff_20381/status/2114966302930743676",
+    "x_post": "https://x.com/AkiPokemonLife/status/2115186782560297142",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "千葉県",
+    "id_check": null,
+    "member": null,
+    "tags": [
+      "SNS応募"
+    ],
+    "confidence": 0.8,
+    "source": "X 実店舗抽選「ポケカ」",
+    "source_url": "https://x.com/",
+    "key": "e7477fe758c686fd",
+    "status": "approved",
+    "found_at": "2026-10-28T06:03:34.177507+09:00",
+    "multi": false,
+    "cls": "6c0ffe47fc42"
+  },
+  "f0d858386e4389f7": {
+    "store": "ブックオフ イオンモール成田店",
+    "product": "30thCELEBRATION エーフィ・ブラッキー",
+    "series": "30th CELEBRATION",
+    "start": null,
+    "end": "2026-11-04",
+    "announce": null,
+    "method": "X（引用元フォロー＆リポスト）",
+    "conditions": "引用元のフォローとリポストが必要",
+    "url": "https://twitter.com/bookoff_20381/status/2114966302930743676",
+    "x_post": "https://x.com/AkiPokemonLife/status/2115186782560297142",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "千葉県",
+    "id_check": null,
+    "member": null,
+    "tags": [
+      "SNS応募"
+    ],
+    "confidence": 0.8,
+    "source": "X 実店舗抽選「ポケカ」",
+    "source_url": "https://x.com/",
+    "key": "f0d858386e4389f7",
+    "status": "duplicate",
+    "found_at": "2026-10-28T06:03:34.177537+09:00",
+    "multi": false,
+    "cls": "d4f6325b524c",
+    "duplicate_of": "e7477fe758c686fd"
   }
 }
