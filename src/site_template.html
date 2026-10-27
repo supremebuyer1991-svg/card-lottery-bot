@@ -272,6 +272,7 @@ input[type="search"] { flex: 1 1 160px; }
 .near .cd { color: var(--amber); }
 .body { padding: 12px 14px; min-width: 0; display: flex; gap: 12px; align-items: flex-start; }
 .info { min-width: 0; display: grid; gap: 4px; flex: 1; }
+.body > .thumb { align-self: center; }  /* 1商品の画像はカードの上下まん中に */
 .thumb { flex: none; width: var(--tw, 120px); aspect-ratio: 1; border-radius: 10px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
 /* 複数商品の抽選：4枚までを 〇〇／〇〇 の2×2で並べる */
 .thumbs { --tw: 120px; flex: none; width: var(--tw); height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: center; }
