@@ -2,7 +2,7 @@
 import sys
 
 from common import load_settings, load_sources, log
-from collect import collect
+from collect import collect, sync_manual
 from approve import approve
 from xpost import post_all, post_daily_summary
 from xbuzz import post_buzz
@@ -21,6 +21,7 @@ def main():
     s = load_settings()
     log(f"開始 auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
     step = sys.argv[1] if len(sys.argv) > 1 else "all"
+    sync_manual()  # 自分で追加した抽選（config/manual.yaml）
     if step in ("all", "collect"):
         new = collect(load_sources(), s)
         log(f"新着 {len(new)} 件")

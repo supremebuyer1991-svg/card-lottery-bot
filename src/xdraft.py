@@ -88,7 +88,7 @@ const REG=[["北海道・東北",/北海道|青森|岩手|宮城|秋田|山形|�
   .sort((a,b)=>new Date(b.found_at)-new Date(a.found_at))
   ;
  for(const x of byStore(li).slice(0,3)){const i=x.i;
-  const t=`🚨抽選速報｜${GS[i.game]}\\n\\n「${nm(x)}」\\n\\n📍${i.store}（${where(i)}）\\n⏰${fmt(end(i))} 締切\\n\\n`+foot("応募条件・方法はこちら",i.spath?SITE+"/"+i.spath:link(i.game),TAG[i.game]);
+  const t=`🚨抽選速報｜${GS[i.game]}\\n\\n「${nm(x)}」\\n\\n📍${i.store}（${where(i)}）\\n⏰${fmt(end(i))} 締切\\n\\n`+foot("応募条件・方法はこちら",i.lpath?SITE+"/"+i.lpath:i.spath?SITE+"/"+i.spath:link(i.game),TAG[i.game]);
   add(`速報：${i.store}`,"見つけてすぐ出すのが一番伸びる",t,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]);
  }
 }
@@ -158,6 +158,24 @@ for(const g of Object.keys(GS)){
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
   fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9],"fresh");
 }
+// 0) 自分で追加した抽選（config/manual.yaml）。本文はリンクなし＋リプ欄に個別ページのURL
+const GX={pokemon:"ポケカ",onepiece:"ワンピースカード",dragonball:"フュージョンワールド"};
+const TGX={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピースカード",dragonball:"#フュージョンワールド"};
+const manualCards=[];
+for(const i of active.filter(i=>i.manual&&i.lpath)){
+ const st=(i.store||"").replace(/[（(].*$/,"").trim(),s0=i.start?new Date(i.start):null,e=end(i);
+ const head=s0&&s0>now?(sameDay(s0,now)?`本日${s0.getHours()}時スタート🔥`:`${s0.getMonth()+1}/${s0.getDate()}(${W[(s0.getDay()+6)%7]})${s0.getHours()}時スタート`):e&&sameDay(e,now)?"⏰本日締切！":"受付中🔥";
+ const L=[`【${st} ${GX[i.game]}抽選】`,head,""];
+ L.push("🗓 応募期間",(s0?fmt(s0):"")+"〜"+fmt(e),"");
+ if(i.conditions)L.push("📱 "+i.conditions,"");
+ if((i.products||[]).length){L.push("📦 対象商品");for(const p of i.products)L.push("・"+p.replace(/^(ブースターパック|エクストラブースター|プレミアムブースター|拡張パック|強化拡張パック)\\s*/,""));L.push("");}
+ else L.push("📦 "+(i.product||""),"");
+ if(i.announce)L.push("🎯 当選発表："+i.announce);
+ if(i.buy)L.push("🛒 購入期間："+i.buy);
+ L.push("","詳細・応募ページはリプ欄👇","",TGX[i.game]+" #"+st.replace(/[\\s　]/g,"")+" #抽選");
+ manualCards.push({h:`📝 ${st}（個別ページ付き）`,hint:"① 本文（リンクなし・長文）",t:L.join("\\n").replace(/\\n{3,}/g,"\\n\\n"),hot:true,long:true});
+ manualCards.push({h:`↳ ${st}：リプ欄に貼る`,hint:"② 投稿したら自分のポストに返信",t:`📌詳細・応募ページはこちら👇\\n${SITE}/${i.lpath}`,hot:false});
+}
 // --- 今日の相場（スニダンの共有文から） ---
 function mkCard(h,hint,t){
  const d=document.createElement("div");d.className="card";const n=xlen(t);
@@ -211,17 +229,18 @@ for(const x of tr)cards.unshift({img:`trend-${x._k}`,h:`🔥話題ネタ：${(x.
 const BN={ranking:"弾のランキング",question:"店舗数",numbers:"全国の件数",prefecture:"都道府県ランキング",aruaru:"あるある"};
 cards.splice(tr.length,0,...MARKET.map(m=>({h:`📈今日の相場：${GS[m.game]}${m.part?`（その${m.part}）`:""}`,hint:"1日1回・朝〜昼に",t:m.t||m.text,hot:[8,9,10,11,12].includes(hr),img:`market-${m.game}`})));
 cards.splice(tr.length+MARKET.length,0,...BUZZ.map((b,k)=>({h:`💬ひとこと：${BN[b.kind]||b.kind}`,hint:k?"リンクなし":"リンクなし・今日のおすすめ",t:b.text,hot:false,img:`buzz-${b.kind}`})));
+cards.unshift(...manualCards);
 const root=document.getElementById("cards");
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
-for(const {h,hint,t,hot,trend,img} of cards){
+for(const {h,hint,t,hot,trend,img,long} of cards){
  const d=document.createElement("div");d.className="card";
  const n=xlen(t);
- d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}${img&&IMGS.has(img)?`<figure class="shot"><img src="x-img/${img}.png?v=${encodeURIComponent(UPDATED)}" alt="投稿用の画像" loading="lazy"><figcaption>画像を長押し →「写真に保存」→ 投稿する時に添付</figcaption></figure>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280?"over":""}">${n}/280${n>280?"（長いので削ってください）":""}</span></div>`;
+ d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}${img&&IMGS.has(img)?`<figure class="shot"><img src="x-img/${img}.png?v=${encodeURIComponent(UPDATED)}" alt="投稿用の画像" loading="lazy"><figcaption>画像を長押し →「写真に保存」→ 投稿する時に添付</figcaption></figure>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280&&!long?"over":""}">${long?n+"字（長文・Premium）":n+"/280"+(n>280?"（長いので削ってください）":"")}</span></div>`;
  const ta=d.querySelector("textarea"),b=d.querySelector("button");
  const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
- ta.oninput=()=>{setX();const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=m+"/280";s.className="len "+(m>280?"over":"");};
+ ta.oninput=()=>{setX();const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=long?m+"字（長文・Premium）":m+"/280";s.className="len "+(m>280&&!long?"over":"");};
  root.appendChild(d);
 }
 </script></body></html>
@@ -374,7 +393,8 @@ def build_images(out, items):
 def build_x_draft(out, items, site, updated):
     """items: sitegen の items（受付中のみ）。/x-draft.html を書き出す"""
     from sitegen import series_path  # 弾ページのURL（sitegen から呼ばれるので読み込み済み）
-    keep = ("game", "store", "product", "series", "end", "found_at", "channel", "area")
+    keep = ("game", "store", "product", "series", "end", "found_at", "channel", "area", "lpath", "manual",
+            "start", "products", "announce", "buy", "conditions")
     data = []
     for i in items:
         row = {k: i.get(k) for k in keep}

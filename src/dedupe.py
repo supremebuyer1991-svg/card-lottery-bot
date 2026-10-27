@@ -39,7 +39,8 @@ def norm_series(s, aliases):
 
 def _rank(it):
     """残す優先度（大きいほど残す）"""
-    return (bool(it.get("url")) and "x.com" not in (it.get("url") or ""),   # 店の応募ページがある
+    return (bool(it.get("manual")),                                          # 自分で追加した抽選（個別ページのURLを変えないため）
+            bool(it.get("url")) and "x.com" not in (it.get("url") or ""),   # 店の応募ページがある
             str(it.get("source", "")).startswith("カード抽選"),              # 整理済みのデータ
             it.get("status") in ("approved", "posted", "listed"),
             len(it.get("conditions") or ""))
@@ -68,6 +69,12 @@ def dedupe(settings=None):
 
     for keys in groups.values():
         if len(keys) < 2:
+            continue
+        man = [k for k in keys if lots[k].get("manual")]
+        if man:  # 自分で追加した抽選があれば、ほかはそこにまとめる（個別ページのURLを変えないため）
+            for k in keys:
+                if k != man[0]:
+                    merge(man[0], k)
             continue
         # cardchusen の抽選は1件ずつ別の抽選（同じ店・同じ弾・同じ日でも、セット違い・会員限定などがある）。
         # 商品名まで同じものだけまとめる
@@ -124,6 +131,12 @@ def dedupe(settings=None):
             by_url.setdefault((it.get("game"), u), []).append(k)
     for keys in by_url.values():
         keys = [k for k in keys if lots[k].get("status") in ACTIVE]
+        man = [k for k in keys if lots[k].get("manual")]
+        if man:
+            for k in keys:
+                if k != man[0]:
+                    merge(man[0], k)
+            continue
         cc = [k for k in keys if str(lots[k].get("source", "")).startswith("カード抽選")]
         others = [k for k in keys if k not in cc]
         if not cc and len(others) > 1:  # どちらもXなどから拾った時は、一番くわしい方に

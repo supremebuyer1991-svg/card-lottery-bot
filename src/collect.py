@@ -6,6 +6,79 @@ from fetch_x import search as x_search
 
 
 SEEN_VERSION = 5
+MANUAL_FIELDS = ("game", "store", "product", "series", "products", "channel", "area", "method", "start", "end",
+                 "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image")
+
+
+def _iso(v):
+    """YAMLの日時（2026-11-01T23:00 / 文字列 / datetime）を +09:00 付きの文字列に"""
+    from datetime import datetime, date
+    if isinstance(v, datetime):
+        v = v.isoformat()
+    elif isinstance(v, date):
+        v = f"{v.isoformat()}T23:59"
+    dt = parse_dt(str(v)) if v else None
+    return dt.isoformat(timespec="minutes") if dt else None
+
+
+def load_manual():
+    """config/manual.yaml（自分で追加した抽選）"""
+    import yaml
+    from common import ROOT
+    p = ROOT / "config" / "manual.yaml"
+    if not p.exists():
+        return []
+    rows = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("lotteries") or []
+    out = []
+    for r in rows:
+        if not isinstance(r, dict) or not r.get("store") or not r.get("game"):
+            continue
+        it = {k: r.get(k) for k in MANUAL_FIELDS if r.get(k) not in (None, "", [])}
+        for k in ("start", "end"):
+            if k in it:
+                it[k] = _iso(it[k])
+        for k in ("announce", "buy"):
+            if k in it:
+                it[k] = str(it[k])
+        it.setdefault("product", it.get("series") or "")
+        it.setdefault("channel", "online")
+        if r.get("slug"):
+            it["slug"] = str(r["slug"])
+        out.append(it)
+    return out
+
+
+def sync_manual():
+    """main から毎回呼ぶ：manual.yaml の抽選を lotteries.json に反映"""
+    lots = load_json("lotteries.json", {})
+    try:
+        add_manual(lots)
+    except Exception as e:
+        log(f"手動追加: スキップ {e}")
+        return
+    save_json("lotteries.json", lots)
+
+
+def add_manual(lots):
+    """手で追加した抽選を載せる（毎回 manual.yaml の内容で上書き。自動投稿はしない＝listed）"""
+    n = 0
+    for it in load_manual():
+        end = parse_dt(it.get("end"))
+        k = lottery_key(it)
+        old = lots.get(k)
+        if old is None:
+            if end and end < now():
+                continue
+            lots[k] = dict(it, key=k, status="listed", found_at=now().isoformat(), manual=True,
+                           source="手動追加", confidence=1.0)
+            n += 1
+            log(f"手動追加: [{it['game']}] {it['store']} / {it['product']}")
+        else:
+            old.update(it, manual=True)
+            if old.get("status") == "duplicate":  # 手動の方を正にする
+                old["status"] = "listed"
+                old.pop("duplicate_of", None)
+    return n
 
 
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:

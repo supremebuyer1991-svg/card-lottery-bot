@@ -666,7 +666,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       '</div></div>' +
       '<div class="acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
         '<div class="mini"><button type="button" class="ap" aria-pressed="' + done + '">' + (done ? "応募済み ✓" : "応募済みにする") + '</button>' +
-        (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") + '</div></div>' +
+        (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") +
+        (it.lpath ? '<a href="/' + esc(it.lpath) + '">詳しく</a>' : "") + '</div></div>' +
     '</article>';
   }
 

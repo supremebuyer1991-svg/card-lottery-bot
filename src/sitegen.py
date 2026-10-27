@@ -7,6 +7,7 @@
   /pokeka/  /onepiece/  /fusionworld/     ゲーム別
   /pokeka/s-xxxxxxxx/              弾ごと（「〇〇 抽選」で検索されるページ）
   /pokeka/area/osaka/              都道府県ごとの店頭抽選（「ポケカ 抽選 大阪」）
+  /l/xxxxxxxxxx/                   抽選ごとの個別ページ（Xに貼る用。detail.py）
   /sitemap.xml  /robots.txt
 """
 import json
@@ -18,11 +19,13 @@ from pathlib import Path
 from urllib.parse import quote
 
 from common import ROOT, load_json, save_json, load_settings, now, parse_dt, sha, normalize
+import detail
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 ACTIVE = ("approved", "posted", "listed")
 FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tags", "url",
-          "channel", "area", "found_at", "id_check", "member", "image", "img_url", "multi", "method")
+          "channel", "area", "found_at", "id_check", "member", "image", "img_url", "multi", "method",
+          "start", "announce", "buy", "products", "manual")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "フュージョンワールド"}
 PREF = {
@@ -405,13 +408,15 @@ def build(settings=None, out_dir=None, sample=None):
         from rakuten import item_link
         rk = {k: dict(v, url=item_link(v.get("url"), raff)) for k, v in load_json("rakuten.json", {}).items()}  # 楽天の商品画像＋自分のIDのリンク
         items = []
-        for i in load_json("lotteries.json", {}).values():
+        raw_lots = load_json("lotteries.json", {})
+        for i in raw_lots.values():
             if i.get("status") not in ACTIVE:
                 continue
             e = parse_dt(i.get("end"))
             if e and e < now():
                 continue
             row = {k: i.get(k) for k in FIELDS}
+            row["lpath"] = detail.lottery_path(i)  # 抽選ごとの個別ページ
             row["image"] = row.get("image") or images.get(i.get("series") or "")
             row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)
             if tag and re.search(r"amazon|アマゾン", row.get("store") or "", re.I) and "amazon." not in (row.get("url") or ""):
@@ -671,6 +676,52 @@ def build(settings=None, out_dir=None, sample=None):
             if chain_links else "") + f'{"".join(secs)}</div>',
         "links": _menu(items, games, games[0]), "root": "/"}, items,
         [("トップ", ""), ("店舗一覧", "store/")])
+
+    # --- 抽選ごとの個別ページ（/l/xxxx/）---
+    # Xに貼ったURLが切れないよう、受付が終わっても keep 日はページを残す（受付終了の表示＋ほかの抽選への案内）
+    keep_days = s.get("lottery_page_keep_days", 30)
+    lreg = {} if sample is not None else load_json("lottery_pages.json", {})
+    active_paths = {}
+    for i in items:
+        if not i.get("key"):
+            continue
+        lp = i.get("lpath") or detail.lottery_path(i)
+        active_paths[i["key"]] = lp
+        lreg[lp] = {"d": detail.snapshot(dict(i, spath=i.get("spath"))), "last": today_s}
+    lreg = {k: v for k, v in lreg.items()
+            if (now().date() - __import__("datetime").date.fromisoformat(v["last"])).days <= keep_days}
+    if sample is None:
+        save_json("lottery_pages.json", lreg)
+    raw = raw_lots if sample is None else {}
+    for lp, r in lreg.items():
+        d = r["d"]
+        g = d.get("game") if d.get("game") in GAME_SLUG else games[0]
+        short = GAME_SHORT[g]
+        active = active_paths.get(d.get("key")) == lp
+        redirect = None
+        if not active:
+            tgt = (raw.get(d.get("key")) or {}).get("duplicate_of")
+            redirect = active_paths.get(tgt) if tgt else None
+        if active and d.get("series"):
+            aff = _product_ad(d["series"], s["game_names"][g], (rk if sample is None else {}).get(f"{g}|{d['series']}") or {}, tag, raff)
+        else:
+            aff = _supply_ad(short, s["game_names"][g], tag, raff, prices, g)
+        rel = [(f"{short}の抽選をすべて見る", f"/{GAME_SLUG[g]}/")]
+        if d.get("series"):
+            rel.insert(0, (f"「{d['series']}」の抽選をすべて見る", "/" + series_path(g, d["series"])))
+        if d.get("spath") and d["spath"] in reg:
+            rel.append((f"{d.get('store')}の抽選", "/" + d["spath"]))
+        c = chain_of(d.get("store"))
+        if c:
+            rel.append((f"{CHAIN[c][1]}の抽選", f"/chain/{c}/"))
+        if d.get("channel") == "store" and d.get("area") in PREF:
+            rel.append((f"{d['area']}の店頭抽選", f"/{GAME_SLUG[g]}/area/{PREF[d['area']]}/"))
+        p = out / lp / "index.html"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
+                                   redirect=redirect, aff=aff, related=rel, updated=updated), encoding="utf-8")
+        if active:
+            urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
     import shutil
