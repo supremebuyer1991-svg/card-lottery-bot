@@ -15471,10 +15471,11 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "7997e44eddad10f3",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:28:23.522476+09:00",
     "issue": 11,
-    "cls": "a6f8381e092f"
+    "cls": "a6f8381e092f",
+    "duplicate_of": "49d9d2e206b9c75b"
   },
   "e1833f91c844c200": {
     "store": "カードラボ名古屋駅前店",
@@ -16064,14 +16065,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "73ae7cebe7962484",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460382+09:00",
     "issue": 21,
     "multi": false,
     "cls": "24be56aa73f0",
     "deadline_checked_at": "2026-10-27T03:12:17.663693+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:47.687334+09:00"
+    "page_checked_at": "2026-10-27T03:36:47.687334+09:00",
+    "duplicate_of": "302cf09215926aaa"
   },
   "f9c9855bfcb86efe": {
     "store": "TSUTAYA姫路",
@@ -16094,14 +16096,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "f9c9855bfcb86efe",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460406+09:00",
     "issue": 22,
     "multi": false,
     "cls": "5aa9b9db6265",
     "deadline_checked_at": "2026-10-27T03:12:19.712811+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:49.788159+09:00"
+    "page_checked_at": "2026-10-27T03:36:49.788159+09:00",
+    "duplicate_of": "34b75ae834ea7cb4"
   },
   "5384b1d2672051b3": {
     "store": "TSUTAYA姫路",
@@ -16124,14 +16127,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "5384b1d2672051b3",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460430+09:00",
     "issue": 23,
     "multi": false,
     "cls": "c306c4c1b880",
     "deadline_checked_at": "2026-10-27T03:12:21.912036+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:52.014495+09:00"
+    "page_checked_at": "2026-10-27T03:36:52.014495+09:00",
+    "duplicate_of": "f80579d7bbb05bf2"
   },
   "91727efd6bd3ba32": {
     "store": "ふるいちイオンモール浜松志都呂店",
@@ -16206,14 +16210,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "b03f6b98d703d044",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460530+09:00",
     "issue": 24,
     "multi": true,
     "cls": "4cdb78de0baf",
     "deadline_checked_at": "2026-10-27T03:12:21.912071+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像0/0枚読込・本文に締切の記載なし(画像未確認)"
+    "deadline_note": "画像0/0枚読込・本文に締切の記載なし(画像未確認)",
+    "duplicate_of": "85695f439a384bf6"
   },
   "6da7aaabaa69f712": {
     "store": "TSUTAYA岡南",
@@ -16236,14 +16241,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "6da7aaabaa69f712",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460586+09:00",
     "issue": 25,
     "multi": false,
     "cls": "8bd1bcee2431",
     "deadline_checked_at": "2026-10-27T03:12:25.971226+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:54.235401+09:00"
+    "page_checked_at": "2026-10-27T03:36:54.235401+09:00",
+    "duplicate_of": "c84b65ee623e8051"
   },
   "50413ef4d3a2d55c": {
     "store": "A福山",
@@ -16296,14 +16302,15 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "631dd7862235d51e",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:59:32.460638+09:00",
     "issue": 27,
     "multi": true,
     "cls": "f69c5eaa7b4b",
     "deadline_checked_at": "2026-10-27T03:12:30.117893+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:56.337772+09:00"
+    "page_checked_at": "2026-10-27T03:36:56.337772+09:00",
+    "duplicate_of": "1c66d771de65e03a"
   },
   "31c34ac1588a4396": {
     "store": "カードボックス横浜西口2号店",
@@ -16806,11 +16813,12 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "1302f1a881032458",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T20:43:24.385235+09:00",
     "issue": 39,
     "cls": "d6d281ed6139",
-    "page_checked_at": "2026-10-27T03:39:35.683801+09:00"
+    "page_checked_at": "2026-10-27T03:39:35.683801+09:00",
+    "duplicate_of": "c65f8045bc9d7c45"
   },
   "9234371bbec61ffe": {
     "store": "キッズリパブリック",
@@ -16825,7 +16833,7 @@
     "x_post": "https://x.com/omusubicororiin/status/2114682537545224612",
     "game": "pokemon",
     "channel": "store",
-    "area": null,
+    "area": "北海道",
     "id_check": null,
     "member": null,
     "tags": [],
@@ -16860,12 +16868,13 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "dff7b0721e3036a9",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T20:43:24.385269+09:00",
     "issue": 41,
     "multi": true,
     "cls": "157c73853e4f",
-    "page_checked_at": "2026-10-27T03:39:38.380387+09:00"
+    "page_checked_at": "2026-10-27T03:39:38.380387+09:00",
+    "duplicate_of": "9234371bbec61ffe"
   },
   "0db7dc469b8c8040": {
     "store": "イオン北海道",
@@ -16888,12 +16897,13 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "0db7dc469b8c8040",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-26T20:43:24.385284+09:00",
     "issue": 42,
     "multi": true,
     "cls": "3c8bd5b71894",
-    "page_checked_at": "2026-10-27T03:39:38.380839+09:00"
+    "page_checked_at": "2026-10-27T03:39:38.380839+09:00",
+    "duplicate_of": "9234371bbec61ffe"
   },
   "79719b2cedf4b294": {
     "store": "カードラボ名古屋大須店",
@@ -17917,11 +17927,12 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "a67ee998797f250f",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-26T21:59:17.654366+09:00",
     "multi": false,
     "cls": "1e5d4321e70a",
-    "page_checked_at": "2026-10-27T03:40:32.136256+09:00"
+    "page_checked_at": "2026-10-27T03:40:32.136256+09:00",
+    "duplicate_of": "5fdd698cadf6556b"
   },
   "4f7990736e25cf57": {
     "store": "DMMマイカ",
@@ -17977,10 +17988,11 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "62ed5b0ab7141270",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-26T22:10:14.386334+09:00",
     "multi": false,
-    "cls": "7d9e8022defa"
+    "cls": "7d9e8022defa",
+    "duplicate_of": "fce3e4d4ddd38371"
   },
   "d294f3a4c5554d46": {
     "store": "BIGMAGICなんば店",
@@ -18608,10 +18620,11 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "7c0b76d9356eca71",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T00:09:06.582832+09:00",
     "cls": "fb237bb20b84",
-    "issue": 69
+    "issue": 69,
+    "duplicate_of": "49d9d2e206b9c75b"
   },
   "2d3a9281d4ff2ad8": {
     "store": "ポケモンセンターオンライン",
@@ -18635,10 +18648,11 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "2d3a9281d4ff2ad8",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T00:09:06.582885+09:00",
     "cls": "18317d2a5765",
-    "issue": 70
+    "issue": 70,
+    "duplicate_of": "49d9d2e206b9c75b"
   },
   "35443b2685072c8a": {
     "store": "カードピット（アピナ）",
@@ -19277,10 +19291,11 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "54afece9ea3fde73",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-10-27T00:15:10.559999+09:00",
     "multi": false,
-    "cls": "9f7a4879a63f"
+    "cls": "9f7a4879a63f",
+    "duplicate_of": "80e5704bfac2b77c"
   },
   "113f4b927af61bc9": {
     "store": "ふるいち龍ヶ崎",
@@ -19390,13 +19405,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "f80579d7bbb05bf2",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-10-27T00:15:10.560105+09:00",
     "multi": false,
     "cls": "6273b5f20a87",
     "deadline_checked_at": "2026-10-27T03:13:02.402427+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:40:51.016916+09:00"
+    "page_checked_at": "2026-10-27T03:40:51.016916+09:00",
+    "duplicate_of": "60ea9c8fc5a4da5d"
   },
   "c84b65ee623e8051": {
     "store": "TSUTAYA岡南",
@@ -19419,13 +19435,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "c84b65ee623e8051",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-10-27T00:15:10.560135+09:00",
     "multi": false,
     "cls": "f742ee4aa569",
     "deadline_checked_at": "2026-10-27T03:13:04.583082+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:40:53.163096+09:00"
+    "page_checked_at": "2026-10-27T03:40:53.163096+09:00",
+    "duplicate_of": "3ecbe6a8505c6760"
   },
   "1c27e67309fc63e1": {
     "store": "A福山",
@@ -20321,7 +20338,7 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "1ba62884521d0f02",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T07:20:35.359568+09:00",
     "deadline_checked_at": "2026-10-27T07:22:57.976503+09:00",
     "deadline_v": 4,
@@ -20329,7 +20346,8 @@
     "page_checked_at": "2026-10-27T07:23:23.122810+09:00",
     "multi": false,
     "cls": "44c7a9da058e",
-    "issue": 84
+    "issue": 84,
+    "duplicate_of": "302cf09215926aaa"
   },
   "7022a01fff2ae215": {
     "store": "岡南",
@@ -20352,7 +20370,7 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "7022a01fff2ae215",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T07:20:35.359585+09:00",
     "deadline_checked_at": "2026-10-27T07:23:00.114535+09:00",
     "deadline_v": 4,
@@ -20360,7 +20378,8 @@
     "page_checked_at": "2026-10-27T07:23:25.150599+09:00",
     "multi": false,
     "cls": "dc3037c3aa5a",
-    "issue": 85
+    "issue": 85,
+    "duplicate_of": "3ecbe6a8505c6760"
   },
   "e867b11dd266df64": {
     "store": "龍ケ崎",
@@ -22214,11 +22233,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "9531b0112ecc2591",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T08:53:37.493695+09:00",
     "multi": false,
     "cls": "f5d2ea394c33",
-    "issue": 107
+    "issue": 107,
+    "duplicate_of": "a9e163bea89ec4ac"
   },
   "ef9e41e564b5c509": {
     "store": "ビックカメラ赤坂見附駅店",
@@ -22598,11 +22618,12 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "635f5c1302a93149",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-27T10:14:09.577542+09:00",
     "page_checked_at": "2026-10-27T10:16:18.482619+09:00",
     "multi": false,
-    "cls": "3861f1ac96b4"
+    "cls": "3861f1ac96b4",
+    "duplicate_of": "3bd3288d1de55d81"
   },
   "ef748e54513a5045": {
     "store": "TSUTAYA TRADING CARD錦糸町",
@@ -22653,9 +22674,10 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "52d98ef8f2633167",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-27T10:14:09.577612+09:00",
-    "cls": "a2a79d9337c7"
+    "cls": "a2a79d9337c7",
+    "duplicate_of": "5c246ef7bdd328af"
   },
   "60ea9c8fc5a4da5d": {
     "store": "TSUTAYA 姫路広峰店",
@@ -22899,11 +22921,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "30b3288178d454cf",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-27T10:15:28.383412+09:00",
     "multi": false,
     "cls": "0d7c025b2b42",
-    "issue": 114
+    "issue": 114,
+    "duplicate_of": "dd1bea4bc7b7db98"
   },
   "4d25cc475c2223eb": {
     "store": "平和堂",
@@ -23092,5 +23115,80 @@
     "found_at": "2026-10-27T10:16:13.740176+09:00",
     "multi": false,
     "cls": "7340e7116295"
+  },
+  "ce746193815f2d76": {
+    "store": "ビックカメラ岡山駅前店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（3階おもちゃコーナーレジで受付）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-01T23:59:00+09:00",
+    "url": "https://x.com/Bic_Okayamaten/status/2114884791552381173",
+    "x_post": "https://x.com/Bic_Okayamaten/status/2114884791552381173",
+    "channel": "store",
+    "area": "岡山県",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "ce746193815f2d76",
+    "status": "approved",
+    "found_at": "2026-10-27T10:45:25.872118+09:00",
+    "multi": false,
+    "cls": "78296b9655a6"
+  },
+  "dd741a3a51b09b71": {
+    "store": "ビックカメラ鹿児島中央駅店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（1階レジで受付・先着順ではありません）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-01T23:59:00+09:00",
+    "url": "https://x.com/bic_kagoshima/status/2114884789320753376",
+    "x_post": "https://x.com/bic_kagoshima/status/2114884789320753376",
+    "channel": "store",
+    "area": "鹿児島県",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "dd741a3a51b09b71",
+    "status": "approved",
+    "found_at": "2026-10-27T10:45:25.872172+09:00",
+    "multi": false,
+    "cls": "0f3a78a1ab81"
+  },
+  "474240416f90b0e3": {
+    "store": "ビックカメラ新宿西口店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（6階おもちゃコーナーレジで受付・各日13:00〜19:00）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-01T19:00:00+09:00",
+    "url": "https://x.com/bic_shinjyuku/status/2114884791468167589",
+    "x_post": "https://x.com/bic_shinjyuku/status/2114884791468167589",
+    "channel": "store",
+    "area": "東京都",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "474240416f90b0e3",
+    "status": "approved",
+    "found_at": "2026-10-27T10:45:25.872210+09:00",
+    "multi": false,
+    "cls": "e3f9fc5224ad"
   }
 }
