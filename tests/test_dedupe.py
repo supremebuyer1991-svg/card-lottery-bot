@@ -16,6 +16,9 @@ save_json("lotteries.json", {
     # cardchusen 同士で商品が違う（セット違い）→ まとめない
     "g1": {"game": "pokemon", "store": "高砂ジム", "series": "御三家", "product": "御三家（フシギダネ）", "end": E, "status": "listed", "source": cc, "url": "u1"},
     "g2": {"game": "pokemon", "store": "高砂ジム", "series": "御三家", "product": "御三家（チコリータ）", "end": E, "status": "listed", "source": cc, "url": "u2"},
+    # 締切なしでXから拾った同じ店・同じ弾（書き方違い）→ まとめる
+    "p1": {"game": "pokemon", "store": "ポケモンセンターオンライン", "series": None, "product": "ピカピカボックス2027（5,500円税込・お1人様1回まで）", "end": E, "status": "listed", "source": cc, "url": "https://www.pokemon.co.jp/x"},
+    "p2": {"game": "pokemon", "store": "ポケモンセンターオンライン", "series": None, "product": "ピカピカボックス2027", "end": None, "status": "listed", "source": "X「ポケカ 抽選」", "url": "https://t.co/x"},
     # 別のゲームはまとめない
     "w1": {"game": "onepiece", "store": "ヤマダ電機", "series": "30th CELEBRATION", "product": "x", "end": E, "status": "approved", "source": "X「ワンピカード 抽選」"},
 })
@@ -23,5 +26,6 @@ n = dedupe.dedupe({"rakuten_aliases": {}})
 L = load_json("lotteries.json", {})
 assert L["y1"]["status"] == "approved" and L["y2"]["status"] == "duplicate" and L["y3"]["status"] == "duplicate", L
 assert L["g1"]["status"] == "listed" and L["g2"]["status"] == "listed"
-assert L["w1"]["status"] == "approved" and n == 2
+assert L["p1"]["status"] == "listed" and L["p2"]["status"] == "duplicate"
+assert L["w1"]["status"] == "approved" and n == 3
 print("DEDUPE OK")

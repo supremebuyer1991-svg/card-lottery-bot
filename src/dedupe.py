@@ -21,10 +21,20 @@ def norm_store(s):
     return re.sub(r"[\s・\-]", "", s).lower()
 
 
+def norm_product(s):
+    """商品名そのもの（カッコの中も見る。「御三家（フシギダネ）」と「御三家（チコリータ）」は別物）"""
+    return re.sub(r"[\s・「」]", "", unicodedata.normalize("NFKC", s or "")).lower()
+
+
 def norm_series(s, aliases):
+    """弾・商品名の「核」だけ残す（カッコの補足・「1BOX」「拡張パック」などの共通の言葉は無視）
+    例：「ピカピカボックス2027（5,500円税込・お1人様1回まで）」＝「ピカピカボックス2027」、「30th CELEBRATION 1BOX」＝「30th CELEBRATION」"""
     s = (aliases.get(s) or s or "")
-    s = unicodedata.normalize("NFKC", s)
-    return re.sub(r"[\s・「」]", "", s).lower()
+    s = unicodedata.normalize("NFKC", s).lower()
+    s = re.sub(r"[(\[【][^)\]】]*[)\]】]", "", s)
+    s = re.sub(r"ポケモンカードゲーム|ポケモンカード|one ?piece ?カードゲーム|mega|強化拡張パック|拡張パック|ブースターパック|"
+               r"エクストラブースター|\d+ ?box|box|ボックス|抽選販売|抽選|販売|予約", "", s)
+    return re.sub(r"[\s・「」『』\-/]", "", s)
 
 
 def _rank(it):
@@ -65,7 +75,7 @@ def dedupe(settings=None):
         others = [k for k in keys if k not in cc]
         by_prod = {}
         for k in sorted(cc, key=lambda k: _rank(lots[k]), reverse=True):
-            p = norm_series(lots[k].get("product"), {})
+            p = norm_product(lots[k].get("product"))
             if p in by_prod:
                 merge(by_prod[p], k)
             else:
@@ -76,6 +86,35 @@ def dedupe(settings=None):
         for k in others:
             if k != target:
                 merge(target, k)
+    # 締切が分からないまま拾った抽選（Xなど）は、同じ店・同じ弾の抽選があればそちらにまとめる
+    # （まとめ先が無ければ、締切なし同士で1件に）
+    full = {}
+    for k, it in lots.items():
+        if it.get("status") in ACTIVE:
+            full.setdefault((it.get("game"), norm_store(it.get("store")), norm_series(it.get("series") or it.get("product"), aliases)), []).append(k)
+    for keys in full.values():
+        if len(keys) < 2:
+            continue
+        noend = [k for k in keys if not lots[k].get("end") and not str(lots[k].get("source", "")).startswith("カード抽選")
+                 and not re.search(r"amazon|amzn", (lots[k].get("url") or "") + (lots[k].get("store") or ""), re.I)]
+        if not noend:
+            continue
+        rest = [k for k in keys if k not in noend]
+        target = sorted(rest or noend, key=lambda k: (bool(lots[k].get("end")), _rank(lots[k])), reverse=True)[0]
+        for k in noend:
+            if k != target and lots[k].get("status") != "duplicate":
+                merge(target, k)
+
+    # Amazon は同じ弾を1件に（一番上の招待の券にまとめて出すので、何件あっても同じ）。商品ページ（/dp/）のあるものを残す
+    amz = {}
+    for k, it in lots.items():
+        if it.get("status") in ACTIVE and re.search(r"amazon|amzn", (it.get("url") or "") + (it.get("store") or ""), re.I):
+            amz.setdefault((it.get("game"), norm_product(it.get("product"))), []).append(k)
+    for keys in amz.values():
+        keys.sort(key=lambda k: ("/dp/" in (lots[k].get("url") or ""), _rank(lots[k])), reverse=True)
+        for k in keys[1:]:
+            merge(keys[0], k)
+
     # 同じ応募ページ（LivePocket・フォームなど）から別々に拾った抽選は、カード抽選まとめの方にまとめる
     # （Xから拾った方は店名が「朝霞」のように短かったり締切が空だったりするので、店名・締切ではまとまらない）
     by_url = {}
@@ -84,8 +123,12 @@ def dedupe(settings=None):
         if it.get("status") in ACTIVE and u and not re.search(r"(x|twitter)\.com/|amazon\.|amzn\.", u):
             by_url.setdefault((it.get("game"), u), []).append(k)
     for keys in by_url.values():
+        keys = [k for k in keys if lots[k].get("status") in ACTIVE]
         cc = [k for k in keys if str(lots[k].get("source", "")).startswith("カード抽選")]
         others = [k for k in keys if k not in cc]
+        if not cc and len(others) > 1:  # どちらもXなどから拾った時は、一番くわしい方に
+            others.sort(key=lambda k: (bool(lots[k].get("end")), _rank(lots[k])), reverse=True)
+            cc, others = others[:1], others[1:]
         if not cc or not others:
             continue
         for k in others:
