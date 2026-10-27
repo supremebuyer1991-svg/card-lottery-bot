@@ -462,6 +462,8 @@ def build(settings=None, out_dir=None, sample=None):
         images = load_images()
         from rakuten import item_link
         rk = {k: dict(v, url=item_link(v.get("url"), raff)) for k, v in load_json("rakuten.json", {}).items()}  # 楽天の商品画像＋自分のIDのリンク
+        for k, v in (s.get("rakuten_fixed") or {}).items():  # 手で決めた画像・リンクを優先
+            rk[k] = {"image": v.get("image", ""), "url": item_link(v.get("url"), raff)}
         items = []
         raw_lots = load_json("lotteries.json", {})
         for i in raw_lots.values():

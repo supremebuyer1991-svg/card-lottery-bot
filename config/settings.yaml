@@ -63,6 +63,18 @@ rakuten_aliases:                # 楽天での商品名がサイトの弾名と�
   ヒロインズエディション vol.2: ヒロインズエディション
   HEROINES PRECIOUS BOX: PRECIOUS BOX
 
+rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾（自動で取り直さない）。キーは「ゲーム|弾名」
+  "pokemon|ハドウシーカー":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/geexcollection/s783/"
+  "onepiece|ヒロインズエディション vol.2": &heroines2
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9229/4582770059229_1_2.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/book/18771764/"
+  "onepiece|Heroines Edition vol.2": *heroines2
+  "onepiece|EB-05": *heroines2
+  "onepiece|ヒロインズエディション2": *heroines2
+  "onepiece|Heroines Edition vol.2【EB-05】": *heroines2
+
 # 抽選の商品名に出てくる別の呼び方 → 画像を使う弾名（state/rakuten.json の弾名）。
 # 弾名が空の抽選や、複数の商品をまとめた抽選でも商品画像を出すために使う
 image_aliases:
@@ -87,6 +99,7 @@ image_aliases:
     OP-18: 神の支配
     EB-05: ヒロインズエディション vol.2
     Heroines Edition vol.2: ヒロインズエディション vol.2
+    ヒロインズエディション2: ヒロインズエディション vol.2
     EB-03: Heroines Edition
     PRECIOUS BOX: HEROINES PRECIOUS BOX
 

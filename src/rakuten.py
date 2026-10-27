@@ -105,6 +105,8 @@ def update(settings, series_by_game, session=None, sleep=1.1):
             if budget <= 0:
                 break
             k = f"{game}|{x}"
+            if k in (settings.get("rakuten_fixed") or {}):
+                continue  # 手で決めた画像は取り直さない
             c = cache.get(k)
             if c and parse_dt(c.get("fetched_at")) and (now() - parse_dt(c["fetched_at"])).days < days:
                 continue
