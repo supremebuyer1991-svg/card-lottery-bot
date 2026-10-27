@@ -21930,10 +21930,11 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "5c246ef7bdd328af",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-27T08:24:40.337879+09:00",
     "page_checked_at": "2026-10-27T08:25:21.332392+09:00",
-    "cls": "7dbaf73a2da2"
+    "cls": "7dbaf73a2da2",
+    "duplicate_of": "52d98ef8f2633167"
   },
   "8ea1067f9f149e6a": {
     "store": "ブックオフ松戸駅東口店",
@@ -22657,27 +22658,36 @@
     "store": "ポケモンセンターオンライン",
     "product": "ピカピカボックス2027",
     "series": null,
-    "start": null,
-    "end": "2026-11-02T16:59:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": null,
-    "url": "https://t.co/qTPJl9xLAl",
+    "start": "2026-10-27T17:00+09:00",
+    "end": "2026-11-02T16:59+09:00",
+    "announce": "11/6(金)15:00以降",
+    "method": "Web抽選（ポケモンセンターオンライン限定・実店舗での販売なし）",
+    "conditions": "5,500円（税込）。1人1回まで。会員登録・電話番号認証が必要",
+    "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
     "x_post": "https://x.com/pokepi_tcg/status/2114881541423940075",
     "game": "pokemon",
     "channel": "online",
     "area": null,
     "id_check": null,
-    "member": null,
-    "tags": [],
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
     "confidence": 0.8,
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "52d98ef8f2633167",
-    "status": "duplicate",
+    "status": "listed",
     "found_at": "2026-10-27T10:14:09.577612+09:00",
-    "cls": "a2a79d9337c7",
-    "duplicate_of": "5c246ef7bdd328af"
+    "cls": "bf0af0716175",
+    "products": [
+      "ぬいぐるみ1体（ピチュー・ピカチュウ・ライチュウのどれか）",
+      "ポケモングッズ数点"
+    ],
+    "buy": "11/6(金)15:00〜11/17(火)16:59（発送は12/11(金)〜12/25(金)）",
+    "slug": "pikapika-box-2027",
+    "manual": true,
+    "page_checked_at": "2026-10-27T12:29:52.192180+09:00"
   },
   "60ea9c8fc5a4da5d": {
     "store": "TSUTAYA 姫路広峰店",
