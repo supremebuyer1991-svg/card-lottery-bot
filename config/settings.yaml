@@ -80,10 +80,6 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|神の支配": &kaminoshihai
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13922237000/"
-  "onepiece|Heroines Edition": &heroines1
-    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/premiumgarage/cabinet/13340078/imgrc0121661121.jpg?_ex=300x300"
-    url: "https://item.rakuten.co.jp/premiumgarage/b-onep-heroines/"
-  "onepiece|ヒロインズエディション": *heroines1
   "pokemon|30th CELEBRATION": &pk30th
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/noah-shopping/4521329462424/"
@@ -139,6 +135,10 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|王族の血統": &op10
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kobido/cabinet/08982934/09120525/imgrc0096550139.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/kobido/4582769707384/"
+  "onepiece|Heroines Edition": &heroines1
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/goldhobby/cabinet/imgrc0200707547.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/goldhobby/eb-03-c/"
+  "onepiece|ヒロインズエディション": *heroines1
 
 # 抽選の商品名に出てくる別の呼び方 → 画像を使う弾名（state/rakuten.json の弾名）。
 # 弾名が空の抽選や、複数の商品をまとめた抽選でも商品画像を出すために使う
