@@ -980,11 +980,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "9b8f0d62030429d9",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.045523+09:00",
     "multi": false,
     "cls": "3aa6cdf9f110",
-    "page_checked_at": "2026-10-27T03:17:33.029621+09:00"
+    "page_checked_at": "2026-10-27T03:17:33.029621+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T22:19:47.745474+09:00"
   },
   "c58825817536975d": {
     "store": "TSUTAYAココアドバンス大村店",
@@ -1009,11 +1011,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c58825817536975d",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.045541+09:00",
     "multi": false,
     "cls": "1175cf985aef",
-    "page_checked_at": "2026-10-27T03:17:35.086784+09:00"
+    "page_checked_at": "2026-10-27T03:17:35.086784+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T22:19:47.745492+09:00"
   },
   "d72e23f5bce1daef": {
     "store": "カード・ブランチ金山店",
@@ -1037,10 +1041,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "d72e23f5bce1daef",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.045562+09:00",
     "multi": false,
-    "cls": "51da9e5c34d5"
+    "cls": "51da9e5c34d5",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T22:19:47.745496+09:00"
   },
   "669210b43a428726": {
     "store": "DMMマイカ",
@@ -8652,10 +8658,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c4c6bf0993e13324",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882632+09:00",
     "multi": false,
-    "cls": "fd49b3198e77"
+    "cls": "fd49b3198e77",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T22:19:47.745888+09:00"
   },
   "d97c934069a11d8f": {
     "store": "TSUTAYA田上店",
@@ -8679,10 +8687,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d97c934069a11d8f",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882649+09:00",
     "multi": false,
-    "cls": "2ce8adcc5d72"
+    "cls": "2ce8adcc5d72",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T22:19:47.745897+09:00"
   },
   "3838f69e7d3b6c3b": {
     "store": "トレカ侍２号店",
@@ -24112,14 +24122,15 @@
     "url": "https://livepocket.jp/e/el-g5",
     "slug": "furuichi-nakamozu-30th-1027",
     "key": "999f40ef3a2b4321",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-27T18:40:57.180341+09:00",
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
     "page_checked_at": "2026-10-27T18:42:00.852563+09:00",
     "multi": false,
-    "cls": "87ab14ae6f02"
+    "cls": "87ab14ae6f02",
+    "closed_at": "2026-10-27T22:20:01.822575+09:00"
   },
   "4b38f7fa19eaa45d": {
     "game": "onepiece",
