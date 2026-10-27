@@ -335,6 +335,17 @@ input[type="search"] { flex: 1 1 160px; }
 .mini { display: flex; gap: 6px; justify-content: center; }
 .mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; }
 .mini button[aria-pressed="true"] { color: var(--done); border-color: var(--done); font-weight: 700; }
+.sinfo, .faq { margin: 18px 0 0; }
+.sinfo h2, .faq h2 { font-size: 16px; margin: 0 0 8px; }
+.sinfo table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; font-size: 14px; }
+.sinfo th, .sinfo td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--rule); vertical-align: top; }
+.sinfo tr:first-child th, .sinfo tr:first-child td { border-top: 0; }
+.sinfo th { width: 8.5em; color: var(--ink-2); font-weight: 700; background: var(--navy-soft); white-space: nowrap; }
+.faq details { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; margin-top: 8px; }
+.faq summary { cursor: pointer; padding: 11px 14px; font-weight: 700; font-size: 14px; list-style: none; }
+.faq summary::before { content: "Q. "; color: var(--red); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq details p { margin: 0; padding: 0 14px 12px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
 .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--rule); border-radius: 10px; }
 
 /* メニュー（ページ下部と、ヘッダーのボタンで開くシート） */
@@ -466,6 +477,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     <p>__LEAD__</p>
     <p class="summary">__SUMMARY__</p>
   </section>
+  __FAQ__
   <footer>
     <div class="foot-nav">__LINKS__</div>
     <p>※本サイトはプロモーション（広告）を含みます。</p>
@@ -622,7 +634,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if ((i.channel === "store" ? "store" : "online") !== st.channel) return false;
       if (st.channel === "store" && st.area && areasOf(i).indexOf(st.area) < 0) return false;
       if (st.channel === "store" && !st.area && st.region && !areasOf(i).some(function (p) { return REG[p] === st.region; })) return false;
-      if (st.series && i.series !== st.series) return false;
+      if (st.series && !inSer(i, st.series)) return false;
       if ($("f-unapplied").checked && applied[i.key]) return false;
       if ($("f-noid").checked && i.id_check !== false) return false;
       if ($("f-nomember").checked && i.member !== "none") return false;
@@ -639,6 +651,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     });
   }
 
+  function inSer(i, x) { return i.series === x || (i.sers && i.sers.indexOf(x) >= 0); }
   function thumb(it) {
     var alt = esc(it.series || it.product);
     var list = it.images && it.images.length > 1 ? it.images : it.image ? [{ src: it.image, url: it.img_url }] : [];
@@ -727,7 +740,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function render() {
     if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, region: st.region, area: st.area });
     var g = inGame();
-    var gs = st.series ? g.filter(function (i) { return i.series === st.series; }) : g;
+    var gs = st.series ? g.filter(function (i) { return inSer(i, st.series); }) : g;
     // ゲームタブ
     $("games").innerHTML = TABS.map(function (x) {
       if (x.id === "all") {
@@ -751,7 +764,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     // チャネル
     [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
     // 店頭抽選：地方 → 都道府県
-    var storeItems = g.filter(function (i) { return i.channel === "store" && (!st.series || i.series === st.series); });
+    var storeItems = g.filter(function (i) { return i.channel === "store" && (!st.series || inSer(i, st.series)); });
     var pc = {}; storeItems.forEach(function (i) { areasOf(i).forEach(function (p) { pc[p] = (pc[p] || 0) + 1; }); });
     var rc = function (r) { return storeItems.filter(function (i) { return areasOf(i).some(function (p) { return REG[p] === r[0]; }); }).length; };
     var cur = REGIONS.filter(function (r) { return r[0] === st.region; })[0];
@@ -766,7 +779,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     $("region").hidden = st.channel !== "store";
     // 弾
     var ser = {};
-    g.forEach(function (i) { if (i.series) ser[i.series] = (ser[i.series] || 0) + 1; });
+    g.forEach(function (i) { (i.sers || (i.series ? [i.series] : [])).forEach(function (x) { ser[x] = (ser[x] || 0) + 1; }); });
     var names = Object.keys(ser).sort(function (a, b) { return ser[b] - ser[a]; });
     if (st.series && !ser[st.series]) st.series = "";
     $("series").innerHTML = names.length ? '<button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +

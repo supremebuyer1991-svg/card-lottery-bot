@@ -168,6 +168,107 @@ image_aliases:
     EB-03: Heroines Edition
     PRECIOUS BOX: HEROINES PRECIOUS BOX
 
+# --- サイトの弾ページ（SEO） ---
+# 同じ弾の別の呼び方 → サイトでまとめる弾名（別名ごとに薄いページができないように）
+series_aliases:
+  pokemon:
+    30周年パック: 30th CELEBRATION
+    30周年: 30th CELEBRATION
+    30th: 30th CELEBRATION
+    MEGA 30th CELEBRATION: 30th CELEBRATION
+    30周年記念パック: 30th CELEBRATION
+    ストエメ: ストームエメラルダ
+    MEGA: MEGAドリームex
+    バトルコレクション: スタートデッキ100 バトルコレクション
+    スタデ100: スタートデッキ100 バトルコレクション
+    スタートデッキ100: スタートデッキ100 バトルコレクション
+    メガオーダイル・メガカイリュー・メガゲンガー: スペシャルデッキセットMEGA
+    30th CELEBRATION カードセット: 30周年御三家カードセット
+    御三家カードセット: 30周年御三家カードセット
+    30thデッキセット: 30周年エーフィ・ブラッキーデッキ
+    30th プレミアムデッキセット: 30周年エーフィ・ブラッキーデッキ
+    Heroines Edition vol.2: null   # ワンピースカードの商品がポケカに入っていることがある。ポケカの弾ページは作らない
+    ヒロインズエディション vol.2: null
+  onepiece:
+    Heroines Edition vol.2: ヒロインズエディション vol.2
+    "Heroines Edition vol.2【EB-05】": ヒロインズエディション vol.2
+    EB-05: ヒロインズエディション vol.2
+    ヒロインズエディション2: ヒロインズエディション vol.2
+    ヒロインズエディションvol.2: ヒロインズエディション vol.2
+    Heroines Edition: ヒロインズエディション
+    EB-03: ヒロインズエディション
+    HEROINES: HEROINES PRECIOUS BOX
+    OP-18: 神の支配
+    OP-17: 世界最強の戦士
+    OP-16: 決戦の刻
+    OP-15: 神の島の冒険
+    OP-14: 蒼海の七傑
+    OP-13: 受け継がれる意志
+
+# 弾ページのアドレス（/pokeka/hadou-seeker/ のように読める形）。ここにない日本語の弾は自動の記号になる
+# 英数字だけの弾名（DUAL EVOLUTION など）は自動で dual-evolution のようになる
+series_slugs:
+  pokemon:
+    30th CELEBRATION: 30th-celebration
+    ハドウシーカー: hadou-seeker
+    ストームエメラルダ: storm-emeralda
+    30周年御三家カードセット: 30th-gosanke-card-set
+    30周年エーフィ・ブラッキーデッキ: 30th-espeon-umbreon-deck
+    30周年 FUTURISTIC BOX: 30th-futuristic-box
+    アビスアイ: abyss-eye
+    スペシャルデッキセットMEGA: special-deck-set-mega
+    MEGAドリームex: mega-dream-ex
+    スタートデッキ100 バトルコレクション: start-deck-100-battle-collection
+    メガブレイブ: mega-brave
+    メガシンフォニア: mega-symphonia
+    インフェルノX: inferno-x
+    テラスタルフェスex: terastal-fes-ex
+    MEGA×MEGAパレード: mega-mega-parade
+    スターターセットex: starter-set-ex
+    ムニキスゼロ: munikis-zero
+    ニンジャスピナー: ninja-spinner
+  onepiece:
+    神の支配: op18-kami-no-shihai
+    世界最強の戦士: op17-sekai-saikyo-no-senshi
+    決戦の刻: op16-kessen-no-toki
+    神の島の冒険: op15-kami-no-shima-no-bouken
+    蒼海の七傑: op14-soukai-no-nanaketsu
+    受け継がれる意志: op13-uketsugareru-ishi
+    王族の血統: op10-ouzoku-no-kettou
+    新たなる皇帝: op09-aratanaru-koutei
+    ヒロインズエディション vol.2: eb05-heroines-edition-vol2
+    ヒロインズエディション: eb03-heroines-edition
+    HEROINES PRECIOUS BOX: heroines-precious-box
+    スタートデッキEX ルフィ&エース: st30-luffy-ace
+
+# 弾の基本情報（弾ページに表示。発売日は楽天ブックス・攻略サイトで確認したもの）
+series_info:
+  pokemon:
+    ハドウシーカー: {release: "2026-11-27", type: 拡張パック}
+    30th CELEBRATION: {release: "2026-09-16", type: 拡張パック}
+    30周年エーフィ・ブラッキーデッキ: {release: "2026-09-16", type: プレミアムデッキセット}
+    30周年御三家カードセット: {release: "2026-10-16", type: カードセット}
+    ストームエメラルダ: {release: "2026-07-31", type: 拡張パック}
+    アビスアイ: {release: "2026-05-22", type: 拡張パック}
+    スタートデッキ100 バトルコレクション: {release: "2025-12-19", type: スタートデッキ}
+    MEGAドリームex: {release: "2025-11-28", type: ハイクラスパック}
+    インフェルノX: {release: "2025-09-26", type: 拡張パック}
+    メガブレイブ: {release: "2025-08-01", type: 拡張パック}
+    メガシンフォニア: {release: "2025-08-01", type: 拡張パック}
+    テラスタルフェスex: {release: "2024-12-06", type: ハイクラスパック}
+  onepiece:
+    神の支配: {release: "2026-11-21", type: "ブースターパック【OP-18】"}
+    ヒロインズエディション vol.2: {release: "2026-10-31", type: "エクストラブースター【EB-05】"}
+    世界最強の戦士: {release: "2026-08-22", type: "ブースターパック【OP-17】"}
+    決戦の刻: {release: "2026-05-30", type: "ブースターパック【OP-16】"}
+    スタートデッキEX ルフィ&エース: {release: "2026-04-11", type: "スタートデッキEX【ST-30】"}
+    神の島の冒険: {release: "2026-02-28", type: "ブースターパック【OP-15】"}
+    蒼海の七傑: {release: "2025-11-22", type: "ブースターパック【OP-14】"}
+    ヒロインズエディション: {release: "2025-10-25", type: "エクストラブースター【EB-03】"}
+    受け継がれる意志: {release: "2025-08-23", type: "ブースターパック【OP-13】"}
+    王族の血統: {release: "2024-11-30", type: "ブースターパック【OP-10】"}
+    新たなる皇帝: {release: "2024-08-31", type: "ブースターパック【OP-09】"}
+
 # 弾ごとの記事を入れるWPカテゴリのID（WP管理画面→投稿→カテゴリーで確認。空なら未分類）
 wp_categories:
   pokemon: null

@@ -108,7 +108,49 @@ def store_path(store):
     return f"store/{sha(normalize(store or '').replace(' ', ''))[:8]}/"
 
 
+_SER = {}
+
+
+def _ser_cfg():
+    """弾の別名・アドレス・基本情報（settings.yaml）。sitegen の外（xpost など）から呼ばれても使えるように読み込みは1回だけ"""
+    if not _SER:
+        st = load_settings()
+        _SER["alias"] = {g: {normalize(k): v for k, v in (m or {}).items()} for g, m in (st.get("series_aliases") or {}).items()}
+        _SER["slug"] = {g: dict(m or {}) for g, m in (st.get("series_slugs") or {}).items()}
+        _SER["info"] = {g: dict(m or {}) for g, m in (st.get("series_info") or {}).items()}
+    return _SER
+
+
+def canon_series(game, series):
+    """弾名をサイト用にそろえる。「A / B」のように2つの弾をまとめた抽選は [A, B]（それぞれの弾ページに出す）"""
+    if not series:
+        return []
+    al = _ser_cfg()["alias"].get(game, {})
+    out = []
+    for x in re.split(r"\s*[／/]\s*", series):
+        x = x.strip()
+        if not x:
+            continue
+        x = al.get(normalize(x), x) if normalize(x) in al else x
+        if x and x not in out:
+            out.append(x)
+    return out
+
+
 def series_path(game, series):
+    """弾ページのアドレス。決めた英語のアドレス → 英数字だけの弾名は自動 → それ以外は記号"""
+    xs = canon_series(game, series) or [series]
+    x = xs[0]
+    slug = _ser_cfg()["slug"].get(game, {}).get(x)
+    if not slug and re.fullmatch(r"[A-Za-z0-9 .\-]+", x or ""):
+        slug = re.sub(r"[^a-z0-9]+", "-", x.lower()).strip("-")
+    if slug:
+        return f"{GAME_SLUG[game]}/{slug}/"
+    return old_series_path(game, x)
+
+
+def old_series_path(game, series):
+    """前のアドレス（弾名の記号）。転送（_redirects）に使う"""
     return f"{GAME_SLUG[game]}/s-{sha(normalize(series))[:8]}/"
 
 
@@ -169,7 +211,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
                  "__CRUMBS__": meta.get("crumbs", ""),
                  "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__SUPPLY__": meta.get("supply", ""),
-                 "__PRERENDER__": meta.get("prerender", "")}.items():
+                 "__PRERENDER__": meta.get("prerender", ""), "__FAQ__": meta.get("faq_html", "")}.items():
         body = body.replace(k, v)
     body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
     if not standalone:
@@ -206,8 +248,8 @@ def _menu(items, games, g, here=""):
                      f'<b>{escape(GAME_SHORT[x])}</b><span><em>{n}</em>件 受付中</span></a>')
     cnt = {}
     for i in gi:
-        if i.get("series"):
-            cnt[i["series"]] = cnt.get(i["series"], 0) + 1
+        for x in i.get("sers") or ([i["series"]] if i.get("series") else []):
+            cnt[x] = cnt.get(x, 0) + 1
     ser = sorted(cnt, key=lambda x: -cnt[x])
 
     def row(k, x):
@@ -488,6 +530,11 @@ def build(settings=None, out_dir=None, sample=None):
                 row["image"], row["img_url"] = found[0]
                 if len(found) > 1:
                     row["images"] = [{"src": a, "url": b} for a, b in found[:4]]
+            sers = canon_series(i.get("game"), i.get("series"))  # 別名をまとめる・「A / B」は両方の弾に出す
+            row["series"] = sers[0] if sers else None  # 別のゲームの商品が入っていた弾名は外す
+            if sers:
+                if len(sers) > 1:
+                    row["sers"] = sers
             if row.get("store"):
                 row["spath"] = store_path(row["store"])
                 ch_ = chain_of(row["store"])
@@ -533,6 +580,50 @@ def build(settings=None, out_dir=None, sample=None):
             txt += "店頭抽選が多い地域は" + "・".join(f"{a}（{cnt[a]}件）" for a in top3) + "です。"
         return txt
 
+    upd_hm = f"{upd.month}/{upd.day} {upd:%H:%M}"
+
+    def jdate(d):
+        dt = parse_dt(d + "T00:00:00+09:00") if d and len(d) == 10 else None
+        return f"{dt.year}年{dt.month}月{dt.day}日" if dt else d
+
+    def faq_for(sub, what, x_info=None, x_label=None):
+        """よくある質問（画面に出す文と構造化データの文は同じもの）"""
+        qa = []
+        if x_info and x_info.get("release"):
+            qa.append((f"{x_label}の発売日はいつですか？",
+                       f"{x_label}（{x_info.get('type') or '商品'}）の発売日は{jdate(x_info['release'])}です。"
+                       "発売前から予約抽選が始まり、発売後も再販・入荷分の抽選が行われることがあります。"))
+        n = len(sub)
+        on = sum(1 for i in sub if i.get("channel") != "store")
+        if n:
+            qa.append((f"{what}はどこで応募できますか？",
+                       f"{upd_hm}時点で受付中の{what}は{n}件です（ネット抽選{on}件・店頭抽選{n - on}件）。"
+                       "ネット抽選は当選すると自宅に発送され、店頭抽選は店舗で受け取ります。"
+                       "一覧の「応募する」から各店舗の応募ページに進めます。"))
+            noid = sum(1 for i in sub if i.get("id_check") is False)
+            nomem = sum(1 for i in sub if i.get("member") == "none")
+            qa.append((f"本人確認や会員登録なしで応募できる{what}はありますか？",
+                       f"本人確認が不要と分かっている抽選は{noid}件、会員登録が不要な抽選は{nomem}件です。"
+                       "一覧の「本人確認なし」「会員不要」で絞り込めます。条件は変わることがあるため、応募前に各店舗の告知をご確認ください。"))
+            soon = sorted([i for i in sub if parse_dt(i.get("end"))], key=lambda i: i["end"])
+            if soon:
+                today_n = sum(1 for i in soon if parse_dt(i["end"]).date() == now().date())
+                i = soon[0]
+                qa.append((f"締切が近い{what}はどれですか？",
+                           (f"今日が締切の抽選は{today_n}件です。" if today_n else "") +
+                           f"いちばん締切が近いのは{i['store']}の「{i.get('series') or i.get('product')}」で、{_fmt(i['end'])}締切です。"
+                           "一覧は締切が近い順に並んでいます。"))
+        qa.append(("抽選情報はいつ更新されますか？",
+                   f"30分ごとに自動で更新しています（最終更新 {upd_hm}）。新しい抽選は見つかり次第追加し、締切を過ぎた抽選は一覧から外します。"))
+        return qa
+
+    def stores_of(sub, k=4):
+        out_ = []
+        for i in sorted(sub, key=lambda i: i.get("end") or "9999"):
+            if i.get("store") and i["store"] not in out_:
+                out_.append(i["store"])
+        return out_[:k]
+
     def crumbs(trail):
         """パンくず（画面）と構造化データ。trail: [(名前, パス)]"""
         html = '<nav class="crumbs" aria-label="パンくず">' + " › ".join(
@@ -559,9 +650,23 @@ def build(settings=None, out_dir=None, sample=None):
         if trail:
             meta["crumbs"], bl = crumbs(trail)
             ld.insert(0, bl)
+        org = {"@type": "Organization", "@id": f"{site}/#organization", "name": "トレカ抽選ナビ", "url": f"{site}/",
+               "logo": {"@type": "ImageObject", "url": f"{site}/apple-touch-icon.png"}}
         if not path:
-            ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "name": "トレカ抽選ナビ", "url": f"{site}/",
-                          "inLanguage": "ja", "description": meta["desc"]})
+            ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
+                          "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
+        first = min([i.get("found_at") or "" for i in subset if i.get("found_at")] or [updated])
+        ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": meta["title"], "headline": meta["h1"],
+                   "description": meta["desc"], "url": f"{site}/{path}", "inLanguage": "ja",
+                   "datePublished": first, "dateModified": updated, "publisher": org})
+        if meta.get("faq"):
+            ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in meta["faq"]]})
+            meta["faq_html"] = (meta.get("info_html", "") + '<section class="faq" aria-label="よくある質問"><h2>よくある質問</h2>' +
+                                "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in meta["faq"]) +
+                                "</section>")
+        else:
+            meta["faq_html"] = meta.get("info_html", "")
         meta["ld"] = ld
         # ページを軽くする：そのページのゲームの抽選だけを埋め込む（トップは最初のゲームだけ。ほかのゲームはタブで移動）
         g0 = lock.get("game") or games[0]
@@ -586,17 +691,21 @@ def build(settings=None, out_dir=None, sample=None):
     for g in games:
         gi = [i for i in items if i["game"] == g]
         name, short, slug = s["game_names"][g], GAME_SHORT[g], GAME_SLUG[g]
-        series = sorted({i["series"] for i in gi if i.get("series")},
-                        key=lambda x: -sum(1 for i in gi if i.get("series") == x))
+        def in_ser(i, x):
+            return x in (i.get("sers") or [i.get("series")])
+        series = sorted({x for i in gi for x in (i.get("sers") or ([i["series"]] if i.get("series") else []))},
+                        key=lambda x: -sum(1 for i in gi if in_ser(i, x)))
         areas = sorted({i["area"] for i in gi if i.get("channel") == "store" and i.get("area") in PREF},
                        key=lambda a: list(PREF).index(a))
         online = sum(1 for i in gi if i.get("channel") != "store")
         today = sum(1 for i in gi if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date())
-        meta = {"title": f"{short}抽選情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
-                "desc": f"【{md}更新】{name}（{short}）の抽選販売・予約抽選を締切が近い順にまとめ。ネット抽選{online}件・"
-                        f"店頭抽選{len(gi) - online}件を掲載、都道府県別・弾別・本人確認や会員の有無で絞り込めます。30分ごとに自動更新。",
+        meta = {"title": f"【{short}】抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{name}（{short}）の抽選販売・予約・再販情報を締切が近い順にまとめ。受付中{len(gi)}件（ネット抽選{online}件・"
+                        f"店頭抽選{len(gi) - online}件）。" + (f"「{'」「'.join(series[:3])}」など弾別、" if series else "") +
+                        "都道府県別・本人確認や会員の有無で絞り込めます。30分ごとに自動更新。",
                 "summary": summary(gi, f"{short}の抽選"),
-                "h1": f"{short}の抽選・予約情報まとめ",
+                "faq": faq_for(gi, f"{short}の抽選"),
+                "h1": f"【{short}】抽選販売・予約の最新情報まとめ",
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
@@ -606,24 +715,39 @@ def build(settings=None, out_dir=None, sample=None):
             top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
                        desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピースカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
                             f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
-                       summary=summary(items, "トレカの抽選"),
+                       summary=summary(items, "トレカの抽選"), faq=faq_for(items, "トレカの抽選"),
                        h1="トレカの抽選情報まとめ",
                        lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["supply"] = _supply_ad(short, name, tag, raff, prices, g)
             write("", {}, top, items)
 
+        al_g = {v: k for k, v in ((s.get("series_aliases") or {}).get(g) or {}).items()}
         for x in series:
-            si = [i for i in gi if i.get("series") == x]
-            rr = (rk if sample is None else {}).get(f"{g}|{x}") or {}
+            si = [i for i in gi if in_ser(i, x)]
+            rk_ = rk if sample is None else {}
+            rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
+                                               canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
             aff = _product_ad(x, name, rr, tag, raff)
-            alias = (s.get("rakuten_aliases") or {}).get(x)
+            alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
+            info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
+            on_ = sum(1 for i in si if i.get("channel") != "store")
+            sts = stores_of(si)
+            info_rows = [("商品名", f"{name} {info.get('type') or ''}「{x}」".replace("  ", " "))]
+            if info.get("release"):
+                info_rows.append(("発売日", jdate(info["release"])))
+            info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
+            info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
+                         "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
             write(series_path(g, x), {"game": g, "series": x}, {
-                "title": f"{x}の抽選・予約情報【{md}更新】受付中{len(si)}件・締切順｜{short}｜トレカ抽選ナビ",
+                "title": f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ",
                 "desc": f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
-                        f"の抽選販売・予約抽選{len(si)}件を締切順にまとめ。ネット・店頭（都道府県別）、本人確認・会員カードの有無もひと目で分かります。",
+                        f"の抽選販売・予約・再販情報を30分ごとに更新。" + ("・".join(sts) + "など" if sts else "") +
+                        f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。",
                 "summary": summary(si, f"「{x}」の抽選"),
-                "h1": f"「{x}」の抽選・予約情報",
+                "faq": faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
+                "info_html": info_html,
+                "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
                 "aff": aff, "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
@@ -797,6 +921,20 @@ def build(settings=None, out_dir=None, sample=None):
     # X手動投稿用の下書きページ（検索に載せない・サイトマップにも入れない）
     from xdraft import build_x_draft
     build_x_draft(out, items, site, updated)
+
+    # 弾ページのアドレスを読める形に変えた・別名のページをまとめたので、前のアドレスから転送する（Cloudflare Pages の _redirects）
+    if sample is None:
+        olds = {}
+        names = {(r.get("game"), r.get("series")) for r in raw_lots.values() if r.get("game") in GAME_SLUG and r.get("series")}
+        for g_, m in (s.get("series_aliases") or {}).items():
+            names |= {(g_, k) for k in (m or {})} | {(g_, v) for v in (m or {}).values()}
+        for g_, raw_x in names:
+            for part in [raw_x] + canon_series(g_, raw_x):
+                old, new = old_series_path(g_, part), series_path(g_, part)
+                if old != new:
+                    olds["/" + old] = "/" + new
+        (out / "_redirects").write_text("".join(f"{o} {n} 301\n{o.rstrip('/')} {n} 301\n" for o, n in sorted(olds.items())),
+                                        encoding="utf-8")
 
     if site:
         (out / "sitemap.xml").write_text(
