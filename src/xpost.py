@@ -202,7 +202,7 @@ def post_daily_summary(settings, client=None):
               and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < now())]
     if not active:
         return
-    short = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "DBフュージョンワールド"}
+    short = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "DBフュージョンワールド"}
     parts, tags = [], []
     for game in settings["game_names"]:
         n = sum(1 for i in active if i["game"] == game)

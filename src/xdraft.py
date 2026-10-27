@@ -9,7 +9,7 @@ import json
 import re
 from html import escape
 
-GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "DBフュージョンワールド"}
+GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "DBフュージョンワールド"}
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 
 TEMPLATE = """<!doctype html>
@@ -50,9 +50,9 @@ button.ok{background:#2e7d32}
 <script>
 const MKP=__MKPRODUCTS__;
 const SITE=__SITE__, ITEMS=__ITEMS__, UPDATED=__UPDATED__, TRENDS=__TRENDS__, IMGS=new Set(__IMGS__), BUZZ=__BUZZ__, MARKET=__MARKET__;
-const GS={pokemon:"ポケカ",onepiece:"ワンピカード",dragonball:"DBフュージョンワールド"};
+const GS={pokemon:"ポケカ",onepiece:"ワンピースカード",dragonball:"DBフュージョンワールド"};
 const SLUG={pokemon:"pokeka",onepiece:"onepiece",dragonball:"fusionworld"};
-const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピカード #ワンピカード抽選",dragonball:"#フュージョンワールド #DBFW"};
+const TAG={pokemon:"#ポケカ #ポケカ抽選",onepiece:"#ワンピースカード #ワンピースカード抽選",dragonball:"#フュージョンワールド #DBFW"};
 const W=["月","火","水","木","金","土","日"];
 const now=new Date(); const H=3600*1000;
 document.getElementById("upd").textContent=UPDATED?new Date(UPDATED).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):"-";
@@ -120,7 +120,7 @@ for(const g of Object.keys(GS)){
  for(const [r,li] of by){
   li.sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
   add(`店頭抽選：${r}`,"地域名で検索する人に届く",
-   fit(`🏪${r}の店頭抽選｜受付中 ${li.length}件`,byStore(li).map(x=>`・${x.i.area.replace(/[都府県]$/,"")}｜${x.i.store}（〜${fmt(end(x.i))}）`),foot("お近くの店舗を探す",SITE+"/",`#ポケカ抽選 #ワンピカード抽選 #${r.split("・")[0]}`)),[12,18,19,20]);
+   fit(`🏪${r}の店頭抽選｜受付中 ${li.length}件`,byStore(li).map(x=>`・${x.i.area.replace(/[都府県]$/,"")}｜${x.i.store}（〜${fmt(end(x.i))}）`),foot("お近くの店舗を探す",SITE+"/",`#ポケカ抽選 #ワンピースカード抽選 #${r.split("・")[0]}`)),[12,18,19,20]);
  }
 }
 // 6) まとめ
@@ -156,7 +156,7 @@ for(const g of Object.keys(GS)){
 {
  const li=active.filter(i=>i.found_at&&now-new Date(i.found_at)<24*H).sort((a,b)=>new Date(b.found_at)-new Date(a.found_at));
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
-  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピカード")),[7,8,9],"fresh");
+  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピースカード")),[7,8,9],"fresh");
 }
 // 0) 自分で追加した抽選（config/manual.yaml）。本文はリンクなし＋リプ欄に個別ページのURL
 const GX={pokemon:"ポケカ",onepiece:"ワンピースカード",dragonball:"フュージョンワールド"};
@@ -207,7 +207,7 @@ document.getElementById("mk-go").onclick=()=>{
  const prevDay=Object.keys(hist).filter(d=>d<today).sort().pop();const prev=prevDay?hist[prevDay]:{};
  hist[today]=Object.assign(hist[today]||{},Object.fromEntries(rows.map(r=>[r.key,r.price])));
  const keep=Object.keys(hist).sort().slice(-60);hist=Object.fromEntries(keep.map(d=>[d,hist[d]]));try{localStorage.setItem("mk_hist",JSON.stringify(hist));}catch(e){}
- const TG={pokemon:"#ポケカ #ポケカ相場",onepiece:"#ワンピカード #ワンピカード相場",dragonball:"#フュージョンワールド"};
+ const TG={pokemon:"#ポケカ #ポケカ相場",onepiece:"#ワンピースカード #ワンピースカード相場",dragonball:"#フュージョンワールド"};
  const sg=v=>v===0?"±0":(v>0?"+":"-")+Math.abs(v).toLocaleString();
  for(const g of Object.keys(GS)){
   const li=rows.filter(r=>r.game===g);if(!li.length)continue;
@@ -344,7 +344,7 @@ def build_images(out, items):
     try:  # 今日の相場（スニダン）
         import market as mk
         from xpost import x_len
-        tags = {"pokemon": "#ポケカ #ポケカ相場", "onepiece": "#ワンピカード #ワンピカード相場", "dragonball": "#フュージョンワールド"}
+        tags = {"pokemon": "#ポケカ #ポケカ相場", "onepiece": "#ワンピースカード #ワンピースカード相場", "dragonball": "#フュージョンワールド"}
         for g, short in GAME_SHORT.items():
             rows, d0 = mk.today_rows(g)
             if not rows:

@@ -463,7 +463,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   var DATA = JSON.parse(document.getElementById("data").textContent);
   var GAMES = DATA.games; // [{id, name}]
   var TABS = [{ id: "all", name: "すべて" }].concat(GAMES);  // 一番左は3つのゲームをまとめた総合
-  var GSHORT = {}; GAMES.forEach(function (g) { GSHORT[g.id] = g.name; });
+  var GSHORT = {}; GAMES.forEach(function (g) { GSHORT[g.id] = g.tab || g.name; });
   var NOW0 = Date.now();
   // サンプル表示では締切を「今からの時間」で持たせ、いつ開いても動いて見えるようにする
   var items = DATA.items.map(function (it) {
@@ -714,7 +714,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       var n = items.some(function (i) { return i.game === x.id; })
         ? items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length
         : ((DATA.gameCounts || {})[x.id] || 0);
-      return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.name) + '<span class="n">' + n + '</span></button>';
+      return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.tab || x.name) + '<span class="n">' + n + '</span></button>';
     }).join("");
     // サマリー
     var today = gs.filter(function (i) { return isToday(i._end); }).length;

@@ -13,7 +13,7 @@ from common import load_json, save_json, parse_dt, now, log
 from xpost import x_len, _client
 
 ACTIVE = ("approved", "posted", "listed")
-SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "フュージョンワールド"}
+SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
 
 ARUARU = [
     ["締切の5分前に気づく", "会員カードが必要で詰む", "当選メールが迷惑メールに入ってる"],
@@ -77,7 +77,7 @@ def _numbers(items, day, tags):
              f"・家から応募できるネット抽選：{net}件", f"・お店で受け取る店頭抽選：{len(items) - net}件"]
     if today:
         lines += ["", f"そのうち今日締切が{len(today)}件⏰"]
-    lines += ["", "締切は思ってるより早く来る", "", "#ポケカ抽選 #ワンピカード抽選"]
+    lines += ["", "締切は思ってるより早く来る", "", "#ポケカ抽選 #ワンピースカード抽選"]
     return "\n".join(lines)
 
 
@@ -88,12 +88,12 @@ def _prefecture(items, day, tags):
         return None
     body = "\n".join(f"{n + 1}位 {p}｜{k}件" for n, (p, k) in enumerate(top))
     return (f"店頭抽選がいちばん多い都道府県は…\n\n{body}\n\n"
-            f"近くに店がない人は、ネット抽選のほうが狙い目\n\n#ポケカ抽選 #ワンピカード抽選")
+            f"近くに店がない人は、ネット抽選のほうが狙い目\n\n#ポケカ抽選 #ワンピースカード抽選")
 
 
 def _aruaru(items, day, tags):
     a = ARUARU[(day // 5) % len(ARUARU)]
-    return "トレカ抽選あるある\n\n" + "\n".join("・" + x for x in a) + "\n\n全部やったことある😂\n\n#ポケカ #ワンピカード"
+    return "トレカ抽選あるある\n\n" + "\n".join("・" + x for x in a) + "\n\n全部やったことある😂\n\n#ポケカ #ワンピースカード"
 
 
 TYPES = [_ranking, _question, _numbers, _prefecture, _aruaru]

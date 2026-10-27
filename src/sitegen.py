@@ -27,7 +27,8 @@ FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tag
           "channel", "area", "found_at", "id_check", "member", "image", "img_url", "multi", "method",
           "start", "announce", "buy", "products", "manual")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
-GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピカード", "dragonball": "フュージョンワールド"}
+GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
+GAME_TAB = {"onepiece": "ワンピース"}  # 上のタブ・一覧の小さなラベルだけ短く（スマホで横にはみ出さないように）
 PREF = {
     "北海道": "hokkaido", "青森県": "aomori", "岩手県": "iwate", "宮城県": "miyagi", "秋田県": "akita",
     "山形県": "yamagata", "福島県": "fukushima", "茨城県": "ibaraki", "栃木県": "tochigi", "群馬県": "gunma",
@@ -441,7 +442,7 @@ def build(settings=None, out_dir=None, sample=None):
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 
     common_data = {"sample": False, "updated": updated,
-                   "games": [{"id": g, "name": GAME_SHORT[g]} for g in games],
+                   "games": [{"id": g, "name": GAME_SHORT[g], "tab": GAME_TAB.get(g, GAME_SHORT[g])} for g in games],
                    "gameUrls": {"all": "/", **{g: f"/{GAME_SLUG[g]}/" for g in games}}, "items": items,
                    "gameNames": {g: s["game_names"][g] for g in games}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
@@ -539,12 +540,12 @@ def build(settings=None, out_dir=None, sample=None):
                 "supply": _supply_ad(short, name, tag, raff, prices, g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
-            top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピカードの抽選情報まとめ【{md}更新】締切が近い順",
-                       desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
+            top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
+                       desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピースカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
                             f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
                        summary=summary(items, "トレカの抽選"),
                        h1="トレカの抽選情報まとめ",
-                       lead="ポケカ・ワンピカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
+                       lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["supply"] = _supply_ad(short, name, tag, raff, prices, g)
             write("", {}, top, items)
@@ -646,7 +647,7 @@ def build(settings=None, out_dir=None, sample=None):
             "title": f"{cname}の{words}抽選情報【{md}更新】" + (f"受付中{len(ci)}件・" if ci else "") + "店舗別・締切順｜トレカ抽選ナビ",
             "desc": f"【{md}更新】{cname}の{words}の抽選販売・予約抽選" + (f"{len(ci)}件" if ci else "") +
                     "を店舗別・締切順にまとめ。Web応募・店頭応募、受け取り方法、本人確認・会員の条件もひと目で分かります。",
-            "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピカード抽選情報", "lead": lead,
+            "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
             "aff": _rec_note(cname) if big else "",
             "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
             [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/")])
@@ -664,8 +665,8 @@ def build(settings=None, out_dir=None, sample=None):
                         f'<span>{len(by_store.get(p, []))}</span></a></li>' for p, r in lst)
         secs.append(f'<section><h2>{escape(a)}<small>{len(lst)}店舗</small></h2><ul>{chips}</ul></section>')
     write("store/", {"game": games[0]}, {
-        "title": f"店舗一覧｜ポケカ・ワンピカードの抽選をしているお店【{md}更新】｜トレカ抽選ナビ",
-        "desc": f"【{md}更新】ポケカ・ワンピカードの抽選をしている（最近していた）お店{len(reg)}店舗を都道府県別に一覧にしました。お店を選ぶと、そのお店の受付中の抽選が見られます。",
+        "title": f"店舗一覧｜ポケカ・ワンピースカードの抽選をしているお店【{md}更新】｜トレカ抽選ナビ",
+        "desc": f"【{md}更新】ポケカ・ワンピースカードの抽選をしている（最近していた）お店{len(reg)}店舗を都道府県別に一覧にしました。お店を選ぶと、そのお店の受付中の抽選が見られます。",
         "summary": f"最近抽選があったお店は{len(reg)}店舗です。数字は受付中の抽選の件数です。",
         "h1": "抽選をしているお店の一覧",
         "lead": "お店を選ぶと、そのお店で受付中の抽選（締切・応募方法・条件）が見られます。",
@@ -785,7 +786,7 @@ if __name__ == "__main__":
         data = {"sample": True, "updated": now().isoformat(),
                 "games": [{"id": g, "name": GAME_SHORT[g]} for g in GAME_SHORT], "items": items}
         meta = {"title": "トレカ抽選ナビ", "desc": "試作", "h1": "トレカの抽選・予約情報まとめ",
-                "lead": "ポケカ・ワンピカード・フュージョンワールドの抽選を、ネットと店頭（都道府県別）で締切が近い順にまとめています。",
+                "lead": "ポケカ・ワンピースカード・フュージョンワールドの抽選を、ネットと店頭（都道府県別）で締切が近い順にまとめています。",
                 "links": _links("弾ごと", [("サンプル弾A", "#"), ("サンプル弾B", "#")]), "root": "#"}
         out = ROOT / "output"
         out.mkdir(exist_ok=True)
