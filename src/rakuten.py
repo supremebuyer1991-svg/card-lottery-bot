@@ -24,7 +24,7 @@ def _norm(s):
     return re.sub(r"[\s「」『』()（）・×xX【】\[\]/／&＆+＋-]", "", unicodedata.normalize("NFKC", s or "")).lower()
 
 
-def _score(item, series, game_name):
+def _score(item, series, game_name, orig=None):
     """商品名がどれだけ弾に合っているか。合わなければ None"""
     name = item.get("itemName") or ""
     if any(w in name for w in NG_WORDS):
@@ -34,6 +34,11 @@ def _score(item, series, game_name):
     n, s = _norm(name), _norm(series)
     if s not in n:
         return None
+    # BOXの写真を使いたいので、パック売り・カートン・シングルカードは使わない
+    if re.search(r"パック販売|カートン|\b[A-Z]{2}\d{2}-\d{3}\b|\((C|UC|R|SR|SEC|L|P) [^)]*\)", name):
+        return None
+    if "vol2" in n.replace(".", "") and "vol2" not in (s + _norm(orig)).replace(".", ""):
+        return None  # 「vol.2」ではない弾に vol.2 の画像を使わない
     sc = 0
     if _norm(game_name)[:4] in n or "ポケモンカード" in name or "ワンピースカード" in name or "フュージョンワールド" in name:
         sc += 2
@@ -114,7 +119,7 @@ def update(settings, series_by_game, session=None, sleep=1.1):
                 continue
             best = None
             for it in items:
-                sc = _score(it, alias, gname)
+                sc = _score(it, alias, gname, x)
                 if sc is not None and (best is None or sc > best[0]):
                     best = (sc, it)
             if best:

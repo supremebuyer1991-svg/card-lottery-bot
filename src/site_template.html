@@ -272,7 +272,14 @@ input[type="search"] { flex: 1 1 160px; }
 .near .cd { color: var(--amber); }
 .body { padding: 12px 14px; min-width: 0; display: flex; gap: 12px; align-items: flex-start; }
 .info { min-width: 0; display: grid; gap: 4px; flex: 1; }
-.thumb { flex: none; width: 76px; aspect-ratio: 1; border-radius: 8px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
+.thumb { flex: none; width: var(--tw, 100px); aspect-ratio: 1; border-radius: 10px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
+.thumbs { --tw: 100px; --off: 26px; flex: none; position: relative; height: var(--tw); }
+.thumbs.n2 { width: calc(var(--tw) + var(--off)); }
+.thumbs.n3 { width: calc(var(--tw) + var(--off) * 2); }
+.thumbs.n4 { width: calc(var(--tw) + var(--off) * 3); }
+.thumbs .thumb { position: absolute; top: 0; box-shadow: 2px 2px 6px rgba(0,0,0,.18); }
+.thumbs .thumb:nth-child(2) { left: var(--off); } .thumbs .thumb:nth-child(3) { left: calc(var(--off) * 2); } .thumbs .thumb:nth-child(4) { left: calc(var(--off) * 3); }
+.thumbs .thumb:not(:last-child) .pr { display: none; }
 .thumb { position: relative; background: #fff; border: 1px solid var(--rule); }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .thumb .pr { position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; background: #bf0000; padding: 2px 4px; border-top-left-radius: 4px; }
@@ -384,7 +391,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   .ticket { grid-template-columns: 92px 1fr; }
   .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
   .cd { font-size: 15px; }
-  .thumb { width: 60px; }
+  .thumb { --tw: 72px; }
+  .thumbs { --tw: 72px; --off: 10px; }
   .logo .w { font-size: 21px; }
   .lead h1 { font-size: 19px; }
   .stats b { font-size: 18px; }
@@ -622,10 +630,15 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   function thumb(it) {
     var alt = esc(it.series || it.product);
-    if (!it.image) return "";
-    var img = '<img src="' + esc(it.image) + '" alt="' + alt + '" loading="lazy">';
-    return it.img_url ? '<a class="thumb" href="' + esc(it.img_url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="pr">楽天</span></a>'
-      : '<div class="thumb">' + img + '</div>';
+    var list = it.images && it.images.length > 1 ? it.images : it.image ? [{ src: it.image, url: it.img_url }] : [];
+    if (!list.length) return "";
+    var one = function (x) {
+      var img = '<img src="' + esc(x.src) + '" alt="' + alt + '" loading="lazy">';
+      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="pr">楽天</span></a>'
+        : '<div class="thumb">' + img + '</div>';
+    };
+    // 複数の商品の抽選は、画像を少しずつずらして重ねる
+    return list.length > 1 ? '<div class="thumbs n' + list.length + '">' + list.map(one).join("") + '</div>' : one(list[0]);
   }
   function reqs(it) {
     var id = it.id_check === true ? '<span class="pill need">本人確認 必要</span>'

@@ -378,6 +378,60 @@ def amazon_invites(items, tag):
     return {g: [{"name": x["name"], "url": x["url"]} for x in v] for g, v in out.items()}
 
 
+# 商品名から画像を探すとき、これだけでは商品が決まらない短い語（ほかの弾名の一部にもなる）
+IMG_IGNORE = {"mega", "30th", "30周年", "heroines", "box"}
+
+
+def match_images(game, texts, rk, images, aliases, series=None):
+    """抽選の商品名（弾名・商品名・商品リスト）から、載っている商品ごとに画像を探す。
+    商品名を「／」「、」「＋」などで区切り、区切りごとに1つの弾を選ぶ（区切りの中では後ろに出てくる名前ほど具体的なので優先。
+    例：「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」→ エーフィ・ブラッキー）。
+    長い名前の一部（「30th CELEBRATION カードセット」の中の「30th CELEBRATION」）は数えない。
+    商品名から決まらなければ弾名（series）の画像。
+    返り値: [(画像URL, 楽天リンク or None), ...]（同じ商品は1つ・最大4つ）"""
+    from rakuten import _norm
+    keys = {}
+    for k in rk:
+        g, _, x = k.partition("|")
+        if g == game:
+            keys[_norm(x)] = x
+    for x in images:
+        keys.setdefault(_norm(x), x)
+    for a, x in ((aliases or {}).get(game) or {}).items():
+        keys[_norm(a)] = x
+    keys = {nk: x for nk, x in keys.items() if len(nk) >= 3 and nk not in IMG_IGNORE}
+
+    picked = []
+    for seg in re.split(r"[／/、，,＋+]", "／".join(x for x in texts[1:] if x)):
+        t = _norm(seg)
+        spans = []
+        for nk, x in keys.items():
+            p = t.find(nk)
+            while p >= 0:
+                spans.append((p, p + len(nk), x))
+                p = t.find(nk, p + 1)
+        kept = []
+        for s_ in sorted(spans, key=lambda s: (s[0] - s[1], s[0])):  # 長い順
+            if not any(k[0] <= s_[0] and s_[1] <= k[1] for k in kept):
+                kept.append(s_)
+        if kept:
+            picked.append(max(kept, key=lambda s: s[0])[2])  # 区切りの中でいちばん後ろの名前
+    if not picked and series:
+        picked = [series]  # 商品名から分からなければ弾名で
+    out, seen_img, seen_name = [], set(), []
+    for x in picked:
+        nx = _norm(x)
+        if any(nx in y or y in nx for y in seen_name):
+            continue  # 同じ商品（「バトルコレクション」と「スタートデッキ100 バトルコレクション」など）
+        seen_name.append(nx)
+        r = rk.get(f"{game}|{x}") or {}
+        img = images.get(x) or r.get("image")
+        if img and img not in seen_img:
+            seen_img.add(img)
+            out.append((img, None if images.get(x) else r.get("url")))
+    return out[:4]
+
+
 def active_series(settings=None):
     """{game: [弾名（受付中が多い順）]}"""
     s = settings or load_settings()
@@ -425,6 +479,13 @@ def build(settings=None, out_dir=None, sample=None):
             r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
             if not row["image"] and r.get("image"):
                 row["image"], row["img_url"] = r["image"], r.get("url")
+            # 商品名からも画像を探す（弾名が空の抽選・複数の商品をまとめた抽選）
+            found = match_images(i.get("game"), [i.get("series"), i.get("product")] + list(i.get("products") or []),
+                                 rk, images, s.get("image_aliases"), i.get("series"))
+            if found:
+                row["image"], row["img_url"] = found[0]
+                if len(found) > 1:
+                    row["images"] = [{"src": a, "url": b} for a, b in found[:4]]
             if row.get("store"):
                 row["spath"] = store_path(row["store"])
                 ch_ = chain_of(row["store"])
