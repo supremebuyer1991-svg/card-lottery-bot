@@ -5241,10 +5241,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "8ae0d5c07ed619b6",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048227+09:00",
     "multi": false,
-    "cls": "1c64deb6718a"
+    "cls": "1c64deb6718a",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888582+09:00"
   },
   "72e22ae52fee1457": {
     "store": "TSUTAYA姫路広峰店",
@@ -5269,10 +5271,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "72e22ae52fee1457",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048244+09:00",
     "multi": false,
-    "cls": "e3db02120257"
+    "cls": "e3db02120257",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888597+09:00"
   },
   "a6e97deb5dde45e9": {
     "store": "TSUTAYA姫路広峰店",
@@ -5297,10 +5301,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "a6e97deb5dde45e9",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048262+09:00",
     "multi": false,
-    "cls": "e162796c1e5e"
+    "cls": "e162796c1e5e",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888602+09:00"
   },
   "63e427a30c5ae0f9": {
     "store": "イエローサブマリン各店",
@@ -8718,11 +8724,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "3838f69e7d3b6c3b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882669+09:00",
     "multi": false,
     "cls": "ee7ff39be331",
-    "page_checked_at": "2026-10-27T03:25:47.588796+09:00"
+    "page_checked_at": "2026-10-27T03:25:47.588796+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888827+09:00"
   },
   "97432a0ef14074b2": {
     "store": "カードショップ彩々 国分店",
@@ -8744,10 +8752,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "97432a0ef14074b2",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882687+09:00",
     "multi": false,
-    "cls": "6e0f6e1cab91"
+    "cls": "6e0f6e1cab91",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888832+09:00"
   },
   "b2740601d066ed3b": {
     "store": "トーナメントセンターバトロコ 秋田駅前",
@@ -8772,11 +8782,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "b2740601d066ed3b",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882705+09:00",
     "multi": false,
     "cls": "892add36dc3a",
-    "page_checked_at": "2026-10-27T03:25:49.837733+09:00"
+    "page_checked_at": "2026-10-27T03:25:49.837733+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888834+09:00"
   },
   "4772745c68140100": {
     "store": "TSUTAYA西五反田店",
@@ -8801,10 +8813,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "4772745c68140100",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882724+09:00",
     "multi": false,
-    "cls": "1750b4ee2565"
+    "cls": "1750b4ee2565",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T23:13:49.888836+09:00"
   },
   "fba44d9c2b42131c": {
     "store": "カードショップ竜星のPAO池袋店",
@@ -22122,11 +22136,12 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "f754e9563c7d3bee",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-27T08:53:08.496437+09:00",
     "multi": false,
     "cls": "a927a6947fa9",
-    "issue": 105
+    "issue": 105,
+    "closed_at": "2026-10-27T23:14:04.176713+09:00"
   },
   "c265a2c84368aa25": {
     "store": "バトロコsatellite 金沢香林坊",
@@ -22149,11 +22164,12 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "c265a2c84368aa25",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-27T08:53:08.496468+09:00",
     "multi": false,
     "cls": "740aba7af85f",
-    "issue": 106
+    "issue": 106,
+    "closed_at": "2026-10-27T23:14:04.176728+09:00"
   },
   "a5a4b1906a11f572": {
     "store": "バトスタ 長野駅前店",
@@ -22769,11 +22785,12 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "60ea9c8fc5a4da5d",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T10:14:09.577674+09:00",
     "page_checked_at": "2026-10-27T10:16:21.891583+09:00",
     "multi": false,
-    "cls": "63f58a492269"
+    "cls": "63f58a492269",
+    "closed_at": "2026-10-27T23:14:04.176754+09:00"
   },
   "002afdbf8b37058b": {
     "store": "ブックオフ松戸駅東口店",
