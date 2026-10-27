@@ -112,8 +112,49 @@ def chain_of(store):
 CHAIN = {c[0]: c for c in CHAINS}
 
 
+_KANA = dict(zip(
+    "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴ",
+    "a i u e o ka ki ku ke ko sa shi su se so ta chi tsu te to na ni nu ne no ha hi fu he ho ma mi mu me mo ya yu yo ra ri ru re ro wa o n "
+    "ga gi gu ge go za ji zu ze zo da ji zu de do ba bi bu be bo pa pi pu pe po vu".split()))
+_SMALL = {"ャ": "ya", "ュ": "yu", "ョ": "yo", "ァ": "a", "ィ": "i", "ゥ": "u", "ェ": "e", "ォ": "o"}
+
+
+def romaji(text):
+    """カタカナ・ひらがな・英数字をローマ字に（漢字は区切りとして扱う）。お店のアドレス用"""
+    t = "".join(chr(ord(c) + 96) if "ぁ" <= c <= "ゖ" else c for c in normalize(text or ""))
+    out, i = [], 0
+    while i < len(t):
+        c = t[i]
+        if c in _KANA:
+            r = _KANA[c]
+            nx = t[i + 1] if i + 1 < len(t) else ""
+            if nx in _SMALL:
+                r = (r[:-1] if r[-1] == "i" and nx in "ャュョ" else r[:-1]) + _SMALL[nx]
+                if r.startswith(("shy", "chy", "jy")):
+                    r = r.replace("y", "", 1)
+                i += 1
+            out.append(r)
+        elif c == "ッ" and i + 1 < len(t) and t[i + 1] in _KANA:
+            out.append(_KANA[t[i + 1]][0])
+        elif c.isascii() and c.isalnum():
+            out.append(c.lower())
+        elif c == "ー":
+            pass
+        else:
+            out.append("-")
+        i += 1
+    return re.sub(r"-+", "-", "".join(out)).strip("-")
+
+
 def store_path(store):
-    """お店ごとのページ（店名の空白を無視して同じ店は同じページ）"""
+    """お店ごとのページ。店名（チェーン名）＋短い記号で読めるアドレスに（同じ店は同じページ）"""
+    key = normalize(store or "").replace(" ", "")
+    c = chain_of(store)
+    base = c or romaji(re.sub(r"[（(【［\[].*?[）)】］\]]", "", store or ""))[:30].strip("-") or "shop"
+    return f"store/{base}-{sha(key)[:5]}/"  # 地域は店によって抽選ごとに入ったり入らなかったりするのでアドレスに入れない
+
+
+def old_store_path(store):
     return f"store/{sha(normalize(store or '').replace(' ', ''))[:8]}/"
 
 
@@ -283,6 +324,40 @@ def souba_block(x, sm, fx=None, link=True):
             + ("　<a href=\"/souba/\">ほかのBOXの相場</a>" if link else "") + "</p></section>")
 
 
+def og_image(path, game_label, color, title, rows, sub=""):
+    """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630"""
+    from PIL import Image, ImageDraw, ImageFont
+    fdir = Path(__file__).with_name("fonts")
+    F = lambda w, n: ImageFont.truetype(str(fdir / f"ZenKakuGothicNew-{w}.ttf"), n)
+    W, H = 1200, 630
+    im = Image.new("RGB", (W, H), "#0f172a")
+    d = ImageDraw.Draw(im)
+    for y in range(H):  # 上から下へ少しずつ色を変える
+        t = y / H
+        d.line([(0, y), (W, y)], fill=(int(15 + 15 * t), int(23 + 8 * t), int(42 + 20 * t)))
+    d.rectangle([0, 0, 14, H], fill=color)
+    f = F("Bold", 30)
+    tw = d.textlength(game_label, font=f)
+    d.rounded_rectangle([60, 52, 60 + tw + 44, 104], radius=26, fill=color)
+    d.text((82, 78), game_label, font=f, fill="#111827", anchor="lm")
+    size = 76
+    while size > 40 and d.textlength(title, font=F("Black", size)) > W - 120:
+        size -= 4
+    d.text((60, 175), title, font=F("Black", size), fill="#ffffff", anchor="lm")
+    if sub:
+        d.text((60, 250), sub, font=F("Medium", 32), fill="#cbd5e1", anchor="lm")
+    y = 298
+    for k, v, hl in rows[:4]:
+        d.rounded_rectangle([60, y, W - 60, y + 52], radius=14, fill="#1e293b")
+        d.text((88, y + 26), k, font=F("Bold", 27), fill="#94a3b8", anchor="lm")
+        d.text((W - 88, y + 26), v, font=F("Black", 32), fill=color if hl else "#f8fafc", anchor="rm")
+        y += 62
+    d.text((60, H - 26), "トレカ抽選ナビ", font=F("Black", 28), fill="#ffffff", anchor="ls")
+    d.text((W - 60, H - 26), "tcg-chusen.com", font=F("Bold", 26), fill=color, anchor="rs")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    im.save(path, optimize=True)
+
+
 def page(data: dict, meta: dict, standalone=True) -> str:
     base = meta.get("root", "/")
     canon = meta.get("canonical")
@@ -293,7 +368,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
     if canon:
         head += [f'<link rel="canonical" href="{escape(canon)}">',
                  f'<meta property="og:url" content="{escape(canon)}">']
-    og_img = f"{site}/og.png" if site else "/og.png"
+    og_img = meta.get("og_image") or (f"{site}/og.png" if site else "/og.png")
     head += [f'<meta property="og:title" content="{escape(meta["title"])}">',
              f'<meta property="og:description" content="{escape(meta["desc"])}">',
              '<meta property="og:type" content="website">', '<meta property="og:site_name" content="トレカ抽選ナビ">',
@@ -400,7 +475,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
-                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -874,7 +949,24 @@ def build(settings=None, out_dir=None, sample=None):
             info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
+            og_rel = "og/" + series_path(g, x).rstrip("/").replace("/", "-") + ".png"
+            og_rows = [("いま受付中の抽選", f"{len(si)}件" if si else "これから", True)]
+            if info.get("release"):
+                og_rows.append(("発売日", jdate(info["release"]), False))
+            if sm:
+                og_rows.append((f"BOX相場（{_md(sm['date'])}）", _yen(sm["price"]), False))
+                if sm.get("teika"):
+                    og_rows.append(("定価", _yen(sm["teika"]), False))
+            elif info.get("price"):
+                og_rows.append(("希望小売価格", info["price"].split("／")[-1].replace("（税込）", ""), False))
+            try:
+                og_image(out / og_rel, GAME_SHORT[g], "#facc15" if g == "pokemon" else "#f87171" if g == "onepiece" else "#38bdf8",
+                         x, og_rows, f"{name}の抽選販売・予約情報")
+            except Exception as e:
+                print("OGP画像を作れませんでした", x, e)
+                og_rel = ""
             write(series_path(g, x), {"game": g, "series": x}, {
+                "og_image": f"{site}/{og_rel}" if og_rel else None,
                 "title": (f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
                           f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"),
                 "desc": (f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
@@ -1048,9 +1140,117 @@ def build(settings=None, out_dir=None, sample=None):
             "aff": intro + "".join(secs), "links": _menu(items, games, games[0]), "root": "/"},
             [i for i in items if i["game"] == games[0]], [("トップ", ""), ("BOX相場", "souba/")])
 
+    # --- 新しく見つけた弾の一覧（Xの告知の予約作業が読む。検索には載せない）---
+    if sample is None:
+        ns = []
+        for g_, m in (load_json("newsets.json", {}).get("series") or {}).items():
+            for nm, v in m.items():
+                x = (canon_series(g_, nm) or [nm])[0]
+                inf = (_ser_cfg()["info"].get(g_) or {}).get(x) or {}
+                ns.append({"game": g_, "game_name": GAME_SHORT.get(g_, g_), "name": x, "url": f"{site}/{series_path(g_, x)}",
+                           "release": inf.get("release") or v.get("release"), "price": inf.get("price") or v.get("price"),
+                           "type": inf.get("type") or v.get("type"), "first_seen": v.get("first_seen"),
+                           "lotteries": sum(1 for i in items if i["game"] == g_ and x in (i.get("sers") or [i.get("series")]))})
+        (out / "newsets.json").write_text(json.dumps(sorted(ns, key=lambda r: r.get("first_seen") or ""), ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # --- 今週のまとめ（/weekly/）：その週に見つかった抽選・多かった弾とお店・相場の動き。毎週のページを残す ---
+    if sample is None:
+        import datetime as _dt
+        wk = load_json("weekly.json", {})
+        for i in items:
+            fd = parse_dt(i.get("found_at"))
+            if not fd:
+                continue
+            fd = fd.astimezone(_dt.timezone(_dt.timedelta(hours=9))).date()
+            ws = (fd - _dt.timedelta(days=fd.weekday())).isoformat()
+            if ws < (now().date() - _dt.timedelta(days=84)).isoformat():
+                continue
+            wk.setdefault(ws, {})[i["key"]] = {k: i.get(k) for k in ("game", "store", "series", "channel", "area", "found_at", "chain")}
+        wk = {w: v for w, v in wk.items() if w >= (now().date() - _dt.timedelta(days=84)).isoformat()}
+        save_json("weekly.json", wk)
+        weeks = sorted(wk, reverse=True)
+
+        def wsum(ws):
+            rows = list(wk[ws].values())
+            we = (_dt.date.fromisoformat(ws) + _dt.timedelta(days=6)).isoformat()
+            res = {"week": ws, "week_end": we, "total": len(rows), "games": {}}
+            for g_ in games:
+                gr = [r for r in rows if r.get("game") == g_]
+                if not gr:
+                    continue
+                cnt = lambda key: sorted(((v, n) for v, n in __import__("collections").Counter(
+                    r.get(key) for r in gr if r.get(key)).items()), key=lambda t: -t[1])[:5]
+                chains = sorted(__import__("collections").Counter(CHAIN[r["chain"]][1] for r in gr if r.get("chain")).items(), key=lambda t: -t[1])[:5]
+                mv = []
+                for k, sm_ in souba_sm.items():
+                    if not k.startswith(g_ + "|"):
+                        continue
+                    pts = [(d_, v_) for d_, v_ in (souba_raw["items"][k].get("jp") or {}).items()]
+                    a = [v_ for d_, v_ in sorted(pts) if d_ < ws][-1:] or [None]
+                    b = [v_ for d_, v_ in sorted(pts) if d_ <= we][-1:] or [None]
+                    if a[0] and b[0]:
+                        mv.append((souba_raw["items"][k].get("name") or k.split("|")[1], a[0], b[0]))
+                mv.sort(key=lambda t: -abs(t[2] - t[1]) / t[1])
+                res["games"][g_] = {"name": GAME_SHORT[g_], "total": len(gr),
+                                    "online": sum(1 for r in gr if r.get("channel") != "store"),
+                                    "series": cnt("series"), "areas": cnt("area"), "chains": chains,
+                                    "souba": [{"name": n_, "start": a_, "end": b_} for n_, a_, b_ in mv[:4]]}
+            return res
+
+        def whtml(sm_):
+            h = [f'<div class="guide"><p>{_md(sm_["week"])}〜{_md(sm_["week_end"])}にトレカ抽選ナビで見つかった抽選は<b>{sm_["total"]}件</b>でした。'
+                 '新しく見つかった抽選・多かった弾とお店・BOX相場の動きをまとめています。</p>']
+            for g_, v in sm_["games"].items():
+                h.append(f'<h2>{escape(v["name"])}：{v["total"]}件（ネット{v["online"]}件・店頭{v["total"] - v["online"]}件）</h2><ul>')
+                if v["series"]:
+                    h.append("<li><b>多かった弾</b>：" + "、".join(
+                        f'<a href="/{series_path(g_, n_)}">{escape(n_)}</a>（{c_}件）' for n_, c_ in v["series"]) + "</li>")
+                if v["chains"]:
+                    h.append("<li><b>多かったお店（チェーン）</b>：" + "、".join(f"{escape(n_)}（{c_}件）" for n_, c_ in v["chains"]) + "</li>")
+                if v["areas"]:
+                    h.append("<li><b>店頭抽選が多かった地域</b>：" + "、".join(f"{escape(n_)}（{c_}件）" for n_, c_ in v["areas"]) + "</li>")
+                if v["souba"]:
+                    h.append("<li><b>BOX相場の動き（週のはじめ→終わり）</b>：" + "、".join(
+                        f'{escape(m_["name"])} {_yen(m_["start"])}→{_yen(m_["end"])}（{"+" if m_["end"] >= m_["start"] else "−"}{abs(m_["end"] - m_["start"]) * 100 / m_["start"]:.1f}%）'
+                        for m_ in v["souba"]) + "</li>")
+                h.append("</ul>")
+            if len(weeks) > 1:
+                h.append("<h2>これまでの週</h2><ul>" + "".join(
+                    (f'<li><a href="/weekly/">' if w == weeks[0] else f'<li><a href="/weekly/{w}/">') + f'{_md(w)}〜{_md((_dt.date.fromisoformat(w) + _dt.timedelta(days=6)).isoformat())}のまとめ</a>（{len(wk[w])}件）</li>'
+                    for w in weeks) + "</ul>")
+            return "".join(h) + '<p class="note">※件数はトレカ抽選ナビが見つけた抽選の数です。すべての抽選を網羅しているわけではありません。</p></div>'
+
+        for n_i, ws in enumerate(weeks):
+            sm_ = wsum(ws)
+            label = f"{_md(ws)}〜{_md(sm_['week_end'])}"
+            sub = [i for i in items if i["key"] in wk[ws]]
+            meta_w = {"title": f"今週のトレカ抽選まとめ（{label}）｜ポケカ・ワンピースカードの抽選{sm_['total']}件｜トレカ抽選ナビ",
+                      "desc": f"{label}に見つかったポケカ・ワンピースカードの抽選{sm_['total']}件のまとめ。多かった弾・お店・地域とBOX相場の動き。",
+                      "summary": "", "h1": f"今週のトレカ抽選まとめ（{label}）",
+                      "lead": "その週に見つかった抽選のまとめです。下には、そのうち今も受付中の抽選を載せています。",
+                      "aff": whtml(sm_), "links": _menu(items, games, games[0]), "root": "/"}
+            if n_i == 0:
+                write("weekly/", {"game": games[0]}, dict(meta_w), sub, [("トップ", ""), ("今週のまとめ", "weekly/")])
+                (out / "weekly" / "data.json").write_text(json.dumps(sm_, ensure_ascii=False, indent=1), encoding="utf-8")
+            if n_i == 0:
+                continue  # いまの週は /weekly/ だけ（同じ内容のページを2つ作らない）
+            write(f"weekly/{ws}/", {"game": games[0]}, dict(meta_w, title=meta_w["title"].replace("今週の", ""), h1=meta_w["h1"].replace("今週の", "")), sub,
+                  [("トップ", ""), ("今週のまとめ", "weekly/"), (label, f"weekly/{ws}/")])
+
     # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
     # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
     reg = {} if sample is not None else load_json("stores.json", {})
+    # 前のアドレス（記号8けた）で残っているお店は、読めるアドレスに移す（転送は _redirects）
+    store_moves = {}
+    for k in list(reg):
+        nk = store_path(reg[k].get("name") or "")
+        if k != nk:
+            store_moves["/" + k] = "/" + nk
+            v = reg.pop(k)
+            if nk in reg:
+                reg[nk]["last"] = max(reg[nk].get("last") or "", v.get("last") or "")
+            else:
+                reg[nk] = v
     today_s = now().date().isoformat()
     for i in items:
         if not i.get("spath"):
@@ -1181,6 +1381,8 @@ def build(settings=None, out_dir=None, sample=None):
         rel = [(f"{short}の抽選をすべて見る", f"/{GAME_SLUG[g]}/")]
         if d.get("series"):
             rel.insert(0, (f"「{d['series']}」の抽選をすべて見る", "/" + series_path(g, d["series"])))
+        if d.get("store"):
+            d["spath"] = store_path(d["store"])
         if d.get("spath") and d["spath"] in reg:
             rel.append((f"{d.get('store')}の抽選", "/" + d["spath"]))
         c = chain_of(d.get("store"))
@@ -1217,7 +1419,12 @@ def build(settings=None, out_dir=None, sample=None):
                 old, new = old_series_path(g_, part), series_path(g_, part)
                 if old != new:
                     olds["/" + old] = "/" + new
-        (out / "_redirects").write_text("".join(f"{o} {n} 301\n{o.rstrip('/')} {n} 301\n" for o, n in sorted(olds.items())),
+        for r in reg.values():  # お店の前のアドレス（記号8けた）→ 読めるアドレス
+            o, n = old_store_path(r.get("name") or ""), store_path(r.get("name") or "")
+            if o != n:
+                olds["/" + o] = "/" + n
+        both = len(olds) * 2 <= 1900  # Cloudflare Pages の転送は2000行まで。多いときは「/」付きだけにする
+        (out / "_redirects").write_text("".join(f"{o} {n} 301\n" + (f"{o.rstrip('/')} {n} 301\n" if both else "") for o, n in sorted(olds.items())),
                                         encoding="utf-8")
 
     if site:

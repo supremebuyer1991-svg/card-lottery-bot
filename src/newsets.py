@@ -110,7 +110,7 @@ def update_newsets(settings, sess=None, force=False):
             got = fn(sess)
             cur = ser.setdefault(g, {})
             for k, v in got.items():
-                cur[k] = {**cur.get(k, {}), **v}
+                cur[k] = {"first_seen": today, **cur.get(k, {}), **v}  # first_seen：初めて見つけた日（Xの告知に使う）
             log(f"新しい弾: {g} 公式から{len(got)}件")
         except Exception as e:
             log(f"新しい弾: {g} 取得失敗 {e}")
