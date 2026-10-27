@@ -28,7 +28,24 @@ def items():
     for g, lst in ((d or {}).get("items") or {}).items():
         for x in lst or []:
             out.append(dict(x, game=g))
+    # 公式サイト・スニダンの検索から自動で見つけた新しい弾
+    have = {(i["game"], i["series"]) for i in out}
+    for k, aid in (load_json("newsets.json", {}).get("snkr") or {}).items():
+        g, x = k.split("|", 1)
+        if (g, x) not in have:
+            out.append({"game": g, "series": x, "name": f"{x} BOX", "snkr": aid, "teika": _teika(g, x)})
     return out
+
+
+def _teika(g, x):
+    """自動で見つけた弾の定価（BOX）。希望小売価格の「1BOX（30パック）6,000円」から。分からなければ None"""
+    try:
+        import newsets
+        p = (newsets.merged_info().get(g) or {}).get(x, {}).get("price") or ""
+    except Exception:
+        return None
+    m = re.search(r"1BOX[^0-9]*\d*[^0-9]*?([\d,]{4,})円", p)
+    return int(m.group(1).replace(",", "")) if m else None
 
 
 def _snkr_daily(sess, aid):

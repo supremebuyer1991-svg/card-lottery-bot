@@ -10,6 +10,7 @@ from xtrend import update_trends
 from pagecheck import check_pages
 from market import update_market
 from souba import update_souba
+from newsets import update_newsets
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -60,6 +61,10 @@ def main():
             update_market(s)  # 今日の相場（スニダン・1日1回だけ）
         except Exception as e:
             log(f"相場: スキップ {e}")
+        try:
+            update_newsets(s)  # 新しい弾を公式サイトから自動で見つける（1日1回）
+        except Exception as e:
+            log(f"新しい弾: スキップ {e}")
         try:
             update_souba(s)  # サイトに載せるBOXの相場（スニダン・TCGplayer・1日1回だけ）
         except Exception as e:

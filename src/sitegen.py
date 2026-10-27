@@ -115,9 +115,10 @@ def _ser_cfg():
     """弾の別名・アドレス・基本情報（settings.yaml）。sitegen の外（xpost など）から呼ばれても使えるように読み込みは1回だけ"""
     if not _SER:
         st = load_settings()
-        _SER["alias"] = {g: {normalize(k): v for k, v in (m or {}).items()} for g, m in (st.get("series_aliases") or {}).items()}
-        _SER["slug"] = {g: dict(m or {}) for g, m in (st.get("series_slugs") or {}).items()}
-        _SER["info"] = {g: dict(m or {}) for g, m in (st.get("series_info") or {}).items()}
+        import newsets  # 公式サイトから自動で見つけた弾 ＋ settings.yaml（手書きが優先）
+        _SER["alias"] = {g: {normalize(k): v for k, v in (m or {}).items()} for g, m in newsets.merged_aliases(st).items()}
+        _SER["slug"] = newsets.merged_slugs(st)
+        _SER["info"] = newsets.merged_info(st)
     return _SER
 
 
