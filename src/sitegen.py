@@ -382,7 +382,13 @@ def _menu(items, games, g, here=""):
                   '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a>' +
                   "".join(f'<a href="/chain/{c}/">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{ccnt[c]}</span></a>' for c in top) +
                   '</div></section>')
-    cond_html = ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
+    today_d = now().date().isoformat()
+    up = sorted([(inf.get("release"), x) for x, inf in (_ser_cfg()["info"].get(g) or {}).items()
+                 if str(inf.get("release") or "") > today_d])
+    up_html = ('<section class="m-sec"><h3>発売予定の弾<small>抽選・予約はここに載ります</small></h3><div class="m-area">' +
+               "".join(f'<a href="/{series_path(g, x)}">{escape(x)}<span>{int(r[5:7])}/{int(r[8:10])}</span></a>' for r, x in up) +
+               '</div></section>') if up else ""
+    cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
                  '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
@@ -833,7 +839,13 @@ def build(settings=None, out_dir=None, sample=None):
             write("", {}, top, items)
 
         al_g = {v: k for k, v in ((s.get("series_aliases") or {}).get(g) or {}).items()}
-        for x in series:
+        # 抽選がまだない弾も、発売前〜発売後90日の弾と相場がある弾はページを作っておく（検索の評価は時間で積み上がるので早めに）
+        today_d = now().date().isoformat()
+        cut90 = (now().date() - __import__("datetime").timedelta(days=90)).isoformat()
+        extra = [x for x, inf in ((_ser_cfg()["info"].get(g) or {}).items())
+                 if x not in series and (str(inf.get("release") or "") >= cut90 or f"{g}|{x}" in souba_sm)]
+        extra += [k.split("|", 1)[1] for k in souba_sm if k.startswith(g + "|") and k.split("|", 1)[1] not in series + extra]
+        for x in series + extra:
             si = [i for i in gi if in_ser(i, x)]
             rk_ = rk if sample is None else {}
             rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
@@ -853,19 +865,25 @@ def build(settings=None, out_dir=None, sample=None):
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
             write(series_path(g, x), {"game": g, "series": x}, {
-                "title": f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ",
-                "desc": f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
-                        f"の抽選販売・予約・再販情報を30分ごとに更新。" + ("・".join(sts) + "など" if sts else "") +
-                        f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。",
+                "title": (f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
+                          f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"),
+                "desc": (f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
+                         f"の抽選販売・予約・再販情報を30分ごとに更新。" + ("・".join(sts) + "など" if sts else "") +
+                         f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。") if si else
+                        (f"{name}「{x}」の抽選販売・予約情報をまとめるページです。" +
+                         (f"発売日は{jdate(info['release'])}" + (f"、希望小売価格は{info['price']}" if info.get("price") else "") + "。" if info.get("release") else "") +
+                         "抽選・予約が始まり次第、お店ごとの締切・応募方法をここに自動で載せます。"),
                 "summary": summary(si, f"「{x}」の抽選"),
                 "faq": ([(f"「{x}」のBOXの相場はいくらですか？",
                           f"スニダンで{_md(sm['date'])}に成立した1個の取引の平均は{_yen(sm['price'])}です" +
                           (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
                           "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
-                "info_html": info_html,
+                "info_html": info_html if si else "",  # 抽選がまだない弾は基本情報を上に出す
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
-                "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
-                "aff": aff, "links": _menu(items, games, g, "/" + series_path(g, x)),
+                "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
+                         f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
+                "aff": aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff),
+                "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
         for a in areas:

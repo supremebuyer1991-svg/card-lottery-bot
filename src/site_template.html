@@ -812,7 +812,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var ser = {};
     g.forEach(function (i) { (i.sers || (i.series ? [i.series] : [])).forEach(function (x) { ser[x] = (ser[x] || 0) + 1; }); });
     var names = Object.keys(ser).sort(function (a, b) { return ser[b] - ser[a]; });
-    if (st.series && !ser[st.series]) st.series = "";
+    if (st.series && !ser[st.series] && st.series !== LOCK.series) st.series = "";  // 弾のページは抽選が0件でもその弾のまま
     $("series").innerHTML = names.length ? '<button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
       names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") : "";
     // 一覧
