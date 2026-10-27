@@ -274,7 +274,7 @@ input[type="search"] { flex: 1 1 160px; }
 .info { min-width: 0; display: grid; gap: 4px; flex: 1; }
 .thumb { flex: none; width: var(--tw, 120px); aspect-ratio: 1; border-radius: 10px; background: var(--navy-soft); overflow: hidden; display: grid; place-items: center; }
 /* 複数商品の抽選：4枚までを 〇〇／〇〇 の2×2で並べる */
-.thumbs { --tw: 120px; flex: none; width: var(--tw); height: var(--tw); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: center; }
+.thumbs { --tw: 120px; flex: none; width: var(--tw); height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: center; }
 .thumbs .thumb { width: auto; border-radius: 7px; }
 .thumbs .thumb .pr { font-size: 8px; padding: 1px 3px; }
 .thumbs .thumb:not(:last-child) .pr { display: none; }
@@ -395,8 +395,13 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   .stub .dl { margin-left: auto; }
   .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
   .cd { font-size: 15px; }
-  .thumb { --tw: 88px; }
-  .thumbs { --tw: 88px; gap: 3px; }
+  .thumb { --tw: 108px; }
+  .thumbs { --tw: 108px; gap: 3px; }
+  /* スマホ：上に画像（大きめ・中央）、下に文字を横いっぱいに並べる */
+  .body.has-img { display: grid; gap: 10px; }
+  .body.has-img > .thumb, .body.has-img > .thumbs { --tw: 168px; justify-self: center; }
+  .body.has-img > .thumbs { gap: 4px; height: auto; }
+  .body.has-img > .thumbs.n2 { --tw: 236px; }
   .logo .w { font-size: 21px; }
   .lead h1 { font-size: 19px; }
   .stats b { font-size: 18px; }
@@ -641,7 +646,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="pr">楽天</span></a>'
         : '<div class="thumb">' + img + '</div>';
     };
-    // 複数の商品の抽選は、画像を少しずつずらして重ねる
+    // 複数の商品の抽選は、4枚までを2×2で並べる
     return list.length > 1 ? '<div class="thumbs n' + list.length + '">' + list.map(one).join("") + '</div>' : one(list[0]);
   }
   function reqs(it) {
@@ -673,7 +678,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var cd = countdown(it._end), done = !!applied[it.key], cal = gcal(it);
     return '<article class="ticket' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
       '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
-      '<div class="body">' + thumb(it) + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
+      (function () { var t = thumb(it); return '<div class="body' + (t ? " has-img" : "") + '">' + t; })() + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (st.game === "all" && GSHORT[it.game] ? '<span class="badge gm g-' + esc(it.game) + '">' + esc(GSHORT[it.game]) + '</span>' : "") +
         (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
