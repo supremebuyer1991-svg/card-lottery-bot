@@ -12,6 +12,17 @@ GH = "https://api.github.com"
 
 
 
+
+def _vague_store(store):
+    """店名として足りないもの：「不明」「未記載」入り、または2文字の地名だけ"""
+    import re
+    import unicodedata
+    s = unicodedata.normalize("NFKC", store or "").strip()
+    if not s or re.search(r"不明|未記載|未定", s):
+        return True
+    core = re.sub(r"[（(].*?[）)]|\s", "", s)
+    return len(core) <= 2 and not re.search(r"[A-Za-z]", core)  # 「岡南」「熱田」など（3文字以上は「平和堂」などのチェーン名がある）
+
 def _post_date(url):
     """XのポストのURLから投稿日時を出す（ポストIDに日時が入っている）"""
     import re
@@ -47,6 +58,11 @@ def approve(settings):
     minc = settings.get("min_confidence", 0.7)
 
     for it in lots.values():
+        # 店名があいまい（「岡南」「熱田」「北海道（店舗名不明）」など、Xの告知で地名だけのもの）は載せない
+        if it["status"] in ("new", "approved", "listed") and _vague_store(it.get("store")):
+            it["status"] = "pending"
+            it["hold_reason"] = "店名があいまい"
+            continue
         if it["status"] != "new":
             continue
         ok = float(it.get("confidence") or 0) >= minc and it.get("end")
