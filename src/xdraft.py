@@ -33,8 +33,15 @@ button{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:
 button.ok{background:#2e7d32}
 .xbtn{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 18px;font-size:15px;font-weight:bold;text-decoration:none}.len{color:var(--sub);font-size:13px}.len.over{color:var(--accent);font-weight:bold}
 .empty{color:var(--sub);font-size:14px}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 0;margin:0 0 10px;background:var(--bg);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:14px;font-weight:bold}
+.tabs button span{margin-left:5px;font-size:12px;color:var(--sub);font-weight:normal}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button[aria-pressed="true"] span{color:#fff}
+[hidden]{display:none!important}
 .mk summary{font-weight:bold;cursor:pointer}.mk #mk-out .card{margin:12px 0 0}
-.shot{margin:10px 0 0}.shot img{width:100%;max-width:360px;border-radius:10px;border:1px solid var(--line);display:block}.shot figcaption{color:var(--sub);font-size:12px;margin-top:4px}
+.shot{margin:10px 0 0}.shot img{width:100%;max-width:200px;border-radius:10px;border:1px solid var(--line);display:block}.shot figcaption{color:var(--sub);font-size:12px;margin-top:4px}
 .basis{color:var(--sub);font-size:13px;margin:8px 0 0}.basis a{color:var(--accent)}
 .now{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 .card h2{gap:8px}.card h2 small{text-align:right;flex:none}
@@ -231,6 +238,8 @@ cards.splice(tr.length,0,...MARKET.map(m=>({h:`📈今日の相場：${GS[m.game
 cards.splice(tr.length+MARKET.length,0,...BUZZ.map((b,k)=>({h:`💬ひとこと：${BN[b.kind]||b.kind}`,hint:k?"リンクなし":"リンクなし・今日のおすすめ",t:b.text,hot:false,img:`buzz-${b.kind}`})));
 cards.unshift(...manualCards);
 const root=document.getElementById("cards");
+const catOf=h=>/^(📝|↳)/.test(h)?"手動追加":/速報/.test(h)?"速報":/新着/.test(h)?"新着":/本日締切/.test(h)?"本日締切":/明日締切/.test(h)?"明日締切":/締切間近/.test(h)?"締切間近":
+ /ネット抽選/.test(h)?"ネット":/店頭抽選：/.test(h)?"地域":/弾ページ/.test(h)?"弾":/相場/.test(h)?"相場":/ひとこと/.test(h)?"ひとこと":/話題ネタ/.test(h)?"話題":/まとめ投稿/.test(h)?"まとめ":"その他";
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
 for(const {h,hint,t,hot,trend,img,long} of cards){
@@ -241,8 +250,27 @@ for(const {h,hint,t,hot,trend,img,long} of cards){
  const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
  ta.oninput=()=>{setX();const m=xlen(ta.value);const s=d.querySelector(".len");s.textContent=long?m+"字（長文・Premium）":m+"/280";s.className="len "+(m>280&&!long?"over":"");};
+ d.dataset.cat=catOf(h);d.dataset.hot=hot?"1":"";
  root.appendChild(d);
 }
+// --- 種類ごとのタブ（押すとその種類の下書きだけ表示） ---
+(function(){
+ const all=[...root.querySelectorAll(".card")];if(!all.length)return;
+ const order=["速報","新着","本日締切","明日締切","締切間近","ネット","地域","弾","まとめ","相場","ひとこと","手動追加","話題","その他"];
+ const cnt={};all.forEach(c=>{cnt[c.dataset.cat]=(cnt[c.dataset.cat]||0)+1;});
+ const hotN=all.filter(c=>c.dataset.hot).length;
+ const tabs=[...(hotN?[["hot","今おすすめ",hotN]]:[]),...order.filter(k=>cnt[k]).map(k=>[k,k,cnt[k]]),["all","すべて",all.length]];
+ const bar=document.createElement("nav");bar.className="tabs";
+ bar.innerHTML=tabs.map(([k,l,n])=>`<button type="button" data-k="${k}">${l}<span>${n}</span></button>`).join("");
+ root.before(bar);
+ const show=k=>{all.forEach(c=>{c.hidden=!(k==="all"||(k==="hot"?c.dataset.hot:c.dataset.cat===k));});
+  bar.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===k)));
+  try{localStorage.setItem("xd_tab",k);}catch(e){}};
+ bar.onclick=e=>{const b=e.target.closest("button");if(!b)return;show(b.dataset.k);window.scrollTo({top:bar.offsetTop-8});};
+ let first;try{first=localStorage.getItem("xd_tab");}catch(e){}
+ if(!tabs.some(t=>t[0]===first))first=tabs[0][0];
+ show(first);
+})();
 </script></body></html>
 """
 
