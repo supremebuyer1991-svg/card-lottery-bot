@@ -8194,10 +8194,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "b170f0e0b8d1b037",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882318+09:00",
     "multi": false,
-    "cls": "de098c8bca31"
+    "cls": "de098c8bca31",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T19:04:58.805855+09:00"
   },
   "c6b4b9a6a2c7e430": {
     "store": "ビックカメラ新宿西口店",
@@ -8223,10 +8225,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c6b4b9a6a2c7e430",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882337+09:00",
     "multi": false,
-    "cls": "72417f9a2f50"
+    "cls": "72417f9a2f50",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T19:04:58.805873+09:00"
   },
   "fdb4f77886484aac": {
     "store": "ビックカメラ新宿東口店",
@@ -8252,10 +8256,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "fdb4f77886484aac",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.882356+09:00",
     "multi": false,
-    "cls": "9d92253f6c3b"
+    "cls": "9d92253f6c3b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-27T19:04:58.805877+09:00"
   },
   "0415726824faa1cd": {
     "store": "ビートダウン（CARDBOX加盟店）",
@@ -22263,11 +22269,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "ef9e41e564b5c509",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-27T08:53:37.493749+09:00",
     "multi": false,
     "cls": "ecc1e64afd5d",
-    "issue": 108
+    "issue": 108,
+    "closed_at": "2026-10-27T19:05:14.140898+09:00"
   },
   "a9d55318d0bc7e66": {
     "store": "ビックカメラ新宿西口店",
@@ -22290,11 +22297,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "a9d55318d0bc7e66",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-27T08:53:37.493783+09:00",
     "multi": false,
     "cls": "9950486a0156",
-    "issue": 109
+    "issue": 109,
+    "closed_at": "2026-10-27T19:05:14.140917+09:00"
   },
   "832827ba010365ce": {
     "store": "BIGMAGICなんば店",
