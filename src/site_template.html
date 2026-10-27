@@ -312,7 +312,6 @@ input[type="search"] { flex: 1 1 160px; }
 .inv a span b { display: block; font-weight: 700; }
 .inv a span small { display: block; font-size: 11px; font-weight: 500; color: var(--ink-2); }
 .inv em { flex: none; font-style: normal; font-size: 12px; background: #ffd814; border: 1px solid #fcd200; color: #0f1111; border-radius: 999px; padding: 3px 10px; }
-@media (max-width: 560px) { .ticket.invite { grid-template-columns: 92px minmax(0, 1fr); } }
 .ticket.invite .info, .ticket.invite .body { min-width: 0; }
 .ticket.invite .info, .inv { grid-template-columns: minmax(0, 1fr); }
 .inv .more summary { cursor: pointer; list-style: none; text-align: center; font-size: 12px; font-weight: 700; color: var(--ink-2); padding: 6px; border: 1px dashed var(--rule); border-radius: 8px; }
@@ -386,7 +385,14 @@ dialog.sheet::backdrop { background: rgb(10 14 26 / .45); }
 .sheet-b { padding: 16px 16px 40px; }
 footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display: grid; gap: 6px; }
 @media (max-width: 560px) {
-  .ticket { grid-template-columns: 92px 1fr; }
+  /* スマホ：締切は上の帯に横並び、本文を横いっぱいに使う */
+  .ticket, .ticket.invite { grid-template-columns: minmax(0, 1fr); }
+  .stub { border-right: 0; border-bottom: 2px dashed var(--rule); padding: 8px 14px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; column-gap: 8px; text-align: left; }
+  .stub .dl br { display: none; }
+  .stub::before, .stub::after { top: auto; bottom: -9px; }
+  .stub::before { left: -9px; right: auto; clip-path: inset(0 0 0 50%); }
+  .stub::after { right: -9px; clip-path: inset(0 50% 0 0); }
+  .stub .dl { margin-left: auto; }
   .acts { grid-column: 1 / -1; padding: 0 12px 12px; grid-template-columns: 1fr auto; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
   .cd { font-size: 15px; }
   .thumb { --tw: 88px; }
