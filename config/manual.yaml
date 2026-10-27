@@ -49,3 +49,36 @@ lotteries:
     member: account
     tags: [会員]
     url: https://www.pokemoncenter-online.com/lottery/landing-page.html
+
+  - slug: furuichi-nakamozu-30th-1027
+    game: pokemon
+    store: 古本市場 中百舌鳥店
+    series: 30周年パック
+    product: ポケモンカードゲーム MEGA「30th CELEBRATION」1BOX（7,200円税込）
+    channel: store
+    area: 大阪府
+    method: LivePocketで応募（当選したら店頭で購入）
+    start: 2026-10-27T12:00
+    end: 2026-10-27T22:00
+    announce: 10/28(水)〜10/29(木)
+    buy: 11/1(日)〜11/3(火)
+    conditions: 顔写真付き・現住所記載の本人確認書類が必要。1人1回まで。シュリンクを外して販売
+    id_check: true
+    member: account
+    url: https://livepocket.jp/e/el-g5
+
+  - slug: tsutaya-fukui-takayanagi-heroines2
+    game: onepiece
+    store: TSUTAYA福井高柳店
+    series: ヒロインズエディション vol.2
+    product: ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」
+    channel: store
+    area: 福井県
+    method: Googleフォームで応募（当選はお店のXで「あいことば」で発表）
+    end: 2026-10-28T10:00
+    announce: 10/29(木)中に店舗Xで発表
+    buy: 10/31(土)〜11/2(月)
+    conditions: V会員証と顔写真付きの本人確認書類が必要。1人1回まで。バラパックでの購入も可
+    id_check: true
+    member: card
+    url: https://docs.google.com/forms/d/e/1FAIpQLScYrrimBIjVSzWmyillB-iII9zFmnAkw9fXZFvsTEhKy49ESQ/viewform
