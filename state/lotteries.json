@@ -4612,7 +4612,7 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047796+09:00",
     "cls": "4b83a55a274e",
-    "deadline_checked_at": "2026-10-27T02:59:53.469444+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:12.465082+09:00",
     "deadline_v": 4,
     "deadline_note": "画像0/0枚読込・終了時期は不定期と記載",
     "page_checked_at": "2026-10-28T00:20:58.574620+09:00"
@@ -4667,9 +4667,9 @@
     "found_at": "2026-10-26T18:20:17.047828+09:00",
     "multi": false,
     "cls": "bcdc18a1670a",
-    "deadline_checked_at": "2026-10-27T02:59:54.567749+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:13.803939+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像0/0枚読込・本文に締切の記載なし（画像未確認）"
+    "deadline_note": "画像0/0枚読込・本文に締切の記載なし"
   },
   "5640496b1d1f9c39": {
     "store": "バトロコ新浜松駅前",
@@ -6814,9 +6814,9 @@
     "found_at": "2026-10-26T18:20:17.049227+09:00",
     "multi": false,
     "cls": "19159ce164bd",
-    "deadline_checked_at": "2026-10-27T03:00:40.701473+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:15.859495+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・画像・本文に応募締切の記載なし"
+    "deadline_note": "画像1/1枚読込・締切・受付期間の記載なし"
   },
   "f4fdd25eee180bcc": {
     "store": "文教堂 あきる野店",
@@ -6842,9 +6842,9 @@
     "found_at": "2026-10-26T18:20:17.049249+09:00",
     "multi": false,
     "cls": "e07a84a5292e",
-    "deadline_checked_at": "2026-10-27T03:00:43.172194+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:17.598307+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(10/16は発売日)"
+    "deadline_note": "画像1/1枚読込・締切の記載なし(発売10/16のみ)"
   },
   "153876db210d140e": {
     "store": "ブックオフ相模大野店",
@@ -6873,9 +6873,9 @@
     "found_at": "2026-10-26T18:20:17.049266+09:00",
     "multi": false,
     "cls": "6ce81d593681",
-    "deadline_checked_at": "2026-10-27T03:00:46.750539+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:19.485336+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(購入期間のみ)"
+    "deadline_note": "画像1/1枚読込・応募締切の記載なし(購入期間のみ)"
   },
   "80935f7970d60131": {
     "store": "シーガル名取店",
@@ -6958,9 +6958,9 @@
     "found_at": "2026-10-26T18:20:17.049318+09:00",
     "multi": false,
     "cls": "eca7c385587a",
-    "deadline_checked_at": "2026-10-27T03:00:48.862909+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:22.590580+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像2/2枚読込・応募締切の記載なし(10/17 9:00より販売)"
+    "deadline_note": "画像2/2枚読込・応募受付期間の記載なし"
   },
   "78151ecf214947b9": {
     "store": "TSUTAYA森町店トレカコーナー",
@@ -12933,7 +12933,7 @@
     "store": "ゲームプラザ元気302",
     "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-25T23:59:00+09:00",
     "url": "https://forms.gle/7KevY8E2S2AVGbm97",
     "x_post": null,
     "channel": "store",
@@ -12949,14 +12949,17 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "a2e925acd0ad1f89",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.885581+09:00",
     "multi": false,
     "cls": "2418086d9753",
-    "deadline_checked_at": "2026-10-27T03:00:54.566820+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:28.183216+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像0/0枚読込・締切の記載なし(フォーム受付終了表示のみ)",
-    "page_checked_at": "2026-10-28T01:09:35.776717+09:00"
+    "deadline_note": "画像0/0枚読込・応募期間 8月25日(火)23:59まで",
+    "page_checked_at": "2026-10-28T01:09:35.776717+09:00",
+    "start": "2026-08-22T13:00:00+09:00",
+    "end_from": "応募ページ（応募期間 8月25日(火)23:59まで）",
+    "closed_at": "2026-10-28T05:05:41.758459+09:00"
   },
   "44b33d784698affb": {
     "store": "カードラボ所沢店",
@@ -13081,9 +13084,10 @@
     "found_at": "2026-10-26T18:20:21.885648+09:00",
     "multi": false,
     "cls": "d4bcd7410b23",
-    "deadline_checked_at": "2026-10-27T03:01:01.101054+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:31.789527+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:38.350488+09:00"
+    "page_checked_at": "2026-10-28T01:09:38.350488+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "f8658c5de60e9d79": {
     "store": "草叢BOOKS各務原店",
@@ -13568,9 +13572,10 @@
     "found_at": "2026-10-26T18:20:21.885907+09:00",
     "multi": false,
     "cls": "a08b12a520cf",
-    "deadline_checked_at": "2026-10-27T03:01:10.295525+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:32.384576+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:39.043115+09:00"
+    "page_checked_at": "2026-10-28T01:09:39.043115+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "fcc23a2b08cf8095": {
     "store": "桃太郎王国 市原店",
@@ -13796,7 +13801,7 @@
     "store": "TSUTAYA福井高柳店",
     "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
     "series": "世界最強の戦士",
-    "end": "",
+    "end": "2026-08-19T10:00:00+09:00",
     "url": "https://forms.gle/ytkJ2V8s7CqB6GqR6",
     "x_post": null,
     "channel": "store",
@@ -13812,14 +13817,16 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "5fdf8fd3160ec8a5",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.886033+09:00",
     "multi": false,
     "cls": "edec8a400409",
-    "deadline_checked_at": "2026-10-27T03:01:21.666014+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:35.180873+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像0/0枚読込・締切の日時の記載なし",
-    "page_checked_at": "2026-10-28T01:09:39.799461+09:00"
+    "deadline_note": "画像0/0枚読込・応募期間：8月19日（水）10:00まで",
+    "page_checked_at": "2026-10-28T01:09:39.799461+09:00",
+    "end_from": "応募ページ（応募期間：8月19日（水）10:00まで）",
+    "closed_at": "2026-10-28T05:05:41.758493+09:00"
   },
   "e5d8912eedf53edd": {
     "store": "ビックカメラAKIBA",
@@ -13876,9 +13883,10 @@
     "found_at": "2026-10-26T18:20:21.886064+09:00",
     "multi": false,
     "cls": "d6ecb311f6ff",
-    "deadline_checked_at": "2026-10-27T03:01:23.611470+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:38.229214+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:42.681552+09:00"
+    "page_checked_at": "2026-10-28T01:09:42.681552+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "d690e5fcb8896426": {
     "store": "カードショップIRODORI 南浦和店",
@@ -13936,9 +13944,10 @@
     "found_at": "2026-10-26T18:20:21.886097+09:00",
     "multi": false,
     "cls": "984e508d9deb",
-    "deadline_checked_at": "2026-10-27T03:01:28.175294+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:38.837505+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:43.413392+09:00"
+    "page_checked_at": "2026-10-28T01:09:43.413392+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "63cc55503625a653": {
     "store": "TCバトロコ渋谷センター街",
@@ -13964,9 +13973,10 @@
     "found_at": "2026-10-26T18:20:21.886114+09:00",
     "multi": false,
     "cls": "d22dddd4eae3",
-    "deadline_checked_at": "2026-10-27T03:01:28.855032+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:39.476434+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:44.081573+09:00"
+    "page_checked_at": "2026-10-28T01:09:44.081573+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "5fdc4f6c5c2ade75": {
     "store": "レッドハウス（青森県八戸市）",
@@ -14058,9 +14068,10 @@
     "found_at": "2026-10-26T18:20:21.886163+09:00",
     "multi": false,
     "cls": "946caff5645b",
-    "deadline_checked_at": "2026-10-27T03:01:39.585620+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:40.094155+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-28T01:09:44.799993+09:00"
+    "page_checked_at": "2026-10-28T01:09:44.799993+09:00",
+    "deadline_note": "応募ページを読めず（403 Client Error: Forbidden for url: htt）"
   },
   "1f086c088fdc23af": {
     "store": "カードショップBambi",
@@ -15108,9 +15119,9 @@
     "found_at": "2026-10-26T18:20:21.886782+09:00",
     "multi": false,
     "cls": "6dcf00637f4e",
-    "deadline_checked_at": "2026-10-27T03:01:57.483510+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:40.094339+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし（発売日10/31のみ）"
+    "deadline_note": "画像1/1枚読込・締切の記載なし（発売日のみ）"
   },
   "754a97e754113021": {
     "store": "TSUTAYAサンリブきふね店",
@@ -15171,15 +15182,15 @@
     "found_at": "2026-10-26T18:20:21.886820+09:00",
     "multi": false,
     "cls": "a6f776e518dc",
-    "deadline_checked_at": "2026-10-27T03:02:03.131695+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:42.046556+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし(受付開始しましたのみ)"
+    "deadline_note": "画像1/1枚読込・締切の日時の記載なし"
   },
   "bc4a76ceb036bc2a": {
     "store": "ブックオフ相模大野店",
     "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】1BOX（5,760円税込・お1人様／1グループ／1世帯1BOXまで・販売時テープカット）",
     "series": "ヒロインズエディション vol.2",
-    "end": "",
+    "end": "2026-10-30T00:00:00+09:00",
     "url": "https://x.com/bookoff_oono/status/2114254366412837038",
     "x_post": "https://x.com/bookoff_oono/status/2114254366412837038",
     "channel": "store",
@@ -15203,9 +15214,11 @@
     "found_at": "2026-10-26T18:20:21.886839+09:00",
     "multi": false,
     "cls": "bf24c71996b9",
-    "deadline_checked_at": "2026-10-27T03:02:04.941448+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:44.529074+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_note": "画像1/1枚読込・当選発表10/30。発表日から推定",
+    "start": "2026-10-25T00:00:00+09:00",
+    "end_from": "Xの告知（当選発表10/30。発表日から推定）"
   },
   "1f9f1daf23910fcb": {
     "store": "レッドハウス（青森県八戸市）",
@@ -15893,7 +15906,7 @@
     "found_at": "2026-10-26T19:33:03.642258+09:00",
     "multi": false,
     "cls": "cc9aba4738c4",
-    "page_checked_at": "2026-10-27T03:36:43.427873+09:00"
+    "page_checked_at": "2026-10-28T05:03:11.764893+09:00"
   },
   "9a69d72aed4db9e7": {
     "store": "古本市場・ふるいち",
@@ -15920,9 +15933,9 @@
     "found_at": "2026-10-26T19:34:57.203540+09:00",
     "multi": false,
     "cls": "6712be2b3706",
-    "deadline_checked_at": "2026-10-27T03:02:11.904616+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:51.283275+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・抽選の詳細は未定と記載"
+    "deadline_note": "画像1/1枚読込・締切の記載なし"
   },
   "8f2b64aa2767c0ce": {
     "store": "古本市場・ふるいち",
@@ -16093,9 +16106,10 @@
     "issue": 17,
     "multi": false,
     "cls": "b7e1bd6f7c91",
-    "deadline_checked_at": "2026-10-27T03:12:09.152759+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:56.848875+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:36:45.557095+09:00"
+    "page_checked_at": "2026-10-28T05:03:13.848288+09:00",
+    "deadline_note": "応募ページの中身が空"
   },
   "e6d1a6e30e836caa": {
     "store": "ふるいち名古屋大須",
@@ -16764,7 +16778,7 @@
     "found_at": "2026-10-26T20:35:54.702855+09:00",
     "issue": 35,
     "cls": "ac634d0ac605",
-    "page_checked_at": "2026-10-27T03:36:56.337788+09:00"
+    "page_checked_at": "2026-10-28T05:03:15.933163+09:00"
   },
   "db77fdc4387017e8": {
     "store": "Amazon",
@@ -16818,9 +16832,9 @@
     "issue": 37,
     "multi": false,
     "cls": "0617e9d6960b",
-    "deadline_checked_at": "2026-10-27T03:12:30.117932+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:56.848906+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・金進堂の締切記載なし"
+    "deadline_note": "画像1/1枚読込・対象店舗の締切の記載なし"
   },
   "c35876ae7d5b3409": {
     "store": "カードラボ名古屋駅前店",
@@ -16933,7 +16947,7 @@
     "found_at": "2026-10-26T20:43:24.385213+09:00",
     "multi": false,
     "cls": "e6ae817a4b53",
-    "page_checked_at": "2026-10-27T03:39:33.388866+09:00"
+    "page_checked_at": "2026-10-28T05:03:21.227036+09:00"
   },
   "1302f1a881032458": {
     "store": "イオンスタイルオンライン",
@@ -16988,7 +17002,7 @@
     "found_at": "2026-10-26T20:43:24.385254+09:00",
     "issue": 40,
     "cls": "252d66d9e3ea",
-    "page_checked_at": "2026-10-27T03:39:38.379932+09:00"
+    "page_checked_at": "2026-10-28T05:03:23.303342+09:00"
   },
   "dff7b0721e3036a9": {
     "store": "イオン九州",
@@ -17239,9 +17253,9 @@
     "issue": 48,
     "multi": true,
     "cls": "23c0b758eceb",
-    "deadline_checked_at": "2026-10-27T03:12:33.800262+09:00",
+    "deadline_checked_at": "2026-10-28T05:02:59.794573+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像0/0枚読込・時刻の記載なし(10分間のみ)"
+    "deadline_note": "画像0/0枚読込・締切の日時の記載なし(10分間のみ)"
   },
   "ad5deef4c166ed37": {
     "store": "ふるいちイオンモール熱田店",
@@ -17378,7 +17392,7 @@
     "found_at": "2026-10-26T21:28:31.556247+09:00",
     "multi": false,
     "cls": "622b880d0d41",
-    "page_checked_at": "2026-10-27T03:39:40.635731+09:00"
+    "page_checked_at": "2026-10-28T05:03:26.180739+09:00"
   },
   "0408d1ca289ef4f5": {
     "store": "ふるいちイオンモール熱田店",
@@ -17406,7 +17420,7 @@
     "found_at": "2026-10-26T21:28:31.556263+09:00",
     "multi": false,
     "cls": "d32468f52338",
-    "page_checked_at": "2026-10-27T03:39:42.928726+09:00"
+    "page_checked_at": "2026-10-28T05:03:28.273804+09:00"
   },
   "5d21f16420b5151e": {
     "store": "カードボックス横浜西口2号店",
@@ -17488,9 +17502,9 @@
     "found_at": "2026-10-26T21:28:31.556305+09:00",
     "issue": 50,
     "cls": "f424d3d454cf",
-    "deadline_checked_at": "2026-10-27T03:12:36.724044+09:00",
+    "deadline_checked_at": "2026-10-28T05:03:02.473871+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切・発表日の記載なし"
+    "deadline_note": "画像1/1枚読込・画像・本文に締切の記載なし"
   },
   "dd1bea4bc7b7db98": {
     "store": "ヤマダデンキ（ヤマダデジタル会員アプリ）",
@@ -17519,7 +17533,7 @@
     "found_at": "2026-10-26T21:28:31.556320+09:00",
     "cls": "a3b35c6727aa",
     "multi": true,
-    "page_checked_at": "2026-10-27T03:39:45.182905+09:00"
+    "page_checked_at": "2026-10-28T05:03:30.513242+09:00"
   },
   "e323016e61b74be6": {
     "store": "CARD WINGS秋葉原駅前店",
@@ -17578,7 +17592,7 @@
     "found_at": "2026-10-26T21:28:35.137166+09:00",
     "multi": false,
     "cls": "4d38c648fb7b",
-    "page_checked_at": "2026-10-27T03:40:17.650888+09:00"
+    "page_checked_at": "2026-10-28T05:04:01.036292+09:00"
   },
   "519e0c89f4cbb0b0": {
     "store": "カードボックス平安堂座光寺店",
@@ -17634,7 +17648,7 @@
     "found_at": "2026-10-26T21:28:35.137198+09:00",
     "multi": false,
     "cls": "486cabe077fe",
-    "page_checked_at": "2026-10-27T03:40:22.241565+09:00"
+    "page_checked_at": "2026-10-28T05:04:05.165971+09:00"
   },
   "c0fc2f9cc875628a": {
     "store": "トレーディングカードピット小山駅前店",
@@ -18051,7 +18065,7 @@
     "found_at": "2026-10-26T21:59:17.654352+09:00",
     "multi": false,
     "cls": "afbb181db116",
-    "page_checked_at": "2026-10-27T03:40:26.006800+09:00"
+    "page_checked_at": "2026-10-28T05:04:09.207589+09:00"
   },
   "a67ee998797f250f": {
     "store": "ブックオフ相模原富士見店",
@@ -18376,7 +18390,7 @@
     "found_at": "2026-10-26T22:22:00.243393+09:00",
     "multi": false,
     "cls": "11d7c7086d08",
-    "page_checked_at": "2026-10-27T03:40:42.165247+09:00"
+    "page_checked_at": "2026-10-28T05:04:14.354116+09:00"
   },
   "2c5e248ae654b02f": {
     "store": "ふるいちトップブックス龍ケ崎店",
@@ -18405,7 +18419,7 @@
     "found_at": "2026-10-26T22:22:00.243411+09:00",
     "multi": false,
     "cls": "0d3a0ec7d1bc",
-    "page_checked_at": "2026-10-27T03:40:44.417948+09:00"
+    "page_checked_at": "2026-10-28T05:04:16.491882+09:00"
   },
   "5e776bc58aaf295d": {
     "store": "コーギーアール（本店・池袋店・大宮駅前店）",
@@ -18434,9 +18448,9 @@
     "multi": true,
     "cls": "4dec52140a26",
     "issue": 60,
-    "deadline_checked_at": "2026-10-27T03:12:46.977791+09:00",
+    "deadline_checked_at": "2026-10-28T05:03:04.133377+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切・期間の記載なし"
+    "deadline_note": "画像1/1枚読込・締切の記載なし"
   },
   "4fb6e5e7791becca": {
     "store": "ホビーステーション",
@@ -18635,9 +18649,9 @@
     "multi": false,
     "cls": "d92995f373ed",
     "issue": 67,
-    "deadline_checked_at": "2026-10-27T03:12:49.115179+09:00",
+    "deadline_checked_at": "2026-10-28T05:03:06.023058+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・具体的な締切日時の記載なし"
+    "deadline_note": "画像1/1枚読込・画像・本文に具体的な締切日時の記載なし"
   },
   "d563d518dc46fe1e": {
     "store": "ブックオフ町田中央店",
@@ -19503,9 +19517,10 @@
     "found_at": "2026-10-27T00:15:10.560054+09:00",
     "multi": false,
     "cls": "77cecb0e9a8a",
-    "deadline_checked_at": "2026-10-27T03:12:58.133082+09:00",
+    "deadline_checked_at": "2026-10-28T05:03:09.633177+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:40:46.671144+09:00"
+    "page_checked_at": "2026-10-28T05:04:18.613958+09:00",
+    "deadline_note": "応募ページの中身が空"
   },
   "34b75ae834ea7cb4": {
     "store": "TSUTAYA姫路",
@@ -19532,9 +19547,10 @@
     "found_at": "2026-10-27T00:15:10.560078+09:00",
     "multi": false,
     "cls": "a47bc46bacee",
-    "deadline_checked_at": "2026-10-27T03:13:00.217714+09:00",
+    "deadline_checked_at": "2026-10-28T05:03:11.743650+09:00",
     "deadline_v": 4,
-    "page_checked_at": "2026-10-27T03:40:48.863897+09:00"
+    "page_checked_at": "2026-10-28T05:04:20.737976+09:00",
+    "deadline_note": "応募ページの中身が空"
   },
   "f80579d7bbb05bf2": {
     "store": "TSUTAYA姫路",
@@ -20033,7 +20049,7 @@
     "found_at": "2026-10-27T02:21:40.770413+09:00",
     "multi": false,
     "cls": "d9caa2a6a18d",
-    "page_checked_at": "2026-10-27T03:40:55.308982+09:00"
+    "page_checked_at": "2026-10-28T05:04:22.869268+09:00"
   },
   "b5baa6e7c6a12103": {
     "store": "Amazon",
@@ -20212,7 +20228,7 @@
     "key": "63f3ac9af8905c67",
     "status": "pending",
     "found_at": "2026-10-27T04:08:31.973446+09:00",
-    "page_checked_at": "2026-10-27T04:09:28.651961+09:00",
+    "page_checked_at": "2026-10-28T05:04:25.328912+09:00",
     "cls": "5c1059435d3f",
     "issue": 83
   },
@@ -20266,7 +20282,7 @@
     "key": "8d6862c7144398a2",
     "status": "approved",
     "found_at": "2026-10-27T07:20:00.181923+09:00",
-    "page_checked_at": "2026-10-27T07:23:11.624465+09:00",
+    "page_checked_at": "2026-10-28T05:04:27.460470+09:00",
     "multi": false,
     "cls": "4dbf7e68ea39"
   },
@@ -20592,7 +20608,7 @@
     "deadline_checked_at": "2026-10-27T07:23:04.326144+09:00",
     "deadline_v": 4,
     "deadline_note": "画像1/1枚読込・日時の記載なし",
-    "page_checked_at": "2026-10-27T07:23:29.509486+09:00",
+    "page_checked_at": "2026-10-28T05:04:33.731750+09:00",
     "multi": false,
     "cls": "0d4591e12343",
     "issue": 86
@@ -21481,7 +21497,7 @@
     "key": "3e830871e8203d74",
     "status": "approved",
     "found_at": "2026-10-27T08:20:19.890366+09:00",
-    "page_checked_at": "2026-10-27T08:24:59.948287+09:00",
+    "page_checked_at": "2026-10-28T05:04:35.872011+09:00",
     "multi": false,
     "cls": "ee46d59f74d6"
   },
@@ -21682,7 +21698,7 @@
     "key": "1afc46d9fb860631",
     "status": "pending",
     "found_at": "2026-10-27T08:21:17.325767+09:00",
-    "page_checked_at": "2026-10-27T08:25:10.512407+09:00",
+    "page_checked_at": "2026-10-28T05:04:37.945701+09:00",
     "multi": true,
     "cls": "ccd6b97d5d1e",
     "issue": 100
@@ -23341,7 +23357,7 @@
     "channel": "store",
     "area": "鹿児島県",
     "method": "店頭",
-    "conditions": null,
+    "conditions": "10/25までに発行・登録のビックポイントカードが必要",
     "tags": [],
     "id_check": false,
     "member": "none",
@@ -24303,7 +24319,8 @@
     "key": "5741c810b8272be5",
     "status": "approved",
     "found_at": "2026-10-28T00:11:15.954231+09:00",
-    "cls": "1da972f548d3"
+    "cls": "1da972f548d3",
+    "page_checked_at": "2026-10-28T05:04:40.027140+09:00"
   },
   "ecffe0707e035d27": {
     "store": "トレカSHOPあんりみてっど",
@@ -24543,7 +24560,8 @@
     "key": "d6e091bf72bfb2d0",
     "status": "approved",
     "found_at": "2026-10-28T00:11:59.187046+09:00",
-    "cls": "fdcd1e077161"
+    "cls": "fdcd1e077161",
+    "page_checked_at": "2026-10-28T05:04:42.769985+09:00"
   },
   "6ef95523dfd5d2ac": {
     "store": "ビックカメラ渋谷ハチ公口店",
@@ -24677,7 +24695,8 @@
     "status": "pending",
     "found_at": "2026-10-28T00:12:08.164868+09:00",
     "cls": "ab5675498ca2",
-    "issue": 116
+    "issue": 116,
+    "page_checked_at": "2026-10-28T05:04:48.056572+09:00"
   },
   "882737e85e0bd9e6": {
     "store": "しまむら",
@@ -24705,7 +24724,8 @@
     "status": "pending",
     "found_at": "2026-10-28T00:12:08.164900+09:00",
     "cls": "b3dd0366c7de",
-    "issue": 117
+    "issue": 117,
+    "page_checked_at": "2026-10-28T05:04:48.451841+09:00"
   },
   "e837c631b8234f52": {
     "store": "しまむら",
@@ -24733,7 +24753,8 @@
     "status": "pending",
     "found_at": "2026-10-28T00:12:08.165140+09:00",
     "cls": "f0691ff02270",
-    "issue": 118
+    "issue": 118,
+    "page_checked_at": "2026-10-28T05:04:48.591680+09:00"
   },
   "d667c108746fa3dd": {
     "store": "オレタン岡山本店",
@@ -24761,7 +24782,8 @@
     "status": "approved",
     "found_at": "2026-10-28T00:13:17.867866+09:00",
     "multi": false,
-    "cls": "7751d0c081a9"
+    "cls": "7751d0c081a9",
+    "page_checked_at": "2026-10-28T05:04:48.722586+09:00"
   },
   "62a76b430e6516da": {
     "store": "オレタン福岡天神店",
@@ -24852,7 +24874,8 @@
     "deadline_note": "画像0/0枚読込・受付締切の記載なし（購入期間のみ）",
     "multi": false,
     "cls": "368de3994be8",
-    "issue": 119
+    "issue": 119,
+    "page_checked_at": "2026-10-28T05:04:49.084319+09:00"
   },
   "4adc8867b123eac9": {
     "store": "TCGショップ193日本橋",
@@ -25114,7 +25137,8 @@
     "status": "approved",
     "found_at": "2026-10-28T00:13:17.868071+09:00",
     "multi": false,
-    "cls": "e887177c82c6"
+    "cls": "e887177c82c6",
+    "page_checked_at": "2026-10-28T05:04:51.349449+09:00"
   },
   "448e512f39c0f5a6": {
     "store": "ビックカメラ渋谷ハチ公口店",
@@ -25539,7 +25563,8 @@
     "status": "approved",
     "found_at": "2026-10-28T00:15:40.386869+09:00",
     "multi": false,
-    "cls": "963acc83919c"
+    "cls": "963acc83919c",
+    "page_checked_at": "2026-10-28T05:05:00.016205+09:00"
   },
   "9ff9a49c7f1d40f0": {
     "store": "古本市場（ふるいち）",
@@ -25681,7 +25706,8 @@
     "status": "approved",
     "found_at": "2026-10-28T00:15:40.386955+09:00",
     "multi": false,
-    "cls": "1a003232f67e"
+    "cls": "1a003232f67e",
+    "page_checked_at": "2026-10-28T05:05:02.951476+09:00"
   },
   "ea6fb09d772b38bc": {
     "store": "TCGshop193",
@@ -25818,7 +25844,8 @@
     "key": "91664069aabad797",
     "status": "approved",
     "found_at": "2026-10-28T00:15:40.387026+09:00",
-    "cls": "6f7171be11ee"
+    "cls": "6f7171be11ee",
+    "page_checked_at": "2026-10-28T05:05:05.298085+09:00"
   },
   "095ebd0ee0346392": {
     "store": "ドラゴンスター通販",
@@ -25977,11 +26004,14 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "d7d8ac64e197afeb",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T00:16:57.976499+09:00",
     "multi": false,
     "cls": "dcf469b5834b",
-    "issue": 134
+    "issue": 134,
+    "page_checked_at": "2026-10-28T05:05:05.669875+09:00",
+    "closed_at": "2026-10-28T05:05:10.015525+09:00",
+    "closed_reason": "応募ページで受付終了（応募受付は終了しました（締切 10/27）"
   },
   "edf4b89938cb1aa4": {
     "store": "ヤマダ電機",
@@ -26313,7 +26343,8 @@
     "status": "pending",
     "found_at": "2026-10-28T01:06:41.225966+09:00",
     "cls": "1063e5a09c07",
-    "issue": 137
+    "issue": 137,
+    "page_checked_at": "2026-10-28T05:05:10.015770+09:00"
   },
   "c1e18af4e3e19a13": {
     "store": "DANDAN BASE店",
@@ -26540,5 +26571,93 @@
     "multi": false,
     "cls": "0ea54e227a2c",
     "duplicate_of": "b6419b7ca55c0007"
+  },
+  "054e92324c5680d8": {
+    "store": "ビートダウン 横浜",
+    "product": "ハドウシーカー",
+    "series": "ハドウシーカー",
+    "start": null,
+    "end": "2026-10-29T20:00:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "会員限定。VIP会員は優先予約あり（VIP 1BOX、SVIP 2BOX）。他店舗の会員証では応募不可",
+    "url": "https://shoplottery.e-starbox.com/lottery/entry?code=mteOPzqdFD",
+    "x_post": "https://x.com/BeatDownManager/status/2115117447837794529",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "神奈川県",
+    "id_check": null,
+    "member": "card",
+    "tags": [
+      "会員",
+      "アプリ"
+    ],
+    "confidence": 0.8,
+    "source": "X「ポケカ 抽選」",
+    "source_url": "https://x.com/",
+    "key": "054e92324c5680d8",
+    "status": "approved",
+    "found_at": "2026-10-28T05:00:32.538338+09:00",
+    "multi": false,
+    "cls": "7a49750e7307"
+  },
+  "9d3dd6959d6ade6a": {
+    "store": "ビックカメラ 鹿児島中央駅店",
+    "product": "ハドウシーカー",
+    "series": "ハドウシーカー",
+    "start": null,
+    "end": "2026-11-01",
+    "announce": null,
+    "method": "店頭",
+    "conditions": "10/25までに発行・登録のビックポイントカードが必要",
+    "url": "https://x.com/chang_tingyao/status/2115136041384349827",
+    "x_post": "https://x.com/chang_tingyao/status/2115136041384349827",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "鹿児島県",
+    "id_check": null,
+    "member": "card",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.8,
+    "source": "X 抽選情報アカウント",
+    "source_url": "https://x.com/",
+    "no_quote": true,
+    "key": "9d3dd6959d6ade6a",
+    "status": "duplicate",
+    "found_at": "2026-10-28T05:00:40.406747+09:00",
+    "multi": false,
+    "cls": "d612c73e13e7",
+    "duplicate_of": "dd741a3a51b09b71"
+  },
+  "318b068174dabd90": {
+    "store": "ビックカメラ 藤沢店",
+    "product": "ハドウシーカー",
+    "series": "ハドウシーカー",
+    "start": null,
+    "end": "2026-11-01",
+    "announce": null,
+    "method": "店頭",
+    "conditions": "10/25までに発行・登録のビックポイントカードが必要",
+    "url": "https://x.com/chang_tingyao/status/2115130082310213744",
+    "x_post": "https://x.com/chang_tingyao/status/2115130082310213744",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "神奈川県",
+    "id_check": null,
+    "member": "card",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.8,
+    "source": "X 抽選情報アカウント",
+    "source_url": "https://x.com/",
+    "no_quote": true,
+    "key": "318b068174dabd90",
+    "status": "approved",
+    "found_at": "2026-10-28T05:00:40.406792+09:00",
+    "multi": false,
+    "cls": "c99cc93687f4"
   }
 }
