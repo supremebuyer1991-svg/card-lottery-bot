@@ -623,6 +623,10 @@ def build(settings=None, out_dir=None, sample=None):
             qa.append((f"{x_label}の発売日はいつですか？",
                        f"{x_label}（{x_info.get('type') or '商品'}）の発売日は{jdate(x_info['release'])}です。"
                        "発売前から予約抽選が始まり、発売後も再販・入荷分の抽選が行われることがあります。"))
+        if x_info and x_info.get("price"):
+            qa.append((f"{x_label}の定価（希望小売価格）はいくらですか？",
+                       f"メーカー希望小売価格は{x_info['price']}です。抽選販売は定価で買えることが多く、"
+                       "ほかの商品と一緒に買うセット販売の場合もあるため、各抽選の条件をご確認ください。"))
         n = len(sub)
         on = sum(1 for i in sub if i.get("channel") != "store")
         if n:
@@ -766,6 +770,8 @@ def build(settings=None, out_dir=None, sample=None):
             info_rows = [("商品名", f"{name} {info.get('type') or ''}「{x}」".replace("  ", " "))]
             if info.get("release"):
                 info_rows.append(("発売日", jdate(info["release"])))
+            if info.get("price"):
+                info_rows.append(("希望小売価格", info["price"]))
             info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
