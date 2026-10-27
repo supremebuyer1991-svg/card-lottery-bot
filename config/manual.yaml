@@ -31,3 +31,21 @@ lotteries:
     member: account
     tags: [アプリ, 会員]
     url: https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1
+
+  - slug: pikapika-box-2027
+    game: pokemon
+    store: ポケモンセンターオンライン
+    product: ピカピカボックス2027
+    products:
+      - ぬいぐるみ1体（ピチュー・ピカチュウ・ライチュウのどれか）
+      - ポケモングッズ数点
+    channel: online
+    method: Web抽選（ポケモンセンターオンライン限定・実店舗での販売なし）
+    start: 2026-10-27T17:00
+    end: 2026-11-02T16:59
+    announce: 11/6(金)15:00以降
+    buy: 11/6(金)15:00〜11/17(火)16:59（発送は12/11(金)〜12/25(金)）
+    conditions: 5,500円（税込）。1人1回まで。会員登録・電話番号認証が必要
+    member: account
+    tags: [会員]
+    url: https://www.pokemoncenter-online.com/lottery/landing-page.html
