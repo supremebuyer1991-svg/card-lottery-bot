@@ -276,6 +276,7 @@ input[type="search"] { flex: 1 1 160px; }
 /* 複数商品の抽選：4枚までを 〇〇／〇〇 の2×2で並べる */
 .thumbs { --tw: 120px; flex: none; width: var(--tw); height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: center; }
 .thumbs .thumb { width: auto; border-radius: 7px; }
+.thumbs.n2 { --tw: 104px; grid-template-columns: 1fr; gap: 6px; }  /* パソコン：2商品は縦に2つ大きめに */
 .thumbs .thumb .pr { font-size: 8px; padding: 1px 3px; }
 .thumbs .thumb:not(:last-child) .pr { display: none; }
 .thumb { position: relative; background: #fff; border: 1px solid var(--rule); }
@@ -401,7 +402,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   .body.has-img { display: grid; gap: 10px; }
   .body.has-img > .thumb, .body.has-img > .thumbs { --tw: 168px; justify-self: center; }
   .body.has-img > .thumbs { gap: 4px; height: auto; }
-  .body.has-img > .thumbs.n2 { --tw: 236px; }
+  .body.has-img > .thumbs.n2 { --tw: 236px; grid-template-columns: 1fr 1fr; gap: 4px; }
   .logo .w { font-size: 21px; }
   .lead h1 { font-size: 19px; }
   .stats b { font-size: 18px; }

@@ -64,6 +64,9 @@ rakuten_aliases:                # 楽天での商品名がサイトの弾名と�
   HEROINES PRECIOUS BOX: PRECIOUS BOX
 
 rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾（自動で取り直さない）。キーは「ゲーム|弾名」
+  "onepiece|HEROINES":            # PRECIOUS BOX は楽天に商品がないので画像なし（別の商品の画像が出ないように）
+    image: ""
+    url: ""
   "pokemon|ハドウシーカー":
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/geexcollection/s783/"
@@ -74,6 +77,68 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|EB-05": *heroines2
   "onepiece|ヒロインズエディション2": *heroines2
   "onepiece|Heroines Edition vol.2【EB-05】": *heroines2
+  "onepiece|神の支配": &kaminoshihai
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13922237000/"
+  "onepiece|Heroines Edition": &heroines1
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/premiumgarage/cabinet/13340078/imgrc0121661121.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/premiumgarage/b-onep-heroines/"
+  "onepiece|ヒロインズエディション": *heroines1
+  "pokemon|30th CELEBRATION": &pk30th
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/noah-shopping/4521329462424/"
+  "pokemon|30周年パック": *pk30th
+  "pokemon|30周年": *pk30th
+  "pokemon|30th": *pk30th
+  "pokemon|ストームエメラルダ": &stormem
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/outletplaza/40001113670/"
+  "pokemon|ストエメ": *stormem
+  "pokemon|スタートデッキ100 バトルコレクション": &batocore
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7270/4521329427270.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/book/18548589/"
+  "pokemon|バトルコレクション": *batocore
+  "pokemon|スタデ100": *batocore
+  "pokemon|30周年エーフィ・ブラッキーデッキ": &efibura
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/book/18595283/"
+  "pokemon|テラスタルフェスex": &terafes
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2342/4521329362342.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/book/17930728/"
+  "onepiece|スタートデッキEX ルフィ&エース": &stdex
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2545/4582769982545.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/book/18476167/"
+  "pokemon|インフェルノX": &inferno
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kuro-tcg/cabinet/imgrc0155347114.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/kuro-tcg/007/"
+  "pokemon|アビスアイ": &abyss
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/466/4521329462127.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/outletplaza/40001109242/"
+  "pokemon|MEGA": &megadream
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default/kahiduwhqicuhwq.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/noah-shopping/4521329431932/"
+  "pokemon|メガブレイブ": &megabrave
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/nipponiajapan/1255639318/"
+  "pokemon|メガブレイブ/メガシンフォニア": *megabrave
+  "pokemon|メガシンフォニア": &megasym
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/spjstore/4521329431185/"
+  "onepiece|受け継がれる意志": &op13
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/misc/4582769865213.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/nipponiajapan/1255664219/"
+  "onepiece|蒼海の七傑": &op14
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/0/cg13920681.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13920681000/"
+  "onepiece|神の島の冒険": &op15
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/pitaya/cabinet/13744618/imgrc0106905602.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/pitaya/4582769966002/"
+  "onepiece|決戦の刻": &op16
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/pitaya/cabinet/13744618/imgrc0106393315.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/pitaya/4582769982897/"
+  "onepiece|王族の血統": &op10
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kobido/cabinet/08982934/09120525/imgrc0096550139.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/kobido/4582769707384/"
 
 # 抽選の商品名に出てくる別の呼び方 → 画像を使う弾名（state/rakuten.json の弾名）。
 # 弾名が空の抽選や、複数の商品をまとめた抽選でも商品画像を出すために使う
