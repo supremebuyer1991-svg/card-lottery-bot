@@ -130,7 +130,7 @@ sources:
     name: X 大手チェーンの抽選
     type: x
     require_links: false
-    max_results: 10
+    max_results: 20
     keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター) (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード) 抽選'
 
   # 公式サイトの抽選ページ（ページの中身が変わった時だけAIが読む）
