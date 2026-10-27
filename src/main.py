@@ -9,6 +9,7 @@ from xbuzz import post_buzz
 from xtrend import update_trends
 from pagecheck import check_pages
 from market import update_market
+from souba import update_souba
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -59,6 +60,10 @@ def main():
             update_market(s)  # 今日の相場（スニダン・1日1回だけ）
         except Exception as e:
             log(f"相場: スキップ {e}")
+        try:
+            update_souba(s)  # サイトに載せるBOXの相場（スニダン・TCGplayer・1日1回だけ）
+        except Exception as e:
+            log(f"BOX相場: スキップ {e}")
         try:
             update_trends(s)  # Xで話題のネタから投稿文の下書き（下書きページに出す）
         except Exception as e:

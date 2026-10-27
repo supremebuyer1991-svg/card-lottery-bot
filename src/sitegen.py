@@ -202,6 +202,77 @@ def pack_items(items):
     return out, imgs
 
 
+def _yen(v):
+    return f"¥{v:,}"
+
+
+def _diff(a, b):
+    """前と比べた差（▲+1,200円 +5.1%）"""
+    if a is None or b is None or not b:
+        return "", "flat"
+    d = a - b
+    pct = d * 100 / b
+    cls = "up" if d > 0 else "down" if d < 0 else "flat"
+    mark = "▲" if d > 0 else "▼" if d < 0 else "±"
+    return f"{mark}{abs(d):,}円（{'+' if d > 0 else '−' if d < 0 else '±'}{abs(pct):.1f}%）", cls
+
+
+def spark(points, w=300, h=64):
+    """30日の値動きの小さなグラフ（SVG）"""
+    vs = [v for _, v in points]
+    if len(vs) < 2:
+        return ""
+    lo, hi = min(vs), max(vs)
+    rng = (hi - lo) or 1
+    xs = [round(i * (w - 8) / (len(vs) - 1) + 4, 1) for i in range(len(vs))]
+    ys = [round(h - 6 - (v - lo) * (h - 12) / rng, 1) for v in vs]
+    pts = " ".join(f"{x},{y}" for x, y in zip(xs, ys))
+    col = "var(--red)" if vs[-1] >= vs[0] else "#2563eb"
+    return (f'<svg class="spark" viewBox="0 0 {w} {h}" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">'
+            f'<polyline fill="none" stroke="{col}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points="{pts}"/>'
+            f'<circle cx="{xs[-1]}" cy="{ys[-1]}" r="3.2" fill="{col}"/></svg>')
+
+
+def _md(d):
+    y, m, dd = d.split("-")
+    return f"{int(m)}/{int(dd)}"
+
+
+def souba_block(x, sm, fx=None, link=True):
+    """弾ページの相場の欄：いまの相場・定価との差・前日比・7日前比・30日のグラフ・海外"""
+    if not sm:
+        return ""
+    t = sm.get("teika")
+    gap = sm["price"] - t if t else None
+    d1, c1 = _diff(sm["price"], sm["prev"][1] if sm.get("prev") else None)
+    d7, c7 = _diff(sm["price"], sm["week"][1] if sm.get("week") else None)
+    rows = []
+    if t:
+        rows.append(f'<div><span>定価</span><b>{_yen(t)}</b></div>')
+        rows.append(f'<div><span>定価との差</span><b class="{"up" if gap > 0 else "down" if gap < 0 else "flat"}">'
+                    f'{"+" if gap > 0 else "−" if gap < 0 else "±"}{abs(gap):,}円</b></div>')
+    if d1:
+        rows.append(f'<div><span>{_md(sm["prev"][0])}比</span><b class="{c1}">{d1}</b></div>')
+    if d7:
+        rows.append(f'<div><span>1週間前（{_md(sm["week"][0])}）比</span><b class="{c7}">{d7}</b></div>')
+    us = ""
+    if sm.get("us"):
+        ud, uv = sm["us"]
+        yen = f"（約{_yen(round(uv * fx))}）" if fx else ""
+        us = (f'<p class="sb-us">海外（アメリカ TCGplayer・{_md(ud)}）：${uv:,.2f}{yen}'
+              + (f"　前日比 {'+' if uv >= sm['us_prev'][1] else '−'}{abs(uv - sm['us_prev'][1]) * 100 / sm['us_prev'][1]:.1f}%" if sm.get("us_prev") else "")
+              + "</p>")
+    src = f'https://snkrdunk.com/apparels/{sm["snkr"]}' if sm.get("snkr") else ""
+    return (f'<section class="souba" aria-label="{escape(x)}の相場"><div class="sb-h"><b>{escape(x)}の相場</b>'
+            f'<small>スニダン・{_md(sm["date"])}の取引</small></div>'
+            f'<div class="sb-main"><div class="sb-now"><em>{_yen(sm["price"])}</em>'
+            + (f'<span>定価より <b>{abs(gap):,}円</b> 高い相場です</span>' if t and gap > 0 else "")
+            + f'</div>{spark(sm.get("points") or [])}</div><div class="sb-grid">{"".join(rows)}</div>{us}'
+            f'<p class="sb-note">※スニダンでその日に成立した「1個」の取引の平均です（買取価格ではありません）。取引が少ない日は1件で大きく動きます。'
+            + (f' <a href="{src}" rel="nofollow noopener" target="_blank">スニダンで見る</a>' if src else "")
+            + ("　<a href=\"/souba/\">ほかのBOXの相場</a>" if link else "") + "</p></section>")
+
+
 def page(data: dict, meta: dict, standalone=True) -> str:
     base = meta.get("root", "/")
     canon = meta.get("canonical")
@@ -313,7 +384,7 @@ def _menu(items, games, g, here=""):
                   '</div></section>')
     cond_html = ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
-                 '<a href="/guide/">抽選の当て方・コツ</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -528,6 +599,11 @@ def build(settings=None, out_dir=None, sample=None):
     games = [g for g in s["game_names"]]
 
     prices = load_json("rakuten_prices.json", {}) if sample is None else {}  # サプライの楽天最安値
+    import souba as souba_mod
+    souba_raw = load_json("souba.json", {}) if sample is None else {}
+    souba_fx = souba_raw.get("fx")
+    souba_sm = {k: souba_mod.summary(v) for k, v in (souba_raw.get("items") or {}).items()}
+    souba_sm = {k: v for k, v in souba_sm.items() if v}
     if sample is not None:
         items = sample
     else:
@@ -762,7 +838,8 @@ def build(settings=None, out_dir=None, sample=None):
             rk_ = rk if sample is None else {}
             rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
                                                canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
-            aff = _product_ad(x, name, rr, tag, raff)
+            sm = souba_sm.get(f"{g}|{x}")
+            aff = souba_block(x, sm, souba_fx) + _product_ad(x, name, rr, tag, raff)
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -781,7 +858,10 @@ def build(settings=None, out_dir=None, sample=None):
                         f"の抽選販売・予約・再販情報を30分ごとに更新。" + ("・".join(sts) + "など" if sts else "") +
                         f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。",
                 "summary": summary(si, f"「{x}」の抽選"),
-                "faq": faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
+                "faq": ([(f"「{x}」のBOXの相場はいくらですか？",
+                          f"スニダンで{_md(sm['date'])}に成立した1個の取引の平均は{_yen(sm['price'])}です" +
+                          (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
+                          "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
                 "info_html": info_html,
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。",
@@ -889,6 +969,56 @@ def build(settings=None, out_dir=None, sample=None):
             "lead": "抽選の種類・当たりやすい抽選の選び方・応募前の準備をまとめた解説ページです。下には今受付中のポケカの抽選を載せています。",
             "aff": art, "links": _menu(items, games, games[0]), "root": "/"}, [i for i in items if i["game"] == games[0]],
             [("トップ", ""), ("抽選の当て方", "guide/")])
+
+    # --- BOXの相場の一覧（/souba/）：スニダンの取引の相場・定価との差・前日比・1週間比・30日のグラフ ---
+    if souba_sm:
+        have = {(i["game"], x) for i in items for x in (i.get("sers") or ([i["series"]] if i.get("series") else []))}
+        secs, faq_s, latest = [], [], ""
+        for g in games:
+            rows = []
+            for k, sm in souba_sm.items():
+                gg, x = k.split("|", 1)
+                if gg != g:
+                    continue
+                latest = max(latest, sm["date"])
+                name_ = (souba_raw["items"][k].get("name") or x)
+                t = sm.get("teika")
+                gap = sm["price"] - t if t else None
+                d1, c1 = _diff(sm["price"], sm["prev"][1] if sm.get("prev") else None)
+                d7, c7 = _diff(sm["price"], sm["week"][1] if sm.get("week") else None)
+                link = f'<a href="/{series_path(g, x)}">{escape(name_)}</a>' if (g, x) in have else escape(name_)
+                nlot = sum(1 for i in items if i["game"] == g and x in (i.get("sers") or [i.get("series")]))
+                us = ""
+                if sm.get("us") and souba_fx:
+                    us = f'<small>海外 ${sm["us"][1]:,.2f}（約{_yen(round(sm["us"][1] * souba_fx))}）</small>'
+                rows.append((sm["price"], f'<tr><th>{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "") + '</th>'
+                            f'<td><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
+                            f'<td>{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
+                            f'<td class="{c1}">{d1 or "-"}</td><td class="{c7}">{d7 or "-"}</td>'
+                            f'<td>{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
+            if rows:
+                rows.sort(key=lambda r: -r[0])
+                secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}のBOX相場</h2><div class="sb-scroll"><table>'
+                            '<thead><tr><th>商品</th><th>相場</th><th>定価・差</th><th>前日比</th><th>1週間比</th><th>30日</th></tr></thead><tbody>'
+                            + "".join(r[1] for r in rows) + '</tbody></table></div></section>')
+        top_ = sorted(souba_sm.items(), key=lambda kv: -(kv[1]["price"] - (kv[1].get("teika") or kv[1]["price"])))[:1]
+        if top_:
+            k, sm = top_[0]
+            faq_s.append(("定価との差がいちばん大きいBOXは？",
+                          f"{_md(sm['date'])}の取引では「{souba_raw['items'][k].get('name')}」で、相場{_yen(sm['price'])}・定価{_yen(sm['teika'])}（差 +{sm['price'] - sm['teika']:,}円）です。"))
+        faq_s += [("この相場は何の値段ですか？", "スニダン（スニーカーダンク）でその日に成立した「1個」の取引の平均です。お店の買取価格や販売価格ではありません。取引が少ない日は1件の取引で大きく動きます。"),
+                  ("海外の相場とは？", "アメリカのTCGplayerで取引されている日本版BOXの相場（ドル）を、その日の為替で円にしたものです。送料・手数料は含みません。"),
+                  ("相場はいつ更新されますか？", "1日1回、朝に前日までの取引を読み込んで更新しています。")]
+        intro = ('<div class="guide"><p>ポケカ・ワンピースカードの未開封BOXの相場を、スニダンで実際に成立した取引の値段で毎日まとめています。'
+                 '定価との差も一緒に並べています。商品名を押すと、その弾の抽選の一覧に進めます。</p></div>')
+        write("souba/", {"game": games[0]}, {
+            "title": f"ポケカ・ワンピースカードBOX相場一覧【{_md(latest) if latest else md}更新】定価との差・前日比・1週間の推移｜トレカ抽選ナビ",
+            "desc": f"ポケカ・ワンピースカードの未開封BOXの相場（スニダンの取引価格）を毎日更新。定価との差、前日比、1週間比、30日の値動きのグラフ、海外（TCGplayer）の相場も一覧で比べられます。",
+            "summary": "", "faq": faq_s,
+            "h1": "ポケカ・ワンピースカード BOX相場一覧",
+            "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には今受付中のポケカの抽選を載せています。",
+            "aff": intro + "".join(secs), "links": _menu(items, games, games[0]), "root": "/"},
+            [i for i in items if i["game"] == games[0]], [("トップ", ""), ("BOX相場", "souba/")])
 
     # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
     # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
