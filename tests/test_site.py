@@ -34,7 +34,7 @@ assert (out / "og.png").exists() and (out / "favicon.svg").exists()
 assert "ヨドバシ" in seriesA and "終了店" not in re.sub(r'<script type="application/json".*?</script>', "", seriesA, flags=re.S)
 assert 'rel="canonical" href="https://example.jp/pokeka/s-' in seriesA and "tag=t-22" in seriesA
 osaka = (out / "pokeka/area/osaka/index.html").read_text()
-assert "大阪府のポケカ店頭抽選" in osaka and '"area": "大阪府"' in osaka
+assert "大阪府のポケカ店頭抽選" in osaka and '"area":"大阪府"' in osaka
 assert "https://example.jp/pokeka/area/osaka/" in (out / "sitemap.xml").read_text()
 # JSの文法チェック
 js = re.findall(r"<script>(.*?)</script>", seriesA, re.S)[0]

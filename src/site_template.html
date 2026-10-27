@@ -336,6 +336,13 @@ input[type="search"] { flex: 1 1 160px; }
 .mini a, .mini button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; cursor: pointer; text-decoration: none; white-space: nowrap; }
 .mini button[aria-pressed="true"] { color: var(--done); border-color: var(--done); font-weight: 700; }
 .sinfo, .faq { margin: 18px 0 0; }
+.guide { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 4px 18px 14px; margin-top: 8px; }
+.guide h2 { font-size: 17px; margin: 18px 0 6px; padding-left: 10px; border-left: 4px solid var(--red); }
+.guide h3 { font-size: 15px; margin: 14px 0 4px; }
+.guide p, .guide li { font-size: 14px; line-height: 1.8; color: var(--ink); max-width: none; }
+.guide ul, .guide ol { padding-left: 1.3em; margin: 6px 0; }
+.guide .note { font-size: 13px; color: var(--ink-2); }
+.guide a { color: var(--red); font-weight: 700; }
 .sinfo h2, .faq h2 { font-size: 16px; margin: 0 0 8px; }
 .sinfo table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; font-size: 14px; }
 .sinfo th, .sinfo td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--rule); vertical-align: top; }
@@ -498,7 +505,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   var NOW0 = Date.now();
   // サンプル表示では締切を「今からの時間」で持たせ、いつ開いても動いて見えるようにする
   var items = DATA.items.map(function (it) {
-    var o = Object.assign({}, it);
+    var o = Object.assign({}, it), T = DATA.imgs || [];
+    if (o.im != null && T[o.im]) { o.image = T[o.im][0]; o.img_url = T[o.im][1]; }  // 画像は表から戻す（ページを軽くするため番号で持っている）
+    if (o.ims) o.images = o.ims.map(function (k) { return { src: T[k][0], url: T[k][1] }; });
     if (DATA.sample) {
       o.end = o.end_h == null ? null : new Date(NOW0 + o.end_h * 3600e3).toISOString();
       o.found_at = new Date(NOW0 - (o.found_h || 48) * 3600e3).toISOString();
@@ -824,6 +833,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   });
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
   $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
+  (LOCK.checks || []).forEach(function (id) { if ($(id)) $(id).checked = true; });  // 「本人確認なし」「今日締切」などのページは最初から絞り込む
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
   $("f-sort").value = ["end", "rec", "new"].indexOf(load("lot_sort", "end")) >= 0 ? load("lot_sort", "end") : "end";
   $("f-sort").addEventListener("change", function () { save("lot_sort", $("f-sort").value); render(); });

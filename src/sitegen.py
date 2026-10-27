@@ -178,6 +178,30 @@ def prerender(items) -> str:
     return "".join(out)
 
 
+PAGE_DROP = {"products", "announce", "start", "buy", "manual"}  # ページのJSで使わない項目（ページを軽くする）
+
+
+def pack_items(items):
+    """埋め込むデータを軽くする：空の項目を省く・同じ画像（楽天の長いリンク）は表にまとめて番号で持つ"""
+    imgs, idx, out = [], {}, []
+
+    def ref(src, url):
+        k = (src, url)
+        if k not in idx:
+            idx[k] = len(imgs)
+            imgs.append([src, url])
+        return idx[k]
+    for i in items:
+        o = {k: v for k, v in i.items() if k not in PAGE_DROP and v is not None and v != "" and v != [] and v != {}}
+        if o.get("image"):
+            o["im"] = ref(o.pop("image"), o.pop("img_url", None))
+        o.pop("img_url", None)
+        if o.get("images"):
+            o["ims"] = [ref(x["src"], x.get("url")) for x in o.pop("images")]
+        out.append(o)
+    return out, imgs
+
+
 def page(data: dict, meta: dict, standalone=True) -> str:
     base = meta.get("root", "/")
     canon = meta.get("canonical")
@@ -213,7 +237,10 @@ def page(data: dict, meta: dict, standalone=True) -> str:
                  "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__SUPPLY__": meta.get("supply", ""),
                  "__PRERENDER__": meta.get("prerender", ""), "__FAQ__": meta.get("faq_html", "")}.items():
         body = body.replace(k, v)
-    body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
+    if data.get("items") and not data.get("sample"):
+        data = dict(data)
+        data["items"], data["imgs"] = pack_items(data["items"])
+    body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
     if not standalone:
         return body
     # テンプレートの <header> より前（title・meta・CSS）は <head> に入れる（検索エンジンは <head> の中を読む）
@@ -284,8 +311,11 @@ def _menu(items, games, g, here=""):
                   '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a>' +
                   "".join(f'<a href="/chain/{c}/">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{ccnt[c]}</span></a>' for c in top) +
                   '</div></section>')
+    cond_html = ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
+                 f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
+                 '<a href="/guide/">抽選の当て方・コツ</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
-            f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{area_html}{store_html}</nav>')
+            f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
 
 def _amz(q, tag):
@@ -763,6 +793,96 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
                 "links": _menu(items, games, g), "root": "/"}, ai,
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (f"{a}の店頭抽選", f"{slug}/area/{PREF[a]}/")])
+
+    # --- 条件別のページ（「ポケカ 抽選 本人確認なし」「ポケカ ネット抽選」「ポケカ 抽選 今日締切」で探す人向け）---
+    def how_of(i):
+        m, tg = i.get("method") or "", " ".join(i.get("tags") or [])
+        return ("SNS" if re.search("SNS|X抽選|ポスト|リポスト", m + tg) else "アプリ" if "アプリ" in m
+                else "店頭" if re.search("店頭|整理券|抽選券", m + tg) else "Web")
+    for g in games:
+        gi = [i for i in items if i["game"] == g]
+        if not gi:
+            continue
+        name, short, slug = s["game_names"][g], GAME_SHORT[g], GAME_SLUG[g]
+        pages = [
+            ("no-id", f"本人確認なしで応募できる{short}抽選", ["f-noid"], [i for i in gi if i.get("id_check") is False], None,
+             f"運転免許証などの本人確認書類の提出がいらない{name}の抽選だけを集めました。会員登録だけで応募できるものや、SNSのフォロー＆リポストで応募できるものが中心です。"),
+            ("online", f"{short}のネット抽選（Web応募・自宅に発送）", [], [i for i in gi if i.get("channel") != "store"], "online",
+             f"お店に行かずにWeb・アプリ・SNSで応募でき、当選すると自宅に発送される{name}の抽選です。遠方の人や店頭に並べない人向けです。"),
+            ("today", f"今日締切の{short}抽選", ["f-today"],
+             [i for i in gi if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date()], None,
+             f"今日が応募締切の{name}の抽選です。締切時刻が近い順に並んでいます。応募し忘れがないか確認してください。"),
+        ]
+        for key, h1, checks, sub, ch, lead in pages:
+            lock = {"game": g, "checks": checks}
+            if ch:
+                lock["channel"] = ch
+            on_ = sum(1 for i in sub if i.get("channel") != "store")
+            write(f"{slug}/{key}/", lock, {
+                "title": f"【{md}更新】{h1}まとめ｜受付中{len(sub)}件｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{lead[:60]}… 受付中{len(sub)}件（ネット{on_}件・店頭{len(sub) - on_}件）を締切順に掲載。30分ごとに自動更新。",
+                "summary": summary(sub, h1), "faq": faq_for(sub, h1), "h1": h1, "lead": lead,
+                "links": _menu(items, games, g), "root": "/"}, sub,
+                [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (h1, f"{slug}/{key}/")])
+
+    # --- 解説ページ（/guide/）：抽選の種類・当たりやすい抽選の選び方・応募前の準備。数字は今の掲載データから ---
+    if items:
+        n_all = len(items)
+        cnt_how = {}
+        for i in items:
+            cnt_how[how_of(i)] = cnt_how.get(how_of(i), 0) + 1
+        noid = sum(1 for i in items if i.get("id_check") is False)
+        card = sum(1 for i in items if i.get("member") == "card")
+        nomem = sum(1 for i in items if i.get("member") == "none")
+        on_all = sum(1 for i in items if i.get("channel") != "store")
+        pct = lambda a: f"{round(a * 100 / n_all)}%"
+        gl = lambda g, k: f"/{GAME_SLUG[g]}/{k}/"
+        art = f"""<article class="guide">
+<p>ポケカ（ポケモンカード）やワンピースカードの新弾BOXは、多くのお店で抽選販売になっています。このページでは、抽選の種類と、少しでも当たりやすい抽選の選び方、応募前にしておくと良い準備をまとめました。数字はトレカ抽選ナビに掲載中の{n_all}件（{upd_hm}時点）から出しています。</p>
+<h2>抽選の種類</h2>
+<ul>
+<li><b>Web応募（{cnt_how.get("Web", 0)}件）</b>：お店のサイトや抽選サービスで応募します。会員登録が必要なことが多いです。</li>
+<li><b>SNS応募（{cnt_how.get("SNS", 0)}件）</b>：お店のXをフォローして告知をリポストするなどで応募します。当選はDMで届くことが多いです。</li>
+<li><b>アプリ応募（{cnt_how.get("アプリ", 0)}件）</b>：お店のアプリから応募します。アプリの会員証が必要です。</li>
+<li><b>店頭応募（{cnt_how.get("店頭", 0)}件）</b>：お店で応募用紙を書く・抽選券を受け取るなどで応募します。</li>
+</ul>
+<p>受け取り方は「ネット抽選（自宅に発送）」が{on_all}件、「店頭抽選（お店で受け取り）」が{n_all - on_all}件です。</p>
+<h2>当たりやすい抽選の選び方</h2>
+<p>抽選の倍率は公表されないことがほとんどですが、応募できる人が限られる抽選ほど応募者は少なくなりやすいと考えられます。</p>
+<h3>1. 地元のお店の店頭抽選</h3>
+<p>店頭で応募・受け取りする抽選は、そのお店に行ける人しか応募しないため、全国から応募が集まるネット抽選より応募者が少なくなりやすいです。<a href="/store/">店舗一覧</a>や、ゲームごとのページの「地域でさがす」から近くのお店を探せます。</p>
+<h3>2. 条件がある抽選</h3>
+<p>会員カードが必要な抽選（{card}件・{pct(card)}）や、過去の購入実績が条件の抽選は、条件を満たす人だけが応募できます。普段使っているお店の抽選は見逃さないようにしましょう。</p>
+<h3>3. 応募期間が短い・告知が少ない抽選</h3>
+<p>受付が数時間〜1日だけの抽選や、お店のXだけで告知される抽選は、気づく人が少ないぶん応募者も少なくなりがちです。<a href="{gl("pokemon", "today")}">今日締切のポケカ抽選</a>・<a href="{gl("onepiece", "today")}">今日締切のワンピースカード抽選</a>をこまめに見るのがおすすめです。</p>
+<h3>4. たくさん応募する</h3>
+<p>1つ1つの当選確率は低いので、応募できる抽選にはできるだけ応募するのがいちばん確実です。一覧の「☐ 応募済」で、応募したものに印を付けておくと管理しやすくなります。</p>
+<h2>応募前にしておく準備</h2>
+<ul>
+<li><b>会員登録</b>：Web抽選の多くは会員登録が必要です。会員登録がいらない抽選は{nomem}件（{pct(nomem)}）です。</li>
+<li><b>本人確認書類</b>：当選後の受け取りで本人確認書類が必要な抽選もあります。本人確認がいらない抽選は{noid}件（{pct(noid)}）で、<a href="{gl("pokemon", "no-id")}">ポケカ</a>・<a href="{gl("onepiece", "no-id")}">ワンピースカード</a>のページにまとめています。</li>
+<li><b>SNSの設定</b>：SNS応募は、当選のDMを受け取れるようにしておきましょう。</li>
+<li><b>支払い方法</b>：当選後の支払い期限が短いことがあります。クレジットカードなどを事前に登録しておくと安心です。</li>
+</ul>
+<h2>注意すること</h2>
+<ul>
+<li>1人1回までの抽選に複数のアカウントで応募するなど、お店の規約に反する応募はやめましょう。当選が取り消されることがあります。</li>
+<li>転売目的の購入を禁止しているお店が多いです。</li>
+<li>応募条件や期間は変わることがあります。応募前に必ずお店の告知を確認してください。</li>
+</ul>
+<p class="note">ネット抽選だけを見たいときは<a href="{gl("pokemon", "online")}">ポケカのネット抽選</a>・<a href="{gl("onepiece", "online")}">ワンピースカードのネット抽選</a>をどうぞ。</p>
+</article>"""
+        write("guide/", {"game": games[0]}, {
+            "title": "ポケカ・ワンピースカード抽選の当て方｜当たりやすい抽選の選び方と応募のコツ｜トレカ抽選ナビ",
+            "desc": f"ポケカ・ワンピースカードの抽選の種類（Web・SNS・アプリ・店頭）、当たりやすい抽選の選び方、応募前の準備をまとめました。掲載中の抽選{n_all}件のデータ付き。",
+            "summary": summary([i for i in items if i["game"] == games[0]], "ポケカの抽選"),
+            "faq": [("抽選は何件くらいありますか？", f"{upd_hm}時点でトレカ抽選ナビに掲載中の抽選は{n_all}件です（ネット{on_all}件・店頭{n_all - on_all}件）。"),
+                    ("当たりやすい抽選はありますか？", "倍率は公表されないことがほとんどですが、地元のお店の店頭抽選や、会員カード・購入実績が条件の抽選など、応募できる人が限られる抽選は応募者が少なくなりやすいと考えられます。"),
+                    ("本人確認なしで応募できる抽選はありますか？", f"本人確認がいらない抽選は{noid}件あります。ゲームごとの「本人確認なし」のページにまとめています。")],
+            "h1": "ポケカ・ワンピースカード抽選の当て方と応募のコツ",
+            "lead": "抽選の種類・当たりやすい抽選の選び方・応募前の準備をまとめた解説ページです。下には今受付中のポケカの抽選を載せています。",
+            "aff": art, "links": _menu(items, games, games[0]), "root": "/"}, [i for i in items if i["game"] == games[0]],
+            [("トップ", ""), ("抽選の当て方", "guide/")])
 
     # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
     # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
