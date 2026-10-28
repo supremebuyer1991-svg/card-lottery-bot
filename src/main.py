@@ -60,8 +60,6 @@ def main():
         try:
             rakuten.update(s, active_series(s))  # 楽天の商品画像（キー未登録なら何もしない）
             rakuten.supply_prices(s, list(s["game_names"]))  # サプライの楽天最安値（1日1回）
-            import teika
-            teika.update(s)  # 定価くらいで買える通販（楽天）の見張り
         except Exception as e:
             log(f"楽天: スキップ {e}")
         try:
