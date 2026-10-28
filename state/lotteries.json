@@ -26958,11 +26958,12 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "10e55f9265134674",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T07:02:19.902039+09:00",
     "page_checked_at": "2026-10-28T07:04:18.093173+09:00",
     "multi": false,
-    "cls": "124fabe09b56"
+    "cls": "124fabe09b56",
+    "duplicate_of": "1b7b43dcfe3d93c4"
   },
   "816d34c203d74a54": {
     "store": "ふるいち",
@@ -27326,12 +27327,13 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "9fc258ffe7555e03",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T07:26:50.988438+09:00",
     "page_checked_at": "2026-10-28T07:28:21.063693+09:00",
     "multi": false,
     "cls": "dd88eb98ff8b",
-    "issue": 146
+    "issue": 146,
+    "duplicate_of": "1b7b43dcfe3d93c4"
   },
   "611c4f843ec5d2a2": {
     "store": "ふるいち",
@@ -29965,11 +29967,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c5bf494f9ac00ddb",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T13:26:16.342208+09:00",
     "page_checked_at": "2026-10-28T13:26:42.068442+09:00",
     "multi": true,
-    "cls": "31c82467a415"
+    "cls": "31c82467a415",
+    "duplicate_of": "1b7b43dcfe3d93c4"
   },
   "759e124f002c58d0": {
     "store": "古本市場・ふるいち 各店",
@@ -29995,11 +29998,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "759e124f002c58d0",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T13:26:16.342239+09:00",
     "page_checked_at": "2026-10-28T13:26:45.018566+09:00",
     "multi": true,
-    "cls": "fa2b3cc60de9"
+    "cls": "fa2b3cc60de9",
+    "duplicate_of": "f656e6ed2003a821"
   },
   "492a4040c6538446": {
     "store": "ビックカメラあべのキューズモール店",
