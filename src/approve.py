@@ -156,6 +156,17 @@ def approve(settings):
         amz = re.search(r"amazon|amzn", (it.get("store") or "") + (it.get("url") or ""), re.I)
         st_, an_ = parse_dt(it.get("start")), str(it.get("announce") or "")
         late_start = not end and not amz and st_ and (now() - st_).days >= settings.get("no_end_start_days", 14)
+        # 締切が書かれていなくても、その弾の発売日を3日以上過ぎた抽選は終わっている（抽選は発売前に締め切る）
+        rel_past = False
+        if not end and not amz and it.get("series") and not re.search(r"再販|再入荷", (it.get("product") or "") + (it.get("series") or "")):
+            try:
+                from sitegen import canon_series, _ser_cfg
+                info_ = (_ser_cfg()["info"].get(it.get("game")) or {})
+                rels_ = [str((info_.get(x) or {}).get("release") or "") for x in canon_series(it["game"], it["series"]) or []]
+                rels_ = [r_ for r_ in rels_ if re.match(r"\d{4}-\d\d-\d\d", r_)]
+                rel_past = bool(rels_) and max(rels_) < (now() - __import__("datetime").timedelta(days=3)).date().isoformat()
+            except Exception:
+                rel_past = False
         ann_past = (not end and not amz and re.match(r"\d{4}-\d\d-\d\d", an_) and an_[:10] < now().date().isoformat())
         if own.search(it.get("url") or "") and not it.get("manual"):
             it["status"] = "rejected"  # 自分のアカウントのポストから拾ったもの（元の抽選は別に載っている）
@@ -205,7 +216,7 @@ def approve(settings):
             it["status"] = "rejected"
             it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
             continue
-        if (end and end < now()) or too_old or old_post or hand or late_start or ann_past:
+        if (end and end < now()) or too_old or old_post or hand or late_start or ann_past or rel_past:
             it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
             it["closed_at"] = now().isoformat()
             if hand:
@@ -214,6 +225,8 @@ def approve(settings):
                 it["closed_reason"] = f"締切不明のまま{no_end_days}日経過"
             elif old_post:
                 it["closed_reason"] = f"告知の投稿から{post_days}日以上たって締切不明"
+            elif rel_past:
+                it["closed_reason"] = "締切不明・発売日を過ぎた"
             elif ann_past:
                 it["closed_reason"] = "締切不明・当選発表日を過ぎた"
             elif late_start:
