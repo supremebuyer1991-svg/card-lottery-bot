@@ -95,5 +95,5 @@ def find_link(html, page_url, store, blogs=()):
                 good = [h for h in links if _ok(h, blog_host, blogs)]
                 if good:
                     # 公式ページ（Xのポスト以外）があればそちらを優先
-                    return next((h for h in good if "x.com" not in h and "twitter.com" not in h), good[0])
+                    return next((h for h in good if not re.search(r"//(www\.|mobile\.)?(x|twitter)\.com/", h)), good[0])
     return None

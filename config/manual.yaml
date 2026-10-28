@@ -8,6 +8,25 @@
 #   日時は 2026-11-01T23:00 のように「年-月-日T時:分」で書く
 
 lotteries:
+  - slug: tcgpit-kameido-heroines-vol2-1030
+    game: onepiece
+    store: トレーディングカードピット亀戸店
+    series: ヒロインズエディション vol.2
+    product: エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】1BOX（5,760円税込・バラパックでのお渡し）
+    channel: store
+    area: 東京都
+    method: Web抽選（抽選ロトボックス）→ 当選したら店頭で購入
+    start: 2026-10-28T10:00
+    end: 2026-10-30T20:00
+    announce: 10/30(金)21:30ごろ（応募結果確認ページで確認・通知なし）
+    buy: 10/31(土)開店〜11/6(金)閉店
+    conditions: トレカピット会員カード（C以外）と電話番号で応募。1人1口。購入時に顔写真付き本人確認書類・会員カード・当選画面（スクショ不可）が必要。外箱なし
+    id_check: true
+    member: card
+    tags: [会員, 本人確認]
+    url: https://shoplottery.e-starbox.com/lottery/entry?code=2VACjEq1YI
+    x_post: https://x.com/tcgpit_kameido/status/2115081641182056845
+
   - slug: justice-osaka-30th-1102
     game: pokemon
     store: トレカショップ ジャスティス（大阪）

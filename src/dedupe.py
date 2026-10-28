@@ -39,6 +39,17 @@ def norm_series(s, aliases):
     return re.sub(r"[\s・「」『』\-/]", "", s)
 
 
+def _url_key(u):
+    """応募ページのURLをそろえる。?code=… のように抽選を区別する部分は残し、utm_ など追跡用だけ外す
+    （抽選ロトボックスなどは ?code= が違うだけで全部別の抽選）"""
+    from urllib.parse import urlsplit, parse_qsl, urlencode
+    if not u:
+        return ""
+    p = urlsplit(u.strip())
+    q = [(k, v) for k, v in parse_qsl(p.query) if not re.match(r"^(utm_|fbclid|gclid|s$|t$|ref$|a$)", k)]
+    return (p.netloc.lower().removeprefix("www.") + p.path.rstrip("/") + ("?" + urlencode(sorted(q)) if q else ""))
+
+
 def _skey(it):
     x = it.get("series") or it.get("product")
     try:
@@ -52,7 +63,7 @@ def _skey(it):
 def _rank(it):
     """残す優先度（大きいほど残す）"""
     return (bool(it.get("manual")),                                          # 自分で追加した抽選（個別ページのURLを変えないため）
-            bool(it.get("url")) and "x.com" not in (it.get("url") or ""),   # 店の応募ページがある
+            bool(it.get("url")) and not re.search(r"//(www\.|mobile\.)?(x|twitter)\.com/", it.get("url") or ""),   # 店の応募ページがある
             str(it.get("source", "")).startswith("カード抽選"),              # 整理済みのデータ
             it.get("status") in ("approved", "posted", "listed"),
             len(it.get("conditions") or ""))
@@ -138,8 +149,8 @@ def dedupe(settings=None):
     # （Xから拾った方は店名が「朝霞」のように短かったり締切が空だったりするので、店名・締切ではまとまらない）
     by_url = {}
     for k, it in lots.items():
-        u = (it.get("url") or "").split("?")[0].rstrip("/")
-        if it.get("status") in ACTIVE and u and not re.search(r"(x|twitter)\.com/|amazon\.|amzn\.", u):
+        u = _url_key(it.get("url"))
+        if it.get("status") in ACTIVE and u and not re.search(r"(^|[/.])(x|twitter)\.com/|amazon\.|amzn\.", u):
             by_url.setdefault((it.get("game"), u), []).append(k)
     for keys in by_url.values():
         keys = [k for k in keys if lots[k].get("status") in ACTIVE]
