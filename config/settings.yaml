@@ -29,6 +29,7 @@ trend_drafts: 4             # 1回に作る下書きの本数
 summary_hours: []           # 自動のまとめ投稿（リンク付き・1件約$0.20）。空＝オフ（手動運用：サイトの /x-draft.html からコピペ）。自動にするなら [7, 15, 23] のように時刻を入れる
 
 site_public_url: "https://tcg-chusen.com"   # サイトのアドレス（独自ドメイン）。楽天だけは登録済みの pages.dev のまま
+ga_id: "G-ZEXV2PQSN2"   # Googleアナリティクスの測定ID（全ページにタグを入れる）
 google_site_verification: "AweLnrnTH5dioaZpTllDW71WrQpzIlP_JI0Fbtg9Am0"   # Google Search Console の「HTMLタグ」の content="…" の中身を入れる
 indexnow_key: "267f260c7ca339b86fc2279efeb66039"   # IndexNow（Bing等にページの更新を知らせる）の鍵。変えなくてOK        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う
 site_url: ""              # WordPressのURL（例 https://example.com）。空ならWP更新はスキップ
