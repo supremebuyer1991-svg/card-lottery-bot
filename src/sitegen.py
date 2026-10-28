@@ -1299,7 +1299,36 @@ def build(settings=None, out_dir=None, sample=None):
         r.update(name=i["store"], last=today_s, game=r.get("game") or i["game"])
         if i.get("channel") == "store" and i.get("area"):
             r["area"] = i["area"]
-    reg = {k: v for k, v in reg.items() if (now().date() - __import__("datetime").date.fromisoformat(v["last"])).days <= 45}
+    # お店ごとの抽選の履歴（終わった抽選も1年分残す。「〇〇店 抽選」で探す人に、前回いつ・何の抽選だったかを見せる）
+    hist = {} if sample is not None else load_json("store_history.json", {})
+    if sample is None:
+        cut_h = (now() - __import__("datetime").timedelta(days=365)).isoformat()
+        for k, it in load_json("lotteries.json", {}).items():
+            if it.get("status") in ("duplicate", "rejected") or not it.get("store") or it.get("game") not in GAME_SLUG:
+                continue
+            sp = store_path(it["store"])
+            when = it.get("end") or it.get("found_at") or ""
+            if when < cut_h:
+                continue
+            h = hist.setdefault(sp, {"name": it["store"], "items": {}})
+            xs = canon_series(it["game"], it.get("series")) if it.get("series") else []
+            h["items"][k] = {"p": "・".join(xs) or (it.get("product") or "")[:40], "g": it["game"],
+                             "e": (it.get("end") or "")[:16], "f": (it.get("found_at") or "")[:10],
+                             "c": "store" if it.get("channel") == "store" else "online"}
+        for sp in list(hist):
+            its = {k: v for k, v in hist[sp]["items"].items() if (v["e"] or v["f"]) >= cut_h[:10]}
+            if not its:
+                hist.pop(sp)
+                continue
+            hist[sp]["items"] = dict(sorted(its.items(), key=lambda kv: kv[1]["e"] or kv[1]["f"], reverse=True)[:40])
+        save_json("store_history.json", hist)
+        # 履歴のあるお店は、受付中の抽選がなくても半年はページを残す
+        for sp, h in hist.items():
+            last = max((v["e"] or v["f"])[:10] for v in h["items"].values())
+            if sp not in reg and last >= (now() - __import__("datetime").timedelta(days=180)).date().isoformat():
+                reg[sp] = {"name": h["name"], "last": min(last, today_s), "game": next(iter(h["items"].values()))["g"], "keep": True}
+    reg = {k: v for k, v in reg.items()
+           if (now().date() - __import__("datetime").date.fromisoformat(v["last"])).days <= (180 if k in hist else 45)}
     if sample is None:
         save_json("stores.json", reg)
     by_store = {}
@@ -1324,13 +1353,43 @@ def build(settings=None, out_dir=None, sample=None):
         else:
             lead = (f"{name}{where}で現在受付中の抽選はありません。最近まで抽選がありました。"
                     "新しい抽選が見つかり次第、このページに自動で追加されます。")
+        # これまでの抽選（終わったものだけ・新しい順）
+        past, seen_p = [], set()
+        for k, v in (hist.get(path) or {}).get("items", {}).items():
+            if not (v["e"] and v["e"] < now().isoformat()[:16]) or k in {i.get("key") for i in si}:
+                continue
+            v = dict(v, p=re.sub(r"(ポケモンカードゲーム|ONE PIECEカードゲーム|ポケモンカード|MEGA|拡張パック|ブースターパック|エクストラブースター|1BOX|[「」『』／/])", " ", v["p"]).strip()
+                     if not _ser_cfg()["slug"].get(v["g"], {}).get(v["p"]) else v["p"])
+            v["p"] = re.sub(r"\s+", " ", v["p"]).strip() or "抽選"
+            sk = (v["g"], v["e"][:10], normalize(v["p"])[:6])
+            if sk in seen_p:
+                continue  # 同じ日・同じ商品は1行に
+            seen_p.add(sk)
+            past.append(v)
+        hist_html, faq_s = "", []
+        if past:
+            def _d(v):
+                d = parse_dt(v["e"])
+                return f"{d.month}/{d.day}" if d else ""
+            rows = "".join(f'<li><time>{_d(v)}締切</time> {escape(GAME_SHORT.get(v["g"], ""))}「{escape(v["p"])}」'
+                           f'<small>{"店頭抽選" if v["c"] == "store" else "ネット抽選"}</small></li>' for v in past[:15])
+            hist_html = (f'<section class="hist"><h2>{escape(name)}のこれまでの抽選<small>直近{min(len(past), 15)}件</small></h2>'
+                         f'<ul>{rows}</ul><p class="note">※トレカ抽選ナビが見つけた抽選です。次の抽選も見つかり次第このページに載せます。</p></section>')
+            p0 = past[0]
+            faq_s.append((f"{name}の前回の抽選はいつでしたか？",
+                          f"トレカ抽選ナビで確認できた直近の抽選は、{_d(p0)}締切の{GAME_SHORT.get(p0['g'], '')}「{p0['p']}」でした。"
+                          f"過去1年で{len(past)}件の抽選が見つかっています。"))
+            if not si:
+                lead += f"前回は{_d(p0)}締切の「{p0['p']}」の抽選でした。"
         write(path, {"game": g0, "store": path, "channel": ch}, {
             "title": f"{name}の{words}抽選情報【{md}更新】" + (f"受付中{len(si)}件" if si else "受付状況") + "｜トレカ抽選ナビ",
             "desc": f"【{md}更新】{name}{where}の{words}の抽選販売・予約抽選" + (f"{len(si)}件" if si else "") +
                     "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
             "summary": summary(si, f"{name}の抽選"),
             "h1": f"{name}の抽選情報", "lead": lead,
-            "aff": _rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "",
+            "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else hist_html),
+            "info_html": hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
+            "faq": faq_s or None,
             "links": links, "root": "/"}, si,
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
