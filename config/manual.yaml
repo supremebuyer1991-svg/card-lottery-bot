@@ -8,6 +8,38 @@
 #   日時は 2026-11-01T23:00 のように「年-月-日T時:分」で書く
 
 lotteries:
+  - slug: furuichi-heroines-vol2-1101
+    game: onepiece
+    store: 古本市場・ふるいち（Web抽選・全国の店舗で受取）
+    series: ヒロインズエディション vol.2
+    product: エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】1BOX（5,760円税込）
+    channel: store
+    method: Web抽選（ふるいち公式サイトの応募フォーム）→ 当選したら希望店舗で購入
+    end: 2026-11-01T23:00
+    announce: 11/4(水)23時頃（ふるいちアプリのお知らせ）
+    buy: 11/6(金)〜11/8(日)
+    conditions: ふるいちアプリ会員（一般会員・VIP会員。ゲスト会員は対象外）。購入時にアプリと写真付き本人確認書類（現住所の記載あり）が必要。1人（1家族）1回まで。10/31（発売日）の店頭販売はなし
+    id_check: true
+    member: account
+    tags: [アプリ, 会員, 本人確認]
+    url: https://www.furu1.net/news/news_information/opkl20261031/opklfvol2
+
+  - slug: furuichi-heroines-precious-1101
+    game: onepiece
+    store: 古本市場・ふるいち（Web抽選・全国の店舗で受取）
+    series: HEROINES PRECIOUS BOX
+    product: ONE PIECE HEROINES PRECIOUS BOX（8,470円税込）
+    channel: store
+    method: Web抽選（ふるいち公式サイトの応募フォーム）→ 当選したら希望店舗で購入
+    end: 2026-11-01T23:00
+    announce: 11/4(水)23時頃（ふるいちアプリのお知らせ）
+    buy: 11/6(金)〜11/8(日)
+    conditions: ふるいちアプリ会員（一般会員・VIP会員。ゲスト会員は対象外）。購入時にアプリと写真付き本人確認書類（現住所の記載あり）が必要。1人（1家族）1回まで。10/31（発売日）の店頭販売はなし
+    id_check: true
+    member: account
+    tags: [アプリ, 会員, 本人確認]
+    url: https://www.furu1.net/news/news_information/opkl20261031/opklfpreb
+
   - slug: shimamura-onepiece-1101
     game: onepiece
     store: しまむら（しまむらアプリ）
