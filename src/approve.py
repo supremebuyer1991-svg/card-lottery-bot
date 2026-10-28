@@ -145,6 +145,12 @@ def approve(settings):
             it["blog_url"] = it["url"]
             it["url"] = it.get("apply_url") or None
             log(f"応募先がまとめブログのためリンクを外しました: {it.get('store')} {host}")
+        if it.get("blog_url") and it.get("url") and it["url"] != it["blog_url"]:  # ブログから拾ったリンクが今のルールで使えないなら外す
+            from bloglink import _ok
+            bh = re.sub(r"^https?://(www\.)?", "", it["blog_url"]).split("/")[0].lower()
+            if any(bh == b or bh.endswith("." + b) for b in blogs) and not _ok(it["url"], bh, blogs):
+                it["url"] = None
+                it.pop("blog_checked", None)
         # まとめブログのページに貼ってある、そのお店の公式の応募ページ（かお店の告知ポスト）を探してリンクにする（1日1回まで）
         if it.get("blog_url") and not it.get("url") and it.get("blog_checked") != now().date().isoformat():
             it["blog_checked"] = now().date().isoformat()

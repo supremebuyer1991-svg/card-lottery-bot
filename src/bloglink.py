@@ -51,16 +51,24 @@ def _ok(href, blog_host, blogs):
     full = host + u.path
     if any(x in full for x in SKIP_HOSTS):
         return False
+    if re.fullmatch(r"/?((about|company|access|shop|shops|store|stores|recruit|info|top|index\.html?)/?)?", u.path.lower()) and not u.query:
+        return False  # トップページ・会社案内などは応募ページではない
     if host in ("x.com", "twitter.com") and "/status/" not in u.path:
         return False  # 共有ボタン・プロフィールは使わない（お店の告知ポストだけ）
     return True
 
 
-def find_link(html, page_url, store, blogs=()):
+_CACHE = {}
+
+
+def _blocks(html):
+    """ページを段落ごとに分ける（同じページは1回だけ）"""
+    k = hash(html)
+    if k in _CACHE:
+        return _CACHE[k]
     soup = BeautifulSoup(html, "html.parser")
     for t in soup(["script", "style", "nav", "header", "footer", "aside", "form"]):
         t.decompose()
-    blog_host = urlparse(page_url).netloc.lower().removeprefix("www.")
     blocks = []
     for el in soup.find_all(BLOCKS):
         if el.find(BLOCKS):  # 中に段落を持つもの（外側の li など）は中身のほうで見る
@@ -68,6 +76,13 @@ def find_link(html, page_url, store, blogs=()):
                 continue
         links = [a.get("href") for a in el.find_all("a", href=True)]
         blocks.append((el.name, _norm(el.get_text(" ")), links))
+    _CACHE[k] = blocks
+    return blocks
+
+
+def find_link(html, page_url, store, blogs=()):
+    blog_host = urlparse(page_url).netloc.lower().removeprefix("www.")
+    blocks = _blocks(html)
     for name in _names(store):
         for i, (tag, text, _) in enumerate(blocks):
             if name not in text:
