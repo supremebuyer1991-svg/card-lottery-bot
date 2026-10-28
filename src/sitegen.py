@@ -797,6 +797,9 @@ def build(settings=None, out_dir=None, sample=None):
             if e and e < now():
                 continue
             row = {k: i.get(k) for k in FIELDS}
+            for k_ in ("product", "conditions"):  # 「ワンピカード」とは書かない
+                if isinstance(row.get(k_), str):
+                    row[k_] = row[k_].replace("ワンピカード", "ワンピースカード")
             row["lpath"] = detail.lottery_path(i)  # 抽選ごとの個別ページ
             row["image"] = row.get("image") or images.get(i.get("series") or "")
             row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)

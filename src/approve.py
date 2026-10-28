@@ -142,11 +142,21 @@ def approve(settings):
         if it["status"] not in ("new", "pending", "approved", "posted", "listed"):
             continue
         end, found = parse_dt(it.get("end")), parse_dt(it.get("found_at"))
+        # 告知から3か月以上先の締切は、発売日などを締切と読み違えたもの（抽選の受付はそんなに長くない）
+        base_ = _post_date(it.get("url")) or found
+        if end and base_ and (end - base_).days > settings.get("max_entry_days", 90) and not it.get("manual"):
+            it["end_suspect"], it["end"], end = it["end"], None, None
+            log(f"締切が告知から3か月以上先なので、締切を外しました: {it.get('store')} {it['end_suspect'][:10]}")
         too_old = not end and found and (now() - found).days >= no_end_days
         # Xの告知は投稿日が分かる。情報元が古い告知を載せたままでも、投稿から post_days 日で締切不明なら終了扱い
         posted = _post_date(it.get("url"))
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
+        # 締切が書かれていなくても、終わったと分かるもの（Amazonの招待リクエストは期限がないので対象外）
+        amz = re.search(r"amazon|amzn", (it.get("store") or "") + (it.get("url") or ""), re.I)
+        st_, an_ = parse_dt(it.get("start")), str(it.get("announce") or "")
+        late_start = not end and not amz and st_ and (now() - st_).days >= settings.get("no_end_start_days", 14)
+        ann_past = (not end and not amz and re.match(r"\d{4}-\d\d-\d\d", an_) and an_[:10] < now().date().isoformat())
         if own.search(it.get("url") or "") and not it.get("manual"):
             it["status"] = "rejected"  # 自分のアカウントのポストから拾ったもの（元の抽選は別に載っている）
             it["closed_reason"] = "自分のポストから拾ったもの"
@@ -195,7 +205,7 @@ def approve(settings):
             it["status"] = "rejected"
             it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
             continue
-        if (end and end < now()) or too_old or old_post or hand:
+        if (end and end < now()) or too_old or old_post or hand or late_start or ann_past:
             it["status"] = "closed" if it["status"] in ("posted", "listed") else "expired"
             it["closed_at"] = now().isoformat()
             if hand:
@@ -204,6 +214,10 @@ def approve(settings):
                 it["closed_reason"] = f"締切不明のまま{no_end_days}日経過"
             elif old_post:
                 it["closed_reason"] = f"告知の投稿から{post_days}日以上たって締切不明"
+            elif ann_past:
+                it["closed_reason"] = "締切不明・当選発表日を過ぎた"
+            elif late_start:
+                it["closed_reason"] = "締切不明・受付開始から日数がたった"
 
     # 終了したものは一定日数たったらデータから削除（ファイルが大きくなり続けないように）
     purge_days = settings.get("purge_closed_days", 30)
