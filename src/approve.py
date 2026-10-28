@@ -139,6 +139,17 @@ def approve(settings):
             it["status"] = "rejected"  # 自分のアカウントのポストから拾ったもの（元の抽選は別に載っている）
             it["closed_reason"] = "自分のポストから拾ったもの"
             continue
+        # Xの短縮リンク（t.co）は行き先のアドレスに置きかえる（どこに飛ぶか分かるように）
+        if re.match(r"https?://t\.co/", it.get("url") or "") and not it.get("tco_checked"):
+            it["tco_checked"] = True
+            try:
+                import requests
+                r = requests.head(it["url"], allow_redirects=False, timeout=10)
+                loc = r.headers.get("location") or ""
+                if loc.startswith("http") and "t.co/" not in loc:
+                    it["url"] = loc
+            except Exception as e:
+                log(f"短縮リンクの確認失敗 {it['url']}: {e}")
         # 応募先がまとめブログ（お店・公式ではない）なら、リンクを外す（ブログは情報元としてだけ残す）
         if it.get("blog_url") and not it.get("url"):  # リストから外したブログはリンクを戻す
             bh = re.sub(r"^https?://(www\.)?", "", it["blog_url"]).split("/")[0].lower()

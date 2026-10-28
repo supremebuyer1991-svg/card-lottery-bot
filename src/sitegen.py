@@ -474,7 +474,7 @@ def _menu(items, games, g, here=""):
                "".join(f'<a href="/{series_path(g, x)}">{escape(x)}<span>{int(r[5:7])}/{int(r[8:10])}</span></a>' for r, x in up) +
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
-                 f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
+                 (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
                  '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
@@ -1430,6 +1430,8 @@ def build(settings=None, out_dir=None, sample=None):
             rel.append((f"{CHAIN[c][1]}の抽選", f"/chain/{c}/"))
         if d.get("channel") == "store" and d.get("area") in PREF:
             rel.append((f"{d['area']}の店頭抽選", f"/{GAME_SLUG[g]}/area/{PREF[d['area']]}/"))
+        # 今はないページ（抽選がなくなった弾・地域など）へのリンクは出さない
+        rel = [(t, u) for t, u in rel if (out / u.strip("/") / "index.html").exists()]
         p = out / lp / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,

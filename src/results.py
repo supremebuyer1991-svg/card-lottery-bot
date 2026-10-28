@@ -109,5 +109,9 @@ def scheduled_today(lots=None):
         k = (it["game"], normalize(it.get("store")))
         out.setdefault(k, {"game": it["game"], "store": it.get("store"), "series": set()})
         if it.get("series"):
-            out[k]["series"].add(it["series"])
+            try:
+                from sitegen import canon_series  # サイトと同じ弾名に（「EB-05」→「ヒロインズエディション vol.2」など）
+                out[k]["series"].update(canon_series(it["game"], it["series"]) or [it["series"]])
+            except Exception:
+                out[k]["series"].add(it["series"])
     return [dict(v, series=sorted(v["series"])) for v in out.values()]

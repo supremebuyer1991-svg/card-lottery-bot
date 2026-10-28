@@ -133,7 +133,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     canon = f"{site}/{path}" if site else ""
     ch = "店頭抽選（店頭で受け取り）" if i.get("channel") == "store" else "ネット抽選（当選後に購入・発送）"
     title = f"{store}の{gshort}抽選「{name}」" + (f"【{end_s}締切】" if end_s else "") + "｜トレカ抽選ナビ"
-    desc = (f"{store}で受付中の{gshort}の抽選販売「{name}」。" + (f"応募期間 {start_s or ''}〜{end_s}。" if end_s else "") +
+    desc = (f"{store}で受付中の{gshort}の抽選販売「{name}」。" + ((f"応募期間 {start_s}〜{end_s}。" if start_s else f"応募締切 {end_s}。") if end_s else "") +
             "応募方法・応募条件・対象商品・当選発表日をまとめています。")
     if is_end:
         desc = f"{store}の{gshort}の抽選「{name}」は受付を終了しました。いま受付中の抽選は一覧からさがせます。"
@@ -144,7 +144,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
         if v:
             rows.append(f"<div><dt>{escape(k)}</dt><dd>{v if raw else escape(str(v))}</dd></div>")
     period = (f"{start_s} 〜 " if start_s else "") + (end_s or "締切は告知でご確認ください")
-    row("応募期間", period)
+    row("応募期間" if start_s else "応募締切", (period + "まで") if end_s and not start_s else period)
     row("当選発表", i.get("announce") if not parse_dt(i.get("announce")) else fmt(i.get("announce")))
     row("購入期間", i.get("buy"))
     row("受け取り", ch + (f"｜{i['area']}" if i.get("channel") == "store" and i.get("area") else ""))

@@ -350,7 +350,8 @@ input[type="search"] { flex: 1 1 160px; }
 .sb-us { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); }
 .sb-note { margin: 8px 0 0; font-size: 11.5px; color: var(--ink-2); line-height: 1.6; max-width: none; } .sb-note a { color: var(--red); }
 .sb-list { margin-top: 14px; } .sb-list h2 { font-size: 17px; margin: 0 0 6px; }
-.sb-scroll { overflow-x: auto; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
+.sb-list { min-width: 0; max-width: 100%; }
+.sb-scroll { overflow-x: auto; max-width: calc(100vw - 32px); background: var(--card); border: 1px solid var(--rule); border-radius: 12px; -webkit-overflow-scrolling: touch; }
 .sb-list table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13px; }
 .sb-list th, .sb-list td { padding: 8px 10px; border-top: 1px solid var(--rule); text-align: right; vertical-align: middle; white-space: nowrap; }
 .sb-list thead th { border-top: 0; font-size: 11px; color: var(--ink-2); background: var(--navy-soft); }
@@ -758,7 +759,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }
   function isAmazon(i) { return /amazon|amzn/i.test((i.store || "") + (i.url || "")); }
   function renderHot() {
-    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var now = Date.now(), g = inGame().filter(function (i) {  // 弾・地域・受け取り方のページは、その条件の抽選だけ
+      return i.url && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
+        && (!LOCK.channel || (LOCK.channel === "store" ? i.channel === "store" : i.channel !== "store"));
+    });
     var soon = g.filter(function (i) { return i._end && i._end > now && i._end - now < 48 * 3600e3; })
       .sort(function (a, b) { return a._end - b._end; }).slice(0, 12);
     var oneAmz = function (list) { var seen = false; return list.filter(function (i) { if (!isAmazon(i)) return true; if (seen) return false; seen = true; return true; }); };  // Amazonは1枚だけ（並ぶと見た目が悪い）
@@ -784,7 +788,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         : ((DATA.gameCounts || {})[x.id] || 0);
       return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.tab || x.name) + '<span class="n">' + n + '</span></button>';
     }).join("");
-    // サマリー
+    // サマリー（地域をしぼっている時は、その地域の店頭抽選の数）
+    if (st.channel === "store" && (st.area || st.region)) gs = gs.filter(function (i) {
+      return i.channel === "store" && (st.area ? areasOf(i).indexOf(st.area) >= 0 : areasOf(i).some(function (p) { return REG[p] === st.region; }));
+    });
     var today = gs.filter(function (i) { return isToday(i._end); }).length;
     var fresh = gs.filter(isNew).length;
     var unapplied = gs.filter(function (i) { return !applied[i.key]; }).length;
@@ -881,7 +888,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return m < 60 ? m + "分" : Math.floor(m / 60) + "時間" + (m % 60 ? (m % 60) + "分" : "");
   }
   function renderNews() {
-    var now = Date.now(), g = inGame().filter(function (i) { return i.url; });
+    var now = Date.now(), g = inGame().filter(function (i) {  // 弾・地域・受け取り方のページは、その条件の抽選だけ
+      return i.url && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
+        && (!LOCK.channel || (LOCK.channel === "store" ? i.channel === "store" : i.channel !== "store"));
+    });
     var ending = g.filter(function (i) { return i._end && i._end > now && i._end - now <= 3 * 3600e3; })
       .sort(function (a, b) { return a._end - b._end; }).slice(0, 10)
       .map(function (i) { return { i: i, cls: "end", tag: "残り" + leftText(i._end - now), t: '<b>' + esc(i.store) + '</b>「' + esc(i.series || i.product) + '」まもなく受付終了！' }; });
