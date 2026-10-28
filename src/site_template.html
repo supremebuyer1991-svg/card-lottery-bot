@@ -377,6 +377,7 @@ input[type="search"] { flex: 1 1 160px; }
 .hist ul { list-style: none; margin: 0; padding: 0; } .hist li { padding: 7px 0; border-top: 1px solid var(--rule); font-size: 14px; }
 .hist li:first-child { border-top: 0; } .hist li > small { float: right; } .hist ul.cg li { line-height: 1.7; } .hist time { font-family: var(--font-num); font-weight: 700; margin-right: 6px; color: var(--ink-2); }
 .hist li small { margin-left: 8px; font-size: 11px; color: var(--ink-2); } .hist .note { font-size: 11.5px; color: var(--ink-2); margin: 8px 0 0; }
+.hist .ann { font-size: 13px; margin: 0 0 8px; padding: 6px 10px; background: var(--paper); border-radius: 8px; }
 .sb-scroll { overflow-x: auto; max-width: calc(100vw - 32px); background: var(--card); border: 1px solid var(--rule); border-radius: 12px; -webkit-overflow-scrolling: touch; }
 .sb-list table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13px; }
 .sb-list th, .sb-list td { padding: 8px 10px; border-top: 1px solid var(--rule); text-align: right; vertical-align: middle; white-space: nowrap; }
@@ -518,6 +519,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
       <label class="toggle"><input type="checkbox" id="f-nocard"> 会員カード不要</label>
       <label class="toggle"><input type="checkbox" id="f-noapp"> アプリ不要</label>
+      <label class="toggle"><input type="checkbox" id="f-noreceipt"> レシート不要</label>
+      <label class="toggle"><input type="checkbox" id="f-nohist"> 購入履歴不要</label>
     </div>
   </div>
 
@@ -698,6 +701,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if ($("f-nomember").checked && i.member !== "none") return false;
       if ($("f-nocard").checked && i.member === "card") return false;
       if ($("f-noapp").checked && needs(i, "アプリ")) return false;
+      if ($("f-noreceipt").checked && (needs(i, "レシート") || /レシート/.test(i.conditions || ""))) return false;
+      if ($("f-nohist").checked && (needs(i, "購入履歴") || /購入(履歴|実績|歴)|利用実績/.test(i.conditions || ""))) return false;
       if ($("f-today").checked && !isToday(i._end)) return false;
       if (q && (i.store + " " + i.product + " " + (i.series || "")).toLowerCase().indexOf(q) < 0) return false;
       return true;
@@ -892,7 +897,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
   $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
   (LOCK.checks || []).forEach(function (id) { if ($(id)) $(id).checked = true; });  // 「本人確認なし」「今日締切」などのページは最初から絞り込む
-  ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
+  ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-noreceipt", "f-nohist", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
   $("f-sort").value = ["end", "rec", "new"].indexOf(load("lot_sort", "end")) >= 0 ? load("lot_sort", "end") : "end";
   $("f-sort").addEventListener("change", function () { save("lot_sort", $("f-sort").value); render(); });
   $("list").addEventListener("click", function (e) {

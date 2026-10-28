@@ -256,13 +256,35 @@ function md(d){return (d.getMonth()+1)+"/"+d.getDate()+"("+W[d.getDay()]+")"}
 function annDate(o){var a=o.announce;if(!a)return null;var d=Date.parse(a);if(!isNaN(d)&&/^\d{4}-/.test(a))return new Date(d);
  var m=String(a).match(/(\d{1,2})\s*[\/月]\s*(\d{1,2})/);if(!m)return null;var e=o.end?new Date(o.end):new Date();var y=e.getFullYear();
  var r=new Date(y,+m[1]-1,+m[2]);if(o.end&&r<new Date(e.getFullYear(),e.getMonth(),e.getDate()-1))r=new Date(y+1,+m[1]-1,+m[2]);return r;}
+function p2(n){return("0"+n).slice(-2)}
+function gdt(d){return d.getUTCFullYear()+p2(d.getUTCMonth()+1)+p2(d.getUTCDate())+"T"+p2(d.getUTCHours())+p2(d.getUTCMinutes())+"00Z"}
+function gday(d){return d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())}
+function nm(o){return (o.store||"抽選")+"「"+(o.series||o.product||"")+"」"}
+function lk(o){return o.lpath?location.origin+"/"+o.lpath:(o.url||"")}
+// Googleカレンダーの「予定を追加」画面を開くリンク（締切は締切の時刻、発表日は終日）
+function gcal(o,kind){var t,d;if(kind==="end"){if(!o.E)return"";t="【締切】"+nm(o);d=gdt(new Date(o.E-30*60e3))+"/"+gdt(o.E)}
+ else{if(!o.A)return"";t="【結果発表】"+nm(o);var n=new Date(o.A.getFullYear(),o.A.getMonth(),o.A.getDate()+1);d=gday(o.A)+"/"+gday(n)}
+ return"https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(t)+"&dates="+d+"&details="+encodeURIComponent(lk(o)+"\nトレカ抽選ナビの「応募したリスト」から追加")}
+function ics(rows){var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//toreca-lottery-navi//mylist//JA","CALSCALE:GREGORIAN"],st=gdt(new Date());
+ function ev(uid,head,sum,o){L.push("BEGIN:VEVENT","UID:"+uid+"@toreca-navi","DTSTAMP:"+st);L.push.apply(L,head);
+  L.push("SUMMARY:"+sum.replace(/[,;\\]/g," "),"DESCRIPTION:"+lk(o).replace(/[,;]/g," "));if(lk(o))L.push("URL:"+lk(o));}
+ rows.forEach(function(o){var id=String(o.k).replace(/[^\w-]/g,"");
+  if(o.E&&o.E>new Date()){ev(id+"-end",["DTSTART:"+gdt(new Date(o.E-30*60e3)),"DTEND:"+gdt(o.E)],"【締切】"+nm(o),o);
+   L.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:もうすぐ締切","TRIGGER:-PT3H","END:VALARM","END:VEVENT")}
+  if(o.A&&ymd(o.A)>=ymd(new Date())){var n=new Date(o.A.getFullYear(),o.A.getMonth(),o.A.getDate()+1);
+   ev(id+"-ann",["DTSTART;VALUE=DATE:"+gday(o.A),"DTEND;VALUE=DATE:"+gday(n)],"【結果発表】"+nm(o),o);
+   L.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:今日が結果発表","TRIGGER:PT9H","END:VALARM","END:VEVENT")}});
+ L.push("END:VCALENDAR");return L.join("\r\n")}
+var ROWS=[];
 function render(){var a=ld(),box=document.getElementById("ml");
  if(a===null){box.innerHTML='<p class="empty">このブラウザでは記録を読み込めませんでした（プライベートモードなど）。</p>';return}
  var ks=Object.keys(a);document.getElementById("mln").textContent=ks.length;
  if(!ks.length){box.innerHTML='<p class="empty">まだ「応募した」の印をつけた抽選はありません。<br>抽選の一覧や個別ページの「☐ 応募した」を押すと、ここに並びます。</p>';return}
  var now=new Date(),T=ymd(now),rows=ks.map(function(k){var o=a[k];if(typeof o!=="object"||!o)o={t:o};o.k=k;o.E=o.end?new Date(o.end):null;o.A=annDate(o);
   o.g=o.A&&ymd(o.A)===T?0:o.A&&ymd(o.A)<T?3:o.E&&o.E>now?1:2;return o});
- rows.sort(function(x,y){return x.g-y.g||((x.A||x.E||0)-(y.A||y.E||0))});
+ rows.sort(function(x,y){return x.g-y.g||((x.A||x.E||0)-(y.A||y.E||0))});ROWS=rows;
+ var cn=rows.filter(function(o){return (o.E&&o.E>now)||(o.A&&ymd(o.A)>=T)}).length,cb=document.getElementById("mlcal");
+ var cnn=document.getElementById("mlcaln");if(cnn)cnn.hidden=!cn;if(cb){cb.hidden=!cn;cb.textContent="📅 "+cn+"件の抽選の締切・結果発表をカレンダーに入れる"}
  var H={0:"🎉 今日が結果発表",1:"受付中（締切が近い順）",2:"締切済み・結果待ち",3:"結果発表日を過ぎた抽選"},h="",cur=-1;
  rows.forEach(function(o){if(o.g!==cur){if(cur>=0)h+="</ul>";h+='<h2 class="g'+o.g+'">'+H[o.g]+'</h2><ul>';cur=o.g}
   var name=o.store?esc(o.store)+"「"+esc(o.series||o.product||"")+"」":"（抽選の情報を記録していません）";
@@ -270,9 +292,14 @@ function render(){var a=ld(),box=document.getElementById("ml");
   h+='<li class="g'+o.g+'"><div class="t">'+(link?'<a href="'+link+'">'+name+'</a>':name)+'</div><div class="m">'+
    (o.E?'<span>締切 '+md(o.E)+' '+("0"+o.E.getHours()).slice(-2)+':'+("0"+o.E.getMinutes()).slice(-2)+'</span>':'')+
    (o.announce?'<span class="an">結果発表 '+esc(/^\d{4}-/.test(o.announce)&&o.A?md(o.A):o.announce)+'</span>':'<span>結果発表日は告知で確認</span>')+
-   '</div><button type="button" data-k="'+esc(o.k)+'">外す</button></li>'});
+   '</div><div class="cl">'+(o.E&&o.E>now?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"end"))+'">＋締切をGoogleカレンダーへ</a>':'')+
+   (o.A&&ymd(o.A)>=T?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"ann"))+'">＋発表日をGoogleカレンダーへ</a>':'')+'</div>'+
+   '<button type="button" data-k="'+esc(o.k)+'">外す</button></li>'});
  box.innerHTML=h+"</ul>";}
 document.getElementById("ml").addEventListener("click",function(e){var b=e.target.closest("button[data-k]");if(!b)return;var a=ld()||{};delete a[b.dataset.k];sv(a);render();});
+var cb=document.getElementById("mlcal");if(cb)cb.addEventListener("click",function(){
+ var blob=new Blob([ics(ROWS)],{type:"text/calendar;charset=utf-8"}),u=URL.createObjectURL(blob),x=document.createElement("a");
+ x.href=u;x.download="toreca-chusen.ics";document.body.appendChild(x);x.click();setTimeout(function(){URL.revokeObjectURL(u);x.remove()},1500);});
 render();})();
 """
 
@@ -286,7 +313,9 @@ def mylist_page(site=""):
 .ml li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 14px;border-top:1px solid var(--rule)}.ml li:first-child{border-top:0}
 .ml li.g0{background:var(--red-soft)}.ml li.g3{opacity:.6}.ml .t{font-weight:700}.ml .t a{text-decoration:none}
 .ml .m{grid-column:1;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--ink-2)}.ml .an{font-weight:700;color:var(--ink)}
-.ml li.g0 .an{color:var(--red)}.ml button{grid-column:2;grid-row:1/3;align-self:center;font:inherit;font-size:12px;border:1px solid var(--rule);background:none;border-radius:6px;padding:3px 8px;color:var(--ink-2);cursor:pointer}
+.ml li.g0 .an{color:var(--red)}.ml .cl{grid-column:1;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px}.ml .cl:empty{display:none}.ml .cl a{color:var(--ink-2)}
+.ml .calbtn{display:block;width:100%;font:inherit;font-weight:700;font-size:14px;padding:11px;margin:0 0 6px;border-radius:10px;border:1px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer}
+.ml .calnote{font-size:11.5px;color:var(--ink-2);margin:0 0 12px}.ml li button{grid-column:2;grid-row:1/3;align-self:center;font:inherit;font-size:12px;border:1px solid var(--rule);background:none;border-radius:6px;padding:3px 8px;color:var(--ink-2);cursor:pointer}
 .ml .empty{background:var(--card);border:1px dashed var(--rule);border-radius:12px;padding:24px;text-align:center;color:var(--ink-2)}
 .ml .small{font-size:11.5px;color:var(--ink-2);margin:14px 0 30px}"""
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
@@ -299,6 +328,8 @@ def mylist_page(site=""):
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             '<main class="wrap ml"><h1>応募したリスト（<span id="mln">0</span>件）</h1>'
             '<p class="lead">「☐ 応募した」を押した抽選の、締切と結果発表日をまとめています。結果発表の日になると一番上に出ます。会員登録はいりません。</p>'
+            '<button type="button" class="calbtn" id="mlcal" hidden></button>'
+            '<p class="calnote" id="mlcaln" hidden>iPhoneはそのまま「カレンダーに追加」、Androidはダウンロードしたファイルを開くとカレンダーに入ります。締切の3時間前と発表日の朝9時に通知します。1件ずつならGoogleカレンダーのリンクも使えます。</p>'
             '<div id="ml"><p class="empty">読み込み中…</p></div>'
             '<p class="small">※記録はこのスマホ・パソコンのブラウザの中だけに保存しています（ほかの人には見えません）。'
             'ブラウザの履歴やサイトのデータを消したとき、プライベートモードのとき、別のブラウザ・別の端末では表示されません。'

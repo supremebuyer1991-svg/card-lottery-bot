@@ -211,6 +211,30 @@ def canon_series(game, series):
     return out
 
 
+def ann_days(vals):
+    """締切から結果発表までの日数（履歴の e と a から）。(中央値, 最短, 最長, 件数) か None"""
+    ds = []
+    for v in vals:
+        if v.get("a") and v.get("e"):
+            try:
+                n = (__import__("datetime").date.fromisoformat(v["a"][:10]) - __import__("datetime").date.fromisoformat(v["e"][:10])).days
+            except ValueError:
+                continue
+            if 0 <= n <= 45:
+                ds.append(n)
+    if not ds:
+        return None
+    ds.sort()
+    return ds[len(ds) // 2], ds[0], ds[-1], len(ds)
+
+
+def ann_text(r):
+    med, lo, hi, n = r
+    d = "締切の当日" if med == 0 else "締切の翌日" if med == 1 else f"締切の{med}日後"
+    rng = "" if lo == hi or n < 3 else f"（早いと{'当日' if lo == 0 else f'{lo}日後'}、遅いと{hi}日後）"
+    return f"多くは{d}ごろ{rng}。これまで{n}回分から"
+
+
 def guess_series(game, text):
     """商品名の中から知っている弾の名前を探す（いちばん長く当てはまるもの）。なければ None"""
     t = normalize(text or "")
@@ -1487,6 +1511,13 @@ def build(settings=None, out_dir=None, sample=None):
     hist = {} if sample is not None else load_json("store_history.json", {})
     if sample is None:
         cut_h = (now() - __import__("datetime").timedelta(days=365)).isoformat()
+        # 結果が出た日：お店・公式の「抽選結果を発表しました」のポストを見つけた日（なければ告知に書いてあった発表日）
+        res_day = {}
+        for r_ in load_json("results.json", {}).values():
+            for lk_ in r_.get("lottery_keys") or []:
+                d_ = str(r_.get("found_at") or "")[:10]
+                if d_ and (lk_ not in res_day or d_ < res_day[lk_]):
+                    res_day[lk_] = d_
         for k, it in load_json("lotteries.json", {}).items():
             if it.get("status") in ("duplicate", "rejected") or not it.get("store") or it.get("game") not in GAME_SLUG:
                 continue
@@ -1498,9 +1529,13 @@ def build(settings=None, out_dir=None, sample=None):
             xs = canon_series(it["game"], it.get("series")) if it.get("series") else []
             if not xs and guess_series(it["game"], it.get("product")):
                 xs = [guess_series(it["game"], it.get("product"))]
+            old_a = (h["items"].get(k) or {}).get("a")
             h["items"][k] = {"p": "・".join(xs) or (it.get("product") or "")[:60], "g": it["game"],
                              "e": (it.get("end") or "")[:16], "f": (it.get("found_at") or "")[:10],
                              "c": "store" if it.get("channel") == "store" else "online"}
+            a_ = res_day.get(k) or (str(it["announce"])[:10] if re.match(r"\d{4}-\d\d-\d\d", str(it.get("announce") or "")) else "")
+            if a_ or old_a:
+                h["items"][k]["a"] = a_ or old_a
         for sp in list(hist):
             its = {k: v for k, v in hist[sp]["items"].items() if (v["e"] or v["f"]) >= cut_h[:10]}
             if not its:
@@ -1553,6 +1588,11 @@ def build(settings=None, out_dir=None, sample=None):
             seen_p.add(sk)
             past.append(v)
         hist_html, faq_s = "", []
+        ad = ann_days((hist.get(path) or {}).get("items", {}).values())
+        ann_li = (f'<p class="ann"><b>結果発表の目安</b>：{escape(ann_text(ad))}</p>' if ad else "")
+        if ad:
+            faq_s.append((f"{name}の抽選結果はいつ発表されますか？",
+                          f"トレカ抽選ナビで確認できた{ad[3]}回分では、{ann_text(ad).split('。')[0]}でした。抽選ごとに違うので、必ず告知を確認してください。"))
         if past:
             def _d(v):
                 d = parse_dt(v["e"])
@@ -1560,13 +1600,15 @@ def build(settings=None, out_dir=None, sample=None):
             rows = "".join(f'<li><time>{_d(v)}締切</time> {escape(GAME_SHORT.get(v["g"], ""))}「{escape(v["p"])}」'
                            f'<small>{"店頭抽選" if v["c"] == "store" else "ネット抽選"}</small></li>' for v in past[:15])
             hist_html = (f'<section class="hist"><h2>{escape(name)}のこれまでの抽選<small>直近{min(len(past), 15)}件</small></h2>'
-                         f'<ul>{rows}</ul><p class="note">※トレカ抽選ナビが見つけた抽選です。次の抽選も見つかり次第このページに載せます。</p></section>')
+                         f'{ann_li}<ul>{rows}</ul><p class="note">※トレカ抽選ナビが見つけた抽選です。次の抽選も見つかり次第このページに載せます。</p></section>')
             p0 = past[0]
             faq_s.append((f"{name}の前回の抽選はいつでしたか？",
                           f"トレカ抽選ナビで確認できた直近の抽選は、{_d(p0)}締切の{GAME_SHORT.get(p0['g'], '')}「{p0['p']}」でした。"
                           f"過去1年で{len(past)}件の抽選が見つかっています。"))
             if not si:
                 lead += f"前回は{_d(p0)}締切の「{p0['p']}」の抽選でした。"
+        elif ann_li:
+            hist_html = f'<section class="hist"><h2>{escape(name)}の抽選結果の発表</h2>{ann_li}</section>'
         write(path, {"game": g0, "store": path, "channel": ch}, {
             "title": f"{name}の{words}抽選情報【{md}更新】" + (f"受付中{len(si)}件" if si else "受付状況") + "｜トレカ抽選ナビ",
             "desc": f"【{md}更新】{name}{where}の{words}の抽選販売・予約抽選" + (f"{len(si)}件" if si else "") +
@@ -1631,6 +1673,9 @@ def build(settings=None, out_dir=None, sample=None):
             if len(durs) >= 3:
                 durs.sort()
                 li.append(f"<li><b>受付期間の長さ</b>：多くは{durs[len(durs) // 2]:.0f}日くらい（短いもので{durs[0]:.0f}日、長いもので{durs[-1]:.0f}日）</li>")
+            ad_c = ann_days(v for h_ in hist.values() if chain_of(h_.get("name")) == slug for v in h_["items"].values())
+            if ad_c:
+                li.append(f"<li><b>結果発表の目安</b>：{escape(ann_text(ad_c))}</li>")
             if sers:
                 li.append("<li><b>多かった弾</b>：" + "、".join(f"{escape(k)}（{n}件）" for k, n in sorted(sers.items(), key=lambda kv: -kv[1])[:4]) + "</li>")
             guide_c = (f'<section class="hist"><h2>{escape(cname)}の抽選の傾向<small>最近の{len(craw)}件から</small></h2><ul class="cg">' + "".join(li) +
