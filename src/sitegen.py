@@ -1392,40 +1392,85 @@ def build(settings=None, out_dir=None, sample=None):
             write(f"weekly/{ws}/", {"game": games[0]}, dict(meta_w, title=meta_w["title"].replace("今週の", ""), h1=meta_w["h1"].replace("今週の", "")), sub,
                   [("トップ", ""), ("今週のまとめ", "weekly/"), (label, f"weekly/{ws}/")])
 
-    # --- 抽選結果（/kekka/）：お店・公式がXで出した「抽選結果を発表しました」のお知らせと、今日が発表日の抽選 ---
+    # --- 抽選結果（/kekka/）：結果が出た抽選・これから結果が出る抽選を、お店・商品・日付・確かめ方だけにまとめる ---
+    # （Xのポストは参考にするだけ。本文の写しや他人のX・Amazonへのリンクは出さない）
     if sample is None:
         import results as _rs
-        rs = sorted(load_json("results.json", {}).items(), key=lambda kv: kv[1].get("found_at", ""), reverse=True)
+        import datetime as _dtk
         _sreg = load_json("stores.json", {})
-        sched = _rs.scheduled_today()
-        feed = {"updated": now().isoformat(), "results": [], "scheduled_today": sched}
-        h = ['<div class="guide"><p>お店や公式がXで「抽選結果を発表しました」「当選の方へメールを送りました」と出したお知らせを、見つけた順にまとめています。'
-             '応募した方は、お店のお知らせ・メール・アプリで結果を確かめてください。</p>']
-        if sched:
-            h.append("<h2>今日が結果の発表日の抽選</h2><ul>" + "".join(
-                f'<li>{escape(GAME_SHORT.get(r["game"], ""))}｜{escape(r["store"] or "")}'
-                + (f'（{escape("・".join(r["series"]))}）' if r["series"] else "") + "</li>" for r in sched) + "</ul>")
-        h.append("<h2>見つかった抽選結果の発表</h2>")
-        if rs:
-            h.append("<ul>")
-            for post, r in rs[:60]:
-                d = parse_dt(r.get("found_at"))
-                feed["results"].append({"post": post, "found_at": r.get("found_at"), "game": r["game"],
-                                        "game_name": GAME_SHORT.get(r["game"], r["game"]), "store": r.get("store"),
-                                        "series": r.get("series") or [], "matched": r.get("matched"), "text": r.get("text")})
-                h.append(f'<li><b>{escape(r.get("store") or "")}</b>（{escape(GAME_SHORT.get(r["game"], ""))}'
-                         + (f'・{escape("・".join(r["series"]))}' if r.get("series") else "") + f'）{d.month}/{d.day}'
-                         + f'<br><small>{escape(r.get("text") or "")}</small>'
-                         + (f' <a href="/{store_path(r["store"])}">このお店の抽選を見る</a>' if r.get("store") and store_path(r["store"]) in _sreg else "") + '</li>')
+        today_k = now().date()
+        _cur = []
+        for r in _rs.current():  # 弾の名前はサイトと同じ書き方に（Heroines Edition vol.2 → ヒロインズエディション vol.2）
+            if r.get("series"):
+                r = dict(r, series=(canon_series(r["game"], r["series"]) or [r["series"]])[0])
+            _cur.append(r)
+        done = [r for r in _cur if r["kind"] == "done"]
+        up = {}
+        for r in _cur:
+            if r["kind"] == "scheduled" and r["date"] >= today_k.isoformat():
+                up[(r["game"], normalize(r["store"]), normalize(r.get("series") or ""), r["date"])] = dict(r)
+        for it in raw_lots.values():  # お店の告知に書いてあった発表日（今日〜7日後）
+            a_ = str(it.get("announce") or "")
+            if it.get("status") in ("duplicate", "rejected") or it.get("game") not in GAME_SHORT or not re.match(r"\d{4}-\d\d-\d\d", a_):
+                continue
+            if not (today_k.isoformat() <= a_[:10] <= (today_k + _dtk.timedelta(days=7)).isoformat()):
+                continue
+            x_ = (canon_series(it["game"], it.get("series")) or [it.get("series")])[0] if it.get("series") else None
+            up.setdefault((it["game"], normalize(it["store"]), normalize(x_ or ""), a_[:10]),
+                          {"game": it["game"], "store": it["store"], "series": x_, "date": a_[:10], "check": None, "check_url": None})
+        done_keys = {(r["game"], normalize(r["store"]), r["date"]) for r in done}
+        upl = sorted((v for k, v in up.items() if (k[0], k[1], k[3]) not in done_keys), key=lambda r: (r["date"], r["store"]))
+
+        def _wd(d):
+            d = _dtk.date.fromisoformat(d)
+            return f"{d.month}/{d.day}({WEEK[d.weekday()]})"
+
+        def _row(r):
+            sp = store_path(r["store"])
+            name = f'<a href="/{sp}">{escape(r["store"])}</a>' if sp in _sreg else escape(r["store"])
+            how = escape(r.get("check") or "お店のお知らせ・メール")
+            off = (f'<a href="{escape(r["check_url"])}" target="_blank" rel="noopener nofollow">確認ページ</a>'
+                   if r.get("check_url") else "")
+            return (f'<li><span class="kk-g kk-{escape(r["game"])}">{escape(GAME_SHORT.get(r["game"], ""))}</span>'
+                    f'<b>{name}</b><span class="kk-s">{escape(r.get("series") or "")}</span>'
+                    f'<small>確かめ方：{how}{(" ／ " + off) if off else ""}</small></li>')
+
+        h = ['<div class="guide kekka"><p>ポケカ・ワンピースカードの抽選の<b>結果が出たお店</b>と、<b>これから結果が出るお店</b>をまとめています。'
+             '当落はお店のメール・アプリ・お知らせで確かめてください。</p>']
+        feed = {"updated": now().isoformat(), "results": [], "upcoming": [], "scheduled_today": _rs.scheduled_today()}
+
+        def _group(rows, title, empty):
+            h.append(f"<h2>{title}</h2>")
+            if not rows:
+                h.append(f'<p class="kk-none">{empty}</p>')
+                return
+            cur = None
+            for r in rows:
+                if r["date"] != cur:
+                    if cur:
+                        h.append("</ul>")
+                    cur = r["date"]
+                    lab = "今日" if cur == today_k.isoformat() else "明日" if cur == (today_k + _dtk.timedelta(days=1)).isoformat() else ""
+                    h.append(f'<h3>{_wd(cur)}{"（" + lab + "）" if lab else ""}</h3><ul class="kk-list">')
+                h.append(_row(r))
             h.append("</ul>")
-        else:
-            h.append("<p>今はまだありません。見つかりしだい、ここに載せます。</p>")
-        h.append('<p class="note">※トレカ抽選ナビが見つけたお知らせだけです。すべての抽選の結果を載せているわけではありません。</p></div>')
+        _group(upl[:60], "これから結果が出る抽選（7日以内）", "いまは見つかっていません。")
+        _group(done[:60], "結果が出た抽選", "まだ見つかっていません。見つかりしだい、ここに載せます。")
+        for r in done[:60]:
+            feed["results"].append({"found_at": r.get("found_at"), "date": r["date"], "game": r["game"],
+                                    "game_name": GAME_SHORT.get(r["game"], r["game"]), "store": r["store"],
+                                    "series": [r["series"]] if r.get("series") else [], "check": r.get("check"),
+                                    "text": f"{r['store']}の抽選結果が出ました（確かめ方：{r.get('check') or 'お店のお知らせ'}）"})
+        for r in upl[:60]:
+            feed["upcoming"].append({"date": r["date"], "game": r["game"], "game_name": GAME_SHORT.get(r["game"], r["game"]),
+                                     "store": r["store"], "series": r.get("series"), "check": r.get("check")})
+        h.append('<p class="note">※トレカ抽選ナビが見つけた分だけです。すべての抽選の結果を載せているわけではありません。'
+                 '発表日はお店の告知に書かれていた予定で、変わることがあります。</p></div>')
         write("kekka/", {"game": games[0]}, {
-            "title": "ポケカ・ワンピースカードの抽選結果・当選発表まとめ｜トレカ抽選ナビ",
-            "desc": "ポケカ・ワンピースカードの抽選結果（当選発表）のお知らせを、お店・公式のXから見つけしだいまとめています。今日が発表日の抽選も。",
+            "title": f"ポケカ・ワンピースカードの抽選結果・当選発表まとめ【{md}更新】｜トレカ抽選ナビ",
+            "desc": "ポケカ・ワンピースカードの抽選結果（当選発表）が出たお店と、これから結果が出るお店を日付ごとにまとめています。確かめ方（メール・アプリなど）も。",
             "summary": "", "h1": "抽選結果・当選発表のまとめ",
-            "lead": "お店・公式の当選発表のお知らせをまとめています。下には今受付中の抽選を載せています。",
+            "lead": "結果が出たお店・これから結果が出るお店を日付ごとにまとめています。下には今受付中の抽選を載せています。",
             "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
             [i for i in items if i["game"] == games[0]], [("トップ", ""), ("抽選結果", "kekka/")])
         (out / "results.json").write_text(json.dumps(feed, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -1509,11 +1554,17 @@ def build(settings=None, out_dir=None, sample=None):
         cut_h = (now() - __import__("datetime").timedelta(days=365)).isoformat()
         # 結果が出た日：お店・公式の「抽選結果を発表しました」のポストを見つけた日（なければ告知に書いてあった発表日）
         res_day = {}
-        for r_ in load_json("results.json", {}).values():
-            for lk_ in r_.get("lottery_keys") or []:
-                d_ = str(r_.get("found_at") or "")[:10]
-                if d_ and (lk_ not in res_day or d_ < res_day[lk_]):
-                    res_day[lk_] = d_
+        import results as _rs2
+        _done = {}
+        for r_ in _rs2.current():
+            if r_["kind"] == "done":
+                _done.setdefault(normalize(r_["store"]), []).append(r_["date"])
+        for k_, it_ in load_json("lotteries.json", {}).items():
+            e_ = str(it_.get("end") or "")[:10]
+            ds_ = sorted(d_ for d_ in _done.get(normalize(it_.get("store") or ""), []) if e_ and e_ <= d_ <= (
+                __import__("datetime").date.fromisoformat(e_) + __import__("datetime").timedelta(days=21)).isoformat())
+            if ds_:
+                res_day[k_] = ds_[0]
         for k, it in load_json("lotteries.json", {}).items():
             if it.get("status") in ("duplicate", "rejected") or not it.get("store") or it.get("game") not in GAME_SLUG:
                 continue

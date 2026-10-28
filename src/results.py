@@ -2,9 +2,11 @@
 
 ・新しくXを読むことはしない。抽選を探すために読んだポスト（collect.py）の中から、
   「抽選結果を発表しました」「当選者の方へメールを送りました」のようなお店・公式の発表だけを選ぶ
-・どの抽選の結果かは、ポストしたアカウント・お店の名前・弾の名前で今の抽選と照らし合わせる
+・お店・個人・まとめアカウントのポストを参考に、AIで「お店・商品・結果が出た日（出る日）・確かめ方」だけを取り出す
+  （本文の写し・他人のXやAmazonへのリンクはサイトに出さない）
 ・state/results.json に残す（30日分）。サイトの /kekka/ と results.json に出し、Xの予約作業が読む
 """
+import json
 import re
 from datetime import timedelta
 
@@ -15,9 +17,9 @@ KEEP_DAYS = 30
 # 結果の発表らしい言葉
 HIT = re.compile(r"(抽選結果|当選者|当選された|当選のお客様|当選番号|当選発表|当選メール|当選連絡|当選のご連絡|当選の方|当選者様|当選者さま)")
 # 「発表した・送った」など、もう出たことを表す言葉
-DONE = re.compile(r"(しました|いたしました|致しました|しております|お送り|送信|ご連絡|掲載|公開|発表です|発表中|出ました|きました|来ました|届い|確認できます|ご確認ください|下記|以下|こちら)")
-# 抽選の受付の告知（結果ではない）・個人の当選報告
-NOT = re.compile(r"(予定|後日|受付期間|応募期間|受付中|応募方法|応募受付|応募はこちら|当選報告|当たった|当たりました|当選しました[!！]|外れ|落選しました|ハズレ)")
+DONE = re.compile(r"(しました|いたしました|致しました|しております|お送り|送信|ご連絡|掲載|公開|発表です|発表中|出ました|きました|来ました|届い|確認できます|ご確認ください|下記|以下|こちら|予定|明日|発表日|出る)")
+# 抽選の受付の告知（結果ではない）。個人の当選報告・発表予定はAIが読み分ける
+NOT = re.compile(r"(受付期間|応募期間|受付中|応募方法|応募受付|応募はこちら|応募締切|締切)")
 GAME_WORDS = {"pokemon": re.compile(r"(ポケカ|ポケモンカード|ポケモンセンター|ポケセン|MEGA|ハドウシーカー|30th)"),
               "onepiece": re.compile(r"(ワンピ|ONE ?PIECE|ヒロインズ|神の支配)", re.I)}
 
@@ -81,40 +83,107 @@ def _match(p, game, lots):
     return ser or hit
 
 
-def scan(posts, src, lots=None):
-    """collect.py で読んだXのポストから結果の発表を拾って results.json に足す。足した数を返す"""
+RPROMPT = """あなたはトレカの抽選結果（当選発表）の情報を整理する係です。下のXのポスト（お店・個人・まとめアカウントのものが混ざる）を読んで、
+「どのお店の、どの商品の抽選の結果が、いつ・どこで分かるか」だけを取り出してください。本文をそのまま写さないこと。
+
+ルール:
+- 対象はポケモンカード（pokemon）とワンピースカード（onepiece）の商品の抽選だけ。
+- kind: すでに結果が出た・当選連絡が送られた＝"done"、これから発表される予定（「明日発表」など）＝"scheduled"。
+- 個人の「当たった・外れた」報告でも、お店の結果が出たことが分かるなら "done" として使ってよい（個人名は書かない）。
+- まとめアカウントの「明日の動き」のように複数のお店が並んでいれば、お店ごとに1件ずつ出す。店名が「ほか」「各店」で分からない分は出さない。
+- store は「チェーン名＋支店名」（例: ときわ書房 本八幡スクエア店）。分からなければその件は出さない。
+- series は弾・商品の名前だけ（例: Heroines Edition vol.2、30th CELEBRATION）。分からなければ null。
+- date は結果が出た日・出る日（YYYY-MM-DD）。今日は {today}。書かれていなければ、done は今日、scheduled は null。
+- check は結果の確かめ方を短く（例: 「メール」「アプリ」「Webのマイページ」「店頭の掲示」「お店のホームページ」）。分からなければ null。
+- check_url は、お店・公式の結果確認ページのURLがポストのリンクにあればそれ。X・Amazon・楽天・アフィリエイト・短縮URL（t.co）・まとめブログは入れない。無ければ null。
+- 結果発表と関係ないポストからは何も出さない。
+
+出力はJSON配列だけ:
+[{{"post": 番号, "kind": "done|scheduled", "game": "pokemon|onepiece", "store": "...", "series": "...", "date": "YYYY-MM-DD", "check": "...", "check_url": "..."}}]
+
+ポスト:
+{posts}"""
+
+BAD_URL = re.compile(r"(x\.com|twitter\.com|t\.co/|amazon\.|amzn\.|rakuten\.|a8\.net|moshimo|valuecommerce|linksynergy|accesstrade|"
+                     r"mikeco-room|cardchusen|nyuka-now|ameblo|hatenablog|livedoor)", re.I)
+
+
+def _ask(posts):
+    """結果発表らしいポストをまとめてAIに読ませ、お店・商品・日付・確かめ方だけを取り出す"""
+    import os
+    import requests
+    from extract import API_URL, MODEL, _parse as _p0
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        return []
+    txt = "\n\n".join(f"[{n}] 投稿者: {p['author']}\n日時: {p['at']}\n{p['body']}\nリンク: {' '.join(p['links'])}" for n, p in enumerate(posts))
+    r = requests.post(API_URL, timeout=90, headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+                      json={"model": MODEL, "max_tokens": 3000,
+                            "messages": [{"role": "user", "content": RPROMPT.format(today=now().date().isoformat(), posts=txt[:12000])}]})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Claude API エラー {r.status_code}: {r.text[:200]}")
+    raw = "".join(b.get("text", "") for b in r.json().get("content", []))
+    m = re.search(r"\[.*\]", raw, re.S)
+    try:
+        out = json.loads(m.group(0)) if m else []
+    except json.JSONDecodeError:
+        out = []
+    return [o for o in out if isinstance(o, dict) and o.get("store") and o.get("game") in GAME_WORDS
+            and o.get("kind") in ("done", "scheduled")]
+
+
+def scan(posts, src, lots=None, ask=None):
+    """collect.py で読んだXのポストから結果発表の情報を拾い、AIで「お店・商品・日付・確かめ方」だけにして results.json に足す。
+    ポストの本文やリンク（他人のX・Amazonなど）はサイトに出さない。足した数を返す"""
     data = load_json("results.json", {})
-    lots = lots if lots is not None else load_json("lotteries.json", {})
-    added = 0
+    seen = set(data.get("_posts") or [])
+    cand = []
     for text, _ in posts:
         p = _parse(text)
-        if not p or p["post"] in data or not is_result(p["body"]):
+        if not p or p["post"] in seen or not is_result(p["body"]):
             continue
-        if src.get("id") == "x_info_accounts":
-            continue  # まとめ・情報アカウントのポストは使わない
-        game = src.get("game")
-        if game not in GAME_WORDS:
-            game = next((g for g, rx in GAME_WORDS.items() if rx.search(p["body"])), None)
-        if not game:
-            continue  # ポケカ・ワンピースカードのどちらの話か分からないものは使わない
-        m = _match(p, game, lots)
-        if not m:
-            continue  # どのお店の抽選か（お店本人のポストか）分からないものは使わない
-        stores = sorted({i["store"] for i in m})
-        series = sorted({i["series"] for i in m if i.get("series")})
-        data[p["post"]] = {"game": game, "found_at": now().isoformat(), "posted_at": p["at"],
-                           "author": p["author"], "handle": p["handle"],
-                           "store": stores[0] if len(stores) == 1 else "・".join(stores[:3]),
-                           "series": series[:3], "lottery_keys": [i["key"] for i in m][:10],
-                           "matched": bool(m), "text": re.sub(r"https?://\S+", "", p["body"])[:140].strip(),
-                           "links": p["links"][:2], "source": src.get("id")}
-        added += 1
-        log(f"抽選結果: {data[p['post']]['store']} の発表を見つけました {p['post']}")
-    if added:
-        cut = (now() - timedelta(days=KEEP_DAYS)).isoformat()
-        data = {k: v for k, v in data.items() if v.get("found_at", "") >= cut}
-        save_json("results.json", data)
+        cand.append(p)
+    if not cand:
+        return 0
+    try:
+        got = (ask or _ask)(cand[:10])
+    except Exception as e:
+        log(f"抽選結果の読み取り失敗: {e}")
+        return 0
+    added = 0
+    items = data.setdefault("items", {})
+    for o in got:
+        d = str(o.get("date") or "")[:10] if re.match(r"\d{4}-\d\d-\d\d", str(o.get("date") or "")) else (
+            now().date().isoformat() if o["kind"] == "done" else "")
+        if not d:
+            continue
+        store = re.sub(r"\s+", " ", str(o["store"])).strip()[:40]
+        series = (str(o.get("series") or "").strip() or None)
+        k = f'{o["game"]}|{normalize(store)}|{normalize(series or "")}|{d}'
+        old = items.get(k) or {}
+        cu = o.get("check_url") or old.get("check_url")
+        if cu and (not str(cu).startswith("http") or BAD_URL.search(str(cu))):
+            cu = None
+        items[k] = {"game": o["game"], "store": store, "series": series, "date": d,
+                    "kind": "done" if "done" in (o["kind"], old.get("kind")) else "scheduled",
+                    "check": o.get("check") or old.get("check"), "check_url": cu,
+                    "found_at": old.get("found_at") or now().isoformat()}
+        if not old:
+            added += 1
+            log(f"抽選結果: {store}（{series or o['game']}）{d} {'発表済み' if items[k]['kind'] == 'done' else '発表予定'}")
+    seen |= {p["post"] for p in cand}
+    data["_posts"] = sorted(seen)[-500:]
+    cut = (now() - timedelta(days=KEEP_DAYS)).date().isoformat()
+    data["items"] = {k: v for k, v in items.items() if v["date"] >= cut}
+    save_json("results.json", data)
     return added
+
+
+def current():
+    """サイトに出す結果発表の一覧（新しい日付順）"""
+    data = load_json("results.json", {})
+    its = data.get("items") if isinstance(data.get("items"), dict) else {}
+    return sorted(its.values(), key=lambda v: (v["date"], v.get("found_at") or ""), reverse=True)
 
 
 def scheduled_today(lots=None):
@@ -135,15 +204,3 @@ def scheduled_today(lots=None):
                 out[k]["series"].add(it["series"])
     return [dict(v, series=sorted(v["series"])) for v in out.values()]
 
-
-def clean(lots=None):
-    """前の決まりで入った、お店本人以外のポスト（個人・まとめアカウント）を消す"""
-    data = load_json("results.json", {})
-    lots = lots if lots is not None else load_json("lotteries.json", {})
-    own = {_handle(i.get("x_post")) for i in lots.values() if i.get("x_post")}
-    keep = {k: v for k, v in data.items() if v.get("matched") and v.get("source") != "x_info_accounts"
-            and (v.get("handle") or "").lower() in own and _is_store(v.get("author"), v.get("store"))}
-    if len(keep) != len(data):
-        save_json("results.json", keep)
-        log(f"抽選結果: お店本人以外のポスト{len(data) - len(keep)}件を外しました")
-    return keep
