@@ -73,6 +73,15 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL }}
         run: python src/indexnow.py || true
+      - name: announce new sets on X (only when a new set was found)
+        if: github.event_name != 'issues'
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          DRY_RUN: ${{ vars.DRY_RUN }}
+        run: python src/announce.py || true
       - name: save state
         run: |
           git config user.name "bot"

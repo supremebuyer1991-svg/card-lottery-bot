@@ -744,7 +744,9 @@ def build(settings=None, out_dir=None, sample=None):
     # 中身が変わっていなければ「最終更新」も据え置き（無駄な再公開をしない）
     meta_state = load_json("site_meta.json", {})
     digest = sha(json.dumps(sorted(items, key=lambda x: x.get("key") or ""), ensure_ascii=False, sort_keys=True))
-    digest = sha(digest + str(load_json("x_trends.json", {}).get("generated")))  # 話題ネタが更新されたら下書きページも出し直す
+    digest = sha(digest + str(load_json("x_trends.json", {}).get("generated")))
+    digest = sha(digest + json.dumps(sorted((load_json("newsets.json", {}).get("series") or {}).get("pokemon", {})) +
+                                     sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 

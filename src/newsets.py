@@ -62,10 +62,11 @@ def pokemon_products(sess):
     return res
 
 
-def onepiece_products(sess):
+def onepiece_products(sess, pages=(1, 2, 3), html=None):
     res = {}
-    for page in (1, 2, 3):
-        html = sess.get(f"https://www.onepiece-cardgame.com/products/?page={page}&view=detail", timeout=30).text
+    for page in pages:
+        if html is None or page != pages[0]:
+            html = sess.get(f"https://www.onepiece-cardgame.com/products/?page={page}&view=detail", timeout=30).text
         txt = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", " ", html)))
         for m in re.finditer(r"(ブースター) ((?:ブースターパック|エクストラブースター|プレミアムブースター) "
                              r"[^発]{2,60}?) 発売日\s*(\d{4})\.(\d{2})\.(\d{2})\S*\s*メーカー希望小売価格\s*([\d,]+円)", txt):
@@ -81,7 +82,9 @@ def onepiece_products(sess):
                 price += "（税込）"
             slug = re.sub(r"[^a-z0-9]+", "", (code or "").lower())
             res[name] = {"release": _iso(*m.group(3, 4, 5)), "type": typ, "price": price, "slug": slug, "code": code}
-        time.sleep(1)
+        if len(pages) > 1:
+            time.sleep(1)
+        html = None
     return res
 
 
@@ -93,6 +96,83 @@ def find_snkr(sess, name):
         if name in label and re.search(r"ボックス|BOX", label) and not re.search(r"カートン|ケース|スリーブ|シングル|パック単品|英語版|海外版|韓国版|中国版|簡体|繁体|English", label):
             return int(aid)
     return None
+
+
+def _pk_ex(sess, n):
+    """ポケカ公式の弾の専用ページ（/ex/m8/ など）を見る。まだなければ None"""
+    for suf in ("", "a"):
+        r = sess.get(f"https://www.pokemon-card.com/ex/m{n}{suf}/", timeout=20, allow_redirects=False)
+        if r.status_code != 200:
+            continue
+        html = r.text
+        title = unescape((re.search(r"<title>(.*?)</title>", html, re.S) or [None, ""])[1])
+        q = re.search(r"「([^」]+)」", title)
+        if not q:
+            continue
+        txt = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", " ", html)))
+        rel = re.search(r"発売日\s*[:：]\s*(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日", txt)
+        pr = re.search(r"希望小売価格\s*[:：]\s*([\d,]+)円", txt)
+        typ = re.sub(r"^.*?(拡張パック|強化拡張パック|ハイクラスパック|スペシャルデッキセット|構築デッキ)?「.*$", r"\1", title) or "拡張パック"
+        price = ""
+        if pr:
+            v = int(pr.group(1).replace(",", ""))
+            n_ = 10 if "ハイクラス" in title else 30
+            price = f"1パック{v:,}円（税込）／1BOX（{n_}パック）{v * n_:,}円" if v < 1000 else f"{v:,}円（税込）"
+        return q.group(1).strip(), {"release": _iso(*rel.groups()) if rel else "", "type": typ, "price": price,
+                                    "slug": f"m{n}{suf}", "url_official": f"https://www.pokemon-card.com/ex/m{n}{suf}/"}
+    return None
+
+
+def quick_check(settings, sess=None):
+    """新弾の発表をすぐ見つける（30分ごとの実行のたびに。公式ページを1〜3回見るだけ）
+    ・ポケカ：専用ページの次の番号（/ex/m8/ など）ができたか
+    ・ワンピースカード：公式の商品一覧の1ページ目に新しいブースターが増えたか
+    見つけたら newsets.json に入れ、announce（Xの自動告知）の対象にする"""
+    data = load_json("newsets.json", {})
+    sess = sess or requests.Session()
+    sess.headers.update({"User-Agent": UA, "Accept-Language": "ja-JP,ja;q=0.9"})
+    today = now().date().isoformat()
+    ser = data.setdefault("series", {})
+    known = {g: {normalize(k) for k in m} for g, m in ser.items()}
+    st = settings or load_settings()
+    for g in ("pokemon", "onepiece"):
+        known.setdefault(g, set()).update(normalize(k) for k in ((st.get("series_info") or {}).get(g) or {}))
+        known[g].update(normalize(k) for k in ((st.get("series_aliases") or {}).get(g) or {}))
+    for g, m in ser.items():  # 型番（OP-19 など）でも同じ弾と分かるように
+        known.setdefault(g, set()).update(normalize(v.get("code")) for v in m.values() if isinstance(v, dict) and v.get("code"))
+    first = not data.get("qc_ready")  # 初回は今ある商品を覚えるだけ（告知しない）
+    found = []
+    n = int(data.get("pk_ex_next") or 8)
+    try:
+        hit = _pk_ex(sess, n)
+        if hit:
+            name, v = hit
+            data["pk_ex_next"] = n + 1
+            if normalize(name) not in known["pokemon"]:
+                ser.setdefault("pokemon", {})[name] = {"first_seen": today, "announce": "pending", **v}
+                found.append(("pokemon", name))
+    except Exception as e:
+        log(f"新弾チェック: ポケカ 失敗 {e}")
+    try:
+        html = sess.get("https://www.onepiece-cardgame.com/products/?page=1&view=detail", timeout=20).text
+        got = onepiece_products(sess, pages=(1,), html=html)
+        for name, v in got.items():
+            code = v.get("code") or ""
+            if normalize(name) in known["onepiece"] or normalize(code) in known["onepiece"]:
+                continue
+            if str(v.get("release") or "") < today:
+                continue  # 発売済みのものは新弾の告知にしない
+            ser.setdefault("onepiece", {})[name] = {"first_seen": today, "announce": "skip" if first else "pending", **v}
+            if not first:
+                found.append(("onepiece", name))
+        data["qc_ready"] = True
+    except Exception as e:
+        log(f"新弾チェック: ワンピースカード 失敗 {e}")
+    if found:
+        log(f"新弾チェック: 新しい弾を発見 {found}")
+        _SER_reset()
+    save_json("newsets.json", data)
+    return found
 
 
 def update_newsets(settings, sess=None, force=False):

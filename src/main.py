@@ -10,7 +10,7 @@ from xtrend import update_trends
 from pagecheck import check_pages
 from market import update_market
 from souba import update_souba
-from newsets import update_newsets
+from newsets import update_newsets, quick_check
 from wp import update_pages
 from sitegen import build as build_site, active_series
 import rakuten
@@ -61,6 +61,10 @@ def main():
             update_market(s)  # 今日の相場（スニダン・1日1回だけ）
         except Exception as e:
             log(f"相場: スキップ {e}")
+        try:
+            quick_check(s)  # 新弾の発表を毎回すぐチェック（見つけたらこの回でページを作り、公開後にXへ自動ポスト）
+        except Exception as e:
+            log(f"新弾チェック: スキップ {e}")
         try:
             update_newsets(s)  # 新しい弾を公式サイトから自動で見つける（1日1回）
         except Exception as e:
