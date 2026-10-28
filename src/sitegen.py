@@ -1414,7 +1414,7 @@ def build(settings=None, out_dir=None, sample=None):
                                         "series": r.get("series") or [], "matched": r.get("matched"), "text": r.get("text")})
                 h.append(f'<li><b>{escape(r.get("store") or "")}</b>（{escape(GAME_SHORT.get(r["game"], ""))}'
                          + (f'・{escape("・".join(r["series"]))}' if r.get("series") else "") + f'）{d.month}/{d.day}'
-                         + f'<br><small>{escape(r.get("text") or "")}</small> <a href="{escape(post)}" target="_blank" rel="noopener nofollow">お知らせを見る</a></li>')
+                         + f'<br><small>{escape(r.get("text") or "")}</small> <a href="{escape(post)}" target="_blank" rel="noopener nofollow">お店のお知らせ（X）</a></li>')
             h.append("</ul>")
         else:
             h.append("<p>今はまだありません。見つかりしだい、ここに載せます。</p>")

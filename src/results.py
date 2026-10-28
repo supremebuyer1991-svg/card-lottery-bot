@@ -41,6 +41,22 @@ def _handle(u):
     return m.group(1).lower() if m else None
 
 
+def _is_store(author, store):
+    """ポストしたアカウントの名前に、お店（またはチェーン）の名前が入っているか。
+    抽選の告知を個人が紹介したポストもあるので、アカウントが一致するだけでは「お店本人」と決めない"""
+    a = normalize(author or "").replace(" ", "")
+    core = normalize(re.sub(r"[（(][^）)]*[）)]", "", store or "")).replace(" ", "")
+    names = {core} | {w for w in re.split(r"[・/]", core) if len(w) >= 3}
+    try:
+        from sitegen import chain_of, CHAIN
+        c = chain_of(store)
+        if c:
+            names.add(normalize(CHAIN[c][1]).replace(" ", ""))
+    except Exception:
+        pass
+    return any(len(n) >= 3 and n in a for n in names)
+
+
 def _match(p, game, lots):
     """どの抽選の結果か。締切が過ぎた（か近い）抽選から、アカウント → お店の名前 の順で探す"""
     t = now()
@@ -54,11 +70,10 @@ def _match(p, game, lots):
         if not end or not (t - timedelta(days=21) <= end <= t + timedelta(days=1)):
             continue
         cand.append(it)
+    # お店本人のアカウント（その抽選を告知したアカウント）のポストだけを使う。
+    # 個人の当選報告や、ほかのまとめアカウントのポストを「結果発表」として載せない
     h = p["handle"].lower()
-    hit = [i for i in cand if _handle(i.get("x_post")) == h]
-    if not hit:
-        txt = normalize(p["author"] + " " + p["body"])
-        hit = [i for i in cand if len(normalize(i["store"])) >= 4 and normalize(i["store"]) in txt]
+    hit = [i for i in cand if _handle(i.get("x_post")) == h and _is_store(p["author"], i["store"])]
     if not hit:
         return []
     # 弾の名前がポストに出ていればそれに絞る
@@ -75,17 +90,21 @@ def scan(posts, src, lots=None):
         p = _parse(text)
         if not p or p["post"] in data or not is_result(p["body"]):
             continue
+        if src.get("id") == "x_info_accounts":
+            continue  # まとめ・情報アカウントのポストは使わない
         game = src.get("game")
         if game not in GAME_WORDS:
             game = next((g for g, rx in GAME_WORDS.items() if rx.search(p["body"])), None)
         if not game:
             continue  # ポケカ・ワンピースカードのどちらの話か分からないものは使わない
         m = _match(p, game, lots)
+        if not m:
+            continue  # どのお店の抽選か（お店本人のポストか）分からないものは使わない
         stores = sorted({i["store"] for i in m})
         series = sorted({i["series"] for i in m if i.get("series")})
         data[p["post"]] = {"game": game, "found_at": now().isoformat(), "posted_at": p["at"],
                            "author": p["author"], "handle": p["handle"],
-                           "store": stores[0] if len(stores) == 1 else (p["author"] if not stores else "・".join(stores[:3])),
+                           "store": stores[0] if len(stores) == 1 else "・".join(stores[:3]),
                            "series": series[:3], "lottery_keys": [i["key"] for i in m][:10],
                            "matched": bool(m), "text": re.sub(r"https?://\S+", "", p["body"])[:140].strip(),
                            "links": p["links"][:2], "source": src.get("id")}
@@ -115,3 +134,16 @@ def scheduled_today(lots=None):
             except Exception:
                 out[k]["series"].add(it["series"])
     return [dict(v, series=sorted(v["series"])) for v in out.values()]
+
+
+def clean(lots=None):
+    """前の決まりで入った、お店本人以外のポスト（個人・まとめアカウント）を消す"""
+    data = load_json("results.json", {})
+    lots = lots if lots is not None else load_json("lotteries.json", {})
+    own = {_handle(i.get("x_post")) for i in lots.values() if i.get("x_post")}
+    keep = {k: v for k, v in data.items() if v.get("matched") and v.get("source") != "x_info_accounts"
+            and (v.get("handle") or "").lower() in own and _is_store(v.get("author"), v.get("store"))}
+    if len(keep) != len(data):
+        save_json("results.json", keep)
+        log(f"抽選結果: お店本人以外のポスト{len(data) - len(keep)}件を外しました")
+    return keep
