@@ -82,6 +82,12 @@ jobs:
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
           DRY_RUN: ${{ vars.DRY_RUN }}
         run: python src/announce.py || true
+      - name: send new lotteries to Discord (copy-paste drafts for X)
+        if: github.event_name != 'issues'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: python src/notify.py || true
       - name: save state
         run: |
           git config user.name "bot"
