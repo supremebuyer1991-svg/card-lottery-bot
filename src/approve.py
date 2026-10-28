@@ -135,6 +135,10 @@ def approve(settings):
         posted = _post_date(it.get("url"))
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
+        if re.search(r"(x|twitter)\.com/pokepi_tcg/", (it.get("url") or "") + " " + (it.get("x_post") or ""), re.I):
+            it["status"] = "rejected"  # 自分のアカウントのポストから拾ったもの（元の抽選は別に載っている）
+            it["closed_reason"] = "自分のポストから拾ったもの"
+            continue
         # 応募先がまとめブログ（お店・公式ではない）なら、リンクを外す（ブログは情報元としてだけ残す）
         if it.get("blog_url") and not it.get("url"):  # リストから外したブログはリンクを戻す
             bh = re.sub(r"^https?://(www\.)?", "", it["blog_url"]).split("/")[0].lower()

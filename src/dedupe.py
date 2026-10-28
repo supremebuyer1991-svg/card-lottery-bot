@@ -20,7 +20,7 @@ def norm_store(s):
         s = s.replace(a, b)
     s = re.sub(r"[\s・\-]", "", s).lower()
     s = re.sub(r"(各店舗|各店|全店舗|全店|全国)$", "", s)   # 「古本市場 各店」＝「古本市場」
-    return re.sub(r"(.{2,}?)\1+", r"\1", s)              # 「古本市場・ふるいち」→「古本市場古本市場」→「古本市場」
+    return re.sub(r"(.{3,}?)\1+", r"\1", s)              # 「古本市場・ふるいち」→「古本市場古本市場」→「古本市場」
 
 
 def norm_product(s):
@@ -39,6 +39,16 @@ def norm_series(s, aliases):
     return re.sub(r"[\s・「」『』\-/]", "", s)
 
 
+def _skey(it):
+    x = it.get("series") or it.get("product")
+    try:
+        from sitegen import canon_series
+        x = "/".join(sorted(canon_series(it.get("game"), x) or [x]))  # 2つの弾をまとめた抽選は、両方の名前で比べる
+    except Exception:
+        pass
+    return norm_series(x, {})
+
+
 def _rank(it):
     """残す優先度（大きいほど残す）"""
     return (bool(it.get("manual")),                                          # 自分で追加した抽選（個別ページのURLを変えないため）
@@ -50,13 +60,13 @@ def _rank(it):
 
 def dedupe(settings=None):
     s = settings or load_settings()
-    aliases = s.get("rakuten_aliases") or {}
+    # 弾名はサイトと同じ名前にそろえてから比べる（楽天用の別名は使わない：vol.2 と vol.1 が同じになってしまうため）
     lots = load_json("lotteries.json", {})
     groups = {}
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
             continue
-        g = (it.get("game"), norm_store(it.get("store")), norm_series(it.get("series") or it.get("product"), aliases), it["end"][:10])
+        g = (it.get("game"), norm_store(it.get("store")), _skey(it), it["end"][:10])
         groups.setdefault(g, []).append(k)
     n = 0
 
@@ -100,7 +110,7 @@ def dedupe(settings=None):
     full = {}
     for k, it in lots.items():
         if it.get("status") in ACTIVE:
-            full.setdefault((it.get("game"), norm_store(it.get("store")), norm_series(it.get("series") or it.get("product"), aliases)), []).append(k)
+            full.setdefault((it.get("game"), norm_store(it.get("store")), _skey(it)), []).append(k)
     for keys in full.values():
         if len(keys) < 2:
             continue
@@ -147,8 +157,8 @@ def dedupe(settings=None):
         if not cc or not others:
             continue
         for k in others:
-            sk = norm_series(lots[k].get("series") or lots[k].get("product"), aliases)
-            same = [c for c in cc if norm_series(lots[c].get("series") or lots[c].get("product"), aliases) == sk]
+            sk = _skey(lots[k])
+            same = [c for c in cc if _skey(lots[c]) == sk]
             merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
     if n:
         save_json("lotteries.json", lots)

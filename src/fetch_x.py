@@ -58,6 +58,7 @@ def build_query(src) -> str:
     if src.get("keywords"):
         parts.append(src["keywords"])
     parts.append("-is:retweet -is:reply lang:ja")
+    parts.append("-from:pokepi_tcg")  # 自分のアカウント（トレカ抽選ナビ）のポストは拾わない
     if not src.get("accounts"):
         # 一般ユーザーの雑談を除外して告知だけに寄せる
         parts.append(("has:links " if src.get("require_links", True) else "")
