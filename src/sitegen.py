@@ -1483,7 +1483,11 @@ def build(settings=None, out_dir=None, sample=None):
         import teika as _tk
         tk = _tk.current()
         tk.sort(key=lambda r: (r["game"] != games[0], -len(r["hits"])))
-        feed_t = {"updated": now().isoformat(), "items": []}
+        feed_t = {"updated": now().isoformat(), "items": [],
+                  # 見張っている弾と定価（Xの予約作業がAmazonを見るときにも使う）
+                  "targets": [{"game": g_, "game_name": GAME_SHORT.get(g_), "series": x_, "teika": t_,
+                               "words": (s.get("rakuten_aliases") or {}).get(x_) or x_}
+                              for g_, x_, t_ in _tk.targets(s)]}
         h = ['<div class="guide teika"><p>楽天市場で<b>在庫あり</b>・<b>定価の1.1倍以下</b>で売られているBOXを、数時間ごとに自動で探しています。'
              '売り切れが早いので、気になる商品は早めに確認してください。<span class="pr">PR</span>リンクは楽天アフィリエイトです。</p>']
         if tk:
@@ -1496,7 +1500,7 @@ def build(settings=None, out_dir=None, sample=None):
                              f'{"<small>送料込み</small>" if x.get("postage") else ""}<span>{escape(x["shop"])}｜{escape(x["name"][:60])}</span>'
                              f'<a href="{escape(x["url"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a></li>')
                     feed_t["items"].append({"game": r["game"], "game_name": GAME_SHORT.get(r["game"]), "series": r["series"], "teika": r["teika"],
-                                            "price": x["price"], "shop": x["shop"], "name": x["name"], "url": x["url"], "first_seen": x["first_seen"],
+                                            "price": x["price"], "shop": x["shop"], "name": x["name"], "url": x["url"], "item_url": x.get("url_raw") or x["url"], "first_seen": x["first_seen"],
                                             "page": f"{site}/teika/"})
                 h.append("</ul>")
         else:
