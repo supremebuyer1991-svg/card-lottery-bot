@@ -795,7 +795,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
           : Object.keys(DATA.gameCounts || {}).reduce(function (a, k) { return a + DATA.gameCounts[k]; }, 0);
         return '<button role="tab" type="button" data-g="all" aria-selected="' + (st.game === "all") + '">すべて<span class="n">' + na + '</span></button>';
       }
-      var n = items.some(function (i) { return i.game === x.id; })
+      var n = !DATA.subsetOnly && items.some(function (i) { return i.game === x.id; })
         ? items.filter(function (i) { return i.game === x.id && (i._end == null || i._end > Date.now()); }).length
         : ((DATA.gameCounts || {})[x.id] || 0);
       return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.tab || x.name) + '<span class="n">' + n + '</span></button>';

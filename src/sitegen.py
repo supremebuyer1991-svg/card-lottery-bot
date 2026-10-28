@@ -887,6 +887,10 @@ def build(settings=None, out_dir=None, sample=None):
         g0 = lock.get("game") or games[0]
         if not path:  # トップ＝総合（3つのゲームの抽選を全部入れて「すべて」タブで開く）
             data = {**common_data, "lock": lock, "items": items, "gameCounts": game_counts, "allLoaded": True, "defaultGame": "all"}
+        elif any(lock.get(k) for k in ("store", "chain", "series", "area", "subset")):
+            # お店・チェーン・弾・地域・カレンダーのページは、そのページに出す抽選だけ（ページが数分の1の重さになる）
+            data = {**common_data, "lock": lock, "items": list(subset), "gameCounts": game_counts, "subsetOnly": True,
+                    "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
         else:
             data = {**common_data, "lock": lock, "items": [i for i in items if i["game"] == g0], "gameCounts": game_counts,
                     "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
@@ -1331,7 +1335,7 @@ def build(settings=None, out_dir=None, sample=None):
                                   + (f"希望小売価格は{inf['price']}。" if inf.get("price") else "")
                                   + (f"いま受付中の抽選は{n_}件あります。" if n_ else "抽選・予約の情報が見つかり次第、弾のページに載せます。")))
             up_items = [i for i in items if any(t[0] > today_c and t[1] == i["game"] and t[2] in (i.get("sers") or [i.get("series")]) for t in rows_c)]
-            write("calendar/", {"game": games[0]}, {
+            write("calendar/", {"game": games[0], "subset": True}, {
                 "title": f"ポケカ・ワンピースカード 発売日カレンダー【{now().year}年{now().month}月更新】新弾の発売日・定価・抽選情報｜トレカ抽選ナビ",
                 "desc": "ポケカ・ワンピースカードの新弾・新商品の発売日と希望小売価格を月ごとにまとめたカレンダー。発売前の弾の抽選・予約の受付状況も30分ごとに更新。",
                 "summary": "", "faq": faq_c or None, "h1": "ポケカ・ワンピースカード 発売日カレンダー",
