@@ -1020,9 +1020,27 @@ def build(settings=None, out_dir=None, sample=None):
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
+        _hist0 = {} if sample is not None else load_json("store_history.json", {})
+        _reg0 = {} if sample is not None else load_json("stores.json", {})
+        _cut90 = (now() - __import__("datetime").timedelta(days=90)).isoformat()
         for a in areas:
             ai = [i for i in gi if i.get("channel") == "store" and i.get("area") == a]
+            # この県で抽選が多いお店（過去90日・お店ページの履歴から）
+            rank_a = []
+            for sp_, r_ in _reg0.items():
+                if r_.get("area") != a:
+                    continue
+                n_ = sum(1 for v in ((_hist0.get(sp_) or {}).get("items") or {}).values() if v["g"] == g and (v["e"] or v["f"]) >= _cut90[:10])
+                if n_:
+                    rank_a.append((n_, r_["name"], sp_))
+            rank_a.sort(key=lambda t: (-t[0], t[1]))
+            area_html = ""
+            if rank_a:
+                area_html = (f'<section class="hist"><h2>{escape(a)}で{escape(short)}の抽選が多いお店<small>過去90日・トレカ抽選ナビ調べ</small></h2><ul>' +
+                             "".join(f'<li><a href="/{sp_}">{escape(nm)}</a><small>{n_}件</small></li>' for n_, nm, sp_ in rank_a[:10]) +
+                             f'</ul><p class="note">※{a}のお店で、この90日に見つかった{short}の抽選の数です（{sum(t[0] for t in rank_a)}件）。お店の名前を押すと、そのお店のこれまでの抽選が見られます。</p></section>')
             write(f"{slug}/area/{PREF[a]}/", {"game": g, "channel": "store", "area": a}, {
+                "info_html": area_html,
                 "title": f"{a}の{short}店頭抽選まとめ【{md}更新】{len(ai)}件・締切順｜トレカ抽選ナビ",
                 "desc": f"【{md}更新】{a}の店舗で受付中の{name}（{short}）の店頭抽選・抽選券配布{len(ai)}件を締切順にまとめ。"
                         "Web応募で店頭受取の抽選も含みます。",
@@ -1529,6 +1547,42 @@ def build(settings=None, out_dir=None, sample=None):
         lead = (rec + f"いま受付中の{cname}の{words}の抽選は{len(ci)}件です。"
                 if ci else rec + f"{cname}で現在受付中の抽選はありません。新しい抽選が見つかり次第、自動で追加されます。")
         stl = _links(f"{cname}の店舗（{len(sts)}店）", [(r["name"], "/" + p) for p, r in sts[:40]]) if sts else ""
+        # チェーンの抽選の傾向（今のデータと最近30日の抽選から。事実だけ）
+        craw = [v for v in (raw_lots.values() if sample is None else []) if v.get("status") not in ("duplicate", "rejected")
+                and chain_of(v.get("store")) == slug and v.get("game") in GAME_SLUG]
+        guide_c = ""
+        if len(craw) >= 5:
+            def _how(v):
+                m_, tg_ = v.get("method") or "", " ".join(v.get("tags") or [])
+                return ("SNS（フォロー・リポスト）" if re.search("SNS|X抽選|ポスト|リポスト", m_ + tg_) else "アプリ" if "アプリ" in m_ + tg_
+                        else "店頭（抽選券・整理券）" if re.search("店頭|整理券|抽選券", m_ + tg_) else "Web（応募フォーム）")
+            hw = {}
+            for v in craw:
+                hw[_how(v)] = hw.get(_how(v), 0) + 1
+            hw_s = "・".join(f"{k}{n}件" for k, n in sorted(hw.items(), key=lambda kv: -kv[1]))
+            idn = sum(1 for v in craw if v.get("id_check") is True)
+            idk = sum(1 for v in craw if v.get("id_check") is not None)
+            mem = sum(1 for v in craw if v.get("member") in ("card", "account"))
+            memk = sum(1 for v in craw if v.get("member"))
+            durs = [(parse_dt(v["end"]) - parse_dt(v["start"])).total_seconds() / 86400 for v in craw
+                    if parse_dt(v.get("start")) and parse_dt(v.get("end")) and parse_dt(v["end"]) > parse_dt(v["start"])]
+            sers = {}
+            for v in craw:
+                x_ = (canon_series(v["game"], v.get("series")) or [None])[0] if v.get("series") else None
+                if x_:
+                    sers[x_] = sers.get(x_, 0) + 1
+            li = [f"<li><b>応募のしかた</b>：{escape(hw_s)}</li>"]
+            if idk >= 3:
+                li.append(f"<li><b>本人確認</b>：書いてあった{idk}件のうち{idn}件で必要（{idn * 100 // idk}%）</li>")
+            if memk >= 3:
+                li.append(f"<li><b>会員登録・会員カード</b>：書いてあった{memk}件のうち{mem}件で必要</li>")
+            if len(durs) >= 3:
+                durs.sort()
+                li.append(f"<li><b>受付期間の長さ</b>：多くは{durs[len(durs) // 2]:.0f}日くらい（短いもので{durs[0]:.0f}日、長いもので{durs[-1]:.0f}日）</li>")
+            if sers:
+                li.append("<li><b>多かった弾</b>：" + "、".join(f"{escape(k)}（{n}件）" for k, n in sorted(sers.items(), key=lambda kv: -kv[1])[:4]) + "</li>")
+            guide_c = (f'<section class="hist"><h2>{escape(cname)}の抽選の傾向<small>最近の{len(craw)}件から</small></h2><ul class="cg">' + "".join(li) +
+                       '</ul><p class="note">※トレカ抽選ナビが見つけた最近の抽選から集計しています。応募の条件はお店・抽選ごとに違うので、必ず告知を確認してください。</p></section>')
         # チェーン全体のこれまでの抽選（お店ごとの履歴から）
         cpast, cseen = [], set()
         for sp_, h_ in hist.items():
@@ -1560,8 +1614,8 @@ def build(settings=None, out_dir=None, sample=None):
             "desc": f"【{md}更新】{cname}の{words}の抽選販売・予約抽選" + (f"{len(ci)}件" if ci else "") +
                     "を店舗別・締切順にまとめ。Web応募・店頭応募、受け取り方法、本人確認・会員の条件もひと目で分かります。",
             "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
-            "aff": (_rec_note(cname) if big else "") + ("" if ci else chist),
-            "info_html": chist if ci else "",
+            "aff": (_rec_note(cname) if big else "") + ("" if ci else guide_c + chist),
+            "info_html": (guide_c + chist) if ci else "",
             "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
             [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/")])
         chain_links.append((slug, cname, big, len(ci)))
