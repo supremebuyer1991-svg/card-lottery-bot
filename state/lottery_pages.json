@@ -10884,7 +10884,6 @@
       "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "end": "2026-11-03T23:59:00+09:00",
       "method": "Web",
-      "url": "https://twitter.com/AfroTCG/status/2115077230602985560/photo/1",
       "channel": "store",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jugem2020/cabinet/13772022/imgi_51_1c0e88a.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F",
@@ -10944,7 +10943,6 @@
       "tags": [
         "会員"
       ],
-      "url": "https://x.com/chang_tingyao/status/2115071216272699795",
       "channel": "online",
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
@@ -13514,7 +13512,7 @@
       "key": "2da70031c45c2086",
       "game": "onepiece",
       "store": "すまいるキング刈谷店",
-      "product": "ワンピカード｜神の支配【OP-18】",
+      "product": "ワンピースカード｜神の支配【OP-18】",
       "series": "神の支配",
       "start": "2026-10-26T12:00:00+09:00",
       "end": "2026-11-11T23:59:00+09:00",
@@ -13597,7 +13595,6 @@
       "product": "30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-11-01",
-      "url": "https://x.com/afrotcg/status/2115429192066273396?s=46",
       "channel": "store",
       "area": "大阪府",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -13615,7 +13612,6 @@
       "product": "30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-10-31",
-      "url": "https://x.com/afrotcg/status/2115428326819168639?s=46",
       "channel": "store",
       "area": "大阪府",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -13633,7 +13629,6 @@
       "product": "30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-11-02",
-      "url": "https://x.com/afrotcg/status/2115334647609721016?s=46",
       "channel": "store",
       "area": "大阪府",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -13650,7 +13645,6 @@
       "store": "フレンズ書店横須賀佐原インター店",
       "product": "Heroines Edition vol.2",
       "end": "2026-10-29T10:00:00+09:00",
-      "url": "https://x.com/afrotcg/status/2113615483912237531?s=46",
       "channel": "store",
       "area": "神奈川県",
       "spath": "store/furenzu-inta-9d917/",
@@ -13665,7 +13659,6 @@
       "store": "バトロコ水戸駅前",
       "product": "Heroines Edition vol.2",
       "end": "2026-10-29T12:00:00+09:00",
-      "url": "https://x.com/afrotcg/status/2114370258710757405?s=46",
       "channel": "store",
       "area": "茨城県",
       "spath": "store/batoroco-4c420/",
@@ -13823,6 +13816,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー 抽選販売",
       "series": "ハドウシーカー",
       "end": "2026-11-02T22:00:00+09:00",
+      "conditions": "LivePocket会員登録が必要。当選QRコードチケットと本人確認書類を使用",
       "url": "https://livepocket.jp/e/89qdn",
       "channel": "store",
       "area": "長崎県",
@@ -13849,6 +13843,27 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/tsutaya-4fb07/",
       "found_at": "2026-10-29T01:20:05.193668+09:00"
+    },
+    "last": "2026-10-29"
+  },
+  "l/43ca5fff49/": {
+    "d": {
+      "key": "43ca5fff4924c714",
+      "game": "onepiece",
+      "store": "TCバトロコ 盛岡大通",
+      "product": "HEROINES PRECIOUS BOX",
+      "series": "HEROINES PRECIOUS",
+      "end": "2026-11-04T23:59:00+09:00",
+      "method": "Web",
+      "conditions": "TCG+登録済み、バトロコポイントカード必須（本文途中まで）",
+      "tags": [
+        "会員"
+      ],
+      "channel": "store",
+      "area": "岩手県",
+      "member": "card",
+      "spath": "store/batoroco-b7c6a/",
+      "found_at": "2026-10-29T03:26:17.758361+09:00"
     },
     "last": "2026-10-29"
   }
