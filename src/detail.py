@@ -76,7 +76,7 @@ dd ul{margin:0;padding-left:1.1em}dd li{margin:2px 0}
 .acts{padding:14px 16px 16px;display:grid;gap:10px;border-top:1px dashed var(--rule)}
 .go{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;
  font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
-.sub-acts{display:flex;gap:8px;flex-wrap:wrap}.sub-acts a{flex:1;text-align:center;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
+.sub-acts{display:flex;gap:8px;flex-wrap:wrap}.apb{flex:1;font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{flex:1;text-align:center;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
 .note{font-size:12px;color:var(--ink-2);margin:0}
 .ended{background:var(--navy-soft);border-radius:10px;padding:12px 14px;margin:14px 0 0;font-weight:700}
 .more{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;margin:14px 0}
@@ -107,6 +107,12 @@ else if(E){var soon=E-N<864e5;cls=soon?"soon":"";lab=same(E,N)?"本日締切":so
 else{big="受付中";sub="締切は告知でご確認ください";}
 el.textContent=lab;el.className="chip st "+cls;if(cd){cd.className="cd "+cls;cd.innerHTML="<b>"+big+"</b>"+(sub?"<span>"+sub+"</span>":"");}
 })();
+(function(){var b=document.getElementById("ap");if(!b)return;var K="lot_applied";
+function ld(){try{return JSON.parse(localStorage.getItem(K)||"{}")}catch(e){return {}}}
+function sv(v){try{localStorage.setItem(K,JSON.stringify(v))}catch(e){}}
+function show(){var a=ld()[b.dataset.key];b.className="apb"+(a?" on":"");b.textContent=a?"✓ 応募した":"☐ 応募した";}
+b.addEventListener("click",function(){var a=ld(),k=b.dataset.key;if(a[k])delete a[k];else{var o={};try{o=JSON.parse(b.dataset.snap)}catch(e){}o.t=Date.now();a[k]=o;}sv(a);show();});
+show();var l=document.createElement("a");l.href="/mylist/";l.className="mlk";l.textContent="応募したリストを見る →";b.parentNode.parentNode.appendChild(l);})();
 """
 
 
@@ -180,7 +186,11 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     btn = (f'<a class="go off" id="go">受付は終了しました</a>' if is_end else
            (f'<a class="go" id="go" href="{escape(i["url"])}" target="_blank" rel="nofollow noopener">応募ページを開く →</a>' if i.get("url")
             else '<a class="go off" id="go">応募先は店舗の告知でご確認ください</a>'))
-    acts = (f'<div class="acts">{btn}<div class="sub-acts"><a href="{escape(share_url)}" target="_blank" rel="noopener">Xでシェア</a>'
+    snap = {"store": store, "product": name, "series": i.get("series"), "end": i.get("end"), "announce": i.get("announce"),
+            "url": i.get("url"), "lpath": path, "game": g}
+    ap_btn = (f'<button type="button" id="ap" class="apb" data-key="{escape(i.get("key") or "")}" '
+              f'data-snap="{escape(json.dumps(snap, ensure_ascii=False))}">☐ 応募した</button>') if i.get("key") else ""
+    acts = (f'<div class="acts">{btn}<div class="sub-acts">{ap_btn}<a href="{escape(share_url)}" target="_blank" rel="noopener">Xでシェア</a>'
             f'<a href="/{GAME_SLUG.get(g, "")}/">ほかの抽選を見る</a></div>'
             '<p class="note">情報は変わることがあります。応募前に必ず公式の告知をご確認ください。</p></div>')
 
@@ -233,3 +243,65 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
 
 def snapshot(i):
     return {k: i.get(k) for k in KEEP if i.get(k) not in (None, "", [])}
+
+
+MYLIST_JS = r"""
+(function(){var K="lot_applied",W="日月火水木金土";
+function ld(){try{return JSON.parse(localStorage.getItem(K)||"{}")}catch(e){return null}}
+function sv(v){try{localStorage.setItem(K,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function ymd(d){return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
+function md(d){return (d.getMonth()+1)+"/"+d.getDate()+"("+W[d.getDay()]+")"}
+// 当選発表日：ISOの日付か「11/4(水)23時頃」のような書き方から月日を読む（年は締切の年。締切より前の月なら翌年）
+function annDate(o){var a=o.announce;if(!a)return null;var d=Date.parse(a);if(!isNaN(d)&&/^\d{4}-/.test(a))return new Date(d);
+ var m=String(a).match(/(\d{1,2})\s*[\/月]\s*(\d{1,2})/);if(!m)return null;var e=o.end?new Date(o.end):new Date();var y=e.getFullYear();
+ var r=new Date(y,+m[1]-1,+m[2]);if(o.end&&r<new Date(e.getFullYear(),e.getMonth(),e.getDate()-1))r=new Date(y+1,+m[1]-1,+m[2]);return r;}
+function render(){var a=ld(),box=document.getElementById("ml");
+ if(a===null){box.innerHTML='<p class="empty">このブラウザでは記録を読み込めませんでした（プライベートモードなど）。</p>';return}
+ var ks=Object.keys(a);document.getElementById("mln").textContent=ks.length;
+ if(!ks.length){box.innerHTML='<p class="empty">まだ「応募した」の印をつけた抽選はありません。<br>抽選の一覧や個別ページの「☐ 応募した」を押すと、ここに並びます。</p>';return}
+ var now=new Date(),T=ymd(now),rows=ks.map(function(k){var o=a[k];if(typeof o!=="object"||!o)o={t:o};o.k=k;o.E=o.end?new Date(o.end):null;o.A=annDate(o);
+  o.g=o.A&&ymd(o.A)===T?0:o.A&&ymd(o.A)<T?3:o.E&&o.E>now?1:2;return o});
+ rows.sort(function(x,y){return x.g-y.g||((x.A||x.E||0)-(y.A||y.E||0))});
+ var H={0:"🎉 今日が結果発表",1:"受付中（締切が近い順）",2:"締切済み・結果待ち",3:"結果発表日を過ぎた抽選"},h="",cur=-1;
+ rows.forEach(function(o){if(o.g!==cur){if(cur>=0)h+="</ul>";h+='<h2 class="g'+o.g+'">'+H[o.g]+'</h2><ul>';cur=o.g}
+  var name=o.store?esc(o.store)+"「"+esc(o.series||o.product||"")+"」":"（抽選の情報を記録していません）";
+  var link=o.lpath?'/'+esc(o.lpath):(o.url?esc(o.url):"");
+  h+='<li class="g'+o.g+'"><div class="t">'+(link?'<a href="'+link+'">'+name+'</a>':name)+'</div><div class="m">'+
+   (o.E?'<span>締切 '+md(o.E)+' '+("0"+o.E.getHours()).slice(-2)+':'+("0"+o.E.getMinutes()).slice(-2)+'</span>':'')+
+   (o.announce?'<span class="an">結果発表 '+esc(/^\d{4}-/.test(o.announce)&&o.A?md(o.A):o.announce)+'</span>':'<span>結果発表日は告知で確認</span>')+
+   '</div><button type="button" data-k="'+esc(o.k)+'">外す</button></li>'});
+ box.innerHTML=h+"</ul>";}
+document.getElementById("ml").addEventListener("click",function(e){var b=e.target.closest("button[data-k]");if(!b)return;var a=ld()||{};delete a[b.dataset.k];sv(a);render();});
+render();})();
+"""
+
+
+def mylist_page(site=""):
+    """応募したリスト（/mylist/）：このブラウザの中だけに記録した「応募した」抽選の一覧。検索には載せない"""
+    css = CSS + """
+.ml h1{font-size:22px;margin:16px 0 4px}.ml .lead{color:var(--ink-2);font-size:14px;margin:0 0 12px}
+.ml h2{font-size:15px;margin:18px 0 6px}.ml h2.g0{color:var(--red)}
+.ml ul{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--rule);border-radius:12px}
+.ml li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 14px;border-top:1px solid var(--rule)}.ml li:first-child{border-top:0}
+.ml li.g0{background:var(--red-soft)}.ml li.g3{opacity:.6}.ml .t{font-weight:700}.ml .t a{text-decoration:none}
+.ml .m{grid-column:1;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--ink-2)}.ml .an{font-weight:700;color:var(--ink)}
+.ml li.g0 .an{color:var(--red)}.ml button{grid-column:2;grid-row:1/3;align-self:center;font:inherit;font-size:12px;border:1px solid var(--rule);background:none;border-radius:6px;padding:3px 8px;color:var(--ink-2);cursor:pointer}
+.ml .empty{background:var(--card);border:1px dashed var(--rule);border-radius:12px;padding:24px;text-align:center;color:var(--ink-2)}
+.ml .small{font-size:11.5px;color:var(--ink-2);margin:14px 0 30px}"""
+    return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+            '<title>応募したリスト｜トレカ抽選ナビ</title><meta name="robots" content="noindex">'
+            '<link rel="preconnect" href="https://fonts.googleapis.com">'
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">'
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93">'
+            f'<style>{css}</style></head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
+            '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
+            '<main class="wrap ml"><h1>応募したリスト（<span id="mln">0</span>件）</h1>'
+            '<p class="lead">「☐ 応募した」を押した抽選の、締切と結果発表日をまとめています。結果発表の日になると一番上に出ます。会員登録はいりません。</p>'
+            '<div id="ml"><p class="empty">読み込み中…</p></div>'
+            '<p class="small">※記録はこのスマホ・パソコンのブラウザの中だけに保存しています（ほかの人には見えません）。'
+            'ブラウザの履歴やサイトのデータを消したとき、プライベートモードのとき、別のブラウザ・別の端末では表示されません。'
+            '結果は必ずお店の告知・メールで確認してください。</p>'
+            '<p><a href="/">← 抽選の一覧にもどる</a></p></main>'
+            f'<script>{MYLIST_JS}</script></body></html>')

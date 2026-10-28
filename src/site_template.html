@@ -366,6 +366,12 @@ input[type="search"] { flex: 1 1 160px; }
 .teika .pr { font-size: 10px; border: 1px solid var(--rule); border-radius: 3px; padding: 0 3px; margin: 0 2px; color: var(--ink-2); }
 .tk-note { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 12px; padding: 10px 14px; border-radius: 12px; background: #fff7ed; border: 1px solid #fed7aa; color: var(--ink); text-decoration: none; font-size: 13px; }
 .tk-note b { color: #c2410c; } .tk-note span { margin-left: auto; font-weight: 700; color: #c2410c; }
+.ml-link { grid-column: 1 / -1; display: block; background: var(--card); text-align: center; font-size: 13px; font-weight: 700; padding: 8px; color: var(--red); text-decoration: none; border-top: 1px solid var(--rule); }
+.ser-areas { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 10px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
+.ser-areas b { flex-basis: 100%; font-size: 13px; } .ser-areas a { font-size: 13px; text-decoration: none; color: var(--ink); background: var(--navy-soft); border-radius: 999px; padding: 3px 10px; }
+.ser-areas a span { margin-left: 4px; font-family: var(--font-num); font-weight: 700; color: var(--red); }
+.none-area { margin: 0 0 10px; padding: 12px 14px; background: var(--card); border: 1px dashed var(--rule); border-radius: 12px; font-size: 14px; color: var(--ink-2); }
+.none-area b { display: block; color: var(--ink); margin-bottom: 2px; }
 .hist { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 16px; margin: 14px 0; }
 .hist h2 { font-size: 16px; margin: 0 0 8px; } .hist h2 small { font-size: 12px; color: var(--ink-2); font-weight: 500; margin-left: 8px; }
 .hist ul { list-style: none; margin: 0; padding: 0; } .hist li { padding: 7px 0; border-top: 1px solid var(--rule); font-size: 14px; }
@@ -754,7 +760,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
       '</div></div>' +
       '<div class="acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
-        '<div class="mini"><button type="button" class="ap" title="応募済みの印をつける" aria-pressed="' + done + '">' + (done ? "✓ 応募済" : "☐ 応募済") + '</button>' +
+        '<div class="mini"><button type="button" class="ap" title="応募済みの印をつける" aria-pressed="' + done + '">' + (done ? "✓ 応募した" : "☐ 応募した") + '</button>' +
         (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") +
         (it.lpath ? '<a href="/' + esc(it.lpath) + '">詳しく</a>' : "") + '</div></div>' +
     '</article>';
@@ -780,14 +786,16 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function isAmazon(i) { return /amazon|amzn/i.test((i.store || "") + (i.url || "")); }
   function renderHot() {
     var now = Date.now(), g = inGame().filter(function (i) {  // 弾・地域・受け取り方のページは、その条件の抽選だけ
-      return i.url && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
+      return (i.url || LOCK.area) && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
         && (!LOCK.channel || (LOCK.channel === "store" ? i.channel === "store" : i.channel !== "store"));
     });
-    var soon = g.filter(function (i) { return i._end && i._end > now && i._end - now < 48 * 3600e3; })
+    var soon = g.filter(function (i) { return i._end && i._end > now && (LOCK.area ? isToday(i._end) : i._end - now < 48 * 3600e3); })
       .sort(function (a, b) { return a._end - b._end; }).slice(0, 12);
     var oneAmz = function (list) { var seen = false; return list.filter(function (i) { if (!isAmazon(i)) return true; if (seen) return false; seen = true; return true; }); };  // Amazonは1枚だけ（並ぶと見た目が悪い）
     var fresh = oneAmz(g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); })).slice(0, 12);
-    var html = hotBlock("fresh", "新着", "24時間以内に見つかった抽選", fresh, true) + hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
+    var html = LOCK.area
+      ? hotBlock("soon", "⏰ " + LOCK.area + "で今日締切", "今日が締切の抽選", soon, false) + hotBlock("fresh", LOCK.area + "の新着", "24時間以内に見つかった抽選", fresh, true)
+      : hotBlock("fresh", "新着", "24時間以内に見つかった抽選", fresh, true) + hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
     $("hot").hidden = !html;
     $("hot").innerHTML = html;
   }
@@ -817,7 +825,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var unapplied = gs.filter(function (i) { return !applied[i.key]; }).length;
     $("stats").innerHTML = '<div><b>' + gs.length + '</b><span>受付中</span></div>' +
       '<div class="hot"><b>' + today + '</b><span>今日締切</span></div>' +
-      '<div><b>' + unapplied + '</b><span>未応募</span></div>';
+      '<div><b>' + unapplied + '</b><span>未応募</span></div>' +
+      '<a class="ml-link" href="/mylist/">応募したリスト（' + Object.keys(applied).length + '件）→</a>';
     void fresh;
     // チャネル
     [].forEach.call($("channel").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === st.channel)); });
@@ -889,7 +898,11 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest("button.ap"); if (!b) return;
     var k = b.closest(".ticket").dataset.key;
-    if (applied[k]) delete applied[k]; else applied[k] = Date.now();
+    if (applied[k]) delete applied[k]; else {
+      var it = items.filter(function (x) { return x.key === k; })[0] || {};
+      applied[k] = { t: Date.now(), store: it.store, product: it.product, series: it.series, end: it.end, announce: it.announce,
+                     url: it.url, lpath: it.lpath, game: it.game };  // 応募したリストのページで使う（このブラウザの中だけ）
+    }
     save("lot_applied", applied); render();
   });
 
@@ -909,7 +922,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }
   function renderNews() {
     var now = Date.now(), g = inGame().filter(function (i) {  // 弾・地域・受け取り方のページは、その条件の抽選だけ
-      return i.url && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
+      return (i.url || LOCK.area) && (!LOCK.series || inSer(i, LOCK.series)) && (!LOCK.area || i.area === LOCK.area)
         && (!LOCK.channel || (LOCK.channel === "store" ? i.channel === "store" : i.channel !== "store"));
     });
     var ending = g.filter(function (i) { return i._end && i._end > now && i._end - now <= 3 * 3600e3; })

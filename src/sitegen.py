@@ -41,6 +41,29 @@ PREF = {
     "佐賀県": "saga", "長崎県": "nagasaki", "熊本県": "kumamoto", "大分県": "oita", "宮崎県": "miyazaki",
     "鹿児島県": "kagoshima", "沖縄県": "okinawa",
 }
+
+# となりの都道府県（海をはさむ所も近い所を入れる）。地域ページで「近くの県」に使う
+NEAR = {
+    "北海道": ["青森県", "秋田県", "岩手県"], "青森県": ["北海道", "岩手県", "秋田県"], "岩手県": ["青森県", "秋田県", "宮城県"],
+    "宮城県": ["岩手県", "秋田県", "山形県", "福島県"], "秋田県": ["青森県", "岩手県", "宮城県", "山形県"], "山形県": ["秋田県", "宮城県", "福島県", "新潟県"],
+    "福島県": ["宮城県", "山形県", "新潟県", "栃木県", "茨城県", "群馬県"], "茨城県": ["福島県", "栃木県", "埼玉県", "千葉県"],
+    "栃木県": ["福島県", "茨城県", "群馬県", "埼玉県"], "群馬県": ["栃木県", "埼玉県", "長野県", "新潟県", "福島県"],
+    "埼玉県": ["東京都", "千葉県", "茨城県", "栃木県", "群馬県", "長野県", "山梨県"], "千葉県": ["東京都", "埼玉県", "茨城県", "神奈川県"],
+    "東京都": ["神奈川県", "埼玉県", "千葉県", "山梨県"], "神奈川県": ["東京都", "山梨県", "静岡県", "千葉県"],
+    "新潟県": ["山形県", "福島県", "群馬県", "長野県", "富山県"], "富山県": ["新潟県", "長野県", "岐阜県", "石川県"],
+    "石川県": ["富山県", "岐阜県", "福井県"], "福井県": ["石川県", "岐阜県", "滋賀県", "京都府"], "山梨県": ["東京都", "神奈川県", "埼玉県", "長野県", "静岡県"],
+    "長野県": ["新潟県", "群馬県", "埼玉県", "山梨県", "静岡県", "愛知県", "岐阜県", "富山県"], "岐阜県": ["愛知県", "長野県", "富山県", "石川県", "福井県", "滋賀県", "三重県"],
+    "静岡県": ["神奈川県", "山梨県", "長野県", "愛知県"], "愛知県": ["岐阜県", "三重県", "静岡県", "長野県"], "三重県": ["愛知県", "岐阜県", "滋賀県", "京都府", "奈良県", "和歌山県"],
+    "滋賀県": ["京都府", "三重県", "岐阜県", "福井県"], "京都府": ["大阪府", "滋賀県", "兵庫県", "奈良県", "三重県", "福井県"],
+    "大阪府": ["京都府", "兵庫県", "奈良県", "和歌山県"], "兵庫県": ["大阪府", "京都府", "岡山県", "鳥取県", "徳島県"],
+    "奈良県": ["大阪府", "京都府", "三重県", "和歌山県"], "和歌山県": ["大阪府", "奈良県", "三重県"], "鳥取県": ["島根県", "岡山県", "兵庫県", "広島県"],
+    "島根県": ["鳥取県", "広島県", "山口県", "岡山県"], "岡山県": ["広島県", "兵庫県", "鳥取県", "香川県"], "広島県": ["岡山県", "山口県", "島根県", "鳥取県", "愛媛県"],
+    "山口県": ["広島県", "島根県", "福岡県"], "徳島県": ["香川県", "愛媛県", "高知県", "兵庫県"], "香川県": ["徳島県", "愛媛県", "岡山県"],
+    "愛媛県": ["香川県", "高知県", "徳島県", "広島県"], "高知県": ["愛媛県", "徳島県", "香川県"], "福岡県": ["佐賀県", "熊本県", "大分県", "山口県"],
+    "佐賀県": ["福岡県", "長崎県"], "長崎県": ["佐賀県", "福岡県"], "熊本県": ["福岡県", "大分県", "宮崎県", "鹿児島県"],
+    "大分県": ["福岡県", "熊本県", "宮崎県"], "宮崎県": ["大分県", "熊本県", "鹿児島県"], "鹿児島県": ["宮崎県", "熊本県", "沖縄県"],
+    "沖縄県": ["鹿児島県", "福岡県"],
+}
 WEEK = "月火水木金土日"
 
 
@@ -240,7 +263,7 @@ def prerender(items) -> str:
     return "".join(out)
 
 
-PAGE_DROP = {"products", "announce", "start", "buy", "manual"}  # ページのJSで使わない項目（ページを軽くする）
+PAGE_DROP = {"products", "start", "buy", "manual"}  # announce は「応募したリスト」で使う  # ページのJSで使わない項目（ページを軽くする）
 
 
 def pack_items(items):
@@ -419,6 +442,20 @@ def page(data: dict, meta: dict, standalone=True) -> str:
             f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
 
 
+def _ser_areas(game, slug, series, si):
+    """弾のページに「この弾の店頭抽選がある都道府県」へのリンク"""
+    cnt = {}
+    for i in si:
+        if i.get("channel") == "store" and i.get("area") in PREF:
+            cnt[i["area"]] = cnt.get(i["area"], 0) + 1
+    if not cnt or game not in ("pokemon", "onepiece"):
+        return ""
+    order = list(PREF)
+    return ('<nav class="ser-areas" aria-label="店頭抽選がある都道府県"><b>「' + escape(series) + '」の店頭抽選がある都道府県</b>' +
+            "".join(f'<a href="/{slug}/area/{PREF[a]}/">{escape(a)}<span>{n}</span></a>' for a, n in sorted(cnt.items(), key=lambda kv: order.index(kv[0]))) +
+            "</nav>")
+
+
 def _teika_note(game, series):
     """弾のページの上に「定価くらいで買える通販があります」の案内（楽天で見つかっている時だけ）"""
     try:
@@ -500,7 +537,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
-                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/calendar/">発売日カレンダー</a><a href="/teika/">定価で買えるBOX</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/calendar/">発売日カレンダー</a><a href="/teika/">定価で買えるBOX</a><a href="/mylist/">応募したリスト</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -1016,15 +1053,24 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": _teika_note(g, x) + (aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff)),
+                "aff": _teika_note(g, x) + _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
         _hist0 = {} if sample is not None else load_json("store_history.json", {})
         _reg0 = {} if sample is not None else load_json("stores.json", {})
         _cut90 = (now() - __import__("datetime").timedelta(days=90)).isoformat()
-        for a in areas:
+        acnt_g = {}
+        for i in gi:
+            if i.get("channel") == "store" and i.get("area") in PREF:
+                acnt_g[i["area"]] = acnt_g.get(i["area"], 0) + 1
+        # ポケカ・ワンピースカードは47都道府県すべてにページを作る（0件の県も「近くの県」へ案内する）
+        for a in (list(PREF) if g in ("pokemon", "onepiece") else areas):
             ai = [i for i in gi if i.get("channel") == "store" and i.get("area") == a]
+            today_a = sum(1 for i in ai if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date())
+            new_a = sum(1 for i in ai if parse_dt(i.get("found_at")) and (now() - parse_dt(i["found_at"])).total_seconds() < 86400)
+            near_l = [(f"{b}（{acnt_g.get(b, 0)}件）" if acnt_g.get(b) else b, f"/{slug}/area/{PREF[b]}/") for b in NEAR.get(a, [])]
+            near_l.sort(key=lambda t: "（" not in t[0])  # 抽選がある県を先に
             # この県で抽選が多いお店（過去90日・お店ページの履歴から）
             rank_a = []
             for sp_, r_ in _reg0.items():
@@ -1039,14 +1085,20 @@ def build(settings=None, out_dir=None, sample=None):
                 area_html = (f'<section class="hist"><h2>{escape(a)}で{escape(short)}の抽選が多いお店<small>過去90日・トレカ抽選ナビ調べ</small></h2><ul>' +
                              "".join(f'<li><a href="/{sp_}">{escape(nm)}</a><small>{n_}件</small></li>' for n_, nm, sp_ in rank_a[:10]) +
                              f'</ul><p class="note">※{a}のお店で、この90日に見つかった{short}の抽選の数です（{sum(t[0] for t in rank_a)}件）。お店の名前を押すと、そのお店のこれまでの抽選が見られます。</p></section>')
+            near_html = _links(f"{a}の近くの県の{short}抽選", near_l)
             write(f"{slug}/area/{PREF[a]}/", {"game": g, "channel": "store", "area": a}, {
-                "info_html": area_html,
-                "title": f"{a}の{short}店頭抽選まとめ【{md}更新】{len(ai)}件・締切順｜トレカ抽選ナビ",
-                "desc": f"【{md}更新】{a}の店舗で受付中の{name}（{short}）の店頭抽選・抽選券配布{len(ai)}件を締切順にまとめ。"
-                        "Web応募で店頭受取の抽選も含みます。",
-                "summary": summary(ai, f"{a}の{short}店頭抽選"),
-                "h1": f"{a}の{short}店頭抽選",
-                "lead": f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です。整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。",
+                "info_html": area_html + (near_html if ai else ""),
+                "title": f"{short} 抽選 {a}｜{a}の店頭抽選" + (f" 受付中{len(ai)}件" if ai else "") + f"【{md}更新】｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{short}（{name}）の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
+                        (f"{len(ai)}件（今日締切{today_a}件・新着{new_a}件）を締切が近い順にまとめています。" if ai else
+                         "をまとめています。いま受付中のものがない時は、近くの県の抽選を案内します。") + "30分ごとに自動更新。",
+                "summary": summary(ai, f"{a}の{short}店頭抽選") if ai else "",
+                "h1": f"{a}の{short}抽選（店頭抽選）",
+                "lead": (f"{a}で受付中の{name}の店頭抽選は{len(ai)}件です（今日締切{today_a}件・24時間以内の新着{new_a}件）。"
+                         "整理券・抽選券の配布時間や条件は店舗の告知で必ずご確認ください。" if ai else
+                         f"{a}でいま受付中の{name}の店頭抽選はありません。新しい抽選が見つかり次第、このページに自動で載ります。近くの県の抽選も見てみてください。"),
+                "aff": "" if ai else (f'<div class="none-area"><b>{escape(a)}でいま受付中の{escape(short)}の店頭抽選はありません。</b>'
+                                      f'新しい抽選が見つかり次第、このページに自動で載ります。近くの県の抽選も見てみてください。</div>' + near_html + area_html),
                 "links": _menu(items, games, g), "root": "/"}, ai,
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (f"{a}の店頭抽選", f"{slug}/area/{PREF[a]}/")])
 
@@ -1694,6 +1746,10 @@ def build(settings=None, out_dir=None, sample=None):
                                    redirect=redirect, aff=aff, related=rel, updated=updated), encoding="utf-8")
         if active:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
+
+    # 応募したリスト（このブラウザの中だけの記録を一覧にする。検索・サイトマップには載せない）
+    (out / "mylist").mkdir(parents=True, exist_ok=True)
+    (out / "mylist" / "index.html").write_text(detail.mylist_page(site), encoding="utf-8")
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
     import shutil
