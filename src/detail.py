@@ -36,7 +36,7 @@ def fmt(s, with_time=True):
 def short_name(i):
     if i.get("series"):
         return i["series"]
-    p = i.get("product") or ""
+    p = (i.get("product") or "").replace("ワンピカード", "ワンピースカード")
     q = re.search(r"[「『]([^」』]{2,})[」』]", p)
     if q:
         p = q.group(1)
@@ -168,7 +168,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     if prods:
         row("対象商品", "<ul>" + "".join(f"<li>{escape(str(p))}</li>" for p in prods) + "</ul>", raw=True)
     else:
-        row("商品", i.get("product"))
+        row("商品", (i.get("product") or "").replace("ワンピカード", "ワンピースカード") or None)
 
     chips = [f'<span class="chip st {cls}" id="st" data-start="{escape(i.get("start") or "")}" data-end="{escape(i.get("end") or "")}">{lab}</span>']
     if gshort:
