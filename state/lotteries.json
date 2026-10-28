@@ -1343,11 +1343,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c707eb6facf521b9",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.045757+09:00",
     "multi": false,
     "cls": "2bcb030e846b",
-    "page_checked_at": "2026-10-28T00:19:39.504078+09:00"
+    "page_checked_at": "2026-10-28T00:19:39.504078+09:00",
+    "closed_at": "2026-10-28T10:29:47.477579+09:00"
   },
   "ee539dae829ae425": {
     "store": "野田ホビー ノア店",
@@ -24285,7 +24286,7 @@
     "url": "https://docs.google.com/forms/d/e/1FAIpQLScYrrimBIjVSzWmyillB-iII9zFmnAkw9fXZFvsTEhKy49ESQ/viewform",
     "slug": "tsutaya-fukui-takayanagi-heroines2",
     "key": "4b38f7fa19eaa45d",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-27T18:40:57.180446+09:00",
     "manual": true,
     "source": "手動追加",
@@ -24293,7 +24294,8 @@
     "page_checked_at": "2026-10-27T18:42:03.035445+09:00",
     "multi": false,
     "cls": "ece9e9f3a67f",
-    "x_post": "https://x.com/pokepi_tcg/status/2115216978365260157"
+    "x_post": "https://x.com/pokepi_tcg/status/2115216978365260157",
+    "closed_at": "2026-10-28T10:29:47.479973+09:00"
   },
   "5741c810b8272be5": {
     "store": "福福トレカ通販",
@@ -25137,11 +25139,12 @@
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
     "key": "ee92dbe168c08790",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T00:13:17.868071+09:00",
     "multi": false,
     "cls": "e887177c82c6",
-    "page_checked_at": "2026-10-28T05:04:51.349449+09:00"
+    "page_checked_at": "2026-10-28T05:04:51.349449+09:00",
+    "closed_at": "2026-10-28T10:29:47.480055+09:00"
   },
   "448e512f39c0f5a6": {
     "store": "ビックカメラ渋谷ハチ公口店",
@@ -27554,11 +27557,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "596844a4172d12d6",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T07:34:01.163375+09:00",
     "multi": false,
     "cls": "dc191f51c96d",
-    "issue": 152
+    "issue": 152,
+    "closed_at": "2026-10-28T10:29:47.480303+09:00"
   },
   "e20e294eb06a6e73": {
     "store": "野田ホビー ノア店",
@@ -28166,11 +28170,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "1a41a5f09612ff8a",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T08:53:48.841389+09:00",
     "multi": false,
     "cls": "20b0e33bbe8f",
-    "issue": 156
+    "issue": 156,
+    "closed_at": "2026-10-28T10:29:47.480342+09:00"
   },
   "8aa35ee3972aac16": {
     "store": "ミント 仙台店",
