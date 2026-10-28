@@ -108,6 +108,11 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 continue
             if newest:
                 seen[sid] = newest
+            try:  # 読んだポストの中に抽選結果の発表があれば拾う（追加の読み取りはしない）
+                from results import scan as scan_results
+                scan_results(posts, src, lots)
+            except Exception as e:
+                log(f"抽選結果の確認失敗 {sid}: {e}")
             for i in range(0, len(posts), 5):  # 5件ずつAIへ（多すぎると返事が途中で切れる）
                 texts.append(("\n\n=====\n\n".join(t for t, _ in posts[i:i + 5]), "https://x.com/"))
             body = None

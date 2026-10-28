@@ -475,7 +475,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>'
-                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -746,7 +746,8 @@ def build(settings=None, out_dir=None, sample=None):
     digest = sha(json.dumps(sorted(items, key=lambda x: x.get("key") or ""), ensure_ascii=False, sort_keys=True))
     digest = sha(digest + str(load_json("x_trends.json", {}).get("generated")))
     digest = sha(digest + json.dumps(sorted((load_json("newsets.json", {}).get("series") or {}).get("pokemon", {})) +
-                                     sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す  # 話題ネタが更新されたら下書きページも出し直す
+                                     sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})) +
+                                     sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 
@@ -1239,6 +1240,42 @@ def build(settings=None, out_dir=None, sample=None):
                 continue  # いまの週は /weekly/ だけ（同じ内容のページを2つ作らない）
             write(f"weekly/{ws}/", {"game": games[0]}, dict(meta_w, title=meta_w["title"].replace("今週の", ""), h1=meta_w["h1"].replace("今週の", "")), sub,
                   [("トップ", ""), ("今週のまとめ", "weekly/"), (label, f"weekly/{ws}/")])
+
+    # --- 抽選結果（/kekka/）：お店・公式がXで出した「抽選結果を発表しました」のお知らせと、今日が発表日の抽選 ---
+    if sample is None:
+        import results as _rs
+        rs = sorted(load_json("results.json", {}).items(), key=lambda kv: kv[1].get("found_at", ""), reverse=True)
+        sched = _rs.scheduled_today()
+        feed = {"updated": now().isoformat(), "results": [], "scheduled_today": sched}
+        h = ['<div class="guide"><p>お店や公式がXで「抽選結果を発表しました」「当選の方へメールを送りました」と出したお知らせを、見つけた順にまとめています。'
+             '応募した方は、お店のお知らせ・メール・アプリで結果を確かめてください。</p>']
+        if sched:
+            h.append("<h2>今日が結果の発表日の抽選</h2><ul>" + "".join(
+                f'<li>{escape(GAME_SHORT.get(r["game"], ""))}｜{escape(r["store"] or "")}'
+                + (f'（{escape("・".join(r["series"]))}）' if r["series"] else "") + "</li>" for r in sched) + "</ul>")
+        h.append("<h2>見つかった抽選結果の発表</h2>")
+        if rs:
+            h.append("<ul>")
+            for post, r in rs[:60]:
+                d = parse_dt(r.get("found_at"))
+                feed["results"].append({"post": post, "found_at": r.get("found_at"), "game": r["game"],
+                                        "game_name": GAME_SHORT.get(r["game"], r["game"]), "store": r.get("store"),
+                                        "series": r.get("series") or [], "matched": r.get("matched"), "text": r.get("text")})
+                h.append(f'<li><b>{escape(r.get("store") or "")}</b>（{escape(GAME_SHORT.get(r["game"], ""))}'
+                         + (f'・{escape("・".join(r["series"]))}' if r.get("series") else "") + f'）{d.month}/{d.day}'
+                         + f'<br><small>{escape(r.get("text") or "")}</small> <a href="{escape(post)}" target="_blank" rel="noopener nofollow">お知らせを見る</a></li>')
+            h.append("</ul>")
+        else:
+            h.append("<p>今はまだありません。見つかりしだい、ここに載せます。</p>")
+        h.append('<p class="note">※トレカ抽選ナビが見つけたお知らせだけです。すべての抽選の結果を載せているわけではありません。</p></div>')
+        write("kekka/", {"game": games[0]}, {
+            "title": "ポケカ・ワンピースカードの抽選結果・当選発表まとめ｜トレカ抽選ナビ",
+            "desc": "ポケカ・ワンピースカードの抽選結果（当選発表）のお知らせを、お店・公式のXから見つけしだいまとめています。今日が発表日の抽選も。",
+            "summary": "", "h1": "抽選結果・当選発表のまとめ",
+            "lead": "お店・公式の当選発表のお知らせをまとめています。下には今受付中の抽選を載せています。",
+            "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
+            [i for i in items if i["game"] == games[0]], [("トップ", ""), ("抽選結果", "kekka/")])
+        (out / "results.json").write_text(json.dumps(feed, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
     # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
