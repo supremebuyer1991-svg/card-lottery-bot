@@ -543,6 +543,9 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 (function () {
   "use strict";
   var DATA = JSON.parse(document.getElementById("data").textContent);
+  if (DATA.cols) {  // 表の形で埋め込んだ抽選を、元の形（項目名つき）に戻す
+    DATA.items = DATA.rows.map(function (r) { var o = {}; DATA.cols.forEach(function (c, j) { if (r[j] != null) o[c] = r[j]; }); return o; });
+  }
   var GAMES = DATA.games; // [{id, name}]
   var TABS = [{ id: "all", name: "すべて" }].concat(GAMES);  // 一番左は3つのゲームをまとめた総合
   var GSHORT = {}; GAMES.forEach(function (g) { GSHORT[g.id] = g.tab || g.name; });

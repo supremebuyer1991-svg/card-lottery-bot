@@ -302,6 +302,9 @@ def pack_items(items):
         return idx[k]
     for i in items:
         o = {k: v for k, v in i.items() if k not in PAGE_DROP and v is not None and v != "" and v != [] and v != {}}
+        for k in ("found_at", "end"):  # 秒より細かい時刻はいらない
+            if isinstance(o.get(k), str):
+                o[k] = re.sub(r"(T\d\d:\d\d):\d\d(\.\d+)?", r"\1", o[k])
         if o.get("image"):
             o["im"] = ref(o.pop("image"), o.pop("img_url", None))
         o.pop("img_url", None)
@@ -438,7 +441,8 @@ def page(data: dict, meta: dict, standalone=True) -> str:
              '<meta name="theme-color" content="#c8102e">',
              '<link rel="icon" href="/favicon.svg" type="image/svg+xml">', '<link rel="icon" href="/favicon.png" sizes="48x48">',
              '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
-             '<meta name="robots" content="index,follow,max-image-preview:large">']
+             ('<meta name="robots" content="noindex,follow">' if meta.get("noindex")
+              else '<meta name="robots" content="index,follow,max-image-preview:large">')]
     if meta.get("verify"):
         head.append(f'<meta name="google-site-verification" content="{escape(meta["verify"])}">')
     for ld in meta.get("ld") or []:
@@ -453,7 +457,16 @@ def page(data: dict, meta: dict, standalone=True) -> str:
         body = body.replace(k, v)
     if data.get("items") and not data.get("sample"):
         data = dict(data)
-        data["items"], data["imgs"] = pack_items(data["items"])
+        packed, data["imgs"] = pack_items(data["items"])
+        # 表の形で持つ（項目名を1回だけ書く）＝ページが軽くなる。ページのJSで元の形に戻す
+        cols = []
+        for o in packed:
+            for k in o:
+                if k not in cols:
+                    cols.append(k)
+        data.pop("items")
+        data["cols"] = cols
+        data["rows"] = [[o.get(k) for k in cols] for o in packed]
     body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
     if not standalone:
         return body
@@ -957,7 +970,8 @@ def build(settings=None, out_dir=None, sample=None):
                     "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
         p.write_text(page(data, meta), encoding="utf-8")
         last = max([i.get("found_at") or "" for i in subset] + [""]) or updated
-        urls.append((f"{site}/{path}", (last or updated)[:10]))
+        if not meta.get("noindex"):  # 中身のうすいページ（抽選も履歴もない）は検索に出さない・サイトマップにも入れない
+            urls.append((f"{site}/{path}", (last or updated)[:10]))
 
     def prods_of(game):
         cnt = {}
@@ -1109,7 +1123,8 @@ def build(settings=None, out_dir=None, sample=None):
                          f"{a}でいま受付中の{name}の店頭抽選はありません。新しい抽選が見つかり次第、このページに自動で載ります。近くの県の抽選も見てみてください。"),
                 "aff": "" if ai else (f'<div class="none-area"><b>{escape(a)}でいま受付中の{escape(short)}の店頭抽選はありません。</b>'
                                       f'新しい抽選が見つかり次第、このページに自動で載ります。近くの県の抽選も見てみてください。</div>' + near_html + area_html),
-                "links": _menu(items, games, g), "root": "/"}, ai,
+                "links": _menu(items, games, g), "root": "/",
+                "noindex": not ai and not rank_a}, ai,  # 受付中も過去90日の抽選もない県は、抽選が出るまで検索に出さない
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (f"{a}の店頭抽選", f"{slug}/area/{PREF[a]}/")])
 
     # --- 条件別のページ（「ポケカ 抽選 本人確認なし」「ポケカ ネット抽選」「ポケカ 抽選 今日締切」で探す人向け）---
@@ -1597,7 +1612,8 @@ def build(settings=None, out_dir=None, sample=None):
             "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else hist_html),
             "info_html": hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
             "faq": faq_s or None,
-            "links": links, "root": "/"}, si,
+            "links": links, "root": "/",
+            "noindex": not si and not hist_html}, si,  # 受付中もこれまでの抽選もないお店は検索に出さない
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
     # --- チェーンごとのページ（/chain/xxx/）---
