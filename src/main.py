@@ -45,6 +45,11 @@ def main():
         except Exception as e:
             log(f"重複: スキップ {e}")
         approve(s)
+        try:
+            from gapcheck import check as gap_check
+            gap_check(s)  # 拾い漏れチェック（1日1回・夜。Xは読まない）
+        except Exception as e:
+            log(f"拾い漏れチェック: スキップ {e}")
         post_all(s)
         post_daily_summary(s)
         try:

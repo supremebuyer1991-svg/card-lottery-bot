@@ -266,6 +266,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         if gone:
             log(f"{name}: 一覧から消えた {len(gone)}件を終了に")
 
+    if live and all(len(v) >= 30 for v in live.values()):  # 拾い漏れチェック用に、まとめサイトに今載っている抽選を残す
+        save_json("cc_live.json", {k_: sorted(v_) for k_, v_ in live.items()})
     save_json("x_stats.json", {d_: v_ for d_, v_ in xstats.items() if d_ >= (now().date() - timedelta(days=14)).isoformat()})
     save_json("x_meta.json", {**load_json("x_meta.json", {}), "last_x_run": xmeta.get("last_x_run"), "src_last": src_last})
 

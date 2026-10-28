@@ -126,6 +126,12 @@ def approve(settings):
         index_urls = {s_["url"].rstrip("/") for s_ in load_sources() if s_.get("url") and s_.get("type") != "rss"}
     except Exception:
         index_urls = set()
+    own = re.compile(r"(x|twitter)\.com/pokepi_tcg/", re.I)  # 自分のアカウント
+    for it in lots.values():
+        if own.search(it.get("x_post") or ""):
+            it["x_post"] = None  # 自分のポストは「お店の告知」ではない
+        if it.get("closed_reason") == "自分のポストから拾ったもの" and (it.get("manual") or not own.search(it.get("url") or "")):
+            it["status"], it["closed_reason"] = ("listed" if it.get("manual") else "approved"), None  # 前の判定のまちがいを戻す
     for it in lots.values():
         if it["status"] not in ("new", "pending", "approved", "posted", "listed"):
             continue
@@ -135,7 +141,7 @@ def approve(settings):
         posted = _post_date(it.get("url"))
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
-        if re.search(r"(x|twitter)\.com/pokepi_tcg/", (it.get("url") or "") + " " + (it.get("x_post") or ""), re.I):
+        if own.search(it.get("url") or "") and not it.get("manual"):
             it["status"] = "rejected"  # 自分のアカウントのポストから拾ったもの（元の抽選は別に載っている）
             it["closed_reason"] = "自分のポストから拾ったもの"
             continue
