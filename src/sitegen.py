@@ -1885,12 +1885,45 @@ def build(settings=None, out_dir=None, sample=None):
             + "</urlset>\n", encoding="utf-8")
         (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /x-draft.html\nSitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
+    inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
+
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
     (out / ".changed").unlink(missing_ok=True)
     if changed:
         (out / ".changed").write_text(updated, encoding="utf-8")  # ワークフローはこれがある時だけ公開
     return out
+
+
+GA_SKIP = {"x-draft.html", "site_preview.html"}  # 自分用のページは数えない
+GA_NOTE = ("当サイトはアクセス解析にGoogleアナリティクスを使っています。データはCookieを使って匿名で集められ、"
+           "個人を特定するものではありません（ブラウザの設定でCookieを無効にできます）。")
+
+
+def ga_snippet(ga_id):
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>'
+            '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+            f"gtag('js',new Date());gtag('config','{ga_id}');</script>")
+
+
+def inject_ga(out, ga_id):
+    """書き出したすべてのページの <head> に Googleアナリティクスのタグ、フッターに注意書きを入れる"""
+    ga_id = (ga_id or "").strip()
+    if not re.fullmatch(r"G-[A-Z0-9]{4,}", ga_id):
+        return 0
+    tag, n = ga_snippet(ga_id), 0
+    for p in Path(out).rglob("*.html"):
+        if p.name in GA_SKIP:
+            continue
+        h = p.read_text(encoding="utf-8")
+        if "googletagmanager.com/gtag/js" in h or "</head>" not in h:
+            continue
+        h = h.replace("</head>", tag + "</head>", 1)
+        if "</footer>" in h:
+            h = h.replace("</footer>", f'<p class="ga-note">{GA_NOTE}</p></footer>', 1)
+        p.write_text(h, encoding="utf-8")
+        n += 1
+    return n
 
 
 def sample_items():
