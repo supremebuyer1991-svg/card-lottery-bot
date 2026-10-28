@@ -6431,34 +6431,6 @@
     "multi": false,
     "cls": "524d6d1f76ee"
   },
-  "5acfcb6ba48ec33e": {
-    "store": "TCバトロコ渋谷センター街",
-    "product": "ONE PIECEカードゲーム エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】",
-    "series": "ヒロインズエディション vol.2",
-    "end": "2026-10-26T23:00:00+09:00",
-    "url": "https://x.com/batoloco_1825/status/2113855446738198759",
-    "x_post": "https://x.com/batoloco_1825/status/2113855446738198759",
-    "channel": "store",
-    "area": "東京都",
-    "method": "オンライン",
-    "conditions": "会員・本人確認",
-    "tags": [
-      "会員",
-      "本人確認"
-    ],
-    "id_check": true,
-    "member": "account",
-    "confidence": 0.95,
-    "game": "onepiece",
-    "source": "カード抽選まとめ ワンピ",
-    "source_url": "https://cardchusen.com/onepiece",
-    "no_quote": true,
-    "key": "5acfcb6ba48ec33e",
-    "status": "closed",
-    "found_at": "2026-10-26T18:20:21.881997+09:00",
-    "multi": false,
-    "cls": "47ce22a047e2"
-  },
   "f8afacc23e265671": {
     "store": "ジャスティス（大阪）",
     "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】1BOX",
@@ -26580,11 +26552,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "185138848bf8052a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:12.193418+09:00",
     "page_checked_at": "2026-10-28T13:26:16.450021+09:00",
     "multi": false,
-    "cls": "5b4ff5cf9db5"
+    "cls": "5b4ff5cf9db5",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T23:19:37.053661+09:00"
   },
   "2b8b79c7c1d8eebe": {
     "store": "横浜トレカショップ ビートダウン",
@@ -29109,11 +29083,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "2c37d810ddc607dd",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T14:13:26.001350+09:00",
     "multi": false,
     "cls": "f28085d11aa4",
-    "issue": 168
+    "issue": 168,
+    "closed_at": "2026-10-28T23:20:14.243417+09:00"
   },
   "3984f21f09552343": {
     "store": "バトロコ藤沢駅北口店",
