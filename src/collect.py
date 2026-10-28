@@ -1,4 +1,5 @@
 """収集：各ソースを見て、新しい抽選を state/lotteries.json に追加する"""
+from datetime import timedelta
 from common import (load_json, save_json, sha, lottery_key, parse_dt, now, log, normalize)
 from fetch import get, html_to_text, parse_rss, article_links, cards, cardchusen_items
 from extract import extract
@@ -101,6 +102,10 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     elif not x_ok:
         log("X: 今回はお休み（1時間に1回だけ読む）")
     src_last = xmeta.setdefault("src_last", {})
+    # Xの検索ごとの「読んだ数・新しく見つかった抽選の数」（どの検索が効いているかを見て件数を調整するため）
+    xstats = load_json("x_stats.json", {})
+    today_s = now().date().isoformat()
+    xst = xstats.setdefault(today_s, {})
 
     for src in sources:
         if src.get("enabled") is False:
@@ -127,6 +132,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 continue
             if newest:
                 seen[sid] = newest
+            xst.setdefault(sid, [0, 0])[0] += len(posts)
             try:  # 読んだポストの中に抽選結果の発表があれば拾う（追加の読み取りはしない）
                 from results import scan as scan_results
                 scan_results(posts, src, lots)
@@ -243,6 +249,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 it.update(key=k, status="listed" if first_run else "new", found_at=now().isoformat())
                 lots[k] = it
                 new_items.append(it)
+                if src["type"] == "x":
+                    xst.setdefault(sid, [0, 0])[1] += 1
                 log(f"新規: [{it['game']}] {it['store']} / {it['product']} 締切={it.get('end')}")
 
     # cardchusen の一覧から消えた抽選は終了（締切が書かれていない古い抽選が残り続けないように）
@@ -258,6 +266,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         if gone:
             log(f"{name}: 一覧から消えた {len(gone)}件を終了に")
 
+    save_json("x_stats.json", {d_: v_ for d_, v_ in xstats.items() if d_ >= (now().date() - timedelta(days=14)).isoformat()})
     save_json("x_meta.json", {**load_json("x_meta.json", {}), "last_x_run": xmeta.get("last_x_run"), "src_last": src_last})
 
     save_json("seen.json", seen)

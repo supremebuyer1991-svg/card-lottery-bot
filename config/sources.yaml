@@ -55,7 +55,7 @@ sources:
     name: X「ワンピカード 抽選」
     type: x
     keywords: '(ワンピカード OR ワンピースカード OR "ONE PIECEカード") 抽選 (受付 OR 応募 OR 申込 OR 申し込み)'
-    max_results: 20
+    max_results: 15   # 見つかる抽選の割に読む数が多いので少し減らす
 
   - id: x_dbfw
     every_hours: 3   # 見つかる抽選が少ないので3時間に1回
@@ -80,7 +80,7 @@ sources:
     type: x
     require_links: false
     keywords: '(ワンピカード OR ワンピースカード) (店頭抽選 OR 抽選券 OR 整理券 OR 店頭応募 OR 抽選販売) 店'
-    max_results: 15
+    max_results: 10
 
   - id: x_shop_dbfw
     every_hours: 6   # ほとんど見つからないので6時間に1回
@@ -156,7 +156,7 @@ sources:
     type: x
     # LivePocket のURLはほぼ抽選の応募ページなので「抽選」という言葉が無くても拾う（カードの話であることだけ確認）
     keywords: 'url:livepocket.jp (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド OR トレカ OR 拡張パック OR ブースターパック)'
-    max_results: 20
+    max_results: 15
 
   # ワンピカード公式アカウント（公式の抽選・新商品告知）
   - id: x_onepiece_official
