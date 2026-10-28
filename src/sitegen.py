@@ -1151,7 +1151,8 @@ def build(settings=None, out_dir=None, sample=None):
                 inf = (_ser_cfg()["info"].get(g_) or {}).get(x) or {}
                 ns.append({"game": g_, "game_name": GAME_SHORT.get(g_, g_), "name": x, "url": f"{site}/{series_path(g_, x)}",
                            "release": inf.get("release") or v.get("release"), "price": inf.get("price") or v.get("price"),
-                           "type": inf.get("type") or v.get("type"), "first_seen": v.get("first_seen"),
+                           "type": inf.get("type") or v.get("type"), "first_seen": None if v.get("announce") in ("pending", "posted") else v.get("first_seen"),
+                           "auto_announced": v.get("announce") in ("pending", "posted"),  # APIで自動告知する弾はブラウザの予約で二重に出さない
                            "lotteries": sum(1 for i in items if i["game"] == g_ and x in (i.get("sers") or [i.get("series")]))})
         (out / "newsets.json").write_text(json.dumps(sorted(ns, key=lambda r: r.get("first_seen") or ""), ensure_ascii=False, indent=1), encoding="utf-8")
 
