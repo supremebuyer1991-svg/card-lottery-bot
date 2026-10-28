@@ -18,7 +18,9 @@ def norm_store(s):
     s = re.sub(r"[（(][^）)]*[）)]", "", s)  # カッコ内（アプリ名・地名など）は無視
     for a, b in STORE_ALIAS.items():
         s = s.replace(a, b)
-    return re.sub(r"[\s・\-]", "", s).lower()
+    s = re.sub(r"[\s・\-]", "", s).lower()
+    s = re.sub(r"(各店舗|各店|全店舗|全店|全国)$", "", s)   # 「古本市場 各店」＝「古本市場」
+    return re.sub(r"(.{2,}?)\1+", r"\1", s)              # 「古本市場・ふるいち」→「古本市場古本市場」→「古本市場」
 
 
 def norm_product(s):

@@ -101,6 +101,8 @@ def approve(settings):
     no_end_days = settings.get("no_end_expire_days", 10)
     post_days = settings.get("no_end_post_days", 21)
     manual = [u for u in (settings.get("closed_urls") or []) if u]
+    import re
+    blogs = [b.lower() for b in (settings.get("blog_domains") or [])]
     # 応募先が情報元の一覧ページそのもの（個別の告知ではない）＝AIがあいまいに作った抽選なので載せない
     try:
         from common import load_sources
@@ -116,6 +118,12 @@ def approve(settings):
         posted = _post_date(it.get("url"))
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
+        # 応募先がまとめブログ（お店・公式ではない）なら、リンクを外す（ブログは情報元としてだけ残す）
+        host = re.sub(r"^https?://(www\.)?", "", it.get("url") or "").split("/")[0].lower()
+        if host and any(host == b or host.endswith("." + b) for b in blogs):
+            it["blog_url"] = it["url"]
+            it["url"] = it.get("apply_url") or None
+            log(f"応募先がまとめブログのためリンクを外しました: {it.get('store')} {host}")
         if (it.get("url") or "").rstrip("/") in index_urls and not it.get("apply_url"):
             it["status"] = "rejected"
             it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
