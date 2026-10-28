@@ -119,6 +119,10 @@ def approve(settings):
         old_post = not end and posted and (now() - posted).days >= post_days
         hand = any(u in (it.get("url") or "") or u in (it.get("apply_url") or "") for u in manual)
         # 応募先がまとめブログ（お店・公式ではない）なら、リンクを外す（ブログは情報元としてだけ残す）
+        if it.get("blog_url") and not it.get("url"):  # リストから外したブログはリンクを戻す
+            bh = re.sub(r"^https?://(www\\.)?", "", it["blog_url"]).split("/")[0].lower()
+            if not any(bh == b or bh.endswith("." + b) for b in blogs):
+                it["url"] = it.pop("blog_url")
         host = re.sub(r"^https?://(www\.)?", "", it.get("url") or "").split("/")[0].lower()
         if host and any(host == b or host.endswith("." + b) for b in blogs):
             it["blog_url"] = it["url"]

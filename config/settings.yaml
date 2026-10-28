@@ -296,4 +296,5 @@ affiliate:
       url: ""
 
 # 抽選のまとめブログ（お店・公式ではない）。応募ボタンのリンク先がここになっていたら、リンクを外す
-blog_domains: [mikeco-room.com, ameblo.jp, hatenablog.com, hatenablog.jp, note.com, livedoor.blog, blog.jp, fc2.com, seesaa.net, cardchusen.com, nyuka-now.com]
+# ※アメブロ・はてな・noteなどはお店が自分で告知に使っていることがあるので入れない
+blog_domains: [mikeco-room.com, cardchusen.com, nyuka-now.com]
