@@ -2158,7 +2158,8 @@
   "store/tsutaya-d5727/": {
     "name": "TSUTAYA積文館書店 鹿島店",
     "last": "2026-10-28",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "茨城県"
   },
   "store/torekashoppufuronto-f01f1/": {
     "name": "トレカショップフロント",
@@ -2168,7 +2169,8 @@
   "store/kadoshoppu-ho-mu-5efd5/": {
     "name": "カードショップ＠ほ～む。鹿児島店",
     "last": "2026-10-28",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "鹿児島県"
   },
   "store/biccamera-ba79b/": {
     "name": "ビックカメラ広島駅前店",
@@ -2203,7 +2205,8 @@
   "store/batoroco-aa580/": {
     "name": "TCバトロコ八千代台駅前",
     "last": "2026-10-28",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "千葉県"
   },
   "store/tsutaya-b821c/": {
     "name": "【トレカ】TSUTAYA竹原店",
@@ -2255,6 +2258,11 @@
   },
   "store/furuichi-4e68d/": {
     "name": "古本市場・ふるいち 各店",
+    "last": "2026-10-28",
+    "game": "onepiece"
+  },
+  "store/furuichi-667ae/": {
+    "name": "古本市場・ふるいち（Web抽選・全国の店舗で受取）",
     "last": "2026-10-28",
     "game": "onepiece"
   }

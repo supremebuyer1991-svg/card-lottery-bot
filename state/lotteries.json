@@ -15934,13 +15934,14 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "9a69d72aed4db9e7",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-10-26T19:34:57.203540+09:00",
     "multi": false,
     "cls": "6712be2b3706",
     "deadline_checked_at": "2026-10-28T05:02:51.283275+09:00",
     "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・締切の記載なし"
+    "deadline_note": "画像1/1枚読込・締切の記載なし",
+    "duplicate_of": "f656e6ed2003a821"
   },
   "8f2b64aa2767c0ce": {
     "store": "古本市場・ふるいち",
@@ -28823,7 +28824,7 @@
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSde4He2L40C7XHQ8jBzQir7XbUkLhDdabH4yvhNo_Xglt4CHA/viewform",
     "x_post": null,
     "channel": "store",
-    "area": null,
+    "area": "東京都",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -29100,7 +29101,7 @@
     "url": "https://x.com/kasima_TCG/status/2114620547040518153",
     "x_post": "https://x.com/kasima_TCG/status/2114620547040518153",
     "channel": "store",
-    "area": null,
+    "area": "茨城県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -29116,7 +29117,9 @@
     "no_quote": true,
     "key": "5b919ca162145c07",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194061+09:00"
+    "found_at": "2026-10-28T13:26:12.194061+09:00",
+    "multi": false,
+    "cls": "a0d722c2b74c"
   },
   "04462b43141d3b7b": {
     "store": "トレカショップフロント",
@@ -29142,7 +29145,8 @@
     "no_quote": true,
     "key": "04462b43141d3b7b",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194088+09:00"
+    "found_at": "2026-10-28T13:26:12.194088+09:00",
+    "cls": "bd155ba31ef9"
   },
   "c5a63ece25107271": {
     "store": "カードショップ＠ほ～む。鹿児島店",
@@ -29152,7 +29156,7 @@
     "url": "https://x.com/AThome_kagosima/status/2115047187352887688",
     "x_post": "https://x.com/AThome_kagosima/status/2115047187352887688",
     "channel": "store",
-    "area": null,
+    "area": "鹿児島県",
     "method": "店頭",
     "conditions": "会員",
     "tags": [
@@ -29167,7 +29171,9 @@
     "no_quote": true,
     "key": "c5a63ece25107271",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194141+09:00"
+    "found_at": "2026-10-28T13:26:12.194141+09:00",
+    "multi": false,
+    "cls": "474a10610dc8"
   },
   "40da661a5001208c": {
     "store": "ビックカメラあべのキューズモール店",
@@ -29194,7 +29200,9 @@
     "no_quote": true,
     "key": "40da661a5001208c",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194186+09:00"
+    "found_at": "2026-10-28T13:26:12.194186+09:00",
+    "multi": false,
+    "cls": "968ab9d74a4f"
   },
   "ef2011bc8423f431": {
     "store": "ビックカメラ名古屋JRゲートタワー店",
@@ -29221,7 +29229,9 @@
     "no_quote": true,
     "key": "ef2011bc8423f431",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194221+09:00"
+    "found_at": "2026-10-28T13:26:12.194221+09:00",
+    "multi": false,
+    "cls": "26b2ee38d495"
   },
   "e680908b50d3470e": {
     "store": "ビックカメラ アリオ八尾店",
@@ -29248,7 +29258,9 @@
     "no_quote": true,
     "key": "e680908b50d3470e",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194255+09:00"
+    "found_at": "2026-10-28T13:26:12.194255+09:00",
+    "multi": false,
+    "cls": "41988fe2c8df"
   },
   "1bb48929c862af87": {
     "store": "ビックカメラ池袋本店",
@@ -29275,7 +29287,9 @@
     "no_quote": true,
     "key": "1bb48929c862af87",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194285+09:00"
+    "found_at": "2026-10-28T13:26:12.194285+09:00",
+    "multi": false,
+    "cls": "dcf95b01f760"
   },
   "359c5c5c5344e555": {
     "store": "ビックカメラ広島駅前店",
@@ -29302,7 +29316,9 @@
     "no_quote": true,
     "key": "359c5c5c5344e555",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194317+09:00"
+    "found_at": "2026-10-28T13:26:12.194317+09:00",
+    "multi": false,
+    "cls": "61ff104d02ab"
   },
   "5e2b9209d29ec128": {
     "store": "ビックカメラ赤坂見附駅店",
@@ -29329,7 +29345,9 @@
     "no_quote": true,
     "key": "5e2b9209d29ec128",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194353+09:00"
+    "found_at": "2026-10-28T13:26:12.194353+09:00",
+    "multi": false,
+    "cls": "7c5233a64af7"
   },
   "b2183971b5ccfa1a": {
     "store": "ビックカメラ立川店",
@@ -29356,7 +29374,9 @@
     "no_quote": true,
     "key": "b2183971b5ccfa1a",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194382+09:00"
+    "found_at": "2026-10-28T13:26:12.194382+09:00",
+    "multi": false,
+    "cls": "93f0f0e6f1a7"
   },
   "40a21e4aa7d9e563": {
     "store": "ビックカメラ 大宮西口そごう店",
@@ -29383,7 +29403,9 @@
     "no_quote": true,
     "key": "40a21e4aa7d9e563",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194409+09:00"
+    "found_at": "2026-10-28T13:26:12.194409+09:00",
+    "multi": false,
+    "cls": "454bd3f64fe0"
   },
   "20d36d2f394fb32d": {
     "store": "ビックカメラ相模大野駅店",
@@ -29410,7 +29432,9 @@
     "no_quote": true,
     "key": "20d36d2f394fb32d",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194440+09:00"
+    "found_at": "2026-10-28T13:26:12.194440+09:00",
+    "multi": false,
+    "cls": "e0986edbb4bd"
   },
   "0d696597c5f44da8": {
     "store": "ビックカメラ千葉駅前店",
@@ -29437,7 +29461,9 @@
     "no_quote": true,
     "key": "0d696597c5f44da8",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194474+09:00"
+    "found_at": "2026-10-28T13:26:12.194474+09:00",
+    "multi": false,
+    "cls": "c5df73d45bab"
   },
   "de505e5678d61a63": {
     "store": "ビックカメラ新宿東口店",
@@ -29464,7 +29490,9 @@
     "no_quote": true,
     "key": "de505e5678d61a63",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194503+09:00"
+    "found_at": "2026-10-28T13:26:12.194503+09:00",
+    "multi": false,
+    "cls": "a22a3215b605"
   },
   "12515447fb2a9371": {
     "store": "ビックカメラ藤沢店",
@@ -29491,7 +29519,9 @@
     "no_quote": true,
     "key": "12515447fb2a9371",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:12.194529+09:00"
+    "found_at": "2026-10-28T13:26:12.194529+09:00",
+    "multi": false,
+    "cls": "55ce3bcb0374"
   },
   "730aa1335d89c890": {
     "store": "ブックオフイトーヨーカドー流山店",
@@ -29518,7 +29548,9 @@
     "no_quote": true,
     "key": "730aa1335d89c890",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341624+09:00"
+    "found_at": "2026-10-28T13:26:16.341624+09:00",
+    "multi": false,
+    "cls": "341327958a9a"
   },
   "f132e033db28c6b5": {
     "store": "TCバトロコ八千代台駅前",
@@ -29527,7 +29559,7 @@
     "end": "2026-10-29T17:00:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLScfVoimQDAxaW-OfcKYhToLWZemqPvWcZtsLrXkEJmU0tE9BQ/viewform",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "千葉県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -29545,7 +29577,9 @@
     "key": "f132e033db28c6b5",
     "status": "approved",
     "found_at": "2026-10-28T13:26:16.341681+09:00",
-    "page_checked_at": "2026-10-28T13:26:34.513720+09:00"
+    "page_checked_at": "2026-10-28T13:26:34.513720+09:00",
+    "multi": false,
+    "cls": "6c4b87b62447"
   },
   "b752f439b9abadfd": {
     "store": "【トレカ】TSUTAYA竹原店",
@@ -29570,7 +29604,9 @@
     "no_quote": true,
     "key": "b752f439b9abadfd",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341723+09:00"
+    "found_at": "2026-10-28T13:26:16.341723+09:00",
+    "multi": false,
+    "cls": "d14363ca7979"
   },
   "658f45e4eea120a8": {
     "store": "トレカ ブックオフ荒川沖店",
@@ -29596,7 +29632,9 @@
     "no_quote": true,
     "key": "658f45e4eea120a8",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341765+09:00"
+    "found_at": "2026-10-28T13:26:16.341765+09:00",
+    "multi": false,
+    "cls": "9ee6c5bbd9d7"
   },
   "cb29bdf56804e17a": {
     "store": "カードラボ所沢店",
@@ -29622,7 +29660,9 @@
     "no_quote": true,
     "key": "cb29bdf56804e17a",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341796+09:00"
+    "found_at": "2026-10-28T13:26:16.341796+09:00",
+    "multi": false,
+    "cls": "bb556444e47a"
   },
   "ca0bd6e437bb9edc": {
     "store": "ブックオフ草加セーモンプラザ店",
@@ -29647,7 +29687,9 @@
     "no_quote": true,
     "key": "ca0bd6e437bb9edc",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341827+09:00"
+    "found_at": "2026-10-28T13:26:16.341827+09:00",
+    "multi": false,
+    "cls": "572920b2f01c"
   },
   "0d2ac9a1f17b799a": {
     "store": "ブックオフ イオン橋本店",
@@ -29674,7 +29716,9 @@
     "no_quote": true,
     "key": "0d2ac9a1f17b799a",
     "status": "approved",
-    "found_at": "2026-10-28T13:26:16.341859+09:00"
+    "found_at": "2026-10-28T13:26:16.341859+09:00",
+    "multi": false,
+    "cls": "020f90912e36"
   },
   "7913f4ec063ebdac": {
     "store": "ドラゴンスター通販",
@@ -30304,5 +30348,66 @@
     "found_at": "2026-10-28T13:26:16.342587+09:00",
     "multi": false,
     "cls": "bb05e8b36c2b"
+  },
+  "1b7b43dcfe3d93c4": {
+    "game": "onepiece",
+    "store": "古本市場・ふるいち（Web抽選・全国の店舗で受取）",
+    "product": "エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】1BOX（5,760円税込）",
+    "series": "ヒロインズエディション vol.2",
+    "channel": "store",
+    "method": "Web抽選（ふるいち公式サイトの応募フォーム）→ 当選したら希望店舗で購入",
+    "end": "2026-11-01T23:00+09:00",
+    "announce": "11/4(水)23時頃（ふるいちアプリのお知らせ）",
+    "buy": "11/6(金)〜11/8(日)",
+    "conditions": "ふるいちアプリ会員（一般会員・VIP会員。ゲスト会員は対象外）。購入時にアプリと写真付き本人確認書類（現住所の記載あり）が必要。1人（1家族）1回まで。10/31（発売日）の店頭販売はなし",
+    "member": "account",
+    "id_check": true,
+    "tags": [
+      "アプリ",
+      "会員",
+      "本人確認"
+    ],
+    "url": "https://www.furu1.net/news/news_information/opkl20261031/opklfvol2",
+    "slug": "furuichi-heroines-vol2-1101",
+    "key": "1b7b43dcfe3d93c4",
+    "status": "listed",
+    "found_at": "2026-10-28T13:30:15.963562+09:00",
+    "manual": true,
+    "source": "手動追加",
+    "confidence": 1.0,
+    "page_checked_at": "2026-10-28T13:31:24.113472+09:00",
+    "multi": true,
+    "cls": "3bb204b02d90"
+  },
+  "f656e6ed2003a821": {
+    "game": "onepiece",
+    "store": "古本市場・ふるいち（Web抽選・全国の店舗で受取）",
+    "product": "ONE PIECE HEROINES PRECIOUS BOX（8,470円税込）",
+    "series": "HEROINES PRECIOUS BOX",
+    "channel": "store",
+    "method": "Web抽選（ふるいち公式サイトの応募フォーム）→ 当選したら希望店舗で購入",
+    "end": "2026-11-01T23:00+09:00",
+    "announce": "11/4(水)23時頃（ふるいちアプリのお知らせ）",
+    "buy": "11/6(金)〜11/8(日)",
+    "conditions": "ふるいちアプリ会員（一般会員・VIP会員。ゲスト会員は対象外）。購入時にアプリと写真付き本人確認書類（現住所の記載あり）が必要。1人（1家族）1回まで。10/31（発売日）の店頭販売はなし",
+    "member": "account",
+    "id_check": true,
+    "tags": [
+      "アプリ",
+      "会員",
+      "本人確認"
+    ],
+    "url": "https://www.furu1.net/news/news_information/opkl20261031/opklfpreb",
+    "slug": "furuichi-heroines-precious-1101",
+    "key": "f656e6ed2003a821",
+    "status": "listed",
+    "found_at": "2026-10-28T13:30:15.963630+09:00",
+    "manual": true,
+    "source": "手動追加",
+    "confidence": 1.0,
+    "page_checked_at": "2026-10-28T13:31:27.072085+09:00",
+    "multi": true,
+    "cls": "46bb49c2b441",
+    "x_post": "https://x.com/furu1_toyohama/status/2114589537716629831"
   }
 }
