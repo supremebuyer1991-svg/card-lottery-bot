@@ -29,6 +29,27 @@ def _spend(n):
     save_json("x_usage.json", u)
 
 
+def _notify_limit(settings):
+    """上限に届いたら、その日1回だけGitHubのIssueで知らせる（増やすかどうかはユーザーと相談）"""
+    meta = load_json("x_meta.json", {})
+    today = now().date().isoformat()
+    if meta.get("budget_notified") == today:
+        return
+    meta["budget_notified"] = today
+    save_json("x_meta.json", meta)
+    limit = (settings.get("x_read_budget_by_date") or {}).get(today) or settings.get("x_read_budget_per_day", 300)
+    log(f"Xの読み取りが今日の上限（{limit}件）に達しました")
+    try:
+        from approve import _gh
+        _gh("POST", "/issues", json={
+            "title": f"【相談】Xの読み取りが今日の上限（{limit}件）に達しました（{now():%m/%d %H:%M}）",
+            "body": (f"今日（{today}）のXの読み取りが上限の{limit}件に届いたので、今日はこれ以降Xからの抽選の収集を止めています。\n\n"
+                     "増やす場合は、Claudeに「今日は○件まで増やして」と伝えてください（1件 約0.005ドル。100件増やすと約0.5ドル）。\n"
+                     "そのままでよければ、このIssueは閉じてください（明日の0時に上限は元に戻ります）。")})
+    except Exception as e:
+        log(f"上限のお知らせ失敗: {e}")
+
+
 def build_query(src) -> str:
     """sources.yaml の x 設定からXの検索クエリを作る"""
     parts = []
@@ -51,6 +72,7 @@ def search(src, settings, since_id=None, client=None):
     left = budget_left(settings)
     if left < 10:
         log(f"X読み取り上限に達したためスキップ: {src['id']}")
+        _notify_limit(settings)
         return [], since_id
     if not os.environ.get("X_BEARER_TOKEN") and client is None:
         log("X_BEARER_TOKEN 未設定のためXの収集はスキップ")
