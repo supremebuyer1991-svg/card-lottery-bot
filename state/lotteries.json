@@ -9623,10 +9623,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "bcbccf41abb8dc59",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883226+09:00",
     "multi": false,
-    "cls": "c44f917c8eaa"
+    "cls": "c44f917c8eaa",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T12:07:19.774654+09:00"
   },
   "0c045d64feb08412": {
     "store": "ミント仙台店",
@@ -9653,11 +9655,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "0c045d64feb08412",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883252+09:00",
     "multi": false,
     "cls": "67c9f05fe877",
-    "page_checked_at": "2026-10-28T00:21:18.788509+09:00"
+    "page_checked_at": "2026-10-28T00:21:18.788509+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T12:07:19.774670+09:00"
   },
   "3f0bbc7d4024469f": {
     "store": "ブックオフ那覇与儀店",
@@ -28199,11 +28203,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "8aa35ee3972aac16",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T08:53:48.841404+09:00",
     "multi": false,
     "cls": "f90d35375fb3",
-    "issue": 157
+    "issue": 157,
+    "closed_at": "2026-10-28T12:07:47.590461+09:00"
   },
   "951bbd8b311d3248": {
     "store": "Japan TCG Center 那覇沖映通り店",
@@ -28513,5 +28518,64 @@
     "page_checked_at": "2026-10-28T09:20:59.604369+09:00",
     "cls": "08ffb60c344a",
     "duplicate_of": "c71a9a6bbaaa56ff"
+  },
+  "6f3e60b46bf83dcd": {
+    "store": "TCGショップ193",
+    "product": "ポケモンカード 30th CELEBRATION カードセット各種",
+    "series": "30th CELEBRATION",
+    "start": "2026-10-28T09:50:00+09:00",
+    "end": "2026-11-04T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "9種セット（税込10,800円）お一人様1セットまで。対象店舗は椿店、名駅店、大須店、ザザシティ浜松店、秋葉原店、日本橋店（応募時に店舗を選択）。2026年9月30日までに入会の店頭会員が対象（通販193NETの会員とは別）。購入期間11/7(土)〜11/9(月)、応募店舗で店頭引き渡しのみ。購入時に当選メール・会員カード・身分証が必要。当選者のみメールで通知。",
+    "url": null,
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "area": null,
+    "id_check": true,
+    "member": "card",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "confidence": 0.5,
+    "source": "入荷Now 入荷情報",
+    "source_url": "https://nyuka-now.com/archives/161846",
+    "no_quote": true,
+    "key": "6f3e60b46bf83dcd",
+    "status": "pending",
+    "found_at": "2026-10-28T12:07:12.175500+09:00",
+    "multi": true,
+    "cls": "d2a9556a6ab3",
+    "issue": 162
+  },
+  "cec010e6b41df29b": {
+    "store": "トレカステーション",
+    "product": "ポケモンカード 30th CELEBRATION カードセット各種",
+    "series": "30th CELEBRATION",
+    "start": "2026-10-26T10:00:00+09:00",
+    "end": "2026-11-01T23:59:00+09:00",
+    "announce": "2026-11-03",
+    "method": "店頭",
+    "conditions": "店頭抽選受付（当選者には店頭販売）。30th CELEBRATION カードセットは9種セット。対象商品にはストームエメラルダも含む。購入期間11/6(金)〜11/8(日)。",
+    "url": null,
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "入荷Now 入荷情報",
+    "source_url": "https://nyuka-now.com/archives/161846",
+    "no_quote": true,
+    "key": "cec010e6b41df29b",
+    "status": "duplicate",
+    "found_at": "2026-10-28T12:07:12.175556+09:00",
+    "multi": false,
+    "cls": "1979d13f998e",
+    "duplicate_of": "47908e9288aa3d79"
   }
 }
