@@ -23,6 +23,22 @@ def _vague_store(store):
     core = re.sub(r"[（(].*?[）)]|\s", "", s)
     return len(core) <= 2 and not re.search(r"[A-Za-z]", core)  # 「岡南」「熱田」など（3文字以上は「平和堂」などのチェーン名がある）
 
+def _blog_link(url, store, blogs, pages, limit=8):
+    """まとめブログのページから、そのお店の公式リンクを探す（1回の実行で読むページは limit まで）"""
+    try:
+        if url not in pages:
+            if len(pages) >= limit:
+                return None
+            from fetch import get
+            pages[url] = get(url)
+        from bloglink import find_link
+        return find_link(pages[url], url, store, blogs)
+    except Exception as e:
+        log(f"まとめブログの読み取り失敗 {url}: {e}")
+        pages[url] = ""
+        return None
+
+
 def _post_date(url):
     """XのポストのURLから投稿日時を出す（ポストIDに日時が入っている）"""
     import re
@@ -103,6 +119,7 @@ def approve(settings):
     manual = [u for u in (settings.get("closed_urls") or []) if u]
     import re
     blogs = [b.lower() for b in (settings.get("blog_domains") or [])]
+    pages = {}  # まとめブログのページ（1回の実行で同じページは1回だけ読む）
     # 応募先が情報元の一覧ページそのもの（個別の告知ではない）＝AIがあいまいに作った抽選なので載せない
     try:
         from common import load_sources
@@ -128,6 +145,13 @@ def approve(settings):
             it["blog_url"] = it["url"]
             it["url"] = it.get("apply_url") or None
             log(f"応募先がまとめブログのためリンクを外しました: {it.get('store')} {host}")
+        # まとめブログのページに貼ってある、そのお店の公式の応募ページ（かお店の告知ポスト）を探してリンクにする（1日1回まで）
+        if it.get("blog_url") and not it.get("url") and it.get("blog_checked") != now().date().isoformat():
+            it["blog_checked"] = now().date().isoformat()
+            found = _blog_link(it["blog_url"], it.get("store"), blogs, pages)
+            if found:
+                it["url"] = found
+                log(f"まとめブログから公式のリンクを見つけました: {it.get('store')} → {found}")
         if (it.get("url") or "").rstrip("/") in index_urls and not it.get("apply_url"):
             it["status"] = "rejected"
             it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
