@@ -2585,9 +2585,10 @@
   },
   "store/biccamera-d0c27/": {
     "name": "ビックカメラ水戸駅店",
-    "last": "2026-10-26",
+    "last": "2026-10-28",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "茨城県"
   },
   "store/mint-cc0d6/": {
     "name": "ミント横浜店（スカイビル）",
@@ -3074,5 +3075,17 @@
     "last": "2026-10-28",
     "game": "onepiece",
     "keep": true
+  },
+  "store/bookoff-2ec58/": {
+    "name": "ブックオフJR蒲田駅東口店",
+    "last": "2026-10-28",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/toredingukadopitto-inta-f04ea/": {
+    "name": "トレーディングカードピット上越インター店",
+    "last": "2026-10-28",
+    "game": "onepiece",
+    "area": "新潟県"
   }
 }
