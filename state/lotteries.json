@@ -16993,7 +16993,7 @@
     "announce": null,
     "method": null,
     "conditions": "応募方法や条件が店舗ごとに異なる（詳細は告知ページで確認）",
-    "url": "https://www.kidsrepublic.jp/about/",
+    "url": null,
     "x_post": "https://x.com/omusubicororiin/status/2114682537545224612",
     "game": "pokemon",
     "channel": "store",
@@ -22876,7 +22876,7 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "52d98ef8f2633167",
-    "status": "listed",
+    "status": "rejected",
     "found_at": "2026-10-27T10:14:09.577612+09:00",
     "cls": "bf0af0716175",
     "products": [
@@ -22886,7 +22886,8 @@
     "buy": "11/6(金)15:00〜11/17(火)16:59（発送は12/11(金)〜12/25(金)）",
     "slug": "pikapika-box-2027",
     "manual": true,
-    "page_checked_at": "2026-10-28T08:57:16.956004+09:00"
+    "page_checked_at": "2026-10-28T08:57:16.956004+09:00",
+    "closed_reason": "自分のポストから拾ったもの"
   },
   "60ea9c8fc5a4da5d": {
     "store": "TSUTAYA 姫路広峰店",
@@ -23741,7 +23742,7 @@
     "series": "ヒロインズエディション",
     "end": "2026-10-29T13:59:00+09:00",
     "url": "https://form.amiami.jp/draw20261027",
-    "x_post": null,
+    "x_post": "https://x.com/omusubicororiin/status/2115004275583775073",
     "channel": "online",
     "area": null,
     "method": "オンライン",
@@ -24577,12 +24578,13 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "d6e091bf72bfb2d0",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:11:59.187046+09:00",
     "cls": "fdcd1e077161",
     "page_checked_at": "2026-10-28T05:04:42.769985+09:00",
     "blog_url": "https://mikeco-room.com/onepiece-kamin",
-    "blog_checked": "2026-10-28"
+    "blog_checked": "2026-10-28",
+    "duplicate_of": "7a7db738af19e0ce"
   },
   "6ef95523dfd5d2ac": {
     "store": "ビックカメラ渋谷ハチ公口店",
@@ -25383,7 +25385,7 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "e19dc266ef33de26",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:14:14.439211+09:00",
     "deadline_checked_at": "2026-10-28T00:19:30.570215+09:00",
     "deadline_v": 4,
@@ -25391,7 +25393,8 @@
     "end_from": "Xの告知（応募期間:10月27日-10月29日23）",
     "multi": false,
     "cls": "18aff9355c8a",
-    "issue": 127
+    "issue": 127,
+    "duplicate_of": "8b948058edb0c46c"
   },
   "f12f0544f1fbf0ae": {
     "store": "ビックカメラ藤沢店",
@@ -25816,10 +25819,11 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "b666cea62ccdbe54",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:15:40.386998+09:00",
     "multi": false,
-    "cls": "4b5d7c85edc6"
+    "cls": "4b5d7c85edc6",
+    "duplicate_of": "b8f4b6a0dc1d5403"
   },
   "03baa4ef3a60cc98": {
     "store": "CARD CREW",
@@ -26827,11 +26831,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "c233e5cbc8846a9c",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T06:23:26.888945+09:00",
     "multi": false,
     "cls": "e5811a26672a",
-    "issue": 141
+    "issue": 141,
+    "duplicate_of": "ee539dae829ae425"
   },
   "ebb46e9bf2ca310e": {
     "store": "BOOKSあんとく",
@@ -27053,10 +27058,11 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "2ca9b94d0abd999e",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-28T07:02:19.902140+09:00",
     "page_checked_at": "2026-10-28T07:04:27.984787+09:00",
-    "cls": "7366d7a98cc8"
+    "cls": "7366d7a98cc8",
+    "duplicate_of": "7913f4ec063ebdac"
   },
   "89a43b957df97303": {
     "store": "ビックカメラ あべのキューズモール店",
@@ -27308,14 +27314,15 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "57e24197634855e7",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T07:26:42.207913+09:00",
     "page_checked_at": "2026-10-28T07:28:19.471384+09:00",
     "cls": "418ec9cf9662",
     "issue": 145,
     "multi": false,
     "blog_url": "https://mikeco-room.com/resale-30thcelebration/",
-    "blog_checked": "2026-10-28"
+    "blog_checked": "2026-10-28",
+    "duplicate_of": "94f461866900a96d"
   },
   "9fc258ffe7555e03": {
     "store": "ふるいち",
@@ -27647,10 +27654,11 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "67c3b1428345e129",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-10-28T07:34:01.163496+09:00",
     "multi": false,
-    "cls": "7ece85ef3fa4"
+    "cls": "7ece85ef3fa4",
+    "closed_reason": "自分のポストから拾ったもの"
   },
   "25b3d1d930160243": {
     "store": "ふるいち名古屋大須店",
@@ -27673,11 +27681,12 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "25b3d1d930160243",
-    "status": "pending",
+    "status": "rejected",
     "found_at": "2026-10-28T07:34:01.163529+09:00",
     "multi": false,
     "cls": "2ae9eb7e1a15",
-    "issue": 153
+    "issue": 153,
+    "closed_reason": "自分のポストから拾ったもの"
   },
   "113748f10db315fd": {
     "store": "TCGshop193",
@@ -28264,11 +28273,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "951bbd8b311d3248",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T08:53:48.841419+09:00",
     "multi": false,
     "cls": "86c2bd2ce27e",
-    "issue": 158
+    "issue": 158,
+    "duplicate_of": "f2b64a9361a53ad0"
   },
   "cb6c08e9daae1ad4": {
     "store": "ブックオフ",
@@ -28837,7 +28847,7 @@
     "series": null,
     "end": "2026-11-03T23:59:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSde4He2L40C7XHQ8jBzQir7XbUkLhDdabH4yvhNo_Xglt4CHA/viewform",
-    "x_post": null,
+    "x_post": "https://x.com/omusubicororiin/status/2115205980120367388",
     "channel": "store",
     "area": "東京都",
     "method": "オンライン",
@@ -31572,9 +31582,10 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "75eafe359d9b74ff",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-10-28T14:14:49.653330+09:00",
-    "cls": "785cb3c31a71"
+    "cls": "785cb3c31a71",
+    "closed_reason": "自分のポストから拾ったもの"
   },
   "154c08ccccb0ec16": {
     "store": "ふるいち名古屋大須店",
@@ -32178,5 +32189,33 @@
     "found_at": "2026-10-28T14:17:07.459457+09:00",
     "multi": false,
     "cls": "ad4976d534fb"
+  },
+  "6a1a332dc3ddcbf4": {
+    "game": "pokemon",
+    "store": "トレカショップ ジャスティス（大阪）",
+    "product": "ポケモンカードゲーム MEGA「30th CELEBRATION」（再販分）1BOX",
+    "series": "30th CELEBRATION",
+    "channel": "store",
+    "area": "大阪府",
+    "method": "Web抽選（ジャスティスのモバイル会員の抽選ページから申込）→ 当選したら店頭で購入",
+    "end": "2026-11-02T23:59+09:00",
+    "announce": "11/4(水)予定",
+    "buy": "11/6(金)〜11/8(日)",
+    "conditions": "モバイル会員限定（1人1アカウントまで）。申込は1BOXまで。店頭販売のみ（発送なし）。シュリンクは剥がしてのお渡し",
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
+    "url": "https://justice.membercard.jp/lottery",
+    "slug": "justice-osaka-30th-1102",
+    "key": "6a1a332dc3ddcbf4",
+    "status": "listed",
+    "found_at": "2026-10-28T14:30:50.532294+09:00",
+    "manual": true,
+    "source": "手動追加",
+    "confidence": 1.0,
+    "page_checked_at": "2026-10-28T14:31:55.647758+09:00",
+    "multi": false,
+    "cls": "27b7445efae8"
   }
 }
