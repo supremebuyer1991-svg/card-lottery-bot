@@ -1,42 +1,44 @@
 {
-  "checked": "2026-10-28",
+  "checked": "2026-10-29",
   "series": {
     "pokemon": {
       "30th CELEBRATION FUTURISTIC BOX": {
+        "first_seen": "2026-10-27",
         "release": "2026-09-16",
         "type": "その他の商品",
         "price": "27,500円（税込）",
-        "slug": "furbox",
-        "first_seen": "2026-10-27"
+        "slug": "furbox"
       },
       "30th CELEBRATION": {
+        "first_seen": "2026-10-27",
         "release": "2026-09-16",
         "type": "拡張パック",
         "price": "1パック360円（税込）／1BOX（30パック）10,800円",
-        "slug": "30th-celebration",
-        "first_seen": "2026-10-27"
+        "slug": "30th-celebration"
       }
     },
     "onepiece": {
       "神の支配": {
+        "first_seen": "2026-10-27",
         "release": "2026-11-21",
         "type": "ブースターパック【OP-18】",
         "price": "1パック240円（税込）／1BOX（24パック）5,760円",
         "slug": "op18",
-        "code": "OP-18",
-        "first_seen": "2026-10-27"
+        "code": "OP-18"
       },
       "ONE PIECE Heroines Edition vol.2": {
+        "first_seen": "2026-10-27",
         "release": "2026-10-31",
         "type": "エクストラブースター【EB-05】",
         "price": "1パック240円（税込）／1BOX（24パック）5,760円",
         "slug": "eb05",
-        "code": "EB-05",
-        "first_seen": "2026-10-27"
+        "code": "EB-05"
       }
     }
   },
-  "snkr": {},
+  "snkr": {
+    "onepiece|神の支配": 924232
+  },
   "pk_ex_next": 8,
   "qc_ready": true
 }
