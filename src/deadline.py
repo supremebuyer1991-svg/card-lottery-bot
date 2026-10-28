@@ -148,24 +148,32 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
         if it.get("status") not in ACTIVE or it.get("end"):
             continue
         t = parse_dt(it.get("deadline_checked_at"))
-        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 4:
+        if t and (now() - t).total_seconds() < 24 * 3600 and it.get("deadline_v") == 5:
             continue
         url = it.get("url") or ""
-        if _tweet_id(url) or any(h in url for h in PAGE_HOSTS):
+        # 応募先のページ（お店のブログ・通販の告知ページなども）は全部読む。Amazon（締切のない招待）・LINEの友だち追加などは除く
+        if _tweet_id(url) or (url.startswith("http") and not re.search(r"amazon|amzn|lin\.ee|line\.me|myca\.dmm", url + " " + (it.get("store") or ""), re.I)):
             todo.append(it)
     todo = todo[:limit]
     if not todo:
         return 0
 
+    # 応募ページを先に読む。読めなかった（ボット対策で断られた等）抽選は、お店の告知ポスト（x_post）から読む
+    pages = {}
+    for it in todo:
+        if not _tweet_id(it["url"]):
+            pages[it["url"]] = _page_text(it["url"], fetcher)
+            if not pages[it["url"]] and _tweet_id(it.get("x_post")):
+                it["_via_post"] = it["x_post"]
     tweets = {}
     try:
-        tweets = _x_lookup(list({_tweet_id(i["url"]) for i in todo if _tweet_id(i["url"])}), settings, x_client)
+        tweets = _x_lookup(list({_tweet_id(i.get("_via_post") or i["url"]) for i in todo if _tweet_id(i.get("_via_post") or i["url"])}), settings, x_client)
     except Exception as e:
         log(f"締切の調査: X取得失敗 {e}")
 
     filled = 0
     for it in todo:
-        tid = _tweet_id(it["url"])
+        tid = _tweet_id(it.pop("_via_post", None) or it["url"])
         text, imgs, posted, src = "", [], None, ""
         if tid:
             if tid not in tweets:
@@ -182,9 +190,9 @@ def fill_deadlines(settings, ask=None, fetcher=get, x_client=None, limit=None):
                         it["apply_url"] = u
                     break
         else:
-            text, src = _page_text(it["url"], fetcher), "応募ページ"
+            text, src = pages.get(it["url"]) or "", "応募ページ"
         it["deadline_checked_at"] = now().isoformat()
-        it["deadline_v"] = 4
+        it["deadline_v"] = 5
         if not text and not imgs:
             it["deadline_note"] = LAST_ERR.get(it.get("url") or "", "読める内容なし")
             continue
