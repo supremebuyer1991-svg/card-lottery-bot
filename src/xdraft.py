@@ -422,7 +422,7 @@ def build_x_draft(out, items, site, updated):
     """items: sitegen の items（受付中のみ）。/x-draft.html を書き出す"""
     from sitegen import series_path  # 弾ページのURL（sitegen から呼ばれるので読み込み済み）
     keep = ("game", "store", "product", "series", "end", "found_at", "channel", "area", "lpath", "manual",
-            "start", "products", "announce", "buy", "conditions")
+            "start", "products", "announce", "buy", "conditions", "id_check", "member", "method", "tags")  # 画像に応募条件を入れる
     data = []
     for i in items:
         row = {k: i.get(k) for k in keep}
