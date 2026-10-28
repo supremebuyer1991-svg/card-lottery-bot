@@ -127,6 +127,12 @@ def approve(settings):
     except Exception:
         index_urls = set()
     own = re.compile(r"(x|twitter)\.com/pokepi_tcg/", re.I)  # 自分のアカウント
+    # ほかのまとめ・情報アカウント（お店ではない）。そのポストへのリンクは応募先として出さない
+    try:
+        info_h = {a.lower() for s_ in load_sources() if s_.get("id") == "x_info_accounts" for a in (s_.get("accounts") or [])}
+    except Exception:
+        info_h = set()
+    info_rx = re.compile(r"(?:x|twitter)\.com/(\w+)/status", re.I)
     for it in lots.values():
         if own.search(it.get("x_post") or ""):
             it["x_post"] = None  # 自分のポストは「お店の告知」ではない
@@ -156,6 +162,12 @@ def approve(settings):
                     it["url"] = loc
             except Exception as e:
                 log(f"短縮リンクの確認失敗 {it['url']}: {e}")
+        # 応募先がほかのまとめ・情報アカウントのポストなら、リンクを外す（他人のXに飛ばさない）
+        m_ = info_rx.search(it.get("url") or "")
+        if m_ and m_.group(1).lower() in info_h:
+            it["info_post"] = it["url"]
+            it["url"] = it.get("apply_url") or None
+            log(f"応募先が情報アカウントのポストのためリンクを外しました: {it.get('store')} @{m_.group(1)}")
         # 応募先がまとめブログ（お店・公式ではない）なら、リンクを外す（ブログは情報元としてだけ残す）
         if it.get("blog_url") and not it.get("url"):  # リストから外したブログはリンクを戻す
             bh = re.sub(r"^https?://(www\.)?", "", it["blog_url"]).split("/")[0].lower()

@@ -1396,6 +1396,7 @@ def build(settings=None, out_dir=None, sample=None):
     if sample is None:
         import results as _rs
         rs = sorted(load_json("results.json", {}).items(), key=lambda kv: kv[1].get("found_at", ""), reverse=True)
+        _sreg = load_json("stores.json", {})
         sched = _rs.scheduled_today()
         feed = {"updated": now().isoformat(), "results": [], "scheduled_today": sched}
         h = ['<div class="guide"><p>お店や公式がXで「抽選結果を発表しました」「当選の方へメールを送りました」と出したお知らせを、見つけた順にまとめています。'
@@ -1414,7 +1415,8 @@ def build(settings=None, out_dir=None, sample=None):
                                         "series": r.get("series") or [], "matched": r.get("matched"), "text": r.get("text")})
                 h.append(f'<li><b>{escape(r.get("store") or "")}</b>（{escape(GAME_SHORT.get(r["game"], ""))}'
                          + (f'・{escape("・".join(r["series"]))}' if r.get("series") else "") + f'）{d.month}/{d.day}'
-                         + f'<br><small>{escape(r.get("text") or "")}</small> <a href="{escape(post)}" target="_blank" rel="noopener nofollow">お店のお知らせ（X）</a></li>')
+                         + f'<br><small>{escape(r.get("text") or "")}</small>'
+                         + (f' <a href="/{store_path(r["store"])}">このお店の抽選を見る</a>' if r.get("store") and store_path(r["store"]) in _sreg else "") + '</li>')
             h.append("</ul>")
         else:
             h.append("<p>今はまだありません。見つかりしだい、ここに載せます。</p>")
