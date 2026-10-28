@@ -47,14 +47,14 @@ sources:
     game: pokemon
     name: X「ポケカ 抽選」
     type: x
-    keywords: '(ポケカ OR ポケモンカード) (抽選 OR 抽選販売) (受付 OR 応募)'
+    keywords: '(ポケカ OR ポケモンカード) (抽選 OR 抽選販売) (受付 OR 応募 OR 申込 OR 申し込み)'  # 「お申込みはこちら」だけの告知も拾う
     max_results: 20
 
   - id: x_onepiece
     game: onepiece
     name: X「ワンピカード 抽選」
     type: x
-    keywords: '(ワンピカード OR ワンピースカード OR "ONE PIECEカード") 抽選 (受付 OR 応募)'
+    keywords: '(ワンピカード OR ワンピースカード OR "ONE PIECEカード") 抽選 (受付 OR 応募 OR 申込 OR 申し込み)'
     max_results: 20
 
   - id: x_dbfw

@@ -8,6 +8,23 @@
 #   日時は 2026-11-01T23:00 のように「年-月-日T時:分」で書く
 
 lotteries:
+  - slug: justice-osaka-30th-1102
+    game: pokemon
+    store: トレカショップ ジャスティス（大阪）
+    series: 30th CELEBRATION
+    product: ポケモンカードゲーム MEGA「30th CELEBRATION」（再販分）1BOX
+    channel: store
+    area: 大阪府
+    method: Web抽選（ジャスティスのモバイル会員の抽選ページから申込）→ 当選したら店頭で購入
+    end: 2026-11-02T23:59
+    announce: 11/4(水)予定
+    buy: 11/6(金)〜11/8(日)
+    conditions: モバイル会員限定（1人1アカウントまで）。申込は1BOXまで。店頭販売のみ（発送なし）。シュリンクは剥がしてのお渡し
+    member: account
+    tags: [会員]
+    url: https://justice.membercard.jp/lottery
+    x_post: https://x.com/justice_oosaka/status/2115301988942684466
+
   - slug: furuichi-heroines-vol2-1101
     game: onepiece
     store: 古本市場・ふるいち（Web抽選・全国の店舗で受取）
