@@ -14,7 +14,8 @@ from common import load_json, save_json, now, parse_dt, log, normalize
 GAME_WORD = {"pokemon": "ポケモンカード", "onepiece": "ワンピースカード"}
 NG = ("オリパ", "オリジナルパック", "中古", "開封済", "シングル", "バラ", "ばら", "1パック", "パック販売", "カートン", "スリーブ", "ローダー",
       "ケース", "ファイル", "プレイマット", "福袋", "くじ", "まとめ売り", "空箱", "英語版", "海外版", "中国語", "韓国語", "Chinese", "Korean",
-      "シュリンクなし", "シュリンク無", "訳あり", "箱つぶれ", "箱潰れ", "傷あり", "ジャンク", "抽選", "応募券", "サプライ", "デッキケース")
+      "シュリンクなし", "シュリンク無", "訳あり", "箱つぶれ", "箱潰れ", "傷あり", "ジャンク", "抽選", "応募券", "サプライ", "デッキケース",
+      "グミ", "食玩", "キャンディ", "ウエハース", "チップス", "ガム", "菓子", "ラムネ", "チョコ", "ふりかけ", "カレー", "ソーセージ")
 
 
 def targets(settings):
@@ -131,7 +132,8 @@ def current(max_age_hours=6):
     out = []
     for k, rec in (data.get("items") or {}).items():
         c = parse_dt(rec.get("checked"))
-        if not c or (t - c).total_seconds() > max_age_hours * 3600 or not rec.get("hits"):
+        hits = [h for h in rec.get("hits") or [] if not any(w in (h.get("name") or "") for w in NG)]
+        if not c or (t - c).total_seconds() > max_age_hours * 3600 or not hits:
             continue
-        out.append(rec)
+        out.append(dict(rec, hits=hits))
     return out

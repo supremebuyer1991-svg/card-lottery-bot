@@ -1358,6 +1358,33 @@ def build(settings=None, out_dir=None, sample=None):
                       "aff": whtml(sm_), "links": _menu(items, games, games[0]), "root": "/"}
             if n_i == 0:
                 write("weekly/", {"game": games[0]}, dict(meta_w), sub, [("トップ", ""), ("今週のまとめ", "weekly/")])
+                # 来週（次の月曜〜日曜）に締切がある抽選：日曜夜の「来週締切の抽選」ポスト用
+                jst_ = _dt.timezone(_dt.timedelta(hours=9))
+                d0_ = now().astimezone(jst_).date()
+                nm_ = d0_ + _dt.timedelta(days=7 - d0_.weekday())  # 次の月曜
+                up = {"from": nm_.isoformat(), "to": (nm_ + _dt.timedelta(days=6)).isoformat(), "games": {}}
+                for g_ in games:
+                    rows_ = []
+                    for i in items:
+                        e_ = parse_dt(i.get("end"))
+                        if i.get("game") != g_ or not e_ or not (up["from"] <= e_.astimezone(jst_).date().isoformat() <= up["to"]):
+                            continue
+                        if "amazon" in ((i.get("store") or "") + (i.get("url") or "")).lower():
+                            continue
+                        reqs = [w for w, ok in (("本人確認", i.get("id_check") is True), ("会員カード", i.get("member") == "card"),
+                                                ("会員登録", i.get("member") == "account"),
+                                                ("購入履歴", "購入履歴" in (i.get("tags") or []) or bool(re.search(r"購入(履歴|実績|歴)", i.get("conditions") or ""))),
+                                                ("レシート", "レシート" in (i.get("tags") or []))) if ok]
+                        rows_.append({"store": i.get("store"), "series": i.get("series") or (i.get("product") or "")[:30], "end": i.get("end"),
+                                      "channel": "店頭受取" if i.get("channel") == "store" else "通販（発送）",
+                                      "area": i.get("area") or "", "needs": reqs})
+                    rows_.sort(key=lambda r: r["end"])
+                    if rows_:
+                        days_ = __import__("collections").Counter(parse_dt(r["end"]).astimezone(jst_).date().isoformat() for r in rows_)
+                        up["games"][g_] = {"name": GAME_SHORT[g_], "total": len(rows_),
+                                           "store": sum(1 for r in rows_ if r["channel"] == "店頭受取"),
+                                           "by_day": dict(sorted(days_.items())), "items": rows_[:12]}
+                sm_ = dict(sm_, next_week=up)
                 (out / "weekly" / "data.json").write_text(json.dumps(sm_, ensure_ascii=False, indent=1), encoding="utf-8")
             if n_i == 0:
                 continue  # いまの週は /weekly/ だけ（同じ内容のページを2つ作らない）
