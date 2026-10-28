@@ -419,6 +419,20 @@ def page(data: dict, meta: dict, standalone=True) -> str:
             f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
 
 
+def _teika_note(game, series):
+    """弾のページの上に「定価くらいで買える通販があります」の案内（楽天で見つかっている時だけ）"""
+    try:
+        import teika
+        r = next((r for r in teika.current() if r["game"] == game and r["series"] == series), None)
+    except Exception:
+        r = None
+    if not r:
+        return ""
+    best = r["hits"][0]
+    return (f'<a class="tk-note" href="/teika/"><b>定価で買える通販あり</b>楽天で在庫あり {len(r["hits"])}件・最安 ¥{best["price"]:,}'
+            f'（定価 ¥{r["teika"]:,}）<span>見る →</span></a>')
+
+
 def _links(title, pairs):
     if not pairs:
         return ""
@@ -486,7 +500,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
-                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/calendar/">発売日カレンダー</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/calendar/">発売日カレンダー</a><a href="/teika/">定価で買えるBOX</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -1002,7 +1016,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff),
+                "aff": _teika_note(g, x) + (aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
@@ -1342,6 +1356,40 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": "新弾の発売日・定価・抽選の受付状況をまとめています。下には発売前の弾の受付中の抽選を載せています。",
                 "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"}, up_items,
                 [("トップ", ""), ("発売日カレンダー", "calendar/")])
+
+    # --- 定価で買える通販（/teika/）：楽天で在庫あり・定価くらいのBOX ---
+    if sample is None:
+        import teika as _tk
+        tk = _tk.current()
+        tk.sort(key=lambda r: (r["game"] != games[0], -len(r["hits"])))
+        feed_t = {"updated": now().isoformat(), "items": []}
+        h = ['<div class="guide teika"><p>楽天市場で<b>在庫あり</b>・<b>定価の1.1倍以下</b>で売られているBOXを、数時間ごとに自動で探しています。'
+             '売り切れが早いので、気になる商品は早めに確認してください。<span class="pr">PR</span>リンクは楽天アフィリエイトです。</p>']
+        if tk:
+            for r in tk:
+                c = parse_dt(r.get("checked"))
+                h.append(f'<h2>{escape(GAME_SHORT.get(r["game"], ""))}「{escape(r["series"])}」<small>定価 {_yen(r["teika"])}・{c.month}/{c.day} {c:%H:%M} 時点</small></h2><ul class="tk-list">')
+                for x in r["hits"][:5]:
+                    diff = x["price"] - r["teika"]
+                    h.append(f'<li><b>{_yen(x["price"])}</b><small class="{"down" if diff <= 0 else "up"}">定価{"より" + _yen(-diff) + "安い" if diff < 0 else "と同じ" if diff == 0 else "+" + _yen(diff)}</small>'
+                             f'{"<small>送料込み</small>" if x.get("postage") else ""}<span>{escape(x["shop"])}｜{escape(x["name"][:60])}</span>'
+                             f'<a href="{escape(x["url"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a></li>')
+                    feed_t["items"].append({"game": r["game"], "game_name": GAME_SHORT.get(r["game"]), "series": r["series"], "teika": r["teika"],
+                                            "price": x["price"], "shop": x["shop"], "name": x["name"], "url": x["url"], "first_seen": x["first_seen"],
+                                            "page": f"{site}/teika/"})
+                h.append("</ul>")
+        else:
+            h.append("<p>いま、定価くらいで買えるBOXは見つかっていません。見つかりしだい、ここに載せます。</p>")
+        h.append('<p class="note">※価格・在庫は確認した時点のものです。送料は含みません（「送料込み」と書いたものを除く）。購入前に販売ページで必ず確認してください。</p></div>')
+        write("teika/", {"game": games[0]}, {
+            "title": f"定価で買えるポケカ・ワンピースカードBOX【{md}更新】楽天の在庫あり・定価以下の通販まとめ｜トレカ抽選ナビ",
+            "desc": "ポケカ・ワンピースカードのBOXを、楽天市場で在庫あり・定価くらい（定価の1.1倍以下）で売っているお店を自動でまとめています。抽選に外れた方に。",
+            "summary": "", "h1": "定価で買えるBOX（楽天・在庫あり）",
+            "lead": "抽選に外れても、定価くらいで買える通販があります。数時間ごとに自動で更新しています。",
+            "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
+            [i for i in items if i["game"] == games[0]], [("トップ", ""), ("定価で買えるBOX", "teika/")])
+        (out / "teika").mkdir(exist_ok=True)
+        (out / "teika" / "data.json").write_text(json.dumps(feed_t, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # --- お店ごとのページ（/store/xxxx/）と店舗一覧（/store/）---
     # 受付中の抽選がなくなっても45日間はページを残す（検索から来た人が404にならないように）
