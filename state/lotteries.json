@@ -9695,10 +9695,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "3f0bbc7d4024469f",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883271+09:00",
     "multi": false,
-    "cls": "77420087c24f"
+    "cls": "77420087c24f",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967024+09:00"
   },
   "d23dbdb38c3fd390": {
     "store": "ブックオフ那覇小禄店",
@@ -9720,10 +9722,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d23dbdb38c3fd390",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883288+09:00",
     "multi": false,
-    "cls": "39241e4f106b"
+    "cls": "39241e4f106b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967041+09:00"
   },
   "f2b64a9361a53ad0": {
     "store": "Japan TCG Center 那覇沖映通り店",
@@ -9745,10 +9749,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "f2b64a9361a53ad0",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883307+09:00",
     "multi": false,
-    "cls": "8e89d8b743e2"
+    "cls": "8e89d8b743e2",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967045+09:00"
   },
   "d991afa633b82104": {
     "store": "ブックオフ宜野湾店",
@@ -9770,10 +9776,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d991afa633b82104",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883326+09:00",
     "multi": false,
-    "cls": "6e320d3abd46"
+    "cls": "6e320d3abd46",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967048+09:00"
   },
   "3b5115683cf86f6a": {
     "store": "ブックオフ具志川店",
@@ -9795,10 +9803,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "3b5115683cf86f6a",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883345+09:00",
     "multi": false,
-    "cls": "0ae70ffea156"
+    "cls": "0ae70ffea156",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967051+09:00"
   },
   "a7b3424d5fb68f8c": {
     "store": "ブックオフ西友大森店",
@@ -9823,10 +9833,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "a7b3424d5fb68f8c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:21.883365+09:00",
     "multi": false,
-    "cls": "70075842ec43"
+    "cls": "70075842ec43",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-28T17:18:32.967054+09:00"
   },
   "d797f46420f7b268": {
     "store": "TSUTAYA須賀川店",
@@ -28361,12 +28373,13 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "cb6c08e9daae1ad4",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T08:53:48.841432+09:00",
     "multi": true,
     "cls": "6b95a2fb7649",
     "issue": 159,
-    "tco_checked": true
+    "tco_checked": true,
+    "closed_at": "2026-10-28T17:19:12.157336+09:00"
   },
   "9d66f96432c69c32": {
     "store": "イエローサブマリン取扱各店",
