@@ -3497,7 +3497,7 @@
       "store": "横浜トレカショップ ビートダウン",
       "series": "ハドウシーカー",
       "channel": "online",
-      "area": null,
+      "area": "神奈川県",
       "found_at": "2026-10-28T13:26:12.193475+09:00",
       "chain": "beatdown"
     },
@@ -4174,6 +4174,15 @@
       "channel": "store",
       "area": "大阪府",
       "found_at": "2026-10-28T14:30:50.532294+09:00",
+      "chain": null
+    },
+    "0017f4145469440e": {
+      "game": "onepiece",
+      "store": "トレーディングカードピット亀戸店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-28T15:02:57.267761+09:00",
       "chain": null
     }
   }
