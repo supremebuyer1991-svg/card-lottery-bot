@@ -116,6 +116,9 @@ assert len(collect(xsrc, s, extractor=fake_x_extract, x_client=fx)) == 1
 assert len(fx.calls) == 1                                    # 空アカウント・無効ソースは呼ばない
 assert "-当選" in fx.calls[0]["query"] and "has:links" in fx.calls[0]["query"]
 collect(xsrc, s, extractor=fake_x_extract, x_client=fx)
+assert len(fx.calls) == 1                                    # 30分後の実行ではXはお休み（1時間に1回）
+common.save_json("x_meta.json", {})                          # 1時間たったことにする
+collect(xsrc, s, extractor=fake_x_extract, x_client=fx)
 assert fx.calls[1]["since_id"] == "1850000000000000001"     # 前回以降だけ取得
 assert "from:ONEPIECE_tcg" in build_query({"accounts": ["@ONEPIECE_tcg"], "keywords": "抽選"})
 

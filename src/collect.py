@@ -91,9 +91,28 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     # 弾名の表記ゆれをそろえる（スペース・大文字小文字違いは同じ弾として扱う）
     series_names = {normalize(i.get("series")): i["series"] for i in lots.values() if i.get("series")}
 
+    # Xを読むのは1時間に1回（30分ごとの実行の1回おき）。読む量（費用）を抑えるため
+    xmeta = load_json("x_meta.json", {})
+    last_x = parse_dt(xmeta.get("last_x_run"))
+    x_turn = settings.get("x_every_minutes", 55)
+    x_ok = not last_x or (now() - last_x).total_seconds() >= x_turn * 60
+    if x_ok and any(s_.get("type") == "x" and s_.get("enabled") is not False for s_ in sources):
+        xmeta["last_x_run"] = now().isoformat()
+    elif not x_ok:
+        log("X: 今回はお休み（1時間に1回だけ読む）")
+    src_last = xmeta.setdefault("src_last", {})
+
     for src in sources:
         if src.get("enabled") is False:
             continue
+        if src["type"] == "x":
+            if not x_ok:
+                continue
+            # あまり抽選が見つからない検索は、数時間に1回だけ（every_hours）
+            lt = parse_dt(src_last.get(src["id"]))
+            if src.get("every_hours") and lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
+                continue
+            src_last[src["id"]] = now().isoformat()
         sid, game = src["id"], src["game"]
         gname = settings["game_names"].get(game) or "・".join(settings["game_names"].values())
         texts = []  # (テキスト, 出典URL)
@@ -238,6 +257,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             i["closed_at"] = now().isoformat()
         if gone:
             log(f"{name}: 一覧から消えた {len(gone)}件を終了に")
+
+    save_json("x_meta.json", {**load_json("x_meta.json", {}), "last_x_run": xmeta.get("last_x_run"), "src_last": src_last})
 
     save_json("seen.json", seen)
     save_json("lotteries.json", lots)

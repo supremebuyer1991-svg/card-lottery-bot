@@ -58,11 +58,12 @@ sources:
     max_results: 20
 
   - id: x_dbfw
+    every_hours: 3   # 見つかる抽選が少ないので3時間に1回
     game: dragonball
     name: X「フュージョンワールド 抽選」
     type: x
     keywords: '(フュージョンワールド OR ドラゴンボールカード) 抽選 (受付 OR 応募)'
-    max_results: 20
+    max_results: 10
 
   # --- X（実店舗の店頭抽選）：画像だけの告知も多いのでリンク必須にしない ---
   - id: x_shop_pokeca
@@ -82,6 +83,7 @@ sources:
     max_results: 15
 
   - id: x_shop_dbfw
+    every_hours: 6   # ほとんど見つからないので6時間に1回
     game: dragonball
     name: X 実店舗抽選「フュージョンワールド」
     type: x
