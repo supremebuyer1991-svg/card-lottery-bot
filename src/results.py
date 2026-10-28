@@ -192,7 +192,7 @@ def scheduled_today(lots=None):
     today = now().date().isoformat()
     out = {}
     for it in lots.values():
-        if it.get("status") in ("duplicate", "rejected") or str(it.get("announce") or "")[:10] != today:
+        if it.get("status") in ("duplicate", "rejected") or announce_date(it) != today:
             continue
         k = (it["game"], normalize(it.get("store")))
         out.setdefault(k, {"game": it["game"], "store": it.get("store"), "series": set()})
@@ -204,3 +204,29 @@ def scheduled_today(lots=None):
                 out[k]["series"].add(it["series"])
     return [dict(v, series=sorted(v["series"])) for v in out.values()]
 
+
+
+def announce_date(it):
+    """抽選の「当選発表」の書き方（「2026-11-04」「11/4(水)23時頃」「11月21日(土)〜店頭掲示」など）から日付（YYYY-MM-DD）を読む。
+    年が書かれていなければ、締切（なければ見つけた日）の年。締切より前の月なら翌年。読めなければ None"""
+    a = str(it.get("announce") or "")
+    m = re.match(r"(\d{4})-(\d\d)-(\d\d)", a)
+    if m:
+        return m.group(0)
+    if re.search(r"(、|／|/.*:.*/)", a) and len(re.findall(r"\d{1,2}\s*[/月]\s*\d{1,2}", a)) > 1:
+        return None  # 商品ごとに発表日が違う書き方は使わない
+    m = re.search(r"(\d{1,2})\s*[/月]\s*(\d{1,2})", a)
+    if not m:
+        return None
+    base = parse_dt(it.get("end")) or parse_dt(it.get("found_at")) or now()
+    from datetime import date
+    try:
+        d = date(base.year, int(m.group(1)), int(m.group(2)))
+    except ValueError:
+        return None
+    if d < base.date() - timedelta(days=1):
+        try:
+            d = date(base.year + 1, d.month, d.day)
+        except ValueError:
+            return None
+    return d.isoformat()

@@ -1413,8 +1413,8 @@ def build(settings=None, out_dir=None, sample=None):
             if r["kind"] == "scheduled" and r["date"] >= today_k.isoformat():
                 up[(r["game"], normalize(r["store"]), normalize(r.get("series") or ""), r["date"])] = dict(r)
         for it in raw_lots.values():  # お店の告知に書いてあった発表日（今日〜7日後）
-            a_ = str(it.get("announce") or "")
-            if it.get("status") in ("duplicate", "rejected") or it.get("game") not in GAME_SHORT or not re.match(r"\d{4}-\d\d-\d\d", a_):
+            a_ = _rs.announce_date(it) or ""
+            if it.get("status") in ("duplicate", "rejected") or it.get("game") not in GAME_SHORT or not a_:
                 continue
             if not (today_k.isoformat() <= a_[:10] <= (today_k + _dtk.timedelta(days=7)).isoformat()):
                 continue
@@ -1583,7 +1583,7 @@ def build(settings=None, out_dir=None, sample=None):
             h["items"][k] = {"p": "・".join(xs) or (it.get("product") or "")[:60], "g": it["game"],
                              "e": (it.get("end") or "")[:16], "f": (it.get("found_at") or "")[:10],
                              "c": "store" if it.get("channel") == "store" else "online"}
-            a_ = res_day.get(k) or (str(it["announce"])[:10] if re.match(r"\d{4}-\d\d-\d\d", str(it.get("announce") or "")) else "")
+            a_ = res_day.get(k) or _rs2.announce_date(it) or ""
             if a_ or old_a:
                 h["items"][k]["a"] = a_ or old_a
         for sp in list(hist):
