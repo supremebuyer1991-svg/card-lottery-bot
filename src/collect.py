@@ -113,7 +113,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     if x_ok:
         from fetch_x import budget_left
         h = now().hour
-        runs_left = 1 if h == 0 else (25 - h if h >= 7 else 18)  # Xを読むのは 7時〜0時台の1時間に1回
+        # Xを読むのは0時台と7時〜23時台の1時間に1回（上限は0時で切り替わるので、0時台はその日の最初の回）
+        runs_left = 19 if h == 0 else (24 - h if h >= 7 else 17)
         x_allow = budget_left(settings) // max(1, runs_left)
         days = sorted(xstats)[-4:]
 
