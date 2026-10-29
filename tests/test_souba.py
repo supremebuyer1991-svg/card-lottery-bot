@@ -107,3 +107,12 @@ assert sm["year"] and "2025-10-2" in sm["year"][0] and sm["year"][0] <= "2025-10
 # 1年分のデータがない弾は1年前比なし
 assert souba.summary({"jp": {k: v for k, v in th.items() if k > "2026-06-01"}}, "2026-10-30")["year"] is None
 print("OK")
+
+# ポケカのグラフに海外の線（円にした値）を重ねる
+import sitegen as _sg
+_pts = [("2026-10-%02d" % d, 20000 + d * 100) for d in range(1, 11)]
+_us = [("2026-10-%02d" % d, 200.0 + d) for d in range(1, 11)]
+_h = _sg.chart(_pts, us=_us, fx=150)
+assert "stroke-dasharray" in _h and "海外（TCGplayer" in _h and ",30150" in _h, _h
+assert "stroke-dasharray" not in _sg.chart(_pts)
+print("chart us OK")

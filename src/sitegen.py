@@ -345,34 +345,50 @@ def spark(points, w=300, h=64):
             f'<circle cx="{xs[-1]}" cy="{ys[-1]}" r="3.2" fill="{col}"/></svg>')
 
 
-def chart(points, h=170):
-    """弾ページの相場の大きいグラフ（30日）。横幅いっぱいに伸びる線＋面。高値・安値・はじめと終わりの日付を文字で添える"""
+def chart(points, h=170, us=None, fx=None):
+    """弾ページの相場の大きいグラフ（30日）。横幅いっぱいに伸びる線＋面。高値・安値・日付の目盛り・最新の値段。
+    us（[(日付, ドル)]）と fx があれば、海外の相場を円にした線を別の色で重ねる（ポケカ）"""
     if len(points) < 2:
         return ""
     vs = [v for _, v in points]
+    idx = {d: i for i, (d, _) in enumerate(points)}
+    usv = {d: round(u * fx) for d, u in (us or []) if fx and d in idx}  # 日本の線と同じ日の分だけ
+    if len(usv) < 2:
+        usv = {}
     lo, hi = min(vs), max(vs)
-    rng = (hi - lo) or 1
+    slo, shi = min([lo] + list(usv.values())), max([hi] + list(usv.values()))  # 縦の目盛りは両方が入るように
+    rng = (shi - slo) or 1
     W, H = 600, 200
-    xs = [round(i * W / (len(vs) - 1), 1) for i in range(len(vs))]
-    ys = [round(H - 12 - (v - lo) * (H - 24) / rng, 1) for v in vs]
+    n = len(points)
+    X = lambda i: round(i * W / (n - 1), 1)
+    Y = lambda v: round(H - 12 - (v - slo) * (H - 24) / rng, 1)
+    xs = [X(i) for i in range(n)]
+    ys = [Y(v) for v in vs]
     pts = " ".join(f"{x},{y}" for x, y in zip(xs, ys))
     up = vs[-1] >= vs[0]
     col = "var(--red)" if up else "#2563eb"
+    UC = "#16a34a"  # 海外の線の色（緑）
     grid = "".join(f'<line x1="0" x2="{W}" y1="{y}" y2="{y}" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>'
                    for y in (12, H / 2, H - 12))
+    us_line = ""
+    if usv:
+        up_ = " ".join(f"{X(idx[d])},{Y(v)}" for d, v in sorted(usv.items()))
+        us_line = (f'<polyline fill="none" stroke="{UC}" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round" '
+                   f'vector-effect="non-scaling-stroke" points="{up_}"/>')
     last_pct = (ys[-1] / H) * 100
-    n = len(points)
     ticks = sorted({round(i * (n - 1) / 4) for i in range(5)})  # 日付の目盛り（はじめ〜終わりを5か所）
     ax = "".join(f'<span style="left:{xs[i] / W * 100:.1f}%">{_md(points[i][0])}</span>' for i in ticks)
-    data = ";".join(f"{_md(d)},{v}" for d, v in points)  # 指でさわる・マウスを乗せると、その日の日付と値段を出す
+    data = ";".join(f"{_md(d)},{v}" + (f",{usv[d]}" if d in usv else "") for d, v in points)  # さわると、その日の日付と値段を出す
+    leg = (f'<div class="sb-leg"><span><i style="background:{col}"></i>日本（スニダン）</span>'
+           f'<span><i class="dash" style="border-color:{UC}"></i>海外（TCGplayer・円にした値）</span></div>' if usv else "")
     return (f'<div class="sb-chart" style="--h:{h}px"><span class="sb-hi">高値 {_yen(hi)}</span><span class="sb-lo">安値 {_yen(lo)}</span>'
-            f'<div class="sb-plot" data-p="{data}"><svg viewBox="0 0 {W} {H}" preserveAspectRatio="none" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">{grid}'
-            f'<polygon points="0,{H} {pts} {W},{H}" fill="{col}" opacity=".08"/>'
+            f'<div class="sb-plot" data-p="{data}" data-lo="{slo}" data-hi="{shi}"><svg viewBox="0 0 {W} {H}" preserveAspectRatio="none" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">{grid}'
+            f'<polygon points="0,{H} {pts} {W},{H}" fill="{col}" opacity=".08"/>{us_line}'
             f'<polyline fill="none" stroke="{col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" points="{pts}"/></svg>'
             f'<i class="sb-dot" style="top:{last_pct:.1f}%;background:{col}"></i>'
             f'<span class="sb-last" style="top:{last_pct:.1f}%">{_md(points[-1][0])} {_yen(vs[-1])}</span>'
             f'<i class="sb-vl" hidden></i><i class="sb-pt" hidden style="background:{col}"></i><span class="sb-tip" hidden></span></div>'
-            f'<div class="sb-ax">{ax}</div></div>')
+            f'<div class="sb-ax">{ax}</div>{leg}</div>')
 
 
 def _cmp(sm, k):
@@ -409,7 +425,7 @@ def _sb_buy(g, x, name_, rk, s, tag, raff):
     return f'<span class="sb-buy">{b}</span>' if b else ""
 
 
-def souba_block(x, sm, fx=None, link=True):
+def souba_block(x, sm, fx=None, link=True, us_line=False):
     """弾ページの相場の欄：いまの相場・定価との差・前日比・7日前比・30日のグラフ・海外"""
     if not sm:
         return ""
@@ -442,7 +458,7 @@ def souba_block(x, sm, fx=None, link=True):
             f'<small>スニダン・{_md(sm["date"])}の取引</small></div>'
             f'<div class="sb-main"><div class="sb-now"><em>{_yen(sm["price"])}</em>'
             + (f'<span>定価より <b>{abs(gap):,}円</b> 高い相場です</span>' if t and gap > 0 else "")
-            + f'</div></div>{chart(sm.get("points") or [])}<div class="sb-grid">{"".join(rows)}</div>{us}'
+            + f'</div></div>{chart(sm.get("points") or [], us=sm.get("us_points") if us_line else None, fx=fx)}<div class="sb-grid">{"".join(rows)}</div>{us}'
             f'<p class="sb-note">※スニダンでその日に成立した「1個」の取引の平均です（買取価格ではありません）。取引が少ない日は1件で大きく動きます。'
             + (f' <a href="{src}" rel="nofollow noopener" target="_blank">スニダンで見る</a>' if src else "")
             + ("　<a href=\"/souba/\">ほかのBOXの相場</a>" if link else "") + "</p></section>")
@@ -468,6 +484,7 @@ def cards_block(x, cards, tag=None):
         rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
                     + (f'<small>{escape(c["num"])}</small>' if c.get("num") else "")
                     + f'<p class="cd-p"><em>{_yen(sm["price"])}</em><small>{_md(sm["date"])}</small></p>'
+                    + (f'<p class="cd-psa"><span>PSA10</span><b>{_yen(sm["psa"][1])}</b><small>{_md(sm["psa"][0])}</small></p>' if sm.get("psa") else "")
                     + spark(sm.get("points") or [], w=160, h=40).replace('class="spark"', 'class="spark cd-spark"', 1)  # 30日の小さいグラフ
                     + '<p class="cd-d">' + "".join(f'<span class="{_cmp(sm, k_)[1]}">{lab_} {_cmp(sm, k_)[0] or "-"}</span>'
                                                    for k_, lab_ in (("prev", "前日比"), ("month", "1か月"), ("year", "1年"))) + '</p>'
@@ -475,7 +492,7 @@ def cards_block(x, cards, tag=None):
     if not rows:
         return ""
     return (f'<section class="cards" aria-label="{escape(x)}の主要カードの相場"><h2>{escape(x)}の主要カードの相場</h2><ul>{"".join(rows)}</ul>'
-            '<p class="sb-note">※スニダンでその日に成立した、状態A（未鑑定の美品）のカード1枚の取引の平均です。鑑定品（PSA10など）は含みません。'
+            '<p class="sb-note">※スニダンでその日に成立した、状態A（未鑑定の美品）のカード1枚の取引の平均です。PSA10は鑑定品PSA10の、いちばん新しい取引の日の平均（90日以内）です。'
             + ('写真は楽天市場の商品の写真です。' if any((r_.get("rk") or {}).get("image") for _, r_, _s in cards) else "")
             + ('楽天市場・Amazonへのリンクは広告（PR）です。' if tag or any((r_.get("rk") or {}).get("url") for _, r_, _s in cards) else "") + '</p></section>')
 
@@ -1150,7 +1167,7 @@ def build(settings=None, out_dir=None, sample=None):
             rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
                                                canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
             sm = souba_sm.get(f"{g}|{x}")
-            aff = souba_block(x, sm, souba_fx) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + _product_ad(x, name, rr, tag, raff)
+            aff = souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + _product_ad(x, name, rr, tag, raff)
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -1198,7 +1215,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
+                "aff": _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
                                                      + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])

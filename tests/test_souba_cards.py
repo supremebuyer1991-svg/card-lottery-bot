@@ -33,9 +33,12 @@ class Sess:
         calls.append(url)
         if "/apparels/" in url:
             return R(text='"productId":555')
+        ts = lambda d: int(datetime(2026, 10, d, tzinfo=JST).timestamp() * 1000)
+        if "trading_card_single_psa10" in url:
+            assert "variant_id=77" in url
+            return R({"chart": {"lines": [{"points": [{"timestamp": ts(25), "price": 150000}]}]}})
         if "condition_code" in url:
             assert "variant_id=77" in url and "trading_card_single_nearly_unused" in url
-            ts = lambda d: int(datetime(2026, 10, d, tzinfo=JST).timestamp() * 1000)
             return R({"chart": {"lines": [{"points": [{"timestamp": ts(20), "price": 30000}, {"timestamp": ts(28), "price": 35000},
                                                          {"timestamp": ts(29), "price": 36000}, {"timestamp": ts(30), "price": 1}]}]}})
         return R({"filters": {"variants": {"options": [{"id": 77, "name": "1枚"}, {"id": 78, "name": "2枚"}]}}})
@@ -44,22 +47,23 @@ class Sess:
 souba.now = lambda: datetime(2026, 10, 30, 8, 5, tzinfo=JST)
 souba.time.sleep = lambda *_: None
 s = {"souba_hour": 7}
-# 初めてのカードは3回（ページ・1枚の番号・状態Aの相場）。上限7回なら2枚まで
-assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None, budget=7) == 2
-assert len(calls) == 6
+# 初めてのカードは4回（ページ・1枚の番号・状態Aの相場・PSA10の相場）。上限8回なら2枚まで
+assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None, budget=8) == 2
+assert len(calls) == 8
 d = load_json("souba_cards.json", {})
 assert d["1"]["pid"] == 555 and d["1"]["vid"] == 77 and d["1"]["day"] == "2026-10-30"
 sm = souba.card_summary(d["1"], "2026-10-30")
+assert sm["psa"] == ("2026-10-25", 150000), sm
 assert sm["date"] == "2026-10-29" and sm["price"] == 36000 and sm["prev"] == ("2026-10-28", 35000) and sm["week"] == ("2026-10-20", 30000), sm
 # 残りの1枚
 calls.clear()
-assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None, budget=7) == 1
+assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None, budget=8) == 1
 # 同じ日はもう読まない
 assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 0
-# 翌日は1枚1回だけ
+# 翌日は1枚2回だけ（状態A・PSA10）
 souba.now = lambda: datetime(2026, 10, 31, 8, 5, tzinfo=JST)
 calls.clear()
-assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 3 and len(calls) == 3
+assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 3 and len(calls) == 6
 
 # サイトの欄
 import sitegen
@@ -67,6 +71,7 @@ cs = [(c, d.get(str(c["snkr"])) or {}, souba.card_summary(load_json("souba_cards
 cs[0][1]["rk"] = {"image": "https://thumbnail.image.rakuten.co.jp/x.jpg?_ex=300x300", "url": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 h = sitegen.cards_block("黒炎の支配者", cs)
 assert h.count("cd-spark") >= 1, h  # カードごとの30日の小さいグラフ
+assert "PSA10" in h and "¥150,000" in h, h  # PSA10の相場
 assert "Amazonで探す" not in h and "snkrdunk.com/apparels" not in h  # スニダンのボタンはなし
 h2 = sitegen.cards_block("黒炎の支配者", cs, "TAG-22")
 assert "amazon.co.jp/s?k=" in h2 and "tag=TAG-22" in h2 and "Amazonで探す" in h2, h2

@@ -235,6 +235,7 @@ def summary(rec, today=None):
     if len(us) >= 1:
         out["us"] = us[-1]
         out["us_prev"] = us[-2] if len(us) > 1 else None
+        out["us_points"] = [(d, u) for d, u in us if pts and d >= pts[0][0]]  # グラフに重ねる海外の値（日本の線と同じ期間）
     return out
 
 
@@ -243,6 +244,7 @@ def summary(rec, today=None):
 # 写真とリンクは楽天の商品検索API（アフィリエイトのリンク）。メルカリは検索へのリンクだけ（写真は使わない）
 CARD_REQ_PER_RUN = 30  # 1回の実行でスニダンを読む回数の上限（初めてのカードは3回、2回目からは1回）
 COND_A = "trading_card_single_nearly_unused"
+COND_PSA10 = "trading_card_single_psa10"  # 鑑定品 PSA10（取引が少ないので、いちばん新しい取引の日の値を出す）
 
 
 def card_cfg():
@@ -251,7 +253,7 @@ def card_cfg():
     return {k: [c for c in (v or []) if c.get("snkr")] for k, v in d.items()}
 
 
-def _card_daily(sess, aid, rec):
+def _card_daily(sess, aid, rec, cond=COND_A):
     """カード1枚 → {日付: 状態Aの1枚の取引のその日の平均}。商品番号・1枚の番号は覚えておく（2回目からは1回読むだけ）"""
     if not rec.get("pid"):
         h = sess.get(f"https://snkrdunk.com/apparels/{aid}", timeout=30)
@@ -270,7 +272,7 @@ def _card_daily(sess, aid, rec):
         rec["vid"] = opt["id"] if opt else 0
         time.sleep(1)
     q = f"&variant_id={rec['vid']}" if rec["vid"] else ""
-    r = sess.get(f"https://snkrdunk.com/v3/products/{pid}/trading-history?range=all{q}&condition_code={COND_A}", timeout=30)
+    r = sess.get(f"https://snkrdunk.com/v3/products/{pid}/trading-history?range=all{q}&condition_code={cond}", timeout=30)
     r.raise_for_status()
     day = {}
     for p in (((r.json().get("chart") or {}).get("lines") or [{}])[0].get("points") or []):
@@ -346,7 +348,7 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
     for k, cs in cfg.items():
         for c in cs:
             r_ = data.get(str(c["snkr"])) or {}
-            cost = 1 + (not r_.get("pid")) + (not r_.get("vid") and r_.get("vid") != 0)
+            cost = 2 + (not r_.get("pid")) + (not r_.get("vid") and r_.get("vid") != 0)  # 状態A と PSA10 で2回
             if r_.get("day") != today and used + cost <= budget:
                 todo.append((k, c))
                 used += cost
@@ -363,6 +365,13 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
         try:
             rec["jp"] = {**(rec.get("jp") or {}), **_card_daily(sess, c["snkr"], rec)}
             rec["jp"] = _thin(rec["jp"], today)
+            try:  # PSA10（同じ商品の、鑑定品PSA10の1枚の取引）
+                sleep(WAIT)
+                rec["psa"] = _thin({**(rec.get("psa") or {}), **_card_daily(sess, c["snkr"], rec, COND_PSA10)}, today)
+            except requests.HTTPError:
+                raise
+            except Exception as e:
+                log(f"カード相場（PSA10）: {c['label']} 取得失敗 {e}")
             rec["day"] = today
             got += 1
         except requests.HTTPError as e:
@@ -409,5 +418,7 @@ def card_summary(rec, today=None):
     d0, v0 = done[-1]
     prev = done[-2] if len(done) > 1 else None
     pts = [(d, v) for d, v in done if d >= (datetime.fromisoformat(d0) - timedelta(days=30)).date().isoformat()]
-    return {"date": d0, "price": v0, "prev": prev, "week": _ago(done, d0, 7, slack=3),
+    psa = sorted(x for x in (rec.get("psa") or {}).items() if x[0] < today)
+    psa = psa[-1] if psa and psa[-1][0] >= (datetime.fromisoformat(d0) - timedelta(days=90)).date().isoformat() else None  # 90日以内のいちばん新しい取引
+    return {"date": d0, "price": v0, "psa": psa, "prev": prev, "week": _ago(done, d0, 7, slack=3),
             "month": _ago(done, d0, 30, slack=5), "year": _ago(done, d0, 365), "points": pts}
