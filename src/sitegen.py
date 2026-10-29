@@ -460,6 +460,7 @@ def cards_block(x, cards):
         rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
                     + (f'<small>{escape(c["num"])}</small>' if c.get("num") else "")
                     + f'<p class="cd-p"><em>{_yen(sm["price"])}</em><small>{_md(sm["date"])}</small></p>'
+                    + spark(sm.get("points") or [], w=160, h=40).replace('class="spark"', 'class="spark cd-spark"', 1)  # 30日の小さいグラフ
                     + '<p class="cd-d">' + "".join(f'<span class="{_cmp(sm, k_)[1]}">{lab_} {_cmp(sm, k_)[0] or "-"}</span>'
                                                    for k_, lab_ in (("prev", "前日比"), ("month", "1か月"), ("year", "1年"))) + '</p>'
                     + f'<div class="cd-links">{links}</div></div></li>')
