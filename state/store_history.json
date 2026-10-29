@@ -9533,5 +9533,36 @@
         "c": "store"
       }
     }
+  },
+  "store/poke-60036/": {
+    "name": "ポケ堂水戸店",
+    "items": {
+      "9a8a6000e0a9edcc": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      }
+    }
+  },
+  "store/biccamera-bae38/": {
+    "name": "ビックカメラ船橋駅FACE店",
+    "items": {
+      "bbc3439e48c8be6f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      },
+      "39cef3efdb59e2cf": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      }
+    }
   }
 }

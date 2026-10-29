@@ -16275,10 +16275,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "200d4c83d7726103",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250578+09:00",
     "page_checked_at": "2026-10-29T07:27:53.875702+09:00",
-    "cls": "43a17e17fd97"
+    "cls": "43a17e17fd97",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-29T14:09:51.380195+09:00"
   },
   "7a7db738af19e0ce": {
     "store": "あみあみ 通販",
@@ -16302,10 +16304,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "7a7db738af19e0ce",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250633+09:00",
     "page_checked_at": "2026-10-29T07:27:56.955063+09:00",
-    "cls": "60d385b7b35d"
+    "cls": "60d385b7b35d",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-10-29T14:09:51.380200+09:00"
   },
   "bf7c5b93520210f9": {
     "store": "カードショップONIGIRI",
@@ -25104,7 +25108,7 @@
     "key": "9f38d9dd9e6665ee",
     "status": "approved",
     "found_at": "2026-10-28T18:01:13.758688+09:00",
-    "page_checked_at": "2026-10-28T18:01:24.258004+09:00",
+    "page_checked_at": "2026-10-29T14:09:51.417602+09:00",
     "multi": false,
     "cls": "c46f6b24b378"
   },
@@ -25155,7 +25159,7 @@
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSdScgRZqb9BPHj-2aYS4uLKh6otj-Xw5iqnlworhPy1HSU1ZQ/viewform",
     "slug": "planetpocket-heroines-vol2-1029",
     "key": "e463598a3acb3e3c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-28T19:10:58.130959+09:00",
     "manual": true,
     "source": "手動追加",
@@ -25163,7 +25167,8 @@
     "page_checked_at": "2026-10-28T19:12:21.132771+09:00",
     "area": null,
     "cls": "778fe8eeb1b7",
-    "x_post": "https://x.com/cs_planetpocket/status/2115334914757534065"
+    "x_post": "https://x.com/cs_planetpocket/status/2115334914757534065",
+    "closed_at": "2026-10-29T14:10:35.754690+09:00"
   },
   "15c4d57912105955": {
     "store": "キデイランド吉祥寺店",
@@ -26149,13 +26154,14 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "9ad5932dc343fab3",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T01:17:38.518537+09:00",
     "issue": 192,
     "tco_checked": true,
     "multi": false,
     "cls": "eb5936ebeffa",
-    "info_post": "https://x.com/afrotcg/status/2115440634635157682?s=46"
+    "info_post": "https://x.com/afrotcg/status/2115440634635157682?s=46",
+    "closed_at": "2026-10-29T14:10:35.754815+09:00"
   },
   "cb40f459f3d5c836": {
     "store": "カードきんぐ神戸店",
@@ -27288,11 +27294,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "c85c2c3d564848b7",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T07:26:21.466148+09:00",
     "cls": "a2482642fed0",
     "issue": 199,
-    "info_post": "https://x.com/chang_tingyao/status/2115556227971272944"
+    "info_post": "https://x.com/chang_tingyao/status/2115556227971272944",
+    "closed_at": "2026-10-29T14:10:35.755021+09:00"
   },
   "6ed3be37fbaf9da4": {
     "store": "ゲオ",
@@ -29352,5 +29359,90 @@
     "page_checked_at": "2026-10-29T13:11:33.960901+09:00",
     "multi": true,
     "cls": "6dbf926f4c67"
+  },
+  "9a8a6000e0a9edcc": {
+    "store": "ポケ堂水戸店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込・BOXのみ／シュリンクそのままでお渡し・現金払いのみ）",
+    "series": "30周年パック",
+    "end": "2026-11-05T23:59:00+09:00",
+    "url": "https://x.com/Pokedou_Mito/status/2115646837134938410",
+    "x_post": "https://x.com/Pokedou_Mito/status/2115646837134938410",
+    "channel": "store",
+    "area": "茨城県",
+    "method": "SNS応募",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "9a8a6000e0a9edcc",
+    "status": "approved",
+    "found_at": "2026-10-29T14:09:47.626568+09:00",
+    "multi": false,
+    "cls": "ce358a07fcdc"
+  },
+  "bbc3439e48c8be6f": {
+    "store": "ビックカメラ船橋駅FACE店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（30パック入り・1パック200円税込・おひとり様1BOXまで／レジで受付）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-01T23:59:00+09:00",
+    "url": "https://x.com/bic_funabashi/status/2115650255090065565",
+    "x_post": "https://x.com/bic_funabashi/status/2115650255090065565",
+    "channel": "store",
+    "area": "千葉県",
+    "method": "店頭",
+    "conditions": "会員・レシート・本人確認",
+    "tags": [
+      "会員",
+      "レシート",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "card",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "bbc3439e48c8be6f",
+    "status": "approved",
+    "found_at": "2026-10-29T14:09:47.626644+09:00",
+    "multi": false,
+    "cls": "31bc78b1ee01"
+  },
+  "39cef3efdb59e2cf": {
+    "store": "ビックカメラ船橋駅FACE店",
+    "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（24パック入り・1パック240円税込・おひとり様1BOXまで／レジで受付）",
+    "series": "神の支配",
+    "end": "2026-11-01T23:59:00+09:00",
+    "url": "https://x.com/bic_funabashi/status/2115648968332099709",
+    "x_post": "https://x.com/bic_funabashi/status/2115648968332099709",
+    "channel": "store",
+    "area": "千葉県",
+    "method": "店頭",
+    "conditions": "会員・レシート・本人確認",
+    "tags": [
+      "会員",
+      "レシート",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "card",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "39cef3efdb59e2cf",
+    "status": "approved",
+    "found_at": "2026-10-29T14:09:51.379572+09:00",
+    "multi": false,
+    "cls": "900223574cc6"
   }
 }
