@@ -165,3 +165,21 @@ lotteries:
     id_check: true
     member: card
     url: https://docs.google.com/forms/d/e/1FAIpQLScYrrimBIjVSzWmyillB-iII9zFmnAkw9fXZFvsTEhKy49ESQ/viewform
+
+  - slug: furuichi-takarazuka-30th-1030
+    game: pokemon
+    store: 古本市場 宝塚店
+    series: 30周年パック
+    product: ポケモンカードゲーム MEGA「30th CELEBRATION」1BOX（7,200円税込）
+    channel: store
+    area: 兵庫県
+    method: LivePocketで応募（当選したら店頭で購入）
+    start: 2026-10-29T10:00
+    end: 2026-10-30T22:00
+    announce: 11/4(水)〜11/5(木)
+    buy: 11/6(金)〜11/8(日)
+    conditions: 顔写真付き・現住所記載の本人確認書類が必要（登録内容と一致しない場合は無効）。1人1回まで・本人のみ購入可（代理不可）。シュリンクを外して販売。当選後に購入しないと以後の抽選で落選対象になる
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/6mbex
