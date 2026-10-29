@@ -31,7 +31,7 @@
     "area": "東京都"
   },
   "store/tsutaya-de7b4/": {
-    "name": "TSUTAYA ココアドバンス大村店",
+    "name": "TSUTAYAココアドバンス大村店",
     "last": "2026-10-29",
     "game": "pokemon",
     "area": "長崎県"
@@ -1059,7 +1059,7 @@
     "area": "新潟県"
   },
   "store/batoroco-b7c6a/": {
-    "name": "TCバトロコ 盛岡大通",
+    "name": "TCバトロコ盛岡大通",
     "last": "2026-10-29",
     "game": "onepiece",
     "area": "岩手県"
@@ -3155,7 +3155,7 @@
     "area": "愛知県"
   },
   "store/bookoff-f166b/": {
-    "name": "ブックオフ大宮ステラタウン店",
+    "name": "ブックオフ 大宮ステラタウン店",
     "last": "2026-10-29",
     "game": "onepiece",
     "area": "埼玉県"
@@ -3202,7 +3202,7 @@
     "keep": true
   },
   "store/sanyodo-0a84d/": {
-    "name": "三洋堂トレカ館豊郷店",
+    "name": "三洋堂トレカ館 豊郷店",
     "last": "2026-10-29",
     "game": "onepiece",
     "keep": true
@@ -3258,6 +3258,168 @@
     "name": "ビートダウン",
     "last": "2026-10-29",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-66810/": {
+    "name": "TSUTAYA富士八幡町店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "静岡県"
+  },
+  "store/tsutaya-24086/": {
+    "name": "TSUTAYAトレカ大塚台",
+    "last": "2026-10-29",
+    "game": "pokemon"
+  },
+  "store/tsutaya-0a53a/": {
+    "name": "TSUTAYA 岡富店（延岡）",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "宮崎県"
+  },
+  "store/tsutaya-7bd67/": {
+    "name": "TSUTAYA宮交シティ店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "宮崎県"
+  },
+  "store/tsutaya-617f1/": {
+    "name": "TSUTAYA高千穂通り店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "宮崎県"
+  },
+  "store/tsutaya-38cda/": {
+    "name": "TSUTAYA AVクラブ玉名店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "熊本県"
+  },
+  "store/tsutaya-68477/": {
+    "name": "TSUTAYA AVクラブ御領店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "熊本県"
+  },
+  "store/tsutaya-da046/": {
+    "name": "TSUTAYA田崎店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "熊本県"
+  },
+  "store/tsutaya-e70f9/": {
+    "name": "TSUTAYA AVクラブ大津店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "熊本県"
+  },
+  "store/tsutaya-5bca2/": {
+    "name": "蔦屋書店熊本三年坂",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "熊本県"
+  },
+  "store/tsutaya-75796/": {
+    "name": "TSUTAYA AVクラブ太宰府店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "area": "福岡県"
+  },
+  "store/bookoff-a59ea/": {
+    "name": "ブックオフスーパーバザー ららぽーとTOKYO-BAY North Gate店",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "千葉県"
+  },
+  "store/surugaya-f2aaa/": {
+    "name": "駿河屋 名古屋大須トレカ・ボードゲーム館",
+    "last": "2026-10-29",
+    "game": "onepiece"
+  },
+  "store/torekashoppukadokingu-c0aaf/": {
+    "name": "トレカショップ カードきんぐ 神戸三宮本店",
+    "last": "2026-10-29",
+    "game": "onepiece"
+  },
+  "store/machikyara-ee088/": {
+    "name": "まちキャラ松戸店",
+    "last": "2026-10-29",
+    "game": "onepiece"
+  },
+  "store/torekashoppukadokingu-c48cb/": {
+    "name": "トレカショップ カードきんぐ 明石店",
+    "last": "2026-10-29",
+    "game": "onepiece"
+  },
+  "store/japantcgcenter-250b4/": {
+    "name": "Japan TCG Center 蒲田駅東口店",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/toreka-batosuki-5caac/": {
+    "name": "トレカ専門店 バトスキ！大須店",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "愛知県"
+  },
+  "store/torekasupesutopone-c0f2c/": {
+    "name": "トレカスペース TOPONE",
+    "last": "2026-10-29",
+    "game": "onepiece"
+  },
+  "store/torekaesu-f65a3/": {
+    "name": "トレカエース常陸太田店",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "茨城県"
+  },
+  "store/shop-e7a26/": {
+    "name": "福田屋百貨店（宇都宮店・インターパーク店）",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "栃木県"
+  },
+  "store/toreka-67f24/": {
+    "name": "谷島屋 磐田店 トレカ売場",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "area": "静岡県"
+  },
+  "store/hobbyoff-b07a9/": {
+    "name": "ホビーオフ各店（藤沢店・東橋本店・甲府国母店・相模原下九沢店）",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/hobbyoff-c72a2/": {
+    "name": "ホビーオフ各店（甲府向町店・甲府国母店）",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/hobbyoff-5f901/": {
+    "name": "ホビーオフ各店（甲府向町店・甲府国母店・相模原下九沢店）",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/hobbyoff-38073/": {
+    "name": "ホビーオフ各店（甲府向町店・相模原下九沢店）",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/hobbyoff-51280/": {
+    "name": "ホビーオフ甲府向町店",
+    "last": "2026-10-29",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/hobbyoff-8be0f/": {
+    "name": "ホビーオフ各店（藤沢店・甲府向町店・相模原下九沢店）",
+    "last": "2026-10-29",
+    "game": "onepiece",
     "keep": true
   }
 }
