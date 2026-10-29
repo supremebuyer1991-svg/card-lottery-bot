@@ -40,3 +40,11 @@ cl.classify(s, ask=lambda r: [{"id": 0, "channel": "online", "area": "静岡県"
 L = load_json("lotteries.json", {})
 assert L["t"]["channel"] == "store" and L["t"]["area"] == "静岡県", L
 print("CLASSIFY ALL OK")
+
+# 商品名がはっきり別のゲームなら直す（ポケカの検索に混ざったワンピースの商品）
+from common import fix_game
+_it = {"game": "pokemon", "product": "HEROINES PRECIOUS BOX", "series": "HEROINES PRECIOUS"}
+assert fix_game(_it) and _it["game"] == "onepiece"
+_it = {"game": "pokemon", "product": "30th CELEBRATION BOX"}
+assert not fix_game(_it) and _it["game"] == "pokemon"
+print("fix_game OK")

@@ -1,3 +1,4 @@
+import re
 """設定・状態ファイル・共通ユーティリティ"""
 import hashlib
 import json
@@ -88,3 +89,21 @@ def parse_dt(s):
 
 def log(*a):
     print(f"[{now():%m-%d %H:%M}]", *a, flush=True)
+
+
+# 商品名・弾名から、ゲームがはっきり分かるもの（AIがXの「ポケカ 抽選」検索の投稿をポケカと取り違えることがある）
+GAME_HINTS = {
+    "onepiece": re.compile(r"ONE ?PIECE|ワンピース|ワンピカ|Heroines|HEROINES|ヒロインズ|\b(?:OP|EB|PRB)-?\d{2}\b", re.I),
+    "pokemon": re.compile(r"ポケモン|ポケカ|Pok[eé]mon|ピカチュウ"),
+    "dragonball": re.compile(r"ドラゴンボール|DRAGON ?BALL|フュージョンワールド|FUSION ?WORLD", re.I),
+}
+
+
+def fix_game(it):
+    """商品名・弾名がはっきり別のゲームのものなら、ゲームを直す。直したら True"""
+    txt = " ".join(str(it.get(k) or "") for k in ("product", "series"))
+    hit = [g for g, r in GAME_HINTS.items() if r.search(txt)]
+    if len(hit) == 1 and it.get("game") != hit[0] and it.get("game") in GAME_HINTS:
+        it["game"] = hit[0]
+        return True
+    return False

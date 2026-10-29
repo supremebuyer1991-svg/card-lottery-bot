@@ -5,6 +5,7 @@ import re
 
 import requests
 
+from common import fix_game
 from common import now, log
 
 API_URL = "https://api.anthropic.com/v1/messages"
@@ -91,6 +92,7 @@ def extract(text: str, game: str, game_name: str, source_name: str, source_url: 
             it["game"] = game
         if it["game"] not in valid:
             continue
+        fix_game(it)  # 商品名がはっきり別のゲームなら直す
         it["source"] = source_name
         it["source_url"] = source_url
         it["url"] = it.get("url") or it.get("x_post") or source_url

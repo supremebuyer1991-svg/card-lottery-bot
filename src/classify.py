@@ -101,7 +101,10 @@ def load_area_overrides():
 def apply_overrides(lots, ov):
     n = 0
     areas = load_area_overrides()
+    from common import fix_game
     for it in lots.values():
+        if fix_game(it):  # ポケカに入ったワンピースの商品などを直す
+            n += 1
         # 都道府県の書き方をそろえる（東京→東京都、大阪→大阪府 など）。都道府県でない値は消す
         ar = (it.get("area") or "").strip()
         if ar and ar not in PREFS:
