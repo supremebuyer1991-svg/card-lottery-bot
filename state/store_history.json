@@ -2,6 +2,13 @@
   "store/amazon-cbc62/": {
     "name": "Amazon",
     "items": {
+      "ede1abc30036f1db": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
+      },
       "e54ca0e938b57073": {
         "p": "アビスアイ",
         "g": "pokemon",
@@ -4662,8 +4669,8 @@
         "c": "store"
       },
       "3e830871e8203d74": {
-        "p": "Heroines Edition vol.2【EB-05】",
-        "g": "pokemon",
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
         "e": "2026-10-28T21:00",
         "f": "2026-10-27",
         "c": "store"
@@ -5075,8 +5082,8 @@
         "c": "store"
       },
       "c78a7635cbb7e964": {
-        "p": "Heroines Edition vol.2",
-        "g": "pokemon",
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
         "e": "2026-10-29T10:00",
         "f": "2026-10-29",
         "c": "store"
@@ -6730,6 +6737,14 @@
         "f": "2026-10-26",
         "c": "store",
         "a": "2026-11-26"
+      },
+      "e37025f9f572e0b1": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store",
+        "a": "2026-11-26"
       }
     }
   },
@@ -7910,6 +7925,13 @@
         "e": "2026-11-04T23:59",
         "f": "2026-10-28",
         "c": "store"
+      },
+      "33e1eb346abce980": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-10-30",
+        "c": "store"
       }
     }
   },
@@ -8057,6 +8079,13 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-10-28",
+        "c": "store"
+      },
+      "61eefaa7df3382cd": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
         "c": "store"
       }
     }
@@ -8652,8 +8681,8 @@
         "c": "store"
       },
       "e3c849814f94c76f": {
-        "p": "Heroines Edition vol.2",
-        "g": "dragonball",
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
         "e": "2026-10-28T23:59",
         "f": "2026-10-29",
         "c": "store"
@@ -8873,8 +8902,8 @@
     "name": "バトロコ水戸駅前",
     "items": {
       "2094386ab2601057": {
-        "p": "Heroines Edition vol.2",
-        "g": "pokemon",
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
         "e": "2026-10-29T12:00",
         "f": "2026-10-29",
         "c": "store"
@@ -8885,8 +8914,8 @@
     "name": "プラネットポケット",
     "items": {
       "9ad5932dc343fab3": {
-        "p": "Heroines Edition vol.2",
-        "g": "pokemon",
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
         "e": "2026-10-29T14:00",
         "f": "2026-10-29",
         "c": "store"
@@ -8898,7 +8927,7 @@
     "items": {
       "cb40f459f3d5c836": {
         "p": "HEROINES PRECIOUS",
-        "g": "pokemon",
+        "g": "onepiece",
         "e": "2026-10-30T15:00",
         "f": "2026-10-29",
         "c": "store"
@@ -8910,7 +8939,7 @@
     "items": {
       "17466313d48d5a09": {
         "p": "HEROINES PRECIOUS",
-        "g": "pokemon",
+        "g": "onepiece",
         "e": "2026-10-30T18:00",
         "f": "2026-10-29",
         "c": "store"
@@ -8922,7 +8951,7 @@
     "items": {
       "0d309f92abe684cd": {
         "p": "HEROINES PRECIOUS",
-        "g": "pokemon",
+        "g": "onepiece",
         "e": "2026-10-30T20:00",
         "f": "2026-10-29",
         "c": "store"
@@ -9855,6 +9884,13 @@
   "store/tsutaya-12c45/": {
     "name": "TSUTAYA中津店",
     "items": {
+      "1f78ee260fe2f5d7": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "3ecfbcd1eca1c8c1": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -9933,6 +9969,18 @@
         "p": "世界最強の戦士",
         "g": "onepiece",
         "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/purasuarufa-b9674/": {
+    "name": "プラスアルファ",
+    "items": {
+      "b163550bf575d23f": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-10-30T13:00",
         "f": "2026-10-30",
         "c": "store"
       }

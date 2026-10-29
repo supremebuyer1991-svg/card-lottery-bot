@@ -2139,7 +2139,7 @@
     "area": "福岡県"
   },
   "store/oretan-57181/": {
-    "name": "オレタン松山店",
+    "name": "オレタン 松山店",
     "last": "2026-10-30",
     "game": "pokemon",
     "area": "愛媛県"
@@ -2838,7 +2838,7 @@
   },
   "store/biccamera-7ddb2/": {
     "name": "ビックカメラ",
-    "last": "2026-10-28",
+    "last": "2026-10-30",
     "game": "pokemon",
     "keep": true
   },
@@ -3587,10 +3587,11 @@
     "keep": true
   },
   "store/tsutaya-12c45/": {
-    "name": "TSUTAYA中津店",
+    "name": "TSUTAYA 中津店",
     "last": "2026-10-30",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "大分県"
   },
   "store/aeon-aa412/": {
     "name": "ふるいちイオンモール今治新都市店",
@@ -3608,6 +3609,12 @@
     "name": "熊本県（各店）",
     "last": "2026-10-30",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/purasuarufa-b9674/": {
+    "name": "プラスアルファ",
+    "last": "2026-10-30",
+    "game": "pokemon",
     "keep": true
   }
 }
