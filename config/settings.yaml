@@ -230,6 +230,7 @@ series_slugs:
     メガシンフォニア: mega-symphonia
     インフェルノX: inferno-x
     テラスタルフェスex: terastal-fes-ex
+    ポケモンカード151: pokemon-card-151
     MEGA×MEGAパレード: mega-mega-parade
     スターターセットex: starter-set-ex
     ムニキスゼロ: munikis-zero
@@ -266,6 +267,7 @@ series_info:   # 発売日・希望小売価格は公式サイトの商品情報
     メガブレイブ: {release: "2025-08-01", type: 拡張パック, price: "1パック180円（税込）／1BOX（30パック）5,400円"}
     メガシンフォニア: {release: "2025-08-01", type: 拡張パック, price: "1パック180円（税込）／1BOX（30パック）5,400円"}
     テラスタルフェスex: {release: "2024-12-06", type: ハイクラスパック, price: "1パック550円（税込）／1BOX（10パック）5,500円"}
+    ポケモンカード151: {release: "2023-06-16", type: 強化拡張パック, price: "1パック290円（税込）／1BOX（20パック）5,800円"}
   onepiece:
     神の支配: {release: "2026-11-21", type: "ブースターパック【OP-18】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}
     ヒロインズエディション vol.2: {release: "2026-10-31", type: "エクストラブースター【EB-05】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}

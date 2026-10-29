@@ -990,7 +990,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     $("menu-close").addEventListener("click", function () { dlg.close(); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   })();
-  $("updated").textContent = "更新 " + fmtDate(DATA.sample ? NOW0 : Date.parse(DATA.updated));
+  $("updated").textContent = (DATA.updLabel || "更新 ") + fmtDate(DATA.sample ? NOW0 : Date.parse(DATA.updated));
   render();
 })();
 </script>

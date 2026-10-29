@@ -1,4 +1,8 @@
-"""サイトに載せるBOXの相場を1日1回だけ読む（config/souba.yaml の商品だけ）
+"""サイトに載せるBOXの相場を1日2回読む（config/souba.yaml の商品だけ）
+
+・朝（souba_hour・7時ごろ）：前日までの取引を読む
+・夜（souba_eve_hour・21時ごろ）：その日の21時ごろまでの取引を読み、その日の値もサイトに出す
+  （22:00・22:30のXの相場投稿と数字をそろえるため）
 
 ・スニダン：その日の「1個」の取引の平均（スニダンの相場グラフと同じ数字）。日本時間の日付ごと
 ・TCGplayer：アメリカの取引の相場（marketPrice・ドル）。アメリカ時間の日付ごと
@@ -98,12 +102,19 @@ def _fx(sess):
 
 def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     hour = settings.get("souba_hour", 7)
+    eve_hour = settings.get("souba_eve_hour", 21)
     t = now()
     data = load_json("souba.json", {})
     today = t.date().isoformat()
-    if not force and (t.hour < hour or data.get("checked") == today):
-        return 0
+    eve = t.hour >= eve_hour  # 夜の回：その日の21時ごろまでの値もサイトに出す
+    if not force:
+        if t.hour < hour:
+            return 0
+        if data.get("checked") == today and (not eve or data.get("checked_eve") == today):
+            return 0
     data["checked"] = today
+    if eve:
+        data["checked_eve"] = today
     sess = sess or requests.Session()
     sess.headers.update({"User-Agent": UA, "Accept-Language": "ja-JP,ja;q=0.9"})
     store = data.setdefault("items", {})
@@ -117,6 +128,8 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
                 sleep(WAIT)
             try:
                 rec["jp"] = {**(rec.get("jp") or {}), **_snkr_daily(sess, it["snkr"])}
+                # 夜に読めた商品だけ、その日の値（21時ごろまで）をサイトに出す。朝の回は前日までに戻す
+                rec["thru"] = today if eve else (t.date() - timedelta(days=1)).isoformat()
                 got += 1
             except requests.HTTPError as e:
                 log(f"相場（スニダン）: {it['name']} 取得できず {e} → 今日はここまで")
@@ -135,9 +148,10 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     fx = _fx(sess)
     if fx:
         data["fx"] = fx
-    data["updated"] = t.isoformat()
+    if got:
+        data["updated"] = t.isoformat()  # サイトの「相場の更新」の日時（数字が1つでも読めた時だけ進める）
     save_json("souba.json", data)
-    log(f"相場: スニダン {got}/{sum(1 for i in items() if i.get('snkr'))}件" + (f"・1ドル={fx}円" if fx else ""))
+    log(f"相場（{'夜' if eve else '朝'}）: スニダン {got}/{sum(1 for i in items() if i.get('snkr'))}件" + (f"・1ドル={fx}円" if fx else ""))
     return got
 
 
@@ -147,8 +161,9 @@ def summary(rec, today=None):
     if not jp:
         return None
     today = today or now().date().isoformat()
-    # 今日の分はまだ途中なので、昨日までの値を使う
-    done = [x for x in jp if x[0] < today] or jp
+    # 今日の分はまだ途中なので昨日までの値を使う。夜（21時ごろ）に読めた商品だけは今日の値まで使う
+    upto = today if rec.get("thru") == today else None
+    done = [x for x in jp if x[0] < today or x[0] == upto] or jp
     d0, v0 = done[-1]
     prev = done[-2] if len(done) > 1 else None
     wk = next((x for x in reversed(done) if x[0] <= (datetime.fromisoformat(d0) - timedelta(days=7)).date().isoformat()), None)

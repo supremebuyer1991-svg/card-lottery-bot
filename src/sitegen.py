@@ -835,7 +835,8 @@ def build(settings=None, out_dir=None, sample=None):
     digest = sha(digest + str(load_json("x_trends.json", {}).get("generated")))
     digest = sha(digest + json.dumps(sorted((load_json("newsets.json", {}).get("series") or {}).get("pokemon", {})) +
                                      sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})) +
-                                     sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す  # 話題ネタが更新されたら下書きページも出し直す
+                                     sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す
+    digest = sha(digest + str(load_json("souba.json", {}).get("updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 
@@ -971,6 +972,8 @@ def build(settings=None, out_dir=None, sample=None):
         else:
             data = {**common_data, "lock": lock, "items": [i for i in items if i["game"] == g0], "gameCounts": game_counts,
                     "amazonInvites": {g0: (common_data.get("amazonInvites") or {}).get(g0, [])}}
+        if meta.get("upd"):  # ページ上の「更新」を、そのページの中身の更新日時にする（BOX相場＝相場を読んだ日時）
+            data = {**data, "updated": meta["upd"][1], "updLabel": meta["upd"][0]}
         p.write_text(page(data, meta), encoding="utf-8")
         last = max([i.get("found_at") or "" for i in subset] + [""]) or updated
         if not meta.get("noindex"):  # 中身のうすいページ（抽選も履歴もない）は検索に出さない・サイトマップにも入れない
@@ -1258,7 +1261,7 @@ def build(settings=None, out_dir=None, sample=None):
                           f"{_md(sm['date'])}の取引では「{souba_raw['items'][k].get('name')}」で、相場{_yen(sm['price'])}・定価{_yen(sm['teika'])}（差 +{sm['price'] - sm['teika']:,}円）です。"))
         faq_s += [("この相場は何の値段ですか？", "スニダン（スニーカーダンク）でその日に成立した「1個」の取引の平均です。お店の買取価格や販売価格ではありません。取引が少ない日は1件の取引で大きく動きます。"),
                   ("海外の相場とは？", "アメリカのTCGplayerで取引されている日本版BOXの相場（ドル）を、その日の為替で円にしたものです。送料・手数料は含みません。"),
-                  ("相場はいつ更新されますか？", "1日1回、朝に前日までの取引を読み込んで更新しています。")]
+                  ("相場はいつ更新されますか？", "毎日、朝と夜21時ごろの2回、スニダンの取引を読み込んで更新しています。朝は前日までの取引、夜はその日の21時ごろまでの取引です（その日の値は夜の時点の平均なので、翌朝に1日分の値に置き換わります）。")]
         intro = ('<div class="guide"><p>ポケカ・ワンピースカードの未開封BOXの相場を、スニダンで実際に成立した取引の値段で毎日まとめています。'
                  '定価との差も一緒に並べています。商品名を押すと、その弾の抽選の一覧に進めます。</p></div>')
         write("souba/", {"game": games[0]}, {
@@ -1267,7 +1270,8 @@ def build(settings=None, out_dir=None, sample=None):
             "summary": "", "faq": faq_s,
             "h1": "ポケカ・ワンピースカード BOX相場一覧",
             "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には今受付中のポケカの抽選を載せています。",
-            "aff": intro + "".join(secs), "links": _menu(items, games, games[0]), "root": "/"},
+            "aff": intro + "".join(secs), "links": _menu(items, games, games[0]), "root": "/",
+            "upd": ("相場の更新 ", souba_raw["updated"]) if souba_raw.get("updated") else None},
             [i for i in items if i["game"] == games[0]], [("トップ", ""), ("BOX相場", "souba/")])
 
     # --- 新しく見つけた弾の一覧（Xの告知の予約作業が読む。検索には載せない）---
