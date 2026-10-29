@@ -179,11 +179,72 @@ def scan(posts, src, lots=None, ask=None):
     return added
 
 
+def load_manual_results():
+    """config/manual.yaml の results:（自分で見つけた結果発表。ゲオのお知らせなど）"""
+    try:
+        import yaml
+        from common import ROOT
+        p = ROOT / "config" / "manual.yaml"
+        rows = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("results") or [] if p.exists() else []
+    except Exception as e:
+        log(f"手動の抽選結果: 読めません {e}")
+        return []
+    out = []
+    for r in rows:
+        if not isinstance(r, dict) or not r.get("store") or r.get("game") not in GAME_WORDS or not r.get("date"):
+            continue
+        d = str(r["date"])[:10]
+        cu = r.get("check_url")
+        out.append({"game": r["game"], "store": str(r["store"]), "series": (str(r.get("series") or "").strip() or None),
+                    "date": d, "kind": r.get("kind") if r.get("kind") in ("done", "scheduled") else "done",
+                    "check": r.get("check"), "check_url": cu if cu and str(cu).startswith("http") else None,
+                    "found_at": d + "T00:00:00+09:00", "manual": True})
+    return out
+
+
 def current():
-    """サイトに出す結果発表の一覧（新しい日付順）"""
+    """サイトに出す結果発表の一覧（新しい日付順）
+    ・Xで見つけた発表 ＋ manual.yaml の results:
+    ・「発表予定」だった分も、その日を過ぎていれば「結果が出た」として扱う"""
     data = load_json("results.json", {})
-    its = data.get("items") if isinstance(data.get("items"), dict) else {}
-    return sorted(its.values(), key=lambda v: (v["date"], v.get("found_at") or ""), reverse=True)
+    its = dict(data.get("items") if isinstance(data.get("items"), dict) else {})
+    for r in load_manual_results():
+        its[f'{r["game"]}|{normalize(r["store"])}|{normalize(r["series"] or "")}|{r["date"]}'] = r
+    today = now().date().isoformat()
+    out = []
+    for v in its.values():
+        if v.get("kind") == "scheduled" and v.get("date") and v["date"] < today:
+            v = dict(v, kind="done")
+        out.append(v)
+    return sorted(out, key=lambda v: (v["date"], v.get("found_at") or ""), reverse=True)
+
+
+def from_announce(lots=None, days=14):
+    """お店の告知に書いてあった「当選発表日」を過ぎた抽選（Xで発表が見つからなくても、結果は出ているはず）。
+    発表日が分かっている分だけ。今日の分は時間が分からないので入れない"""
+    lots = lots if lots is not None else load_json("lotteries.json", {})
+    t = now().date()
+    lo, today = (t - timedelta(days=days)).isoformat(), t.isoformat()
+    out = {}
+    for it in lots.values():
+        if it.get("status") in ("duplicate", "rejected") or it.get("game") not in GAME_WORDS:
+            continue
+        a = announce_date(it)
+        if not a or not (lo <= a < today):
+            continue
+        ser = it.get("series")
+        try:
+            from sitegen import canon_series
+            ser = (canon_series(it["game"], ser) or [ser])[0] if ser else None
+        except Exception:
+            pass
+        k = (it["game"], normalize(it.get("store")), normalize(ser or ""), a)
+        txt = str(it.get("announce") or "")
+        m = re.search(r"[（(]([^）)]{2,30})[）)]", txt)
+        out.setdefault(k, {"game": it["game"], "store": it.get("store"), "series": ser, "date": a, "kind": "done",
+                           "check": m.group(1) if m else None, "check_url": None,
+                           "found_at": a + "T00:00:00+09:00", "est": True})
+    return list(out.values())
 
 
 def scheduled_today(lots=None):

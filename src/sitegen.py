@@ -1408,6 +1408,11 @@ def build(settings=None, out_dir=None, sample=None):
                 r = dict(r, series=(canon_series(r["game"], r["series"]) or [r["series"]])[0])
             _cur.append(r)
         done = [r for r in _cur if r["kind"] == "done"]
+        _dk = {(r["game"], normalize(r["store"]), r["date"]) for r in done}
+        for r in _rs.from_announce(raw_lots):  # 告知の発表日を過ぎた抽選も「結果が出た」に入れる（Xでは見つからないことが多い）
+            if (r["game"], normalize(r["store"]), r["date"]) not in _dk:
+                done.append(r)
+        done.sort(key=lambda r: (r["date"], r.get("found_at") or ""), reverse=True)
         up = {}
         for r in _cur:
             if r["kind"] == "scheduled" and r["date"] >= today_k.isoformat():
@@ -1431,7 +1436,7 @@ def build(settings=None, out_dir=None, sample=None):
         def _row(r):
             sp = store_path(r["store"])
             name = f'<a href="/{sp}">{escape(r["store"])}</a>' if sp in _sreg else escape(r["store"])
-            how = escape(r.get("check") or "お店からの当落メール")
+            how = escape(r.get("check") or ("お店のお知らせ（告知の発表予定日）" if r.get("est") else "お店からの当落メール"))
             off = (f'<a href="{escape(r["check_url"])}" target="_blank" rel="noopener nofollow">確認ページ</a>'
                    if r.get("check_url") else "")
             return (f'<li><span class="kk-g kk-{escape(r["game"])}">{escape(GAME_SHORT.get(r["game"], ""))}</span>'
@@ -1460,6 +1465,8 @@ def build(settings=None, out_dir=None, sample=None):
         _group(upl[:60], "これから結果が出る抽選（7日以内）", "いまは見つかっていません。")
         _group(done[:60], "結果が出た抽選", "まだ見つかっていません。見つかりしだい、ここに載せます。")
         for r in done[:60]:
+            if r.get("est"):  # 発表日から推測した分はXの予約作業には渡さない（本当に出たか分からないため）
+                continue
             feed["results"].append({"found_at": r.get("found_at"), "date": r["date"], "game": r["game"],
                                     "game_name": GAME_SHORT.get(r["game"], r["game"]), "store": r["store"],
                                     "series": [r["series"]] if r.get("series") else [], "check": r.get("check"),

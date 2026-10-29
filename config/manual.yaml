@@ -7,6 +7,16 @@
 # 書き方（game は pokemon / onepiece / dragonball、channel は online（発送）/ store（店頭受取））
 #   日時は 2026-11-01T23:00 のように「年-月-日T時:分」で書く
 
+# 自分で見つけた抽選結果の発表（サイトの /kekka/「結果が出た抽選」に載る。30日たったら消してOK）
+#   game は pokemon / onepiece、date は結果が出た日、check は確かめ方、check_url はお店の結果確認ページ
+results:
+  - game: onepiece
+    store: ゲオ（Web抽選）
+    series: ヒロインズエディション vol.2
+    date: 2026-10-29
+    check: 当選した人にだけメール（落選は連絡なし）
+    check_url: https://draw.geo-online.co.jp/lottery/
+
 lotteries:
   - slug: planetpocket-heroines-vol2-1029
     game: onepiece
