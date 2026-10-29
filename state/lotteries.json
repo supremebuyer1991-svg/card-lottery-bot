@@ -3091,7 +3091,8 @@
     "found_at": "2026-10-26T18:20:17.048532+09:00",
     "multi": false,
     "cls": "ea7930c6e036",
-    "apply_url": "https://livepocket.jp/e/5-9tt"
+    "apply_url": "https://livepocket.jp/e/5-9tt",
+    "page_checked_at": "2026-10-30T00:56:39.527500+09:00"
   },
   "692e23e7362db78f": {
     "store": "TSUTAYA山陽店",
@@ -14444,7 +14445,8 @@
     "multi": false,
     "cls": "450399f18674",
     "issue": 130,
-    "apply_url": "https://livepocket.jp/e/dof-w"
+    "apply_url": "https://livepocket.jp/e/dof-w",
+    "page_checked_at": "2026-10-30T00:56:41.737042+09:00"
   },
   "0a9ffeac6fdf12e4": {
     "store": "ブックオフイオンモール成田店",
@@ -27096,14 +27098,17 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "b93e8eb8de21f84d",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-30T00:49:18.612131+09:00",
     "apply_url": "https://livepocket.jp/e/wx7r7emqbo",
     "deadline_checked_at": "2026-10-30T00:50:27.823496+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・画像・本文に受付期間の記載なし",
     "page_checked_at": "2026-10-30T00:50:57.391548+09:00",
-    "issue": 235
+    "issue": 235,
+    "multi": false,
+    "cls": "2d5cfda3c13d",
+    "duplicate_of": "f770f940ee7482a3"
   },
   "d5f0682d861606de": {
     "store": "熊本県（各店）",
@@ -27214,7 +27219,10 @@
     "status": "approved",
     "found_at": "2026-10-30T00:49:18.612266+09:00",
     "apply_url": "https://livepocket.jp/e/czxdo",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-30T00:56:43.952687+09:00",
+    "multi": true,
+    "cls": "41f580754598"
   },
   "49af5656e74165a4": {
     "store": "熊本県（各店）",
@@ -27237,10 +27245,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "49af5656e74165a4",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-30T00:49:18.612297+09:00",
     "apply_url": "https://livepocket.jp/e/wx7r7emqbo",
     "issue": 236,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-30T00:56:46.167846+09:00",
+    "multi": true,
+    "cls": "dce18ddcfa08",
+    "duplicate_of": "f770f940ee7482a3"
   }
 }
