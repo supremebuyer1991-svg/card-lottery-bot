@@ -8045,7 +8045,7 @@
         "g": "onepiece",
         "e": "2026-10-31T09:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -8742,7 +8742,7 @@
         "g": "onepiece",
         "e": "2026-10-30T21:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       },
       "69c54eecccbf7800": {
         "p": "HEROINES PRECIOUS BOX",
@@ -8761,7 +8761,7 @@
         "g": "onepiece",
         "e": "2026-10-30T20:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       },
       "bd3d66502453f31e": {
         "p": "ヒロインズエディション",
@@ -9485,21 +9485,21 @@
         "g": "pokemon",
         "e": "2026-10-31T22:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       },
       "4020cbd68f394917": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
         "e": "2026-10-31T22:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       },
       "e95a2985cdf3f569": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-10-31T22:00",
         "f": "2026-10-29",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -9547,6 +9547,13 @@
         "g": "onepiece",
         "e": "2026-11-01T23:59",
         "f": "2026-10-29",
+        "c": "store"
+      },
+      "ae2baec89e76f8cd": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
         "c": "store"
       }
     }
@@ -9817,6 +9824,116 @@
         "g": "pokemon",
         "e": "2026-11-04T23:59",
         "f": "2026-10-29",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-4fb65/": {
+    "name": "TSUTAYA宮崎県内4店舗",
+    "items": {
+      "db783c32a02db8ee": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-39a90/": {
+    "name": "平塚",
+    "items": {
+      "65150876934c7bac": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-12c45/": {
+    "name": "TSUTAYA中津店",
+    "items": {
+      "3ecfbcd1eca1c8c1": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      },
+      "ab946f9fceca7d95": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/aeon-aa412/": {
+    "name": "ふるいちイオンモール今治新都市店",
+    "items": {
+      "9474dbb083c91382": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      },
+      "94db69d3f727cf73": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/hmv-a2631/": {
+    "name": "HMV（各店）",
+    "items": {
+      "59d76af70853e9b4": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-03T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-c234d/": {
+    "name": "バトロコ吉祥寺",
+    "items": {
+      "b93e8eb8de21f84d": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-baea1/": {
+    "name": "TSUTAYA（熊本県内対象5店舗：蔦屋書店 熊本三年坂・御領店・田崎店・玉名店・大津店）",
+    "items": {
+      "f770f940ee7482a3": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-fe211/": {
+    "name": "熊本県（各店）",
+    "items": {
+      "49af5656e74165a4": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
         "c": "store"
       }
     }

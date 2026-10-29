@@ -4738,7 +4738,7 @@
       "game": "onepiece",
       "store": "トレカショップ ワーテル柏駅前",
       "series": "ヒロインズエディション",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-10-29T10:30:22.381288+09:00",
       "chain": null
@@ -4747,7 +4747,7 @@
       "game": "onepiece",
       "store": "三洋堂トレカ館 豊郷店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "found_at": "2026-10-29T10:30:22.381302+09:00",
       "chain": "sanyodo"
@@ -4774,7 +4774,7 @@
       "game": "onepiece",
       "store": "オレタン福岡天神店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "found_at": "2026-10-29T10:30:22.381340+09:00",
       "chain": null
@@ -4828,7 +4828,7 @@
       "game": "pokemon",
       "store": "古本市場野口店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-10-29T12:08:57.891156+09:00",
       "chain": "furuichi"
@@ -4837,7 +4837,7 @@
       "game": "pokemon",
       "store": "古本市場野口店",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-10-29T12:08:57.891194+09:00",
       "chain": "furuichi"
@@ -4846,7 +4846,7 @@
       "game": "pokemon",
       "store": "古本市場野口店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-10-29T12:08:57.891221+09:00",
       "chain": "furuichi"
@@ -5128,6 +5128,24 @@
       "channel": "store",
       "area": "栃木県",
       "found_at": "2026-10-29T17:21:25.165265+09:00",
+      "chain": "tsutaya"
+    },
+    "59d76af70853e9b4": {
+      "game": "onepiece",
+      "store": "HMV（各店）",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-10-30T00:49:18.612103+09:00",
+      "chain": null
+    },
+    "f770f940ee7482a3": {
+      "game": "onepiece",
+      "store": "TSUTAYA（熊本県内対象5店舗：蔦屋書店 熊本三年坂・御領店・田崎店・玉名店・大津店）",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "熊本県",
+      "found_at": "2026-10-30T00:49:18.612266+09:00",
       "chain": "tsutaya"
     }
   }

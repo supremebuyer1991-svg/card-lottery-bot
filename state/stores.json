@@ -3205,13 +3205,15 @@
     "name": "三洋堂トレカ館 豊郷店",
     "last": "2026-10-30",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "愛知県"
   },
   "store/torekashoppuwateru-e60e8/": {
     "name": "トレカショップ ワーテル柏駅前",
     "last": "2026-10-30",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "千葉県"
   },
   "store/puranettopoketto-6f286/": {
     "name": "プラネットポケット",
@@ -3559,6 +3561,53 @@
     "name": "TCGショップ193 日本橋店",
     "last": "2026-10-29",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/hmv-a2631/": {
+    "name": "HMV（各店）",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/tsutaya-baea1/": {
+    "name": "TSUTAYA（熊本県内対象5店舗：蔦屋書店 熊本三年坂・御領店・田崎店・玉名店・大津店）",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "area": "熊本県"
+  },
+  "store/tsutaya-4fb65/": {
+    "name": "TSUTAYA宮崎県内4店舗",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-39a90/": {
+    "name": "平塚",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-12c45/": {
+    "name": "TSUTAYA中津店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/aeon-aa412/": {
+    "name": "ふるいちイオンモール今治新都市店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/batoroco-c234d/": {
+    "name": "バトロコ吉祥寺",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-fe211/": {
+    "name": "熊本県（各店）",
+    "last": "2026-10-30",
+    "game": "onepiece",
     "keep": true
   }
 }

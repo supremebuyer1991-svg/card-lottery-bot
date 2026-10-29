@@ -14634,7 +14634,7 @@
         "本人確認"
       ],
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSfOKxvBRktvY0fm1N7fCO9ZuZCX2m4HjWbI94MW2U49pdsm7w/viewform",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "id_check": true,
       "member": "none",
@@ -14659,7 +14659,7 @@
         "会員"
       ],
       "url": "https://docs.google.com/forms/d/1z6WAjm82hkuBz1p3yjgqEW2ob6BP1LCRkKRIpvsUqwk/viewform",
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "id_check": false,
       "member": "account",
@@ -14727,7 +14727,7 @@
         "会員"
       ],
       "url": "https://oretan.membercard.jp/lottery?search_store_id=119",
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "id_check": false,
       "member": "account",
@@ -14865,7 +14865,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/ezogm",
-      "channel": "online",
+      "channel": "store",
       "id_check": true,
       "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/cocos-life/cabinet/compass1791124895.jpg?_ex=300x300",
@@ -14889,7 +14889,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/ql_87",
-      "channel": "online",
+      "channel": "store",
       "id_check": true,
       "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
@@ -14913,7 +14913,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/05tt3",
-      "channel": "online",
+      "channel": "store",
       "id_check": true,
       "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -15683,6 +15683,43 @@
       "member": "none",
       "spath": "store/tsutaya-56cff/",
       "found_at": "2026-10-29T17:21:25.165265+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/59d76af708/": {
+    "d": {
+      "key": "59d76af70853e9b4",
+      "game": "onepiece",
+      "store": "HMV（各店）",
+      "product": "HEROINES EDITION vol.2",
+      "series": "ヒロインズエディション vol.2",
+      "start": "2026-10-29T00:00:00+09:00",
+      "end": "2026-11-03T23:59:00+09:00",
+      "method": "Web（ライブポケット）",
+      "url": "https://livepocket.jp/e/wx7r7emqbo",
+      "channel": "store",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9229/4582770059229_1_2.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18771764%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18771764%2F",
+      "spath": "store/hmv-a2631/",
+      "found_at": "2026-10-30T00:49:18.612103+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/f770f940ee/": {
+    "d": {
+      "key": "f770f940ee7482a3",
+      "game": "onepiece",
+      "store": "TSUTAYA（熊本県内対象5店舗：蔦屋書店 熊本三年坂・御領店・田崎店・玉名店・大津店）",
+      "product": "ワンピースカードゲーム ブースターパック「世界最強の戦士」",
+      "series": "世界最強の戦士",
+      "end": "2026-11-01T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/czxdo",
+      "channel": "store",
+      "area": "熊本県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
+      "spath": "store/tsutaya-baea1/",
+      "found_at": "2026-10-30T00:49:18.612266+09:00"
     },
     "last": "2026-10-30"
   }
