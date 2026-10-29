@@ -8379,21 +8379,27 @@
       "store": "ふるいちイオンモール熱田店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（購入権抽選・お一人様1回のみ応募可）",
       "series": "ストームエメラルダ",
-      "end": "2026-10-29T21:01:00+09:00",
-      "method": "オンライン",
-      "conditions": "会員",
+      "start": "2026-10-24T14:59+09:00",
+      "end": "2026-10-29T21:00+09:00",
+      "announce": "11/1(日)予定",
+      "buy": "11/4(水)〜11/7(土)",
+      "method": "Web抽選（LivePocket）→ 当選したら店頭で購入（郵送なし）",
+      "conditions": "1BOX 6,000円（税込）。ふるいちアプリの一般会員・VIP会員（ゲスト会員は対象外）。1人1回まで。本人のみ購入可（代理不可）。購入時に顔写真付き・現住所記載の本人確認書類、アプリの会員番号（スクショ不可）、当選確認の二次元バーコードが必要。シュリンクは外してのお渡し",
       "tags": [
-        "会員"
+        "アプリ",
+        "会員",
+        "本人確認"
       ],
       "url": "https://livepocket.jp/e/63x1l",
       "channel": "store",
       "area": "愛知県",
-      "id_check": false,
+      "id_check": true,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "spath": "store/aeon-2f753/",
-      "found_at": "2026-10-26T21:28:31.556263+09:00"
+      "found_at": "2026-10-26T21:28:31.556263+09:00",
+      "manual": true
     },
     "last": "2026-10-29"
   },
@@ -15322,6 +15328,154 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "spath": "store/biccamera-bae38/",
       "found_at": "2026-10-29T14:09:51.379572+09:00"
+    },
+    "last": "2026-10-29"
+  },
+  "l/otakarasouko-storm-emerald-1101/": {
+    "d": {
+      "key": "5bae1a58977d09a8",
+      "game": "pokemon",
+      "store": "お宝創庫（アプリ抽選）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（再販分）",
+      "series": "ストームエメラルダ",
+      "start": "2026-10-29T12:00+09:00",
+      "end": "2026-11-01T23:45+09:00",
+      "method": "お宝創庫グループアプリの抽選販売から応募",
+      "conditions": "お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "channel": "store",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/o-92d4a/",
+      "found_at": "2026-10-29T15:04:13.636087+09:00",
+      "manual": true
+    },
+    "last": "2026-10-29"
+  },
+  "l/otakarasouko-30th-1101/": {
+    "d": {
+      "key": "1b89e5ad8f4c1b1b",
+      "game": "pokemon",
+      "store": "お宝創庫（アプリ抽選）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販分）",
+      "series": "30th CELEBRATION",
+      "start": "2026-10-29T12:00+09:00",
+      "end": "2026-11-01T23:45+09:00",
+      "method": "お宝創庫グループアプリの抽選販売から応募",
+      "conditions": "お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "channel": "store",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/o-92d4a/",
+      "found_at": "2026-10-29T15:04:13.636150+09:00",
+      "manual": true
+    },
+    "last": "2026-10-29"
+  },
+  "l/94cbc3df11/": {
+    "d": {
+      "key": "94cbc3df117e561a",
+      "game": "pokemon",
+      "store": "ビックカメラ池袋西口店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（1パック200円税込・おひとり様1BOXまで）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-01T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・レシート・本人確認",
+      "tags": [
+        "会員",
+        "レシート",
+        "本人確認"
+      ],
+      "url": "https://x.com/bicikenishi/status/2115663342430007724",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/biccamera-6af96/",
+      "found_at": "2026-10-29T15:05:20.965487+09:00"
+    },
+    "last": "2026-10-29"
+  },
+  "l/89ea457caf/": {
+    "d": {
+      "key": "89ea457caf518d5a",
+      "game": "onepiece",
+      "store": "ビックカメラ京王調布店",
+      "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】1BOX（24パック入り・1パック240円税込・おひとり様1BOXまで）",
+      "series": "ヒロインズエディション vol.2",
+      "end": "2026-10-31T09:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/bic_keiochofu/status/2115669964933738983",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9229/4582770059229_1_2.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18771764%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18771764%2F",
+      "spath": "store/biccamera-7c3b5/",
+      "found_at": "2026-10-29T15:05:25.233368+09:00"
+    },
+    "last": "2026-10-29"
+  },
+  "l/46da3999aa/": {
+    "d": {
+      "key": "46da3999aa4d9c05",
+      "game": "onepiece",
+      "store": "ビックカメラ池袋西口店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（1パック240円税込・おひとり様1BOXまで）",
+      "series": "神の支配",
+      "end": "2026-11-01T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・レシート・本人確認",
+      "tags": [
+        "会員",
+        "レシート",
+        "本人確認"
+      ],
+      "url": "https://x.com/bicikenishi/status/2115663342430007724",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/biccamera-6af96/",
+      "found_at": "2026-10-29T15:05:25.233458+09:00"
+    },
+    "last": "2026-10-29"
+  },
+  "l/8b76468aba/": {
+    "d": {
+      "key": "8b76468aba3f40a0",
+      "game": "onepiece",
+      "store": "TSUTAYA伊那店",
+      "product": "ONE PIECEカードゲーム ONE PIECE HEROINES PRECIOUS BOX",
+      "end": "2026-11-04T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/INA_TSUTAYA/status/2115646786102833181",
+      "channel": "store",
+      "area": "長野県",
+      "id_check": false,
+      "member": "none",
+      "spath": "store/tsutaya-b7cb6/",
+      "found_at": "2026-10-29T15:05:25.233490+09:00"
     },
     "last": "2026-10-29"
   }
