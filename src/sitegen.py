@@ -369,6 +369,27 @@ def chart(points, h=170):
             f'<div class="sb-ax"><span>{_md(points[0][0])}</span><span>{_md(points[-1][0])}</span></div></div>')
 
 
+def _cmp(sm, k):
+    """前と比べた差（相場の記録の "prev" / "week" / "month" / "year"）→ (文字, 色のclass)"""
+    return _diff(sm["price"], sm[k][1] if sm.get(k) else None)
+
+
+def _cmp_td(sm, k):
+    """一覧の表の比較のマス：上に「−3.5%」、下に小さく「▼2,161円」（横に長くならないように）"""
+    b = sm[k][1] if sm.get(k) else None
+    if not b:
+        return '<td class="flat">-</td>'
+    d = sm["price"] - b
+    cls = "up" if d > 0 else "down" if d < 0 else "flat"
+    return (f'<td class="{cls}"><b class="pct">{"+" if d > 0 else "−" if d < 0 else "±"}{abs(d) * 100 / b:.1f}%</b>'
+            f'<small class="{cls}">{"▲" if d > 0 else "▼" if d < 0 else "±"}{abs(d):,}円</small></td>')
+
+
+def _ymd(d):
+    y, m, dd = d.split("-")
+    return f"{y}/{int(m)}/{int(dd)}"
+
+
 def _md(d):
     y, m, dd = d.split("-")
     return f"{int(m)}/{int(dd)}"
@@ -391,6 +412,10 @@ def souba_block(x, sm, fx=None, link=True):
         rows.append(f'<div><span>{_md(sm["prev"][0])}比</span><b class="{c1}">{d1}</b></div>')
     if d7:
         rows.append(f'<div><span>1週間前（{_md(sm["week"][0])}）比</span><b class="{c7}">{d7}</b></div>')
+    for k_, lab_, fmt_ in (("month", "1か月前", _md), ("year", "1年前", _ymd)):
+        d_, c_ = _cmp(sm, k_)
+        rows.append(f'<div><span>{lab_}（{fmt_(sm[k_][0])}）比</span><b class="{c_}">{d_}</b></div>' if d_
+                    else f'<div><span>{lab_}比</span><b class="flat">-</b></div>')
     us = ""
     if sm.get("us"):
         ud, uv = sm["us"]
@@ -429,7 +454,8 @@ def cards_block(x, cards):
         rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
                     + (f'<small>{escape(c["num"])}</small>' if c.get("num") else "")
                     + f'<p class="cd-p"><em>{_yen(sm["price"])}</em><small>{_md(sm["date"])}</small></p>'
-                    + f'<p class="cd-d"><span class="{c1}">前日比 {d1 or "-"}</span><span class="{c7}">1週間 {d7 or "-"}</span></p>'
+                    + '<p class="cd-d">' + "".join(f'<span class="{_cmp(sm, k_)[1]}">{lab_} {_cmp(sm, k_)[0] or "-"}</span>'
+                                                   for k_, lab_ in (("prev", "前日比"), ("month", "1か月"), ("year", "1年"))) + '</p>'
                     + f'<div class="cd-links">{links}</div></div></li>')
     if not rows:
         return ""
@@ -1308,14 +1334,14 @@ def build(settings=None, out_dir=None, sample=None):
                 rows.append((sm["price"], f'<tr><th>{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "") + '</th>'
                             f'<td><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
                             f'<td>{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
-                            f'<td class="{c1}">{d1 or "-"}</td><td class="{c7}">{d7 or "-"}</td>'
+                            + "".join(_cmp_td(sm, k_) for k_ in ("prev", "week", "month", "year")) +
                             f'<td>{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
             if rows:
                 rows.sort(key=lambda r: -r[0])
                 secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}の{"過去の弾の" if old else ""}BOX相場</h2>'
                             + ('<p class="sb-note">発売から時間がたった弾です。相場は1日1回（朝）更新しています。</p>' if old else "")
                             + '<div class="sb-scroll"><table>'
-                            '<thead><tr><th>商品</th><th>相場</th><th>定価・差</th><th>前日比</th><th>1週間比</th><th>30日</th></tr></thead><tbody>'
+                            '<thead><tr><th>商品</th><th>相場</th><th>定価・差</th><th>前日比</th><th>1週間比</th><th>1か月比</th><th>1年比</th><th>30日</th></tr></thead><tbody>'
                             + "".join(r[1] for r in rows) + '</tbody></table></div></section>')
         top_ = sorted(souba_sm.items(), key=lambda kv: -(kv[1]["price"] - (kv[1].get("teika") or kv[1]["price"])))[:1]
         if top_:

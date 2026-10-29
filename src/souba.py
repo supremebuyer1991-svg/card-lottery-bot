@@ -22,7 +22,34 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
       "Chrome/130.0 Safari/537.36")
 JST = timezone(timedelta(hours=9))
 WAIT = 3
-KEEP_DAYS = 60
+KEEP_DAYS = 400  # 1年前比のために400日分残す（40日より前は1週に1日だけにして軽くする）
+DAILY_DAYS = 40
+
+
+def _thin(d, today):
+    """日付ごとの値段を軽くする：40日以内は毎日、それより前（400日まで）は1週間に1日（その週のいちばん新しい日）だけ"""
+    from datetime import date
+    t = date.fromisoformat(today)
+    cut, daily = (t - timedelta(days=KEEP_DAYS)).isoformat(), (t - timedelta(days=DAILY_DAYS)).isoformat()
+    out, weeks = {}, {}
+    for k, v in sorted(d.items()):
+        if k < cut:
+            continue
+        if k >= daily:
+            out[k] = v
+        else:
+            weeks[date.fromisoformat(k).isocalendar()[:2]] = (k, v)
+    out.update(dict(weeks.values()))
+    return dict(sorted(out.items()))
+
+
+def _ago(done, d0, days, slack=10):
+    """d0 の days 日前（以前でいちばん近い日）の (日付, 値段)。データがそこまで無い・離れすぎなら None"""
+    tgt = (datetime.fromisoformat(d0) - timedelta(days=days)).date()
+    x = next((x for x in reversed(done) if x[0] <= tgt.isoformat()), None)
+    if x and (tgt - datetime.fromisoformat(x[0]).date()).days > slack:
+        return None
+    return x
 PAST_PER_RUN = 15  # 過去の弾は1回の実行で15件まで（朝7時すぎから30分ごとに少しずつ読む）
 
 
@@ -175,10 +202,9 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
                 rec["us"] = {**(rec.get("us") or {}), **_tcg_daily(sess, it["tcg"])}
             except Exception as e:
                 log(f"相場（TCGplayer）: {it['name']} 取得失敗 {e}")
-        cut = (t.date() - timedelta(days=KEEP_DAYS)).isoformat()
         for f in ("jp", "us"):
             if rec.get(f):
-                rec[f] = {d: v for d, v in sorted(rec[f].items()) if d >= cut}
+                rec[f] = _thin(rec[f], today)
     fx = _fx(sess)
     if fx:
         data["fx"] = fx
@@ -201,11 +227,11 @@ def summary(rec, today=None):
     done = [x for x in jp if x[0] < today or x[0] == upto] or jp
     d0, v0 = done[-1]
     prev = done[-2] if len(done) > 1 else None
-    wk = next((x for x in reversed(done) if x[0] <= (datetime.fromisoformat(d0) - timedelta(days=7)).date().isoformat()), None)
+    wk = _ago(done, d0, 7, slack=3)
     pts = [(d, v) for d, v in done if d >= (datetime.fromisoformat(d0) - timedelta(days=30)).date().isoformat()]
     us = sorted((rec.get("us") or {}).items())
-    out = {"date": d0, "price": v0, "teika": rec.get("teika"),
-           "prev": prev, "week": wk, "points": pts, "snkr": rec.get("snkr")}
+    out = {"date": d0, "price": v0, "teika": rec.get("teika"), "prev": prev, "week": wk,
+           "month": _ago(done, d0, 30, slack=5), "year": _ago(done, d0, 365), "points": pts, "snkr": rec.get("snkr")}
     if len(us) >= 1:
         out["us"] = us[-1]
         out["us_prev"] = us[-2] if len(us) > 1 else None
@@ -307,8 +333,7 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
             sleep(WAIT)
         try:
             rec["jp"] = {**(rec.get("jp") or {}), **_card_daily(sess, c["snkr"], rec)}
-            cut = (t.date() - timedelta(days=KEEP_DAYS)).isoformat()
-            rec["jp"] = {d: v for d, v in sorted(rec["jp"].items()) if d >= cut}
+            rec["jp"] = _thin(rec["jp"], today)
             rec["day"] = today
             got += 1
         except requests.HTTPError as e:
@@ -354,6 +379,6 @@ def card_summary(rec, today=None):
         return None
     d0, v0 = done[-1]
     prev = done[-2] if len(done) > 1 else None
-    wk = next((x for x in reversed(done) if x[0] <= (datetime.fromisoformat(d0) - timedelta(days=7)).date().isoformat()), None)
     pts = [(d, v) for d, v in done if d >= (datetime.fromisoformat(d0) - timedelta(days=30)).date().isoformat()]
-    return {"date": d0, "price": v0, "prev": prev, "week": wk, "points": pts}
+    return {"date": d0, "price": v0, "prev": prev, "week": _ago(done, d0, 7, slack=3),
+            "month": _ago(done, d0, 30, slack=5), "year": _ago(done, d0, 365), "points": pts}

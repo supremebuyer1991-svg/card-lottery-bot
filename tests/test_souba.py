@@ -91,4 +91,19 @@ assert souba.update_souba(s, sess=Sess(), sleep=nop) == 1  # 夜は今の弾だ�
 st = load_json("souba.json", {})["items"]
 assert souba.summary(st["pokemon|151"], "2026-10-30")["date"] == "2026-10-30"
 assert souba.summary(st["pokemon|old3"], "2026-10-30")["date"] == "2026-10-29" and st["pokemon|old3"]["past"]
+
+# 400日分を残す（40日より前は1週に1日）・1か月前比・1年前比
+from datetime import date, timedelta as td
+d0 = date(2026, 10, 29)
+hist = {(d0 - td(days=i)).isoformat(): 10000 + i for i in range(0, 500)}
+th = souba._thin(hist, "2026-10-30")
+assert min(th) >= (date(2026, 10, 30) - td(days=400)).isoformat()
+assert all(k in th for k in [(d0 - td(days=i)).isoformat() for i in range(0, 39)])
+assert len(th) < 120, len(th)
+sm = souba.summary({"jp": th}, "2026-10-30")
+assert sm["prev"] == ("2026-10-28", 10001)
+assert sm["month"] == ("2026-09-29", 10030), sm["month"]
+assert sm["year"] and "2025-10-2" in sm["year"][0] and sm["year"][0] <= "2025-10-29", sm["year"]
+# 1年分のデータがない弾は1年前比なし
+assert souba.summary({"jp": {k: v for k, v in th.items() if k > "2026-06-01"}}, "2026-10-30")["year"] is None
 print("OK")
