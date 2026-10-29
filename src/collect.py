@@ -107,11 +107,31 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     today_s = now().date().isoformat()
     xst = xstats.setdefault(today_s, {})
 
+    # 1日の上限（300件）が夜までもつように、1回に読める数を「残り ÷ 今日の残りの回数」にする。
+    # よく抽選が見つかる検索から先に読み、足りなくなったら残りの検索は次の回に回す
+    x_allow = 0
+    if x_ok:
+        from fetch_x import budget_left
+        h = now().hour
+        runs_left = 1 if h == 0 else (25 - h if h >= 7 else 18)  # Xを読むのは 7時〜0時台の1時間に1回
+        x_allow = budget_left(settings) // max(1, runs_left)
+        days = sorted(xstats)[-4:]
+
+        def _yield(s_):
+            rd = sum((xstats[d].get(s_["id"]) or [0, 0])[0] for d in days)
+            nw = sum((xstats[d].get(s_["id"]) or [0, 0])[1] for d in days)
+            return -(nw + 1) / (rd + 5)
+        xs = sorted([s_ for s_ in sources if s_.get("type") == "x"], key=_yield)
+        sources = [s_ for s_ in sources if s_.get("type") != "x"] + xs
+        log(f"X: 今回読める数 {x_allow}件（今日の残り{budget_left(settings)}件・残り{runs_left}回）")
+
     for src in sources:
         if src.get("enabled") is False:
             continue
         if src["type"] == "x":
             if not x_ok:
+                continue
+            if x_allow < 10:  # Xの検索は1回10件から。今回の分を使い切ったら次の回へ
                 continue
             # あまり抽選が見つからない検索は、数時間に1回だけ（every_hours）
             lt = parse_dt(src_last.get(src["id"]))
@@ -126,7 +146,9 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
 
         if src["type"] == "x":
             try:
-                posts, newest = x_search(src, settings, seen.get(sid), client=x_client)
+                posts, newest = x_search(dict(src, max_results=min(src.get("max_results", 20), x_allow)), settings,
+                                         seen.get(sid), client=x_client)
+                x_allow -= len(posts)
             except Exception as e:
                 log(f"X取得失敗 {sid}: {e}")
                 continue

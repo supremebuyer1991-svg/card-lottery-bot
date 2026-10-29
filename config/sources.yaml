@@ -44,11 +44,12 @@ sources:
   # --- X（キーワード検索）：店舗・ショップの抽選告知ポストを拾う ---
   # 当選報告・譲渡・買取などの雑談は自動で除外、リンク付きポストだけに絞っています
   - id: x_pokeca
+    every_hours: 6   # 雑談が多く、10/29は100件読んで新しい抽選0件だったので6時間に1回・10件に
     game: pokemon
     name: X「ポケカ 抽選」
     type: x
     keywords: '(ポケカ OR ポケモンカード) (抽選 OR 抽選販売) (受付 OR 応募 OR 申込 OR 申し込み)'  # 「お申込みはこちら」だけの告知も拾う
-    max_results: 20
+    max_results: 10
 
   - id: x_onepiece
     game: onepiece
@@ -128,11 +129,12 @@ sources:
   # 大手チェーンは公式以外のポストからも探す（店名＋カード＋抽選で検索。各店舗のアカウントや情報アカウントの告知も拾える）
   # 「ヤマダで抽選始まってる」のようにリンクが無く画像だけのポストも多いので、リンクなしも拾う（抽選かどうかはAIが判定）
   - id: x_chain_search
+    every_hours: 4   # 10/29は47件読んで新しい抽選5件。4時間に1回・10件に
     game: auto
     name: X 大手チェーンの抽選
     type: x
     require_links: false
-    max_results: 20
+    max_results: 10
     keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター) (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード) 抽選'
 
   # 公式サイトの抽選ページ（ページの中身が変わった時だけAIが読む）
