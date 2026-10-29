@@ -345,6 +345,30 @@ def spark(points, w=300, h=64):
             f'<circle cx="{xs[-1]}" cy="{ys[-1]}" r="3.2" fill="{col}"/></svg>')
 
 
+def chart(points, h=170):
+    """弾ページの相場の大きいグラフ（30日）。横幅いっぱいに伸びる線＋面。高値・安値・はじめと終わりの日付を文字で添える"""
+    if len(points) < 2:
+        return ""
+    vs = [v for _, v in points]
+    lo, hi = min(vs), max(vs)
+    rng = (hi - lo) or 1
+    W, H = 600, 200
+    xs = [round(i * W / (len(vs) - 1), 1) for i in range(len(vs))]
+    ys = [round(H - 12 - (v - lo) * (H - 24) / rng, 1) for v in vs]
+    pts = " ".join(f"{x},{y}" for x, y in zip(xs, ys))
+    up = vs[-1] >= vs[0]
+    col = "var(--red)" if up else "#2563eb"
+    grid = "".join(f'<line x1="0" x2="{W}" y1="{y}" y2="{y}" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>'
+                   for y in (12, H / 2, H - 12))
+    last_pct = (ys[-1] / H) * 100
+    return (f'<div class="sb-chart" style="--h:{h}px"><span class="sb-hi">高値 {_yen(hi)}</span><span class="sb-lo">安値 {_yen(lo)}</span>'
+            f'<div class="sb-plot"><svg viewBox="0 0 {W} {H}" preserveAspectRatio="none" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">{grid}'
+            f'<polygon points="0,{H} {pts} {W},{H}" fill="{col}" opacity=".08"/>'
+            f'<polyline fill="none" stroke="{col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" points="{pts}"/></svg>'
+            f'<i class="sb-dot" style="top:{last_pct:.1f}%;background:{col}"></i></div>'
+            f'<div class="sb-ax"><span>{_md(points[0][0])}</span><span>{_md(points[-1][0])}</span></div></div>')
+
+
 def _md(d):
     y, m, dd = d.split("-")
     return f"{int(m)}/{int(dd)}"
@@ -379,7 +403,7 @@ def souba_block(x, sm, fx=None, link=True):
             f'<small>スニダン・{_md(sm["date"])}の取引</small></div>'
             f'<div class="sb-main"><div class="sb-now"><em>{_yen(sm["price"])}</em>'
             + (f'<span>定価より <b>{abs(gap):,}円</b> 高い相場です</span>' if t and gap > 0 else "")
-            + f'</div>{spark(sm.get("points") or [])}</div><div class="sb-grid">{"".join(rows)}</div>{us}'
+            + f'</div></div>{chart(sm.get("points") or [])}<div class="sb-grid">{"".join(rows)}</div>{us}'
             f'<p class="sb-note">※スニダンでその日に成立した「1個」の取引の平均です（買取価格ではありません）。取引が少ない日は1件で大きく動きます。'
             + (f' <a href="{src}" rel="nofollow noopener" target="_blank">スニダンで見る</a>' if src else "")
             + ("　<a href=\"/souba/\">ほかのBOXの相場</a>" if link else "") + "</p></section>")
