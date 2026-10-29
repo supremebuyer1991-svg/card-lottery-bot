@@ -83,7 +83,8 @@ assert "b%2F2" in r["url"] and "hgc/AFF/" in r["url"] and r["image"].startswith(
 assert fake[-1] == "シャンクス OP01-120 パラレル", fake
 rakuten.search = lambda q, st, session=None: [
     {"itemName": "ポケモンカード ブラッキーVMAX S6a 094/069 HR 【中古】", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]}]
-assert souba._rakuten_card({}, {"snkr": 9, "label": "ブラッキーVMAX HR SA", "num": "S6a 095/069"})["url"] == ""
+r = souba._rakuten_card({"rakuten_affiliate_id": "AFF"}, {"snkr": 9, "label": "ブラッキーVMAX HR SA", "num": "S6a 095/069"})
+assert r["image"] == "" and r["search"] and "search.rakuten.co.jp" in r["url"] and "hgc/AFF/" in r["url"], r  # 合う商品がない→検索へのリンク
 print("OK2")
 rakuten.search = lambda q, st, session=None: [
     {"itemName": "ボア・ハンコック (パラレル) OP01-078 SR 【中古】", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]},

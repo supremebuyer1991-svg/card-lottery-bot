@@ -361,12 +361,18 @@ def chart(points, h=170):
     grid = "".join(f'<line x1="0" x2="{W}" y1="{y}" y2="{y}" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>'
                    for y in (12, H / 2, H - 12))
     last_pct = (ys[-1] / H) * 100
+    n = len(points)
+    ticks = sorted({round(i * (n - 1) / 4) for i in range(5)})  # 日付の目盛り（はじめ〜終わりを5か所）
+    ax = "".join(f'<span style="left:{xs[i] / W * 100:.1f}%">{_md(points[i][0])}</span>' for i in ticks)
+    data = ";".join(f"{_md(d)},{v}" for d, v in points)  # 指でさわる・マウスを乗せると、その日の日付と値段を出す
     return (f'<div class="sb-chart" style="--h:{h}px"><span class="sb-hi">高値 {_yen(hi)}</span><span class="sb-lo">安値 {_yen(lo)}</span>'
-            f'<div class="sb-plot"><svg viewBox="0 0 {W} {H}" preserveAspectRatio="none" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">{grid}'
+            f'<div class="sb-plot" data-p="{data}"><svg viewBox="0 0 {W} {H}" preserveAspectRatio="none" role="img" aria-label="30日の値動き（{_yen(lo)}〜{_yen(hi)}）">{grid}'
             f'<polygon points="0,{H} {pts} {W},{H}" fill="{col}" opacity=".08"/>'
             f'<polyline fill="none" stroke="{col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" points="{pts}"/></svg>'
-            f'<i class="sb-dot" style="top:{last_pct:.1f}%;background:{col}"></i></div>'
-            f'<div class="sb-ax"><span>{_md(points[0][0])}</span><span>{_md(points[-1][0])}</span></div></div>')
+            f'<i class="sb-dot" style="top:{last_pct:.1f}%;background:{col}"></i>'
+            f'<span class="sb-last" style="top:{last_pct:.1f}%">{_md(points[-1][0])} {_yen(vs[-1])}</span>'
+            f'<i class="sb-vl" hidden></i><i class="sb-pt" hidden style="background:{col}"></i><span class="sb-tip" hidden></span></div>'
+            f'<div class="sb-ax">{ax}</div></div>')
 
 
 def _cmp(sm, k):
@@ -448,7 +454,7 @@ def cards_block(x, cards):
         q = re.sub(r"\s*[(:（].*$", "", c["label"]).strip() + " " + (re.search(r"([A-Z]{2,4}\d{0,2}-\d{3}|\d{3}/\d{3})", c.get("num") or "") or [None, ""])[1]
         img = (f'<img src="{escape(rk["image"])}" alt="{escape(c["label"])}" loading="lazy" width="96" height="96">' if rk.get("image")
                else '<span class="cd-noimg" aria-hidden="true"></span>')
-        links = ((f'<a class="cd-rk" href="{escape(rk["url"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk.get("url") else "")
+        links = ((f'<a class="cd-rk" href="{escape(rk["url"])}" target="_blank" rel="nofollow sponsored noopener">{"楽天で探す" if rk.get("search") else "楽天で見る"}</a>' if rk.get("url") else "")
                  + f'<a class="cd-mc" href="https://jp.mercari.com/search?keyword={quote(q.strip())}" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
                  + f'<a class="cd-sn" href="https://snkrdunk.com/apparels/{c["snkr"]}" target="_blank" rel="nofollow noopener">スニダン</a>')
         rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
@@ -461,7 +467,8 @@ def cards_block(x, cards):
         return ""
     return (f'<section class="cards" aria-label="{escape(x)}の主要カードの相場"><h2>{escape(x)}の主要カードの相場</h2><ul>{"".join(rows)}</ul>'
             '<p class="sb-note">※スニダンでその日に成立した、状態A（未鑑定の美品）のカード1枚の取引の平均です。鑑定品（PSA10など）は含みません。'
-            + ('写真は楽天市場の商品の写真です（PR）。' if any((r_.get("rk") or {}).get("image") for _, r_, _s in cards) else "") + '</p></section>')
+            + ('写真は楽天市場の商品の写真です。' if any((r_.get("rk") or {}).get("image") for _, r_, _s in cards) else "")
+            + ('楽天市場へのリンクは広告（PR）です。' if any((r_.get("rk") or {}).get("url") for _, r_, _s in cards) else "") + '</p></section>')
 
 
 def og_image(path, game_label, color, title, rows, sub=""):

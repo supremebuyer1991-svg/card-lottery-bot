@@ -325,10 +325,11 @@ def _rakuten_card(settings, c, sess=None):
             continue
         return {"image": rakuten._first_image(it), "url": rakuten.item_link(it.get("itemUrl") or it.get("affiliateUrl"), aff),
                 "price": it.get("itemPrice"), "fetched": now().date().isoformat()}
-    return {"image": "", "url": "", "fetched": now().date().isoformat()}
+    # 合う商品がないときも、楽天の検索結果（安い順）へのリンクを付ける（写真はなし）
+    return {"image": "", "url": rakuten.search_link(q, aff), "search": True, "fetched": now().date().isoformat()}
 
 
-def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN, rk_budget=10):
+def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN, rk_budget=60):
     """主要カードの相場を少しずつ読む（1日1回）。楽天の写真は7日ごとに取り直す"""
     import os
     t = now()
@@ -366,7 +367,7 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
         except Exception as e:
             log(f"カード相場: {c['label']} 取得失敗 {e}")
             rec["day"] = today
-    # 楽天の写真（7日ごと・1回10件まで）
+    # 楽天の写真とリンク（7日ごと・1回60件まで＝全部のカードに数時間で付く）
     if rk_on:
         old = (t.date() - timedelta(days=7)).isoformat()
         for k, cs in cfg.items():

@@ -350,7 +350,15 @@ input[type="search"] { flex: 1 1 160px; }
 .sb-hi { top: 0; } .sb-lo { bottom: 22px; }
 .sb-plot { position: relative; }
 .sb-dot { position: absolute; right: -4px; width: 9px; height: 9px; border-radius: 50%; transform: translateY(-50%); box-shadow: 0 0 0 3px var(--card); }
-.sb-ax { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); font-family: var(--font-num); margin-top: 4px; }
+.sb-ax { position: relative; height: 16px; font-size: 11px; color: var(--ink-2); font-family: var(--font-num); margin-top: 4px; }
+.sb-ax span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.sb-ax span:first-child { transform: none; } .sb-ax span:last-child { transform: translateX(-100%); }
+.sb-plot { touch-action: pan-y; cursor: crosshair; }
+.sb-last { position: absolute; right: 10px; transform: translateY(-140%); font-size: 12px; font-weight: 800; font-family: var(--font-num); background: var(--card); padding: 0 4px; border-radius: 4px; white-space: nowrap; }
+.sb-vl { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed var(--ink-2); pointer-events: none; }
+.sb-pt { position: absolute; width: 9px; height: 9px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 3px var(--card); pointer-events: none; }
+.sb-tip { position: absolute; top: 4px; transform: translateX(-50%); background: var(--ink, #111827); color: #fff; font-size: 12px; font-weight: 700; font-family: var(--font-num); padding: 3px 8px; border-radius: 6px; white-space: nowrap; pointer-events: none; z-index: 2; }
+.sb-vl[hidden], .sb-pt[hidden], .sb-tip[hidden] { display: none; }
 .sb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; margin-top: 6px; }
 .sb-grid div { background: var(--navy-soft); border-radius: 8px; padding: 6px 10px; display: grid; gap: 1px; }
 .sb-grid span { font-size: 11px; color: var(--ink-2); } .sb-grid b { font-size: 14px; font-family: var(--font-num); }
@@ -1016,5 +1024,30 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   })();
   $("updated").textContent = (DATA.updLabel || "更新 ") + fmtDate(DATA.sample ? NOW0 : Date.parse(DATA.updated));
   render();
+  // 相場のグラフ：指でさわる・マウスを乗せると、その日の日付と値段を出す
+  (function () {
+    function show(pl, x) {
+      var P = pl.getAttribute("data-p").split(";").map(function (s) { var a = s.split(","); return [a[0], +a[1]]; });
+      var r = pl.getBoundingClientRect(), n = P.length;
+      var i = Math.max(0, Math.min(n - 1, Math.round((x - r.left) / r.width * (n - 1))));
+      var vs = P.map(function (p) { return p[1]; }), lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs), rg = (hi - lo) || 1;
+      var lx = (n > 1 ? i / (n - 1) : 0) * 100, ty = (200 - 12 - (P[i][1] - lo) * 176 / rg) / 200 * 100;
+      var vl = pl.querySelector(".sb-vl"), pt = pl.querySelector(".sb-pt"), tp = pl.querySelector(".sb-tip");
+      vl.hidden = pt.hidden = tp.hidden = false;
+      vl.style.left = pt.style.left = lx + "%"; pt.style.top = ty + "%";
+      tp.textContent = P[i][0] + "　¥" + P[i][1].toLocaleString("ja-JP");
+      tp.style.left = Math.max(12, Math.min(88, lx)) + "%";
+    }
+    function hide(pl) { [".sb-vl", ".sb-pt", ".sb-tip"].forEach(function (c) { var e = pl.querySelector(c); if (e) e.hidden = true; }); }
+    document.addEventListener("pointermove", function (e) {
+      var pl = e.target.closest && e.target.closest(".sb-plot[data-p]");
+      document.querySelectorAll(".sb-plot[data-p]").forEach(function (p) { if (p !== pl) hide(p); });
+      if (pl) show(pl, e.clientX);
+    });
+    document.addEventListener("pointerdown", function (e) {
+      var pl = e.target.closest && e.target.closest(".sb-plot[data-p]");
+      if (pl) show(pl, e.clientX);
+    });
+  })();
 })();
 </script>
