@@ -3,9 +3,9 @@
 # スニダンで値段の高い出品が多いカードから選んだもの（今の弾は5枚・過去の弾は3枚）。入れ替えたいときはここを書き換える
 
 "pokemon|30th CELEBRATION":
-  - {snkr: 898627, label: "ミュウ", num: "M6a B/RGB"}
-  - {snkr: 898625, label: "ミュウ", num: "M6a R/RGB"}
-  - {snkr: 898626, label: "ミュウ", num: "M6a G/RGB"}
+  - {snkr: 898627, label: "ミュウ（ブルー）", num: "M6a B/RGB"}
+  - {snkr: 898625, label: "ミュウ（レッド）", num: "M6a R/RGB"}
+  - {snkr: 898626, label: "ミュウ（グリーン）", num: "M6a G/RGB"}
   - {snkr: 881429, label: "ミュウex FUR", num: "M6a 135/103"}
   - {snkr: 892556, label: "ピカチュウ", num: "M6a 022/103"}
 "pokemon|30周年エーフィ・ブラッキーデッキ":
@@ -314,9 +314,9 @@
   - {snkr: 393022, label: "カビゴン R", num: "SM10 076/095"}
   - {snkr: 392953, label: "レシラム&リザードンGX RR", num: "SM10 007/095"}
 "pokemon|タッグボルト":
-  - {snkr: 396399, label: "コイキング&ホエルオーGX SR", num: "SM9 098/095"}
+  - {snkr: 396399, label: "コイキング&ホエルオーGX SR（098）", num: "SM9 098/095"}
   - {snkr: 93097, label: "ラティアス&ラティオスGX SR SA", num: "SM9 105/095"}
-  - {snkr: 91292, label: "コイキング&ホエルオーGX SR", num: "SM9 099/095"}
+  - {snkr: 91292, label: "コイキング&ホエルオーGX SR（099）", num: "SM9 099/095"}
 "pokemon|裂空のカリスマ":
   - {snkr: 91302, label: "ルチア SR", num: "SM7 104/096"}
   - {snkr: 91301, label: "レックウザGX HR", num: "SM7 109/096"}

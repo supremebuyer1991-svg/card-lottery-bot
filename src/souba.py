@@ -300,6 +300,10 @@ def _rakuten_card(settings, c, sess=None):
     kind = next((k for k in kinds if re.search(k[0], lab)), None)
     par = kind[2] if kind else ""
     q = " ".join(x for x in (base, num, par) if x)  # 楽天は言葉を全部ふくむ商品を探すので、レアリティの書き方の違いで外れないよう名前と番号だけ
+    aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
+    if not num:  # 番号のないカード（ミュウ ブルー/レッド/グリーンなど）は名前だけでは別のカードの写真になるので、検索へのリンクだけ
+        q2 = " ".join([name] + re.findall(r"[(（]([^)）]+)[)）]", lab))
+        return {"image": "", "url": rakuten.search_link(q2, aff), "search": True, "fetched": now().date().isoformat()}
     items = rakuten.search(q, dict(settings, _genre=None, _sort="standard"))  # 30件
     # パラレル違い・ミラー違いを取り違えない（ワンピースは同じ番号でふつうのカードとパラレルがある）
     need, ng = [], []
