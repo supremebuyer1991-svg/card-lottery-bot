@@ -530,6 +530,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 .tb-acts .ap[aria-pressed="true"] { border-color: var(--done); color: var(--done); }
 @media (min-width: 561px) { .conds, .acts.tb-acts { padding-left: 146px; max-width: 780px; } .tb-cond { padding-left: 146px; } }
 @media (max-width: 560px) { .tb-acts .mi:last-child { display: none; } .ticket.tb .body.has-img { display: flex; } .ticket.tb .body.has-img > .thumb, .ticket.tb .body.has-img > .thumbs { --tw: 88px; justify-self: auto; align-self: flex-start; } .ticket.tb .body.has-img > .thumbs.n2 { --tw: 88px; grid-template-columns: 1fr; } .band { font-size: 13px; } }
+/* スマホ：商品が複数の抽選は、写真を文字の下に横並び（4枚まで） */
+@media (max-width: 560px) { .ticket.tb .body.has-img:has(> .thumbs) { flex-direction: column; } .ticket.tb .body.has-img > .thumbs, .ticket.tb .body.has-img > .thumbs.n2 { order: 2; width: 100%; --tw: 100%; grid-template-columns: repeat(4, 1fr); gap: 6px; } }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .conds .ok { background: #12301f; color: #5cc78a; } :root:not([data-theme="light"]) .conds .ng { background: #3a2412; color: #ffb547; } }
 :root[data-theme="dark"] .conds .ok { background: #12301f; color: #5cc78a; } :root[data-theme="dark"] .conds .ng { background: #3a2412; color: #ffb547; }
 @media (prefers-reduced-motion: no-preference) { .ticket { transition: opacity .2s; } }
