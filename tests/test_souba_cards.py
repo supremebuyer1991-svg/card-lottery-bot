@@ -67,6 +67,9 @@ cs = [(c, d.get(str(c["snkr"])) or {}, souba.card_summary(load_json("souba_cards
 cs[0][1]["rk"] = {"image": "https://thumbnail.image.rakuten.co.jp/x.jpg?_ex=300x300", "url": "https://hb.afl.rakuten.co.jp/hgc/abc/?pc=x"}
 h = sitegen.cards_block("黒炎の支配者", cs)
 assert h.count("cd-spark") >= 1, h  # カードごとの30日の小さいグラフ
+assert "Amazonで探す" not in h and "snkrdunk.com/apparels" not in h  # スニダンのボタンはなし
+h2 = sitegen.cards_block("黒炎の支配者", cs, "TAG-22")
+assert "amazon.co.jp/s?k=" in h2 and "tag=TAG-22" in h2 and "Amazonで探す" in h2, h2
 assert "黒炎の支配者の主要カードの相場" in h and "¥36,000" in h and "楽天で見る" in h and "rel=\"nofollow sponsored noopener\"" in h
 assert "https://jp.mercari.com/search?keyword=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3ex%20SAR%20134/108" in h, h
 assert sitegen.cards_block("x", []) == ""
