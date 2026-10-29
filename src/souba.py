@@ -210,3 +210,150 @@ def summary(rec, today=None):
         out["us"] = us[-1]
         out["us_prev"] = us[-2] if len(us) > 1 else None
     return out
+
+
+# ---------------- 主要シングルカードの相場（スニダン・状態A＝未鑑定の美品・1枚の取引の、その日の平均） ----------------
+# config/souba_cards.yaml の弾ごとのカード（高いカードを数枚）を、朝7時すぎから30分ごとに少しずつ、1日1回読む
+# 写真とリンクは楽天の商品検索API（アフィリエイトのリンク）。メルカリは検索へのリンクだけ（写真は使わない）
+CARD_REQ_PER_RUN = 30  # 1回の実行でスニダンを読む回数の上限（初めてのカードは3回、2回目からは1回）
+COND_A = "trading_card_single_nearly_unused"
+
+
+def card_cfg():
+    p = ROOT / "config" / "souba_cards.yaml"
+    d = (yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}) or {}
+    return {k: [c for c in (v or []) if c.get("snkr")] for k, v in d.items()}
+
+
+def _card_daily(sess, aid, rec):
+    """カード1枚 → {日付: 状態Aの1枚の取引のその日の平均}。商品番号・1枚の番号は覚えておく（2回目からは1回読むだけ）"""
+    if not rec.get("pid"):
+        h = sess.get(f"https://snkrdunk.com/apparels/{aid}", timeout=30)
+        h.raise_for_status()
+        m = re.search(r'\\?"productId\\?":(\d+)', h.text)
+        if not m:
+            raise ValueError("productId が見つからない")
+        rec["pid"] = int(m.group(1))
+        time.sleep(1)
+    pid = rec["pid"]
+    if not rec.get("vid"):
+        j = sess.get(f"https://snkrdunk.com/v3/products/{pid}/trading-history?range=all", timeout=30)
+        j.raise_for_status()
+        opt = next((o for o in ((j.json().get("filters") or {}).get("variants") or {}).get("options") or []
+                    if re.match(r"^1(枚|個)$", o.get("name") or "")), None)
+        rec["vid"] = opt["id"] if opt else 0
+        time.sleep(1)
+    q = f"&variant_id={rec['vid']}" if rec["vid"] else ""
+    r = sess.get(f"https://snkrdunk.com/v3/products/{pid}/trading-history?range=all{q}&condition_code={COND_A}", timeout=30)
+    r.raise_for_status()
+    day = {}
+    for p in (((r.json().get("chart") or {}).get("lines") or [{}])[0].get("points") or []):
+        ts = p.get("timestamp")
+        if ts is None or p.get("price") is None:
+            continue
+        ts = ts / 1000 if ts > 1e11 else ts
+        day[datetime.fromtimestamp(ts, JST).date().isoformat()] = int(p["price"])
+    return day
+
+
+def _rakuten_card(settings, c, sess=None):
+    """楽天でそのカードの商品を探す（写真・アフィリエイトリンク）。カード名と番号が両方合う商品だけ"""
+    import os
+    import rakuten
+    name = re.sub(r"\s*[(:（].*$", "", c["label"]).strip()  # 「シャンクス SEC-SP (コミパラ)」→「シャンクス SEC-SP」
+    num = (re.search(r"([A-Z]{2,4}\d{0,2}-\d{3}|\d{3}/\d{3})", c.get("num") or "") or [None, ""])[1]
+    base = re.sub(r"\s+\S+$", "", name) if " " in name else name  # レアリティを外したカード名
+    items = rakuten.search(f"{base} {num}".strip(), dict(settings, _genre=None))
+    aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
+    nb, nn = rakuten._norm(base), rakuten._norm(num)
+    for it in items:
+        nm = it.get("itemName") or ""
+        n = rakuten._norm(nm)
+        if nb not in n or (nn and nn not in n) or not it.get("mediumImageUrls"):
+            continue
+        if re.search(r"オリパ|英語版|韓国|中国|まとめ|セット売|ランダム|福袋|スリーブ|ローダー", nm):
+            continue
+        return {"image": rakuten._first_image(it), "url": rakuten.item_link(it.get("itemUrl") or it.get("affiliateUrl"), aff),
+                "price": it.get("itemPrice"), "fetched": now().date().isoformat()}
+    return {"image": "", "url": "", "fetched": now().date().isoformat()}
+
+
+def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN, rk_budget=10):
+    """主要カードの相場を少しずつ読む（1日1回）。楽天の写真は7日ごとに取り直す"""
+    import os
+    t = now()
+    today = t.date().isoformat()
+    if t.hour < settings.get("souba_hour", 7):
+        return 0
+    cfg = card_cfg()
+    data = load_json("souba_cards.json", {})
+    todo, used = [], 0
+    for k, cs in cfg.items():
+        for c in cs:
+            r_ = data.get(str(c["snkr"])) or {}
+            cost = 1 + (not r_.get("pid")) + (not r_.get("vid") and r_.get("vid") != 0)
+            if r_.get("day") != today and used + cost <= budget:
+                todo.append((k, c))
+                used += cost
+    rk_on = bool(os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY"))
+    got = 0
+    if todo:
+        sess = sess or requests.Session()
+        sess.headers.update({"User-Agent": UA, "Accept-Language": "ja-JP,ja;q=0.9"})
+    for n, (k, c) in enumerate(todo):
+        rec = data.setdefault(str(c["snkr"]), {})
+        rec.update(key=k, label=c["label"], num=c.get("num"))
+        if n:
+            sleep(WAIT)
+        try:
+            rec["jp"] = {**(rec.get("jp") or {}), **_card_daily(sess, c["snkr"], rec)}
+            cut = (t.date() - timedelta(days=KEEP_DAYS)).isoformat()
+            rec["jp"] = {d: v for d, v in sorted(rec["jp"].items()) if d >= cut}
+            rec["day"] = today
+            got += 1
+        except requests.HTTPError as e:
+            log(f"カード相場: {c['label']} 取得できず {e} → 今回はここまで")
+            break
+        except Exception as e:
+            log(f"カード相場: {c['label']} 取得失敗 {e}")
+            rec["day"] = today
+    # 楽天の写真（7日ごと・1回10件まで）
+    if rk_on:
+        old = (t.date() - timedelta(days=7)).isoformat()
+        for k, cs in cfg.items():
+            for c in cs:
+                if rk_budget <= 0:
+                    break
+                rec = data.setdefault(str(c["snkr"]), {"key": k, "label": c["label"], "num": c.get("num")})
+                if (rec.get("rk") or {}).get("fetched", "") > old:
+                    continue
+                rk_budget -= 1
+                try:
+                    rec["rk"] = _rakuten_card(settings, c)
+                except Exception as e:
+                    log(f"カード相場（楽天）: {c['label']} 取得失敗 {e}")
+                    if "401" in str(e) or "403" in str(e):
+                        rk_budget = 0
+                time.sleep(1.1)
+    if todo or rk_on:
+        save_json("souba_cards.json", data)
+    if todo:
+        data_s = load_json("souba.json", {})
+        data_s["cards_updated"] = t.isoformat()
+        save_json("souba.json", data_s)  # サイトを出し直す合図
+        log(f"カード相場: {got}/{len(todo)}件")
+    return got
+
+
+def card_summary(rec, today=None):
+    """カード1枚の、いちばん新しい日（今日は途中なので昨日まで）の相場・前日比・7日前比・30日の点"""
+    jp = sorted((rec.get("jp") or {}).items())
+    today = today or now().date().isoformat()
+    done = [x for x in jp if x[0] < today]
+    if not done:
+        return None
+    d0, v0 = done[-1]
+    prev = done[-2] if len(done) > 1 else None
+    wk = next((x for x in reversed(done) if x[0] <= (datetime.fromisoformat(d0) - timedelta(days=7)).date().isoformat()), None)
+    pts = [(d, v) for d, v in done if d >= (datetime.fromisoformat(d0) - timedelta(days=30)).date().isoformat()]
+    return {"date": d0, "price": v0, "prev": prev, "week": wk, "points": pts}

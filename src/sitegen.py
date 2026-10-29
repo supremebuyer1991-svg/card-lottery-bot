@@ -385,6 +385,35 @@ def souba_block(x, sm, fx=None, link=True):
             + ("　<a href=\"/souba/\">ほかのBOXの相場</a>" if link else "") + "</p></section>")
 
 
+def cards_block(x, cards):
+    """弾ページの「主要カードの相場」：楽天の商品写真・スニダンの状態Aの相場・前日比・1週間比・楽天/メルカリ/スニダンへのリンク
+    cards: [(カード設定, 相場の記録, card_summary の結果)]（相場の高い順）"""
+    from urllib.parse import quote
+    rows = []
+    for c, rec, sm in cards:
+        if not sm:
+            continue
+        rk = rec.get("rk") or {}
+        d1, c1 = _diff(sm["price"], sm["prev"][1] if sm.get("prev") else None)
+        d7, c7 = _diff(sm["price"], sm["week"][1] if sm.get("week") else None)
+        q = re.sub(r"\s*[(:（].*$", "", c["label"]).strip() + " " + (re.search(r"([A-Z]{2,4}\d{0,2}-\d{3}|\d{3}/\d{3})", c.get("num") or "") or [None, ""])[1]
+        img = (f'<img src="{escape(rk["image"])}" alt="{escape(c["label"])}" loading="lazy" width="96" height="96">' if rk.get("image")
+               else '<span class="cd-noimg" aria-hidden="true"></span>')
+        links = ((f'<a class="cd-rk" href="{escape(rk["url"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk.get("url") else "")
+                 + f'<a class="cd-mc" href="https://jp.mercari.com/search?keyword={quote(q.strip())}" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
+                 + f'<a class="cd-sn" href="https://snkrdunk.com/apparels/{c["snkr"]}" target="_blank" rel="nofollow noopener">スニダン</a>')
+        rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
+                    + (f'<small>{escape(c["num"])}</small>' if c.get("num") else "")
+                    + f'<p class="cd-p"><em>{_yen(sm["price"])}</em><small>{_md(sm["date"])}</small></p>'
+                    + f'<p class="cd-d"><span class="{c1}">前日比 {d1 or "-"}</span><span class="{c7}">1週間 {d7 or "-"}</span></p>'
+                    + f'<div class="cd-links">{links}</div></div></li>')
+    if not rows:
+        return ""
+    return (f'<section class="cards" aria-label="{escape(x)}の主要カードの相場"><h2>{escape(x)}の主要カードの相場</h2><ul>{"".join(rows)}</ul>'
+            '<p class="sb-note">※スニダンでその日に成立した、状態A（未鑑定の美品）のカード1枚の取引の平均です。鑑定品（PSA10など）は含みません。'
+            + ('写真は楽天市場の商品の写真です（PR）。' if any((r_.get("rk") or {}).get("image") for _, r_, _s in cards) else "") + '</p></section>')
+
+
 def og_image(path, game_label, color, title, rows, sub=""):
     """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630"""
     from PIL import Image, ImageDraw, ImageFont
@@ -780,6 +809,13 @@ def build(settings=None, out_dir=None, sample=None):
     souba_fx = souba_raw.get("fx")
     souba_sm = {k: souba_mod.summary(v) for k, v in (souba_raw.get("items") or {}).items()}
     souba_sm = {k: v for k, v in souba_sm.items() if v}
+    card_raw = load_json("souba_cards.json", {}) if sample is None else {}
+    cards_by = {}  # {"game|弾": [(カード設定, 記録, 相場)]}（相場の高い順）
+    for k_, cs_ in souba_mod.card_cfg().items():
+        lst_ = [(c_, card_raw.get(str(c_["snkr"])) or {}, souba_mod.card_summary(card_raw.get(str(c_["snkr"])) or {})) for c_ in cs_]
+        lst_ = sorted([t_ for t_ in lst_ if t_[2]], key=lambda t_: -t_[2]["price"])
+        if lst_:
+            cards_by[k_] = lst_
     if sample is not None:
         items = sample
     else:
@@ -836,7 +872,7 @@ def build(settings=None, out_dir=None, sample=None):
     digest = sha(digest + json.dumps(sorted((load_json("newsets.json", {}).get("series") or {}).get("pokemon", {})) +
                                      sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})) +
                                      sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す
-    digest = sha(digest + str(load_json("souba.json", {}).get("updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
+    digest = sha(digest + str(load_json("souba.json", {}).get("updated")) + str(load_json("souba.json", {}).get("cards_updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 
@@ -1035,7 +1071,7 @@ def build(settings=None, out_dir=None, sample=None):
             rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
                                                canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
             sm = souba_sm.get(f"{g}|{x}")
-            aff = souba_block(x, sm, souba_fx) + _product_ad(x, name, rr, tag, raff)
+            aff = souba_block(x, sm, souba_fx) + cards_block(x, cards_by.get(f"{g}|{x}") or []) + _product_ad(x, name, rr, tag, raff)
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -1083,7 +1119,8 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx) + info_html + _product_ad(x, name, rr, tag, raff)),
+                "aff": _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx) + cards_block(x, cards_by.get(f"{g}|{x}") or [])
+                                                     + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 

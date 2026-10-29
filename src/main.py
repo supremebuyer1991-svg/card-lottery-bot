@@ -75,9 +75,14 @@ def main():
         except Exception as e:
             log(f"新しい弾: スキップ {e}")
         try:
-            update_souba(s)  # サイトに載せるBOXの相場（スニダン・TCGplayer・1日1回だけ）
+            update_souba(s)  # サイトに載せるBOXの相場（スニダン・TCGplayer・朝と夜21時ごろ。過去の弾は朝から少しずつ）
         except Exception as e:
             log(f"BOX相場: スキップ {e}")
+        try:
+            from souba import update_cards
+            update_cards(s)  # 弾ごとの主要カードの相場（スニダン・1日1回・少しずつ）と楽天の写真
+        except Exception as e:
+            log(f"カード相場: スキップ {e}")
         try:
             update_trends(s)  # Xで話題のネタから投稿文の下書き（下書きページに出す）
         except Exception as e:
