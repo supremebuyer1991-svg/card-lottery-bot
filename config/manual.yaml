@@ -183,3 +183,29 @@ lotteries:
     member: account
     tags: [会員, 本人確認]
     url: https://livepocket.jp/e/6mbex
+
+  - slug: otakarasouko-storm-emerald-1101
+    game: pokemon
+    store: お宝創庫（アプリ抽選）
+    series: ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（再販分）
+    channel: store
+    method: お宝創庫グループアプリの抽選販売から応募
+    start: 2026-10-29T12:00
+    end: 2026-11-01T23:45
+    conditions: お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認
+    member: account
+    tags: [アプリ, 会員]
+
+  - slug: otakarasouko-30th-1101
+    game: pokemon
+    store: お宝創庫（アプリ抽選）
+    series: 30th CELEBRATION
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販分）
+    channel: store
+    method: お宝創庫グループアプリの抽選販売から応募
+    start: 2026-10-29T12:00
+    end: 2026-11-01T23:45
+    conditions: お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認
+    member: account
+    tags: [アプリ, 会員]
