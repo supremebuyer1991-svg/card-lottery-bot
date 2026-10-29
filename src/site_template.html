@@ -511,6 +511,27 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   .lead h1 { font-size: 19px; }
   .stats b { font-size: 18px; }
 }
+/* 案B：締切の色帯＋応募に必要なものの4マス */
+.ticket.tb { display: block; overflow: hidden; }
+.band { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 14px; color: #fff; font-weight: 800; font-size: 14px; }
+.band .cd { font-size: inherit; font-weight: 800; color: inherit; margin-left: 4px; }
+.band .dl { color: inherit; font-size: 13px; opacity: .95; font-weight: 700; }
+.band.b-today { background: #dc2626; } .band.b-tmr { background: #ea8a00; } .band.b-later { background: #64748b; }
+.ticket.tb .body { padding: 12px 14px 8px; }
+.conds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 14px 10px; }
+.conds div { border-radius: 8px; text-align: center; font-size: 11px; line-height: 1.3; padding: 5px 2px; overflow-wrap: anywhere; }
+.conds i { display: block; font-style: normal; font-size: 15px; font-weight: 800; }
+.conds .ok { background: #ecfdf5; color: #047857; } .conds .ng { background: #fff7ed; color: #c2410c; }
+.conds .unk { background: var(--navy-soft); color: var(--ink-2); } .conds .gr { background: var(--navy-soft); color: var(--ink); }
+.tb-cond { padding: 0 14px 8px; }
+.acts.tb-acts { display: flex; gap: 6px; padding: 0 14px 14px; align-items: stretch; flex-wrap: wrap; border-top: 0; }
+.tb-acts .go { flex: 2 1 140px; }
+.tb-acts .ap, .tb-acts .mi { flex: 1 1 70px; text-align: center; font: inherit; font-size: 13px; background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; padding: 7px 4px; text-decoration: none; cursor: pointer; white-space: nowrap; }
+.tb-acts .ap[aria-pressed="true"] { border-color: var(--done); color: var(--done); }
+@media (min-width: 561px) { .conds, .acts.tb-acts { padding-left: 146px; max-width: 780px; } .tb-cond { padding-left: 146px; } }
+@media (max-width: 560px) { .tb-acts .mi:last-child { display: none; } .ticket.tb .body.has-img { display: flex; } .ticket.tb .body.has-img > .thumb, .ticket.tb .body.has-img > .thumbs { --tw: 88px; justify-self: auto; align-self: flex-start; } .ticket.tb .body.has-img > .thumbs.n2 { --tw: 88px; grid-template-columns: 1fr; } .band { font-size: 13px; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .conds .ok { background: #12301f; color: #5cc78a; } :root:not([data-theme="light"]) .conds .ng { background: #3a2412; color: #ffb547; } }
+:root[data-theme="dark"] .conds .ok { background: #12301f; color: #5cc78a; } :root[data-theme="dark"] .conds .ng { background: #3a2412; color: #ffb547; }
 @media (prefers-reduced-motion: no-preference) { .ticket { transition: opacity .2s; } }
 </style>
 
@@ -790,22 +811,40 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }
   function otherTags(it) { return (it.tags || []).filter(function (t) { return ["会員", "本人確認"].indexOf(t) < 0; }); }
 
+  // 締切の色帯：赤＝今日締切、オレンジ＝明日締切、灰＝それ以降
+  function bandOf(t) {
+    if (t == null || t <= Date.now()) return { cls: "b-later", lab: "" };
+    if (isToday(t)) return { cls: "b-today", lab: "⏰ 今日締切 あと" };
+    var tm = new Date(); tm.setDate(tm.getDate() + 1);
+    if (new Date(t).toDateString() === tm.toDateString()) return { cls: "b-tmr", lab: "明日締切 あと" };
+    return { cls: "b-later", lab: "あと" };
+  }
+  // 応募に必要なものを4マスで（○＝不要、×＝必要、？＝書かれていない）
+  function condCells(it) {
+    var c = function (k, mark, l1, l2) { return '<div class="' + k + '"><i>' + mark + '</i>' + l1 + '<br>' + l2 + '</div>'; };
+    var id = it.id_check === true ? c("ng", "×", "本人確認", "必要") : it.id_check === false ? c("ok", "○", "本人確認", "不要") : c("unk", "？", "本人確認", "不明");
+    var mem = it.member === "card" ? c("ng", "×", "会員カード", "必要") : it.member === "account" ? c("ng", "×", "会員登録", "必要")
+      : it.member === "none" ? c("ok", "○", "会員", "不要") : c("unk", "？", "会員", "不明");
+    var t = (it.tags || []).join(" ") + " " + (it.conditions || "");
+    var ex = [/購入(履歴|実績|歴)|利用実績/.test(t) ? "購入履歴" : "", /レシート/.test(t) ? "レシート" : "", needs(it, "アプリ") ? "アプリ" : ""].filter(Boolean);
+    var oth = ex.length ? c("ng", "×", ex.slice(0, 2).join("・"), "必要") : c("ok", "○", "購入履歴など", "記載なし");
+    var plc = it.channel === "store" ? c("gr", "📍", esc(it.area || "店頭"), "店頭受取") : c("gr", "📦", "通販", "発送");
+    return '<div class="conds">' + id + mem + oth + plc + '</div>';
+  }
   function ticket(it) {
-    var cd = countdown(it._end), done = !!applied[it.key], cal = gcal(it);
-    return '<article class="ticket' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
-      '<div class="stub ' + cd.cls + '"><span class="cd-l">締切まで</span><span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
+    var cd = countdown(it._end), bd = bandOf(it._end), done = !!applied[it.key], cal = gcal(it);
+    return '<article class="ticket tb' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
+      '<div class="band ' + bd.cls + '"><span class="bl">' + bd.lab + '<span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span></span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
       (function () { var t = thumb(it); return '<div class="body' + (t ? " has-img" : "") + '">' + t; })() + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (st.game === "all" && GSHORT[it.game] ? '<span class="badge gm g-' + esc(it.game) + '">' + esc(GSHORT[it.game]) + '</span>' : "") +
-        (it.channel === "store" && it.area ? '<span class="badge area">' + esc(it.area) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
-        '<div class="product">' + esc(it.product) + '</div>' + flow(it) + reqs(it) +
-        (otherTags(it).length ? '<div class="tags">' + otherTags(it).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join("") + '</div>' : "") +
-        (condText(it) ? '<div class="cond">' + esc(condText(it)) + '</div>' : "") +
-      '</div></div>' +
-      '<div class="acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
-        '<div class="mini"><button type="button" class="ap" title="応募済みの印をつける" aria-pressed="' + done + '">' + (done ? "✓ 応募した" : "☐ 応募した") + '</button>' +
-        (cal ? '<a href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") +
-        (it.lpath ? '<a href="/' + esc(it.lpath) + '">詳しく</a>' : "") + '</div></div>' +
+        '<div class="product">' + esc(it.product) + '</div>' + flow(it) +
+      '</div></div>' + condCells(it) +
+      (condText(it) ? '<div class="cond tb-cond">' + esc(condText(it)) + '</div>' : "") +
+      '<div class="acts tb-acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
+        '<button type="button" class="ap" title="応募済みの印をつける" aria-pressed="' + done + '">' + (done ? "✓ 応募した" : "☐ 応募した") + '</button>' +
+        (it.lpath ? '<a class="mi" href="/' + esc(it.lpath) + '">詳しく</a>' : "") +
+        (cal ? '<a class="mi" href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") + '</div>' +
     '</article>';
   }
 
@@ -1013,7 +1052,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   setInterval(function () {
     document.querySelectorAll(".cd[data-end]").forEach(function (el) {
       var t = Number(el.dataset.end); if (!t) return;
-      var c = countdown(t); el.textContent = c.text; el.parentNode.className = "stub " + c.cls;
+      var c = countdown(t); el.textContent = c.text; if (!el.closest(".band")) el.parentNode.className = "stub " + c.cls;
     });
     document.querySelectorAll(".hc-cd[data-end]").forEach(function (el) {
       var t = Number(el.dataset.end); if (!t) return;
