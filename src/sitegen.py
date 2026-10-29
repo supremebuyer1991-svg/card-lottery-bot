@@ -1431,7 +1431,7 @@ def build(settings=None, out_dir=None, sample=None):
         def _row(r):
             sp = store_path(r["store"])
             name = f'<a href="/{sp}">{escape(r["store"])}</a>' if sp in _sreg else escape(r["store"])
-            how = escape(r.get("check") or "お店のお知らせ・メール")
+            how = escape(r.get("check") or "お店からの当落メール")
             off = (f'<a href="{escape(r["check_url"])}" target="_blank" rel="noopener nofollow">確認ページ</a>'
                    if r.get("check_url") else "")
             return (f'<li><span class="kk-g kk-{escape(r["game"])}">{escape(GAME_SHORT.get(r["game"], ""))}</span>'
