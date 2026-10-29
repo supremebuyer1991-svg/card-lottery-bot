@@ -289,7 +289,29 @@ def _rakuten_card(settings, c, sess=None):
     name = re.sub(r"\s*[(:（].*$", "", c["label"]).strip()  # 「シャンクス SEC-SP (コミパラ)」→「シャンクス SEC-SP」
     num = (re.search(r"([A-Z]{2,4}\d{0,2}-\d{3}|\d{3}/\d{3})", c.get("num") or "") or [None, ""])[1]
     base = re.sub(r"\s+\S+$", "", name) if " " in name else name  # レアリティを外したカード名
-    items = rakuten.search(f"{base} {num}".strip(), dict(settings, _genre=None))
+    lab = c["label"]
+    kinds = [  # (カード名にある印, 楽天の商品名に必要な言葉, 探すときに足す言葉)
+        (r"SPC", r"スペシャル|SPC", "スペシャル"),
+        (r"RSP|レッドコミパラ", r"レッド", "パラレル"),
+        (r"GSP", r"ゴールド|GSP", ""),
+        (r"コミパラ|SP\b|SP[ )]|スーパーパラレル", r"スーパーパラレル|コミパラ|コミックパラレル", "パラレル"),
+        (r"-P\b|パラレル", r"パラレル", "パラレル"),
+    ]
+    kind = next((k for k in kinds if re.search(k[0], lab)), None)
+    par = kind[2] if kind else ""
+    q = " ".join(x for x in (base, num, par) if x)  # 楽天は言葉を全部ふくむ商品を探すので、レアリティの書き方の違いで外れないよう名前と番号だけ
+    items = rakuten.search(q, dict(settings, _genre=None, _sort="standard"))  # 30件
+    # パラレル違い・ミラー違いを取り違えない（ワンピースは同じ番号でふつうのカードとパラレルがある）
+    need, ng = [], []
+    if kind:
+        need.append(kind[1])
+    elif c.get("num") and re.match(r"[A-Z]{2,4}\d{0,2}-\d{3}", c["num"]):
+        ng.append(r"パラレル")
+    for w in ("マスターボールミラー", "モンスターボールミラー"):
+        if w in lab:
+            need.append(w)
+    if re.search(r"ミラー", lab) is None and re.search(r"ミラー", base) is None:
+        ng.append(r"ボールミラー")
     aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
     nb, nn = rakuten._norm(base), rakuten._norm(num)
     for it in items:
@@ -298,6 +320,8 @@ def _rakuten_card(settings, c, sess=None):
         if nb not in n or (nn and nn not in n) or not it.get("mediumImageUrls"):
             continue
         if re.search(r"オリパ|英語版|韓国|中国|まとめ|セット売|ランダム|福袋|スリーブ|ローダー", nm):
+            continue
+        if any(not re.search(w, nm) for w in need) or any(re.search(w, nm) for w in ng):
             continue
         return {"image": rakuten._first_image(it), "url": rakuten.item_link(it.get("itemUrl") or it.get("affiliateUrl"), aff),
                 "price": it.get("itemPrice"), "fetched": now().date().isoformat()}

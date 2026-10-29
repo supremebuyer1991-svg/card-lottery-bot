@@ -70,3 +70,23 @@ assert "黒炎の支配者の主要カードの相場" in h and "¥36,000" in h 
 assert "https://jp.mercari.com/search?keyword=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3ex%20SAR%20134/108" in h, h
 assert sitegen.cards_block("x", []) == ""
 print("OK")
+
+# 楽天：番号・パラレル違いを取り違えない
+import rakuten
+fake = []
+rakuten.search = lambda q, st, session=None: (fake.append(q), [
+    {"itemName": "シャンクス OP01-120 SEC 【中古】", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]},
+    {"itemName": "ワンピースカードゲーム シャンクス OP01-120 SEC スーパーパラレル コミックパラレル ※中古", "itemUrl": "https://item.rakuten.co.jp/b/2/", "mediumImageUrls": ["https://x/2.jpg"]},
+])[1]
+r = souba._rakuten_card({"rakuten_affiliate_id": "AFF"}, cfg["onepiece|ロマンスドーン"][0])
+assert "b%2F2" in r["url"] and "hgc/AFF/" in r["url"] and r["image"].startswith("https://x/2.jpg"), r
+assert fake[-1] == "シャンクス OP01-120 パラレル", fake
+rakuten.search = lambda q, st, session=None: [
+    {"itemName": "ポケモンカード ブラッキーVMAX S6a 094/069 HR 【中古】", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]}]
+assert souba._rakuten_card({}, {"snkr": 9, "label": "ブラッキーVMAX HR SA", "num": "S6a 095/069"})["url"] == ""
+print("OK2")
+rakuten.search = lambda q, st, session=None: [
+    {"itemName": "ボア・ハンコック (パラレル) OP01-078 SR 【中古】", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]},
+    {"itemName": "ボア・ハンコック OP01-078 SR スペシャルカード 【中古】", "itemUrl": "https://item.rakuten.co.jp/c/3/", "mediumImageUrls": ["https://x/3.jpg"]}]
+assert "/c/3/" in souba._rakuten_card({}, {"snkr": 8, "label": "ボア・ハンコック SR-SPC", "num": "OP01-078"})["url"]
+print("OK3")
