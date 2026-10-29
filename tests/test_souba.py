@@ -71,4 +71,24 @@ d = load_json("souba.json", {})
 sm = souba.summary(d["items"]["pokemon|ポケモンカード151"], "2026-10-30")
 assert sm["date"] == "2026-10-29", sm
 assert d["updated"] == before  # 数字を読めなかった時は「相場の更新」を進めない
+
+# 過去の弾：朝7時すぎから1回15件ずつ。夜の回でもその日の値は出さない
+common.STATE_DIR = Path(tempfile.mkdtemp())
+souba._snkr_daily = lambda sess, aid: dict(PRICES)
+main = [{"game": "pokemon", "series": "151", "name": "151 BOX", "snkr": 1}]
+old = [{"game": "pokemon", "series": f"old{n}", "name": f"old{n} BOX", "snkr": 100 + n, "past": True} for n in range(20)]
+souba.items = lambda past=True: main + (old if past else [])
+at(6, day=30)
+assert souba.update_souba(s, sess=Sess(), sleep=nop) == 0
+at(7, day=30)
+assert souba.update_souba(s, sess=Sess(), sleep=nop) == 16  # 今の弾1件＋過去の弾15件
+at(7, 35, day=30)
+assert souba.update_souba(s, sess=Sess(), sleep=nop) == 5  # 残りの過去の弾5件だけ
+at(8, day=30)
+assert souba.update_souba(s, sess=Sess(), sleep=nop) == 0
+at(21, day=30)
+assert souba.update_souba(s, sess=Sess(), sleep=nop) == 1  # 夜は今の弾だけ
+st = load_json("souba.json", {})["items"]
+assert souba.summary(st["pokemon|151"], "2026-10-30")["date"] == "2026-10-30"
+assert souba.summary(st["pokemon|old3"], "2026-10-30")["date"] == "2026-10-29" and st["pokemon|old3"]["past"]
 print("OK")

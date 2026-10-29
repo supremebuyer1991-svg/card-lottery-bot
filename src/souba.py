@@ -23,13 +23,28 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
 JST = timezone(timedelta(hours=9))
 WAIT = 3
 KEEP_DAYS = 60
+PAST_PER_RUN = 15  # 過去の弾は1回の実行で15件まで（朝7時すぎから30分ごとに少しずつ読む）
 
 
-def items():
+def _cfg():
     p = ROOT / "config" / "souba.yaml"
-    d = yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}
+    return (yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}) or {}
+
+
+def past_slugs():
+    """過去の弾のページのアドレス（souba.yaml の slug）→ {ゲーム: {弾名: slug}}"""
+    out = {}
+    for g, lst in (_cfg().get("past") or {}).items():
+        for x in lst or []:
+            if x.get("slug"):
+                out.setdefault(g, {})[x["series"]] = x["slug"]
+    return out
+
+
+def items(past=True):
+    d = _cfg()
     out = []
-    for g, lst in ((d or {}).get("items") or {}).items():
+    for g, lst in (d.get("items") or {}).items():
         for x in lst or []:
             out.append(dict(x, game=g))
     # 公式サイト・スニダンの検索から自動で見つけた新しい弾
@@ -38,6 +53,13 @@ def items():
         g, x = k.split("|", 1)
         if (g, x) not in have:
             out.append({"game": g, "series": x, "name": f"{x} BOX", "snkr": aid, "teika": _teika(g, x)})
+            have.add((g, x))
+    # 過去の弾（1日1回・少しずつ）
+    if past:
+        for g, lst in (d.get("past") or {}).items():
+            for x in lst or []:
+                if (g, x["series"]) not in have:
+                    out.append(dict(x, game=g, past=True))
     return out
 
 
@@ -107,36 +129,48 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     data = load_json("souba.json", {})
     today = t.date().isoformat()
     eve = t.hour >= eve_hour  # 夜の回：その日の21時ごろまでの値もサイトに出す
-    if not force:
-        if t.hour < hour:
-            return 0
-        if data.get("checked") == today and (not eve or data.get("checked_eve") == today):
-            return 0
-    data["checked"] = today
-    if eve:
-        data["checked_eve"] = today
+    store = data.setdefault("items", {})
+    allit = items()
+    main_due = force or (t.hour >= hour and (data.get("checked") != today or (eve and data.get("checked_eve") != today)))
+    # 過去の弾：その日まだ読んでいないものを15件ずつ（朝7時すぎから）
+    past = [it for it in allit if it.get("past") and it.get("snkr")
+            and (store.get(f"{it['game']}|{it['series']}") or {}).get("day") != today] if t.hour >= hour else []
+    past = past[:PAST_PER_RUN]
+    if not main_due and not past:
+        return 0
+    if main_due:
+        data["checked"] = today
+        if eve:
+            data["checked_eve"] = today
     sess = sess or requests.Session()
     sess.headers.update({"User-Agent": UA, "Accept-Language": "ja-JP,ja;q=0.9"})
-    store = data.setdefault("items", {})
     got = blocked = 0
-    for k, it in enumerate(items()):
+    todo = ([it for it in allit if not it.get("past")] if main_due else []) + past
+    for k, it in enumerate(todo):
         key = f"{it['game']}|{it['series']}"
         rec = store.setdefault(key, {})
         rec.update(name=it["name"], game=it["game"], series=it["series"], teika=it.get("teika"), snkr=it.get("snkr"))
+        if it.get("past"):
+            rec["past"] = True
+        else:
+            rec.pop("past", None)
         if it.get("snkr") and not blocked:
             if k:
                 sleep(WAIT)
             try:
                 rec["jp"] = {**(rec.get("jp") or {}), **_snkr_daily(sess, it["snkr"])}
-                # 夜に読めた商品だけ、その日の値（21時ごろまで）をサイトに出す。朝の回は前日までに戻す
-                rec["thru"] = today if eve else (t.date() - timedelta(days=1)).isoformat()
+                # 夜に読めた商品だけ、その日の値（21時ごろまで）をサイトに出す。朝の回・過去の弾は前日まで
+                rec["thru"] = today if eve and not it.get("past") else (t.date() - timedelta(days=1)).isoformat()
+                rec["day"] = today
                 got += 1
             except requests.HTTPError as e:
                 log(f"相場（スニダン）: {it['name']} 取得できず {e} → 今日はここまで")
                 blocked = 1  # 断られたら続けない
             except Exception as e:
                 log(f"相場（スニダン）: {it['name']} 取得失敗 {e}")
-        if it.get("tcg"):
+                if it.get("past"):
+                    rec["day"] = today  # 過去の弾は読めなくても今日はもう試さない（ほかの弾を先に）
+        if it.get("tcg") and main_due:
             try:
                 rec["us"] = {**(rec.get("us") or {}), **_tcg_daily(sess, it["tcg"])}
             except Exception as e:
@@ -151,7 +185,8 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     if got:
         data["updated"] = t.isoformat()  # サイトの「相場の更新」の日時（数字が1つでも読めた時だけ進める）
     save_json("souba.json", data)
-    log(f"相場（{'夜' if eve else '朝'}）: スニダン {got}/{sum(1 for i in items() if i.get('snkr'))}件" + (f"・1ドル={fx}円" if fx else ""))
+    log(f"相場（{'夜' if eve else '朝'}）: スニダン {got}/{sum(1 for i in todo if i.get('snkr'))}件"
+        + (f"（過去の弾 {len(past)}件を含む）" if past else "") + (f"・1ドル={fx}円" if fx else ""))
     return got
 
 

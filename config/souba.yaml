@@ -25,3 +25,86 @@ items:
     - {series: ヒロインズエディション, name: ヒロインズエディション BOX, snkr: 691521, tcg: 666891, teika: 5280}
     - {series: 受け継がれる意志, name: 受け継がれる意志 BOX, snkr: 548909, tcg: 628352, teika: 5280}
     - {series: 王族の血統, name: 王族の血統 BOX, snkr: 382246, tcg: 586671, teika: 5280}
+
+# 過去の弾（スニダンにBOXがあるもの）。1日1回、朝7時すぎから30分ごとに15件ずつ読む（夜の更新はしない）
+# slug：弾ページのアドレス（settings.yaml の series_slugs にあればそちらが優先）。teika：分かるものだけ
+past:
+  pokemon:
+    - {series: メガブレイブ, name: メガブレイブ BOX, snkr: 628146, teika: 5400}
+    - {series: メガシンフォニア, name: メガシンフォニア BOX, snkr: 628148, teika: 5400}
+    - {series: ムニキスゼロ, name: ムニキスゼロ BOX, snkr: 743533}
+    - {series: ロケット団の栄光, name: ロケット団の栄光 BOX, snkr: 550896, teika: 5400, slug: glory-of-team-rocket}
+    - {series: ブラックボルト, name: ブラックボルト BOX, snkr: 584770, teika: 5400, slug: black-bolt}
+    - {series: ホワイトフレア, name: ホワイトフレア BOX, snkr: 584772, teika: 5400, slug: white-flare}
+    - {series: 熱風のアリーナ, name: 熱風のアリーナ BOX, snkr: 518728, teika: 5400, slug: neppu-no-arena}
+    - {series: バトルパートナーズ, name: バトルパートナーズ BOX, snkr: 484952, teika: 5400, slug: battle-partners}
+    - {series: 超電ブレイカー, name: 超電ブレイカー BOX, snkr: 395189, teika: 5400, slug: choden-breaker}
+    - {series: 楽園ドラゴーナ, name: 楽園ドラゴーナ BOX, snkr: 342761, teika: 5400, slug: rakuen-dragona}
+    - {series: ステラミラクル, name: ステラミラクル BOX, snkr: 283206, teika: 5400, slug: stellar-miracle}
+    - {series: ナイトワンダラー, name: ナイトワンダラー BOX, snkr: 261657, teika: 5400, slug: night-wanderer}
+    - {series: 変幻の仮面, name: 変幻の仮面 BOX, snkr: 224649, teika: 5400, slug: mask-of-change}
+    - {series: クリムゾンヘイズ, name: クリムゾンヘイズ BOX, snkr: 204134, teika: 5400, slug: crimson-haze}
+    - {series: ワイルドフォース, name: ワイルドフォース BOX, snkr: 171882, teika: 5400, slug: wild-force}
+    - {series: サイバージャッジ, name: サイバージャッジ BOX, snkr: 171884, teika: 5400, slug: cyber-judge}
+    - {series: シャイニートレジャーex, name: シャイニートレジャーex BOX, snkr: 151755, teika: 5500, slug: shiny-treasure-ex}
+    - {series: 古代の咆哮, name: 古代の咆哮 BOX, snkr: 140591, teika: 5400, slug: ancient-roar}
+    - {series: 未来の一閃, name: 未来の一閃 BOX, snkr: 140593, teika: 5400, slug: future-flash}
+    - {series: レイジングサーフ, name: レイジングサーフ BOX, snkr: 134104, teika: 5400, slug: raging-surf}
+    - {series: 黒炎の支配者, name: 黒炎の支配者 BOX, snkr: 127743, teika: 5400, slug: ruler-of-the-black-flame}
+    - {series: スノーハザード, name: スノーハザード BOX, snkr: 116897, teika: 5400, slug: snow-hazard}
+    - {series: クレイバースト, name: クレイバースト BOX, snkr: 116901, teika: 5400, slug: clay-burst}
+    - {series: トリプレットビート, name: トリプレットビート BOX, snkr: 111467, teika: 5400, slug: triplet-beat}
+    - {series: スカーレットex, name: スカーレットex BOX, snkr: 106863, teika: 5400, slug: scarlet-ex}
+    - {series: バイオレットex, name: バイオレットex BOX, snkr: 106864, teika: 5400, slug: violet-ex}
+    - {series: VSTARユニバース, name: VSTARユニバース BOX, snkr: 101885, teika: 5500, slug: vstar-universe}
+    - {series: パラダイムトリガー, name: パラダイムトリガー BOX, snkr: 97143, slug: paradigm-trigger}
+    - {series: 白熱のアルカナ, name: 白熱のアルカナ BOX, snkr: 89881, slug: incandescent-arcana}
+    - {series: ロストアビス, name: ロストアビス BOX, snkr: 86213, slug: lost-abyss}
+    - {series: ダークファンタズマ, name: ダークファンタズマ BOX, snkr: 74242, slug: dark-phantasma}
+    - {series: スペースジャグラー, name: スペースジャグラー BOX, snkr: 66739, slug: space-juggler}
+    - {series: タイムゲイザー, name: タイムゲイザー BOX, snkr: 66738, slug: time-gazer}
+    - {series: ポケモンGO, name: ポケモンGO BOX, snkr: 58920, slug: pokemon-go}
+    - {series: バトルリージョン, name: バトルリージョン BOX, snkr: 55866, slug: battle-region}
+    - {series: スターバース, name: スターバース BOX, snkr: 32870, slug: star-birth}
+    - {series: VMAXクライマックス, name: VMAXクライマックス BOX, snkr: 15573, teika: 5500, slug: vmax-climax}
+    - {series: 25th ANNIVERSARY COLLECTION, name: 25th ANNIVERSARY COLLECTION BOX, snkr: 14025, slug: 25th-anniversary-collection}
+    - {series: フュージョンアーツ, name: フュージョンアーツ BOX, snkr: 14024, slug: fusion-arts}
+    - {series: 蒼空ストリーム, name: 蒼空ストリーム BOX, snkr: 12889, slug: soukuu-stream}
+    - {series: 摩天パーフェクト, name: 摩天パーフェクト BOX, snkr: 12888, slug: maten-perfect}
+    - {series: イーブイヒーローズ, name: イーブイヒーローズ BOX, snkr: 12883, slug: eevee-heroes}
+    - {series: 一撃マスター, name: 一撃マスター BOX, snkr: 12877, slug: ichigeki-master}
+    - {series: 連撃マスター, name: 連撃マスター BOX, snkr: 12876, slug: rengeki-master}
+    - {series: 双璧のファイター, name: 双璧のファイター BOX, snkr: 12878, slug: souheki-no-fighter}
+    - {series: 漆黒のガイスト, name: 漆黒のガイスト BOX, snkr: 12881, slug: shikkoku-no-geist}
+    - {series: 白銀のランス, name: 白銀のランス BOX, snkr: 12880, slug: hakugin-no-lance}
+    - {series: シャイニースターV, name: シャイニースターV BOX, snkr: 12875, teika: 5500, slug: shiny-star-v}
+    - {series: 仰天のボルテッカー, name: 仰天のボルテッカー BOX, snkr: 12879, slug: gyouten-no-volttackle}
+    - {series: 伝説の鼓動, name: 伝説の鼓動 BOX, snkr: 14668, slug: densetsu-no-kodou}
+    - {series: 爆炎ウォーカー, name: 爆炎ウォーカー BOX, snkr: 14670, slug: bakuen-walker}
+    - {series: ムゲンゾーン, name: ムゲンゾーン BOX, snkr: 14669, slug: mugen-zone}
+    - {series: 反逆クラッシュ, name: 反逆クラッシュ BOX, snkr: 12890, slug: hangyaku-crash}
+    - {series: タッグオールスターズ, name: タッグオールスターズ BOX, snkr: 12894, slug: tag-all-stars}
+    - {series: ドリームリーグ, name: ドリームリーグ BOX, snkr: 12898, slug: dream-league}
+    - {series: リミックスバウト, name: リミックスバウト BOX, snkr: 15570, slug: remix-bout}
+    - {series: ダブルブレイズ, name: ダブルブレイズ BOX, snkr: 15549, slug: double-blaze}
+    - {series: タッグボルト, name: タッグボルト BOX, snkr: 20487, slug: tag-bolt}
+    - {series: 裂空のカリスマ, name: 裂空のカリスマ BOX, snkr: 15530, slug: rekkuu-no-charisma}
+    - {series: 20th Anniversary, name: 20th Anniversary BOX, snkr: 86179, slug: 20th-anniversary}
+  onepiece:
+    - {series: 決戦の刻, name: 決戦の刻 BOX, snkr: 816932}
+    - {series: 蒼海の七傑, name: 蒼海の七傑 BOX, snkr: 725356, teika: 5280}
+    - {series: 師弟の絆, name: 師弟の絆 BOX, snkr: 542574, teika: 5280, slug: op12-shitei-no-kizuna}
+    - {series: 神速の拳, name: 神速の拳 BOX, snkr: 498158, teika: 5280, slug: op11-shinsoku-no-kobushi}
+    - {series: 新たなる皇帝, name: 新たなる皇帝 BOX, snkr: 299926, teika: 5280}
+    - {series: 二つの伝説, name: 二つの伝説 BOX, snkr: 190553, teika: 5280, slug: op08-futatsu-no-densetsu}
+    - {series: 500年後の未来, name: 500年後の未来 BOX, snkr: 178125, teika: 5280, slug: op07-500-years-in-the-future}
+    - {series: 双璧の覇者, name: 双璧の覇者 BOX, snkr: 145974, teika: 5280, slug: op06-souheki-no-hasha}
+    - {series: 新時代の主役, name: 新時代の主役 BOX, snkr: 136035, teika: 5280, slug: op05-shinjidai-no-shuyaku}
+    - {series: 謀略の王国, name: 謀略の王国 BOX, snkr: 136034, teika: 5280, slug: op04-bouryaku-no-oukoku}
+    - {series: 強大な敵, name: 強大な敵 BOX, snkr: 136033, teika: 5280, slug: op03-kyoudai-na-teki}
+    - {series: 頂上決戦, name: 頂上決戦 BOX, snkr: 136032, teika: 5280, slug: op02-choujou-kessen}
+    - {series: ロマンスドーン, name: ロマンスドーン BOX, snkr: 136031, teika: 5280, slug: op01-romance-dawn}
+    - {series: アニメ25thコレクション, name: アニメ25thコレクション BOX, snkr: 407696, slug: eb02-anime-25th-collection}
+    - {series: メモリアルコレクション, name: メモリアルコレクション BOX, snkr: 165849, slug: eb01-memorial-collection}
+    - {series: ONE PIECE CARD THE BEST, name: ONE PIECE CARD THE BEST BOX, snkr: 216885, slug: prb01-the-best}
+    - {series: ONE PIECE CARD THE BEST vol.2, name: ONE PIECE CARD THE BEST vol.2 BOX, snkr: 548907, slug: prb02-the-best-vol2}

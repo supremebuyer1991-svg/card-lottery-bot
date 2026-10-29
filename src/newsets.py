@@ -254,9 +254,12 @@ def merged_info(settings=None):
 def merged_slugs(settings=None):
     st = settings or load_settings()
     auto = (load_json("newsets.json", {}).get("series") or {})
+    import souba
+    past = souba.past_slugs()  # BOX相場の過去の弾（souba.yaml の slug）
     out = {}
-    for g in set(auto) | set(st.get("series_slugs") or {}):
-        d = {name: v["slug"] for name, v in (auto.get(g) or {}).items() if v.get("slug")}
+    for g in set(auto) | set(st.get("series_slugs") or {}) | set(past):
+        d = dict(past.get(g) or {})
+        d.update({name: v["slug"] for name, v in (auto.get(g) or {}).items() if v.get("slug")})
         d.update((st.get("series_slugs") or {}).get(g) or {})
         out[g] = d
     return out

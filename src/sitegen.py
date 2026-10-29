@@ -1227,11 +1227,11 @@ def build(settings=None, out_dir=None, sample=None):
     if souba_sm:
         have = {(i["game"], x) for i in items for x in (i.get("sers") or ([i["series"]] if i.get("series") else []))}
         secs, faq_s, latest = [], [], ""
-        for g in games:
+        for g, old in [(g, o) for g in games for o in (False, True)]:
             rows = []
             for k, sm in souba_sm.items():
                 gg, x = k.split("|", 1)
-                if gg != g:
+                if gg != g or bool(souba_raw["items"][k].get("past")) != old:
                     continue
                 latest = max(latest, sm["date"])
                 name_ = (souba_raw["items"][k].get("name") or x)
@@ -1239,7 +1239,7 @@ def build(settings=None, out_dir=None, sample=None):
                 gap = sm["price"] - t if t else None
                 d1, c1 = _diff(sm["price"], sm["prev"][1] if sm.get("prev") else None)
                 d7, c7 = _diff(sm["price"], sm["week"][1] if sm.get("week") else None)
-                link = f'<a href="/{series_path(g, x)}">{escape(name_)}</a>' if (g, x) in have else escape(name_)
+                link = f'<a href="/{series_path(g, x)}">{escape(name_)}</a>'  # 相場がある弾はどれも弾ページがある
                 nlot = sum(1 for i in items if i["game"] == g and x in (i.get("sers") or [i.get("series")]))
                 us = ""
                 if sm.get("us") and souba_fx:
@@ -1251,7 +1251,9 @@ def build(settings=None, out_dir=None, sample=None):
                             f'<td>{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
             if rows:
                 rows.sort(key=lambda r: -r[0])
-                secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}のBOX相場</h2><div class="sb-scroll"><table>'
+                secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}の{"過去の弾の" if old else ""}BOX相場</h2>'
+                            + ('<p class="sb-note">発売から時間がたった弾です。相場は1日1回（朝）更新しています。</p>' if old else "")
+                            + '<div class="sb-scroll"><table>'
                             '<thead><tr><th>商品</th><th>相場</th><th>定価・差</th><th>前日比</th><th>1週間比</th><th>30日</th></tr></thead><tbody>'
                             + "".join(r[1] for r in rows) + '</tbody></table></div></section>')
         top_ = sorted(souba_sm.items(), key=lambda kv: -(kv[1]["price"] - (kv[1].get("teika") or kv[1]["price"])))[:1]
@@ -1261,7 +1263,7 @@ def build(settings=None, out_dir=None, sample=None):
                           f"{_md(sm['date'])}の取引では「{souba_raw['items'][k].get('name')}」で、相場{_yen(sm['price'])}・定価{_yen(sm['teika'])}（差 +{sm['price'] - sm['teika']:,}円）です。"))
         faq_s += [("この相場は何の値段ですか？", "スニダン（スニーカーダンク）でその日に成立した「1個」の取引の平均です。お店の買取価格や販売価格ではありません。取引が少ない日は1件の取引で大きく動きます。"),
                   ("海外の相場とは？", "アメリカのTCGplayerで取引されている日本版BOXの相場（ドル）を、その日の為替で円にしたものです。送料・手数料は含みません。"),
-                  ("相場はいつ更新されますか？", "毎日、朝と夜21時ごろの2回、スニダンの取引を読み込んで更新しています。朝は前日までの取引、夜はその日の21時ごろまでの取引です（その日の値は夜の時点の平均なので、翌朝に1日分の値に置き換わります）。")]
+                  ("相場はいつ更新されますか？", "毎日、朝と夜21時ごろの2回、スニダンの取引を読み込んで更新しています。朝は前日までの取引、夜はその日の21時ごろまでの取引です（その日の値は夜の時点の平均なので、翌朝に1日分の値に置き換わります）。過去の弾は1日1回（朝）の更新です。")]
         intro = ('<div class="guide"><p>ポケカ・ワンピースカードの未開封BOXの相場を、スニダンで実際に成立した取引の値段で毎日まとめています。'
                  '定価との差も一緒に並べています。商品名を押すと、その弾の抽選の一覧に進めます。</p></div>')
         write("souba/", {"game": games[0]}, {
