@@ -9,6 +9,20 @@
         "f": "2026-10-29",
         "c": "online"
       },
+      "7daffccefd6e2592": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-29",
+        "c": "online"
+      },
+      "d49e3cfbccb7e526": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-29",
+        "c": "online"
+      },
       "df0104c6ba094e16": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -4089,6 +4103,13 @@
   "store/hobbymarketsatou-f85c7/": {
     "name": "HobbyMarketさとう店",
     "items": {
+      "7bbf2b96c446ce1a": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T21:00",
+        "f": "2026-10-29",
+        "c": "store"
+      },
       "e6f8b06037bd2212": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -9376,6 +9397,13 @@
   "store/torekaesu-f65a3/": {
     "name": "トレカエース常陸太田店",
     "items": {
+      "7438ddd6d74c1d0a": {
+        "p": "決戦の刻",
+        "g": "onepiece",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      },
       "25fb7de87a078326": {
         "p": "決戦の刻",
         "g": "onepiece",
@@ -9625,6 +9653,42 @@
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
         "e": "2026-11-04T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      }
+    }
+  },
+  "store/cardlabo-d396a/": {
+    "name": "カードラボ豊橋店",
+    "items": {
+      "1cb2f7a31dba58f5": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-10-30T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      }
+    }
+  },
+  "store/bookoff-72a4c/": {
+    "name": "ブックオフ大和つきみ野店",
+    "items": {
+      "016181575fd7d950": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-29",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-a028b/": {
+    "name": "うさぎやTSUTAYA大利根店",
+    "items": {
+      "49dd8ffde3ed318d": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
         "f": "2026-10-29",
         "c": "store"
       }
