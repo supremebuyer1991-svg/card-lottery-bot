@@ -1101,7 +1101,20 @@ def build(settings=None, out_dir=None, sample=None):
                        key=lambda a: list(PREF).index(a))
         online = sum(1 for i in gi if i.get("channel") != "store")
         today = sum(1 for i in gi if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date())
-        meta = {"title": f"【{short}】抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
+        # ゲームのページの共有画像（XやLINEにリンクを貼ったときの画像）：受付中・今日締切の件数など
+        og_g = f"og/game-{slug}.png"
+        try:
+            og_image(out / og_g, short, "#facc15" if g == "pokemon" else "#f87171" if g == "onepiece" else "#38bdf8",
+                     f"{short}の抽選まとめ",
+                     [("いま受付中の抽選", f"{len(gi)}件", True), ("今日が締切", f"{today}件", bool(today)),
+                      ("ネット抽選／店頭抽選", f"{online}件／{len(gi) - online}件", False)]
+                     + ([("受付中がいちばん多い弾", series[0], False)] if series else []),
+                     "締切が近い順に・30分ごとに更新")
+        except Exception as e:
+            print("OGP画像を作れませんでした", g, e)
+            og_g = ""
+        meta = {"og_image": f"{site}/{og_g}" if og_g else None,
+                "title": f"【{short}】抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
                 "desc": f"【{md}更新】{name}（{short}）の抽選販売・予約・再販情報を締切が近い順にまとめ。受付中{len(gi)}件（ネット抽選{online}件・"
                         f"店頭抽選{len(gi) - online}件）。" + (f"「{'」「'.join(series[:3])}」など弾別、" if series else "") +
                         "都道府県別・本人確認や会員の有無で絞り込めます。30分ごとに自動更新。",
