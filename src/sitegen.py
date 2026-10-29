@@ -401,6 +401,14 @@ def _md(d):
     return f"{int(m)}/{int(dd)}"
 
 
+def _sb_buy(g, x, name_, rk, s, tag, raff):
+    """BOX相場の一覧の行：楽天・Amazonで探すボタン（アフィリエイト）"""
+    q = f'{s["game_names"][g]} {name_}'
+    rak = (rk.get(f"{g}|{x}") or {}).get("url") or (_rak(q, raff) if raff else "")
+    b = (f'<a class="sb-rk" href="{escape(rak)}" {_REL}>楽天</a>' if rak else "") + (f'<a class="sb-az" href="{escape(_amz(q, tag))}" {_REL}>Amazon</a>' if tag else "")
+    return f'<span class="sb-buy">{b}</span>' if b else ""
+
+
 def souba_block(x, sm, fx=None, link=True):
     """弾ページの相場の欄：いまの相場・定価との差・前日比・7日前比・30日のグラフ・海外"""
     if not sm:
@@ -1340,7 +1348,8 @@ def build(settings=None, out_dir=None, sample=None):
                 if sm.get("us") and souba_fx:
                     us = f'<small>海外 ${sm["us"][1]:,.2f}（約{_yen(round(sm["us"][1] * souba_fx))}）</small>'
                 rows.append((sm["price"], f'<tr><th>{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "")
-                            + f'<a class="sb-more" href="/{series_path(g, x)}#souba">詳しい相場<span aria-hidden="true"> ›</span></a></th>'
+                            + f'<a class="sb-more" href="/{series_path(g, x)}#souba">詳しい相場<span aria-hidden="true"> ›</span></a>'
+                            + _sb_buy(g, x, name_, rk if sample is None else {}, s, tag, raff) + '</th>'
                             f'<td><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
                             f'<td>{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
                             + "".join(_cmp_td(sm, k_) for k_ in ("prev", "week")) +
