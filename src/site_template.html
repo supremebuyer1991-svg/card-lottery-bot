@@ -347,7 +347,7 @@ input[type="search"] { flex: 1 1 160px; }
 .sb-chart svg { display: block; width: 100%; height: var(--h, 170px); }
 @media (min-width: 720px) { .sb-chart svg { height: calc(var(--h, 170px) + 50px); } }
 .sb-hi, .sb-lo { position: absolute; left: 0; font-size: 11px; color: var(--ink-2); font-family: var(--font-num); background: var(--card); padding: 0 4px 0 0; }
-.sb-hi { top: 0; } .sb-lo { bottom: 22px; }
+.sb-hi { top: 0; } .sb-lo { top: 0; left: auto; right: 0; padding: 0 0 0 4px; }  /* 安値もグラフの上に出して線と重ならないように */
 .sb-plot { position: relative; }
 .sb-dot { position: absolute; right: -4px; width: 9px; height: 9px; border-radius: 50%; transform: translateY(-50%); box-shadow: 0 0 0 3px var(--card); }
 .sb-ax { position: relative; height: 16px; font-size: 11px; color: var(--ink-2); font-family: var(--font-num); margin-top: 4px; }
