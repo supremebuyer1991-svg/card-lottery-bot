@@ -2388,7 +2388,8 @@
       "method": "オンライン",
       "conditions": "会員",
       "tags": [
-        "会員"
+        "会員",
+        "本人確認"
       ],
       "url": "https://livepocket.jp/e/5zwx8",
       "channel": "store",
@@ -3056,7 +3057,8 @@
       "method": "店頭",
       "conditions": "会員",
       "tags": [
-        "会員"
+        "会員",
+        "本人確認"
       ],
       "url": "https://x.com/t6510_tsutaya/status/2113782525499679113",
       "channel": "store",
@@ -3081,7 +3083,8 @@
       "method": "店頭",
       "conditions": "会員",
       "tags": [
-        "会員"
+        "会員",
+        "本人確認"
       ],
       "url": "https://x.com/t6510_tsutaya/status/2113782525499679113",
       "channel": "store",
@@ -7138,7 +7141,8 @@
       "method": "オンライン",
       "conditions": "アプリ ／ 対象地域：福岡県・佐賀県・長崎県・熊本県・大分県・宮崎県・鹿児島県・山口県",
       "tags": [
-        "アプリ"
+        "アプリ",
+        "会員"
       ],
       "url": "https://www.aeon-kyushu.info/customer/information/archives/140",
       "channel": "store",
@@ -9871,6 +9875,9 @@
       "end": "2026-11-01T23:59:00+09:00",
       "method": "店頭",
       "conditions": "10/25までに発行・登録のビックポイントカードが必要",
+      "tags": [
+        "会員"
+      ],
       "url": "https://x.com/bic_kagoshima/status/2114884789320753376",
       "channel": "store",
       "area": "鹿児島県",
@@ -9963,6 +9970,7 @@
       ],
       "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
       "channel": "online",
+      "id_check": false,
       "member": "account",
       "spath": "store/pokemoncenter-3736f/",
       "found_at": "2026-10-27T10:14:09.577612+09:00",
@@ -11640,7 +11648,8 @@
       "method": "オンライン",
       "conditions": "会員",
       "tags": [
-        "会員"
+        "会員",
+        "アプリ"
       ],
       "url": "https://oretan.membercard.jp/lottery?search_store_id=118",
       "channel": "store",
@@ -11863,7 +11872,8 @@
       "tags": [
         "会員",
         "レシート",
-        "本人確認"
+        "本人確認",
+        "購入履歴"
       ],
       "url": "https://x.com/bic_abeno/status/2114952059019788541",
       "channel": "store",
@@ -11917,7 +11927,8 @@
       "tags": [
         "会員",
         "レシート",
-        "本人確認"
+        "本人確認",
+        "購入履歴"
       ],
       "url": "https://x.com/bic_yao/status/2114984313385324946",
       "channel": "store",
@@ -13032,6 +13043,9 @@
       "end": "2026-11-01T23:00:00+09:00",
       "method": "Web",
       "conditions": "抽選販売の受付中。発売日10月31日の店頭販売はなし。詳細は告知ページで確認",
+      "tags": [
+        "アプリ"
+      ],
       "url": "https://furu1.net/news/news_information/opkl20261031",
       "channel": "store",
       "area": "埼玉県",
@@ -13258,6 +13272,7 @@
       "url": "https://justice.membercard.jp/lottery",
       "channel": "store",
       "area": "大阪府",
+      "id_check": false,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
@@ -15215,7 +15230,8 @@
       "conditions": "顔写真付き・現住所記載の本人確認書類が必要（登録内容と一致しない場合は無効）。1人1回まで・本人のみ購入可（代理不可）。シュリンクを外して販売。当選後に購入しないと以後の抽選で落選対象になる",
       "tags": [
         "会員",
-        "本人確認"
+        "本人確認",
+        "アプリ"
       ],
       "url": "https://livepocket.jp/e/6mbex",
       "channel": "store",
@@ -15376,7 +15392,9 @@
       "conditions": "お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認",
       "tags": [
         "アプリ",
-        "会員"
+        "会員",
+        "購入履歴",
+        "本人確認"
       ],
       "url": "https://www.otakarasouko.com/information/106230535/",
       "channel": "store",
@@ -15746,6 +15764,7 @@
       "product": "ワンピースカードゲーム ブースターパック「世界最強の戦士」",
       "series": "世界最強の戦士",
       "end": "2026-11-01T23:59:00+09:00",
+      "conditions": "ワンピースカードゲーム「世界最強の戦士」の抽選販売で、熊本県内の蔦屋書店5店舗が対象。応募の締切は11/1(日)23:59。会員登録、本人確認書類、購入個数の上限、代理購入、価格などの条件は本文に書かれていない。",
       "url": "https://livepocket.jp/e/czxdo",
       "channel": "store",
       "area": "熊本県",
@@ -15769,6 +15788,9 @@
       "buy": "11/27(金)〜11/29(日)",
       "method": "店頭",
       "conditions": "購入期限: 2026-11-27〜2026-11-29",
+      "tags": [
+        "購入履歴"
+      ],
       "channel": "store",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
@@ -15881,6 +15903,7 @@
       "start": "2026-11-02T10:00:00+09:00",
       "end": "2026-11-04T23:59:00+09:00",
       "method": "Web",
+      "conditions": "本文には応募・購入条件の記載がありません。「抽選予告」として11/2 10:00〜11/4までとの日時とリンクがあるだけで、会員登録・本人確認・購入上限・代理購入・価格は不明です。",
       "url": "https://livepocket.jp/e/w3o7c",
       "channel": "store",
       "area": "熊本県",
@@ -15900,6 +15923,7 @@
       "start": "2026-11-02T10:00:00+09:00",
       "end": "2026-11-04",
       "method": "Web",
+      "conditions": "応募や購入の条件（会員登録、アプリ、本人確認書類、購入個数の上限、代理購入、価格）は本文に書かれていません。「抽選予告」として「11/2 10:00〜11/4まで」と期間らしき記載があるだけです。",
       "url": "https://livepocket.jp/e/mkpvg",
       "channel": "store",
       "area": "東京都",
@@ -15919,6 +15943,7 @@
       "start": "2026-11-02T10:00:00+09:00",
       "end": "2026-11-04",
       "method": "Web",
+      "conditions": "本文には会員登録・アプリ・本人確認書類・購入個数・代理購入・価格といった条件の記載がない。「11/2 10:00〜11/4まで」という日程の告知と商品名、リンクがあるだけ。",
       "url": "https://livepocket.jp/e/wjv4a",
       "channel": "store",
       "area": "東京都",
@@ -15938,6 +15963,7 @@
       "start": "2026-11-02T10:00:00+09:00",
       "end": "2026-11-04",
       "method": "Web",
+      "conditions": "本文からは、応募・購入の条件（会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など）は読み取れない。11/2 10:00〜11/4の期間で抽選を行う予告のみ記載。",
       "url": "https://livepocket.jp/e/qg9n3",
       "channel": "store",
       "area": "鹿児島県",
@@ -15957,6 +15983,7 @@
       "start": "2026-11-02T10:00:00+09:00",
       "end": "2026-11-04",
       "method": "Web",
+      "conditions": "ページ本文には応募・購入の条件（会員登録、アプリ、本人確認書類、購入個数の上限、代理購入の可否、価格）に関する記載がない。抽選の予告と受付期間のみ。",
       "url": "https://livepocket.jp/e/uz-j2",
       "channel": "store",
       "area": "大分県",
@@ -15992,6 +16019,8 @@
       "product": "ポケモンカード30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-11-01T20:00:00+09:00",
+      "method": "ポケカ抽選販売（30th CELEBRATION）。応募締切は11/1(日)20:00。応募方法の詳細は本文に記載なし",
+      "conditions": "本文には会員登録・アプリ・本人確認書類・購入個数・代理購入・価格などの条件が書かれていません。分かるのは抽選販売で、応募締切が11/1(日)20:00ということだけです。",
       "url": "https://livepocket.jp/e/k_6n6",
       "channel": "store",
       "area": "長野県",
@@ -17075,6 +17104,9 @@
       "end": "2026-11-01T23:00:00+09:00",
       "method": "Web",
       "conditions": "本文は見出しのみで、応募・購入の条件は書かれていません。ページはONE PIECEカードゲーム各種の抽選案内で、Heroines Edition vol.2の記載はありません。",
+      "tags": [
+        "アプリ"
+      ],
       "url": "https://furu1.net/news/news_information/opkl20261031",
       "channel": "store",
       "area": "埼玉県",
@@ -17733,6 +17765,161 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F",
       "spath": "store/torekapuraza55-20d8e/",
       "found_at": "2026-10-30T20:30:04.186231+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/aefd683f2b/": {
+    "d": {
+      "key": "aefd683f2b7bedf0",
+      "game": "dragonball",
+      "store": "しまむらパーク",
+      "product": "ドラゴンボール超カードゲーム フュージョンワールド「STORY BOOSTER 01」",
+      "series": "STORY BOOSTER 01",
+      "start": "2026-10-27T13:00:00+09:00",
+      "end": "2026-11-01T23:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "アプリ・会員",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/item/0363100014291/?cl=220",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/hankuroom/cabinet/goq002/8576_1.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F",
+      "spath": "store/shimamurapaku-97403/",
+      "found_at": "2026-10-30T20:36:22.881230+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/1f689292b7/": {
+    "d": {
+      "key": "1f689292b7fa8a0c",
+      "game": "dragonball",
+      "store": "しまむらパーク",
+      "product": "ドラゴンボール超カードゲーム フュージョンワールド ブースターパック「DUAL EVOLUTION」【FB-09】",
+      "series": "DUAL EVOLUTION",
+      "start": "2026-10-27T13:00:00+09:00",
+      "end": "2026-11-01T23:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "アプリ・会員",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/item/0363100014009/?cl=220",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yum-yum/cabinet/4582769937071.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769937071%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769937071%2F",
+      "spath": "store/shimamurapaku-97403/",
+      "found_at": "2026-10-30T20:36:22.881293+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/d4e6f1c7d5/": {
+    "d": {
+      "key": "d4e6f1c7d5121ecc",
+      "game": "dragonball",
+      "store": "しまむらパーク",
+      "product": "ドラゴンボール超カードゲーム フュージョンワールド ブースターパック「BRIGHTNESS OF HOPE」【FB-11】",
+      "series": "BRIGHTNESS OF HOPE",
+      "start": "2026-10-27T13:00:00+09:00",
+      "end": "2026-11-01T23:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "アプリ・会員",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/item/0363100014364/?cl=220",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yum-yum/cabinet/4582770066562.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582770066562%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582770066562%2F",
+      "spath": "store/shimamurapaku-97403/",
+      "found_at": "2026-10-30T20:36:22.881337+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/d95fd0e4aa/": {
+    "d": {
+      "key": "d95fd0e4aaa1a8fe",
+      "game": "dragonball",
+      "store": "ふるいち苫小牧桜木店",
+      "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド「MANGA BOOSTER 02【SB02】」／「STORY BOOSTER 01【ST01】」（オープン記念 第3弾 web抽選販売・いずれか1点）",
+      "series": "STORY BOOSTER 01",
+      "end": "2026-11-01T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "本人確認",
+      "tags": [
+        "本人確認"
+      ],
+      "url": "https://www.furu1.net/news/news_campaign/news_opensale_tomakomai",
+      "channel": "store",
+      "area": "北海道",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/hankuroom/cabinet/goq002/8576_1.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F",
+      "spath": "store/furuichi-2e6ee/",
+      "found_at": "2026-10-30T20:36:22.881377+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/ed19a70e03/": {
+    "d": {
+      "key": "ed19a70e0304939c",
+      "game": "dragonball",
+      "store": "カーデリア池袋店",
+      "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド STORY BOOSTER 01【ST01】 1BOX（6,600円税込）",
+      "series": "STORY BOOSTER 01",
+      "start": "2026-10-28T00:00:00+09:00",
+      "end": "2026-11-03T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/hankuroom/cabinet/goq002/8576_1.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fhankuroom%2Fcardbox-db-010%2F",
+      "spath": "store/kaderia-7afd2/",
+      "found_at": "2026-10-30T20:36:22.881409+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/39dd2c7820/": {
+    "d": {
+      "key": "39dd2c7820508b62",
+      "game": "dragonball",
+      "store": "カーデリア池袋店",
+      "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック CROSS FORCE【FB10】 1BOX（5,280円税込）",
+      "series": "CROSS FORCE",
+      "start": "2026-10-28T00:00:00+09:00",
+      "end": "2026-11-03T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yum-yum/cabinet/4582769965937.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769965937%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769965937%2F",
+      "spath": "store/kaderia-7afd2/",
+      "found_at": "2026-10-30T20:36:22.881441+09:00"
     },
     "last": "2026-10-30"
   }

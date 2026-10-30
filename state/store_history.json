@@ -4436,6 +4436,20 @@
         "f": "2026-10-29",
         "c": "store"
       },
+      "ed19a70e0304939c": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "2026-11-03T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      },
+      "39dd2c7820508b62": {
+        "p": "CROSS FORCE",
+        "g": "dragonball",
+        "e": "2026-11-03T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "b312256c238412b9": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -6402,6 +6416,13 @@
   "store/batoroco-afc66/": {
     "name": "バトロコミニ前橋荒牧店",
     "items": {
+      "c10a9c06fae9c278": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "f33f2c35bd3a5706": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -6419,6 +6440,13 @@
         "g": "onepiece",
         "e": "2026-08-22T23:59",
         "f": "2026-10-26",
+        "c": "store"
+      },
+      "abd3eb822a6de78a": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "2026-08-09T23:59",
+        "f": "2026-10-30",
         "c": "store"
       }
     }
@@ -7815,6 +7843,27 @@
         "g": "pokemon",
         "e": "2026-11-01T23:00",
         "f": "2026-10-28",
+        "c": "online"
+      },
+      "aefd683f2b7bedf0": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "2026-11-01T23:00",
+        "f": "2026-10-30",
+        "c": "online"
+      },
+      "1f689292b7fa8a0c": {
+        "p": "DUAL EVOLUTION",
+        "g": "dragonball",
+        "e": "2026-11-01T23:00",
+        "f": "2026-10-30",
+        "c": "online"
+      },
+      "d4e6f1c7d5121ecc": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-11-01T23:00",
+        "f": "2026-10-30",
         "c": "online"
       }
     }
@@ -11361,6 +11410,66 @@
         "f": "2026-10-30",
         "c": "online",
         "a": "2026-11-07"
+      }
+    }
+  },
+  "store/furuichi-2e6ee/": {
+    "name": "ふるいち苫小牧桜木店",
+    "items": {
+      "d95fd0e4aaa1a8fe": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/torekaesu-0aff2/": {
+    "name": "トレカエース勝田東石川店",
+    "items": {
+      "75a8ec18d5a089f8": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-08-30T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-7069c/": {
+    "name": "TSUTAYA錦糸町店",
+    "items": {
+      "1b1aebe38caf430e": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-09-01T21:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/bookoff-eab20/": {
+    "name": "ブックオフスーパーバザー ショップス市川店",
+    "items": {
+      "d77d8efdae6d1a73": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-09-10T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/cardcrew-fee32/": {
+    "name": "CARD CREW通販",
+    "items": {
+      "c4b1d391536ee20e": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
       }
     }
   }

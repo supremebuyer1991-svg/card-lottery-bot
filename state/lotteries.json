@@ -155,7 +155,9 @@
     "method": "オンライン",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "アプリ",
+      "本人確認"
     ],
     "id_check": false,
     "member": "account",
@@ -458,7 +460,8 @@
     "method": "オンライン",
     "conditions": "レシート",
     "tags": [
-      "レシート"
+      "レシート",
+      "購入履歴"
     ],
     "id_check": false,
     "member": "none",
@@ -2374,7 +2377,8 @@
     "method": "オンライン",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "本人確認"
     ],
     "id_check": false,
     "member": "account",
@@ -2854,7 +2858,8 @@
     "method": "店頭",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "本人確認"
     ],
     "id_check": false,
     "member": "card",
@@ -2884,7 +2889,8 @@
     "method": "店頭",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "本人確認"
     ],
     "id_check": false,
     "member": "card",
@@ -6046,7 +6052,8 @@
     "method": "オンライン",
     "conditions": "アプリ ／ 対象地域：福岡県・佐賀県・長崎県・熊本県・大分県・宮崎県・鹿児島県・山口県",
     "tags": [
-      "アプリ"
+      "アプリ",
+      "会員"
     ],
     "id_check": false,
     "member": "none",
@@ -11089,7 +11096,7 @@
     "game": "pokemon",
     "channel": "online",
     "area": null,
-    "id_check": null,
+    "id_check": false,
     "member": "account",
     "tags": [
       "会員"
@@ -11427,7 +11434,9 @@
     "area": "鹿児島県",
     "method": "店頭",
     "conditions": "10/25までに発行・登録のビックポイントカードが必要",
-    "tags": [],
+    "tags": [
+      "会員"
+    ],
     "id_check": false,
     "member": "none",
     "confidence": 0.95,
@@ -11773,7 +11782,8 @@
     "method": "オンライン",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "購入履歴"
     ],
     "id_check": false,
     "member": "account",
@@ -12697,14 +12707,15 @@
     "source": "X「フュージョンワールド 抽選」",
     "source_url": "https://x.com/",
     "key": "cd94384073d35a45",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:12:08.164868+09:00",
     "cls": "a1695ea35ef6",
     "issue": 116,
     "page_checked_at": "2026-10-30T19:52:29.908922+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014009/?cl=220",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "1f689292b7fa8a0c"
   },
   "882737e85e0bd9e6": {
     "store": "しまむら",
@@ -12729,14 +12740,15 @@
     "source": "X「フュージョンワールド 抽選」",
     "source_url": "https://x.com/",
     "key": "882737e85e0bd9e6",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:12:08.164900+09:00",
     "cls": "b3dd0366c7de",
     "issue": 117,
     "page_checked_at": "2026-10-30T19:52:30.022043+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014291/?cl=220",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "aefd683f2b7bedf0"
   },
   "e837c631b8234f52": {
     "store": "しまむら",
@@ -12762,14 +12774,15 @@
     "source": "X「フュージョンワールド 抽選」",
     "source_url": "https://x.com/",
     "key": "e837c631b8234f52",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-28T00:12:08.165140+09:00",
     "cls": "0e0b752ce0f7",
     "issue": 118,
     "page_checked_at": "2026-10-30T19:52:30.071497+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014364/?cl=220",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "d4e6f1c7d5121ecc"
   },
   "d667c108746fa3dd": {
     "store": "オレタン岡山本店",
@@ -13497,7 +13510,9 @@
     "area": null,
     "id_check": null,
     "member": null,
-    "tags": [],
+    "tags": [
+      "アプリ"
+    ],
     "confidence": 0.7,
     "source": "X 抽選情報アカウント",
     "source_url": "https://x.com/",
@@ -14548,8 +14563,10 @@
     "channel": "store",
     "area": "東京都",
     "id_check": null,
-    "member": null,
-    "tags": [],
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
     "confidence": 0.7,
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
@@ -14919,7 +14936,9 @@
     "area": null,
     "id_check": null,
     "member": null,
-    "tags": [],
+    "tags": [
+      "会員"
+    ],
     "confidence": 0.6,
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
@@ -15633,7 +15652,8 @@
     "conditions": "会員・本人確認",
     "tags": [
       "会員",
-      "本人確認"
+      "本人確認",
+      "アプリ"
     ],
     "id_check": true,
     "member": "account",
@@ -15661,7 +15681,8 @@
     "method": "オンライン",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "購入履歴"
     ],
     "id_check": false,
     "member": "account",
@@ -15946,7 +15967,8 @@
     "method": "オンライン",
     "conditions": "会員",
     "tags": [
-      "会員"
+      "会員",
+      "アプリ"
     ],
     "id_check": false,
     "member": "account",
@@ -16172,7 +16194,8 @@
     "tags": [
       "会員",
       "レシート",
-      "本人確認"
+      "本人確認",
+      "購入履歴"
     ],
     "id_check": true,
     "member": "card",
@@ -16230,7 +16253,8 @@
     "tags": [
       "会員",
       "レシート",
-      "本人確認"
+      "本人確認",
+      "購入履歴"
     ],
     "id_check": true,
     "member": "card",
@@ -17589,7 +17613,9 @@
     "area": "埼玉県",
     "id_check": null,
     "member": "account",
-    "tags": [],
+    "tags": [
+      "アプリ"
+    ],
     "confidence": 0.75,
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
@@ -17618,7 +17644,9 @@
     "area": "埼玉県",
     "id_check": null,
     "member": "account",
-    "tags": [],
+    "tags": [
+      "アプリ"
+    ],
     "confidence": 0.75,
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
@@ -18971,7 +18999,10 @@
     "multi": false,
     "cls": "27b7445efae8",
     "x_post": "https://x.com/omusubicororiin/status/2115563459467464949",
-    "page_err": "403 Client Error: Forbidden for url: https://justice.membercard.jp/lottery"
+    "page_err": "403 Client Error: Forbidden for url: https://justice.membercard.jp/lottery",
+    "post_checked": true,
+    "details_checked": true,
+    "id_check": false
   },
   "0017f4145469440e": {
     "game": "onepiece",
@@ -19292,7 +19323,8 @@
     "area": null,
     "cls": "778fe8eeb1b7",
     "x_post": "https://x.com/cs_planetpocket/status/2115334914757534065",
-    "closed_at": "2026-10-29T14:10:35.754690+09:00"
+    "closed_at": "2026-10-29T14:10:35.754690+09:00",
+    "id_check": false
   },
   "15c4d57912105955": {
     "store": "キデイランド吉祥寺店",
@@ -19363,7 +19395,7 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "ページ本文には応募条件や価格、購入制限などの記載がなく、詳細は公式ページで確認するよう案内されている。",
     "url": "https://dorasuta.membercard.jp/lottery",
     "x_post": "https://x.com/pokemoba_jp/status/2115438566075715815",
     "game": "onepiece",
@@ -19382,9 +19414,11 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・本文に締切の記載なし",
     "page_checked_at": "2026-10-30T19:52:39.285772+09:00",
-    "cls": "0170ef69b488",
+    "cls": "fb5b71d88277",
     "issue": 183,
-    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery",
+    "post_checked": true,
+    "details_checked": true
   },
   "7a017759249b2b71": {
     "store": "オレタン福岡天神店",
@@ -20736,9 +20770,11 @@
     "game": "pokemon",
     "channel": "store",
     "area": "大阪府",
-    "id_check": null,
+    "id_check": true,
     "member": null,
-    "tags": [],
+    "tags": [
+      "本人確認"
+    ],
     "confidence": 0.6,
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
@@ -20887,9 +20923,12 @@
     "game": "pokemon",
     "channel": "store",
     "area": "長崎県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
+    "id_check": true,
+    "member": "account",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
     "confidence": 0.8,
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
@@ -20988,7 +21027,9 @@
     "cls": "9025a8bd33ca",
     "apply_url": "https://livepocket.jp/e/dwe-x",
     "page_checked_at": "2026-10-30T19:52:39.367001+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "7e484091d537009c": {
     "store": "ふるいち龍ケ崎店",
@@ -21073,7 +21114,7 @@
     "source": "X 実店舗抽選「フュージョンワールド」",
     "source_url": "https://x.com/",
     "key": "c4ad2d52fbfa1903",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-29T03:26:05.785098+09:00",
     "deadline_checked_at": "2026-10-29T03:27:42.053636+09:00",
     "deadline_v": 5,
@@ -21084,7 +21125,8 @@
     "cls": "6a4ad37538c4",
     "issue": 198,
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "ed19a70e0304939c"
   },
   "bcb6987a37b94795": {
     "store": "カーデリア池袋店",
@@ -21109,7 +21151,7 @@
     "source": "X 実店舗抽選「フュージョンワールド」",
     "source_url": "https://x.com/",
     "key": "bcb6987a37b94795",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-29T03:26:05.785151+09:00",
     "deadline_checked_at": "2026-10-29T03:27:43.124821+09:00",
     "deadline_v": 5,
@@ -21119,7 +21161,8 @@
     "multi": false,
     "cls": "d2b6fc1bff54",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "39dd2c7820508b62"
   },
   "43ca5fff4924c714": {
     "store": "TCバトロコ 盛岡大通",
@@ -21258,8 +21301,10 @@
     "channel": "online",
     "area": null,
     "id_check": null,
-    "member": null,
-    "tags": [],
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
     "confidence": 0.75,
     "source": "X 実店舗抽選「ポケカ」",
     "source_url": "https://x.com/",
@@ -23381,7 +23426,8 @@
     "id_check": true,
     "tags": [
       "会員",
-      "本人確認"
+      "本人確認",
+      "アプリ"
     ],
     "url": "https://livepocket.jp/e/6mbex",
     "slug": "furuichi-takarazuka-30th-1030",
@@ -23719,7 +23765,9 @@
     "member": "account",
     "tags": [
       "アプリ",
-      "会員"
+      "会員",
+      "購入履歴",
+      "本人確認"
     ],
     "slug": "otakarasouko-storm-emerald-1101",
     "key": "5bae1a58977d09a8",
@@ -23750,7 +23798,9 @@
     "member": "account",
     "tags": [
       "アプリ",
-      "会員"
+      "会員",
+      "購入履歴",
+      "本人確認"
     ],
     "slug": "otakarasouko-30th-1101",
     "key": "1b89e5ad8f4c1b1b",
@@ -25051,7 +25101,7 @@
     "end": "2026-11-01T23:59:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "ワンピースカードゲーム「世界最強の戦士」の抽選販売で、熊本県内の蔦屋書店5店舗が対象。応募の締切は11/1(日)23:59。会員登録、本人確認書類、購入個数の上限、代理購入、価格などの条件は本文に書かれていない。",
     "url": "https://livepocket.jp/e/czxdo",
     "x_post": "https://x.com/OnchainOutlaw/status/2115795798390952331",
     "game": "onepiece",
@@ -25070,8 +25120,10 @@
     "tco_checked": true,
     "page_checked_at": "2026-10-30T19:52:52.033570+09:00",
     "multi": true,
-    "cls": "41f580754598",
-    "page_err": "中身が空"
+    "cls": "6171ecd59b58",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "49af5656e74165a4": {
     "store": "熊本県（各店）",
@@ -25259,7 +25311,9 @@
     "area": null,
     "id_check": null,
     "member": null,
-    "tags": [],
+    "tags": [
+      "購入履歴"
+    ],
     "confidence": 0.7,
     "source": "X 抽選情報アカウント",
     "source_url": "https://x.com/",
@@ -26079,7 +26133,7 @@
     "end": "2026-11-04T23:59:00+09:00",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "本文には応募・購入条件の記載がありません。「抽選予告」として11/2 10:00〜11/4までとの日時とリンクがあるだけで、会員登録・本人確認・購入上限・代理購入・価格は不明です。",
     "url": "https://livepocket.jp/e/w3o7c",
     "x_post": "https://x.com/PICA2200/status/2115979476115083609",
     "game": "pokemon",
@@ -26096,9 +26150,11 @@
     "found_at": "2026-10-30T10:32:54.157457+09:00",
     "page_checked_at": "2026-10-30T19:52:54.093682+09:00",
     "multi": false,
-    "cls": "d036333cd04b",
+    "cls": "982ed3b5eee4",
     "apply_url": "https://livepocket.jp/e/w3o7c",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "590552e3eb3c9320": {
     "store": "キデイランド二子玉川店",
@@ -26108,7 +26164,7 @@
     "end": "2026-11-04",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "応募や購入の条件（会員登録、アプリ、本人確認書類、購入個数の上限、代理購入、価格）は本文に書かれていません。「抽選予告」として「11/2 10:00〜11/4まで」と期間らしき記載があるだけです。",
     "url": "https://livepocket.jp/e/mkpvg",
     "x_post": "https://x.com/PICA2200/status/2115979664258891807",
     "game": "pokemon",
@@ -26125,9 +26181,11 @@
     "found_at": "2026-10-30T10:32:54.157499+09:00",
     "page_checked_at": "2026-10-30T19:52:56.264520+09:00",
     "multi": false,
-    "cls": "3cdc10d55194",
+    "cls": "16c0842823c9",
     "apply_url": "https://livepocket.jp/e/mkpvg",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "d44804a79f781165": {
     "store": "キデイランド吉祥寺店",
@@ -26137,7 +26195,7 @@
     "end": "2026-11-04",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "本文には会員登録・アプリ・本人確認書類・購入個数・代理購入・価格といった条件の記載がない。「11/2 10:00〜11/4まで」という日程の告知と商品名、リンクがあるだけ。",
     "url": "https://livepocket.jp/e/wjv4a",
     "x_post": "https://x.com/PICA2200/status/2115979587025043756",
     "game": "pokemon",
@@ -26154,9 +26212,11 @@
     "found_at": "2026-10-30T10:32:54.157521+09:00",
     "page_checked_at": "2026-10-30T19:52:58.442539+09:00",
     "multi": false,
-    "cls": "c458e91521a3",
+    "cls": "183b1230e335",
     "apply_url": "https://livepocket.jp/e/wjv4a",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "25422037c323df4d": {
     "store": "キデイランド鹿児島店",
@@ -26166,7 +26226,7 @@
     "end": "2026-11-04",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "本文からは、応募・購入の条件（会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など）は読み取れない。11/2 10:00〜11/4の期間で抽選を行う予告のみ記載。",
     "url": "https://livepocket.jp/e/qg9n3",
     "x_post": "https://x.com/PICA2200/status/2115979396888862843",
     "game": "pokemon",
@@ -26183,9 +26243,11 @@
     "found_at": "2026-10-30T10:32:54.157541+09:00",
     "page_checked_at": "2026-10-30T19:53:00.492763+09:00",
     "multi": false,
-    "cls": "c9ecf7a74c74",
+    "cls": "8569fcc03640",
     "apply_url": "https://livepocket.jp/e/w3o7c",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "af6a99bc3f777d1b": {
     "store": "キデイランド アミュプラザおおいた店",
@@ -26195,7 +26257,7 @@
     "end": "2026-11-04",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "ページ本文には応募・購入の条件（会員登録、アプリ、本人確認書類、購入個数の上限、代理購入の可否、価格）に関する記載がない。抽選の予告と受付期間のみ。",
     "url": "https://livepocket.jp/e/uz-j2",
     "x_post": "https://x.com/PICA2200/status/2115979321169068049",
     "game": "pokemon",
@@ -26212,8 +26274,10 @@
     "found_at": "2026-10-30T10:32:54.157560+09:00",
     "page_checked_at": "2026-10-30T19:53:00.492780+09:00",
     "multi": false,
-    "cls": "cc67c55003b2",
-    "page_err": "中身が空"
+    "cls": "10d2c1debeee",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "649df331438fa93b": {
     "store": "キデイランド吉祥寺店",
@@ -26366,8 +26430,8 @@
     "start": null,
     "end": "2026-11-01T20:00:00+09:00",
     "announce": null,
-    "method": null,
-    "conditions": null,
+    "method": "ポケカ抽選販売（30th CELEBRATION）。応募締切は11/1(日)20:00。応募方法の詳細は本文に記載なし",
+    "conditions": "本文には会員登録・アプリ・本人確認書類・購入個数・代理購入・価格などの条件が書かれていません。分かるのは抽選販売で、応募締切が11/1(日)20:00ということだけです。",
     "url": "https://livepocket.jp/e/k_6n6",
     "x_post": "https://x.com/OnchainOutlaw/status/2115969452756054166",
     "game": "pokemon",
@@ -26383,10 +26447,12 @@
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157692+09:00",
     "multi": false,
-    "cls": "4eb190c5dd6f",
+    "cls": "a0d78a6e4078",
     "tco_checked": true,
     "page_checked_at": "2026-10-30T19:53:02.560155+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "7864484cefdf152d": {
     "store": "ブックセンター江戸屋",
@@ -31661,5 +31727,485 @@
     "details_checked": true,
     "area": null,
     "cls": "9f690cdd4409"
+  },
+  "aefd683f2b7bedf0": {
+    "store": "しまむらパーク",
+    "product": "ドラゴンボール超カードゲーム フュージョンワールド「STORY BOOSTER 01」",
+    "series": "STORY BOOSTER 01",
+    "end": "2026-11-01T23:00:00+09:00",
+    "url": "https://www.shop-shimamura.com/item/0363100014291/?cl=220",
+    "x_post": "https://x.com/guernicass4/status/2114916862282846639",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "アプリ・会員",
+    "tags": [
+      "アプリ",
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "aefd683f2b7bedf0",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881230+09:00",
+    "page_checked_at": "2026-10-30T20:36:39.369731+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014291/?cl=220",
+    "cls": "aa04470dfce3",
+    "start": "2026-10-27T13:00:00+09:00"
+  },
+  "1f689292b7fa8a0c": {
+    "store": "しまむらパーク",
+    "product": "ドラゴンボール超カードゲーム フュージョンワールド ブースターパック「DUAL EVOLUTION」【FB-09】",
+    "series": "DUAL EVOLUTION",
+    "end": "2026-11-01T23:00:00+09:00",
+    "url": "https://www.shop-shimamura.com/item/0363100014009/?cl=220",
+    "x_post": "https://x.com/guernicass4/status/2114916862282846639",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "アプリ・会員",
+    "tags": [
+      "アプリ",
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "1f689292b7fa8a0c",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881293+09:00",
+    "page_checked_at": "2026-10-30T20:36:39.507219+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014009/?cl=220",
+    "cls": "e179b6224710",
+    "start": "2026-10-27T13:00:00+09:00"
+  },
+  "d4e6f1c7d5121ecc": {
+    "store": "しまむらパーク",
+    "product": "ドラゴンボール超カードゲーム フュージョンワールド ブースターパック「BRIGHTNESS OF HOPE」【FB-11】",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "2026-11-01T23:00:00+09:00",
+    "url": "https://www.shop-shimamura.com/item/0363100014364/?cl=220",
+    "x_post": "https://x.com/guernicass4/status/2114916862282846639",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "アプリ・会員",
+    "tags": [
+      "アプリ",
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "d4e6f1c7d5121ecc",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881337+09:00",
+    "page_checked_at": "2026-10-30T20:36:39.551704+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014364/?cl=220",
+    "cls": "51218926b857",
+    "start": "2026-10-27T13:00:00+09:00"
+  },
+  "d95fd0e4aaa1a8fe": {
+    "store": "ふるいち苫小牧桜木店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド「MANGA BOOSTER 02【SB02】」／「STORY BOOSTER 01【ST01】」（オープン記念 第3弾 web抽選販売・いずれか1点）",
+    "series": "STORY BOOSTER 01",
+    "end": "2026-11-01T23:59:00+09:00",
+    "url": "https://www.furu1.net/news/news_campaign/news_opensale_tomakomai",
+    "x_post": null,
+    "channel": "store",
+    "area": "北海道",
+    "method": "オンライン",
+    "conditions": "本人確認",
+    "tags": [
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "d95fd0e4aaa1a8fe",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881377+09:00",
+    "page_checked_at": "2026-10-30T20:36:39.597267+09:00",
+    "multi": false,
+    "cls": "d863da74b103"
+  },
+  "ed19a70e0304939c": {
+    "store": "カーデリア池袋店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド STORY BOOSTER 01【ST01】 1BOX（6,600円税込）",
+    "series": "STORY BOOSTER 01",
+    "end": "2026-11-03T23:59:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+    "x_post": "https://x.com/Nchan_000/status/2115401307385364793",
+    "channel": "store",
+    "area": "東京都",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "ed19a70e0304939c",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881409+09:00",
+    "page_checked_at": "2026-10-30T20:36:42.148948+09:00",
+    "multi": false,
+    "cls": "c911118dbd17",
+    "start": "2026-10-28T00:00:00+09:00"
+  },
+  "39dd2c7820508b62": {
+    "store": "カーデリア池袋店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック CROSS FORCE【FB10】 1BOX（5,280円税込）",
+    "series": "CROSS FORCE",
+    "end": "2026-11-03T23:59:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+    "x_post": "https://x.com/Nchan_000/status/2115401307385364793",
+    "channel": "store",
+    "area": "東京都",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "39dd2c7820508b62",
+    "status": "listed",
+    "found_at": "2026-10-30T20:36:22.881441+09:00",
+    "page_checked_at": "2026-10-30T20:36:44.563324+09:00",
+    "multi": false,
+    "cls": "f4ed75525d84",
+    "start": "2026-10-28T00:00:00+09:00"
+  },
+  "4e9c4cc4ea55d0ef": {
+    "store": "カーデリア池袋店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド「STORY BOOSTER 01」【ST01】1BOX（6,600円税込）",
+    "series": "STORY BOOSTER 01",
+    "end": "2026-11-03T23:59:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+    "x_post": null,
+    "channel": "store",
+    "area": "東京都",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "4e9c4cc4ea55d0ef",
+    "status": "duplicate",
+    "found_at": "2026-10-30T20:36:22.881472+09:00",
+    "page_checked_at": "2026-10-30T20:36:44.563505+09:00",
+    "multi": false,
+    "cls": "3dd74ea7a531",
+    "duplicate_of": "ed19a70e0304939c"
+  },
+  "f02ec6b491c355f2": {
+    "store": "カーデリア池袋店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「CROSS FORCE」【FB10】1BOX（5,280円税込）",
+    "series": "CROSS FORCE",
+    "end": "2026-11-03T23:59:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+    "x_post": null,
+    "channel": "store",
+    "area": "東京都",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "f02ec6b491c355f2",
+    "status": "duplicate",
+    "found_at": "2026-10-30T20:36:22.881499+09:00",
+    "page_checked_at": "2026-10-30T20:36:44.563670+09:00",
+    "multi": false,
+    "cls": "636c15025a1a",
+    "duplicate_of": "39dd2c7820508b62"
+  },
+  "abd3eb822a6de78a": {
+    "store": "トレカーバンクル",
+    "product": "ドラゴンボール超カードゲーム フュージョンワールド STORY BOOSTER 01",
+    "series": "STORY BOOSTER 01",
+    "end": "2026-08-09T23:59:00+09:00",
+    "url": "https://x.com/cardbuncle/status/2085913856422130067",
+    "x_post": "https://x.com/cardbuncle/status/2085913856422130067",
+    "channel": "store",
+    "area": "東京都",
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "period_text": "オンライン 保存 SNS応募 トレカーバンクル 締切 調査中 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "online",
+      "data-store": "cardbuncle",
+      "data-pack": "st01-story-booster",
+      "data-area": "tokyo",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "abd3eb822a6de78a",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881525+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:23.234079+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像1/1枚読込・画像「08.09 締切」",
+    "end_from": "Xの告知（画像「08.09 締切」）",
+    "multi": false,
+    "cls": "58b767af9c0f",
+    "closed_at": "2026-10-30T20:37:58.602882+09:00"
+  },
+  "c10a9c06fae9c278": {
+    "store": "バトロコミニ前橋荒牧店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド STORY BOOSTER 01",
+    "series": "STORY BOOSTER 01",
+    "end": "",
+    "url": "https://x.com/BatolocoA/status/2086259973533958203",
+    "x_post": "https://x.com/BatolocoA/status/2086259973533958203",
+    "channel": "store",
+    "area": "群馬県",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "period_text": "店頭 保存 バトロコミニ前橋荒牧店 締切 調査中 詳細情報 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "store",
+      "data-store": "batoloco-mini-maebashi-aramaki",
+      "data-pack": "st01-story-booster",
+      "data-area": "gunma",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "c10a9c06fae9c278",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881552+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:26.532327+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・本文に応募期間の記載なし",
+    "multi": false,
+    "cls": "a29c5a5e117e",
+    "closed_at": "2026-10-30T20:37:58.602921+09:00",
+    "closed_reason": "告知の投稿から10日以上たって締切不明"
+  },
+  "75a8ec18d5a089f8": {
+    "store": "トレカエース勝田東石川店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「BRIGHTNESS OF HOPE」【FB11】",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "2026-08-30T23:59:00+09:00",
+    "url": "https://x.com/higasiisikawa/status/2093504153620234446",
+    "x_post": "https://x.com/higasiisikawa/status/2093504153620234446",
+    "channel": "store",
+    "area": "茨城県",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "period_text": "店頭 保存 トレカエース勝田東石川店 締切 調査中 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "store",
+      "data-store": "toreka-ace-katsuta-higashiishikawa",
+      "data-pack": "fb11-brightness-of-hope",
+      "data-area": "ibaraki",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "75a8ec18d5a089f8",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881580+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:28.900373+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像1/1枚読込・8月29日(土)〜8月30日(日)",
+    "start": "2026-08-29T00:00:00+09:00",
+    "end_from": "Xの告知（8月29日(土)〜8月30日(日)）",
+    "multi": false,
+    "cls": "979d934fa637",
+    "closed_at": "2026-10-30T20:37:58.602948+09:00"
+  },
+  "1b1aebe38caf430e": {
+    "store": "TSUTAYA錦糸町店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド 拡張パック「BRIGHTNESS OF HOPE」【FB11】",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "2026-09-01T21:00:00+09:00",
+    "url": "https://x.com/t_kinshi71624/status/2093510693723177287",
+    "x_post": "https://x.com/t_kinshi71624/status/2093510693723177287",
+    "channel": "store",
+    "area": "東京都",
+    "method": "店頭",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "period_text": "店頭 保存 TSUTAYA錦糸町店 締切 調査中 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "store",
+      "data-store": "tsutaya-kinshicho",
+      "data-pack": "fb11-brightness-of-hope",
+      "data-area": "tokyo",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "1b1aebe38caf430e",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881610+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:32.587703+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像1/1枚読込・2026年9月1日(火)21:00",
+    "start": "2026-08-29T10:30:00+09:00",
+    "end_from": "Xの告知（2026年9月1日(火)21:00）",
+    "multi": false,
+    "cls": "a91be118f942",
+    "closed_at": "2026-10-30T20:37:58.602972+09:00"
+  },
+  "d77d8efdae6d1a73": {
+    "store": "ブックオフスーパーバザー ショップス市川店",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「BRIGHTNESS OF HOPE」【FB11】",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "2026-09-10T23:59:00+09:00",
+    "url": "https://x.com/BSBshops_HO/status/2097193686811750646",
+    "x_post": "https://x.com/BSBshops_HO/status/2097193686811750646",
+    "channel": "store",
+    "area": "千葉県",
+    "method": "X抽選",
+    "conditions": null,
+    "tags": [],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "period_text": "X抽選 保存 ブックオフスーパーバザー ショップス市川店 締切 調査中 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "other",
+      "data-store": "bookoff-sbs-shops-ichikawa",
+      "data-pack": "fb11-brightness-of-hope",
+      "data-area": "chiba",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "d77d8efdae6d1a73",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881643+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:35.744108+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像1/1枚読込・抽選期間 9月8日~9月10日23:59まで",
+    "start": "2026-09-08T00:00:00+09:00",
+    "end_from": "Xの告知（抽選期間 9月8日~9月10日23:59）",
+    "multi": false,
+    "cls": "87b8840b0fd8",
+    "closed_at": "2026-10-30T20:37:58.602994+09:00"
+  },
+  "c4b1d391536ee20e": {
+    "store": "CARD CREW通販",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「BRIGHTNESS OF HOPE」【FB11】",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "",
+    "url": "https://x.com/CARDCREW_tuhan/status/2097152924564795604",
+    "x_post": "https://x.com/CARDCREW_tuhan/status/2097152924564795604",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "period_text": "オンライン 保存 会員 CARD CREW通販 締切 調査中 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "dragonball",
+      "data-lottery-type": "online",
+      "data-store": "card-crew",
+      "data-pack": "fb11-brightness-of-hope",
+      "data-area": "",
+      "data-entry-end": ""
+    },
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "c4b1d391536ee20e",
+    "status": "closed",
+    "found_at": "2026-10-30T20:36:22.881673+09:00",
+    "deadline_checked_at": "2026-10-30T20:36:37.727365+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像1/1枚読込・画像・本文に締切の記載なし",
+    "cls": "68421b9a5ffd",
+    "closed_at": "2026-10-30T20:37:58.603027+09:00",
+    "closed_reason": "告知の投稿から10日以上たって締切不明"
   }
 }
