@@ -292,7 +292,7 @@ def prerender(items) -> str:
             where = f"［{i['area']}］" if ch == "store" and i.get("area") else ""
             dt = parse_dt(i.get("end"))
             when = f'<time datetime="{dt.isoformat()}">{_fmt(i.get("end"))}</time>' if dt else "締切 要確認"
-            link = f' <a href="{escape(i["url"])}" rel="nofollow noopener">応募ページ</a>' if i.get("url") else ""
+            link = f' <a href="{escape(i["url"])}" target="_blank" rel="nofollow noopener">応募ページ</a>' if i.get("url") else ""
             rows.append(f"<li><b>{escape(where + i['store'])}</b> {escape(i.get('product') or '')} ／ 締切 {when}{link}</li>")
         if rows:
             out.append(f'<h2>{title}</h2><ul class="pre">{"".join(rows)}</ul>')
