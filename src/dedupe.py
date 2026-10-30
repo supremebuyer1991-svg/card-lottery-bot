@@ -53,8 +53,8 @@ def _url_key(u):
 def _skey(it):
     x = it.get("series") or it.get("product")
     try:
-        from sitegen import canon_series
-        x = "/".join(sorted(canon_series(it.get("game"), x) or [x]))  # 2つの弾をまとめた抽選は、両方の名前で比べる
+        from sitegen import item_series
+        x = "/".join(sorted(item_series(it.get("game"), x, it.get("product")) or [x]))  # 2つの弾をまとめた抽選は、両方の名前で比べる
     except Exception:
         pass
     return norm_series(x, {})

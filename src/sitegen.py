@@ -235,6 +235,18 @@ def ann_text(r):
     return f"多くは{d}ごろ{rng}。これまで{n}回分から"
 
 
+GENERIC_SERIES = {"mega", "メガ"}  # 「MEGA」だけでは弾が決まらない（MEGAドリームex・スペシャルデッキセットMEGA など）
+
+
+def item_series(game, series, product=None):
+    """抽選の弾名（サイト用）。弾名が「MEGA」のようにあいまいな時は、商品名から弾を探す"""
+    if series and normalize(series) in GENERIC_SERIES and product:
+        g = guess_series(game, product)
+        if g and normalize(g) not in GENERIC_SERIES:
+            return canon_series(game, g) or [g]
+    return canon_series(game, series)
+
+
 def guess_series(game, text):
     """商品名の中から知っている弾の名前を探す（いちばん長く当てはまるもの）。なければ None"""
     t = normalize(text or "")
@@ -934,7 +946,7 @@ def build(settings=None, out_dir=None, sample=None):
                 row["image"], row["img_url"] = found[0]
                 if len(found) > 1:
                     row["images"] = [{"src": a, "url": b} for a, b in found[:4]]
-            sers = canon_series(i.get("game"), i.get("series"))  # 別名をまとめる・「A / B」は両方の弾に出す
+            sers = item_series(i.get("game"), i.get("series"), i.get("product"))  # 別名をまとめる・「A / B」は両方の弾に出す
             row["series"] = sers[0] if sers else None  # 別のゲームの商品が入っていた弾名は外す
             if sers:
                 if len(sers) > 1:
@@ -1724,7 +1736,7 @@ def build(settings=None, out_dir=None, sample=None):
             if when < cut_h:
                 continue
             h = hist.setdefault(sp, {"name": it["store"], "items": {}})
-            xs = canon_series(it["game"], it.get("series")) if it.get("series") else []
+            xs = item_series(it["game"], it.get("series"), it.get("product")) if it.get("series") else []
             if not xs and guess_series(it["game"], it.get("product")):
                 xs = [guess_series(it["game"], it.get("product"))]
             old_a = (h["items"].get(k) or {}).get("a")
