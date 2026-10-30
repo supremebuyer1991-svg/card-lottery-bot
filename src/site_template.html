@@ -813,7 +813,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     if (!list.length) return "";
     var one = function (x) {
       var img = '<img src="' + esc(x.src) + '" alt="' + alt + '" loading="lazy">';
-      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="pr">楽天</span></a>'
+      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '</a>'
         : '<div class="thumb">' + img + '</div>';
     };
     // 複数の商品の抽選は、4枚までを2×2で並べる
