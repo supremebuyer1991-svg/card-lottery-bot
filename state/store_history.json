@@ -4086,6 +4086,13 @@
   "store/bukkusenta-3d91d/": {
     "name": "ブックセンター江戸屋",
     "items": {
+      "1815044131cfe71e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-10-30T21:00",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "666272c6268f1776": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -7253,6 +7260,13 @@
         "c": "online",
         "a": "2026-11-06"
       },
+      "4a087be26e90bb20": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
+      },
       "70d679cc85556265": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -9981,6 +9995,73 @@
         "p": "MEGAドリームex",
         "g": "pokemon",
         "e": "2026-10-30T13:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/hmvtorekashoppu-b4c3c/": {
+    "name": "HMVトレカショップ",
+    "items": {
+      "a8098e1d826e4809": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-03T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-44de3/": {
+    "name": "野口",
+    "items": {
+      "3c8e80caad9e7c59": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      },
+      "8e2ab92d9aedb275": {
+        "p": "カードセット 9種",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-27395/": {
+    "name": "豊橋",
+    "items": {
+      "e20f8844b7526284": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-f4968/": {
+    "name": "森町",
+    "items": {
+      "bbb9af92bb16ed9f": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-0adfb/": {
+    "name": "トレカエース TSUTAYAデイズタウンつくば",
+    "items": {
+      "6321ca37bac51e4b": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T22:00",
         "f": "2026-10-30",
         "c": "store"
       }
