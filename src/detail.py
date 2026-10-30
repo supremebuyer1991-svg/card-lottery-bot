@@ -151,7 +151,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             rows.append(f"<div><dt>{escape(k)}</dt><dd>{v if raw else escape(str(v))}</dd></div>")
     period = (f"{start_s} 〜 " if start_s else "") + (end_s or "締切は告知でご確認ください")
     row("応募期間" if start_s else "応募締切", (period + "まで") if end_s and not start_s else period)
-    row("当選発表", i.get("announce") if not parse_dt(i.get("announce")) else fmt(i.get("announce")))
+    row("当選発表", i.get("announce") if not parse_dt(i.get("announce")) else re.sub(r"\s*00:00$", "", fmt(i.get("announce"))))  # 時刻が分からない日付は「00:00」を出さない
     row("購入期間", i.get("buy"))
     row("受け取り", ch + (f"｜{i['area']}" if i.get("channel") == "store" and i.get("area") else ""))
     if i.get("channel") == "store" and i.get("address"):
