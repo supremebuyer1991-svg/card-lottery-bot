@@ -454,12 +454,12 @@ def _sb_tabs(gs):
     btn = "".join(f'<button type="button" data-g="{g}" aria-pressed="{str(k == 0).lower()}">{escape(GAME_TAB.get(g, GAME_SHORT[g]))}</button>'
                   for k, g in enumerate(gs))
     return ('<nav class="sb-tabs" id="sb-tabs" aria-label="ゲームを選ぶ">' + btn + '</nav>'
-            '<script>(function(){var n=document.getElementById("sb-tabs");function show(g){'
+            '<script>document.addEventListener("DOMContentLoaded",function(){var n=document.getElementById("sb-tabs");function show(g){'
             'document.querySelectorAll(".sb-list[data-g]").forEach(function(s){s.hidden=s.dataset.g!==g;});'
             'n.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.g===g);});}'
             'var h=(location.hash||"").slice(1);show(n.querySelector("button[data-g=\\""+h+"\\"]")?h:n.querySelector("button").dataset.g);'
             'n.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;show(b.dataset.g);'
-            'try{history.replaceState(null,"","#"+b.dataset.g);}catch(x){}});})();</script>')
+            'try{history.replaceState(null,"","#"+b.dataset.g);}catch(x){}});});</script>')
 
 
 def souba_block(x, sm, fx=None, link=True, us_line=False, img=None):
