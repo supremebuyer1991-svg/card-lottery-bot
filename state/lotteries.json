@@ -18791,7 +18791,7 @@
     "key": "e904efcfb9ee3fc0",
     "status": "approved",
     "found_at": "2026-10-28T14:11:19.592031+09:00",
-    "page_checked_at": "2026-10-30T13:36:34.643325+09:00",
+    "page_checked_at": "2026-10-30T13:42:20.620771+09:00",
     "multi": false,
     "cls": "74f31c473bb7"
   },
@@ -22423,7 +22423,7 @@
     "status": "approved",
     "found_at": "2026-10-29T01:20:05.193668+09:00",
     "multi": false,
-    "cls": "8f5611fbe6b6",
+    "cls": "9025a8bd33ca",
     "apply_url": "https://livepocket.jp/e/dwe-x",
     "page_checked_at": "2026-10-29T23:53:18.384690+09:00"
   },
@@ -22550,7 +22550,7 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・応募期間 10月28日～11月3日23:59",
     "end_from": "応募ページ（応募期間 10月28日～11月3日23:）",
-    "page_checked_at": "2026-10-30T13:36:37.222758+09:00",
+    "page_checked_at": "2026-10-30T13:42:23.266199+09:00",
     "multi": false,
     "cls": "d2b6fc1bff54"
   },
@@ -27935,7 +27935,7 @@
     "end": "2026-11-01T23:59:00+09:00",
     "url": "https://oretan.membercard.jp/lottery?search_store_id=118",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "岡山県",
     "method": "オンライン",
     "conditions": "会員",
@@ -27952,7 +27952,9 @@
     "key": "499508fa945d8a98",
     "status": "approved",
     "found_at": "2026-10-30T11:17:46.943593+09:00",
-    "page_checked_at": "2026-10-30T11:18:10.532541+09:00"
+    "page_checked_at": "2026-10-30T11:18:10.532541+09:00",
+    "multi": false,
+    "cls": "b405cfb1072a"
   },
   "81a11d0e27a2dce4": {
     "store": "オレタン福岡天神店",
@@ -27961,7 +27963,7 @@
     "end": "2026-11-01T23:59:00+09:00",
     "url": "https://oretan.membercard.jp/lottery?search_store_id=119",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "福岡県",
     "method": "オンライン",
     "conditions": "会員",
@@ -27978,7 +27980,9 @@
     "key": "81a11d0e27a2dce4",
     "status": "approved",
     "found_at": "2026-10-30T11:17:46.943624+09:00",
-    "page_checked_at": "2026-10-30T11:18:10.715829+09:00"
+    "page_checked_at": "2026-10-30T11:18:10.715829+09:00",
+    "multi": false,
+    "cls": "f8ab35fda247"
   },
   "1315d36f95320be7": {
     "store": "TSUTAYA中津店トレカコーナー",
@@ -30045,11 +30049,11 @@
     "slug": "tsutaya-hirakata-30th-1101",
     "key": "6cc8bf9918d77798",
     "status": "listed",
-    "found_at": "2026-10-30T13:35:15.944807+09:00",
+    "found_at": "2026-10-30T13:40:59.212017+09:00",
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-30T13:36:39.601378+09:00",
+    "page_checked_at": "2026-10-30T13:42:25.607734+09:00",
     "multi": false,
     "cls": "a94b306824e3"
   }
