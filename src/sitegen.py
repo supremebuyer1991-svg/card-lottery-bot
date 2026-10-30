@@ -447,6 +447,23 @@ def _sb_img(img, alt, cls="sb-img"):
             else f'<span class="{cls}">{pic}</span>')
 
 
+def souba_strip(pairs, link):
+    """一覧ページの上：今日のBOX相場を3つだけ（押すと相場の一覧へ）。pairs = [(弾名, 相場のまとめ)]"""
+    if not pairs:
+        return ""
+    def one(x, sm):
+        b = sm["prev"][1] if sm.get("prev") else None
+        d = c = ""
+        if b:
+            v = (sm["price"] - b) * 100 / b
+            c = "up" if v > 0 else "down" if v < 0 else "flat"
+            d = f'前日比 {"+" if v > 0 else "−" if v < 0 else "±"}{abs(v):.1f}%'
+        return (f'<span class="sq-i"><small>{escape(x)}</small><b>{_yen(sm["price"])}</b>'
+                + (f'<em class="{c}">{d}</em>' if d else "") + '</span>')
+    return (f'<a class="sq" href="{link}"><span class="sq-h">📈 今日のBOX相場<i>相場を見る ›</i></span>'
+            f'<span class="sq-row">{"".join(one(x, sm) for x, sm in pairs[:3])}</span></a>')
+
+
 def _sb_tabs(gs):
     """相場の一覧の上：ポケカ／ワンピースの切り替え（全部の相場はページに載せたまま、見せる方だけ切り替える）"""
     if len(gs) < 2:
@@ -1180,7 +1197,8 @@ def build(settings=None, out_dir=None, sample=None):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "supply": _supply_ad(short, name, tag, raff, prices, g)}
+                "supply": _supply_ad(short, name, tag, raff, prices, g),
+                "aff": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}")}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
             top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
@@ -2059,8 +2077,16 @@ def build(settings=None, out_dir=None, sample=None):
         rel = [(t, u) for t, u in rel if (out / u.strip("/") / "index.html").exists()]
         p = out / lp / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
+        sbx = None
+        if active and d.get("series"):
+            x_ = (canon_series(g, d["series"]) or [d["series"]])[0]
+            sm_ = souba_sm.get(f"{g}|{x_}")
+            if sm_:
+                dd, cc = _diff(sm_["price"], sm_["prev"][1] if sm_.get("prev") else None)
+                sbx = {"name": x_, "price": _yen(sm_["price"]), "date": _md(sm_["date"]), "diff": dd, "cls": cc,
+                       "url": "/" + series_path(g, x_) + "#souba"}
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
-                                   redirect=redirect, aff=aff, related=rel, updated=updated), encoding="utf-8")
+                                   redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx), encoding="utf-8")
         if active:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
 
