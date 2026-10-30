@@ -255,6 +255,23 @@ lotteries:
     address: 大阪府枚方市宮之阪4-28-12
     url: https://livepocket.jp/e/ir67g
 
+  - slug: furuichi-fukai-30th-1101
+    game: pokemon
+    store: 古本市場深井店
+    series: 30th CELEBRATION
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）
+    channel: store
+    area: 大阪府
+    method: Web抽選（LivePocket）→ 当選したら店頭で購入
+    end: 2026-11-01T22:00
+    announce: 11/3(火)〜11/4(水)
+    buy: 11/6(金)〜11/8(日)
+    conditions: LivePocketの会員登録が必要。1人1回・1BOXまで。購入時に顔写真付き・現住所記載の本人確認書類が必要（登録した氏名・住所・生年月日と一致すること。健康保険証は不可）。本人のみ購入可（代理不可）。当選後に購入しないと次回以降の抽選で優先度が下がることがあります
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/8xaaf
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
