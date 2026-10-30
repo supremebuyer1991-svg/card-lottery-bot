@@ -10968,15 +10968,8 @@
         "c": "store",
         "a": "2026-11-02"
       },
-      "01cae703094b0473": {
-        "p": "30th CELEBRATION",
-        "g": "pokemon",
-        "e": "2026-11-01T23:59",
-        "f": "2026-10-30",
-        "c": "online"
-      },
-      "3206bae2aba06b57": {
-        "p": "ストームエメラルダ",
+      "ca4e96217c0d57d7": {
+        "p": "30th CELEBRATION・ストームエメラルダ",
         "g": "pokemon",
         "e": "2026-11-01T23:59",
         "f": "2026-10-30",
@@ -11220,7 +11213,7 @@
   "store/kadoshoppuorionbesu-dd3c4/": {
     "name": "カードショップ オリオンベース",
     "items": {
-      "6c0e818b08de8d34": {
+      "22a1a1d377b062bb": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-01T21:00",
@@ -11230,7 +11223,7 @@
     }
   },
   "store/aeon-31a96/": {
-    "name": "ふるいちイオンモール座間店",
+    "name": "ふるいち イオンモール座間店",
     "items": {
       "d7bcc7f580001af2": {
         "p": "30th CELEBRATION",
@@ -11241,17 +11234,29 @@
       }
     }
   },
+  "store/furukonpu-88f35/": {
+    "name": "フルコンプ（各店）",
+    "items": {
+      "6f4ecd5cdccdc5ba": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
   "store/aeon-5b64a/": {
     "name": "キデイランド イオンモール浦和美園店",
     "items": {
-      "9dff8e553d7f3f92": {
+      "2d2ad7a243c4e3ba": {
         "p": "メガシンフォニア",
         "g": "pokemon",
         "e": "2026-11-01T23:59",
         "f": "2026-10-30",
         "c": "store"
       },
-      "e267a0582acc1745": {
+      "7429b03f37135ab5": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
         "e": "2026-11-01T23:59",
@@ -11272,20 +11277,20 @@
       }
     }
   },
-  "store/shop-9e8a9/": {
-    "name": "新星堂",
+  "store/wondergoo-6e197/": {
+    "name": "新星堂/WonderGOO/Ganryu",
     "items": {
-      "8cebc1106895c703": {
+      "911195f89ab5f3c4": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
         "e": "2026-11-01T20:59",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       }
     }
   },
   "store/batoroco-b5495/": {
-    "name": "TCバトロコ川崎駅前",
+    "name": "TC バトロコ川崎駅前",
     "items": {
       "8094e59a5e4955f6": {
         "p": "HEROINES PRECIOUS BOX",
