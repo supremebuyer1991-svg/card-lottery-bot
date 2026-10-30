@@ -5000,7 +5000,7 @@
       "store": "お宝創庫（アプリ抽選）",
       "series": "ストームエメラルダ",
       "channel": "store",
-      "area": null,
+      "area": "兵庫県",
       "found_at": "2026-10-29T15:04:13.636087+09:00",
       "chain": null
     },
@@ -6011,6 +6011,42 @@
       "area": null,
       "found_at": "2026-10-30T22:16:07.629980+09:00",
       "chain": "biccamera"
+    },
+    "3ad449dc882c8abd": {
+      "game": "pokemon",
+      "store": "カードラボ なんば店",
+      "series": null,
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-10-30T23:14:02.361778+09:00",
+      "chain": "cardlabo"
+    },
+    "d7dc16c32bfe68c0": {
+      "game": "pokemon",
+      "store": "ホビビ 通販部",
+      "series": "30th CELEBRATION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-10-30T23:14:02.361817+09:00",
+      "chain": null
+    },
+    "a9f943017eeb6409": {
+      "game": "pokemon",
+      "store": "ホビビ 通販部",
+      "series": null,
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-10-30T23:14:02.361854+09:00",
+      "chain": null
+    },
+    "11268ad3fe4f6d52": {
+      "game": "pokemon",
+      "store": "カードボックス 京都店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-10-30T23:14:02.361915+09:00",
+      "chain": "cardbox"
     }
   }
 }

@@ -315,7 +315,7 @@
     "area": "三重県"
   },
   "store/cardbox-b76fe/": {
-    "name": "カードボックス京都店",
+    "name": "カードボックス 京都店",
     "last": "2026-10-30",
     "game": "pokemon",
     "area": "京都府"
@@ -1085,8 +1085,8 @@
     "area": "群馬県"
   },
   "store/hobibi-630cc/": {
-    "name": "ホビビ通販部",
-    "last": "2026-10-28",
+    "name": "ホビビ 通販部",
+    "last": "2026-10-30",
     "game": "onepiece"
   },
   "store/surugaya-ff745/": {
@@ -3494,7 +3494,8 @@
   "store/o-92d4a/": {
     "name": "お宝創庫（アプリ抽選）",
     "last": "2026-10-30",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "兵庫県"
   },
   "store/tsutaya-b7cb6/": {
     "name": "TSUTAYA伊那店",
@@ -4111,5 +4112,11 @@
     "last": "2026-10-30",
     "game": "onepiece",
     "keep": true
+  },
+  "store/cardlabo-b178a/": {
+    "name": "カードラボ なんば店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "大阪府"
   }
 }
