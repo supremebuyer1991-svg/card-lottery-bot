@@ -2970,6 +2970,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」30パック（再入荷分・購入権の抽選・お一人様30パックまで）",
       "series": "ストームエメラルダ",
       "end": "2026-11-01T23:59:00+09:00",
+      "announce": "2026-11-03",
       "method": "店頭",
       "conditions": "会員・本人確認 ／ 対象地域：愛知県・静岡県・埼玉県・神奈川県",
       "tags": [
@@ -9671,6 +9672,7 @@
       "store": "平和堂",
       "product": "ポケモンカードゲーム スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "end": "2026-11-01T23:59:00+09:00",
+      "announce": "2026-11-12",
       "method": "オンライン",
       "conditions": "アプリ・会員",
       "tags": [
@@ -9696,6 +9698,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販分）",
       "series": "30th CELEBRATION",
       "end": "2026-11-01T23:59:00+09:00",
+      "announce": "2026-11-12",
       "method": "オンライン",
       "conditions": "アプリ・会員",
       "tags": [
@@ -12468,6 +12471,7 @@
       "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】10パック（2,400円税込・発売日の通常販売なし）",
       "series": "ヒロインズエディション vol.2",
       "end": "2026-10-30T18:00:00+09:00",
+      "announce": "2026-10-30T19:00:00+09:00",
       "method": "オンライン",
       "conditions": "SNS応募",
       "tags": [
@@ -14912,6 +14916,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（LivePocket購入権抽選・当選者のみ店頭購入）",
       "series": "30th CELEBRATION",
       "end": "2026-10-31T22:00:00+09:00",
+      "announce": "2026-11-01〜2026-11-04",
       "method": "オンライン",
       "conditions": "本人確認",
       "tags": [
@@ -15348,6 +15353,7 @@
       "series": "ストームエメラルダ",
       "start": "2026-10-29T12:00+09:00",
       "end": "2026-11-01T23:45+09:00",
+      "announce": "2026-11-04",
       "method": "お宝創庫グループアプリの抽選販売から応募",
       "conditions": "お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認",
       "tags": [
@@ -15373,6 +15379,7 @@
       "series": "30th CELEBRATION",
       "start": "2026-10-29T12:00+09:00",
       "end": "2026-11-01T23:45+09:00",
+      "announce": "2026-11-04",
       "method": "お宝創庫グループアプリの抽選販売から応募",
       "conditions": "お宝創庫グループのアプリ会員限定。くわしい条件・受け取り方法はアプリのお知らせで確認",
       "tags": [
@@ -16082,6 +16089,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX（お一人様1BOXまで・シュリンクを外してのお渡し）",
       "series": "ストームエメラルダ",
       "end": "2026-11-01T23:00:00+09:00",
+      "announce": "2026-11-05",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -17283,36 +17291,32 @@
     },
     "last": "2026-10-30"
   },
-  "l/fullcomp-hachioji-30th-1101/": {
+  "l/joshin-op-1102/": {
     "d": {
-      "key": "f2ffef2e57ec247b",
-      "game": "pokemon",
-      "store": "フルコンプ八王子本店",
-      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）",
+      "key": "04ba325b13fe9268",
+      "game": "onepiece",
+      "store": "Joshin webショップ",
+      "product": "ONE PIECEカードゲーム「Heroines Edition vol.2」【EB-05】・「世界最強の戦士」【OP-17】・「Heroines Edition」【EB-03】",
       "products": [
-        "30th CELEBRATION 1BOX（7,200円）",
-        "ストームエメラルダ 1BOX（6,000円）"
+        "Heroines Edition vol.2【EB-05】",
+        "世界最強の戦士【OP-17】",
+        "Heroines Edition【EB-03】"
       ],
-      "series": "30th CELEBRATION",
-      "start": "2026-10-30T10:00+09:00",
-      "end": "2026-11-01T23:59+09:00",
-      "announce": "11/2(月)〜11/3(火)予定",
-      "buy": "11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）",
-      "method": "Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入",
-      "conditions": "LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可",
+      "series": "ヒロインズエディション vol.2",
+      "end": "2026-11-02T09:59+09:00",
+      "announce": "11/12(木)午後以降・11/19(木)午後以降",
+      "method": "Web抽選（Joshin webショップから届く抽選販売の案内メールから応募）→ 当選したら発送",
+      "conditions": "10/3時点でプラチナ・VIPスマイル会員で、10/29 21:59時点でJoshin webショップのメールマガジンに登録している人（案内メールが届いている人だけ応募できます）",
       "tags": [
-        "会員",
-        "本人確認"
+        "会員"
       ],
-      "url": "https://livepocket.jp/e/x425p",
-      "channel": "store",
-      "area": "東京都",
-      "id_check": true,
+      "url": "https://joshinweb.jp/",
+      "channel": "online",
       "member": "account",
-      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
-      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
-      "spath": "store/furukonpu-ace17/",
-      "found_at": "2026-10-30T14:49:16.315466+09:00",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/goldhobby/cabinet/imgrc0200707547.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F",
+      "spath": "store/joshin-a12a5/",
+      "found_at": "2026-10-30T14:57:19.569221+09:00",
       "manual": true
     },
     "last": "2026-10-30"
