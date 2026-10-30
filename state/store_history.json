@@ -2,6 +2,13 @@
   "store/amazon-cbc62/": {
     "name": "Amazon",
     "items": {
+      "2075d8557bdb4468": {
+        "p": "ワンピースカード",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "online"
+      },
       "ede1abc30036f1db": {
         "p": "スターターセットex",
         "g": "pokemon",
@@ -270,13 +277,6 @@
       },
       "a486f1a97690213b": {
         "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-10-26",
-        "c": "online"
-      },
-      "692df068508f4b4b": {
-        "p": "スタートデッキ100 バトルコレクション",
         "g": "pokemon",
         "e": "",
         "f": "2026-10-26",
@@ -6856,6 +6856,13 @@
         "f": "2026-10-30",
         "c": "store"
       },
+      "97d79d75462f595d": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      },
       "50aee1fed1a87a6a": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -10824,6 +10831,13 @@
   "store/puremiamubandai-d716c/": {
     "name": "プレミアムバンダイ",
     "items": {
+      "9635d1c5db9af17d": {
+        "p": "ワンピースカード",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "online"
+      },
       "e5e020eb875bd7d4": {
         "p": "ONE PIECE Heroines Edition vol.2",
         "g": "onepiece",
@@ -10918,6 +10932,13 @@
         "g": "onepiece",
         "e": "2026-10-31",
         "f": "2026-10-30",
+        "c": "store"
+      },
+      "830f90a40d47a7ed": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
         "c": "store"
       },
       "a972d459f7360715": {
@@ -11585,6 +11606,90 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-cafb8/": {
+    "name": "二子玉川",
+    "items": {
+      "261e308bc95a0ccc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/amyupurazakumamoto-be22c/": {
+    "name": "アミュプラザくまもと",
+    "items": {
+      "b1f4bb22bea70645": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-ac1c1/": {
+    "name": "鹿児島",
+    "items": {
+      "d243c206b50e2858": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/amyupurazaooita-8195d/": {
+    "name": "アミュプラザおおいた",
+    "items": {
+      "3af55b8572ced04a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/cardbox-f9dda/": {
+    "name": "カードボックス",
+    "items": {
+      "73ad873983adb991": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T22:00",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/nopao-e69f4/": {
+    "name": "竜星のPAO（各店）",
+    "items": {
+      "2a36c295b969f858": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/wondergoo-5e750/": {
+    "name": "WonderGOO",
+    "items": {
+      "91596d0cfcef028d": {
+        "p": "HEROINE PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T20:59",
         "f": "2026-10-31",
         "c": "store"
       }
