@@ -18,6 +18,33 @@ results:
     date: 2026-10-29
     check: 当選した人にだけメール（落選は連絡なし）
     check_url: https://draw.geo-online.co.jp/lottery/
+  - game: pokemon
+    store: ポケモンセンターオンライン
+    series: ハドウシーカー
+    date: 2026-10-30
+    check: 10/30(金)15:00以降、応募したメールアドレスにお知らせ。サイトの「抽選履歴」でも確認できます
+    check_url: https://www.pokemoncenter-online.com/lottery-history/
+  - game: pokemon
+    store: DMMマイカ（通販）
+    series: 30周年エーフィ・ブラッキーデッキ
+    date: 2026-10-30
+    check: 当選した人にだけアプリのPUSH通知とメール（落選は連絡なし）
+  - game: pokemon
+    store: 福福トレカ（通販）
+    series: 30th CELEBRATION
+    date: 2026-10-30
+    check: お店からのメール・サイトで確認
+    check_url: https://pokemon.fukufukutoreka.com/
+  - game: pokemon
+    store: CARD CREW（カードクルー）通販
+    series: 30th CELEBRATION / ストームエメラルダ
+    date: 2026-10-30
+    check: お店からのメール・マイページで確認
+  - game: onepiece
+    store: CARD CREW（カードクルー）通販
+    series: ヒロインズエディション vol.2
+    date: 2026-10-30
+    check: お店からのメール・マイページで確認
 
 lotteries:
   - slug: pbandai-heroines-vol2-1105
