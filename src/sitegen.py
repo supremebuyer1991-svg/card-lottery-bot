@@ -438,7 +438,31 @@ def _sb_buy(g, x, name_, rk, s, tag, raff):
     return f'<span class="sb-buy">{b}</span>' if b else ""
 
 
-def souba_block(x, sm, fx=None, link=True, us_line=False):
+def _sb_img(img, alt, cls="sb-img"):
+    """相場の欄の商品写真（楽天のアフィリエイトリンク付き）。img = {"image":…, "url":…}"""
+    if not img or not img.get("image"):
+        return ""
+    pic = f'<img src="{escape(img["image"])}" alt="{escape(alt)}" loading="lazy">'
+    return (f'<a class="{cls}" href="{escape(img["url"])}" {_REL} title="楽天市場で見る">{pic}</a>' if img.get("url")
+            else f'<span class="{cls}">{pic}</span>')
+
+
+def _sb_tabs(gs):
+    """相場の一覧の上：ポケカ／ワンピースの切り替え（全部の相場はページに載せたまま、見せる方だけ切り替える）"""
+    if len(gs) < 2:
+        return ""
+    btn = "".join(f'<button type="button" data-g="{g}" aria-pressed="{str(k == 0).lower()}">{escape(GAME_TAB.get(g, GAME_SHORT[g]))}</button>'
+                  for k, g in enumerate(gs))
+    return ('<nav class="sb-tabs" id="sb-tabs" aria-label="ゲームを選ぶ">' + btn + '</nav>'
+            '<script>(function(){var n=document.getElementById("sb-tabs");function show(g){'
+            'document.querySelectorAll(".sb-list[data-g]").forEach(function(s){s.hidden=s.dataset.g!==g;});'
+            'n.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.g===g);});}'
+            'var h=(location.hash||"").slice(1);show(n.querySelector("button[data-g=\\""+h+"\\"]")?h:n.querySelector("button").dataset.g);'
+            'n.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;show(b.dataset.g);'
+            'try{history.replaceState(null,"","#"+b.dataset.g);}catch(x){}});})();</script>')
+
+
+def souba_block(x, sm, fx=None, link=True, us_line=False, img=None):
     """弾ページの相場の欄：いまの相場・定価との差・前日比・7日前比・30日のグラフ・海外"""
     if not sm:
         return ""
@@ -469,7 +493,7 @@ def souba_block(x, sm, fx=None, link=True, us_line=False):
     src = f'https://snkrdunk.com/apparels/{sm["snkr"]}' if sm.get("snkr") else ""
     return (f'<section class="souba" id="souba" aria-label="{escape(x)}の相場"><div class="sb-h"><b>{escape(x)}の相場</b>'
             f'<small>スニダン・{_md(sm["date"])}の取引</small></div>'
-            f'<div class="sb-main"><div class="sb-now"><em>{_yen(sm["price"])}</em>'
+            f'<div class="sb-main">{_sb_img(img, x + " BOX", "sb-pic")}<div class="sb-now"><em>{_yen(sm["price"])}</em>'
             + (f'<span>定価より <b>{abs(gap):,}円</b> 高い相場です</span>' if t and gap > 0 else "")
             + f'</div></div>{chart(sm.get("points") or [], us=sm.get("us_points") if us_line else None, fx=fx)}<div class="sb-grid">{"".join(rows)}</div>{us}'
             f'<p class="sb-note">※スニダンでその日に成立した「1個」の取引の平均です（買取価格ではありません）。取引が少ない日は1件で大きく動きます。'
@@ -1182,7 +1206,8 @@ def build(settings=None, out_dir=None, sample=None):
             rr = rk_.get(f"{g}|{x}") or next((v for k, v in rk_.items() if k.startswith(g + "|") and
                                                canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
             sm = souba_sm.get(f"{g}|{x}")
-            aff = souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + _product_ad(x, name, rr, tag, raff)
+            sb_img = rr if rr.get("image") else None
+            aff = souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + _product_ad(x, name, rr, tag, raff)
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -1244,7 +1269,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": quick_html + _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
+                "aff": quick_html + _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
                                                      + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
@@ -1406,16 +1431,17 @@ def build(settings=None, out_dir=None, sample=None):
                 us = ""
                 if sm.get("us") and souba_fx:
                     us = f'<small>海外 ${sm["us"][1]:,.2f}（約{_yen(round(sm["us"][1] * souba_fx))}）</small>'
-                rows.append((sm["price"], f'<tr><th>{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "")
-                            + f'<a class="sb-more" href="/{series_path(g, x)}#souba">詳しい相場<span aria-hidden="true"> ›</span></a>'
+                rimg = (rk if sample is None else {}).get(f"{g}|{x}") or {}
+                rows.append((sm["price"], f'<tr><th>{_sb_img(rimg, name_ + " BOX", "sb-li")}{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "")
                             + _sb_buy(g, x, name_, rk if sample is None else {}, s, tag, raff) + '</th>'
                             f'<td class="sb-p" data-l="相場"><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
                             f'<td data-l="定価・差">{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
                             + "".join(_cmp_td(sm, k_) for k_ in ("prev", "week")) +
-                            f'<td class="sb-sp" data-l="30日">{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
+                            f'<td class="sb-sp" data-l="30日">{spark(sm.get("points") or [], 160, 40)}'
+                            f'<a class="sb-more" href="/{series_path(g, x)}#souba">詳しい相場<span aria-hidden="true"> ›</span></a></td></tr>'))
             if rows:
                 rows.sort(key=lambda r: -r[0])
-                secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}の{"過去の弾の" if old else ""}BOX相場</h2>'
+                secs.append(f'<section class="sb-list" data-g="{g}"><h2>{escape(GAME_SHORT[g])}の{"過去の弾の" if old else ""}BOX相場</h2>'
                             + ('<p class="sb-note">発売から時間がたった弾です。相場は1日1回（朝）更新しています。</p>' if old else "")
                             + '<div class="sb-scroll"><table>'
                             '<thead><tr><th>商品</th><th>相場</th><th>定価・差</th><th>前日比</th><th>1週間比</th><th>30日</th></tr></thead><tbody>'
@@ -1436,7 +1462,7 @@ def build(settings=None, out_dir=None, sample=None):
             "summary": "", "faq": faq_s,
             "h1": "ポケカ・ワンピースカード BOX相場一覧",
             "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には今受付中のポケカの抽選を載せています。",
-            "aff": intro + "".join(secs), "links": _menu(items, games, games[0]), "root": "/",
+            "aff": intro + _sb_tabs([g for g in games if any(f'data-g="{g}"' in x_ for x_ in secs)]) + "".join(secs), "links": _menu(items, games, games[0]), "root": "/",
             "upd": ("相場の更新 ", souba_raw["updated"]) if souba_raw.get("updated") else None},
             [i for i in items if i["game"] == games[0]], [("トップ", ""), ("BOX相場", "souba/")])
 

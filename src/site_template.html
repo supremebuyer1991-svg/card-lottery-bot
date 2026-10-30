@@ -437,6 +437,15 @@ input[type="search"] { flex: 1 1 160px; }
 .sb-buy a.sb-rk { background: #bf0000; color: #fff; } .sb-buy a.sb-az { background: #ff9900; color: #111; }
 .band.b-pre { background: #0284c7; color: #fff; } .ticket.pre .go.tk { opacity: .85; }
 .sb-list a.sb-more { display: block; width: fit-content; margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--red); text-decoration: none; border: 1px solid var(--red); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.sb-tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; margin: 14px 0 0; padding: 4px; background: var(--navy-soft); border-radius: 999px; position: sticky; top: 0; z-index: 3; }
+.sb-tabs button { border: 0; background: none; font: inherit; font-weight: 800; font-size: 15px; color: var(--ink-2); padding: 8px; border-radius: 999px; cursor: pointer; }
+.sb-tabs button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / .12); }
+.sb-list[hidden] { display: none; }
+.sb-list tbody th { position: relative; }
+.sb-list a.sb-li, .sb-list span.sb-li { float: left; width: 56px; height: 56px; margin: 0 10px 4px 0; border-radius: 8px; background: #fff; border: 1px solid var(--rule); overflow: hidden; }
+.sb-li img, .sb-pic img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.sb-pic { flex: none; width: 84px; height: 84px; border-radius: 10px; background: #fff; border: 1px solid var(--rule); overflow: hidden; }
+.sb-main { justify-content: flex-start; }
 .souba { scroll-margin-top: 12px; } .sb-list .spark { width: 160px; height: 40px; }
 /* スマホ：相場の一覧は横スクロールの表ではなく、商品ごとのカードに */
 @media (max-width: 640px) {
@@ -451,7 +460,8 @@ input[type="search"] { flex: 1 1 160px; }
   .sb-list td.sb-p small { display: inline; margin-left: 6px; }
   .sb-list td.sb-sp { grid-column: 1 / -1; } .sb-list td.sb-sp::before { display: none; }
   .sb-list .spark { width: 100%; height: 44px; }
-  .sb-buy { flex-wrap: wrap; } .sb-list a.sb-more { display: inline-block; margin-right: 6px; }
+  .sb-buy { flex-wrap: wrap; }
+  .sb-list a.sb-more { display: block; width: auto; text-align: center; margin-top: 8px; padding: 7px; font-size: 13px; }  /* 枠の一番下に大きめのボタン */
 }
 /* 弾ページの一番上：発売日・定価・相場・受付中 */
 .ch-note { margin: 4px 0 6px; font-size: 11.5px; color: var(--ink-2); line-height: 1.5; }
