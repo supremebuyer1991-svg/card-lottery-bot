@@ -11509,9 +11509,10 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-30T00:50:40.538609+09:00",
+    "page_checked_at": "2026-10-30T20:51:29.385614+09:00",
     "area": null,
-    "cls": "0dc9bf9dab6b"
+    "cls": "0dc9bf9dab6b",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1"
   },
   "b8f4b6a0dc1d5403": {
     "store": "ブックオフDCM上磯店",
@@ -29948,7 +29949,9 @@
     "cls": "58dd1183886b",
     "issue": 274,
     "page_checked_at": "2026-10-30T20:00:30.503852+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "b559f3f33f35db2d": {
     "store": "TSUTAYA柳川店",
@@ -29976,7 +29979,9 @@
     "multi": false,
     "cls": "f2e044977f16",
     "page_checked_at": "2026-10-30T20:00:32.570508+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "0901bfb244155228": {
     "store": "カードラボ名古屋駅前店",
@@ -30836,7 +30841,9 @@
     "multi": false,
     "cls": "8b6ad437347e",
     "page_checked_at": "2026-10-30T20:05:41.006091+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "0c1c368ddbc1cacc": {
     "store": "古本市場 野口店",
@@ -30920,7 +30927,9 @@
     "issue": 276,
     "apply_url": "https://livepocket.jp/e/r0ckk",
     "page_checked_at": "2026-10-30T20:05:43.096348+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "79bde5d71430255b": {
     "store": "キデイランド二子玉川店",
@@ -31178,7 +31187,9 @@
     "cls": "1819a7661a7f",
     "tco_checked": true,
     "page_checked_at": "2026-10-30T20:05:51.750052+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "22a1a1d377b062bb": {
     "store": "カードショップ オリオンベース",
@@ -31207,7 +31218,9 @@
     "cls": "4811048f0b44",
     "tco_checked": true,
     "page_checked_at": "2026-10-30T20:05:53.801631+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "d7bcc7f580001af2": {
     "store": "ふるいち イオンモール座間店",
@@ -31357,7 +31370,9 @@
     "multi": false,
     "cls": "952a33bd9b20",
     "page_checked_at": "2026-10-30T20:05:55.858894+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "7429b03f37135ab5": {
     "store": "キデイランド イオンモール浦和美園店",
@@ -31385,7 +31400,9 @@
     "multi": false,
     "cls": "c0aac0bdb650",
     "page_checked_at": "2026-10-30T20:05:57.916785+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "d7d9a021ea5f8d7a": {
     "store": "BOOKOFF SUPERBAZAAR 町田中央通り店",
@@ -31446,7 +31463,9 @@
     "cls": "cf9d13616f84",
     "issue": 290,
     "page_checked_at": "2026-10-30T20:05:59.952888+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://customform.jp/form/input/258452?key=1d4d0d24"
+    "page_err": "403 Client Error: Forbidden for url: https://customform.jp/form/input/258452?key=1d4d0d24",
+    "post_checked": true,
+    "details_checked": true
   },
   "8094e59a5e4955f6": {
     "store": "TC バトロコ川崎駅前",
@@ -31503,7 +31522,9 @@
     "cls": "295f5c0f169e",
     "issue": 291,
     "page_checked_at": "2026-10-30T20:06:06.551337+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "cd8185b5c5a81c3c": {
     "store": "トレカエース茨大前店",
