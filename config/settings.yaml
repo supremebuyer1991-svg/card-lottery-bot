@@ -74,9 +74,9 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "pokemon|ハドウシーカー":
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/geexcollection/s783/"
-  "onepiece|ヒロインズエディション vol.2": &heroines2
-    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9229/4582770059229_1_2.jpg?_ex=300x300"
-    url: "https://item.rakuten.co.jp/book/18771764/"
+  "onepiece|ヒロインズエディション vol.2": &heroines2   # 箱が枠いっぱいだと大きく見えるので、まわりに余白のある写真
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922090.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13922090000/"
   "onepiece|Heroines Edition vol.2": *heroines2
   "onepiece|EB-05": *heroines2
   "onepiece|ヒロインズエディション2": *heroines2
