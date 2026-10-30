@@ -500,6 +500,19 @@ lotteries:
     tags: [アプリ, 会員, 本人確認]
     url: https://geo-online.co.jp/news/787
 
+  - slug: 7net-hadou-seeker-1104
+    game: pokemon
+    store: セブンネットショッピング
+    series: ハドウシーカー
+    product: ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX
+    channel: online
+    method: Web抽選（セブンネットショッピング）→ 当選したら発送。くわしい応募方法は後日告知
+    start: 2026-11-04T17:00
+    conditions: 2025/10/1〜2026/10/23にセブンネットショッピングで商品を注文して受け取り済みの人（電子書籍は注文完了でOK）。締切などのくわしい内容は受付開始時に告知予定
+    member: account
+    tags: [会員, 購入履歴]
+    url: https://7net.omni7.jp/
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
