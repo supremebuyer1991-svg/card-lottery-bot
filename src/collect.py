@@ -129,6 +129,11 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     for src in sources:
         if src.get("enabled") is False:
             continue
+        if src["type"] != "x" and src.get("every_hours"):  # Xいがいも、数時間に1回だけ見る情報元
+            lt = parse_dt(src_last.get(src["id"]))
+            if lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
+                continue
+            src_last[src["id"]] = now().isoformat()
         if src["type"] == "x":
             if not x_ok:
                 continue
@@ -201,6 +206,20 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if prev.get(url) != cur[url]:
                     texts.append((text, url))
             seen[sid] = cur
+        elif src["type"] == "html_newlinks":
+            # 主催者ページ（LivePocketのお店の一覧など）→ まだ読んでいない抽選ページだけをAIへ（1ページ1回だけ）
+            # 抽選ページは残り時間などで中身が少しずつ変わるので、中身の変化では読み直さない
+            done = seen.get(sid) if isinstance(seen.get(sid), list) else []
+            for url in article_links(body, src["url"], src.get("link_keywords", []), src.get("max_articles", 30)):
+                if url in done:
+                    continue
+                done.append(url)
+                try:
+                    texts.append((html_to_text(fetcher(url), url), url))
+                except Exception as e:
+                    log(f"記事取得失敗 {url}: {e}")
+                    done.remove(url)
+            seen[sid] = done[-300:]
         elif src["type"] == "html_cards" and "board-card" in body and cardchusen_items(body, src["url"]):
             # cardchusen：整理済みデータを直接読む（AI不要・無料）
             prev = seen.get(sid) if isinstance(seen.get(sid), dict) else {}

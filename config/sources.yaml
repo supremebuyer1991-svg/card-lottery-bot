@@ -169,6 +169,16 @@ sources:
     keywords: '(抽選 OR 予約)'
     max_results: 10
 
+  # --- お店のLivePocket主催者ページ：新しい抽選ページが増えたら、そのページだけ読む ---
+  - id: lp_kiddyland
+    game: auto
+    name: キデイランド（LivePocket）
+    type: html_newlinks
+    url: https://livepocket.jp/p/hpmzs
+    every_hours: 2
+    link_keywords: ["ポケモンカード", "ポケカ", "ワンピース", "ONE PIECE", "フュージョンワールド", "ドラゴンボール"]
+    max_articles: 30
+
   # --- 他の抽選まとめサイト：ネタ元として事実（店舗・締切・応募URL）だけ拾う ---
   # 文章は一切転載しない。投稿・記事のリンクは店舗の応募ページにし、このサイトの記事URLは載せない
   # ※ フッターの「利用規約」で自動取得が禁止されていたら enabled: false に
