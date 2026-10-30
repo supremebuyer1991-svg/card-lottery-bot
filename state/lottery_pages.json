@@ -16854,6 +16854,7 @@
       "store": "PAO・竜星のPAO（各店）",
       "product": "ONE PIECEカードゲーム商品関連（11/21(土)発売予定）",
       "end": "2026-11-01T23:59:00+09:00",
+      "conditions": "対象店舗から受取店舗を選んで応募（関東の対象店舗）",
       "url": "https://livepocket.jp/e/6t8b2y",
       "channel": "store",
       "area": "東京都",
@@ -17025,6 +17026,75 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flimit-shop%2Fnygao_4582770078718%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flimit-shop%2Fnygao_4582770078718%2F",
       "spath": "store/tsutaya-de7b4/",
       "found_at": "2026-10-30T13:13:14.494235+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/e904efcfb9/": {
+    "d": {
+      "key": "e904efcfb9ee3fc0",
+      "game": "onepiece",
+      "store": "ふるいちイオンモール浦和美園店",
+      "product": "ONE PIECE Heroines Edition vol.2（エクストラブースター）",
+      "series": "ヒロインズエディション vol.2",
+      "start": "2026-10-28",
+      "end": "2026-11-01T23:00:00+09:00",
+      "method": "Web",
+      "url": "https://furu1.net/news/news_information/opkl20261031",
+      "channel": "store",
+      "area": "埼玉県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/goldhobby/cabinet/13676845/13676855/13993046/op-eb05.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Fop-eb05-b%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Fop-eb05-b%2F",
+      "spath": "store/aeon-02dd6/",
+      "found_at": "2026-10-28T14:11:19.592031+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/bcb6987a37/": {
+    "d": {
+      "key": "bcb6987a37b94795",
+      "game": "dragonball",
+      "store": "カーデリア池袋店",
+      "product": "CROSS FORCE【FB10】",
+      "series": "CROSS FORCE",
+      "start": "2026-10-28T00:00:00+09:00",
+      "end": "2026-11-03T23:59:00+09:00",
+      "method": "Web",
+      "conditions": "カーデリアEC会員限定",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeua7TaUL-9ArQ9K5AZyfvVc50imujhCSg7JjURDwH1iMrYwg/viewform",
+      "channel": "store",
+      "area": "東京都",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yum-yum/cabinet/4582769965937.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769965937%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fyum-yum%2F4582769965937%2F",
+      "spath": "store/kaderia-7afd2/",
+      "found_at": "2026-10-29T03:26:05.785151+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/56533be02e/": {
+    "d": {
+      "key": "56533be02e49089a",
+      "game": "pokemon",
+      "store": "あみあみ本店",
+      "product": "ポケモンカード ハドウシーカー 30パック入りBOX",
+      "series": "ハドウシーカー",
+      "end": "2026-11-04T13:59:00+09:00",
+      "announce": "2026-11-05",
+      "method": "Web",
+      "conditions": "amiami.jp（あみあみ通販本店）の会員アカウントが必要。スペシャルデッキセットMEGAと同時応募可。当選者はオンライン販売で購入",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://form.amiami.jp/draw20261030",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/amiami-d6785/",
+      "found_at": "2026-10-30T12:11:24.459098+09:00"
     },
     "last": "2026-10-30"
   }
