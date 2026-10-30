@@ -110,7 +110,7 @@ sources:
     name: X 抽選情報アカウント
     type: x
     quote: false
-    accounts: ["chang_tingyao", "AfroTCG", "Meisy_TCG_News", "pachinker_m", "crypto_evo_0", "NinjaMaruTCG", "shyzeriyan", "davincii777", "Si165", "pokecachan", "onepiecetcgnews"]  # Si165＝抽選ロトボックス（カードボックス系）の新着を自動でポストするアカウント。pokecachan・onepiecetcgnews＝大手通販（あみあみ・Joshinなど）の抽選開始が早い
+    accounts: ["chang_tingyao", "AfroTCG", "Meisy_TCG_News", "pachinker_m", "crypto_evo_0", "NinjaMaruTCG", "shyzeriyan", "davincii777", "Si165", "pokecachan", "onepiecetcgnews", "pokegetinfomain"]  # Si165＝抽選ロトボックス（カードボックス系）の新着を自動でポストするアカウント。pokecachan・onepiecetcgnews＝大手通販（あみあみ・Joshinなど）の抽選開始が早い
     # 「忘れたらあかんやつ」のように「抽選」と書かずに応募URLだけ貼る告知も多いので、リンク付きのポストも拾う
     keywords: '(抽選 OR 応募 OR 締切 OR 受付 OR has:links)'
     max_results: 20
