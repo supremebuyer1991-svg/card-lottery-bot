@@ -17455,5 +17455,59 @@
       "found_at": "2026-10-30T15:15:51.054167+09:00"
     },
     "last": "2026-10-30"
+  },
+  "l/geo-special-deck-mega-1105/": {
+    "d": {
+      "key": "ae803f67d815a6d8",
+      "game": "pokemon",
+      "store": "ゲオ（Web抽選）",
+      "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA「メガオーダイル・メガカイリュー・メガゲンガー」（11/13発売日分）",
+      "series": "スペシャルデッキセットMEGA",
+      "start": "2026-11-02T11:00+09:00",
+      "end": "2026-11-05T17:59+09:00",
+      "announce": "当選した人にだけメールで連絡",
+      "method": "Web抽選（ゲオ抽選販売専用サイト・GEO IDでログイン）→ 当選したら店頭で購入",
+      "conditions": "店舗レンタル会員機能付きのPontaカードを持っていて、ゲオアプリとPonta会員IDを連携済みの人。1人1点・1回まで。購入時に本人確認書類（住所の書いてある原本）とレンタル会員証、自分のスマホの「店舗購入」画面が必要（スクショ不可）。代理購入不可",
+      "tags": [
+        "アプリ",
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://geo-online.co.jp/news/787",
+      "channel": "store",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jugem2020/cabinet/13772022/imgi_51_1c0e88a.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F",
+      "spath": "store/geo-b92c5/",
+      "found_at": "2026-10-30T15:04:46.859707+09:00",
+      "manual": true
+    },
+    "last": "2026-10-30"
+  },
+  "l/7net-hadou-seeker-1104/": {
+    "d": {
+      "key": "058e370d0b2174ea",
+      "game": "pokemon",
+      "store": "セブンネットショッピング",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+      "series": "ハドウシーカー",
+      "start": "2026-11-04T17:00+09:00",
+      "method": "Web抽選（セブンネットショッピング）→ 当選したら発送。くわしい応募方法は後日告知",
+      "conditions": "2025/10/1〜2026/10/23にセブンネットショッピングで商品を注文して受け取り済みの人（電子書籍は注文完了でOK）。締切などのくわしい内容は受付開始時に告知予定",
+      "tags": [
+        "会員",
+        "購入履歴"
+      ],
+      "url": "https://7net.omni7.jp/",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/sevennet-2fe22/",
+      "found_at": "2026-10-30T15:21:09.646327+09:00",
+      "manual": true
+    },
+    "last": "2026-10-30"
   }
 }
