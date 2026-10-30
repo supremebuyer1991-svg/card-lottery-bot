@@ -2406,10 +2406,11 @@
     "keep": true
   },
   "store/cardlabo-817ef/": {
-    "name": "カードラボ岐阜店",
-    "last": "2026-10-26",
+    "name": "カードラボ 岐阜店",
+    "last": "2026-10-30",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "岐阜県"
   },
   "store/tsutaya-771dd/": {
     "name": "TSUTAYA Trading Card 府中駅前",
@@ -4037,6 +4038,24 @@
   },
   "store/wondergoo-6e197/": {
     "name": "新星堂/WonderGOO/Ganryu",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/torekaesu-71d00/": {
+    "name": "トレカエース茨大前店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "茨城県"
+  },
+  "store/tsutaya-f7b98/": {
+    "name": "TSUTAYA金沢店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "石川県"
+  },
+  "store/bookoff-05777/": {
+    "name": "BOOKOFF SUPER BAZAAR 松戸駅東口店",
     "last": "2026-10-30",
     "game": "onepiece",
     "keep": true

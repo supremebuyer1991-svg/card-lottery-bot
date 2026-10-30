@@ -1212,7 +1212,8 @@
     "found_at": "2026-10-26T18:20:17.046439+09:00",
     "multi": false,
     "cls": "74dab7c02654",
-    "page_checked_at": "2026-10-30T19:14:31.989437+09:00"
+    "page_checked_at": "2026-10-30T19:52:13.094333+09:00",
+    "page_err": "中身が空"
   },
   "1bf673ffc79dad4a": {
     "store": "TSUTAYA Trading Card 平塚",
@@ -2477,7 +2478,8 @@
     "found_at": "2026-10-26T18:20:17.047939+09:00",
     "multi": false,
     "cls": "de6838b8fd72",
-    "page_checked_at": "2026-10-30T19:14:34.140065+09:00"
+    "page_checked_at": "2026-10-30T19:52:15.177400+09:00",
+    "page_err": "中身が空"
   },
   "3e5fb8c243a9365f": {
     "store": "北国書林辰口店",
@@ -3051,7 +3053,8 @@
     "multi": false,
     "cls": "ea7930c6e036",
     "apply_url": "https://livepocket.jp/e/5-9tt",
-    "page_checked_at": "2026-10-30T19:14:36.363303+09:00"
+    "page_checked_at": "2026-10-30T19:52:17.254724+09:00",
+    "page_err": "中身が空"
   },
   "692e23e7362db78f": {
     "store": "TSUTAYA山陽店",
@@ -7831,7 +7834,8 @@
     "found_at": "2026-10-26T19:33:03.642258+09:00",
     "multi": false,
     "cls": "cc9aba4738c4",
-    "page_checked_at": "2026-10-30T19:14:38.469825+09:00"
+    "page_checked_at": "2026-10-30T19:52:19.329881+09:00",
+    "page_err": "中身が空"
   },
   "31c34ac1588a4396": {
     "store": "カードボックス横浜西口2号店",
@@ -8203,7 +8207,8 @@
     "found_at": "2026-10-26T20:43:24.385213+09:00",
     "multi": false,
     "cls": "e6ae817a4b53",
-    "page_checked_at": "2026-10-30T19:14:40.605406+09:00"
+    "page_checked_at": "2026-10-30T19:52:21.409074+09:00",
+    "page_err": "中身が空"
   },
   "9234371bbec61ffe": {
     "store": "キッズリパブリック",
@@ -10500,10 +10505,11 @@
     "deadline_checked_at": "2026-10-30T07:28:07.379421+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・締切の記載なし",
-    "page_checked_at": "2026-10-30T19:14:42.758336+09:00",
+    "page_checked_at": "2026-10-30T19:52:23.581228+09:00",
     "multi": false,
     "cls": "0d4591e12343",
-    "issue": 86
+    "issue": 86,
+    "page_err": "中身が空"
   },
   "edc820f889529377": {
     "store": "ブックオフ松戸駅東口店",
@@ -10682,7 +10688,8 @@
     "deadline_checked_at": "2026-10-30T07:28:14.428229+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・画像・本文に受付期間の記載なし",
-    "page_checked_at": "2026-10-30T19:14:44.848357+09:00"
+    "page_checked_at": "2026-10-30T19:52:25.768753+09:00",
+    "page_err": "中身が空"
   },
   "02b044e2f83ef07b": {
     "store": "ホビーステーション 対象店",
@@ -11253,11 +11260,12 @@
     "key": "1afc46d9fb860631",
     "status": "pending",
     "found_at": "2026-10-27T08:21:17.325767+09:00",
-    "page_checked_at": "2026-10-30T19:14:44.848376+09:00",
+    "page_checked_at": "2026-10-30T19:52:25.768769+09:00",
     "multi": true,
     "cls": "ccd6b97d5d1e",
     "issue": 100,
-    "apply_url": "https://livepocket.jp/e/05tt3"
+    "apply_url": "https://livepocket.jp/e/05tt3",
+    "page_err": "中身が空"
   },
   "226d91be48f6ac82": {
     "store": "熱田",
@@ -11910,9 +11918,10 @@
     "key": "d780c65c163dc90e",
     "status": "approved",
     "found_at": "2026-10-27T10:16:13.740083+09:00",
-    "page_checked_at": "2026-10-30T19:14:47.071930+09:00",
+    "page_checked_at": "2026-10-30T19:52:27.859422+09:00",
     "multi": false,
-    "cls": "d4267f4b7148"
+    "cls": "d4267f4b7148",
+    "page_err": "中身が空"
   },
   "2a6bc90930c9fb09": {
     "store": "ビックカメラ岡山駅前店",
@@ -13298,7 +13307,8 @@
     "found_at": "2026-10-28T00:12:08.164868+09:00",
     "cls": "ab5675498ca2",
     "issue": 116,
-    "page_checked_at": "2026-10-30T19:14:49.221414+09:00"
+    "page_checked_at": "2026-10-30T19:52:29.908922+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014009/?cl=220"
   },
   "882737e85e0bd9e6": {
     "store": "しまむら",
@@ -13327,7 +13337,8 @@
     "found_at": "2026-10-28T00:12:08.164900+09:00",
     "cls": "b3dd0366c7de",
     "issue": 117,
-    "page_checked_at": "2026-10-30T19:14:49.430471+09:00"
+    "page_checked_at": "2026-10-30T19:52:30.022043+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014291/?cl=220"
   },
   "e837c631b8234f52": {
     "store": "しまむら",
@@ -13356,7 +13367,8 @@
     "found_at": "2026-10-28T00:12:08.165140+09:00",
     "cls": "f0691ff02270",
     "issue": 118,
-    "page_checked_at": "2026-10-30T19:14:49.534662+09:00"
+    "page_checked_at": "2026-10-30T19:52:30.071497+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014364/?cl=220"
   },
   "d667c108746fa3dd": {
     "store": "オレタン岡山本店",
@@ -14034,7 +14046,8 @@
     "cls": "450399f18674",
     "issue": 130,
     "apply_url": "https://livepocket.jp/e/dof-w",
-    "page_checked_at": "2026-10-30T19:14:49.683562+09:00"
+    "page_checked_at": "2026-10-30T19:52:30.125596+09:00",
+    "page_err": "中身が空"
   },
   "0a9ffeac6fdf12e4": {
     "store": "ブックオフイオンモール成田店",
@@ -16620,9 +16633,10 @@
     "key": "b68fdd59963defcc",
     "status": "approved",
     "found_at": "2026-10-28T13:26:12.193612+09:00",
-    "page_checked_at": "2026-10-30T19:14:51.821438+09:00",
+    "page_checked_at": "2026-10-30T19:52:32.311276+09:00",
     "multi": false,
-    "cls": "afef4584dc4a"
+    "cls": "afef4584dc4a",
+    "page_err": "中身が空"
   },
   "babeaee16be30d1d": {
     "store": "しまむらパーク",
@@ -16817,10 +16831,11 @@
     "key": "830e1917f37e71e0",
     "status": "approved",
     "found_at": "2026-10-28T13:26:12.193839+09:00",
-    "page_checked_at": "2026-10-30T19:14:54.047003+09:00",
+    "page_checked_at": "2026-10-30T19:52:34.489141+09:00",
     "multi": false,
     "cls": "06e7c3cafae2",
-    "announce": "2026-11-10"
+    "announce": "2026-11-10",
+    "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=118"
   },
   "a9c14805495d9811": {
     "store": "オレタン福岡天神店",
@@ -16846,9 +16861,10 @@
     "key": "a9c14805495d9811",
     "status": "approved",
     "found_at": "2026-10-28T13:26:12.193868+09:00",
-    "page_checked_at": "2026-10-30T19:14:54.196525+09:00",
+    "page_checked_at": "2026-10-30T19:52:34.674368+09:00",
     "multi": false,
-    "cls": "a8a98bccd12e"
+    "cls": "a8a98bccd12e",
+    "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=119"
   },
   "eeb89800017322a5": {
     "store": "オレタン松山店",
@@ -16874,9 +16890,10 @@
     "key": "eeb89800017322a5",
     "status": "approved",
     "found_at": "2026-10-28T13:26:12.193900+09:00",
-    "page_checked_at": "2026-10-30T19:14:54.258139+09:00",
+    "page_checked_at": "2026-10-30T19:52:34.729371+09:00",
     "multi": false,
-    "cls": "691f86630dd6"
+    "cls": "691f86630dd6",
+    "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=120"
   },
   "740d1f8da80a66b0": {
     "store": "TSUTAYA Trading Card 平塚店",
@@ -19702,9 +19719,10 @@
     "key": "3325ac280df7a8cb",
     "status": "approved",
     "found_at": "2026-10-28T14:16:53.826213+09:00",
-    "page_checked_at": "2026-10-30T19:14:54.312914+09:00",
+    "page_checked_at": "2026-10-30T19:52:34.788694+09:00",
     "multi": true,
-    "cls": "1478df112688"
+    "cls": "1478df112688",
+    "page_err": "中身が空"
   },
   "3a52c25a5394922b": {
     "store": "ブックエース上荒川店",
@@ -19934,10 +19952,11 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-30T19:14:56.550857+09:00",
+    "page_checked_at": "2026-10-30T19:52:36.969294+09:00",
     "multi": false,
     "cls": "27b7445efae8",
-    "x_post": "https://x.com/omusubicororiin/status/2115563459467464949"
+    "x_post": "https://x.com/omusubicororiin/status/2115563459467464949",
+    "page_err": "403 Client Error: Forbidden for url: https://justice.membercard.jp/lottery"
   },
   "0017f4145469440e": {
     "game": "onepiece",
@@ -20195,10 +20214,11 @@
     "key": "9f38d9dd9e6665ee",
     "status": "approved",
     "found_at": "2026-10-28T18:01:13.758688+09:00",
-    "page_checked_at": "2026-10-30T19:14:56.682295+09:00",
+    "page_checked_at": "2026-10-30T19:52:37.116133+09:00",
     "multi": false,
     "cls": "c46f6b24b378",
-    "apply_url": "https://livepocket.jp/e/ebktx"
+    "apply_url": "https://livepocket.jp/e/ebktx",
+    "page_err": "中身が空"
   },
   "0288af00976a6640": {
     "store": "ビックカメラ水戸駅店",
@@ -20345,9 +20365,10 @@
     "deadline_checked_at": "2026-10-30T07:28:20.045068+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・本文に締切の記載なし",
-    "page_checked_at": "2026-10-30T19:14:58.788147+09:00",
+    "page_checked_at": "2026-10-30T19:52:39.285772+09:00",
     "cls": "0170ef69b488",
-    "issue": 183
+    "issue": 183,
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "7a017759249b2b71": {
     "store": "オレタン福岡天神店",
@@ -21949,7 +21970,8 @@
     "multi": false,
     "cls": "9025a8bd33ca",
     "apply_url": "https://livepocket.jp/e/dwe-x",
-    "page_checked_at": "2026-10-30T19:14:58.984523+09:00"
+    "page_checked_at": "2026-10-30T19:52:39.367001+09:00",
+    "page_err": "中身が空"
   },
   "7e484091d537009c": {
     "store": "ふるいち龍ケ崎店",
@@ -22696,9 +22718,10 @@
     "key": "11ef7c15555adc9a",
     "status": "approved",
     "found_at": "2026-10-29T10:30:18.750534+09:00",
-    "page_checked_at": "2026-10-30T19:15:01.101480+09:00",
+    "page_checked_at": "2026-10-30T19:52:41.457591+09:00",
     "multi": false,
-    "cls": "bac6032796c3"
+    "cls": "bac6032796c3",
+    "page_err": "中身が空"
   },
   "da1a1abe7868cfde": {
     "store": "ジャスティス（大阪）",
@@ -23733,9 +23756,10 @@
     "key": "1fe1cb835e78194f",
     "status": "approved",
     "found_at": "2026-10-29T10:30:22.381340+09:00",
-    "page_checked_at": "2026-10-30T19:15:03.209524+09:00",
+    "page_checked_at": "2026-10-30T19:52:43.507354+09:00",
     "multi": false,
-    "cls": "19d9b42c2217"
+    "cls": "19d9b42c2217",
+    "page_err": "中身が空"
   },
   "25fb7de87a078326": {
     "store": "トレカエース常陸太田店",
@@ -23762,9 +23786,10 @@
     "key": "25fb7de87a078326",
     "status": "approved",
     "found_at": "2026-10-29T10:30:22.381353+09:00",
-    "page_checked_at": "2026-10-30T19:15:03.209544+09:00",
+    "page_checked_at": "2026-10-30T19:52:43.507371+09:00",
     "multi": false,
-    "cls": "99a5e8738af2"
+    "cls": "99a5e8738af2",
+    "page_err": "中身が空"
   },
   "566b3130afa80a68": {
     "store": "福田屋百貨店（宇都宮店・インターパーク店）",
@@ -23986,10 +24011,11 @@
     "key": "7911fd432d6b2131",
     "status": "approved",
     "found_at": "2026-10-29T12:08:57.891156+09:00",
-    "page_checked_at": "2026-10-30T19:15:05.356402+09:00",
+    "page_checked_at": "2026-10-30T19:52:45.608183+09:00",
     "multi": false,
     "cls": "f4f7275a9aca",
-    "apply_url": "https://livepocket.jp/e/05tt3"
+    "apply_url": "https://livepocket.jp/e/05tt3",
+    "page_err": "中身が空"
   },
   "4020cbd68f394917": {
     "store": "古本市場野口店",
@@ -24015,9 +24041,10 @@
     "key": "4020cbd68f394917",
     "status": "approved",
     "found_at": "2026-10-29T12:08:57.891194+09:00",
-    "page_checked_at": "2026-10-30T19:15:05.356423+09:00",
+    "page_checked_at": "2026-10-30T19:52:45.608200+09:00",
     "multi": false,
-    "cls": "959240f511c4"
+    "cls": "959240f511c4",
+    "page_err": "中身が空"
   },
   "e95a2985cdf3f569": {
     "store": "古本市場野口店",
@@ -24043,10 +24070,11 @@
     "key": "e95a2985cdf3f569",
     "status": "approved",
     "found_at": "2026-10-29T12:08:57.891221+09:00",
-    "page_checked_at": "2026-10-30T19:15:07.434082+09:00",
+    "page_checked_at": "2026-10-30T19:52:47.657842+09:00",
     "multi": false,
     "cls": "e9893424aa1a",
-    "announce": "2026-11-01〜2026-11-04"
+    "announce": "2026-11-01〜2026-11-04",
+    "page_err": "中身が空"
   },
   "e6cdb66af56b9b6c": {
     "store": "蔦屋書店熊本三年坂",
@@ -24345,10 +24373,11 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-30T19:15:07.434102+09:00",
+    "page_checked_at": "2026-10-30T19:52:47.657859+09:00",
     "multi": false,
     "cls": "b7a44b1c8953",
-    "x_post": "https://x.com/Tekabo_BOX/status/2115945273457623285"
+    "x_post": "https://x.com/Tekabo_BOX/status/2115945273457623285",
+    "page_err": "中身が空"
   },
   "10b01de6610120d0": {
     "store": "お宝創庫",
@@ -25010,10 +25039,11 @@
     "key": "7bbf2b96c446ce1a",
     "status": "approved",
     "found_at": "2026-10-29T16:30:49.698811+09:00",
-    "page_checked_at": "2026-10-30T19:15:09.504230+09:00",
+    "page_checked_at": "2026-10-30T19:52:49.837394+09:00",
     "multi": false,
     "cls": "8fa1d3b13600",
-    "apply_url": "https://livepocket.jp/e/2kbq4"
+    "apply_url": "https://livepocket.jp/e/2kbq4",
+    "page_err": "中身が空"
   },
   "7438ddd6d74c1d0a": {
     "store": "トレカエース常陸太田店",
@@ -26020,9 +26050,10 @@
     "found_at": "2026-10-30T00:49:18.612266+09:00",
     "apply_url": "https://livepocket.jp/e/czxdo",
     "tco_checked": true,
-    "page_checked_at": "2026-10-30T19:15:11.577882+09:00",
+    "page_checked_at": "2026-10-30T19:52:52.033570+09:00",
     "multi": true,
-    "cls": "41f580754598"
+    "cls": "41f580754598",
+    "page_err": "中身が空"
   },
   "49af5656e74165a4": {
     "store": "熊本県（各店）",
@@ -27045,10 +27076,11 @@
     "key": "393f37ded6088872",
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157457+09:00",
-    "page_checked_at": "2026-10-30T19:15:13.645261+09:00",
+    "page_checked_at": "2026-10-30T19:52:54.093682+09:00",
     "multi": false,
     "cls": "d036333cd04b",
-    "apply_url": "https://livepocket.jp/e/w3o7c"
+    "apply_url": "https://livepocket.jp/e/w3o7c",
+    "page_err": "中身が空"
   },
   "590552e3eb3c9320": {
     "store": "キデイランド二子玉川店",
@@ -27073,10 +27105,11 @@
     "key": "590552e3eb3c9320",
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157499+09:00",
-    "page_checked_at": "2026-10-30T19:15:15.858511+09:00",
+    "page_checked_at": "2026-10-30T19:52:56.264520+09:00",
     "multi": false,
     "cls": "3cdc10d55194",
-    "apply_url": "https://livepocket.jp/e/mkpvg"
+    "apply_url": "https://livepocket.jp/e/mkpvg",
+    "page_err": "中身が空"
   },
   "d44804a79f781165": {
     "store": "キデイランド吉祥寺店",
@@ -27101,10 +27134,11 @@
     "key": "d44804a79f781165",
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157521+09:00",
-    "page_checked_at": "2026-10-30T19:15:17.936238+09:00",
+    "page_checked_at": "2026-10-30T19:52:58.442539+09:00",
     "multi": false,
     "cls": "c458e91521a3",
-    "apply_url": "https://livepocket.jp/e/wjv4a"
+    "apply_url": "https://livepocket.jp/e/wjv4a",
+    "page_err": "中身が空"
   },
   "25422037c323df4d": {
     "store": "キデイランド鹿児島店",
@@ -27129,10 +27163,11 @@
     "key": "25422037c323df4d",
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157541+09:00",
-    "page_checked_at": "2026-10-30T19:15:20.010158+09:00",
+    "page_checked_at": "2026-10-30T19:53:00.492763+09:00",
     "multi": false,
     "cls": "c9ecf7a74c74",
-    "apply_url": "https://livepocket.jp/e/w3o7c"
+    "apply_url": "https://livepocket.jp/e/w3o7c",
+    "page_err": "中身が空"
   },
   "af6a99bc3f777d1b": {
     "store": "キデイランド アミュプラザおおいた店",
@@ -27157,9 +27192,10 @@
     "key": "af6a99bc3f777d1b",
     "status": "approved",
     "found_at": "2026-10-30T10:32:54.157560+09:00",
-    "page_checked_at": "2026-10-30T19:15:20.010178+09:00",
+    "page_checked_at": "2026-10-30T19:53:00.492780+09:00",
     "multi": false,
-    "cls": "cc67c55003b2"
+    "cls": "cc67c55003b2",
+    "page_err": "中身が空"
   },
   "649df331438fa93b": {
     "store": "キデイランド吉祥寺店",
@@ -27331,7 +27367,8 @@
     "multi": false,
     "cls": "4eb190c5dd6f",
     "tco_checked": true,
-    "page_checked_at": "2026-10-30T19:15:22.079495+09:00"
+    "page_checked_at": "2026-10-30T19:53:02.560155+09:00",
+    "page_err": "中身が空"
   },
   "7864484cefdf152d": {
     "store": "ブックセンター江戸屋",
@@ -27384,10 +27421,11 @@
     "key": "27ce88c8e3ed5d10",
     "status": "approved",
     "found_at": "2026-10-30T11:17:46.943432+09:00",
-    "page_checked_at": "2026-10-30T19:15:24.149915+09:00",
+    "page_checked_at": "2026-10-30T19:53:04.608875+09:00",
     "apply_url": "https://livepocket.jp/e/nzren",
     "multi": false,
-    "cls": "1fe547fcbecb"
+    "cls": "1fe547fcbecb",
+    "page_err": "中身が空"
   },
   "98eb4a507e406cbe": {
     "store": "TSUTAYA Trading Card 平塚店",
@@ -27413,9 +27451,10 @@
     "key": "98eb4a507e406cbe",
     "status": "approved",
     "found_at": "2026-10-30T11:17:46.943471+09:00",
-    "page_checked_at": "2026-10-30T19:15:26.237083+09:00",
+    "page_checked_at": "2026-10-30T19:53:06.664572+09:00",
     "multi": false,
-    "cls": "1ee0cd1217f4"
+    "cls": "1ee0cd1217f4",
+    "page_err": "中身が空"
   },
   "2b335efad7cf5d0f": {
     "store": "北国書林松任店",
@@ -27469,10 +27508,11 @@
     "key": "fb2ef4595b6d652a",
     "status": "approved",
     "found_at": "2026-10-30T11:17:46.943534+09:00",
-    "page_checked_at": "2026-10-30T19:15:26.237102+09:00",
+    "page_checked_at": "2026-10-30T19:53:06.664589+09:00",
     "multi": false,
     "cls": "07ab5d5c9f82",
-    "announce": "2026-11-05"
+    "announce": "2026-11-05",
+    "page_err": "中身が空"
   },
   "21614e687fd315a8": {
     "store": "お宝市番館三重本店",
@@ -29727,7 +29767,7 @@
     "channel": "store",
     "area": "大阪府",
     "id_check": true,
-    "member": null,
+    "member": "account",
     "tags": [
       "本人確認"
     ],
@@ -32243,5 +32283,204 @@
     "found_at": "2026-10-30T18:24:01.056199+09:00",
     "multi": false,
     "cls": "8875788f9e16"
+  },
+  "aaa5f5d4cb3c208a": {
+    "store": "HMVトレカショップ",
+    "product": "ONE PIECEカード EB-05 Heroines Edition vol.2（1BOX）",
+    "series": "EB-05 Heroines Edition vol.2",
+    "start": null,
+    "end": "2026-11-03",
+    "announce": null,
+    "method": "Web",
+    "conditions": "LivePocketで申込み、再抽選",
+    "url": "https://livepocket.jp/e/wx7r7emqbo",
+    "x_post": "https://x.com/Tdeqdq/status/2116110939355484429",
+    "game": "onepiece",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "X LivePocket抽選",
+    "source_url": "https://x.com/",
+    "key": "aaa5f5d4cb3c208a",
+    "status": "pending",
+    "found_at": "2026-10-30T19:51:45.869380+09:00",
+    "cls": "295f5c0f169e",
+    "issue": 291
+  },
+  "cd8185b5c5a81c3c": {
+    "store": "トレカエース茨大前店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ",
+    "series": "ストームエメラルダ",
+    "start": null,
+    "end": "2026-11-01T22:00:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "LivePocketで応募（1件の抽選）",
+    "url": "https://livepocket.jp/e/m_dnk",
+    "x_post": "https://x.com/OnchainOutlaw/status/2116107858244997603",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "茨城県",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.75,
+    "source": "X LivePocket抽選",
+    "source_url": "https://x.com/",
+    "key": "cd8185b5c5a81c3c",
+    "status": "approved",
+    "found_at": "2026-10-30T19:51:45.869425+09:00",
+    "multi": false,
+    "cls": "68927cb55646"
+  },
+  "f5d6609e646b0860": {
+    "store": "フタバ図書TSUTAYAアルティ福山店",
+    "product": "スペシャルデッキセットMEGA 1個",
+    "series": "MEGA",
+    "start": null,
+    "end": "2026-11-01T21:00:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "LivePocket登録＋応募操作できる小学生以上、1人1回、0～8時の応募は無効、配送・代理不可、購入期間は11/13～15",
+    "url": "https://livepocket.jp/e/5zwx8",
+    "x_post": "https://x.com/pokecapresident/status/2116102344685564012",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "広島県",
+    "id_check": true,
+    "member": "account",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "confidence": 0.9,
+    "source": "X LivePocket抽選",
+    "source_url": "https://x.com/",
+    "key": "f5d6609e646b0860",
+    "status": "duplicate",
+    "found_at": "2026-10-30T19:51:45.869456+09:00",
+    "multi": false,
+    "cls": "75350e7b5b0e",
+    "duplicate_of": "d6526f1c475a64d5"
+  },
+  "cb3874cc895b8da9": {
+    "store": "TSUTAYA金沢店",
+    "product": "30th CELEBRATION 1BOX",
+    "series": "30th CELEBRATION",
+    "start": null,
+    "end": "2026-11-01T22:00:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "LivePocketで1人1回、未就学児は対象外、販売時シール貼付、配送・代理不可、購入期間は11/7～9",
+    "url": "https://livepocket.jp/e/qgt22",
+    "x_post": "https://x.com/pokecapresident/status/2116102273055313923",
+    "game": "pokemon",
+    "channel": "store",
+    "area": "石川県",
+    "id_check": true,
+    "member": "account",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "confidence": 0.9,
+    "source": "X LivePocket抽選",
+    "source_url": "https://x.com/",
+    "key": "cb3874cc895b8da9",
+    "status": "approved",
+    "found_at": "2026-10-30T19:51:45.869480+09:00",
+    "multi": false,
+    "cls": "0be0258c8072"
+  },
+  "21fce31d788004d4": {
+    "store": "プレミアムバンダイ",
+    "product": "ONE PIECE Heroines Edition vol.2【EB-05】1BOX",
+    "series": "Heroines Edition vol.2",
+    "start": null,
+    "end": "2026-11-05T23:00:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "url": "https://p-bandai.jp/item/item-1000260602/",
+    "x_post": "https://x.com/nyuka_signal/status/2116119337425830243",
+    "game": "onepiece",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.85,
+    "source": "X「ワンピカード 抽選」",
+    "source_url": "https://x.com/",
+    "key": "21fce31d788004d4",
+    "status": "duplicate",
+    "found_at": "2026-10-30T19:52:07.321618+09:00",
+    "cls": "a245db889f3e",
+    "duplicate_of": "35a89725ce65fd6e"
+  },
+  "9c6d620ecaaafa29": {
+    "store": "カードラボ 岐阜店",
+    "product": "ONE PIECE HEROINES PRECIOUS BOX",
+    "series": "HEROINES PRECIOUS BOX",
+    "start": "2026-10-30",
+    "end": "2026-11-01",
+    "announce": null,
+    "method": "SNS応募",
+    "conditions": "店舗アカウントをフォローし、対象ポストをリポストする",
+    "url": "https://x.com/gifu_labo/status/2116112725181079911",
+    "x_post": "https://x.com/tcg_info_navi/status/2116118897388560818",
+    "game": "onepiece",
+    "channel": "store",
+    "area": "岐阜県",
+    "id_check": null,
+    "member": null,
+    "tags": [
+      "SNS応募"
+    ],
+    "confidence": 0.75,
+    "source": "X「ワンピカード 抽選」",
+    "source_url": "https://x.com/",
+    "key": "9c6d620ecaaafa29",
+    "status": "approved",
+    "found_at": "2026-10-30T19:52:07.321664+09:00",
+    "multi": false,
+    "cls": "ed07f29b4796",
+    "tco_checked": true
+  },
+  "cd2e9f1df19ce6e8": {
+    "store": "BOOKOFF SUPER BAZAAR 松戸駅東口店",
+    "product": "エクストラブースター「ONE PIECE Heroines Edition vol.2」",
+    "series": "Heroines Edition vol.2",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": "会員限定",
+    "url": "https://torecasignal.com/",
+    "x_post": "https://x.com/torecasignal/status/2116107860979659102",
+    "game": "onepiece",
+    "channel": "store",
+    "area": "千葉県",
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.4,
+    "source": "X「ワンピカード 抽選」",
+    "source_url": "https://x.com/",
+    "key": "cd2e9f1df19ce6e8",
+    "status": "pending",
+    "found_at": "2026-10-30T19:52:07.321706+09:00",
+    "deadline_checked_at": "2026-10-30T19:52:10.642731+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・該当店舗の記載なし",
+    "multi": false,
+    "cls": "14adf0f07557",
+    "issue": 292,
+    "tco_checked": true
   }
 }

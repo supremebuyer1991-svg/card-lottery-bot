@@ -613,6 +613,13 @@
   "store/cardlabo-817ef/": {
     "name": "カードラボ岐阜店",
     "items": {
+      "9c6d620ecaaafa29": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "21a9c8ebdb835516": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -10293,6 +10300,13 @@
         "e": "2026-11-03T23:59",
         "f": "2026-10-30",
         "c": "store"
+      },
+      "aaa5f5d4cb3c208a": {
+        "p": "EB-05 Heroines Edition vol.2",
+        "g": "onepiece",
+        "e": "2026-11-03",
+        "f": "2026-10-30",
+        "c": "online"
       }
     }
   },
@@ -11296,6 +11310,42 @@
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
         "e": "2026-11-03T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/torekaesu-71d00/": {
+    "name": "トレカエース茨大前店",
+    "items": {
+      "cd8185b5c5a81c3c": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T22:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-f7b98/": {
+    "name": "TSUTAYA金沢店",
+    "items": {
+      "cb3874cc895b8da9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T22:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/bookoff-05777/": {
+    "name": "BOOKOFF SUPER BAZAAR 松戸駅東口店",
+    "items": {
+      "cd2e9f1df19ce6e8": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
         "f": "2026-10-30",
         "c": "store"
       }
