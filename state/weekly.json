@@ -5769,22 +5769,31 @@
       "found_at": "2026-10-30T15:04:46.859619+09:00",
       "chain": "joshin"
     },
+    "ae803f67d815a6d8": {
+      "game": "pokemon",
+      "store": "ゲオ（Web抽選）",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-10-30T15:12:57.232936+09:00",
+      "chain": "geo"
+    },
     "dae9ccbb78239b14": {
       "game": "pokemon",
       "store": "ポケモンセンターオンライン",
       "series": "ハドウシーカー",
       "channel": "online",
       "area": null,
-      "found_at": "2026-10-30T15:06:17.543173+09:00",
+      "found_at": "2026-10-30T15:14:30.415083+09:00",
       "chain": "pokemoncenter"
     },
     "b559f3f33f35db2d": {
       "game": "onepiece",
-      "store": "TSUTAYA 柳川店",
+      "store": "TSUTAYA柳川店",
       "series": "Heroines Precius",
       "channel": "store",
       "area": "福岡県",
-      "found_at": "2026-10-30T15:06:38.706805+09:00",
+      "found_at": "2026-10-30T15:14:51.205705+09:00",
       "chain": "tsutaya"
     },
     "0901bfb244155228": {
@@ -5793,7 +5802,7 @@
       "series": "HEROINES PRECIOUS BOX",
       "channel": "store",
       "area": "愛知県",
-      "found_at": "2026-10-30T15:06:59.070716+09:00",
+      "found_at": "2026-10-30T15:15:14.600076+09:00",
       "chain": "cardlabo"
     },
     "edd9be94d67bc6b3": {
@@ -5802,53 +5811,17 @@
       "series": "HEROINES PRECIOUS BOX",
       "channel": "store",
       "area": "茨城県",
-      "found_at": "2026-10-30T15:06:59.070773+09:00",
+      "found_at": "2026-10-30T15:15:14.600262+09:00",
       "chain": "batoroco"
-    },
-    "ca12984d078ffa9c": {
-      "game": "pokemon",
-      "store": "高砂ウエストビーチジム",
-      "series": "30th CELEBRATION",
-      "channel": "store",
-      "area": "兵庫県",
-      "found_at": "2026-10-30T15:07:40.646149+09:00",
-      "chain": null
-    },
-    "078ec9eb7b163b38": {
-      "game": "pokemon",
-      "store": "キディランド吉祥寺店",
-      "series": "スペシャルデッキセットMEGA",
-      "channel": "store",
-      "area": "東京都",
-      "found_at": "2026-10-30T15:07:40.646164+09:00",
-      "chain": "kiddyland"
-    },
-    "0241de0c650c43c8": {
-      "game": "pokemon",
-      "store": "キディランド二子玉川店",
-      "series": "スペシャルデッキセットMEGA",
-      "channel": "store",
-      "area": "東京都",
-      "found_at": "2026-10-30T15:07:40.646177+09:00",
-      "chain": "kiddyland"
     },
     "487a01addf31995f": {
       "game": "pokemon",
-      "store": "キディランド アミュプラザくまもと店",
+      "store": "キディランドアミュプラザくまもと店",
       "series": "スペシャルデッキセットMEGA",
       "channel": "store",
       "area": "熊本県",
-      "found_at": "2026-10-30T15:07:40.646190+09:00",
+      "found_at": "2026-10-30T15:15:51.054167+09:00",
       "chain": "kiddyland"
-    },
-    "668816e123b4ac0c": {
-      "game": "pokemon",
-      "store": "ふるいちイオンモール座間店",
-      "series": "30th CELEBRATION",
-      "channel": "store",
-      "area": "神奈川県",
-      "found_at": "2026-10-30T15:07:40.646216+09:00",
-      "chain": "aeon"
     }
   }
 }
