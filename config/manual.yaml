@@ -18,6 +18,21 @@ results:
     check_url: https://draw.geo-online.co.jp/lottery/
 
 lotteries:
+  - slug: pbandai-heroines-vol2-1105
+    game: onepiece
+    store: プレミアムバンダイ（バンダイカードショップ）
+    series: ヒロインズエディション vol.2
+    product: エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】（5,760円税込）
+    channel: online
+    method: Web抽選（プレミアムバンダイの商品ページから申し込み）→ 当選したら発送
+    start: 2026-10-30T12:00
+    end: 2026-11-05T23:59
+    announce: 2026年11月中
+    buy: 2026年11月発送予定
+    conditions: プレミアムバンダイの会員（バンダイナムコID）。1人1個まで。支払いはクレジットカード前払い・プレバンPay・ペイディ。クーポン・プレミアムポイントは使えません
+    member: account
+    tags: [会員]
+    url: https://p-bandai.jp/item/item-1000260602/
   - slug: planetpocket-heroines-vol2-1029
     game: onepiece
     store: トレカショップ☆プラネットポケット
