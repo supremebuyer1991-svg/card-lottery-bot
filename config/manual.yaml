@@ -235,6 +235,23 @@ lotteries:
     member: account
     tags: [アプリ, 会員]
 
+  - slug: tsutaya-hirakata-30th-1101
+    game: pokemon
+    store: TSUTAYA枚方ベルパルレ店
+    series: 30th CELEBRATION
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（お一人様1BOXまで・シュリンクを外してのお渡し）
+    channel: store
+    area: 大阪府
+    method: Web抽選（LivePocket）→ 当選したら店頭で購入
+    end: 2026-11-01T23:00
+    announce: 11/5(木)予定（メールとLivePocketのマイページで確認）
+    buy: 11/6(金)〜11/8(日)
+    conditions: LivePocketの会員登録が必要。本人確認書類と同じ氏名で申し込み（ニックネーム・ローマ字・カタカナは無効）。1人1回・1BOXまで。購入時に現住所が分かる本人確認書類が必要（健康保険証は不可）。代理購入・譲渡は不可。支払いは現金・クレジット・電子マネー・コード決済
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/ir67g
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
