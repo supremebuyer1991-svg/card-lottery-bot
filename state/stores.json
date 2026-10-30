@@ -3081,8 +3081,8 @@
     "keep": true
   },
   "store/bookoff-2ec58/": {
-    "name": "ブックオフJR蒲田駅東口店",
-    "last": "2026-10-29",
+    "name": "ブックオフ JR蒲田駅東口店",
+    "last": "2026-10-31",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -3903,9 +3903,10 @@
   },
   "store/kiddyland-668b3/": {
     "name": "キデイランド 浦和美園店",
-    "last": "2026-10-30",
+    "last": "2026-10-31",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "埼玉県"
   },
   "store/pao-7b2b3/": {
     "name": "PAO",
@@ -4165,6 +4166,30 @@
     "name": "WonderGOO",
     "last": "2026-10-31",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/pokemonkadoraunji-f3aa4/": {
+    "name": "ポケモンカードラウンジ",
+    "last": "2026-10-31",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/cardlabo-9a281/": {
+    "name": "カードラボ 池袋店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/cardlabo-03312/": {
+    "name": "カードラボ 大阪日本橋店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/aeon-1d71a/": {
+    "name": "イオン",
+    "last": "2026-10-31",
+    "game": "pokemon",
     "keep": true
   }
 }
