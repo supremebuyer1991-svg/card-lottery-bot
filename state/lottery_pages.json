@@ -16010,7 +16010,7 @@
         "会員"
       ],
       "url": "https://livepocket.jp/e/vkmn_",
-      "channel": "online",
+      "channel": "store",
       "area": "愛媛県",
       "id_check": false,
       "member": "account",
@@ -16035,7 +16035,8 @@
         "会員"
       ],
       "url": "https://livepocket.jp/e/dof-w",
-      "channel": "online",
+      "channel": "store",
+      "area": "神奈川県",
       "id_check": false,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -16059,7 +16060,7 @@
         "本人確認"
       ],
       "url": "https://shoplottery.e-starbox.com/lottery/entry?code=sh7XDlTmpj",
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "id_check": true,
       "member": "none",
@@ -16085,7 +16086,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/a-abp",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "id_check": true,
       "member": "account",
@@ -16110,7 +16111,8 @@
         "会員"
       ],
       "url": "https://x.com/otaichimiecard/status/2115751040591319273",
-      "channel": "online",
+      "channel": "store",
+      "area": "三重県",
       "id_check": false,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
@@ -16817,6 +16819,63 @@
       "member": "account",
       "spath": "store/tsutaya-14fc4/",
       "found_at": "2026-10-30T11:17:50.582760+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/1b774d7d42/": {
+    "d": {
+      "key": "1b774d7d42a6db97",
+      "game": "pokemon",
+      "store": "あみあみ本店",
+      "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "series": "MEGAドリームex",
+      "end": "2026-11-04T13:59:00+09:00",
+      "announce": "2026-11-05",
+      "method": "Web",
+      "conditions": "amiami.jp（あみあみ通販本店）の会員アカウントが必要。ハドウシーカー 30パック入りBOXと同時応募可。当選者にはオンライン販売",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://form.amiami.jp/draw20261030",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jugem2020/cabinet/13772022/imgi_51_1c0e88a.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F",
+      "spath": "store/amiami-d6785/",
+      "found_at": "2026-10-30T12:11:24.459130+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/be59d76739/": {
+    "d": {
+      "key": "be59d767398b14f4",
+      "game": "onepiece",
+      "store": "PAO・竜星のPAO（各店）",
+      "product": "ONE PIECEカードゲーム商品関連（11/21(土)発売予定）",
+      "end": "2026-11-01T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/6t8b2y",
+      "channel": "store",
+      "area": "東京都",
+      "spath": "store/pao-nopao-b6ecd/",
+      "found_at": "2026-10-30T12:12:25.081767+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/fe25816880/": {
+    "d": {
+      "key": "fe25816880eae22f",
+      "game": "pokemon",
+      "store": "古本市場深井店",
+      "product": "ポケカ抽選販売（30th CELEBRATION)",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-01T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/8xaaf",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/furuichi-50e64/",
+      "found_at": "2026-10-30T12:12:25.081891+09:00"
     },
     "last": "2026-10-30"
   }

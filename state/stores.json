@@ -3686,17 +3686,20 @@
   "store/shop-1bc80/": {
     "name": "北国書林松任店",
     "last": "2026-10-30",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "石川県"
   },
   "store/tsutaya-31008/": {
     "name": "TSUTAYA枚方ベルパルレ店",
     "last": "2026-10-30",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "大阪府"
   },
   "store/o-705ea/": {
     "name": "お宝市番館三重本店",
     "last": "2026-10-30",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "三重県"
   },
   "store/tsutaya-e7db4/": {
     "name": "TSUTAYA中津店トレカコーナー",
@@ -3781,5 +3784,70 @@
     "name": "おたいち三重本店（お宝市番館三重本店）",
     "last": "2026-10-30",
     "game": "onepiece"
+  },
+  "store/amiami-d6785/": {
+    "name": "あみあみ本店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/pao-nopao-b6ecd/": {
+    "name": "PAO・竜星のPAO（各店）",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/furuichi-50e64/": {
+    "name": "古本市場深井店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/puremiamubandai-d716c/": {
+    "name": "プレミアムバンダイ",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/itoyokado-6d438/": {
+    "name": "イトーヨーカドー",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/furuichi-4fadb/": {
+    "name": "ふるいち座間",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-9562b/": {
+    "name": "吉祥寺",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/hmv-c61b3/": {
+    "name": "HMV各店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/batoroco-70709/": {
+    "name": "バトロコ小田原店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/batoroco-f5a9d/": {
+    "name": "バトロコ吉祥寺店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/batoroco-c1428/": {
+    "name": "バトロコ藤沢北口店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
   }
 }

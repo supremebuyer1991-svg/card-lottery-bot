@@ -5278,7 +5278,7 @@
       "game": "pokemon",
       "store": "ふるいちイオンモール今治新都市店",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "愛媛県",
       "found_at": "2026-10-30T11:17:46.943432+09:00",
       "chain": "aeon"
@@ -5287,8 +5287,8 @@
       "game": "pokemon",
       "store": "TSUTAYA Trading Card 平塚店",
       "series": "30th CELEBRATION",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "神奈川県",
       "found_at": "2026-10-30T11:17:46.943471+09:00",
       "chain": "tsutaya"
     },
@@ -5296,7 +5296,7 @@
       "game": "pokemon",
       "store": "北国書林松任店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "found_at": "2026-10-30T11:17:46.943503+09:00",
       "chain": null
@@ -5305,7 +5305,7 @@
       "game": "pokemon",
       "store": "TSUTAYA枚方ベルパルレ店",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "found_at": "2026-10-30T11:17:46.943534+09:00",
       "chain": "tsutaya"
@@ -5314,8 +5314,8 @@
       "game": "pokemon",
       "store": "お宝市番館三重本店",
       "series": null,
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "三重県",
       "found_at": "2026-10-30T11:17:46.943563+09:00",
       "chain": null
     },
@@ -5579,6 +5579,33 @@
       "area": "兵庫県",
       "found_at": "2026-10-30T11:17:50.582760+09:00",
       "chain": "tsutaya"
+    },
+    "1b774d7d42a6db97": {
+      "game": "pokemon",
+      "store": "あみあみ本店",
+      "series": "MEGAドリームex",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-10-30T12:11:24.459130+09:00",
+      "chain": null
+    },
+    "be59d767398b14f4": {
+      "game": "onepiece",
+      "store": "PAO・竜星のPAO（各店）",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T12:12:25.081767+09:00",
+      "chain": null
+    },
+    "fe25816880eae22f": {
+      "game": "pokemon",
+      "store": "古本市場深井店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-10-30T12:12:25.081891+09:00",
+      "chain": "furuichi"
     }
   }
 }

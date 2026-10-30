@@ -8203,7 +8203,7 @@
         "g": "pokemon",
         "e": "2026-11-01T20:00",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -10027,7 +10027,7 @@
         "g": "pokemon",
         "e": "2026-10-30T21:00",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       },
       "2fea43b75653c36a": {
         "p": "30th CELEBRATION",
@@ -10275,7 +10275,7 @@
         "g": "pokemon",
         "e": "2026-11-01T22:30",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -10287,7 +10287,7 @@
         "g": "pokemon",
         "e": "2026-11-01T23:00",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -10299,7 +10299,7 @@
         "g": "pokemon",
         "e": "2026-11-01T23:00",
         "f": "2026-10-30",
-        "c": "online"
+        "c": "store"
       }
     }
   },
@@ -10527,6 +10527,139 @@
         "e": "2026-11-01T23:00",
         "f": "2026-10-30",
         "c": "online"
+      }
+    }
+  },
+  "store/puremiamubandai-d716c/": {
+    "name": "プレミアムバンダイ",
+    "items": {
+      "e5e020eb875bd7d4": {
+        "p": "ONE PIECE Heroines Edition vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
+      }
+    }
+  },
+  "store/amiami-d6785/": {
+    "name": "あみあみ本店",
+    "items": {
+      "1b774d7d42a6db97": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-04T13:59",
+        "f": "2026-10-30",
+        "c": "online",
+        "a": "2026-11-05"
+      }
+    }
+  },
+  "store/pao-nopao-b6ecd/": {
+    "name": "PAO・竜星のPAO（各店）",
+    "items": {
+      "be59d767398b14f4": {
+        "p": "ONE PIECEカードゲーム商品関連（11/21(土)発売予定）",
+        "g": "onepiece",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/itoyokado-6d438/": {
+    "name": "イトーヨーカドー",
+    "items": {
+      "8793fce9a0b38293": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/furuichi-50e64/": {
+    "name": "古本市場深井店",
+    "items": {
+      "fe25816880eae22f": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T22:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/furuichi-4fadb/": {
+    "name": "ふるいち座間",
+    "items": {
+      "8d0c24ea7d43fa9e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-9562b/": {
+    "name": "吉祥寺",
+    "items": {
+      "a972d459f7360715": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/hmv-c61b3/": {
+    "name": "HMV各店",
+    "items": {
+      "69049db126bf14bf": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-70709/": {
+    "name": "バトロコ小田原店",
+    "items": {
+      "f5c6e97e11370d51": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-f5a9d/": {
+    "name": "バトロコ吉祥寺店",
+    "items": {
+      "4a9d4f01f505bf69": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-c1428/": {
+    "name": "バトロコ藤沢北口店",
+    "items": {
+      "4418ac5ff77a13f1": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
       }
     }
   }
