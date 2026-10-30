@@ -114,6 +114,66 @@ def fill_details(it, text, ask_details):
     return bool(got)
 
 
+def _tid(u):
+    m = re.search(r"(?:x|twitter)\.com/[^/]+/status/(\d+)", u or "")
+    return m.group(1) if m else None
+
+
+def _ask_post(text, images, it):
+    """お店の告知ポスト（本文＋画像）から、条件・本人確認などを読む（画像のポスターに書いてあることが多い）"""
+    from deadline import _image_block, VISION_MODEL
+    content = [_image_block(u) for u in images[:4]]
+    for c in content:
+        c.pop("_ok", None)
+    content.append({"type": "text", "text": DETAIL_PROMPT.format(
+        store=it.get("store") or "", product=(it.get("series") or it.get("product") or "")[:60],
+        text="（お店のXの告知。画像の文字もよく読むこと）\n" + text[:3000])})
+    for model in (VISION_MODEL, MODEL):
+        r = requests.post(API_URL, timeout=90, headers={
+            "x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01", "content-type": "application/json",
+        }, json={"model": model, "max_tokens": 600, "messages": [{"role": "user", "content": content}]})
+        if r.status_code < 400:
+            break
+    if r.status_code >= 400:
+        raise RuntimeError(f"Claude API エラー {r.status_code}")
+    raw = "".join(b.get("text", "") for b in r.json().get("content", []))
+    m = re.search(r"\{.*\}", raw, re.S)
+    return json.loads(m.group(0)) if m else {}
+
+
+def fill_from_posts(settings, lots, ask=None, x_client=None, limit=None):
+    """応募ページが読めない抽選（LivePocketなどはボットに中身を返さない）は、お店のXの告知（本文＋画像）から
+    本人確認・会員・条件を埋める。1件につき1回だけ・Xの読み取り上限に数える"""
+    if ask is None:
+        if not os.environ.get("ANTHROPIC_API_KEY"):
+            return 0
+        ask = _ask_post
+    limit = limit or settings.get("post_detail_checks_per_run", 10)
+    todo = [it for it in lots.values() if it.get("status") in ACTIVE and it.get("page_err") and not it.get("post_checked")
+            and (_tid(it.get("url")) or _tid(it.get("x_post"))) and (_needs_details(it) or it.get("id_check") is None)][:limit]
+    if not todo:
+        return 0
+    from deadline import _x_lookup
+    try:
+        tweets = _x_lookup(list({_tid(i.get("x_post")) or _tid(i.get("url")) for i in todo}), settings, x_client)
+    except Exception as e:
+        log(f"告知ポストの確認: X取得失敗 {e}")
+        return 0
+    n = 0
+    for it in todo:
+        tw = tweets.get(_tid(it.get("x_post")) or _tid(it.get("url")))
+        if not tw:
+            continue  # 取れなかった（上限・削除）→ 次回また
+        it["post_checked"] = True
+        text, imgs = tw[0], tw[1]
+        it.pop("details_checked", None)
+        if fill_details(it, text, lambda t_, i_: ask(t_, imgs, i_)):
+            n += 1
+    if todo:
+        log(f"告知ポストの確認: {len(todo)}件を見て {n}件の条件などが分かった")
+    return n
+
+
 def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
     """戻り値: 終了にした件数"""
     if ask is None:
@@ -176,6 +236,10 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
             it["closed_reason"] = f"応募ページで受付終了（{(r.get('evidence') or '')[:20]}）"
             closed += 1
             log(f"応募ページの確認: 終了 {it.get('store')} {url[:60]} {r.get('evidence')}")
+    try:
+        fill_from_posts(settings, lots)  # 応募ページが読めなかった抽選は、お店のXの告知から
+    except Exception as e:
+        log(f"告知ポストの確認: スキップ {e}")
     save_json("lotteries.json", lots)
     if todo:
         log(f"応募ページの確認: {min(len(todo), limit)}件を見て {closed}件を終了に")

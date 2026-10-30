@@ -51,3 +51,21 @@ assert calls == ["古本市場深井店"] and L["full"]["conditions"] == "既存
 pagecheck.check_pages({}, ask=ask, fetcher=lambda u: pg[u], ask_details=det)
 assert calls == ["古本市場深井店"]  # 2回目は読まない
 print("PAGECHECK DETAILS OK")
+
+# 応募ページが読めない抽選は、Xの告知（本文＋画像）から本人確認などを埋める（1回だけ）
+L = {"a": {"status": "approved", "store": "TSUTAYA森町店", "product": "30th", "page_err": "中身が空",
+           "url": "https://livepocket.jp/e/zz", "x_post": "https://x.com/shop/status/123", "tags": []}}
+class XC:
+    pass
+import deadline
+deadline_lookup = deadline._x_lookup
+deadline._x_lookup = lambda ids, s, c=None: {"123": ("抽選のお知らせ", ["https://pbs.twimg.com/a.jpg"], [], "2026-10-30")}
+seen = []
+def ap(text, imgs, it):
+    seen.append(imgs)
+    return {"id_check": True, "member": "account", "conditions": "LivePocket会員・本人確認書類が必要"}
+assert pagecheck.fill_from_posts({}, L, ask=ap) == 1
+assert L["a"]["id_check"] is True and "本人確認" in L["a"]["tags"] and seen == [["https://pbs.twimg.com/a.jpg"]]
+assert pagecheck.fill_from_posts({}, L, ask=ap) == 0 and len(seen) == 1   # 2回目は読まない
+deadline._x_lookup = deadline_lookup
+print("POST DETAILS OK")

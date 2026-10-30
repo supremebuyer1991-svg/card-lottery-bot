@@ -852,12 +852,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     if (new Date(t).toDateString() === tm.toDateString()) return { cls: "b-tmr", lab: "明日締切 あと" };
     return { cls: "b-later", lab: "あと" };
   }
-  // 応募に必要なものを4マスで（○＝不要、要＝必要、？＝書かれていない）
+  // 応募に必要なものを4マスで（○＝不要、要＝必要、？＝告知で要確認）
   function condCells(it) {
     var c = function (k, mark, l1, l2) { return '<div class="' + k + '"><i>' + mark + '</i>' + l1 + '<br>' + l2 + '</div>'; };
-    var id = it.id_check === true ? c("ng", "要", "本人確認", "必要") : it.id_check === false ? c("ok", "○", "本人確認", "不要") : c("unk", "？", "本人確認", "不明");
+    var id = it.id_check === true ? c("ng", "要", "本人確認", "必要") : it.id_check === false ? c("ok", "○", "本人確認", "不要") : c("unk", "？", "本人確認", "要確認");
     var mem = it.member === "card" ? c("ng", "要", "会員カード", "必要") : it.member === "account" ? c("ng", "要", "会員登録", "必要")
-      : it.member === "none" ? c("ok", "○", "会員", "不要") : c("unk", "？", "会員", "不明");
+      : it.member === "none" ? c("ok", "○", "会員", "不要") : c("unk", "？", "会員", "要確認");
     var t = (it.tags || []).join(" ") + " " + (it.conditions || "");
     var ex = [/購入(履歴|実績|歴)|利用実績/.test(t) ? "購入履歴" : "", /レシート/.test(t) ? "レシート" : "", needs(it, "アプリ") ? "アプリ" : ""].filter(Boolean);
     var oth = ex.length ? c("ng", "要", ex.slice(0, 2).join("・"), "必要") : c("ok", "○", "購入履歴など", "記載なし");
