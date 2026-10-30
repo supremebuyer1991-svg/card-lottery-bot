@@ -8273,6 +8273,7 @@
       "start": "2026-10-26",
       "end": "2026-11-01T23:59:00+09:00",
       "method": "Web",
+      "conditions": "応募・購入の条件については、画像にも本文にも記載がありません。会員登録やアプリ、本人確認書類、1人あたりの購入上限、代理購入の可否、価格のいずれも書かれていません。",
       "url": "https://livepocket.jp/e/4dmix",
       "channel": "store",
       "area": "愛知県",
@@ -8324,6 +8325,7 @@
       "series": "スペシャルデッキセットMEGA",
       "end": "2026-11-01T21:45:00+09:00",
       "method": "ライブポケット",
+      "conditions": "本文から分かる条件は、締切が11/1(日)21:45であることと、応募リンクから申し込むことだけです。会員登録、アプリ、本人確認書類、購入個数の上限、代理購入、価格については書かれていません。",
       "url": "https://livepocket.jp/e/7-6bg",
       "channel": "store",
       "area": "福岡県",
@@ -11606,7 +11608,9 @@
       "store": "TCGショップ193 各店（椿・名駅・大須・ザザシティ浜松・秋葉原・日本橋）",
       "product": "ポケモンカードゲーム MEGA「30th CELEBRATION カードセット」9種各1個セット（10,800円税込・再販分・購入権抽選・会員限定）",
       "series": "30周年御三家カードセット",
+      "start": "2026-10-28T09:50:00+09:00",
       "end": "2026-11-04T23:59:00+09:00",
+      "buy": "11/7(土)〜11/9(月)",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -13120,6 +13124,7 @@
       "series": "ストームエメラルダ",
       "end": "2026-11-01",
       "method": "LivePocket",
+      "conditions": "トレステ(各店)の抽選は11/1(日)までという案内とリンクだけで、会員登録・本人確認・購入数・代理購入・価格などの条件は本文に書かれていない。",
       "url": "https://livepocket.jp/e/drccq",
       "channel": "store",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
@@ -17704,6 +17709,30 @@
       "area": "岐阜県",
       "spath": "store/cardlabo-817ef/",
       "found_at": "2026-10-30T19:52:07.321664+09:00"
+    },
+    "last": "2026-10-30"
+  },
+  "l/3216599229/": {
+    "d": {
+      "key": "32165992290f7acc",
+      "game": "pokemon",
+      "store": "トレカプラザ55",
+      "product": "30th CELEBRATION カードセット各種",
+      "series": "30周年御三家カードセット",
+      "start": "2026-10-30T20:00:00+09:00",
+      "end": "2026-11-06T23:59:00+09:00",
+      "announce": "11月7日〜11月9日（当選者のみメール）",
+      "method": "WEB抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScDZdtbNfiI9DRsn2S5TJxR4Hez0Xhw8AHVAzd8uaGhrI-XeQ/viewform",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/cocos-life/cabinet/compass1791124895.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F",
+      "spath": "store/torekapuraza55-20d8e/",
+      "found_at": "2026-10-30T20:30:04.186231+09:00"
     },
     "last": "2026-10-30"
   }
