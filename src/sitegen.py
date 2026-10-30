@@ -28,7 +28,7 @@ FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tag
           "start", "announce", "buy", "products", "manual", "address")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
-GAME_TAB = {"onepiece": "ワンピース"}  # 上のタブ・一覧の小さなラベルだけ短く（スマホで横にはみ出さないように）
+GAME_TAB = {"onepiece": "ワンピース", "dragonball": "ドラゴンボール"}  # 上のタブ・一覧の小さなラベルだけ短く（スマホで横にはみ出さないように）
 PREF = {
     "北海道": "hokkaido", "青森県": "aomori", "岩手県": "iwate", "宮城県": "miyagi", "秋田県": "akita",
     "山形県": "yamagata", "福島県": "fukushima", "茨城県": "ibaraki", "栃木県": "tochigi", "群馬県": "gunma",
