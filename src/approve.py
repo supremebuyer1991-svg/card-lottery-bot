@@ -21,6 +21,12 @@ def _vague_store(store):
     if not s or re.search(r"不明|未記載|未定", s):
         return True
     core = re.sub(r"[（(].*?[）)]|\s", "", s)
+    try:
+        from sitegen import chain_of
+        if chain_of(s):
+            return False  # 「ゲオ」「イオン」のような2文字のチェーン名は店名として足りている
+    except Exception:
+        pass
     return len(core) <= 2 and not re.search(r"[A-Za-z]", core)  # 「岡南」「熱田」など（3文字以上は「平和堂」などのチェーン名がある）
 
 def _blog_link(url, store, blogs, pages, limit=8):
@@ -79,6 +85,9 @@ def approve(settings):
             it["status"] = "pending"
             it["hold_reason"] = "店名があいまい"
             continue
+        if it["status"] == "pending" and it.get("hold_reason") == "店名があいまい" and not _vague_store(it.get("store")):
+            it["status"] = "new"  # 判定を直したので、もう一度ふつうの判定へ
+            it.pop("hold_reason", None)
         if it["status"] != "new":
             continue
         ok = float(it.get("confidence") or 0) >= minc and it.get("end")
