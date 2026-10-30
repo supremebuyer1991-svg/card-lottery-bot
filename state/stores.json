@@ -548,8 +548,8 @@
     "area": "東京都"
   },
   "store/tsutaya-14fc4/": {
-    "name": "TSUTAYA 姫路広峰店",
-    "last": "2026-10-27",
+    "name": "TSUTAYA姫路広峰店",
+    "last": "2026-10-30",
     "game": "pokemon",
     "area": "兵庫県"
   },
@@ -768,7 +768,7 @@
   },
   "store/biccamera-bbb22/": {
     "name": "ビックカメラ浦和西口店",
-    "last": "2026-10-27",
+    "last": "2026-10-30",
     "game": "onepiece",
     "area": "埼玉県"
   },
@@ -798,7 +798,7 @@
   },
   "store/bukkusenta-3d91d/": {
     "name": "ブックセンター江戸屋",
-    "last": "2026-10-27",
+    "last": "2026-10-30",
     "game": "onepiece",
     "area": "茨城県"
   },
@@ -1177,8 +1177,8 @@
     "area": "栃木県"
   },
   "store/batoroco-eae37/": {
-    "name": "TC バトロコ藤沢駅北口",
-    "last": "2026-10-28",
+    "name": "TCバトロコ藤沢駅北口",
+    "last": "2026-10-30",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -2139,7 +2139,7 @@
     "area": "福岡県"
   },
   "store/oretan-57181/": {
-    "name": "オレタン 松山店",
+    "name": "オレタン松山店",
     "last": "2026-10-30",
     "game": "pokemon",
     "area": "愛媛県"
@@ -3598,7 +3598,8 @@
     "name": "ふるいちイオンモール今治新都市店",
     "last": "2026-10-30",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "愛媛県"
   },
   "store/batoroco-c234d/": {
     "name": "バトロコ吉祥寺",
@@ -3681,5 +3682,104 @@
     "last": "2026-10-30",
     "game": "pokemon",
     "keep": true
+  },
+  "store/shop-1bc80/": {
+    "name": "北国書林松任店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/tsutaya-31008/": {
+    "name": "TSUTAYA枚方ベルパルレ店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/o-705ea/": {
+    "name": "お宝市番館三重本店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/tsutaya-e7db4/": {
+    "name": "TSUTAYA中津店トレカコーナー",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "大分県"
+  },
+  "store/tsutaya-ecb61/": {
+    "name": "TSUTAYA別府上人ヶ浜店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/bookoff-cc2b4/": {
+    "name": "ブックオフ栄スカイル店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/bookoff-7a52c/": {
+    "name": "ブックオフ秋葉原駅前店",
+    "last": "2026-10-30",
+    "game": "pokemon"
+  },
+  "store/tsutaya-24fed/": {
+    "name": "TSUTAYA伊勢丘店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "広島県"
+  },
+  "store/biccamera-cad9f/": {
+    "name": "ビックカメラなんば店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/batoroco-06f91/": {
+    "name": "TCバトロコ小田原駅前",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/batoroco-922f8/": {
+    "name": "バトロコ吉祥寺駅前店",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/tsutaya-905e5/": {
+    "name": "TSUTAYA柳川店 トレカコーナー",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/cardlabo-90078/": {
+    "name": "カードラボ小倉店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "area": "福岡県"
+  },
+  "store/itoyokado-ario-789b7/": {
+    "name": "イトーヨーカドー／アリオ",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/torekaesu-d2955/": {
+    "name": "トレカエース植田店",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/korekutazushoppunika-3e1d8/": {
+    "name": "コレクターズショップ ニカ",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/hmvtorekashoppu-hmvtoreka-3eef2/": {
+    "name": "HMVトレカショップ・HMVトレカ取扱店舗（全国18店舗）",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/tsutaya-9feaf/": {
+    "name": "TSUTAYA大安寺店",
+    "last": "2026-10-30",
+    "game": "onepiece"
+  },
+  "store/otaichi-e3030/": {
+    "name": "おたいち三重本店（お宝市番館三重本店）",
+    "last": "2026-10-30",
+    "game": "onepiece"
   }
 }
