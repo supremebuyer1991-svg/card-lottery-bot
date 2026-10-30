@@ -105,10 +105,21 @@ def dedupe(settings=None):
     for k, it in lots.items():
         t = lots.get(it.get("duplicate_of") or "")
         if it.get("status") == "duplicate" and t:
-            for f in ("announce", "buy"):
+            for f in ("announce", "buy", "conditions", "address"):
                 if not t.get(f) and it.get(f):
                     t[f] = it[f]
                     filled += 1
+            # ほかの情報元（Xの誰かのポストなど）で本人確認・会員の有無が分かっていれば、それで埋める
+            for f in ("id_check", "member"):
+                if t.get(f) is None and it.get(f) is not None:
+                    t[f] = it[f]
+                    filled += 1
+            tg = list(t.get("tags") or [])
+            for x in it.get("tags") or []:
+                if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート") and x not in tg:
+                    tg.append(x)
+                    filled += 1
+            t["tags"] = tg
     groups = {}
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
@@ -127,6 +138,11 @@ def dedupe(settings=None):
         for f in ("id_check", "member"):
             if keep.get(f) is None and d.get(f) is not None:
                 keep[f] = d[f]
+        tg = list(keep.get("tags") or [])
+        for x in d.get("tags") or []:
+            if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート") and x not in tg:
+                tg.append(x)
+        keep["tags"] = tg
         d["status"], d["duplicate_of"] = "duplicate", keep_k
         n += 1
 
