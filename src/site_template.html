@@ -419,6 +419,7 @@ input[type="search"] { flex: 1 1 160px; }
 .sb-list td b { font-family: var(--font-num); font-size: 15px; } .sb-list td b.pct { font-size: 13px; }
 .sb-buy { display: flex; gap: 4px; margin-top: 4px; } .sb-buy a { font-size: 11px; font-weight: 700; text-decoration: none; border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
 .sb-buy a.sb-rk { background: #bf0000; color: #fff; } .sb-buy a.sb-az { background: #ff9900; color: #111; }
+.band.b-pre { background: #0284c7; color: #fff; } .ticket.pre .go.tk { opacity: .85; }
 .sb-list a.sb-more { display: block; width: fit-content; margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--red); text-decoration: none; border: 1px solid var(--red); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
 .souba { scroll-margin-top: 12px; } .sb-list .spark { width: 160px; height: 40px; }
 /* スマホ：相場の一覧は横スクロールの表ではなく、商品ごとのカードに */
@@ -837,6 +838,13 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   function otherTags(it) { return (it.tags || []).filter(function (t) { return ["会員", "本人確認"].indexOf(t) < 0; }); }
 
   // 締切の色帯：赤＝今日締切、オレンジ＝明日締切、灰＝それ以降
+  // まだ受付が始まっていない抽選（開始日時が未来）：「受付前 11/4(水)17:00〜」
+  function preOf(it) {
+    var s = it.start ? Date.parse(it.start) : NaN;
+    if (!(s > Date.now())) return null;
+    var d = new Date(s), W = ["日", "月", "火", "水", "木", "金", "土"];
+    return (d.getMonth() + 1) + "/" + d.getDate() + "(" + W[d.getDay()] + ")" + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") + "〜";
+  }
   function bandOf(t) {
     if (t == null || t <= Date.now()) return { cls: "b-later", lab: "" };
     if (isToday(t)) return { cls: "b-today", lab: "⏰ 今日締切 あと" };
@@ -857,9 +865,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     return '<div class="conds">' + id + mem + oth + plc + '</div>';
   }
   function ticket(it) {
-    var cd = countdown(it._end), bd = bandOf(it._end), done = !!applied[it.key], cal = gcal(it);
-    return '<article class="ticket tb' + (done ? " applied" : "") + '" data-key="' + esc(it.key) + '">' +
-      '<div class="band ' + bd.cls + '"><span class="bl">' + bd.lab + '<span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span></span><span class="dl">' + fmtDate(it._end) + '</span></div>' +
+    var cd = countdown(it._end), bd = bandOf(it._end), done = !!applied[it.key], cal = gcal(it), pre = preOf(it);
+    return '<article class="ticket tb' + (done ? " applied" : "") + (pre ? " pre" : "") + '" data-key="' + esc(it.key) + '">' +
+      (pre ? '<div class="band b-pre"><span class="bl">受付前<span class="cd">' + pre + '</span></span><span class="dl">' + (it._end ? "締切 " + fmtDate(it._end) : "締切は後日発表") + '</span></div>'
+           : '<div class="band ' + bd.cls + '"><span class="bl">' + bd.lab + '<span class="cd" data-end="' + (it._end || "") + '">' + cd.text + '</span></span><span class="dl">' + fmtDate(it._end) + '</span></div>') +
       (function () { var t = thumb(it); return '<div class="body' + (t ? " has-img" : "") + '">' + t; })() + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (st.game === "all" && GSHORT[it.game] ? '<span class="badge gm g-' + esc(it.game) + '">' + esc(GSHORT[it.game]) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
@@ -879,7 +888,8 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     var amz = isAmazon(i);  // Amazonはアフィリエイトリンクなので「PR」を付ける（ステマ規制）
     return '<a class="hc" href="' + esc(i.url || "#") + '" target="_blank" rel="' + (amz ? "nofollow sponsored noopener" : "noopener") + '">' +
       '<span class="hc-top ' + cd.cls + '">' + (isFresh ? '<b class="nw">NEW</b>' : "") + (amz ? '<b class="hc-pr">PR</b>' : "") +
-        '<span class="hc-cd" data-end="' + (i._end || "") + '">' + (i._end ? cd.text : "受付中") + '</span></span>' +
+        (preOf(i) ? '<span class="hc-cd">受付前 ' + preOf(i) + '</span></span>' :
+        '<span class="hc-cd" data-end="' + (i._end || "") + '">' + (i._end ? cd.text : "受付中") + '</span></span>') +
       '<b class="hc-s">' + esc(i.store) + '</b>' +
       '<span class="hc-p">' + esc(i.series || i.product) + '</span>' +
       '<span class="hc-f"><i class="' + (isStore ? "st" : "sh") + '">' + (isStore ? "店頭受取" : "発送") + '</i>' +
