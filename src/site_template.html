@@ -465,6 +465,7 @@ input[type="search"] { flex: 1 1 160px; }
 }
 /* 弾ページの一番上：発売日・定価・相場・受付中 */
 .ch-note { margin: 4px 0 6px; font-size: 11.5px; color: var(--ink-2); line-height: 1.5; }
+.sq[hidden] { display: none; }
 .sq { display: block; margin: 8px 0 12px; padding: 10px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; text-decoration: none; color: var(--ink); }
 .sq-h { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 800; }
 .sq-h i { font-style: normal; font-size: 12.5px; color: var(--red); }
@@ -988,6 +989,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if (h1.dataset.top == null && h1.textContent === "トレカの抽選情報まとめ") h1.dataset.top = h1.textContent;
       if (h1.dataset.top != null) h1.textContent = st.game === "all" ? h1.dataset.top
         : ({ pokemon: "ポケカ", onepiece: "ワンピースカード", dragonball: "ドラゴンボール" }[st.game] || "トレカ") + "の抽選情報まとめ";
+    }
+    // 「今日のBOX相場」の枠：選んでいるゲームの枠だけ（すべての時はいちばん上のゲーム）
+    var sqs = document.querySelectorAll(".sq[data-g]");
+    if (sqs.length > 1) {
+      var sg = st.game === "all" ? sqs[0].dataset.g : st.game;
+      sqs.forEach(function (a) { a.hidden = a.dataset.g !== sg; });
     }
     $("games").innerHTML = TABS.map(function (x) {
       if (x.id === "all") {

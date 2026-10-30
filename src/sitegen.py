@@ -447,7 +447,7 @@ def _sb_img(img, alt, cls="sb-img"):
             else f'<span class="{cls}">{pic}</span>')
 
 
-def souba_strip(pairs, link):
+def souba_strip(pairs, link, g=""):
     """一覧ページの上：今日のBOX相場を3つだけ（押すと相場の一覧へ）。pairs = [(弾名, 相場のまとめ)]"""
     if not pairs:
         return ""
@@ -460,7 +460,7 @@ def souba_strip(pairs, link):
             d = f'前日比 {"+" if v > 0 else "−" if v < 0 else "±"}{abs(v):.1f}%'
         return (f'<span class="sq-i"><small>{escape(x)}</small><b>{_yen(sm["price"])}</b>'
                 + (f'<em class="{c}">{d}</em>' if d else "") + '</span>')
-    return (f'<a class="sq" href="{link}"><span class="sq-h">📈 今日のBOX相場<i>相場を見る ›</i></span>'
+    return (f'<a class="sq" data-g="{g}" href="{link}"><span class="sq-h">📈 今日のBOX相場<i>相場を見る ›</i></span>'
             f'<span class="sq-row">{"".join(one(x, sm) for x, sm in pairs[:3])}</span></a>')
 
 
@@ -1198,7 +1198,7 @@ def build(settings=None, out_dir=None, sample=None):
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
                 "supply": _supply_ad(short, name, tag, raff, prices, g),
-                "aff": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}")}
+                "aff": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
             top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
@@ -1209,6 +1209,17 @@ def build(settings=None, out_dir=None, sample=None):
                        lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["supply"] = _supply_ad(short, name, tag, raff, prices, g)
+            # トップ：ゲームごとの相場の枠を全部入れておき、上のタブで選んだゲームの枠だけ見せる
+            strips = []
+            for gg in games:
+                cnt = {}
+                for i_ in items:
+                    if i_["game"] == gg:
+                        for x_ in (i_.get("sers") or ([i_["series"]] if i_.get("series") else [])):
+                            cnt[x_] = cnt.get(x_, 0) + 1
+                xs = sorted(cnt, key=lambda x_: -cnt[x_])
+                strips.append(souba_strip([(x_, souba_sm[f"{gg}|{x_}"]) for x_ in xs if f"{gg}|{x_}" in souba_sm], f"/souba/#{gg}", gg))
+            top["aff"] = "".join(strips)
             write("", {}, top, items)
 
         al_g = {v: k for k, v in ((s.get("series_aliases") or {}).get(g) or {}).items()}
