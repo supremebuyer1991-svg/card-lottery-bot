@@ -289,6 +289,159 @@ lotteries:
     tags: [本人確認]
     url: https://cloud-pass.jp/pr/885c68fbf0f42f017ae01152515921ea11242b65f9fe5434877f6fb895b9eb37
 
+  # フルコンプ8店舗の共通抽選（LivePocket 1ページ。応募は1店舗だけ・2商品とも応募できる）
+  - slug: fullcomp-hachioji-30th-1101
+    game: pokemon
+    store: フルコンプ八王子本店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 東京都
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-tachikawa-30th-1101
+    game: pokemon
+    store: フルコンプ立川南口店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 東京都
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-machida-30th-1101
+    game: pokemon
+    store: フルコンプ町田店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 東京都
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-kichijoji-30th-1101
+    game: pokemon
+    store: フルコンプ吉祥寺店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 東京都
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-shinjuku-30th-1101
+    game: pokemon
+    store: フルコンプ新宿南口店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 東京都
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-sendai-30th-1101
+    game: pokemon
+    store: フルコンプ仙台駅前店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 宮城県
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-fukuoka-30th-1101
+    game: pokemon
+    store: フルコンプ福岡天神店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 福岡県
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
+  - slug: fullcomp-sapporo-30th-1101
+    game: pokemon
+    store: フルコンプ札幌駅前店
+    series: 30th CELEBRATION / ストームエメラルダ
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）・「ストームエメラルダ」1BOX（6,000円税込）
+    products: ["30th CELEBRATION 1BOX（7,200円）", "ストームエメラルダ 1BOX（6,000円）"]
+    channel: store
+    area: 北海道
+    method: Web抽選（LivePocket・フルコンプ8店舗の共通ページ）→ 当選したら店頭で購入
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/2(月)〜11/3(火)予定
+    buy: 11/5(木)〜11/8(日) 閉店まで（当選した店舗のみ）
+    conditions: LivePocketの会員登録とポケモンカードゲーム プレイヤーズクラブのプレイヤーIDが必要。応募は8店舗のうち1店舗だけ（2商品とも応募可・各1BOXまで）。購入時にマイナンバーカードで本人確認（ほかの身分証は不可）。代理購入・譲渡は不可
+    id_check: true
+    member: account
+    tags: [会員, 本人確認]
+    url: https://livepocket.jp/e/x425p
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
