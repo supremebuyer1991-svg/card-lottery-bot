@@ -12,3 +12,5 @@ assert find_address("住所 大阪府枚方市", None) is None                  
 assert find_address("住所 東京都豊島区東池袋1丁目2-3 サンシャインセンター", None) == "東京都豊島区東池袋1丁目2-3"
 assert maps_url("店", "大阪府枚方市宮之阪4-28-12").startswith("https://www.google.com/maps/search/?api=1&query=")
 print("ADDRESS OK")
+assert find_address("概要 開催日 2026年11月6日 会場 TSUTAYA枚方ベルパルレ店 (大阪府) 枚方市宮之阪4-28-12 会場マップ", "大阪府") == "大阪府枚方市宮之阪4-28-12"
+print("ADDRESS LP OK")

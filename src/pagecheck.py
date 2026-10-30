@@ -136,6 +136,8 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
         need_det = bool(ask_details) and _needs_details(it)
         if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr and not need_det:
             continue
+        if t and it.get("page_err") and (now() - t).total_seconds() < 6 * 3600:
+            continue  # 読めなかったページは6時間あける（毎回同じページで枠を使い切らないように）
         todo.append((it, url))
     pages = {}
     closed = 0
@@ -146,8 +148,13 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
                 pages[url] = html_to_text(fetcher(url), url)
             except Exception as e:
                 pages[url] = ""
+                it["page_err"] = str(e)[:120]  # 読めなかった理由を残す（サイトに断られた・時間切れなど）
                 log(f"応募ページの確認: 取得失敗 {url[:60]} {e}")
         text = pages[url]
+        if text:
+            it.pop("page_err", None)
+        elif url in pages and not it.get("page_err"):
+            it["page_err"] = "中身が空"
         if text and it.get("channel") == "store" and not it.get("address"):  # 店頭抽選はお店の住所も読む
             a = find_address(text, it.get("area"))
             if a:

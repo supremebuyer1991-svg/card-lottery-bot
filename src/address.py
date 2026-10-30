@@ -16,9 +16,17 @@ HINT = re.compile(r"住所|所在地|会場|店舗|店頭|場所|アクセス|�
 STOP = re.compile(r"(TEL|Tel|tel|電話|営業|定休|☎|📞|※|最寄|駅から|徒歩).*$")
 
 
+LP_VENUE = re.compile(r"会場\s*[^\n()（）]{1,40}?[（(](" + PREFS + r")[）)]\s*([^\s、。,，「」【】『』()（）:：/|｜<>]{2,45})")
+
+
 def find_address(text, area=None):
     """本文から住所を1つ。見つからなければ None"""
     t = text or ""
+    # LivePocket の「会場 〇〇店 (大阪府) 枚方市宮之阪4-28-12」の形
+    for m in LP_VENUE.finditer(t):
+        pref, rest = m.group(1), STOP.sub("", m.group(2))
+        if (not area or pref == area) and re.search(r"[市区町村郡]", rest) and re.search(r"[0-9０-９]", rest):
+            return pref + re.sub(r"(?<=[0-9０-９])[‐－―ー−](?=[0-9０-９])", "-", rest).rstrip("-")
     for m in ADDR.finditer(t):
         pref, rest = m.group(1), STOP.sub("", m.group(2))
         if area and pref != area:
