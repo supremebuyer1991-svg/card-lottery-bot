@@ -73,6 +73,19 @@ def dedupe(settings=None):
     s = settings or load_settings()
     # 弾名はサイトと同じ名前にそろえてから比べる（楽天用の別名は使わない：vol.2 と vol.1 が同じになってしまうため）
     lots = load_json("lotteries.json", {})
+    # 以前「同じ応募ページ」というだけで別の商品にまとめてしまった抽選を元に戻す
+    for k, it in lots.items():
+        t = lots.get(it.get("duplicate_of") or "")
+        if (it.get("status") == "duplicate" and t and t.get("status") in ACTIVE and not it.get("manual")
+                and it.get("url") and _url_key(it.get("url")) == _url_key(t.get("url"))
+                and not re.search(r"amazon|amzn", it.get("url") or "", re.I)
+                and _skey(it) and _skey(t) and _skey(it) != _skey(t)
+                and norm_store(it.get("store")) == norm_store(t.get("store"))
+                and (it.get("end") or "")[:10] == (t.get("end") or "")[:10]
+                and not (it.get("end") and it["end"] < __import__("datetime").datetime.now().astimezone().isoformat())):
+            it["status"] = t["status"] if t["status"] in ("approved", "listed", "posted") else "approved"
+            it.pop("duplicate_of", None)
+            log(f"重複を戻しました: {it.get('store')} / {it.get('product')}")
     groups = {}
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
@@ -162,14 +175,20 @@ def dedupe(settings=None):
             continue
         cc = [k for k in keys if str(lots[k].get("source", "")).startswith("カード抽選")]
         others = [k for k in keys if k not in cc]
-        if not cc and len(others) > 1:  # どちらもXなどから拾った時は、一番くわしい方に
+        if not cc and len(others) > 1:  # どちらもXなどから拾った時は、弾ごとに一番くわしい方に
             others.sort(key=lambda k: (bool(lots[k].get("end")), _rank(lots[k])), reverse=True)
-            cc, others = others[:1], others[1:]
+            heads = {}
+            for k in others:
+                heads.setdefault(_skey(lots[k]), k)
+            cc = list(heads.values())
+            others = [k for k in others if k not in cc]
         if not cc or not others:
             continue
         for k in others:
             sk = _skey(lots[k])
             same = [c for c in cc if _skey(lots[c]) == sk]
+            if not same and sk and all(_skey(lots[c]) for c in cc):
+                continue  # 1つのフォームで別々の商品を受け付ける抽選（例：あみあみの「BOX」と「デッキセット」）は別の抽選
             merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
     if n:
         save_json("lotteries.json", lots)

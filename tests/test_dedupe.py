@@ -29,3 +29,20 @@ assert L["g1"]["status"] == "listed" and L["g2"]["status"] == "listed"
 assert L["p1"]["status"] == "listed" and L["p2"]["status"] == "duplicate"
 assert L["w1"]["status"] == "approved" and n == 3
 print("DEDUPE OK")
+
+# 1つのフォームで別々の商品（あみあみ：BOX と デッキセット）→ まとめない。前にまとめたものは戻す
+F = "https://form.amiami.jp/draw20261030"
+E2 = "2099-11-04T13:59:00+09:00"
+save_json("lotteries.json", {
+    "a1": {"game": "pokemon", "store": "あみあみ本店", "series": "ハドウシーカー", "product": "ハドウシーカー BOX", "end": E2, "status": "duplicate", "duplicate_of": "a2", "source": "入荷Now 入荷情報", "url": F},
+    "a2": {"game": "pokemon", "store": "あみあみ本店", "series": "ドリームex", "product": "スペシャルデッキセットMEGA", "end": E2, "status": "approved", "source": "入荷Now 入荷情報", "url": F},
+    "a3": {"game": "pokemon", "store": "あみあみ", "series": "ハドウシーカー", "product": "ハドウシーカー", "end": None, "status": "approved", "source": "X「ポケカ 抽選」", "url": F},
+})
+dedupe.dedupe({"rakuten_aliases": {}})
+L = load_json("lotteries.json", {})
+assert L["a1"]["status"] == "approved" and L["a2"]["status"] == "approved", L
+assert L["a3"]["status"] == "duplicate" and L["a3"]["duplicate_of"] == "a1", L
+dedupe.dedupe({"rakuten_aliases": {}})
+L = load_json("lotteries.json", {})
+assert L["a1"]["status"] == "approved" and L["a2"]["status"] == "approved", L
+print("DEDUPE AMIAMI OK")
