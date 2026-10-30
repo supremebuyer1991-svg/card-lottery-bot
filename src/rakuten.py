@@ -57,6 +57,8 @@ def _score(item, series, game_name, orig=None):
         sc += 1  # JANコードの名前の写真は、メーカーの写真のことが多い
     if re.search(r"特典|プレゼント|キャンペーン|レビュー|安心|即日|保証|ラッピング", name):
         sc -= 1  # 写真に店の宣伝（特典・保証のマーク）が入っていることが多い
+    if re.search(r"/@0_mall/(yum-yum|keitaigod01|goldhobby)/", img):
+        sc -= 3  # 写真にいつも店のマークや文字が入っている店
     return sc
 
 

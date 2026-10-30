@@ -82,6 +82,16 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|ヒロインズエディション2": *heroines2
   "onepiece|Heroines Edition vol.2【EB-05】": *heroines2
   "onepiece|ONE PIECE Heroines Edition vol.2": *heroines2   # 文字入りの宣伝画像を使わない
+  # ドラゴンボール：店のマーク（安心のBOX販売・プレゼント）が入っていない、箱全体の写真
+  "dragonball|CROSS FORCE":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/kahucwheowe.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/noah-shopping/4582769965937/"
+  "dragonball|DUAL EVOLUTION":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/akaikumasan/cabinet/picture20260217/4582769937071.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/akaikumasan/4582769937071/"
+  "dragonball|BRIGHTNESS OF HOPE":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6562/4582770066562.jpg?_ex=300x300"
+    url: "https://books.rakuten.co.jp/search?sitem=4582770066562"
   "onepiece|神の支配": &kaminoshihai
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13922237000/"
