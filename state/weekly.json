@@ -4838,7 +4838,7 @@
       "store": "古本市場野口店",
       "series": "ストームエメラルダ",
       "channel": "store",
-      "area": null,
+      "area": "兵庫県",
       "found_at": "2026-10-29T12:08:57.891194+09:00",
       "chain": "furuichi"
     },
@@ -4847,7 +4847,7 @@
       "store": "古本市場野口店",
       "series": "30th CELEBRATION",
       "channel": "store",
-      "area": null,
+      "area": "兵庫県",
       "found_at": "2026-10-29T12:08:57.891221+09:00",
       "chain": "furuichi"
     },
@@ -5192,6 +5192,78 @@
       "area": "茨城県",
       "found_at": "2026-10-30T09:00:00.932460+09:00",
       "chain": "tsutaya"
+    },
+    "a8b218b2fb23c39a": {
+      "game": "pokemon",
+      "store": "キデイランド",
+      "series": "MEGAドリームex",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-10-30T10:31:56.158683+09:00",
+      "chain": "kiddyland"
+    },
+    "393f37ded6088872": {
+      "game": "pokemon",
+      "store": "キデイランド アミュプラザくまもと店",
+      "series": null,
+      "channel": "store",
+      "area": "熊本県",
+      "found_at": "2026-10-30T10:32:54.157457+09:00",
+      "chain": "kiddyland"
+    },
+    "590552e3eb3c9320": {
+      "game": "pokemon",
+      "store": "キデイランド二子玉川店",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T10:32:54.157499+09:00",
+      "chain": "kiddyland"
+    },
+    "d44804a79f781165": {
+      "game": "pokemon",
+      "store": "キデイランド吉祥寺店",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T10:32:54.157521+09:00",
+      "chain": "kiddyland"
+    },
+    "25422037c323df4d": {
+      "game": "pokemon",
+      "store": "キデイランド鹿児島店",
+      "series": null,
+      "channel": "store",
+      "area": "鹿児島県",
+      "found_at": "2026-10-30T10:32:54.157541+09:00",
+      "chain": "kiddyland"
+    },
+    "af6a99bc3f777d1b": {
+      "game": "pokemon",
+      "store": "キデイランド アミュプラザおおいた店",
+      "series": null,
+      "channel": "store",
+      "area": "大分県",
+      "found_at": "2026-10-30T10:32:54.157560+09:00",
+      "chain": "kiddyland"
+    },
+    "3a21be7cf85b2a46": {
+      "game": "pokemon",
+      "store": "キデイランド吉祥寺店",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T10:32:54.157597+09:00",
+      "chain": "kiddyland"
+    },
+    "2f079f800e79e222": {
+      "game": "pokemon",
+      "store": "ふるいちトップブックス諏訪中洲店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "長野県",
+      "found_at": "2026-10-30T10:32:54.157692+09:00",
+      "chain": "furuichi"
     }
   }
 }
