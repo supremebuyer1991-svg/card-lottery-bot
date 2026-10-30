@@ -6054,6 +6054,13 @@
   "store/tsutaya-c8b38/": {
     "name": "フタバ図書TSUTAYA Alti福山店",
     "items": {
+      "c15144f9209ad4ed": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "db4cc18d0dec1f15": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -10796,6 +10803,13 @@
   "store/shop-9562b/": {
     "name": "吉祥寺",
     "items": {
+      "8881eea8a9341c13": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-10-31",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "a972d459f7360715": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -10808,6 +10822,13 @@
   "store/hmv-c61b3/": {
     "name": "HMV各店",
     "items": {
+      "ad826d474eb4f146": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-03",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "69049db126bf14bf": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -10946,6 +10967,20 @@
         "f": "2026-10-30",
         "c": "store",
         "a": "2026-11-02"
+      },
+      "01cae703094b0473": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "online"
+      },
+      "3206bae2aba06b57": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "online"
       }
     }
   },
@@ -11177,6 +11212,85 @@
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
         "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/kadoshoppuorionbesu-dd3c4/": {
+    "name": "カードショップ オリオンベース",
+    "items": {
+      "6c0e818b08de8d34": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/aeon-31a96/": {
+    "name": "ふるいちイオンモール座間店",
+    "items": {
+      "d7bcc7f580001af2": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-10-30T21:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/aeon-5b64a/": {
+    "name": "キデイランド イオンモール浦和美園店",
+    "items": {
+      "9dff8e553d7f3f92": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      },
+      "e267a0582acc1745": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/bookoff-3a7d2/": {
+    "name": "BOOKOFF SUPERBAZAAR 町田中央通り店",
+    "items": {
+      "d7d9a021ea5f8d7a": {
+        "p": "ONE PIECE Heroines Edition vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-9e8a9/": {
+    "name": "新星堂",
+    "items": {
+      "8cebc1106895c703": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T20:59",
+        "f": "2026-10-30",
+        "c": "online"
+      }
+    }
+  },
+  "store/batoroco-b5495/": {
+    "name": "TCバトロコ川崎駅前",
+    "items": {
+      "8094e59a5e4955f6": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-03T23:59",
         "f": "2026-10-30",
         "c": "store"
       }

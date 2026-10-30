@@ -2725,10 +2725,11 @@
     "keep": true
   },
   "store/tsutaya-c8b38/": {
-    "name": "フタバ図書TSUTAYA Alti福山店",
-    "last": "2026-08-16",
+    "name": "フタバ図書 TSUTAYA Alti福山店",
+    "last": "2026-10-30",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "広島県"
   },
   "store/tsutaya-56c51/": {
     "name": "TSUTAYA Trading Card 戸塚",
@@ -3835,7 +3836,8 @@
     "name": "吉祥寺",
     "last": "2026-10-30",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/hmv-c61b3/": {
     "name": "HMV各店",
@@ -3993,6 +3995,42 @@
   },
   "store/batosuki-af869/": {
     "name": "バトスキ",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/kadoshoppuorionbesu-dd3c4/": {
+    "name": "カードショップ オリオンベース",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/aeon-5b64a/": {
+    "name": "キデイランド イオンモール浦和美園店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/batoroco-b5495/": {
+    "name": "TCバトロコ川崎駅前",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "area": "神奈川県"
+  },
+  "store/aeon-31a96/": {
+    "name": "ふるいちイオンモール座間店",
+    "last": "2026-10-30",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/bookoff-3a7d2/": {
+    "name": "BOOKOFF SUPERBAZAAR 町田中央通り店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-9e8a9/": {
+    "name": "新星堂",
     "last": "2026-10-30",
     "game": "onepiece",
     "keep": true
