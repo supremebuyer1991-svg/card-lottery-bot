@@ -410,12 +410,13 @@ def _cmp(sm, k):
 
 def _cmp_td(sm, k):
     """一覧の表の比較のマス：上に「−3.5%」、下に小さく「▼2,161円」（横に長くならないように）"""
+    lab = "前日比" if k == "prev" else "1週間比"
     b = sm[k][1] if sm.get(k) else None
     if not b:
-        return '<td class="flat">-</td>'
+        return f'<td class="flat" data-l="{lab}">-</td>'
     d = sm["price"] - b
     cls = "up" if d > 0 else "down" if d < 0 else "flat"
-    return (f'<td class="{cls}"><b class="pct">{"+" if d > 0 else "−" if d < 0 else "±"}{abs(d) * 100 / b:.1f}%</b>'
+    return (f'<td class="{cls}" data-l="{lab}"><b class="pct">{"+" if d > 0 else "−" if d < 0 else "±"}{abs(d) * 100 / b:.1f}%</b>'
             f'<small class="{cls}">{"▲" if d > 0 else "▼" if d < 0 else "±"}{abs(d):,}円</small></td>')
 
 
@@ -1192,6 +1193,20 @@ def build(settings=None, out_dir=None, sample=None):
             info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
+            # ページの一番上：発売日・定価・相場・受付中の抽選をひと目で（相場は下の相場の欄へ飛ぶ）
+            q_ = []
+            if info.get("release"):
+                q_.append(("発売日", escape(jdate(info["release"])), ""))
+            if sm and sm.get("teika"):
+                q_.append(("定価", _yen(sm["teika"]), ""))
+            elif info.get("price"):
+                q_.append(("定価", escape(info["price"].split("／")[-1].replace("（税込）", "")), ""))
+            if sm:
+                q_.append((f"BOX相場（{_md(sm['date'])}）", _yen(sm["price"]), "#souba"))
+            q_.append(("受付中の抽選", f"{len(si)}件" if si else "これから", "#list" if si else ""))
+            quick_html = ('<div class="squick">' + "".join(
+                (f'<a href="{h}">' if h else "<div>") + f"<span>{escape(a)}</span><b>{b}</b>" + ("<i>相場を見る ›</i>" if h == "#souba" else "")
+                + ("</a>" if h else "</div>") for a, b, h in q_) + "</div>") if len(q_) > 1 else ""
             og_rel = "og/" + series_path(g, x).rstrip("/").replace("/", "-") + ".png"
             og_rows = [("いま受付中の抽選", f"{len(si)}件" if si else "これから", True)]
             if info.get("release"):
@@ -1227,7 +1242,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（30分ごとに更新）。"),
-                "aff": _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
+                "aff": quick_html + _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
                                                      + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
@@ -1392,10 +1407,10 @@ def build(settings=None, out_dir=None, sample=None):
                 rows.append((sm["price"], f'<tr><th>{link}' + (f'<small class="lot">抽選 受付中{nlot}件</small>' if nlot else "")
                             + f'<a class="sb-more" href="/{series_path(g, x)}#souba">詳しい相場<span aria-hidden="true"> ›</span></a>'
                             + _sb_buy(g, x, name_, rk if sample is None else {}, s, tag, raff) + '</th>'
-                            f'<td><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
-                            f'<td>{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
+                            f'<td class="sb-p" data-l="相場"><b>{_yen(sm["price"])}</b><small>{_md(sm["date"])}</small>{us}</td>'
+                            f'<td data-l="定価・差">{_yen(t) if t else "-"}' + (f'<small class="{"up" if gap > 0 else "down"}">{"+" if gap >= 0 else "−"}{abs(gap):,}円</small>' if t else "") + '</td>'
                             + "".join(_cmp_td(sm, k_) for k_ in ("prev", "week")) +
-                            f'<td>{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
+                            f'<td class="sb-sp" data-l="30日">{spark(sm.get("points") or [], 160, 40)}</td></tr>'))
             if rows:
                 rows.sort(key=lambda r: -r[0])
                 secs.append(f'<section class="sb-list"><h2>{escape(GAME_SHORT[g])}の{"過去の弾の" if old else ""}BOX相場</h2>'
