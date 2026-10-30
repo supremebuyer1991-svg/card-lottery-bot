@@ -214,6 +214,15 @@ sources:
     quote: false
     hide_source_url: true
 
+  - id: cardchusen_dragonball
+    game: dragonball
+    name: カード抽選まとめ ドラゴンボール
+    type: html_cards
+    url: https://cardchusen.com/dragonball
+    card_link_text: 応募
+    quote: false
+    hide_source_url: true
+
   # --- 店舗の抽選ページ（URLを確認して追加。例） ---
   # - id: pokecen_lottery
   #   game: pokemon
