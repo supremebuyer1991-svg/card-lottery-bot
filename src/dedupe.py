@@ -100,6 +100,15 @@ def dedupe(settings=None):
             it["status"] = t["status"] if t["status"] in ("approved", "listed", "posted") else "approved"
             it.pop("duplicate_of", None)
             log(f"重複を戻しました: {it.get('store')} / {it.get('product')}")
+    # まとめた抽選の空欄（発表日など）を、まとめられた側から補う（前は補っていなかった）
+    filled = 0
+    for k, it in lots.items():
+        t = lots.get(it.get("duplicate_of") or "")
+        if it.get("status") == "duplicate" and t:
+            for f in ("announce", "buy"):
+                if not t.get(f) and it.get(f):
+                    t[f] = it[f]
+                    filled += 1
     groups = {}
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
@@ -111,8 +120,12 @@ def dedupe(settings=None):
     def merge(keep_k, k):
         nonlocal n
         keep, d = lots[keep_k], lots[k]
-        for f in ("area", "conditions", "url", "x_post", "image", "end", "apply_url"):  # 残す方の空欄を補う
+        for f in ("area", "conditions", "url", "x_post", "image", "end", "apply_url",
+                  "announce", "buy", "start", "method", "address"):  # 残す方の空欄を補う（発表日も：結果ページの「今日発表」に使う）
             if not keep.get(f) and d.get(f):
+                keep[f] = d[f]
+        for f in ("id_check", "member"):
+            if keep.get(f) is None and d.get(f) is not None:
                 keep[f] = d[f]
         d["status"], d["duplicate_of"] = "duplicate", keep_k
         n += 1
@@ -204,7 +217,7 @@ def dedupe(settings=None):
             if not same and all(_different_item(lots[k], lots[c]) for c in cc):
                 continue  # 1つのフォームで別々の商品を受け付ける抽選（例：あみあみの「BOX」と「デッキセット」）は別の抽選
             merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
-    if n:
+    if n or filled:
         save_json("lotteries.json", lots)
         log(f"重複: {n}件をまとめました")
     return n
