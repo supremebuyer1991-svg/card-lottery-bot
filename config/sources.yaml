@@ -188,7 +188,8 @@ sources:
     type: html_index
     url: https://nyuka-now.com/archives/category/restock
     link_keywords: ["ポケモンカード", "ポケカ", "ワンピース", "ドラゴンボール", "フュージョンワールド"]
-    max_articles: 8
+    max_articles: 12
+    parser: nyukanow   # まとめ記事の表をAIを使わずに読む（src/nyukanow.py）。表が読めない記事だけAIへ
     quote: false
     hide_source_url: true
 

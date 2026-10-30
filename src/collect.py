@@ -198,9 +198,20 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             for url in article_links(body, src["url"], src.get("link_keywords", []),
                                      src.get("max_articles", 10)):
                 try:
-                    text = html_to_text(fetcher(url), url)
+                    raw = fetcher(url)
+                    text = html_to_text(raw, url)
                 except Exception as e:
                     log(f"記事取得失敗 {url}: {e}")
+                    continue
+                if src.get("parser") == "nyukanow" and "accordionBox" in raw:
+                    # 入荷Nowのまとめ記事：表をそのまま読む（AI不要・お店ごとに変わった表だけ）
+                    import nyukanow
+                    got = nyukanow.items(raw, url)
+                    for key, h, item in got:
+                        cur[key] = h
+                        if prev.get(key) != h:
+                            direct.append(dict(item, source=src["name"], source_url=url))
+                    log(f"{sid}: 表から直接読み取り {len(got)}件（{url}）")
                     continue
                 cur[url] = sha(text)
                 if prev.get(url) != cur[url]:
