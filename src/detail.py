@@ -237,7 +237,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + "\n".join(head) +
             '</head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
-            f'<main class="wrap">{crumbs}{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
+            f'<main class="wrap">{crumbs}<p style="margin:2px 0 6px;font-size:11px;color:var(--ink-2)">本ページはプロモーションを含みます</p>{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
             f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{cd_html}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{aff}{rel_html}'
             f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。</footer></main>'
