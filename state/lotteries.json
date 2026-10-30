@@ -8695,38 +8695,6 @@
     "found_at": "2026-10-26T21:28:31.556291+09:00",
     "cls": "20ab237df1d9"
   },
-  "aa889a849017c401": {
-    "store": "カードショップクラクラ",
-    "product": "ポケモンカードゲーム MEGA「30th CELEBRATION カードセット」9種類で1セット（前回のキャンセル分6セット・フォロー＆リポストで応募）",
-    "series": "30周年御三家カードセット",
-    "end": "",
-    "url": "https://x.com/Shopkurakura/status/2114687753380344126",
-    "x_post": "https://x.com/Shopkurakura/status/2114687753380344126",
-    "channel": "store",
-    "area": null,
-    "method": "SNS応募",
-    "conditions": "SNS応募",
-    "tags": [
-      "SNS応募"
-    ],
-    "id_check": false,
-    "member": "none",
-    "confidence": 0.95,
-    "game": "pokemon",
-    "source": "カード抽選まとめ ポケカ",
-    "source_url": "https://cardchusen.com/pokeka",
-    "no_quote": true,
-    "key": "aa889a849017c401",
-    "status": "expired",
-    "found_at": "2026-10-26T21:28:31.556305+09:00",
-    "issue": 50,
-    "cls": "f424d3d454cf",
-    "deadline_checked_at": "2026-10-28T05:03:02.473871+09:00",
-    "deadline_v": 4,
-    "deadline_note": "画像1/1枚読込・画像・本文に締切の記載なし",
-    "closed_reason": "情報元の一覧から消えた",
-    "closed_at": "2026-10-28T13:26:16.343050+09:00"
-  },
   "dd1bea4bc7b7db98": {
     "store": "ヤマダデンキ（ヤマダデジタル会員アプリ）",
     "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販分）",
@@ -18823,7 +18791,7 @@
     "key": "e904efcfb9ee3fc0",
     "status": "approved",
     "found_at": "2026-10-28T14:11:19.592031+09:00",
-    "page_checked_at": "2026-10-28T14:17:24.256988+09:00",
+    "page_checked_at": "2026-10-30T13:36:34.643325+09:00",
     "multi": false,
     "cls": "74f31c473bb7"
   },
@@ -22582,7 +22550,7 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・応募期間 10月28日～11月3日23:59",
     "end_from": "応募ページ（応募期間 10月28日～11月3日23:）",
-    "page_checked_at": "2026-10-29T03:28:04.493339+09:00",
+    "page_checked_at": "2026-10-30T13:36:37.222758+09:00",
     "multi": false,
     "cls": "d2b6fc1bff54"
   },
@@ -29570,7 +29538,9 @@
     "key": "fe6ba29c3a27636c",
     "status": "pending",
     "found_at": "2026-10-30T12:45:52.583646+09:00",
-    "issue": 260
+    "issue": 260,
+    "multi": false,
+    "cls": "dd304c745b11"
   },
   "f80de4281858b3aa": {
     "store": "フルコンプ",
@@ -30052,5 +30022,35 @@
     "page_checked_at": "2026-10-30T13:14:08.772369+09:00",
     "multi": false,
     "cls": "4c2d3ec27177"
+  },
+  "6cc8bf9918d77798": {
+    "game": "pokemon",
+    "store": "TSUTAYA枚方ベルパルレ店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（お一人様1BOXまで・シュリンクを外してのお渡し）",
+    "series": "30th CELEBRATION",
+    "channel": "store",
+    "area": "大阪府",
+    "method": "Web抽選（LivePocket）→ 当選したら店頭で購入",
+    "end": "2026-11-01T23:00+09:00",
+    "announce": "11/5(木)予定（メールとLivePocketのマイページで確認）",
+    "buy": "11/6(金)〜11/8(日)",
+    "conditions": "LivePocketの会員登録が必要。本人確認書類と同じ氏名で申し込み（ニックネーム・ローマ字・カタカナは無効）。1人1回・1BOXまで。購入時に現住所が分かる本人確認書類が必要（健康保険証は不可）。代理購入・譲渡は不可。支払いは現金・クレジット・電子マネー・コード決済",
+    "member": "account",
+    "id_check": true,
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "url": "https://livepocket.jp/e/ir67g",
+    "slug": "tsutaya-hirakata-30th-1101",
+    "key": "6cc8bf9918d77798",
+    "status": "listed",
+    "found_at": "2026-10-30T13:35:15.944807+09:00",
+    "manual": true,
+    "source": "手動追加",
+    "confidence": 1.0,
+    "page_checked_at": "2026-10-30T13:36:39.601378+09:00",
+    "multi": false,
+    "cls": "a94b306824e3"
   }
 }
