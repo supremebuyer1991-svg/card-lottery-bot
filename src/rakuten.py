@@ -48,6 +48,15 @@ def _score(item, series, game_name, orig=None):
         sc += 1
     if "予約" in name:
         sc += 1
+    # 写真：楽天ブックスはメーカーの写真そのまま（箱全体が写っていて、店の宣伝の文字が入っていない）ので優先
+    img = _first_image(item)
+    shop = item.get("shopName") or ""
+    if "楽天ブックス" in shop or "/@0_mall/book/" in img:
+        sc += 4
+    elif re.search(r"/\d{13}(_\d)?\.jpg", img):
+        sc += 1  # JANコードの名前の写真は、メーカーの写真のことが多い
+    if re.search(r"特典|プレゼント|キャンペーン|レビュー|安心|即日|保証|ラッピング", name):
+        sc -= 1  # 写真に店の宣伝（特典・保証のマーク）が入っていることが多い
     return sc
 
 

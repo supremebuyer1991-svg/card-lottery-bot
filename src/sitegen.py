@@ -937,7 +937,8 @@ def build(settings=None, out_dir=None, sample=None):
             row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)
             if tag and re.search(r"amazon|アマゾン", row.get("store") or "", re.I) and "amazon." not in (row.get("url") or ""):
                 row["url"] = _amz(row.get("series") or row.get("product") or "", tag)  # XのURL（t.co）などは自分のタグ付きの検索に
-            r = rk.get(f"{i.get('game')}|{i.get('series')}") or {}
+            _cs = item_series(i.get("game"), i.get("series"), i.get("product"))  # 弾名はサイトでそろえた名前で（表記ゆれの別の写真を使わない）
+            r = (rk.get(f"{i.get('game')}|{_cs[0]}") if _cs else None) or rk.get(f"{i.get('game')}|{i.get('series')}") or {}
             if not row["image"] and r.get("image"):
                 row["image"], row["img_url"] = r["image"], r.get("url")
             # 商品名からも画像を探す（弾名が空の抽選・複数の商品をまとめた抽選）

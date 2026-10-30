@@ -56,7 +56,7 @@ amazon_tag: "st9994ststst-22"
 # 楽天：商品画像と楽天リンク（アプリID・アクセスキーは GitHub Secrets の RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY）
 rakuten_affiliate_id: "0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"  # 楽天アフィリエイトID
 rakuten_refresh_days: 3         # 1つの弾の画像を何日ごとに取り直すか
-rakuten_max_calls_per_run: 8    # 1回の実行で楽天に問い合わせる最大数
+rakuten_max_calls_per_run: 20   # 1回の実行で楽天に問い合わせる最大数（写真の選び直し中は多め）
 rakuten_aliases:                # 楽天での商品名がサイトの弾名と違うもの（弾名: 楽天で探す名前）
   30周年パック: 30th CELEBRATION
   30周年: 30th CELEBRATION
@@ -81,6 +81,7 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|EB-05": *heroines2
   "onepiece|ヒロインズエディション2": *heroines2
   "onepiece|Heroines Edition vol.2【EB-05】": *heroines2
+  "onepiece|ONE PIECE Heroines Edition vol.2": *heroines2   # 文字入りの宣伝画像を使わない
   "onepiece|神の支配": &kaminoshihai
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/mediaworldkaitoriworld/13922237000/"
