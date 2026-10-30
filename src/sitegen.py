@@ -729,7 +729,7 @@ def _product_ad(x, name, rr, tag, aff):
             (f'<a class="b-amz" href="{escape(amz)}" {_REL}>Amazonで見る</a>' if amz else ""))
     sup = "".join(f'<a href="{escape(_amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff))}" {_REL}>{_icon(k)}<span>{k}</span></a>'
                   for k in ("スリーブ", "ローダー", "デッキケース"))
-    return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>抽選に外れても、通販で探せます</span></div>'
+    return (f'<aside class="ad"><div class="ad-top"><span>抽選に外れても、通販で探せます</span></div>'
             f'<div class="ad-main"><a class="ad-img" href="{escape(rak)}" {_REL}>{img}</a>'
             f'<div class="ad-info"><small>{escape(name)}</small><b>{escape(x)}</b><div class="ad-btns">{btns}</div></div></div>'
             f'<div class="ad-sup"><p>一緒にそろえたいサプライ</p><div>{sup}</div></div></aside>')
@@ -745,7 +745,7 @@ def _flow_ad(prods, title):
         f'<small>{escape(g)}・抽選{n}件</small><b>{escape(x)}</b><em>楽天で見る</em></a>'
         for g, x, img, u, n in prods)
     sec = max(24, len(prods) * 5)  # 1枚あたり約5秒で流れる
-    return (f'<aside class="ad ad-flow"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(title)}</span></div>'
+    return (f'<aside class="ad ad-flow"><div class="ad-top"><span>{escape(title)}</span></div>'
             f'<div class="flow-wrap"><div class="flow-track" style="--sec:{sec}s">{cards}'
             f'<span class="flow-dup" aria-hidden="true">{cards}</span></div></div></aside>')
 
@@ -771,7 +771,7 @@ def _supply_ad(short, name, tag, aff, prices=None, game=None):
     if dates:
         d = parse_dt(max(dates))
         note = f'<p class="ad-note">価格は楽天市場の{d.month}/{d.day}時点の最安値（税込）</p>' if d else ""
-    return (f'<aside class="ad"><div class="ad-top"><span class="ad-pr">PR</span><span>{escape(short)}のサプライをさがす</span></div>'
+    return (f'<aside class="ad"><div class="ad-top"><span>{escape(short)}のサプライをさがす</span></div>'
             f'<div class="ad-sup ad-tiles"><div>{"".join(tiles)}</div></div>{note}'
             + (f'<div class="ad-amz"><b>Amazonで見る</b>{amz}</div>' if amz else "") + '</aside>')
 
