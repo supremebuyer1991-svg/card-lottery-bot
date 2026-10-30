@@ -28,3 +28,26 @@ assert L["open"]["status"] == "listed" and "c" not in asked   # 終わりの言�
 assert "d" not in asked and not L["x"].get("page_checked_at")  # Xのポストは対象外
 assert pagecheck.check_pages({}, ask=ask, fetcher=lambda u: pages[u]) == 0  # 同じ日は見に行かない
 print("PAGECHECK OK")
+
+# 中身が空の抽選は、応募ページから条件などを埋める（埋まっている欄は変えない・1回だけ）
+save_json("lotteries.json", {
+    "lp": {"status": "approved", "store": "古本市場深井店", "product": "30th", "channel": "store", "area": "大阪府",
+           "url": "https://livepocket.jp/e/8xaaf", "tags": []},
+    "full": {"status": "approved", "store": "e", "product": "p", "url": "https://livepocket.jp/e/zz",
+             "conditions": "既存", "announce": "11/1", "id_check": False},
+})
+calls = []
+def det(text, it):
+    calls.append(it["store"])
+    return {"conditions": "LivePocket会員・本人確認書類が必要", "announce": "11/3(火)〜11/4(水)", "buy": "11/6〜11/8",
+            "method": None, "id_check": True, "member": "account"}
+pg = {"https://livepocket.jp/e/8xaaf": "<p>受付中</p>", "https://livepocket.jp/e/zz": "<p>受付中</p>"}
+pagecheck.check_pages({}, ask=ask, fetcher=lambda u: pg[u], ask_details=det)
+L = load_json("lotteries.json", {})
+lp = L["lp"]
+assert lp["conditions"].startswith("LivePocket") and lp["announce"].startswith("11/3") and lp["id_check"] is True
+assert lp["member"] == "account" and "本人確認" in lp["tags"] and "会員" in lp["tags"] and "method" not in lp
+assert calls == ["古本市場深井店"] and L["full"]["conditions"] == "既存"
+pagecheck.check_pages({}, ask=ask, fetcher=lambda u: pg[u], ask_details=det)
+assert calls == ["古本市場深井店"]  # 2回目は読まない
+print("PAGECHECK DETAILS OK")

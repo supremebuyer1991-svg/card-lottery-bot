@@ -49,12 +49,79 @@ def _ask(text, it):
     return json.loads(m.group(0)) if m else {}
 
 
-def check_pages(settings, ask=None, fetcher=get, limit=None):
+DETAIL_PROMPT = """トレカの抽選販売の応募ページの本文です。「{store}」の「{product}」の抽選について、書かれていることだけを読み取ってください。
+
+- conditions: 応募・購入の条件を、ページの文をそのまま写さず自分の言葉で120字以内に（会員登録・アプリ・本人確認書類・1人いくつまで・代理購入・価格など）
+- announce: 当選発表の日（例「11/3(火)〜11/4(水)」）。書かれていなければ null
+- buy: 購入・受け取りの期間（例「11/6(金)〜11/8(日)」）。書かれていなければ null
+- method: 応募のしかた（例「Web抽選（LivePocket）→ 当選したら店頭で購入」）
+- id_check: 購入時に本人確認書類が要るなら true、要らないとはっきり書いてあれば false、書かれていなければ null
+- member: 会員カードが要るなら "card"、会員登録・アカウント・アプリ会員が要るなら "account"、不要とはっきり書いてあれば "none"、分からなければ null
+- 書かれていないことは推測しない
+
+出力は次のJSONだけ: {{"conditions": "...", "announce": null, "buy": null, "method": null, "id_check": null, "member": null}}
+
+--- ページ本文 ---
+{text}
+"""
+
+
+def _ask_details(text, it):
+    r = requests.post(API_URL, timeout=60, headers={
+        "x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01", "content-type": "application/json",
+    }, json={"model": MODEL, "max_tokens": 600, "messages": [{"role": "user", "content": DETAIL_PROMPT.format(
+        store=it.get("store") or "", product=(it.get("series") or it.get("product") or "")[:60], text=text[:6000])}]})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Claude API エラー {r.status_code}")
+    raw = "".join(b.get("text", "") for b in r.json().get("content", []))
+    m = re.search(r"\{.*\}", raw, re.S)
+    return json.loads(m.group(0)) if m else {}
+
+
+def _needs_details(it):
+    """Xの短いポストから拾った抽選などで、条件・発表日などが空のもの"""
+    return not it.get("details_checked") and not it.get("manual") and (
+        not it.get("conditions") or (not it.get("announce") and it.get("id_check") is None))
+
+
+def fill_details(it, text, ask_details):
+    """応募ページから、空いている欄（条件・発表日・購入期間・本人確認・会員）だけを埋める"""
+    it["details_checked"] = True
+    try:
+        r = ask_details(text, it)
+    except Exception as e:
+        log(f"応募ページの確認: 詳細の読み取り失敗 {e}")
+        return False
+    got = []
+    for f in ("conditions", "announce", "buy", "method"):
+        v = r.get(f)
+        if isinstance(v, str) and v.strip() and v.strip().lower() != "null" and not it.get(f):
+            it[f] = v.strip()[:200]
+            got.append(f)
+    if r.get("id_check") in (True, False) and it.get("id_check") is None:
+        it["id_check"] = r["id_check"]
+        got.append("id_check")
+    if r.get("member") in ("card", "account", "none") and not it.get("member"):
+        it["member"] = r["member"]
+        got.append("member")
+    tags = list(it.get("tags") or [])
+    for cond, tg in ((it.get("id_check") is True, "本人確認"), (it.get("member") in ("card", "account"), "会員")):
+        if cond and tg not in tags:
+            tags.append(tg)
+    it["tags"] = tags
+    if got:
+        log(f"応募ページの確認: 詳細 {it.get('store')} {','.join(got)}")
+    return bool(got)
+
+
+def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
     """戻り値: 終了にした件数"""
     if ask is None:
         if not os.environ.get("ANTHROPIC_API_KEY"):
             return 0
         ask = _ask
+    if ask_details is None and os.environ.get("ANTHROPIC_API_KEY"):
+        ask_details = _ask_details
     limit = limit or settings.get("page_checks_per_run", 40)
     lots = load_json("lotteries.json", {})
     todo = []
@@ -66,7 +133,8 @@ def check_pages(settings, ask=None, fetcher=get, limit=None):
             continue
         t = parse_dt(it.get("page_checked_at"))
         need_addr = it.get("channel") == "store" and not it.get("address") and not it.get("address_checked")
-        if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr:
+        need_det = bool(ask_details) and _needs_details(it)
+        if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr and not need_det:
             continue
         todo.append((it, url))
     pages = {}
@@ -86,6 +154,8 @@ def check_pages(settings, ask=None, fetcher=get, limit=None):
                 it["address"] = a
                 log(f"応募ページの確認: 住所 {it.get('store')} {a}")
             it["address_checked"] = True
+        if text and ask_details and _needs_details(it):  # 空いている条件などを応募ページから埋める（1つの抽選につき1回）
+            fill_details(it, text, ask_details)
         if not text or not END_WORDS.search(text):
             continue
         try:
