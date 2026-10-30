@@ -77,7 +77,7 @@ const skey=i=>(i.store||"").replace(/[\\s　]/g,"");
 const byStore=li=>{const m=new Map();for(const i of li){const k=skey(i);if(!m.has(k))m.set(k,{i,names:[]});const n=name(i);if(!m.get(k).names.includes(n))m.get(k).names.push(n);}return [...m.values()];};
 const nm=x=>x.names.length>1?`${x.names[0]} ほか${x.names.length-1}種`:x.names[0];
 // 投稿のおすすめ時間（時）。今の時間に合う下書きを上に並べる
-const add=(h,hint,t,hours,img)=>{if(t)cards.push({h,hint,t,hot:(hours||[]).includes(hr),img});};
+const add=(h,hint,t,hours,img,src)=>{if(t)cards.push({h,hint,t,hot:(hours||[]).includes(hr),img,src:(src||[]).filter(i=>i.store&&t.includes(i.store))});};
 // 280字（日本語は1字=2）に収まるまで行を足す
 const fit=(head,lines,tail)=>{let body=[];const mk=b=>[head,"",...b,"",tail].join("\\n");for(const l of lines){if(xlen(mk([...body,l]))>280)break;body.push(l);}return body.length?mk(body):"";};
 const foot=(cta,url,tags)=>`${cta}👇\\n${url}\\n\\n${tags}`;
@@ -96,7 +96,7 @@ const REG=[["北海道・東北",/北海道|青森|岩手|宮城|秋田|山形|�
   ;
  for(const x of byStore(li).slice(0,3)){const i=x.i;
   const t=`🚨抽選速報｜${GS[i.game]}\\n\\n「${nm(x)}」\\n\\n📍${i.store}（${where(i)}）\\n⏰${fmt(end(i))} 締切\\n\\n`+foot("応募条件・方法はこちら",i.lpath?SITE+"/"+i.lpath:i.spath?SITE+"/"+i.spath:link(i.game),TAG[i.game]);
-  add(`速報：${i.store}`,"見つけてすぐ出すのが一番伸びる",t,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]);
+  add(`速報：${i.store}`,"見つけてすぐ出すのが一番伸びる",t,[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],null,[i]);
  }
 }
 // 2) 本日締切（ゲーム別）
@@ -104,21 +104,21 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),now)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：本日締切`,"昼〜夕方に（応募忘れの人向け）",
-  fit(`⏰本日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("まだ間に合います",link(g),TAG[g])),[11,12,13,14,15,16,17,18],`today-${g}`);
+  fit(`⏰本日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("まだ間に合います",link(g),TAG[g])),[11,12,13,14,15,16,17,18],`today-${g}`,li);
 }
 // 3) 明日締切（ゲーム別。夜に出して「明日忘れずに」）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&sameDay(end(i),tmr)).sort((a,b)=>end(a)-end(b));
  if(!li.length)continue;
  add(`${GS[g]}：明日締切`,"夜に（翌日のリマインド）",
-  fit(`📅明日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("今夜のうちに応募しておこう",link(g),TAG[g])),[19,20,21,22,23],`tomorrow-${g}`);
+  fit(`📅明日締切｜${GS[g]}の抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（${hm(end(x.i))}まで）\\n　${nm(x)}`),foot("今夜のうちに応募しておこう",link(g),TAG[g])),[19,20,21,22,23],`tomorrow-${g}`,li);
 }
 // 4) ネット抽選（発送）まとめ（全国の人が応募できるので反応が広い）
 for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&i.channel==="online"&&(!end(i)||end(i)-now>1*H)).sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
  if(li.length<2)continue;
  add(`${GS[g]}：ネット抽選（発送）`,"全国の人に届く・いつでも",
-  fit(`📦家から応募できる｜${GS[g]}のネット抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot("当選したら自宅に届きます",link(g),TAG[g])),[7,8,12,21,22],`net-${g}`);
+  fit(`📦家から応募できる｜${GS[g]}のネット抽選 ${li.length}件`,byStore(li).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot("当選したら自宅に届きます",link(g),TAG[g])),[7,8,12,21,22],`net-${g}`,li);
 }
 // 5) 地域別の店頭抽選（受付中が多い地域を上位3つ）
 {
@@ -127,7 +127,7 @@ for(const g of Object.keys(GS)){
  for(const [r,li] of by){
   li.sort((a,b)=>(end(a)||9e15)-(end(b)||9e15));
   add(`店頭抽選：${r}`,"地域名で検索する人に届く",
-   fit(`🏪${r}の店頭抽選｜受付中 ${li.length}件`,byStore(li).map(x=>`・${x.i.area.replace(/[都府県]$/,"")}｜${x.i.store}（〜${fmt(end(x.i))}）`),foot("お近くの店舗を探す",SITE+"/",`#ポケカ抽選 #ワンピースカード抽選 #${r.split("・")[0]}`)),[12,18,19,20]);
+   fit(`🏪${r}の店頭抽選｜受付中 ${li.length}件`,byStore(li).map(x=>`・${x.i.area.replace(/[都府県]$/,"")}｜${x.i.store}（〜${fmt(end(x.i))}）`),foot("お近くの店舗を探す",SITE+"/",`#ポケカ抽選 #ワンピースカード抽選 #${r.split("・")[0]}`)),[12,18,19,20],null,li);
  }
 }
 // 6) まとめ
@@ -145,7 +145,7 @@ for(const g of Object.keys(GS)){
  const li=active.filter(i=>i.game===g&&end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)); // 1時間以内に締切のものは除く（投稿しても間に合わない）
  if(!li.length)continue;
  add(`${GS[g]}：締切間近トップ5`,"締切前の夕方〜夜に",
-  fit(`⏳締切が近い抽選｜${GS[g]}`,byStore(li).slice(0,5).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot(`受付中 全${active.filter(i=>i.game===g).length}件の一覧`,link(g),TAG[g])),[17,18,19,20,21],`soon-${g}`);
+  fit(`⏳締切が近い抽選｜${GS[g]}`,byStore(li).slice(0,5).map(x=>`・${x.i.store}（〜${fmt(end(x.i))}）\\n　${nm(x)}`),foot(`受付中 全${active.filter(i=>i.game===g).length}件の一覧`,link(g),TAG[g])),[17,18,19,20,21],`soon-${g}`,li);
 }
 // 8) 弾ごと（受付中が多い弾を各ゲーム上位3つ。弾ページ＝アフィリンクのあるページへ送る）
 for(const g of Object.keys(GS)){
@@ -156,14 +156,14 @@ for(const g of Object.keys(GS)){
   if(li.length<2)continue;
   const seen=new Set();const soon=li.filter(i=>end(i)&&end(i)-now>1*H).sort((a,b)=>end(a)-end(b)).filter(i=>!seen.has(skey(i))&&seen.add(skey(i)));
   add(`${GS[g]}：「${sr}」（弾ページへ）`,"狙ってる人が多い弾は反応◎",
-   fit(`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件`,soon.map(i=>`・${i.store}（〜${fmt(end(i))}）`),foot("ほかの店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]))||`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件\\n\\n`+foot("店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]),[12,19,20,21]);
+   fit(`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件`,soon.map(i=>`・${i.store}（〜${fmt(end(i))}）`),foot("ほかの店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]))||`🎯「${sr}」の抽選まとめ\\n${GS[g]}｜受付中 ${li.length}件\\n\\n`+foot("店舗・条件・応募方法",SITE+"/"+li[0].spath,TAG[g]),[12,19,20,21],null,li);
  }
 }
 // 9) 新着（24時間以内に見つかったもの）
 {
  const li=active.filter(i=>i.found_at&&now-new Date(i.found_at)<24*H).sort((a,b)=>new Date(b.found_at)-new Date(a.found_at));
  if(li.length)add("新着まとめ（24時間以内）","朝に出すと反応が良い",
-  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピースカード")),[7,8,9],"fresh");
+  fit(`🆕新着の抽選｜${md}（${li.length}件）`,byStore(li).map(x=>`・${x.i.store}（${GS[x.i.game]}）\\n　${nm(x)}`),foot("締切・条件・応募方法はこちら",SITE+"/","#ポケカ #ワンピースカード")),[7,8,9],"fresh",li);
 }
 // 0) 自分で追加した抽選（config/manual.yaml）。本文はリンクなし＋リプ欄に個別ページのURL
 const GX={pokemon:"ポケカ",onepiece:"ワンピースカード",dragonball:"フュージョンワールド"};
@@ -180,7 +180,7 @@ for(const i of active.filter(i=>i.manual&&i.lpath)){
  if(i.announce)L.push("🎯 当選発表："+i.announce);
  if(i.buy)L.push("🛒 購入期間："+i.buy);
  L.push("","詳細・応募ページはリプ欄👇","",TGX[i.game]+" #"+st.replace(/[\\s　]/g,"")+" #抽選");
- manualCards.push({h:`📝 ${st}（個別ページ付き）`,hint:"① 本文（リンクなし・長文）",t:L.join("\\n").replace(/\\n{3,}/g,"\\n\\n"),hot:true,long:true});
+ manualCards.push({h:`📝 ${st}（個別ページ付き）`,hint:"① 本文（リンクなし・長文）",t:L.join("\\n").replace(/\\n{3,}/g,"\\n\\n"),hot:true,long:true,src:[i]});
  manualCards.push({h:`↳ ${st}：リプ欄に貼る`,hint:"② 投稿したら自分のポストに返信",t:`📌詳細・応募ページはこちら👇\\n${SITE}/${i.lpath}`,hot:false});
 }
 // --- 今日の相場（スニダンの共有文から） ---
@@ -227,6 +227,16 @@ document.getElementById("mk-go").onclick=()=>{
  }
  msg.textContent=`${rows.length}件の値段を読み取りました`+(prevDay?`（前日比は${prevDay.slice(5).replace("-","/")}と比較）`:"（前日比は明日から）");
 };
+// それぞれの情報をいつ見つけたか（古い情報を「速報」で出さないように）
+const ago=d=>{const m=Math.round((now-d)/60000);return m<60?`${Math.max(m,0)}分前`:m<48*60?`${Math.floor(m/60)}時間前`:`${Math.floor(m/1440)}日前`;};
+const fdt=d=>`${d.getMonth()+1}/${d.getDate()}(${W[(d.getDay()+6)%7]})${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+function foundHtml(src){
+ const seen=new Set(),li=(src||[]).filter(i=>i.found_at&&!seen.has(skey(i))&&seen.add(skey(i))).map(i=>[i,new Date(i.found_at)]).sort((a,b)=>b[1]-a[1]);
+ if(!li.length)return"";
+ const one=([i,d])=>`${(i.store||"").replace(/</g,"&lt;")}：${fdt(d)}（${ago(d)}）`;
+ if(li.length===1)return`<p class="basis">🕒 情報を見つけた時刻　${one(li[0])}</p>`;
+ return`<details class="basis"><summary>🕒 情報を見つけた時刻　${fdt(li[li.length-1][1])}〜${fdt(li[0][1])}（${li.length}店）</summary>${li.map(x=>"<div>・"+one(x)+"</div>").join("")}</details>`;
+}
 // 今の時間におすすめの下書きを上に（同じ中では元の順）
 cards.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
 // 話題ネタ（AIの下書き。リンクなし。内容を確認してから投稿）は一番上に
@@ -242,10 +252,10 @@ const catOf=h=>/^(📝|↳)/.test(h)?"手動追加":/速報/.test(h)?"速報":/�
  /ネット抽選/.test(h)?"ネット":/店頭抽選：/.test(h)?"地域":/弾ページ/.test(h)?"弾":/相場/.test(h)?"相場":/ひとこと/.test(h)?"ひとこと":/話題ネタ/.test(h)?"話題":/まとめ投稿/.test(h)?"まとめ":"その他";
 if(tr.length){const p=document.createElement("p");p.className="sub";p.innerHTML=`🔥話題ネタは、Xで反応が多いポストからAIが作った下書きです（${TRENDS.generated?new Date(TRENDS.generated).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}作成）。<b>元のポストを見て、内容が合っているか確認してから</b>投稿してください。`;root.before(p);}
 if(!cards.length)root.innerHTML='<p class="empty">いま受付中の抽選がありません。</p>';
-for(const {h,hint,t,hot,trend,img,long} of cards){
+for(const {h,hint,t,hot,trend,img,long,src} of cards){
  const d=document.createElement("div");d.className="card";
  const n=xlen(t);
- d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}${img&&IMGS.has(img)?`<figure class="shot"><img src="x-img/${img}.png?v=${encodeURIComponent(UPDATED)}" alt="投稿用の画像" loading="lazy"><figcaption>画像を長押し →「写真に保存」→ 投稿する時に添付</figcaption></figure>`:""}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280&&!long?"over":""}">${long?n+"字（長文・Premium）":n+"/280"+(n>280?"（長いので削ってください）":"")}</span></div>`;
+ d.innerHTML=`<h2><span>${hot?'<b class="now">今おすすめ</b>':""}${h}</span><small>${hint}</small></h2><textarea>${t.replace(/</g,"&lt;")}</textarea>${trend?`<p class="basis">元ネタ：${(trend.basis||"").replace(/</g,"&lt;")}${(trend.src||[]).map((u,k)=>` <a href="${u}" target="_blank" rel="noopener">元のポスト${k+1}</a>`).join("")}</p>`:""}${img&&IMGS.has(img)?`<figure class="shot"><img src="x-img/${img}.png?v=${encodeURIComponent(UPDATED)}" alt="投稿用の画像" loading="lazy"><figcaption>画像を長押し →「写真に保存」→ 投稿する時に添付</figcaption></figure>`:""}${foundHtml(src)}<div class="row"><a class="xbtn" target="_blank" rel="noopener">Xで開く</a><button>コピー</button><span class="len ${n>280&&!long?"over":""}">${long?n+"字（長文・Premium）":n+"/280"+(n>280?"（長いので削ってください）":"")}</span></div>`;
  const ta=d.querySelector("textarea"),b=d.querySelector("button");
  const xa=d.querySelector(".xbtn");const setX=()=>{xa.href="https://x.com/intent/post?text="+encodeURIComponent(ta.value);};setX();
  b.onclick=async()=>{try{await navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand("copy");}b.textContent="コピーしました";b.className="ok";setTimeout(()=>{b.textContent="コピー";b.className="";},1500);};
