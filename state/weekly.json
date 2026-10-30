@@ -5449,7 +5449,7 @@
       "game": "onepiece",
       "store": "バトロコ吉祥寺駅前店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-10-30T11:17:50.582286+09:00",
       "chain": "batoroco"
@@ -5458,7 +5458,7 @@
       "game": "onepiece",
       "store": "ブックオフ秋葉原駅前店",
       "series": "ヒロインズエディション vol.2",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-10-30T11:17:50.582357+09:00",
       "chain": "bookoff"
@@ -5467,7 +5467,7 @@
       "game": "onepiece",
       "store": "TCバトロコ藤沢駅北口",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "神奈川県",
       "found_at": "2026-10-30T11:17:50.582392+09:00",
       "chain": "batoroco"
@@ -5485,7 +5485,7 @@
       "game": "onepiece",
       "store": "TSUTAYA柳川店 トレカコーナー",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "found_at": "2026-10-30T11:17:50.582453+09:00",
       "chain": "tsutaya"
@@ -5512,7 +5512,7 @@
       "game": "onepiece",
       "store": "イトーヨーカドー／アリオ",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-10-30T11:17:50.582543+09:00",
       "chain": null
@@ -5521,7 +5521,7 @@
       "game": "onepiece",
       "store": "TSUTAYA中津店トレカコーナー",
       "series": "世界最強の戦士",
-      "channel": "online",
+      "channel": "store",
       "area": "大分県",
       "found_at": "2026-10-30T11:17:50.582573+09:00",
       "chain": "tsutaya"
@@ -5530,8 +5530,8 @@
       "game": "onepiece",
       "store": "トレカエース植田店",
       "series": "世界最強の戦士",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "愛知県",
       "found_at": "2026-10-30T11:17:50.582600+09:00",
       "chain": null
     },
@@ -5557,8 +5557,8 @@
       "game": "onepiece",
       "store": "TSUTAYA大安寺店",
       "series": null,
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "奈良県",
       "found_at": "2026-10-30T11:17:50.582687+09:00",
       "chain": "tsutaya"
     },
@@ -5566,8 +5566,8 @@
       "game": "onepiece",
       "store": "おたいち三重本店（お宝市番館三重本店）",
       "series": null,
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "三重県",
       "found_at": "2026-10-30T11:17:50.582731+09:00",
       "chain": null
     },
@@ -5575,7 +5575,7 @@
       "game": "onepiece",
       "store": "TSUTAYA姫路広峰店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "兵庫県",
       "found_at": "2026-10-30T11:17:50.582760+09:00",
       "chain": "tsutaya"
@@ -5705,6 +5705,33 @@
       "area": "大阪府",
       "found_at": "2026-10-30T13:40:59.212017+09:00",
       "chain": "tsutaya"
+    },
+    "eb181acb8d8a5a48": {
+      "game": "onepiece",
+      "store": "ティアワン渋谷店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T14:11:14.790283+09:00",
+      "chain": null
+    },
+    "0a3a8156ba6bf9ed": {
+      "game": "onepiece",
+      "store": "タムタム松山店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "愛媛県",
+      "found_at": "2026-10-30T14:11:14.790357+09:00",
+      "chain": null
+    },
+    "eeec1629771b2f02": {
+      "game": "onepiece",
+      "store": "キデイランド吉祥寺店",
+      "series": "ONE PIECE Heroines Edition vol.2",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-10-30T14:11:14.790544+09:00",
+      "chain": "kiddyland"
     }
   }
 }

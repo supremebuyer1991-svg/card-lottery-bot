@@ -122,8 +122,8 @@
     "game": "pokemon"
   },
   "store/tiawan-92c53/": {
-    "name": "ティアワン 渋谷店",
-    "last": "2026-10-28",
+    "name": "ティアワン渋谷店",
+    "last": "2026-10-30",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -3748,12 +3748,14 @@
   "store/batoroco-922f8/": {
     "name": "バトロコ吉祥寺駅前店",
     "last": "2026-10-30",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "東京都"
   },
   "store/tsutaya-905e5/": {
     "name": "TSUTAYA柳川店 トレカコーナー",
     "last": "2026-10-30",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "福岡県"
   },
   "store/cardlabo-90078/": {
     "name": "カードラボ小倉店",
@@ -3769,7 +3771,8 @@
   "store/torekaesu-d2955/": {
     "name": "トレカエース植田店",
     "last": "2026-10-30",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "愛知県"
   },
   "store/korekutazushoppunika-3e1d8/": {
     "name": "コレクターズショップ ニカ",
@@ -3784,12 +3787,14 @@
   "store/tsutaya-9feaf/": {
     "name": "TSUTAYA大安寺店",
     "last": "2026-10-30",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "奈良県"
   },
   "store/otaichi-e3030/": {
     "name": "おたいち三重本店（お宝市番館三重本店）",
     "last": "2026-10-30",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "三重県"
   },
   "store/amiami-d6785/": {
     "name": "あみあみ本店",
@@ -3899,6 +3904,24 @@
   },
   "store/pao-7b2b3/": {
     "name": "PAO",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/tamutamu-1f1cc/": {
+    "name": "タムタム松山店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "area": "愛媛県"
+  },
+  "store/cardlabo-3d26a/": {
+    "name": "カードラボ姫路店",
+    "last": "2026-10-30",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/itoyokado-ario-toiropakunado-73995/": {
+    "name": "イトーヨーカドー・アリオ・トイロパークなど（対象店舗は複数・店舗名は未特定）",
     "last": "2026-10-30",
     "game": "onepiece",
     "keep": true
