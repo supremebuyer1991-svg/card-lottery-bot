@@ -254,6 +254,13 @@ input[type="search"] { flex: 1 1 160px; }
 /* 弾の切り替え（横スワイプ） */
 .series { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 14px -16px 2px; padding: 2px 16px 6px; scroll-padding-inline: 16px; scroll-snap-type: x proximity; }
 .series::-webkit-scrollbar { display: none; }
+.series { display: block; overflow: visible; scroll-snap-type: none; margin: 12px 0 2px; padding: 0; }
+.ser-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.series .ser-bar button.ser-open { gap: 8px; } .series .ser-open i { font-style: normal; font-size: 10px; color: var(--ink-2); }
+.series .ser-open b { font-weight: 800; }
+.series .ser-clear { font-weight: 500 !important; color: var(--ink-2) !important; }
+.ser-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 10px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
+.panel .series { margin: 10px 0 0; padding: 0; }
 .series button { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: 13px; font-weight: 700;
   border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; padding: 7px 8px 7px 14px; cursor: pointer;
   box-shadow: 0 1px 0 rgb(22 28 46 / .04); }
@@ -992,8 +999,12 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     g.forEach(function (i) { (i.sers || (i.series ? [i.series] : [])).forEach(function (x) { ser[x] = (ser[x] || 0) + 1; }); });
     var names = Object.keys(ser).sort(function (a, b) { return ser[b] - ser[a]; });
     if (st.series && !ser[st.series] && st.series !== LOCK.series) st.series = "";  // 弾のページは抽選が0件でもその弾のまま
-    $("series").innerHTML = names.length ? '<button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
-      names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") : "";
+    // 弾の選択：ふだんは「弾別で探す」ボタンだけ。押すと下に全部の弾が並ぶ（横スクロールなし）
+    $("series").innerHTML = names.length ? '<div class="ser-bar"><button type="button" class="ser-open" data-toggle aria-expanded="' + !!st.serOpen + '">' +
+        (st.series ? '弾：<b>' + esc(st.series) + '</b>' : '弾別で探す<span class="c">' + names.length + '弾</span>') + '<i aria-hidden="true">' + (st.serOpen ? "▲" : "▼") + '</i></button>' +
+        (st.series ? '<button type="button" class="ser-clear" data-s="">すべての弾に戻す</button>' : "") + '</div>' +
+      (st.serOpen ? '<div class="ser-grid"><button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
+        names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") + '</div>' : "") : "";
     // 一覧
     var list = filtered(), html = "";
     $("list-n").innerHTML = "<b>" + list.length + "</b>件";
@@ -1033,7 +1044,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     render();
   });
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
-  $("series").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; render(); });
+  $("series").addEventListener("click", function (e) {
+    if (e.target.closest("button[data-toggle]")) { st.serOpen = !st.serOpen; render(); return; }
+    var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; st.serOpen = false; render();
+  });
   (LOCK.checks || []).forEach(function (id) { if ($(id)) $(id).checked = true; });  // 「本人確認なし」「今日締切」などのページは最初から絞り込む
   ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-noreceipt", "f-nohist", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
   $("f-sort").value = ["end", "rec", "new"].indexOf(load("lot_sort", "end")) >= 0 ? load("lot_sort", "end") : "end";
