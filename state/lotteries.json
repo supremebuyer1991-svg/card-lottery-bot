@@ -27572,7 +27572,9 @@
     "apply_url": "https://livepocket.jp/e/6t8b2y",
     "multi": true,
     "cls": "aaa56c4bd671",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "8793fce9a0b38293": {
     "store": "イトーヨーカドー",
@@ -27605,7 +27607,9 @@
     "issue": 247,
     "multi": false,
     "cls": "325a37267584",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "d38a3c8ae0733bc8": {
     "store": "TSUTAYA山陽店",
@@ -27859,7 +27863,9 @@
     "multi": false,
     "cls": "dd63021d193d",
     "issue": 251,
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "4a9d4f01f505bf69": {
     "store": "バトロコ吉祥寺店",
@@ -27892,7 +27898,9 @@
     "multi": false,
     "cls": "1480b12cab26",
     "issue": 252,
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "4418ac5ff77a13f1": {
     "store": "バトロコ藤沢北口店",
@@ -27925,7 +27933,9 @@
     "multi": false,
     "cls": "a94f8082d477",
     "issue": 253,
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "80e9ef1e9529f063": {
     "store": "HobbyMarket さとう店",
@@ -28395,7 +28405,9 @@
     "apply_url": "https://livepocket.jp/e/s1ieq",
     "multi": false,
     "cls": "401856c7aaf1",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "cf4c89899086ceea": {
     "store": "TSUTAYA森町店",
@@ -28452,7 +28464,9 @@
     "multi": false,
     "cls": "e2b9a857defa",
     "issue": 262,
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "6f69f658874b447d": {
     "store": "キデイランド二子玉川店",
@@ -28480,7 +28494,9 @@
     "page_checked_at": "2026-10-30T19:59:47.887602+09:00",
     "multi": false,
     "cls": "a3791dc24982",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "de9bac8969ffd8c5": {
     "store": "キデイランド 浦和美園店",
@@ -28821,7 +28837,9 @@
     "page_checked_at": "2026-10-30T19:59:49.952032+09:00",
     "multi": false,
     "cls": "4c2d3ec27177",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "6cc8bf9918d77798": {
     "game": "pokemon",
@@ -29841,7 +29859,9 @@
     "found_at": "2026-10-30T15:14:30.415083+09:00",
     "cls": "affcf7ae3782",
     "page_checked_at": "2026-10-30T20:00:29.711352+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261030ec&ver=v3-javascript-3.7.10&"
+    "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261030ec&ver=v3-javascript-3.7.10&",
+    "post_checked": true,
+    "details_checked": true
   },
   "8a7f395ce29f95fc": {
     "store": "古本市場深井店",
@@ -31842,9 +31862,10 @@
     "key": "d95fd0e4aaa1a8fe",
     "status": "listed",
     "found_at": "2026-10-30T20:36:22.881377+09:00",
-    "page_checked_at": "2026-10-30T20:36:39.597267+09:00",
+    "page_checked_at": "2026-10-30T20:41:18.319348+09:00",
     "multi": false,
-    "cls": "d863da74b103"
+    "cls": "d863da74b103",
+    "address_checked": true
   },
   "ed19a70e0304939c": {
     "store": "カーデリア池袋店",
@@ -31870,10 +31891,11 @@
     "key": "ed19a70e0304939c",
     "status": "listed",
     "found_at": "2026-10-30T20:36:22.881409+09:00",
-    "page_checked_at": "2026-10-30T20:36:42.148948+09:00",
+    "page_checked_at": "2026-10-30T20:41:20.894171+09:00",
     "multi": false,
     "cls": "c911118dbd17",
-    "start": "2026-10-28T00:00:00+09:00"
+    "start": "2026-10-28T00:00:00+09:00",
+    "address_checked": true
   },
   "39dd2c7820508b62": {
     "store": "カーデリア池袋店",
@@ -31899,10 +31921,11 @@
     "key": "39dd2c7820508b62",
     "status": "listed",
     "found_at": "2026-10-30T20:36:22.881441+09:00",
-    "page_checked_at": "2026-10-30T20:36:44.563324+09:00",
+    "page_checked_at": "2026-10-30T20:41:23.327123+09:00",
     "multi": false,
     "cls": "f4ed75525d84",
-    "start": "2026-10-28T00:00:00+09:00"
+    "start": "2026-10-28T00:00:00+09:00",
+    "address_checked": true
   },
   "4e9c4cc4ea55d0ef": {
     "store": "カーデリア池袋店",
