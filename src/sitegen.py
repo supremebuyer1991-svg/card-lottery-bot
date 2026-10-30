@@ -976,7 +976,8 @@ def build(settings=None, out_dir=None, sample=None):
     common_data = {"sample": False, "updated": updated,
                    "games": [{"id": g, "name": GAME_SHORT[g], "tab": GAME_TAB.get(g, GAME_SHORT[g])} for g in games],
                    "gameUrls": {"all": "/", **{g: f"/{GAME_SLUG[g]}/" for g in games}}, "items": items,
-                   "gameNames": {g: s["game_names"][g] for g in games}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
+                   "gameNames": {g: s["game_names"][g] for g in games},
+                   "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
     upd = parse_dt(updated) or now()
     md = f"{upd.month}/{upd.day}"

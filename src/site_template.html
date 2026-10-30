@@ -259,6 +259,8 @@ input[type="search"] { flex: 1 1 160px; }
 .series .ser-bar button.ser-open { gap: 8px; } .series .ser-open i { font-style: normal; font-size: 10px; color: var(--ink-2); }
 .series .ser-open b { font-weight: 800; }
 .series .ser-clear { font-weight: 500 !important; color: var(--ink-2) !important; }
+.shop-big { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.shop-big .lg { flex-basis: 100%; font-size: 11.5px; color: var(--ink-2); }
 .ser-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 10px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
 .panel .series { margin: 10px 0 0; padding: 0; }
 .series button { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: 13px; font-weight: 700;
@@ -626,6 +628,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 
   <div class="region" id="region" hidden></div>
   <div class="series" id="series"></div>
+  <div class="series shops" id="shops"></div>
   </section>
   <div class="sortbar"><span id="list-n"></span><label class="sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label></div>
   <div class="list" id="list">__PRERENDER__</div>
@@ -799,6 +802,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       if (st.channel === "store" && st.area && areasOf(i).indexOf(st.area) < 0) return false;
       if (st.channel === "store" && !st.area && st.region && !areasOf(i).some(function (p) { return REG[p] === st.region; })) return false;
       if (st.series && !inSer(i, st.series)) return false;
+      if (st.shop && shopKey(i) !== st.shop) return false;
       if ($("f-unapplied").checked && applied[i.key]) return false;
       if ($("f-noid").checked && i.id_check !== false) return false;
       if ($("f-nomember").checked && i.member !== "none") return false;
@@ -817,6 +821,11 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     });
   }
 
+  // ショップ：チェーンのお店はチェーンでまとめる（「ヤマダデンキ」の全店）、それ以外はお店ごと
+  var CHAINS_ = DATA.chains || {};
+  function shopKey(i) { return i.chain && CHAINS_[i.chain] ? "c:" + i.chain : "s:" + (i.store || ""); }
+  function shopName(k) { return k.indexOf("c:") === 0 ? CHAINS_[k.slice(2)][0] : k.slice(2); }
+  function shopBig(k) { return k.indexOf("c:") === 0 && CHAINS_[k.slice(2)][1]; }
   function inSer(i, x) { return i.series === x || (i.sers && i.sers.indexOf(x) >= 0); }
   function thumb(it) {
     var alt = esc(it.series || it.product);
@@ -1012,6 +1021,18 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
         (st.series ? '<button type="button" class="ser-clear" data-s="">すべての弾に戻す</button>' : "") + '</div>' +
       (st.serOpen ? '<div class="ser-grid"><button type="button" data-s="" aria-pressed="' + (!st.series) + '">すべての弾</button>' +
         names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") + '</div>' : "") : "";
+    // ショップ別で探す：⭐おすすめ・大手を上に、そのほかのお店は件数が多い順
+    var sh = {};
+    g.forEach(function (i) { if ((i.channel === "store" ? "store" : "online") === st.channel) { var k = shopKey(i); sh[k] = (sh[k] || 0) + 1; } });
+    var shk = Object.keys(sh), big = shk.filter(shopBig).sort(function (a, b) { return sh[b] - sh[a]; }),
+        rest = shk.filter(function (k) { return !shopBig(k); }).sort(function (a, b) { return sh[b] - sh[a]; });
+    if (st.shop && !sh[st.shop]) st.shop = "";
+    var chip = function (k) { return '<button type="button" data-shop="' + esc(k) + '" aria-pressed="' + (k === st.shop) + '">' + (shopBig(k) ? "⭐" : "") + esc(shopName(k)) + '<span class="c">' + sh[k] + '</span></button>'; };
+    $("shops").innerHTML = shk.length ? '<div class="ser-bar"><button type="button" class="ser-open" data-shoptoggle aria-expanded="' + !!st.shopOpen + '">' +
+        (st.shop ? 'ショップ：<b>' + esc(shopName(st.shop)) + '</b>' : 'ショップ別で探す<span class="c">' + shk.length + '店</span>') + '<i aria-hidden="true">' + (st.shopOpen ? "▲" : "▼") + '</i></button>' +
+        (st.shop ? '<button type="button" class="ser-clear" data-shop="">すべてのお店に戻す</button>' : "") + '</div>' +
+      (big.length ? '<div class="shop-big"><span class="lg">⭐＝おすすめ・大手ショップ（全国の店舗で抽選があり、当たるチャンスが多い）</span>' + big.map(chip).join("") + '</div>' : "") +
+      (st.shopOpen ? '<div class="ser-grid"><button type="button" data-shop="" aria-pressed="' + (!st.shop) + '">すべてのお店</button>' + rest.map(chip).join("") + '</div>' : "") : "";
     // 一覧
     var list = filtered(), html = "";
     $("list-n").innerHTML = "<b>" + list.length + "</b>件";
@@ -1051,6 +1072,10 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     render();
   });
   $("q").addEventListener("input", function () { st.q = this.value; render(); });
+  $("shops").addEventListener("click", function (e) {
+    if (e.target.closest("button[data-shoptoggle]")) { st.shopOpen = !st.shopOpen; render(); return; }
+    var b = e.target.closest("button[data-shop]"); if (!b) return; st.shop = b.dataset.shop; st.shopOpen = false; render();
+  });
   $("series").addEventListener("click", function (e) {
     if (e.target.closest("button[data-toggle]")) { st.serOpen = !st.serOpen; render(); return; }
     var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; st.serOpen = false; render();
