@@ -24781,9 +24781,9 @@
     "series": "30周年御三家カードセット",
     "end": "2026-10-31T22:00:00+09:00",
     "url": "https://livepocket.jp/e/ezogm",
-    "x_post": null,
+    "x_post": "https://x.com/AkiPokemonLife/status/2115946548337189330",
     "channel": "store",
-    "area": null,
+    "area": "兵庫県",
     "method": "オンライン",
     "conditions": "本人確認",
     "tags": [
@@ -24801,7 +24801,8 @@
     "found_at": "2026-10-29T12:08:57.891156+09:00",
     "page_checked_at": "2026-10-30T09:00:56.988233+09:00",
     "multi": false,
-    "cls": "f4f7275a9aca"
+    "cls": "f4f7275a9aca",
+    "apply_url": "https://livepocket.jp/e/05tt3"
   },
   "4020cbd68f394917": {
     "store": "古本市場野口店",
@@ -25156,7 +25157,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-29T13:11:28.951074+09:00",
+    "page_checked_at": "2026-10-30T09:27:42.314063+09:00",
     "multi": false,
     "cls": "b7a44b1c8953",
     "x_post": "https://x.com/Tekabo_BOX/status/2115945273457623285"
@@ -25347,7 +25348,7 @@
     "key": "3a61ed7b45cad82d",
     "status": "approved",
     "found_at": "2026-10-29T13:11:18.726847+09:00",
-    "page_checked_at": "2026-10-29T13:11:31.085938+09:00",
+    "page_checked_at": "2026-10-30T09:27:44.530359+09:00",
     "multi": true,
     "cls": "85918f414947"
   },
@@ -25377,7 +25378,7 @@
     "key": "622e6ef5741d1a38",
     "status": "approved",
     "found_at": "2026-10-29T13:11:18.726872+09:00",
-    "page_checked_at": "2026-10-29T13:11:33.960901+09:00",
+    "page_checked_at": "2026-10-30T09:27:47.541880+09:00",
     "multi": true,
     "cls": "6dbf926f4c67"
   },
@@ -27422,11 +27423,13 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "a8098e1d826e4809",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-30T09:00:00.932353+09:00",
     "multi": false,
     "cls": "1b0e16259e6d",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-30T09:27:47.542074+09:00",
+    "duplicate_of": "59d76af70853e9b4"
   },
   "3c8e80caad9e7c59": {
     "store": "野口",
@@ -27554,7 +27557,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "8e2ab92d9aedb275",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-30T09:00:00.932424+09:00",
     "apply_url": "https://livepocket.jp/e/05tt3",
     "deadline_checked_at": "2026-10-30T09:00:37.268793+09:00",
@@ -27564,7 +27567,8 @@
     "multi": false,
     "cls": "bc05b3af3640",
     "hold_reason": "店名があいまい",
-    "tco_checked": true
+    "tco_checked": true,
+    "duplicate_of": "7911fd432d6b2131"
   },
   "ea228d066861e26d": {
     "store": "トレステ（各店）",
@@ -27619,11 +27623,13 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "6321ca37bac51e4b",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-10-30T09:00:00.932460+09:00",
     "multi": false,
     "cls": "9d90a2a425c9",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-30T09:27:49.655314+09:00",
+    "duplicate_of": "b68fdd59963defcc"
   },
   "1815044131cfe71e": {
     "store": "ブックセンター江戸屋",
