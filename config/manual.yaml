@@ -272,6 +272,23 @@ lotteries:
     tags: [会員, 本人確認]
     url: https://livepocket.jp/e/8xaaf
 
+  - slug: shibuya-tsutaya-30th-1101
+    game: pokemon
+    store: SHIBUYA TSUTAYA
+    series: 30th CELEBRATION
+    product: ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）
+    channel: store
+    area: 東京都
+    method: Web抽選（CLOUD PASS）→ 当選したら店頭で受け取り
+    start: 2026-10-30T10:00
+    end: 2026-11-01T23:59
+    announce: 11/11(水)18:00ごろ
+    buy: 11/17(火)〜11/25(水) 10:00〜22:30
+    conditions: 1人1BOXまで。受け取り時に顔写真付きの本人確認書類が必要。アクセスが多いと順番待ちの画面になります
+    id_check: true
+    tags: [本人確認]
+    url: https://cloud-pass.jp/pr/885c68fbf0f42f017ae01152515921ea11242b65f9fe5434877f6fb895b9eb37
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
