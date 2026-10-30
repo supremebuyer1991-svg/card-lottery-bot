@@ -5766,7 +5766,7 @@
       "series": "ヒロインズエディション vol.2",
       "channel": "online",
       "area": null,
-      "found_at": "2026-10-30T14:57:19.569221+09:00",
+      "found_at": "2026-10-30T15:04:46.859619+09:00",
       "chain": "joshin"
     },
     "ae803f67d815a6d8": {
@@ -5775,7 +5775,7 @@
       "series": "スペシャルデッキセットMEGA",
       "channel": "store",
       "area": null,
-      "found_at": "2026-10-30T15:12:57.232936+09:00",
+      "found_at": "2026-10-30T15:04:46.859707+09:00",
       "chain": "geo"
     },
     "dae9ccbb78239b14": {
@@ -5831,6 +5831,33 @@
       "area": null,
       "found_at": "2026-10-30T15:27:51.287658+09:00",
       "chain": "sevennet"
+    },
+    "3209d3bb05ddcf09": {
+      "game": "pokemon",
+      "store": "古本市場 野口店",
+      "series": "30thセレブレーション",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-10-30T16:30:01.943137+09:00",
+      "chain": "furuichi"
+    },
+    "131c2472a2b49d4a": {
+      "game": "onepiece",
+      "store": "コーギーアール名古屋店",
+      "series": "HEROINES PRECIOUS BOX",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-10-30T16:30:13.371134+09:00",
+      "chain": null
+    },
+    "2ed7c1a5180e63b0": {
+      "game": "onepiece",
+      "store": "バトロコミニ帯広WOW店",
+      "series": "HEROINES PRECIOUS BOX",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-10-30T16:30:13.371195+09:00",
+      "chain": "batoroco"
     }
   }
 }
