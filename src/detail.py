@@ -16,7 +16,7 @@ WEEK = "月火水木金土日"
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 KEEP = ("key", "game", "store", "product", "products", "series", "start", "end", "announce", "buy", "method",
-        "conditions", "tags", "url", "channel", "area", "address", "id_check", "member", "image", "img_url", "spath", "found_at", "manual")
+        "conditions", "tags", "url", "channel", "area", "address", "id_check", "member", "image", "img_url", "images", "spath", "found_at", "manual")
 
 
 def lottery_path(i) -> str:
@@ -75,7 +75,7 @@ dl div:last-child{border-bottom:0}dt{color:var(--ink-2);font-size:13px;font-weig
 dd ul{margin:0;padding-left:1.1em}dd li{margin:2px 0}
 .acts{padding:14px 16px 16px;display:grid;gap:10px;border-top:1px dashed var(--rule)}
 .go{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;
- font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go-top{margin-top:12px}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
+ font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go-top{margin-top:12px}.pics{display:flex;gap:8px;justify-content:center;margin:12px 0 4px}.pics a,.pics span{display:block;width:150px;height:150px;border-radius:12px;background:#fff;border:1px solid var(--rule);overflow:hidden}.pics.n2 a,.pics.n2 span{width:120px;height:120px}.pics.n3 a,.pics.n3 span,.pics.n4 a,.pics.n4 span{width:84px;height:84px}.pics img{width:100%;height:100%;object-fit:contain;display:block}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
 .sub-acts{display:flex;gap:8px;flex-wrap:wrap}.apb{flex:1;font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{flex:1;text-align:center;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
 .note{font-size:12px;color:var(--ink-2);margin:0}
 .ended{background:var(--navy-soft);border-radius:10px;padding:12px 14px;margin:14px 0 0;font-weight:700}
@@ -242,10 +242,21 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             '</head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             f'<main class="wrap">{crumbs}<p style="margin:2px 0 6px;font-size:11px;color:var(--ink-2)">本ページはプロモーションを含みます</p>{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
-            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{cd_html}{top_go}</div>'
+            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{cd_html}{top_go}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{aff}{rel_html}'
             f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。</footer></main>'
             f'<script>{JS}</script></body></html>')
+
+
+def _pics(i, name):
+    """店名と残り時間の間：商品の写真（押すと楽天の商品ページ・アフィリエイト）。複数の商品の抽選は4枚まで"""
+    lst = i.get("images") if len(i.get("images") or []) > 1 else ([{"src": i["image"], "url": i.get("img_url")}] if i.get("image") else [])
+    if not lst:
+        return ""
+    one = lambda x: (f'<a href="{escape(x["url"])}" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">'
+                     f'<img src="{escape(x["src"])}" alt="{escape(name)}" loading="lazy"></a>' if x.get("url")
+                     else f'<span><img src="{escape(x["src"])}" alt="{escape(name)}" loading="lazy"></span>')
+    return f'<div class="pics n{min(len(lst), 4)}">' + "".join(one(x) for x in lst[:4]) + '</div>'
 
 
 def snapshot(i):
