@@ -136,8 +136,12 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .pre li { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 8px 12px; list-style: none; }
 .brand p { margin: 0; color: var(--ink-2); font-size: 12px; }
 .sample { margin: 0 0 8px; font-size: 12px; color: var(--amber); background: var(--amber-soft); padding: 4px 10px; border-radius: 6px; display: inline-block; }
-nav.games { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-nav.games button { flex: none; border: 0; background: none; font: inherit; font-weight: 700; color: var(--ink-2); padding: 10px 12px 12px; cursor: pointer; border-bottom: 3px solid transparent; }
+nav.games { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; }  /* 全部のタブを横スクロールなしで並べる */
+nav.games button { min-width: 0; border: 0; background: none; font: inherit; font-weight: 700; color: var(--ink-2); padding: 10px 4px 12px; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; text-align: center; }
+@media (max-width: 480px) {
+  nav.games button { font-size: 12.5px; letter-spacing: -0.02em; padding: 8px 2px 9px; line-height: 1.25; }
+  nav.games .n { display: block; margin-left: 0; font-size: 11px; }  /* 件数は名前の下に */
+}
 nav.games button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--red); }
 nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; color: var(--ink-2); }
 
