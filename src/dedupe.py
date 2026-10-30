@@ -69,6 +69,20 @@ def _rank(it):
             len(it.get("conditions") or ""))
 
 
+def _different_item(a, b):
+    """1つの応募ページで別々の商品を受け付けている（例：あみあみの「BOX」と「デッキセット」）なら True。
+    両方に弾名があり、弾名が違い、どちらの商品名にも相手の弾名が入っていない時だけ"""
+    if not (a.get("series") and b.get("series")) or _skey(a) == _skey(b):
+        return False
+    for x, y in ((a, b), (b, a)):
+        core = norm_series(x.get("series"), {})
+        if not core:
+            continue  # 「MEGA」のように共通の言葉だけの弾名は比べられない
+        if core in norm_series(y.get("product"), {}) or core in norm_series(y.get("series"), {}):
+            return False
+    return True
+
+
 def dedupe(settings=None):
     s = settings or load_settings()
     # 弾名はサイトと同じ名前にそろえてから比べる（楽天用の別名は使わない：vol.2 と vol.1 が同じになってしまうため）
@@ -79,7 +93,7 @@ def dedupe(settings=None):
         if (it.get("status") == "duplicate" and t and t.get("status") in ACTIVE and not it.get("manual")
                 and it.get("url") and _url_key(it.get("url")) == _url_key(t.get("url"))
                 and not re.search(r"amazon|amzn", it.get("url") or "", re.I)
-                and _skey(it) and _skey(t) and _skey(it) != _skey(t)
+                and _different_item(it, t)
                 and norm_store(it.get("store")) == norm_store(t.get("store"))
                 and (it.get("end") or "")[:10] == (t.get("end") or "")[:10]
                 and not (it.get("end") and it["end"] < __import__("datetime").datetime.now().astimezone().isoformat())):
@@ -177,17 +191,17 @@ def dedupe(settings=None):
         others = [k for k in keys if k not in cc]
         if not cc and len(others) > 1:  # どちらもXなどから拾った時は、弾ごとに一番くわしい方に
             others.sort(key=lambda k: (bool(lots[k].get("end")), _rank(lots[k])), reverse=True)
-            heads = {}
+            cc = []
             for k in others:
-                heads.setdefault(_skey(lots[k]), k)
-            cc = list(heads.values())
+                if not cc or all(_different_item(lots[k], lots[c]) for c in cc):
+                    cc.append(k)
             others = [k for k in others if k not in cc]
         if not cc or not others:
             continue
         for k in others:
             sk = _skey(lots[k])
             same = [c for c in cc if _skey(lots[c]) == sk]
-            if not same and sk and all(_skey(lots[c]) for c in cc):
+            if not same and all(_different_item(lots[k], lots[c]) for c in cc):
                 continue  # 1つのフォームで別々の商品を受け付ける抽選（例：あみあみの「BOX」と「デッキセット」）は別の抽選
             merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
     if n:
