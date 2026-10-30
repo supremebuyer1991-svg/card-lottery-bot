@@ -17046,7 +17046,7 @@
       "start": "2026-10-28",
       "end": "2026-11-01T23:00:00+09:00",
       "method": "Web",
-      "conditions": "本文はタイトルのみで、対象の店舗や商品（Heroines Edition vol.2）、応募・購入の条件は書かれていない。",
+      "conditions": "本文は見出しのみで、応募・購入の条件は書かれていません。ページはONE PIECEカードゲーム各種の抽選案内で、Heroines Edition vol.2の記載はありません。",
       "url": "https://furu1.net/news/news_information/opkl20261031",
       "channel": "store",
       "area": "埼玉県",
@@ -17217,6 +17217,34 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/furuichi-50e64/",
       "found_at": "2026-10-30T14:26:53.122283+09:00",
+      "manual": true
+    },
+    "last": "2026-10-30"
+  },
+  "l/shibuya-tsutaya-30th-1101/": {
+    "d": {
+      "key": "c1f3de480f81017c",
+      "game": "pokemon",
+      "store": "SHIBUYA TSUTAYA",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込）",
+      "series": "30th CELEBRATION",
+      "start": "2026-10-30T10:00+09:00",
+      "end": "2026-11-01T23:59+09:00",
+      "announce": "11/11(水)18:00ごろ",
+      "buy": "11/17(火)〜11/25(水) 10:00〜22:30",
+      "method": "Web抽選（CLOUD PASS）→ 当選したら店頭で受け取り",
+      "conditions": "1人1BOXまで。受け取り時に顔写真付きの本人確認書類が必要。アクセスが多いと順番待ちの画面になります",
+      "tags": [
+        "本人確認"
+      ],
+      "url": "https://cloud-pass.jp/pr/885c68fbf0f42f017ae01152515921ea11242b65f9fe5434877f6fb895b9eb37",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/tsutaya-d934f/",
+      "found_at": "2026-10-30T14:33:51.666094+09:00",
       "manual": true
     },
     "last": "2026-10-30"
