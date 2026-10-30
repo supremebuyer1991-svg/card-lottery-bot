@@ -239,9 +239,9 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     ended_note = ('<p class="ended">この抽選の受付は終了しました。いま受付中の抽選は下の一覧からさがせます。</p>' if is_end else "")
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + "\n".join(head) +
-            '</head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
+            '</head><body><header><div class="wrap"><p style="margin:0;padding-top:4px;font-size:10px;line-height:1.4;color:var(--ink-2);text-align:right">本ページはプロモーションを含みます</p><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
-            f'<main class="wrap">{crumbs}<p style="margin:2px 0 6px;font-size:11px;color:var(--ink-2)">本ページはプロモーションを含みます</p>{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
+            f'<main class="wrap">{crumbs}{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
             f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{aff}{rel_html}'
             f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。</footer></main>'
