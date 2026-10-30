@@ -14,6 +14,7 @@ import requests
 from common import load_json, save_json, now, parse_dt, log
 from extract import API_URL, MODEL
 from fetch import get, html_to_text
+from address import find_address
 
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
 END_WORDS = re.compile(
@@ -64,7 +65,8 @@ def check_pages(settings, ask=None, fetcher=get, limit=None):
         if not url.startswith("http") or any(h in url for h in SKIP_HOSTS):
             continue
         t = parse_dt(it.get("page_checked_at"))
-        if t and (now() - t).total_seconds() < 20 * 3600:
+        need_addr = it.get("channel") == "store" and not it.get("address") and not it.get("address_checked")
+        if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr:
             continue
         todo.append((it, url))
     pages = {}
@@ -78,6 +80,12 @@ def check_pages(settings, ask=None, fetcher=get, limit=None):
                 pages[url] = ""
                 log(f"応募ページの確認: 取得失敗 {url[:60]} {e}")
         text = pages[url]
+        if text and it.get("channel") == "store" and not it.get("address"):  # 店頭抽選はお店の住所も読む
+            a = find_address(text, it.get("area"))
+            if a:
+                it["address"] = a
+                log(f"応募ページの確認: 住所 {it.get('store')} {a}")
+            it["address_checked"] = True
         if not text or not END_WORDS.search(text):
             continue
         try:

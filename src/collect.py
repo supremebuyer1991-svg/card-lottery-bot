@@ -8,7 +8,7 @@ from fetch_x import search as x_search
 
 SEEN_VERSION = 5
 MANUAL_FIELDS = ("game", "store", "product", "series", "products", "channel", "area", "method", "start", "end",
-                 "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image")
+                 "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image", "address")
 
 
 def _iso(v):

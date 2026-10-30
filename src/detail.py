@@ -16,7 +16,7 @@ WEEK = "月火水木金土日"
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 KEEP = ("key", "game", "store", "product", "products", "series", "start", "end", "announce", "buy", "method",
-        "conditions", "tags", "url", "channel", "area", "id_check", "member", "image", "img_url", "spath", "found_at", "manual")
+        "conditions", "tags", "url", "channel", "area", "address", "id_check", "member", "image", "img_url", "spath", "found_at", "manual")
 
 
 def lottery_path(i) -> str:
@@ -154,6 +154,9 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     row("当選発表", i.get("announce") if not parse_dt(i.get("announce")) else fmt(i.get("announce")))
     row("購入期間", i.get("buy"))
     row("受け取り", ch + (f"｜{i['area']}" if i.get("channel") == "store" and i.get("area") else ""))
+    if i.get("channel") == "store" and i.get("address"):
+        from address import maps_url
+        row("お店の住所", f'{escape(i["address"])} <a href="{escape(maps_url(store, i["address"]))}" target="_blank" rel="noopener">Googleマップで見る</a>', raw=True)
     row("応募方法", i.get("method"))
     row("応募条件", i.get("conditions"))
     req = []

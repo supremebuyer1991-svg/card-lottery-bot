@@ -25,7 +25,7 @@ TEMPLATE = Path(__file__).with_name("site_template.html")
 ACTIVE = ("approved", "posted", "listed")
 FIELDS = ("key", "game", "store", "product", "series", "end", "conditions", "tags", "url",
           "channel", "area", "found_at", "id_check", "member", "image", "img_url", "multi", "method",
-          "start", "announce", "buy", "products", "manual")
+          "start", "announce", "buy", "products", "manual", "address")
 GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionworld"}
 GAME_SHORT = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "フュージョンワールド"}
 GAME_TAB = {"onepiece": "ワンピース"}  # 上のタブ・一覧の小さなラベルだけ短く（スマホで横にはみ出さないように）
@@ -1760,6 +1760,18 @@ def build(settings=None, out_dir=None, sample=None):
                 reg[sp] = {"name": h["name"], "last": min(last, today_s), "game": next(iter(h["items"].values()))["g"], "keep": True}
     reg = {k: v for k, v in reg.items()
            if (now().date() - __import__("datetime").date.fromisoformat(v["last"])).days <= (180 if k in hist else 45)}
+    # お店の住所（店頭抽選の応募ページから読み取ったもの）。同じお店で住所が食い違う時は載せない
+    if sample is None:
+        addrs = {}
+        for it in load_json("lotteries.json", {}).values():
+            if it.get("address") and it.get("channel") == "store" and it.get("store") and it.get("status") not in ("duplicate", "rejected"):
+                addrs.setdefault(store_path(it["store"]), {})[normalize(it["address"])] = it["address"]
+        for k, v in reg.items():
+            a_ = addrs.get(k)
+            if a_ and len(a_) == 1:
+                v["address"] = next(iter(a_.values()))
+            elif a_:
+                v.pop("address", None)
     if sample is None:
         save_json("stores.json", reg)
     by_store = {}
@@ -1798,6 +1810,12 @@ def build(settings=None, out_dir=None, sample=None):
             seen_p.add(sk)
             past.append(v)
         hist_html, faq_s = "", []
+        addr_html = ""
+        if r.get("address"):
+            from address import maps_url
+            addr_html = (f'<p class="ann"><b>📍 住所</b>：{escape(r["address"])} '
+                         f'<a href="{escape(maps_url(name, r["address"]))}" target="_blank" rel="noopener">Googleマップで見る</a></p>')
+            faq_s.append((f"{name}の場所はどこですか？", f"{name}の住所は{r['address']}です（抽選の告知ページに書かれていた住所です）。"))
         ad = ann_days((hist.get(path) or {}).get("items", {}).values())
         ann_li = (f'<p class="ann"><b>結果発表の目安</b>：{escape(ann_text(ad))}</p>' if ad else "")
         if ad:
@@ -1825,8 +1843,8 @@ def build(settings=None, out_dir=None, sample=None):
                     "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
             "summary": summary(si, f"{name}の抽選"),
             "h1": f"{name}の抽選情報", "lead": lead,
-            "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else hist_html),
-            "info_html": hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
+            "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else addr_html + hist_html),
+            "info_html": addr_html + hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
             "faq": faq_s or None,
             "links": links, "root": "/",
             "noindex": not si and not hist_html}, si,  # 受付中もこれまでの抽選もないお店は検索に出さない

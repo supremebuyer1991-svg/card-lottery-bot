@@ -6,6 +6,8 @@
 #
 # 書き方（game は pokemon / onepiece / dragonball、channel は online（発送）/ store（店頭受取））
 #   日時は 2026-11-01T23:00 のように「年-月-日T時:分」で書く
+#   店頭抽選は address: にお店の住所を書くと、お店のページと抽選のページに住所とGoogleマップのリンクが出る
+#   （書かなくても、応募ページに住所があればボットが自動で読み取る）
 
 # 自分で見つけた抽選結果の発表（サイトの /kekka/「結果が出た抽選」に載る。30日たったら消してOK）
 #   game は pokemon / onepiece、date は結果が出た日、check は確かめ方、check_url はお店の結果確認ページ
@@ -250,6 +252,7 @@ lotteries:
     id_check: true
     member: account
     tags: [会員, 本人確認]
+    address: 大阪府枚方市宮之阪4-28-12
     url: https://livepocket.jp/e/ir67g
 
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
