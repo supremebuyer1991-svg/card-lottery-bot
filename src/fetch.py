@@ -25,6 +25,10 @@ def get(url: str) -> str:
     return r.text
 
 
+APPLY_HOSTS = re.compile(r"livepocket\.jp/e/|cloud-pass\.jp/|forms\.gle/|docs\.google\.com/forms/|e-starbox\.com/|customform\.jp/|"
+                         r"membercard\.jp/|eplus\.jp/|lottery|chusen|form\.amiami\.jp/|p-bandai\.jp/item/|(?:x|twitter)\.com/[^/]+/status/")
+
+
 def html_to_text(html: str, base_url: str = "") -> str:
     """本文テキスト＋リンク一覧を返す（AIが抽選ページのURLを拾えるように）"""
     soup = BeautifulSoup(html, "html.parser")
@@ -46,6 +50,12 @@ def html_to_text(html: str, base_url: str = "") -> str:
             pass
     for t in soup(["script", "style", "noscript", "svg", "header", "footer", "nav"]):
         t.decompose()
+    # 応募ページ（LivePocket・フォームなど）へのリンクは、本文のその場所にURLを書き込む
+    # （まとめ記事は長く、最後のリンク一覧が読み取りの文字数から切れたり、リンクの文字が店名だけだったりするため）
+    for a in soup.find_all("a", href=True):
+        href = requests.compat.urljoin(base_url, a["href"])
+        if APPLY_HOSTS.search(href) and href not in a.get_text():
+            a.append(f" [{href}]")
     lines = [ln.strip() for ln in soup.get_text("\n").splitlines()]
     text = "\n".join(dict.fromkeys(head)) + ("\n\n" if head else "") + "\n".join(ln for ln in lines if ln)
     links = []
