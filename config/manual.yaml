@@ -469,6 +469,21 @@ lotteries:
     tags: [会員, 本人確認]
     url: https://livepocket.jp/e/x425p
 
+  - slug: joshin-op-1102
+    game: onepiece
+    store: Joshin webショップ
+    series: ヒロインズエディション vol.2 / 世界最強の戦士 / ヒロインズエディション
+    product: ONE PIECEカードゲーム「Heroines Edition vol.2」【EB-05】・「世界最強の戦士」【OP-17】・「Heroines Edition」【EB-03】
+    products: ["Heroines Edition vol.2【EB-05】", "世界最強の戦士【OP-17】", "Heroines Edition【EB-03】"]
+    channel: online
+    method: Web抽選（Joshin webショップから届く抽選販売の案内メールから応募）→ 当選したら発送
+    end: 2026-11-02T09:59
+    announce: 11/12(木)午後以降・11/19(木)午後以降
+    conditions: 10/3時点でプラチナ・VIPスマイル会員で、10/29 21:59時点でJoshin webショップのメールマガジンに登録している人（案内メールが届いている人だけ応募できます）
+    member: account
+    tags: [会員]
+    url: https://joshinweb.jp/
+
   # ボットが拾った抽選の情報を正しく直すため（店名・商品名・締切日を元のデータと同じにして、ページのアドレスを変えない）
   - game: pokemon
     store: ふるいちイオンモール熱田店
