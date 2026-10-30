@@ -75,7 +75,7 @@ dl div:last-child{border-bottom:0}dt{color:var(--ink-2);font-size:13px;font-weig
 dd ul{margin:0;padding-left:1.1em}dd li{margin:2px 0}
 .acts{padding:14px 16px 16px;display:grid;gap:10px;border-top:1px dashed var(--rule)}
 .go{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;
- font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
+ font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go-top{margin-top:12px}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
 .sub-acts{display:flex;gap:8px;flex-wrap:wrap}.apb{flex:1;font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{flex:1;text-align:center;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
 .note{font-size:12px;color:var(--ink-2);margin:0}
 .ended{background:var(--navy-soft);border-radius:10px;padding:12px 14px;margin:14px 0 0;font-weight:700}
@@ -186,9 +186,13 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
         cd_html = f'<div class="cd {cls}" id="cd"><b>{"受付前" if cls == "pre" else "受付中"}</b><span>{escape(period)}</span></div>'
     share = f"{store}の{gshort}抽選「{name}」" + (f"\n⏰{end_s}締切" if end_s else "")
     share_url = "https://x.com/intent/post?text=" + quote(share + "\n" + (canon or ""))
+    go_rel = "nofollow sponsored noopener" if re.search(r"amazon|amzn|アマゾン", f'{store}{i.get("url") or ""}', re.I) else "nofollow noopener"
     btn = (f'<a class="go off" id="go">受付は終了しました</a>' if is_end else
-           (f'<a class="go" id="go" href="{escape(i["url"])}" target="_blank" rel="nofollow noopener">応募ページを開く →</a>' if i.get("url")
+           (f'<a class="go" id="go" href="{escape(i["url"])}" target="_blank" rel="{go_rel}">応募ページを開く →</a>' if i.get("url")
             else '<a class="go off" id="go">応募先は店舗の告知でご確認ください</a>'))
+    # 新着・締切間近のカードから来た人がすぐ応募できるよう、見出しのすぐ下にも応募ボタン
+    top_go = (f'<a class="go go-top" href="{escape(i["url"])}" target="_blank" rel="{go_rel}">応募ページを開く →</a>'
+              if i.get("url") and not is_end else "")
     snap = {"store": store, "product": name, "series": i.get("series"), "end": i.get("end"), "announce": i.get("announce"),
             "url": i.get("url"), "lpath": path, "game": g}
     ap_btn = (f'<button type="button" id="ap" class="apb" data-key="{escape(i.get("key") or "")}" '
@@ -238,7 +242,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             '</head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             f'<main class="wrap">{crumbs}<p style="margin:2px 0 6px;font-size:11px;color:var(--ink-2)">本ページはプロモーションを含みます</p>{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
-            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{cd_html}</div>'
+            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{cd_html}{top_go}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{aff}{rel_html}'
             f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。</footer></main>'
             f'<script>{JS}</script></body></html>')

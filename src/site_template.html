@@ -901,7 +901,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }
 
   // 締切間近・新着の抽選（それぞれ別の欄・横にスワイプ）
-  // 新着・締切間近のカードの商品写真：写真を押すと楽天の商品ページ、それ以外はお店の応募ページ
+  // 新着・締切間近のカードの商品写真：写真を押すと楽天の商品ページ、それ以外はその抽選の個別ページ
   function hcImg(i) {
     return '<span class="hc-img"' + (i.img_url ? ' data-rk="' + esc(i.img_url) + '" role="link" title="楽天市場で見る"' : "") + '><img src="' + esc(i.image) + '" alt="" loading="lazy">' +
 '</span>';
@@ -914,8 +914,11 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   }, true);
   function hotCard(i, isFresh) {
     var cd = countdown(i._end), isStore = i.channel === "store";
-    var amz = isAmazon(i);  // Amazonはアフィリエイトリンクなので「PR」を付ける（ステマ規制）
-    return '<a class="hc" href="' + esc(i.url || "#") + '" target="_blank" rel="' + (amz ? "nofollow sponsored noopener" : "noopener") + '">' +
+    var amz = isAmazon(i);  // Amazonはアフィリエイトリンクなので sponsored（ステマ規制）
+    // カードを押すと、その抽選の個別ページ（/l/…/）へ。個別ページがないときだけ直接お店の応募ページ
+    var link = i.lpath ? '<a class="hc" href="/' + esc(i.lpath) + '">'
+      : '<a class="hc" href="' + esc(i.url || "#") + '" target="_blank" rel="' + (amz ? "nofollow sponsored noopener" : "noopener") + '">';
+    return link +
       '<span class="hc-top ' + cd.cls + '">' + (isFresh ? '<b class="nw">NEW</b>' : "") + 
         (preOf(i) ? '<span class="hc-cd">受付前 ' + preOf(i) + '</span></span>' :
         '<span class="hc-cd" data-end="' + (i._end || "") + '">' + (i._end ? cd.text : "受付中") + '</span></span>') +
