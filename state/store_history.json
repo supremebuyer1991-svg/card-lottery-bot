@@ -1274,6 +1274,13 @@
         "e": "2026-10-30T23:59",
         "f": "2026-10-26",
         "c": "store"
+      },
+      "ca12984d078ffa9c": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-10-30T23:59",
+        "f": "2026-10-30",
+        "c": "store"
       }
     }
   },
@@ -5854,7 +5861,8 @@
         "g": "onepiece",
         "e": "2026-11-01T23:59",
         "f": "2026-10-26",
-        "c": "store"
+        "c": "store",
+        "a": "2026-11-20"
       }
     }
   },
@@ -6577,6 +6585,13 @@
   "store/cardlabo-9308e/": {
     "name": "カードラボ名古屋駅前店",
     "items": {
+      "0901bfb244155228": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "e1833f91c844c200": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -6745,6 +6760,13 @@
   "store/bigmagic-7f85c/": {
     "name": "BIGMAGICなんば店",
     "items": {
+      "25e6a0eb20ad686a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01",
+        "f": "2026-10-30",
+        "c": "store"
+      },
       "50aee1fed1a87a6a": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -7368,6 +7390,14 @@
   "store/pokemoncenter-3736f/": {
     "name": "ポケモンセンターオンライン",
     "items": {
+      "dae9ccbb78239b14": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-10T16:59",
+        "f": "2026-10-30",
+        "c": "online",
+        "a": "2026-11-17"
+      },
       "52d98ef8f2633167": {
         "p": "ピカピカボックス2027",
         "g": "pokemon",
@@ -9378,7 +9408,8 @@
         "g": "pokemon",
         "e": "2026-10-31T22:00",
         "f": "2026-10-29",
-        "c": "store"
+        "c": "store",
+        "a": "2026-11-01"
       }
     }
   },
@@ -10997,6 +11028,127 @@
         "f": "2026-10-30",
         "c": "online",
         "a": "2026-11-12"
+      }
+    }
+  },
+  "store/geo-b92c5/": {
+    "name": "ゲオ（Web抽選）",
+    "items": {
+      "ae803f67d815a6d8": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T17:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-69522/": {
+    "name": "TSUTAYA 柳川店",
+    "items": {
+      "b559f3f33f35db2d": {
+        "p": "Heroines Precius",
+        "g": "onepiece",
+        "e": "2026-11-01T22:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-9b899/": {
+    "name": "TCバトロコ水戸駅前",
+    "items": {
+      "edd9be94d67bc6b3": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-10-30T20:00",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/furuichi-d99b5/": {
+    "name": "古本市場桃山店",
+    "items": {
+      "a631ce47e2b62d4b": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/sevennet-2fe22/": {
+    "name": "セブンネットショッピング",
+    "items": {
+      "a515061281951ad5": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
+      }
+    }
+  },
+  "store/kiddyland-e4913/": {
+    "name": "キディランド吉祥寺店",
+    "items": {
+      "078ec9eb7b163b38": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/kiddyland-31038/": {
+    "name": "キディランド二子玉川店",
+    "items": {
+      "0241de0c650c43c8": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/kiddyland-c2feb/": {
+    "name": "キディランド アミュプラザくまもと店",
+    "items": {
+      "487a01addf31995f": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/kiddyland-28f81/": {
+    "name": "キディランド鹿児島店",
+    "items": {
+      "f5bfe5d5140ab701": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-10-30",
+        "c": "store"
+      }
+    }
+  },
+  "store/aeon-31a96/": {
+    "name": "ふるいちイオンモール座間店",
+    "items": {
+      "668816e123b4ac0c": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-10-30T21:01",
+        "f": "2026-10-30",
+        "c": "store",
+        "a": "2026-10-31"
       }
     }
   }
