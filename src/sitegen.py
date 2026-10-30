@@ -929,7 +929,13 @@ def active_series(settings=None):
             continue
         cnt.setdefault(i["game"], {}).setdefault(i["series"], 0)
         cnt[i["game"]][i["series"]] += 1
-    return {g: sorted(c, key=lambda x: -c[x]) for g, c in cnt.items() if g in s["game_names"]}
+    out = {g: sorted(c, key=lambda x: -c[x]) for g, c in cnt.items() if g in s["game_names"]}
+    # 相場を載せている弾（抽選がない過去の弾も）も、楽天の写真を探す（相場の一覧・弾ページに写真を出すため）
+    for k in (load_json("souba.json", {}).get("items") or {}):
+        g, _, x = k.partition("|")
+        if g in s["game_names"] and x not in out.setdefault(g, []):
+            out[g].append(x)
+    return out
 
 
 def build(settings=None, out_dir=None, sample=None):
