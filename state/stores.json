@@ -3897,7 +3897,7 @@
   },
   "store/furukonpu-fbee8/": {
     "name": "フルコンプ",
-    "last": "2026-10-30",
+    "last": "2026-11-01",
     "game": "pokemon",
     "keep": true
   },
@@ -3958,7 +3958,8 @@
     "name": "TSUTAYA柳川店",
     "last": "2026-11-01",
     "game": "onepiece",
-    "area": "福岡県"
+    "area": "福岡県",
+    "address": "福岡県福岡県柳川市三橋町藤吉５０９-１"
   },
   "store/batoroco-9b899/": {
     "name": "TCバトロコ水戸駅前",
@@ -4054,7 +4055,8 @@
     "name": "トレカエース茨大前店",
     "last": "2026-11-01",
     "game": "pokemon",
-    "area": "茨城県"
+    "area": "茨城県",
+    "address": "茨城県茨城県堀町1094-7"
   },
   "store/tsutaya-f7b98/": {
     "name": "TSUTAYA金沢店",
@@ -4623,5 +4625,10 @@
     "last": "2026-11-01",
     "game": "onepiece",
     "keep": true
+  },
+  "store/o-pureizu-6969f/": {
+    "name": "お宝創庫・プレイズ",
+    "last": "2026-11-01",
+    "game": "pokemon"
   }
 }
