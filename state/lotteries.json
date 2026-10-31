@@ -30028,7 +30028,7 @@
     "end": "2026-11-02",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "本文には会員登録・本人確認書類・購入上限・代理購入・価格などの条件の記載がない。「11/2まで」という期限らしき表記と各商品のリンクだけで、詳細は不明。",
     "url": "https://livepocket.jp/e/capr-",
     "x_post": "https://x.com/PICA2200/status/2116453125884359035",
     "game": "onepiece",
@@ -30044,9 +30044,13 @@
     "status": "pending",
     "found_at": "2026-10-31T18:12:47.921993+09:00",
     "multi": false,
-    "cls": "de08967738f3",
+    "cls": "6c278e1910c9",
     "issue": 328,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:27.699087+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "150320426c173ac6": {
     "store": "キデイランド ららぽーと富士見店",
@@ -30302,7 +30306,7 @@
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "d0c0dba5c81d"
+    "cls": "3d99c1c3d364"
   },
   "07a4ac14bcbc4f7c": {
     "store": "ビデオ100 徳島藍住店",
@@ -30312,7 +30316,7 @@
     "end": "2026-11-02T23:00:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文に応募・購入の条件の記載はない。締切が11/2(月)23:00であることと、詳細ページへのリンクがあることだけが分かる。",
     "url": "https://livepocket.jp/e/r_4mn",
     "x_post": "https://x.com/OnchainOutlaw/status/2116445109910901079",
     "game": "pokemon",
@@ -30328,8 +30332,12 @@
     "status": "approved",
     "found_at": "2026-10-31T18:12:47.922132+09:00",
     "multi": false,
-    "cls": "84310ac4a91d",
-    "tco_checked": true
+    "cls": "8b2572d53c13",
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:29.749615+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "5c4156c350138ab3": {
     "store": "ビデオ100 徳島藍住店",
@@ -30390,12 +30398,17 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "100060ee440b5015",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-31T18:12:47.922158+09:00",
     "multi": true,
     "cls": "2372d86f5fe3",
     "issue": 334,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:31.809225+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true,
+    "duplicate_of": "f2ffef2e57ec247b"
   },
   "05ac8174da63393c": {
     "store": "北千住",
@@ -30405,7 +30418,7 @@
     "end": "2026-11-01",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文には応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)の記載がなく、北千住(東京)の抽選リンクが載っているだけです。",
     "url": "https://livepocket.jp/e/7oxgz",
     "x_post": "https://x.com/AkiPokemonLife/status/2116444229224562765",
     "game": "pokemon",
@@ -30418,12 +30431,17 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "05ac8174da63393c",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-10-31T18:12:47.922170+09:00",
     "multi": false,
-    "cls": "d107e35aede3",
+    "cls": "8ccf0aa80297",
     "issue": 335,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:33.874824+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true,
+    "duplicate_of": "50f5b7ed57670470"
   },
   "635e55a0a0b2ee6e": {
     "store": "多摩平の森",
@@ -30433,7 +30451,7 @@
     "end": "2026-11-01",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文は各店舗の抽選ページへのリンク一覧のみで、応募・購入の条件(会員登録、本人確認、購入上限、代理購入、価格など)は書かれていない。",
     "url": "https://livepocket.jp/e/b8ut2",
     "x_post": "https://x.com/AkiPokemonLife/status/2116444229224562765",
     "game": "pokemon",
@@ -30449,9 +30467,13 @@
     "status": "pending",
     "found_at": "2026-10-31T18:12:47.922183+09:00",
     "multi": false,
-    "cls": "15a9e625a2da",
+    "cls": "4741a15a1723",
     "issue": 336,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:35.982926+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "15dfda2e055ab1ff": {
     "store": "平塚",
@@ -30577,8 +30599,10 @@
     "status": "pending",
     "found_at": "2026-10-31T18:12:47.922234+09:00",
     "multi": false,
-    "cls": "1799de70cc40",
+    "cls": "2fbab5641ff5",
     "issue": 337,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-10-31T19:01:38.035057+09:00",
+    "page_err": "中身が空"
   }
 }
