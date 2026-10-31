@@ -696,6 +696,14 @@
   "store/dmm-d0426/": {
     "name": "DMMマイカ",
     "items": {
+      "923ddfe688dead08": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-06T23:59",
+        "f": "2026-10-31",
+        "c": "online",
+        "a": "2026-11-09"
+      },
       "669210b43a428726": {
         "p": "30周年エーフィ・ブラッキーデッキ",
         "g": "pokemon",
@@ -7651,6 +7659,13 @@
         "f": "2026-10-27",
         "c": "online",
         "a": "2026-11-12"
+      },
+      "46c386ad2f4fab09": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-31",
+        "c": "store"
       }
     }
   },
@@ -11782,6 +11797,91 @@
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
         "e": "2026-11-01",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-570db/": {
+    "name": "四条河原町",
+    "items": {
+      "d28f9970a904b816": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-01",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/livepocket-8-4996b/": {
+    "name": "LivePocket参加8店舗",
+    "items": {
+      "0c0bc1ea3a9d7ce3": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-acb5a/": {
+    "name": "TSUTAYA",
+    "items": {
+      "edc84634e6d5d199": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-03T23:59",
+        "f": "2026-10-31",
+        "c": "store",
+        "a": "2026-11-05"
+      }
+    }
+  },
+  "store/shop-fbadf/": {
+    "name": "四条河原町店",
+    "items": {
+      "d0724cd8f1c787a6": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-01",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-a5f11/": {
+    "name": "TSUTAYA 中万々店",
+    "items": {
+      "d60fba43e62d94c4": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-02T22:00",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-7e031/": {
+    "name": "バトロコ渋谷センター街店",
+    "items": {
+      "fc9b1871af45dc31": {
+        "p": "EROINES PRECIOUS",
+        "g": "onepiece",
+        "e": "2026-11-03",
+        "f": "2026-10-31",
+        "c": "store"
+      }
+    }
+  },
+  "store/batoroco-3f618/": {
+    "name": "バトロコ川崎駅前店",
+    "items": {
+      "576ac43cb50b2184": {
+        "p": "EROINES PRECIOUS",
+        "g": "onepiece",
+        "e": "2026-11-03",
         "f": "2026-10-31",
         "c": "store"
       }
