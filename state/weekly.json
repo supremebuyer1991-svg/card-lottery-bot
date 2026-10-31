@@ -3524,7 +3524,7 @@
       "store": "TENDO八文字屋",
       "series": null,
       "channel": "online",
-      "area": null,
+      "area": "山形県",
       "found_at": "2026-10-28T13:26:12.193581+09:00",
       "chain": null
     },
@@ -6686,6 +6686,33 @@
       "area": "大阪府",
       "found_at": "2026-10-31T19:59:58.579982+09:00",
       "chain": "furuichi"
+    },
+    "8ce7b828169c6d7a": {
+      "game": "pokemon",
+      "store": "TSUTAYA 積文館書店 シュロアモール店",
+      "series": "スペシャルデッキセット メガオーダイル・メガカイリュー・メガゲンガー",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-10-31T20:59:59.466501+09:00",
+      "chain": "tsutaya"
+    },
+    "1dbabeefa88b069e": {
+      "game": "pokemon",
+      "store": "ビックカメラ 新横浜店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-10-31T20:59:59.466542+09:00",
+      "chain": "biccamera"
+    },
+    "ccb5123d376e2dc0": {
+      "game": "pokemon",
+      "store": "トレカショップフロント",
+      "series": null,
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-10-31T20:59:59.466579+09:00",
+      "chain": null
     }
   }
 }
