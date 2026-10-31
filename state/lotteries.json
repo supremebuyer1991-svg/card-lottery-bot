@@ -22338,10 +22338,13 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-10-30T12:46:12.108013+09:00",
+    "page_checked_at": "2026-10-31T08:57:44.412252+09:00",
     "area": null,
     "cls": "9a8131fc8e0d",
-    "x_post": "https://x.com/bs80z/status/2116003652653695288"
+    "x_post": "https://x.com/bs80z/status/2116003652653695288",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "dc28c5497baf10be": {
     "store": "フルコンプ 八王子本店",
@@ -23995,9 +23998,10 @@
     "channel": "online",
     "area": null,
     "id_check": null,
-    "member": null,
+    "member": "account",
     "tags": [
-      "購入履歴"
+      "購入履歴",
+      "会員"
     ],
     "confidence": 0.75,
     "source": "入荷Now 入荷情報",
@@ -24357,7 +24361,7 @@
     "start": "2026-11-06T16:00:00+09:00",
     "end": "2026-11-10T16:59:00+09:00",
     "announce": "2026-11-17T15:00:00+09:00",
-    "method": null,
+    "method": "WEB抽選受付（当選者にはオンライン販売）",
     "conditions": null,
     "url": "https://www.pokemoncenter-online.com/news/?id=20261030",
     "x_post": "https://x.com/pokecachan/status/2116048000388833611",
@@ -24365,8 +24369,10 @@
     "channel": "online",
     "area": null,
     "id_check": null,
-    "member": null,
-    "tags": [],
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
     "confidence": 0.9,
     "source": "X 抽選情報アカウント",
     "source_url": "https://x.com/",
