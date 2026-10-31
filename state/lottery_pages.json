@@ -19728,9 +19728,13 @@
       "end": "2026-11-01T22:45:00+09:00",
       "method": "拡張パック「30th CELEBRATION」の抽選販売受付(11/1(日)22:45〆)。応募先はリンクが示されているだけで、具体的な方法は不明",
       "conditions": "本文からは、会員登録・アプリ・本人確認書類・購入個数の上限・代理購入・価格などの条件は読み取れません。分かるのは応募の締切が11/1(日)22:45ということだけです。",
+      "tags": [
+        "本人確認"
+      ],
       "url": "https://livepocket.jp/e/4_2kd",
       "channel": "store",
       "area": "福岡県",
+      "id_check": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/tsutaya-48133/",
@@ -19865,6 +19869,27 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F",
       "spath": "store/furuichi-5ec26/",
       "found_at": "2026-11-01T00:57:54.804772+09:00"
+    },
+    "last": "2026-11-01"
+  },
+  "l/76e3341002/": {
+    "d": {
+      "key": "76e3341002c299a4",
+      "game": "pokemon",
+      "store": "Luruna Card",
+      "product": "『30thパック』",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-30T00:00:00+09:00",
+      "method": "Web",
+      "conditions": "定価の抽選販売。2026/11/1以降Luruna Cardでの購入履歴と、その購入のレビューが必要（本文が途中で切れているため一部不明）",
+      "tags": [
+        "購入履歴"
+      ],
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/lurunacard-4f9a2/",
+      "found_at": "2026-11-01T07:23:10.168608+09:00"
     },
     "last": "2026-11-01"
   }
