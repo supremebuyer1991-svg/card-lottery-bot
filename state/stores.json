@@ -344,7 +344,7 @@
     "area": "大阪府"
   },
   "store/tsutaya-02cfc/": {
-    "name": "TSUTAYA Trading Card 北千住",
+    "name": "TSUTAYA Trading Card北千住",
     "last": "2026-10-31",
     "game": "pokemon",
     "area": "東京都"
@@ -2335,9 +2335,10 @@
   },
   "store/aeon-85100/": {
     "name": "ふるいちイオンモール神戸北店",
-    "last": "2026-10-26",
+    "last": "2026-10-31",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "兵庫県"
   },
   "store/furuichi-c7603/": {
     "name": "古本市場 倉敷中島店",
@@ -2625,9 +2626,10 @@
   },
   "store/daiso-toreka-50f28/": {
     "name": "ダイソー楽器トレカ店（中津川）",
-    "last": "2026-10-26",
+    "last": "2026-10-31",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "岐阜県"
   },
   "store/cardbox-d2f90/": {
     "name": "CARDBOX ブックイン金進堂長者原店",
@@ -2726,7 +2728,7 @@
     "keep": true
   },
   "store/tsutaya-c8b38/": {
-    "name": "フタバ図書 TSUTAYA Alti福山店",
+    "name": "フタバ図書TSUTAYA Alti福山店",
     "last": "2026-10-31",
     "game": "onepiece",
     "keep": true,
@@ -4323,6 +4325,42 @@
     "name": "Ganryu",
     "last": "2026-10-31",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/furuichi-c8e10/": {
+    "name": "古本市場東大阪店",
+    "last": "2026-10-31",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/tsutaya-3a924/": {
+    "name": "TSUTAYA田宮店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "徳島県"
+  },
+  "store/aeon-e187c/": {
+    "name": "ふるいちイオンモール多摩平の森店",
+    "last": "2026-10-31",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/aeon-6860e/": {
+    "name": "ふるいちイオンモール伊丹店",
+    "last": "2026-10-31",
+    "game": "pokemon",
+    "area": "兵庫県"
+  },
+  "store/tsutaya-48133/": {
+    "name": "TSUTAYA積文館書店八女店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "福岡県"
+  },
+  "store/furuichi-b4316/": {
+    "name": "古本市場三田店",
+    "last": "2026-10-31",
+    "game": "pokemon",
     "keep": true
   }
 }
