@@ -67,7 +67,7 @@
   },
   "store/gemupuraza-302-fa481/": {
     "name": "ゲームプラザ元気302",
-    "last": "2026-10-28",
+    "last": "2026-10-31",
     "game": "pokemon",
     "area": "滋賀県"
   },
@@ -3184,10 +3184,11 @@
     "area": "大分県"
   },
   "store/batoroco-b7359/": {
-    "name": "バトロコ高田馬場",
-    "last": "2026-10-28",
+    "name": "バトロコ 高田馬場",
+    "last": "2026-10-31",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
@@ -4361,6 +4362,42 @@
     "name": "古本市場三田店",
     "last": "2026-10-31",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/furuichi-09aa1/": {
+    "name": "古本市場泉大津店",
+    "last": "2026-10-31",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/bideo100-56597/": {
+    "name": "ビデオ100藍住店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "徳島県"
+  },
+  "store/torekapaku-7ffce/": {
+    "name": "トレカパーク横浜西口店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "神奈川県"
+  },
+  "store/batoroco-a3058/": {
+    "name": "バトロコミニ 帯広WOW",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "北海道"
+  },
+  "store/furuichi-8d504/": {
+    "name": "ふるいちトップブックス横越バイパス店",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "新潟県"
+  },
+  "store/itoyokadoario-6b6cf/": {
+    "name": "イトーヨーカドー アリオ",
+    "last": "2026-10-31",
+    "game": "onepiece",
     "keep": true
   }
 }
