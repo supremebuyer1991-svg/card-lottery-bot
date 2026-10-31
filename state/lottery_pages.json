@@ -8248,8 +8248,10 @@
       "store": "Amazon",
       "product": "ハドウシーカー",
       "method": "Amazon",
+      "conditions": "招待リクエスト制（定期的にチェックが必要）、タイムリミット48時間の記載あり",
       "url": "https://www.amazon.co.jp/s?k=%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC&tag=st9994ststst-22",
       "channel": "online",
+      "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/amazon-cbc62/",
@@ -16199,6 +16201,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円税込・再販分の購入権抽選）",
       "series": "30th CELEBRATION",
       "end": "2026-11-01T22:30:00+09:00",
+      "announce": "2026-11-04",
       "method": "オンライン",
       "conditions": "本人確認",
       "tags": [
@@ -19199,6 +19202,8 @@
       "product": "ポケモンカードゲーム 30th CELEBRATION（再販分 1BOX購入権）",
       "series": "30th CELEBRATION",
       "end": "2026-11-01T20:00:00+09:00",
+      "announce": "2026-11-04まで",
+      "buy": "11/6(金)10:00〜11/8(日)20:00",
       "method": "Web",
       "conditions": "ページ本文には応募・購入の条件に関する記載がなく、会員登録・アプリ・本人確認書類・購入個数の上限・代理購入・価格などは読み取れません。",
       "url": "https://livepocket.jp/e/7oxgz",
@@ -19239,6 +19244,7 @@
       "series": "30thセレブレーション",
       "end": "2026-11-03T22:00:00+09:00",
       "method": "Web（LivePocket）",
+      "conditions": "応募条件の記載なし。会員登録・アプリ・本人確認書類・購入個数・代理購入・価格などは不明。応募締切は11/3(火)22:00のみ記載。",
       "url": "https://livepocket.jp/e/u6fu3",
       "channel": "store",
       "area": "大阪府",
@@ -19276,10 +19282,13 @@
       "series": "ヒロインズエディション vol.2",
       "start": "2026-10-31T13:00:00+09:00",
       "end": "2026-11-03T23:59:00+09:00",
+      "announce": "2026-11-04以降",
       "method": "Googleフォーム",
       "conditions": "Googleアカウント必須",
       "url": "https://forms.gle/KV2ZypNquUq8zWAH6",
       "channel": "store",
+      "area": "滋賀県",
+      "address": "滋賀県大津市今堅田2丁目40-25",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922090.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F",
       "spath": "store/gemupuraza-302-fa481/",
@@ -19297,6 +19306,7 @@
       "start": "2026-10-28T00:00:00+09:00",
       "end": "2026-11-01T23:00:00+09:00",
       "method": "Web",
+      "conditions": "本文に「トレカパーク横浜西口店」「ヒロインズエディション」の抽選に関する条件の記載はありません（ページは「ONE PIECEカードゲーム各種 抽選受付について」の見出しのみ）",
       "url": "https://www.furu1.net/news/news_information/opkl20261031",
       "channel": "store",
       "area": "神奈川県",
@@ -19357,6 +19367,7 @@
       "start": "2026-10-31T09:59:00+09:00",
       "end": "2026-11-01T23:00:00+09:00",
       "method": "Web",
+      "conditions": "応募条件の詳細（会員登録・アプリ・本人確認書類・購入上限・代理購入・価格など）はページに記載がない。詳しくは店舗Xの告知と応募ページで確認する必要がある。受付は10/31(土)9:59〜11/1(日)23:00。",
       "url": "https://furu1.net/news/news_info",
       "channel": "store",
       "area": "新潟県",
@@ -19364,6 +19375,85 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F",
       "spath": "store/furuichi-8d504/",
       "found_at": "2026-10-31T14:06:39.313957+09:00"
+    },
+    "last": "2026-10-31"
+  },
+  "l/33a7e87a16/": {
+    "d": {
+      "key": "33a7e87a16a51f7b",
+      "game": "pokemon",
+      "store": "古本市場 泉大津店",
+      "product": "ポケモンカードゲーム MEGA 30th CELEBRATION 1BOX購入権抽選",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-03T22:00:00+09:00",
+      "conditions": "ポケモンカード MEGA 30th CELEBRATIONの1BOX購入権が当たる抽選で、応募締切は11/3(火)22:00。会員登録・本人確認書類・購入数の上限・代理購入・価格などの条件は、本文に書かれていない。",
+      "url": "https://livepocket.jp/e/u6fu3",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F",
+      "spath": "store/furuichi-09aa1/",
+      "found_at": "2026-10-31T15:01:17.119465+09:00"
+    },
+    "last": "2026-10-31"
+  },
+  "l/9631303b58/": {
+    "d": {
+      "key": "9631303b58aace23",
+      "game": "pokemon",
+      "store": "福福トレカ通販店",
+      "product": "アビスアイ",
+      "end": "2026-11-05T23:59:00+09:00",
+      "announce": "2026-11-06",
+      "method": "Web",
+      "conditions": "購入履歴1回以上",
+      "tags": [
+        "購入履歴"
+      ],
+      "url": "https://pokemon.fukufukutoreka.com/lottery",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/466/4521329462127.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001109242%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001109242%2F",
+      "spath": "store/toreka-c0d0f/",
+      "found_at": "2026-10-31T15:02:10.961161+09:00"
+    },
+    "last": "2026-10-31"
+  },
+  "l/b0bab2997e/": {
+    "d": {
+      "key": "b0bab2997e177159",
+      "game": "pokemon",
+      "store": "ゲームプラザ元気302",
+      "product": "30th CELEBRATION",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-03T23:59:00+09:00",
+      "announce": "2026-11-04以降",
+      "method": "Web",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSe2OnaPb6FNfIiU6QTIuhgWTu0mdVEdvjXkhcIK24ps6FchNA/viewform",
+      "channel": "store",
+      "area": "滋賀県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/gemupuraza-302-fa481/",
+      "found_at": "2026-10-31T15:02:10.961221+09:00"
+    },
+    "last": "2026-10-31"
+  },
+  "l/974723d29a/": {
+    "d": {
+      "key": "974723d29a127a32",
+      "game": "onepiece",
+      "store": "くるくる",
+      "product": "HEROINES PRECIOUS BOX",
+      "series": "HEROINES PRECIOUS BOX",
+      "end": "2026-11-02",
+      "announce": "2026-11-03〜2026-11-05",
+      "method": "Web",
+      "url": "https://x.com/kurukuru7766901/status/2116356054141522195",
+      "channel": "store",
+      "area": "福岡県",
+      "spath": "store/kurukuru-9d5ac/",
+      "found_at": "2026-10-31T15:02:10.961285+09:00"
     },
     "last": "2026-10-31"
   }

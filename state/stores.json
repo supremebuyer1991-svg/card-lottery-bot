@@ -69,7 +69,8 @@
     "name": "ゲームプラザ元気302",
     "last": "2026-10-31",
     "game": "pokemon",
-    "area": "滋賀県"
+    "area": "滋賀県",
+    "address": "滋賀県大津市今堅田2丁目40-25"
   },
   "store/dragonstar-278ed/": {
     "name": "ドラゴンスター各店（ららぽーと甲子園店・ららぽーと堺店・秋葉原駅前店・日本橋3号店・泉佐野店 ほか）",
@@ -2108,7 +2109,7 @@
   },
   "store/toreka-c0d0f/": {
     "name": "福福トレカ通販店",
-    "last": "2026-10-29",
+    "last": "2026-10-31",
     "game": "pokemon"
   },
   "store/tendo-05432/": {
@@ -4365,7 +4366,7 @@
     "keep": true
   },
   "store/furuichi-09aa1/": {
-    "name": "古本市場泉大津店",
+    "name": "古本市場 泉大津店",
     "last": "2026-10-31",
     "game": "pokemon",
     "area": "大阪府"
@@ -4399,5 +4400,11 @@
     "last": "2026-10-31",
     "game": "onepiece",
     "keep": true
+  },
+  "store/kurukuru-9d5ac/": {
+    "name": "くるくる",
+    "last": "2026-10-31",
+    "game": "onepiece",
+    "area": "福岡県"
   }
 }

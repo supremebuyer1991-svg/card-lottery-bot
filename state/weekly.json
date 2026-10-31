@@ -6530,7 +6530,7 @@
       "store": "ゲームプラザ元気302",
       "series": "ヒロインズエディション vol.2",
       "channel": "store",
-      "area": null,
+      "area": "滋賀県",
       "found_at": "2026-10-31T14:06:39.313865+09:00",
       "chain": null
     },
@@ -6569,6 +6569,42 @@
       "area": "新潟県",
       "found_at": "2026-10-31T14:06:39.313957+09:00",
       "chain": "furuichi"
+    },
+    "33a7e87a16a51f7b": {
+      "game": "pokemon",
+      "store": "古本市場 泉大津店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-10-31T15:01:17.119465+09:00",
+      "chain": "furuichi"
+    },
+    "9631303b58aace23": {
+      "game": "pokemon",
+      "store": "福福トレカ通販店",
+      "series": null,
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-10-31T15:02:10.961161+09:00",
+      "chain": null
+    },
+    "b0bab2997e177159": {
+      "game": "pokemon",
+      "store": "ゲームプラザ元気302",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "滋賀県",
+      "found_at": "2026-10-31T15:02:10.961221+09:00",
+      "chain": null
+    },
+    "974723d29a127a32": {
+      "game": "onepiece",
+      "store": "くるくる",
+      "series": "HEROINES PRECIOUS BOX",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-10-31T15:02:10.961285+09:00",
+      "chain": null
     }
   }
 }
