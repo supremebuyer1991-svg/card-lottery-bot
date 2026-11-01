@@ -311,7 +311,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             f'<main class="wrap">{crumbs}{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
             f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{aff}{rel_html}'
-            f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。</footer></main>'
+            f'<footer>{escape(foot)}　トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。　<a href="/privacy.html">プライバシーポリシー</a></footer></main>'
             f'<script>{JS}</script></body></html>')
 
 
