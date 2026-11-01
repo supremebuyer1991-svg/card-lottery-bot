@@ -1950,7 +1950,12 @@ def build(settings=None, out_dir=None, sample=None):
             old_a = (h["items"].get(k) or {}).get("a")
             h["items"][k] = {"p": "・".join(xs) or (it.get("product") or "")[:60], "g": it["game"],
                              "e": (it.get("end") or "")[:16], "f": (it.get("found_at") or "")[:10],
-                             "c": "store" if it.get("channel") == "store" else "online"}
+                             "c": "store" if it.get("channel") == "store" else "online",
+                             # 応募のしかた・条件（お店ページの「よくある抽選の形」に使う）
+                             "m": how_of(it), "id": it.get("id_check"), "mem": it.get("member"),
+                             "rq": [w for w, pat in (("購入履歴", r"購入(履歴|実績|歴)|利用実績"), ("レシート", r"レシート"),
+                                                     ("アプリ会員", r"アプリ"), ("X（旧Twitter）のフォロー", r"フォロー"))
+                                    if re.search(pat, " ".join(it.get("tags") or []) + " " + (it.get("conditions") or "") + " " + (it.get("method") or ""))]}
             a_ = res_day.get(k) or _rs2.announce_date(it) or ""
             if a_ or old_a:
                 h["items"][k]["a"] = a_ or old_a
@@ -2019,6 +2024,41 @@ def build(settings=None, out_dir=None, sample=None):
             past.append(v)
         hist_html, faq_s = "", []
         addr_html = ""
+        # このお店のよくある抽選の形（応募方法・受け取り・本人確認・会員・そのほかの条件）
+        hv = [v for v in (hist.get(path) or {}).get("items", {}).values() if v.get("m")]
+        trend_html = ""
+        if len(hv) >= 2:
+            def _cnt(vals):
+                d = {}
+                for x in vals:
+                    d[x] = d.get(x, 0) + 1
+                return sorted(d.items(), key=lambda t: -t[1])
+            n_ = len(hv)
+            how = "・".join(f"{k}応募{c_}回" for k, c_ in _cnt(v["m"] for v in hv))
+            rec_ = _cnt("店頭受取" if v["c"] == "store" else "通販（発送）" for v in hv)
+            idv = [v["id"] for v in hv if v.get("id") is not None]
+            memv = [v["mem"] for v in hv if v.get("mem")]
+            rqv = _cnt(w for v in hv for w in (v.get("rq") or []))
+            li = [f"<li><b>応募方法</b>：{escape(how)}</li>",
+                  f"<li><b>受け取り</b>：{escape('・'.join(f'{k}{c_}回' for k, c_ in rec_))}</li>"]
+            if idv:
+                yes = sum(1 for x in idv if x)
+                li.append(f"<li><b>本人確認</b>：" + (f"必要だった抽選が{yes}回（確認できた{len(idv)}回のうち）" if yes else f"不要（確認できた{len(idv)}回）") + "</li>")
+            if memv:
+                mm = {"card": "会員カードが必要", "account": "会員登録が必要", "none": "会員登録なしで応募できた"}
+                li.append("<li><b>会員</b>：" + escape("・".join(f"{mm.get(k, k)}{c_}回" for k, c_ in _cnt(memv))) + "</li>")
+            if rqv:
+                li.append("<li><b>そのほかの条件</b>：" + escape("・".join(f"{k}（{c_}回）" for k, c_ in rqv)) + "</li>")
+            trend_html = (f'<section class="hist"><h2>{escape(name)}のよくある抽選の形<small>過去{n_}回の抽選から</small></h2><ul>{"".join(li)}</ul>'
+                          '<p class="note">※トレカ抽選ナビが見つけた抽選の集計です。条件は抽選ごとに変わるので、応募前に必ずお店の告知をご確認ください。</p></section>')
+            top_how = _cnt(v["m"] for v in hv)[0][0]
+            faq_s.append((f"{name}の抽選はどうやって応募しますか？",
+                          f"トレカ抽選ナビで確認できた{n_}回の抽選では、{how}でした。いちばん多いのは{top_how}応募です。"))
+            if idv:
+                yes = sum(1 for x in idv if x)
+                faq_s.append((f"{name}の抽選に本人確認は必要ですか？",
+                              (f"確認できた{len(idv)}回のうち{yes}回は本人確認が必要でした。" if yes else f"確認できた{len(idv)}回はどれも本人確認は不要でした。") +
+                              "抽選ごとに変わることがあるので、告知を確認してください。"))
         if r.get("address"):
             from address import maps_url
             addr_html = (f'<p class="ann"><b>📍 住所</b>：{escape(r["address"])} '
@@ -2051,8 +2091,8 @@ def build(settings=None, out_dir=None, sample=None):
                     "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
             "summary": summary(si, f"{name}の抽選"),
             "h1": f"{name}の抽選情報", "lead": lead,
-            "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else addr_html + hist_html),
-            "info_html": addr_html + hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
+            "aff": (_rec_note(CHAIN[c][1]) if c and CHAIN[c][3] else "") + ("" if si else addr_html + trend_html + hist_html),
+            "info_html": addr_html + trend_html + hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
             "faq": faq_s or None,
             "links": links, "root": "/",
             "noindex": not si and not hist_html}, si,  # 受付中もこれまでの抽選もないお店は検索に出さない
