@@ -481,7 +481,7 @@ def _sns_bar():
     if xa:
         b.append(f'<a class="sns-x" href="https://x.com/{escape(xa)}" target="_blank" rel="noopener" title="フォローすると、最新情報・新着抽選の速報・締切間近のお知らせが届きます"><b>𝕏</b> 新着速報・締切通知<small>フォローで受け取る</small></a>')
     if ln.startswith("https://") or any((v or "").startswith("https://") for v in (st.get("line_rooms") or {}).values()):
-        b.append(f'<a class="sns-line" href="/line/"><b>LINE</b> オプチャ<small>（テスト中）</small></a>')
+        b.append(f'<a class="sns-line" href="/line/" title="地域ごとのオープンチャットで、近くの人と「どこで買えた・どこで抽選をやっている」をリアルタイムで共有できます（テスト中）"><b>LINE</b> リアルタイム販売情報<small>オプチャ（テスト中）</small></a>')
     return f'<div class="sns">{"".join(b)}</div>' if b else ""
 
 
