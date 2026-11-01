@@ -2002,6 +2002,12 @@ def build(settings=None, out_dir=None, sample=None):
                     cpast.append((v, h_["name"], sp_))
         cpast.sort(key=lambda t: t[0]["e"], reverse=True)
         chist = ""
+        def _cd(v):
+            d = parse_dt(v["e"])
+            return f"{d.month}/{d.day}" if d else ""
+        def _cp(v):
+            p_ = re.sub(r"(ポケモンカードゲーム|ONE PIECEカードゲーム|ポケモンカード|MEGA|拡張パック|ブースターパック|エクストラブースター|1BOX|[「」『』／/])", " ", v["p"])
+            return re.sub(r"\s+", " ", p_).strip() or "抽選"
         if cpast:
             def _cd(v):
                 d = parse_dt(v["e"])
@@ -2013,12 +2019,42 @@ def build(settings=None, out_dir=None, sample=None):
                      "".join(f'<li><time>{_cd(v)}締切</time> <a href="/{sp_}">{escape(n_)}</a>｜{escape(GAME_SHORT.get(v["g"], ""))}「{escape(_cp(v))}」</li>'
                              for v, n_, sp_ in cpast[:20]) +
                      '</ul><p class="note">※トレカ抽選ナビが見つけた抽選です。お店の名前を押すと、そのお店のこれまでの抽選が見られます。</p></section>')
+        # ゲームごとのページ（/chain/xxx/pokeka/ など）：「ビックカメラ ワンピースカード 抽選」で探す人向け。上のタブで行き来できる
+        hist_g = {g: [t for t in cpast if t[0]["g"] == g] for g in games}
+        cg_list = [g for g in games if g in ("pokemon", "onepiece") and (any(i["game"] == g for i in ci) or hist_g[g])]
+        def ctabs(cur):
+            if not cg_list:
+                return ""
+            tb = [("すべて", f"/chain/{slug}/", cur is None)] + [(GAME_TAB.get(g, GAME_SHORT[g]), f"/chain/{slug}/{GAME_SLUG[g]}/", cur == g) for g in cg_list]
+            return ('<nav class="ctabs" aria-label="ゲームを選ぶ">' + "".join(
+                f'<a href="{u}"{" aria-current=\"page\"" if on else ""}>{escape(t)}</a>' for t, u, on in tb) + '</nav>')
+        for g in cg_list:
+            cig = [i for i in ci if i["game"] == g]
+            sh = GAME_SHORT[g]
+            hg = hist_g[g]
+            chist_g = ""
+            if hg:
+                chist_g = (f'<section class="hist"><h2>{escape(cname)}の{escape(sh)}のこれまでの抽選<small>直近{min(len(hg), 20)}件</small></h2><ul>' +
+                           "".join(f'<li><time>{_cd(v)}締切</time> <a href="/{sp_}">{escape(n_)}</a>｜「{escape(_cp(v))}」</li>' for v, n_, sp_ in hg[:20]) +
+                           '</ul><p class="note">※トレカ抽選ナビが見つけた抽選です。新しい抽選が見つかり次第、このページに自動で追加されます。</p></section>')
+            lead_g = (f"いま受付中の{cname}の{sh}の抽選は{len(cig)}件です。店舗別・締切が近い順にまとめています。" if cig else
+                      f"{cname}で現在受付中の{sh}の抽選はありません。" + (f"前回は{_cd(hg[0][0])}締切の「{_cp(hg[0][0])}」の抽選でした。" if hg else "")
+                      + "新しい抽選が見つかり次第、自動で追加されます。")
+            write(f"chain/{slug}/{GAME_SLUG[g]}/", {"game": g, "chain": slug, "channel": "store" if sum(1 for i in cig if i.get("channel") == "store") * 2 > len(cig) else "online"}, {
+                "title": f"{cname}の{sh}抽選情報【{md}更新】" + (f"受付中{len(cig)}件・" if cig else "前回の抽選・") + "締切順｜トレカ抽選ナビ",
+                "desc": f"【{md}更新】{cname}の{sh}の抽選販売・予約抽選" + (f"{len(cig)}件" if cig else "") +
+                        "を店舗別・締切順にまとめ。応募方法・受け取り方・本人確認や会員の条件、これまでの抽選もひと目で分かります。",
+                "summary": summary(cig, f"{cname}の{sh}の抽選"), "h1": f"{cname}の{sh}抽選情報", "lead": lead_g,
+                "aff": ctabs(g) + (_rec_note(cname) if big else "") + ("" if cig else chist_g),
+                "info_html": chist_g if cig else "",
+                "links": _menu(items, games, g) + stl, "root": "/"}, cig,
+                [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/"), (sh, f"chain/{slug}/{GAME_SLUG[g]}/")])
         write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
             "title": f"{cname}の{words}抽選情報【{md}更新】" + (f"受付中{len(ci)}件・" if ci else "") + "店舗別・締切順｜トレカ抽選ナビ",
             "desc": f"【{md}更新】{cname}の{words}の抽選販売・予約抽選" + (f"{len(ci)}件" if ci else "") +
                     "を店舗別・締切順にまとめ。Web応募・店頭応募、受け取り方法、本人確認・会員の条件もひと目で分かります。",
             "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
-            "aff": (_rec_note(cname) if big else "") + ("" if ci else guide_c + chist),
+            "aff": ctabs(None) + (_rec_note(cname) if big else "") + ("" if ci else guide_c + chist),
             "info_html": (guide_c + chist) if ci else "",
             "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
             [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/")])
