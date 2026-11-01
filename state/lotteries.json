@@ -14146,11 +14146,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "2b335efad7cf5d0f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T11:17:46.943503+09:00",
     "multi": false,
     "cls": "c3e97f1dc6d0",
-    "announce": "2026-11-04"
+    "announce": "2026-11-04",
+    "closed_at": "2026-11-01T22:59:23.866564+09:00"
   },
   "fb2ef4595b6d652a": {
     "store": "TSUTAYA枚方ベルパルレ店",
@@ -14633,10 +14634,11 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "dde2e7393f79e806",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T11:17:50.582453+09:00",
     "multi": false,
-    "cls": "091b17f98542"
+    "cls": "091b17f98542",
+    "closed_at": "2026-11-01T22:59:23.867094+09:00"
   },
   "32dfd667b6c1dec1": {
     "store": "カードラボ小倉店",
@@ -16899,7 +16901,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "b559f3f33f35db2d",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T15:14:51.205705+09:00",
     "multi": false,
     "cls": "f2e044977f16",
@@ -16907,7 +16909,8 @@
     "post_checked": true,
     "details_checked": true,
     "address": "福岡県福岡県柳川市三橋町藤吉５０９-１",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T22:59:23.868250+09:00"
   },
   "0901bfb244155228": {
     "store": "カードラボ名古屋駅前店",
@@ -22395,14 +22398,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "f0e692aba33c6814",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T12:09:36.658164+09:00",
     "page_checked_at": "2026-11-01T21:31:43.887649+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "43ecd6a7c326",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T22:59:23.873581+09:00"
   },
   "9211c9b51e4a7eee": {
     "store": "ふるいちイオンモール神戸北店",
@@ -25360,7 +25364,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "20267d9cfc955210",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T23:59:07.445073+09:00",
     "multi": false,
     "cls": "a7c96242daee",
@@ -25368,7 +25372,8 @@
     "page_checked_at": "2026-11-01T21:32:14.195276+09:00",
     "page_err": "中身が空",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T22:59:23.874326+09:00"
   },
   "128bf883c74b91f2": {
     "store": "BIGMAGICなんば",
@@ -27104,7 +27109,7 @@
     "key": "4f61c3f2ab693dfa",
     "status": "approved",
     "found_at": "2026-11-01T10:37:49.471885+09:00",
-    "page_checked_at": "2026-11-01T16:49:55.341741+09:00",
+    "page_checked_at": "2026-11-01T22:58:45.353748+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -27170,7 +27175,7 @@
     "key": "3c4bf1cf54ed935e",
     "status": "approved",
     "found_at": "2026-11-01T10:37:49.471919+09:00",
-    "page_checked_at": "2026-11-01T16:49:57.530374+09:00",
+    "page_checked_at": "2026-11-01T22:58:47.414424+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -27262,7 +27267,7 @@
     "key": "a9ca5ab2919497da",
     "status": "approved",
     "found_at": "2026-11-01T10:37:49.471965+09:00",
-    "page_checked_at": "2026-11-01T16:49:59.590410+09:00",
+    "page_checked_at": "2026-11-01T22:58:49.479771+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -27292,7 +27297,7 @@
     "key": "6daca06ae6af1378",
     "status": "approved",
     "found_at": "2026-11-01T10:37:49.471979+09:00",
-    "page_checked_at": "2026-11-01T16:50:01.778766+09:00",
+    "page_checked_at": "2026-11-01T22:58:51.595162+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -27354,7 +27359,7 @@
     "key": "2d849a4ec68d7e97",
     "status": "approved",
     "found_at": "2026-11-01T10:37:49.472008+09:00",
-    "page_checked_at": "2026-11-01T16:50:03.830003+09:00",
+    "page_checked_at": "2026-11-01T22:58:53.717415+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "a757d8901f37",
@@ -28105,7 +28110,7 @@
     "multi": false,
     "cls": "37be33d1f7f1",
     "tco_checked": true,
-    "page_checked_at": "2026-11-01T16:31:56.508670+09:00",
+    "page_checked_at": "2026-11-01T22:58:55.769140+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -28549,7 +28554,7 @@
     "multi": false,
     "cls": "a7b0829795b0",
     "tco_checked": true,
-    "page_checked_at": "2026-11-01T16:50:11.998006+09:00",
+    "page_checked_at": "2026-11-01T22:58:57.888265+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
