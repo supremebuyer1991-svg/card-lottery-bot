@@ -1096,6 +1096,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     digest = sha(digest + "".join(sorted(f.name + sha(f.read_bytes().decode("latin-1")) for f in (ROOT / "src" / "static").glob("*"))))  # 共通のファイル（規約・確認用ファイルなど）を変えたら公開し直す
     digest = sha(digest + str(load_json("souba.json", {}).get("updated")) + str(load_json("souba.json", {}).get("cards_updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
+    force = force or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"  # 手動で実行した時はいつも作り直して公開
     if not changed and not force and sample is None and out_dir is None:
         # 中身が前回と同じ → ページを作り直さない（公開もしない。実行時間を短くするため）
         (out / ".changed").unlink(missing_ok=True)

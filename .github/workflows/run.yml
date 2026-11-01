@@ -59,7 +59,7 @@ jobs:
             python src/main.py all
           fi
       - name: deploy site (Cloudflare Pages)
-        if: env.HAS_CF == 'true' && (hashFiles('site/.changed') != '' || github.event_name == 'workflow_dispatch')
+        if: env.HAS_CF == 'true' && hashFiles('site/index.html') != '' && (hashFiles('site/.changed') != '' || github.event_name == 'workflow_dispatch')
         env:
           CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
