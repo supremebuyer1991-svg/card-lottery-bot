@@ -1093,6 +1093,7 @@ def build(settings=None, out_dir=None, sample=None):
     digest = sha(digest + json.dumps(sorted((load_json("newsets.json", {}).get("series") or {}).get("pokemon", {})) +
                                      sorted((load_json("newsets.json", {}).get("series") or {}).get("onepiece", {})) +
                                      sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す
+    digest = sha(digest + "".join(sorted(f.name + sha(f.read_bytes().decode("latin-1")) for f in (ROOT / "src" / "static").glob("*"))))  # 共通のファイル（規約・確認用ファイルなど）を変えたら公開し直す
     digest = sha(digest + str(load_json("souba.json", {}).get("updated")) + str(load_json("souba.json", {}).get("cards_updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
