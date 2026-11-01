@@ -18,7 +18,7 @@ ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/2026070
 # 画像に使いたくない商品（オリパ・中古・バラ売り・サプライ等）
 NG_WORDS = ("オリパ", "オリジナルパック", "中古", "シングル", "バラ", "ばら", "1パック", "5パック", "10パック", "15パック", "20パック", "スリーブ", "ローダー", "ケース",
             "ファイル", "プレイマット", "福袋", "くじ", "まとめ売り", "空箱", "未開封品 ※", "ブロック", "デッキシールド", "プロモ", "箱破損", "特価",
-            "ドン!!カード", "パラレル", "確定")
+            "ドン!!カード", "パラレル", "確定", "英語版", "海外版", "中国語", "韓国語", "ロングカードボックス", "コレクター必見")
 # シングルカード（1枚売り）の商品名によくある形：「C sv10」「SAR sv6」「U SM9」「(016/064)」「S2a 054/070」など
 SINGLE = re.compile(r"(^|[\s　【\[(（])(C|U|R|RR|RRR|SR|SAR|AR|UR|HR|CHR|CSR|SSR|K|PR|SEC|L|ACE)\s+(sv|s|sm|SM|S|SV)\d|"
                     r"[(（]\d{2,3}/\d{2,3}[)）]|\b\d{3}/\d{3}\b|ミラー仕様|モンスターボールミラー|ポケモン図鑑|（\s*U\s*）")
@@ -64,8 +64,10 @@ def _score(item, series, game_name, orig=None):
         sc += 1  # JANコードの名前の写真は、メーカーの写真のことが多い
     if re.search(r"特典|プレゼント|キャンペーン|レビュー|安心|即日|保証|ラッピング", name):
         sc -= 1  # 写真に店の宣伝（特典・保証のマーク）が入っていることが多い
-    if re.search(r"/@0_mall/(yum-yum|keitaigod01|goldhobby)/", img):
-        sc -= 3  # 写真にいつも店のマークや文字が入っている店
+    if re.search(r"/@0_mall/(yum-yum|keitaigod01|keitai-god|goldhobby|kicksparrow|frenz2?)/", img):
+        sc -= 3  # 写真にいつも店のマークや文字（シュリンクなし・クーポンなど）が入っている店
+    if re.search(r"Trading cards|クーポン|シュリンクなし|あす楽|即納|送料無料|店舗受取", name):
+        sc -= 2  # 写真にも「シュリンクなし」「送料無料」などの丸いマークや文字が入っていることが多い
     return sc
 
 

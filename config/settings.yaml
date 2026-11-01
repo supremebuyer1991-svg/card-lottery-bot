@@ -107,6 +107,53 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "pokemon|30th CELEBRATION": &pk30th
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/noah-shopping/4521329462424/"
+  # 相場の過去の弾：箱全体が写っていて、店のマーク・文字（シュリンクなし・クーポン・送料無料など）が入っていない写真（11/1 目で確認）
+  "pokemon|ポケモンカード151":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default/afawfawscfaad.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/noah-shopping/4521329346038/"
+  "pokemon|クリムゾンヘイズ":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/ky-zakkaten-r/cabinet/amayahoo/07918438/0748-009319.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/ky-zakkaten-r/0748-009319/"
+  "pokemon|ホワイトフレア":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/pitaya/cabinet/13744618/13744638/imgrc0106393985.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/pitaya/4521329427782/"
+  "pokemon|熱風のアリーナ":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/pokearena.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/noah-shopping/4521329374758/"
+  "pokemon|超電ブレイカー":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/diamondstore/cabinet/12697605/imgrc0135891886.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/diamondstore/4521329361505/"
+  "pokemon|ナイトワンダラー":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0105260905.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/nipponiajapan/1252669129/"
+  "pokemon|変幻の仮面":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/ky-zakkaten-r/cabinet/amayahoo/07918438/0748-009353.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/ky-zakkaten-r/0748-009353/"
+  "pokemon|ワイルドフォース":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kingshop/cabinet/compass1748450877.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/kingshop/f3282/"
+  "pokemon|サイバージャッジ":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kingshop/cabinet/compass1748451261.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/kingshop/f3283/"
+  "pokemon|未来の一閃":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/kingshop/cabinet/compass1748453826.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/kingshop/f3285/"
+  "pokemon|スカーレットex":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/plus-quality/cabinet/10195782/4521329373515-1.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/plus-quality/4521329373515/"
+  "pokemon|バイオレットex":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/plus-quality/cabinet/10195782/4521329373539-1.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/plus-quality/4521329373539/"
+  "pokemon|タイムゲイザー":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/premiumgarage/cabinet/13340078/imgrc0122544622.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/premiumgarage/c-poke-timegazer/"
+  "pokemon|ポケモンGO":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/haisaistore/cabinet/imgrc0120134789.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/haisaistore/pokego0601/"
+  "onepiece|師弟の絆":
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/ky-zakkaten-r/cabinet/amayahoo/07918438/0748-009989.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/ky-zakkaten-r/0748-009989/"
+  "pokemon|30thセレブレーション": *pk30th   # ロングカードボックス（別の商品）の写真にならないように
   "pokemon|30周年パック": *pk30th
   "pokemon|30周年": *pk30th
   "pokemon|30th": *pk30th
