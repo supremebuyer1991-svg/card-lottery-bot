@@ -4,7 +4,7 @@ import sys
 from common import load_settings, load_sources, log
 from collect import collect, sync_manual
 from approve import approve
-from xpost import post_all, post_daily_summary
+from xpost import post_all, post_daily_summary, post_big
 from xbuzz import post_buzz
 from xtrend import update_trends
 from pagecheck import check_pages
@@ -51,6 +51,10 @@ def main():
         except Exception as e:
             log(f"拾い漏れチェック: スキップ {e}")
         post_all(s)
+        try:
+            post_big(s)  # 大手の抽選の速報（見つけたらすぐ・リンク付き）
+        except Exception as e:
+            log(f"大手の速報: スキップ {e}")
         post_daily_summary(s)
         try:
             post_buzz(s)  # 1日1回、リンクなしの反応狙い投稿（buzz_hour 時〜）

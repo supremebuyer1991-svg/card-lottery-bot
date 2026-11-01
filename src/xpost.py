@@ -232,3 +232,104 @@ def post_daily_summary(settings, client=None):
     log(f"まとめ投稿OK（{slot}時の枠）")
     meta["summary_slots"] = {today: sorted(set(done) | set(h for h in hours if h <= slot))}
     save_json("x_meta.json", meta)
+
+
+# ---- 大手の抽選の速報（見つけたらすぐ・リンク付き）----
+# 大手＝サイトで⭐の付いたチェーン＋通販の大手。そのうち受け取りが通販（発送）のものだけ。小さいお店や店頭抽選は、まとめて「新着の抽選」で出す（Claudeの予約投稿）
+BIG_ONLINE = [("pbandai", "プレミアムバンダイ", r"プレミアムバンダイ|プレバン"),
+              ("rakutenbooks", "楽天ブックス", r"楽天ブックス"),
+              ("sevennet", "セブンネット", r"セブンネット|セブン-?イレブン|7net"),
+              ("amazon", "Amazon", r"Amazon|アマゾン"),
+              ("amiami", "あみあみ", r"あみあみ|amiami"),
+              ("aeon", "イオン", r"イオン|AEON"),
+              ("tsutaya", "TSUTAYA", r"TSUTAYA|ツタヤ|蔦屋")]
+GAME_HEAD = {"pokemon": "ポケカ", "onepiece": "ワンピースカード"}
+TAGS = {"pokemon": "#ポケモンカード #ポケカ #ポケカ抽選", "onepiece": "#ワンピースカード #ワンピースカード抽選"}
+FOLLOW = "🔔フォロー＆通知ONで、抽選の開始・締切のお知らせを受け取れます"
+
+
+def big_chain(store):
+    """大手なら (キー, 表示名)。違えば None"""
+    from sitegen import CHAINS
+    for slug, name, pat, big in CHAINS:
+        if big and re.search(pat, store or "", re.I):
+            return slug, name
+    for slug, name, pat in BIG_ONLINE:
+        if re.search(pat, store or "", re.I):
+            return slug, name
+    return None
+
+
+def compose_big(name, game, series, items, settings):
+    """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切"""
+    from detail import lottery_path
+    from sitegen import series_path
+    own = public_site(settings)
+    items = sorted(items, key=lambda i: i.get("end") or "9999")
+    first = items[0]
+    if len(items) == 1:
+        where = first["store"] + (f"（{first['area']}）" if first.get("channel") == "store" and first.get("area")
+                                  else "（通販・発送）" if first.get("channel") != "store" else "")
+        link = f"{own}/{lottery_path(first)}" if own else first.get("url")
+    else:
+        areas = list(dict.fromkeys(i.get("area") for i in items if i.get("area")))
+        where = f"{name} {len(items)}店舗" + (f"（{'・'.join(areas[:3])}{' ほか' if len(areas) > 3 else ''}）" if areas else "")
+        link = f"{own}/{series_path(game, series)}" if own and series else f"{own}/"
+    kind = "店頭抽選" if first.get("channel") == "store" else "抽選"
+    lines = [f"🚨抽選速報｜{GAME_HEAD[game]}", "", f"{name}で「{series or short_product(first)}」の{kind}", "",
+             f"📍{where}", (f"⏰{fmt_dt(first.get('end'))} 締切" + ("（早い店）" if len(items) > 1 else "") if first.get("end") else "⏰締切はお店の告知で確認"), "",
+             "応募条件・方法はこちら👇", link, "", FOLLOW, "", TAGS[game]]
+    return "\n".join(lines)
+
+
+def post_big(settings, client=None):
+    """大手の新しい抽選を、チェーン×弾ごとに1回だけ速報する。
+    サイトの個別ページが公開されてから出す（見つけて20分〜3時間のもの）。同じチェーン×弾は3日間は出し直さない"""
+    if not settings.get("big_post"):
+        return
+    from datetime import timedelta
+    meta = load_json("x_meta.json", {})
+    done = meta.setdefault("big_posted", {})
+    t = now()
+    for k in [k for k, v in done.items() if t - parse_dt(v) > timedelta(days=3)]:
+        done.pop(k)
+    today = t.date().isoformat()
+    count = meta.setdefault("big_count", {}).get(today, 0)
+    cap = settings.get("big_posts_per_day", 6)
+    lots = load_json("lotteries.json", {})
+    groups = {}
+    for i in lots.values():
+        if i.get("status") not in ("approved", "listed", "posted") or i.get("game") not in GAME_HEAD:
+            continue
+        f, e = parse_dt(i.get("found_at")), parse_dt(i.get("end"))
+        if not f or not (timedelta(minutes=20) <= t - f <= timedelta(hours=3)) or (e and e < t + timedelta(hours=1)):
+            continue
+        if i.get("channel") == "store":
+            continue  # ユーザーの指示：お店ごとの店頭抽選（TSUTAYA〇〇店など）は出さない。通販（発送）だけ
+        bc = big_chain(i.get("store"))
+        if not bc:
+            continue
+        groups.setdefault((bc[0], bc[1], i["game"], i.get("series") or short_product(i)), []).append(i)
+    dry = settings["dry_run"] or (client is None and not os.environ.get("X_API_KEY"))
+    for (slug, name, game, series), items in sorted(groups.items(), key=lambda kv: min(i.get("end") or "9" for i in kv[1])):
+        key = f"{slug}|{game}|{series}"
+        if key in done:
+            continue
+        if count >= cap:
+            log(f"大手の速報: 今日の上限（{cap}件）に届いたので {key} は出さない")
+            break
+        text = compose_big(name, game, series, items, settings)
+        if dry:
+            log("DRY_RUN 大手の速報:\n" + text)
+            continue
+        try:
+            client = client or _client()
+            client.create_tweet(text=text)
+        except Exception as e:
+            log(f"大手の速報: 投稿失敗 {e}")
+            break
+        done[key] = t.isoformat()
+        count += 1
+        log(f"大手の速報: {key}")
+    meta["big_count"] = {today: count}
+    save_json("x_meta.json", meta)
