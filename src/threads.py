@@ -7,6 +7,7 @@
     17時台 … 新着の抽選（お昼以降に見つかった分。3店以上たまった時だけ）
     20時台 … あと数時間で締切
     21時台 … Amazonの招待リクエスト受付中の商品（#PR・アソシエイトのリンク付き）
+    いつでも … 新しく見つかった抽選を、お店ごとに1件ずつ速報（個別ページのリンク付き。1回15件まで）
     いつでも … 大手（⭐チェーン＋通販大手）の通販（発送）の抽選の速報（見つけて20分〜3時間のもの。チェーン×弾で1回）
 ・アクセストークンは約60日で切れるので、20日ごとに自動で延長する。延長したトークンは state に暗号化して保存する
   （うまくいかない時は Discord にお知らせ）
@@ -110,7 +111,7 @@ def _publish(tok, text, link=None):
     if r.status_code != 200:
         raise RuntimeError(f"作成 {r.status_code} {r.text[:200]}")
     cid = r.json()["id"]
-    time.sleep(3)  # 公式のおすすめ：作ってから少し待って公開
+    time.sleep(1.5)  # 作ってから少し待って公開（長く待つとGitHubの動く時間が増える）
     r = requests.post(f"{API}/me/threads_publish", data={"creation_id": cid, "access_token": tok}, timeout=30)
     if r.status_code != 200:
         raise RuntimeError(f"公開 {r.status_code} {r.text[:200]}")
@@ -265,6 +266,48 @@ def _big_posts(lots, t, done):
     return out
 
 
+def _each_posts(lots, t, done):
+    """新しく見つかった抽選を、お店ごとに1件ずつ速報（大手の通販は _big_posts で出すので除く）。
+    サイトの個別ページが公開されてから出す（見つけて20分〜6時間のもの）"""
+    from notify import _is_open, _sig
+    from xpost import big_chain, fmt_dt
+    from detail import lottery_path
+    groups = {}
+    for i in lots.values():
+        if i.get("game") not in GAME or not _is_open(i, t):
+            continue
+        f = parse_dt(i.get("found_at"))
+        if not f or not (timedelta(minutes=20) <= t - f <= timedelta(hours=6)):
+            continue
+        e = parse_dt(i.get("end"))
+        if e and e < t + timedelta(hours=1):
+            continue
+        if i.get("channel") != "store" and big_chain(i.get("store")):
+            continue
+        k = f"each|{_sig(i)}"
+        if k not in done:
+            groups.setdefault(k, i)
+    out = []
+    for k, i in sorted(groups.items(), key=lambda kv: kv[1].get("found_at") or ""):
+        label = GAME[i["game"]][0]
+        store = (i.get("store") or "").strip()
+        where = (f"{i['area']}・店頭受取" if i.get("area") else "店頭受取") if i.get("channel") == "store" else "通販・発送"
+        need = []
+        if i.get("id_check") is True:
+            need.append("本人確認")
+        if i.get("member") == "card":
+            need.append("会員カード")
+        elif i.get("member") == "account":
+            need.append("会員登録")
+        end = f"⏰{fmt_dt(i.get('end'))} 締切" if i.get("end") else "⏰締切はお店の告知で確認"
+        lines = [f"🚨抽選速報｜{label}", "", f"「{_name(i)}」", f"📍{store}（{where}）", end]
+        if need:
+            lines.append("📝必要：" + "・".join(need))
+        lines += ["", "応募条件・方法はこちら👇", f"https://tcg-chusen.com/{lottery_path(i)}", "", FOLLOW, GAME[i["game"]][2]]
+        out.append((k, "\n".join(lines)))
+    return out
+
+
 def run(settings):
     if not os.environ.get("THREADS_ACCESS_TOKEN") or not settings.get("threads_post", True):
         return
@@ -306,6 +349,8 @@ def run(settings):
         elif h == 21:  # 夜、人が見やすい時間に1日1回（ユーザーの依頼）
             posts.append((f"{today}|amazon|{game}", compose_amazon(game, lots, t, settings)))
     posts += _big_posts(lots, t, done)
+    if settings.get("threads_each", True):
+        posts += _each_posts(lots, t, done)[:settings.get("threads_each_per_run", 15)]
     sent = 0
     for key, text in posts:
         if not text or key in done:
@@ -322,7 +367,7 @@ def run(settings):
             break
         done[key] = t.isoformat()
         sent += 1
-        time.sleep(5)
+        time.sleep(1)
     if sent:
         log(f"Threads: {sent}件投稿")
     save_json("threads_meta.json", meta)
