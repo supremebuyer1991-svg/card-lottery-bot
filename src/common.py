@@ -1,8 +1,8 @@
-import re
 """設定・状態ファイル・共通ユーティリティ"""
 import hashlib
 import json
 import os
+import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -136,3 +136,26 @@ def needs_of(i):
             out.append(w)
     unknown = i.get("id_check") is None or not i.get("member")
     return out, unknown
+
+
+# 情報元に店名が書かれていない抽選（「その他のストア」など）。応募ページの名前から店名を入れるまで、投稿には出さない
+GENERIC_STORE_RE = re.compile(r"^\s*(その他|そのほか|他)の?(ストア|店舗|ショップ|お店|店)?\s*$|^\s*(ストア|店舗|不明)\s*$")
+
+
+def site_name(html):
+    """ページの名前（og:site_name → title）からお店の名前らしい部分を取り出す。無ければ None"""
+    m = re.search(r'<meta[^>]+property=["\']og:site_name["\'][^>]+content=["\']([^"\']+)', html or "", re.I) or \
+        re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:site_name', html or "", re.I)
+    name = m.group(1) if m else None
+    if not name:
+        t = re.search(r"<title[^>]*>(.*?)</title>", html or "", re.I | re.S)
+        if not t:
+            return None
+        parts = [x.strip() for x in re.split(r"\s*[｜|\-–—:：]\s*", re.sub(r"\s+", " ", t.group(1))) if x.strip()]
+        if not parts:
+            return None
+        shop = [x for x in parts if re.search(r"店|ストア|ショップ|shop|store|トレカ|カード", x, re.I)]
+        name = (shop or parts)[-1]
+    import html as _h
+    name = _h.unescape(name).strip()
+    return name if 1 < len(name) <= 40 and not GENERIC_STORE_RE.search(name) else None

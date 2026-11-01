@@ -13,7 +13,7 @@ from datetime import timedelta
 
 import requests
 
-from common import load_json, save_json, load_settings, log, now, parse_dt, normalize
+from common import GENERIC_STORE_RE, load_json, save_json, load_settings, log, now, parse_dt, normalize
 
 ACTIVE = ("approved", "posted", "listed")
 GAME = {
@@ -53,6 +53,8 @@ WRONG_GAME = {
 def _is_open(i, t):
     if i.get("status") not in ACTIVE or i.get("game") not in GAME:
         return False
+    if GENERIC_STORE_RE.search(i.get("store") or ""):
+        return False  # 店名が分からない（「その他のストア」など）抽選は出さない
     if WRONG_GAME[i["game"]].search(" ".join([i.get("series") or "", i.get("product") or ""])):
         return False
     e = parse_dt(i.get("end"))

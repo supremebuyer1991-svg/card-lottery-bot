@@ -11,7 +11,7 @@ import re
 
 import requests
 
-from common import load_json, save_json, now, parse_dt, log
+from common import load_json, save_json, now, parse_dt, log, GENERIC_STORE_RE, site_name
 from extract import API_URL, MODEL
 from fetch import get, html_to_text
 from address import find_address
@@ -194,18 +194,21 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
         t = parse_dt(it.get("page_checked_at"))
         need_addr = it.get("channel") == "store" and not it.get("address") and not it.get("address_checked")
         need_det = bool(ask_details) and _needs_details(it)
-        if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr and not need_det:
+        need_name = bool(GENERIC_STORE_RE.search(it.get("store") or "")) and not it.get("name_checked")
+        if t and (now() - t).total_seconds() < 20 * 3600 and not need_addr and not need_det and not need_name:
             continue
         if t and it.get("page_err") and (now() - t).total_seconds() < 6 * 3600:
             continue  # 読めなかったページは6時間あける（毎回同じページで枠を使い切らないように）
         todo.append((it, url))
-    pages = {}
+    pages, names = {}, {}
     closed = 0
     for it, url in todo[:limit]:
         it["page_checked_at"] = now().isoformat()
         if url not in pages:
             try:
-                pages[url] = html_to_text(fetcher(url), url)
+                raw = fetcher(url)
+                names[url] = site_name(raw)
+                pages[url] = html_to_text(raw, url)
             except Exception as e:
                 pages[url] = ""
                 it["page_err"] = str(e)[:120]  # 読めなかった理由を残す（サイトに断られた・時間切れなど）
@@ -215,6 +218,11 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
             it.pop("page_err", None)
         elif url in pages and not it.get("page_err"):
             it["page_err"] = "中身が空"
+        if text and GENERIC_STORE_RE.search(it.get("store") or ""):  # 「その他のストア」→ 応募ページの名前を店名に
+            it["name_checked"] = True
+            if names.get(url):
+                log(f"応募ページの確認: 店名 {it.get('store')} → {names[url]}")
+                it["store"] = names[url]
         if text and it.get("channel") == "store" and not it.get("address"):  # 店頭抽選はお店の住所も読む
             a = find_address(text, it.get("area"))
             if a:
