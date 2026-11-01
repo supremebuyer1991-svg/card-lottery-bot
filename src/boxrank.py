@@ -373,6 +373,15 @@ class Outro:
         return im
 
 
+def _rk():
+    """BOXの写真：楽天から自動で選んだもの＋手で決めたもの（settings の rakuten_fixed が優先）"""
+    from common import load_settings
+    rk = dict(load_json("rakuten.json", {}))
+    for k, v in (load_settings().get("rakuten_fixed") or {}).items():
+        rk[k] = dict(rk.get(k) or {}, **v)
+    return rk
+
+
 def make(out_dir, kind, span, game, rows, today=None, theme="dark", all_rows=None, hook=True, music=True):
     """動画を1本つくってパスを返す。ランキングが空なら None"""
     today = today or now().date()
@@ -381,7 +390,7 @@ def make(out_dir, kind, span, game, rows, today=None, theme="dark", all_rows=Non
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     th = V.theme(theme, game)
-    c = Ctx(th, kind, span, game, rows, all_rows or rows, load_json("rakuten.json", {}), today)
+    c = Ctx(th, kind, span, game, rows, all_rows or rows, _rk(), today)
     sc = ([Hook(c)] if hook else []) + [Intro(c)] + [BoxPage(c, r) for r in range(len(rows) - 1, -1, -1)] + [Summary(c), Outro(c)]
     t0 = 0.0
     for s_ in sc:  # 電光掲示板は動画全体で流れ続ける

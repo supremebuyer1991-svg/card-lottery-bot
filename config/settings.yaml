@@ -82,6 +82,11 @@ rakuten_fixed:                  # 画像と楽天リンクを手で決めた弾�
   "onepiece|HEROINES":            # PRECIOUS BOX は楽天に商品がないので画像なし（別の商品の画像が出ないように）
     image: ""
     url: ""
+  "onepiece|アニメ25thコレクション": &anime25   # 指定の写真（ky-zakkaten-r）
+    image: "https://thumbnail.image.rakuten.co.jp/@0_mall/ky-zakkaten-r/cabinet/amayahoo/07918438/0748-009995.jpg?_ex=300x300"
+    url: "https://item.rakuten.co.jp/ky-zakkaten-r/0748-009995/"
+  "onepiece|Anime25th collection": *anime25
+  "onepiece|EB-02": *anime25
   "pokemon|ハドウシーカー":
     image: "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     url: "https://item.rakuten.co.jp/geexcollection/s783/"
