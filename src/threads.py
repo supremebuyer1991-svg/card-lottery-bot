@@ -25,7 +25,7 @@ import requests
 from common import load_json, save_json, log, now, parse_dt
 
 API = "https://graph.threads.net/v1.0"
-GAME = {"pokemon": ("ポケカ", "pokeka", "#ポケカ"), "onepiece": ("ワンピースカード", "onepiece", "#ワンピースカード")}
+GAME = {"pokemon": ("ポケカ", "pokeka", "#ポケモンカード"), "onepiece": ("ワンピースカード", "onepiece", "#ワンピースカード")}
 WEEK = "月火水木金土日"
 FOLLOW = "🔔フォローで抽選の開始・締切のお知らせが届きます"
 LIMIT = 500
@@ -221,11 +221,11 @@ def compose_amazon(game, lots, t, settings):
     if not rows:
         return ""
     label, slug, tagname = GAME[game]
-    lines = [f"#PR 📦Amazon 招待リクエスト受付中｜{label}（{_md(t)}）", ""]
+    lines = [f"📦Amazon 招待リクエスト受付中｜{label}（{_md(t)}）", ""]
     for r in rows:
         lines += [f"・{r['name']}", r["url"]]
     lines += ["", "⚠️人によっては、招待メールが届いていないのに招待されている場合があります。当選しているのに購入が漏れないよう、商品ページを定期的に確認するのがおすすめです",
-              "", f"ほかの抽選はこちら👇\nhttps://tcg-chusen.com/{slug}/", tagname]
+              "", f"ほかの抽選はこちら👇\nhttps://tcg-chusen.com/{slug}/", f"{tagname} #PR"]
     text = "\n".join(lines)
     while len(text) > LIMIT and len(rows) > 1:  # 長すぎたら商品を減らす
         i = lines.index(rows[-1]["url"])
