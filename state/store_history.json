@@ -4192,6 +4192,17 @@
   "store/biccamera-0be56/": {
     "name": "ビックカメラAKIBA",
     "items": {
+      "0061d3e51687a334": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-11-01",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "e12daa611bfdcbb9": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -4217,17 +4228,6 @@
         "rq": [
           "レシート"
         ]
-      },
-      "0061d3e51687a334": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-11-01",
-        "c": "store",
-        "m": "店頭",
-        "id": null,
-        "mem": null,
-        "rq": []
       },
       "7d82f23a3f3bd856": {
         "p": "ヒロインズエディション vol.2",
@@ -11358,6 +11358,17 @@
   "store/tsutaya-4fb07/": {
     "name": "TSUTAYA森町店",
     "items": {
+      "23de74a52b3fd8e8": {
+        "p": "REACH THE GOD",
+        "g": "dragonball",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "43c09dcfc077b9c3": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -15105,9 +15116,10 @@
         "f": "2026-10-31",
         "c": "store",
         "m": "Web",
-        "id": null,
+        "id": true,
         "mem": null,
-        "rq": []
+        "rq": [],
+        "a": "2026-11-06"
       }
     }
   },
@@ -16506,6 +16518,82 @@
         "mem": null,
         "rq": [],
         "a": "2026-11-05"
+      }
+    }
+  },
+  "store/furukonpu-aaf1c/": {
+    "name": "フルコンプ吉祥寺店",
+    "items": {
+      "760ea6661a721113": {
+        "p": "30th CELEBRATION・ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-02"
+      }
+    }
+  },
+  "store/tsutaya-a3a4e/": {
+    "name": "TSUTAYA流山店",
+    "items": {
+      "04aad75ae8ac1a18": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-03T21:45",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/dragonstar-1d64e/": {
+    "name": "ドラゴンスター（各店）",
+    "items": {
+      "d843be69d903e96c": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shigaru-a75ab/": {
+    "name": "シーガル富士店",
+    "items": {
+      "fd2c335b240d605f": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "951746cd6df5bb8b": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   }

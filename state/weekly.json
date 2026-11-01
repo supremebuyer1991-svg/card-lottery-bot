@@ -7074,5 +7074,25 @@
       "found_at": "2026-11-01T21:31:09.414331+09:00",
       "chain": null
     }
+  },
+  "2026-11-02": {
+    "04aad75ae8ac1a18": {
+      "game": "pokemon",
+      "store": "TSUTAYA流山店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-02T07:43:33.588057+09:00",
+      "chain": "tsutaya"
+    },
+    "23de74a52b3fd8e8": {
+      "game": "dragonball",
+      "store": "TSUTAYA森町店",
+      "series": "REACH THE GOD",
+      "channel": "store",
+      "area": "大分県",
+      "found_at": "2026-11-02T07:43:33.588161+09:00",
+      "chain": "tsutaya"
+    }
   }
 }
