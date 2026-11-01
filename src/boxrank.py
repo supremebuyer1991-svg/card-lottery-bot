@@ -456,9 +456,15 @@ if __name__ == "__main__":
     only = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--only=")), [])  # 例: pokemon-up,onepiece-up
     today = now().date()
     rk_all = rankings(span, today)
-    # YouTube は1本ずつ時間をずらして予約公開（今日の18時・19時・20時・21時）
+    # YouTube は1日1本：水＝ワンピ下落・金＝ポケカ上昇・土＝ワンピ上昇・日＝ポケカ下落。どれも19時に予約公開
     from datetime import datetime, timezone
-    slots = {"pokemon-up": 18, "onepiece-up": 19, "pokemon-down": 20, "onepiece-down": 21}
+    WEEK_PLAN = {2: "onepiece-down", 4: "pokemon-up", 5: "onepiece-up", 6: "pokemon-down"}
+    if "--weekly-slot" in sys.argv:
+        only = [WEEK_PLAN[today.weekday()]] if today.weekday() in WEEK_PLAN else []
+        if not only:
+            print("今日はランキング動画の日ではない")
+            sys.exit(0)
+    slots = {k: 19 for k in ("pokemon-up", "onepiece-up", "pokemon-down", "onepiece-down")}
     for th in themes:
         for game in GN:
             all_rows = (rk_all["up"].get(game) or []) + (rk_all["down"].get(game) or [])

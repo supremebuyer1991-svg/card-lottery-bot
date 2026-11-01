@@ -1,10 +1,11 @@
 name: box-rank-video
 
-# BOX相場の上昇・下落ランキング動画をつくって Discord に送る（毎週日曜は YouTube にも予約投稿）
+# BOX相場の上昇・下落ランキング動画をつくって Discord に送る（水・金・土・日は YouTube にも1本ずつ予約投稿）
 on:
   schedule:
-    # 毎週日曜 17:17（日本時間）につくって、YouTube に予約投稿（18〜21時に1本ずつ公開）＋ Discord に送る
-    - cron: "17 8 * * 0"
+    # 水・金・土・日の 17:17（日本時間）にその日の1本をつくって、YouTube に19時の予約投稿＋ Discord に送る
+    #   水＝ワンピ下落 / 金＝ポケカ上昇 / 土＝ワンピ上昇 / 日＝ポケカ下落
+    - cron: "17 8 * * 0,3,5,6"
   workflow_dispatch:
     inputs:
       span:
@@ -34,7 +35,7 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: |
           ARGS="${{ github.event.inputs.args }}"
-          if [ "${{ github.event_name }}" = "schedule" ]; then ARGS="--theme=light --youtube"; fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then ARGS="--theme=light --youtube --weekly-slot"; fi
           cd src && python boxrank.py ../video "${{ github.event.inputs.span || 'week' }}" --send $ARGS
       - uses: actions/upload-artifact@v4
         with:
