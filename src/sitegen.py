@@ -479,7 +479,7 @@ def _sns_bar():
     xa, ln = (st.get("x_account") or "").strip().lstrip("@"), (st.get("line_openchat_url") or "").strip()
     b = []
     if xa:
-        b.append(f'<a class="sns-x" href="https://x.com/{escape(xa)}" target="_blank" rel="noopener"><b>𝕏</b> 新着をXでお知らせ</a>')
+        b.append(f'<a class="sns-x" href="https://x.com/{escape(xa)}" target="_blank" rel="noopener" title="フォローすると、最新情報・新着抽選の速報・締切間近のお知らせが届きます"><b>𝕏</b> 新着速報・締切通知<small>フォローで受け取る</small></a>')
     if ln.startswith("https://") or any((v or "").startswith("https://") for v in (st.get("line_rooms") or {}).values()):
         b.append(f'<a class="sns-line" href="/line/"><b>LINE</b> オプチャ<small>（テスト中）</small></a>')
     return f'<div class="sns">{"".join(b)}</div>' if b else ""
