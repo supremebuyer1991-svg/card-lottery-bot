@@ -1739,7 +1739,8 @@ def build(settings=None, out_dir=None, sample=None):
                         reqs = [w for w, ok in (("本人確認", i.get("id_check") is True), ("会員カード", i.get("member") == "card"),
                                                 ("会員登録", i.get("member") == "account"),
                                                 ("購入履歴", "購入履歴" in (i.get("tags") or []) or bool(re.search(r"購入(履歴|実績|歴)", i.get("conditions") or ""))),
-                                                ("レシート", "レシート" in (i.get("tags") or []))) if ok]
+                                                ("レシート", "レシート" in (i.get("tags") or [])),
+                                                ("お店のクレカ", "お店のクレジットカード" in __import__("common").needs_of(i)[0])) if ok]
                         rows_.append({"store": i.get("store"), "series": i.get("series") or (i.get("product") or "")[:30], "end": i.get("end"),
                                       "channel": "店頭受取" if i.get("channel") == "store" else "通販（発送）",
                                       "area": i.get("area") or "", "needs": reqs})
@@ -1953,9 +1954,8 @@ def build(settings=None, out_dir=None, sample=None):
                              "c": "store" if it.get("channel") == "store" else "online",
                              # 応募のしかた・条件（お店ページの「よくある抽選の形」に使う）
                              "m": how_of(it), "id": it.get("id_check"), "mem": it.get("member"),
-                             "rq": [w for w, pat in (("購入履歴", r"購入(履歴|実績|歴)|利用実績"), ("レシート", r"レシート"),
-                                                     ("アプリ会員", r"アプリ"), ("X（旧Twitter）のフォロー", r"フォロー"))
-                                    if re.search(pat, " ".join(it.get("tags") or []) + " " + (it.get("conditions") or "") + " " + (it.get("method") or ""))]}
+                             "rq": [w for w in __import__("common").needs_of(it)[0] if w not in ("本人確認", "お店の会員カード", "会員登録")] +
+                                   (["X（旧Twitter）のフォロー"] if re.search("フォロー", " ".join(it.get("tags") or []) + " " + (it.get("conditions") or "") + " " + (it.get("method") or "")) else [])}
             a_ = res_day.get(k) or _rs2.announce_date(it) or ""
             if a_ or old_a:
                 h["items"][k]["a"] = a_ or old_a
@@ -2049,7 +2049,7 @@ def build(settings=None, out_dir=None, sample=None):
             else:
                 li.append("<li><b>本人確認</b>：応募ページで確認してください</li>")
             if memv:
-                mm = {"card": "会員カードが必要", "account": "会員登録が必要", "none": "会員登録なしで応募できた"}
+                mm = {"card": "お店の会員カードが必要", "account": "会員登録が必要", "none": "会員登録なしで応募できた"}
                 li.append("<li><b>会員</b>：" + escape("・".join(f"{mm.get(k, k)}{c_}回" for k, c_ in _cnt(memv))) +
                           (f"<small>（{n_ - len(memv)}回は{ask}）</small>" if len(memv) < n_ else "") + "</li>")
             else:

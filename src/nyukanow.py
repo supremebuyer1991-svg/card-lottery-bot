@@ -70,6 +70,9 @@ def _facts(cond):
         tags.append("購入履歴")
     if re.search(r"レシート", c):
         tags.append("レシート")
+    from common import STORE_CC_RE
+    if re.search(STORE_CC_RE, c):
+        tags.append("店舗クレカ")
     m = re.search(r"(購入|受取|受け取り|引換|引き換え)期間\s*[:：]?\s*([0-9０-９/／月日()（）〜～\-\s:：時土日月火水木金]{5,40})", c)
     if m:
         f["buy"] = re.sub(r"\s+", "", m.group(2)).strip("、，,")

@@ -292,17 +292,14 @@ def _each_posts(lots, t, done):
         label = GAME[i["game"]][0]
         store = (i.get("store") or "").strip()
         where = (f"{i['area']}・店頭受取" if i.get("area") else "店頭受取") if i.get("channel") == "store" else "通販・発送"
-        need = []
-        if i.get("id_check") is True:
-            need.append("本人確認")
-        if i.get("member") == "card":
-            need.append("会員カード")
-        elif i.get("member") == "account":
-            need.append("会員登録")
+        from common import needs_of
+        need, unk = needs_of(i)
         end = f"⏰{fmt_dt(i.get('end'))} 締切" if i.get("end") else "⏰締切はお店の告知で確認"
         lines = [f"🚨抽選速報｜{label}", "", f"「{_name(i)}」", f"📍{store}（{where}）", end]
         if need:
-            lines.append("📝必要：" + "・".join(need))
+            lines.append("📝必要：" + "・".join(need) + ("（ほかは応募ページで確認）" if unk else ""))
+        elif unk:
+            lines.append("📝条件は応募ページで確認")
         lines += ["", "応募条件・方法はこちら👇", f"https://tcg-chusen.com/{lottery_path(i)}", "", FOLLOW, GAME[i["game"]][2]]
         out.append((k, "\n".join(lines)))
     return out

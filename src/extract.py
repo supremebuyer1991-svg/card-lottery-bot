@@ -26,7 +26,7 @@ PROMPT = """あなたはトレカ抽選情報の抽出係です。以下のテ�
 - confidence は 0〜1。店舗名・商品名・締切がそろって明記されていれば高く
 
 出力は次のJSON配列のみ（該当なしなら []）:
-[{{"store":"店舗名","product":"商品名","series":"弾・商品シリーズ名だけ（例: 拡張パック「〇〇」BOX → 〇〇。分からなければ null）","start":"受付開始 or null","end":"受付締切 or null","announce":"当選発表 or null","method":"アプリ/Web/店頭 など or null","conditions":"会員限定など応募条件の要約 or null","url":"URL or null","x_post":"告知ポストのURL or null","game":"pokemon / onepiece / dragonball のどれか","channel":"online または store","area":"実店舗の都道府県 or null","id_check":"本人確認が必要なら true、不要と明記なら false、書かれていなければ null","member":"会員カード提示が必要なら card、会員登録（アカウント）が必要なら account、不要と明記なら none、書かれていなければ null","tags":["応募に必要なものを次から選ぶ: 会員, アプリ, 本人確認, 購入履歴, レシート, SNS応募, 整理券"],"confidence":0.0}}]
+[{{"store":"店舗名","product":"商品名","series":"弾・商品シリーズ名だけ（例: 拡張パック「〇〇」BOX → 〇〇。分からなければ null）","start":"受付開始 or null","end":"受付締切 or null","announce":"当選発表 or null","method":"アプリ/Web/店頭 など or null","conditions":"会員限定など応募条件の要約 or null","url":"URL or null","x_post":"告知ポストのURL or null","game":"pokemon / onepiece / dragonball のどれか","channel":"online または store","area":"実店舗の都道府県 or null","id_check":"本人確認が必要なら true、不要と明記なら false、書かれていなければ null","member":"会員カード提示が必要なら card、会員登録（アカウント）が必要なら account、不要と明記なら none、書かれていなければ null","tags":["応募に必要なものを次から選ぶ: 会員, アプリ, 本人確認, 購入履歴, レシート, 店舗クレカ（そのお店のクレジットカードを持っていることが条件。支払い方法がクレカなだけなら入れない）, SNS応募, 整理券"],"confidence":0.0}}]
 
 出典: {source_name} ({source_url})
 --- テキスト ---

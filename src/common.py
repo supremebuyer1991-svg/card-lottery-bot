@@ -107,3 +107,32 @@ def fix_game(it):
         it["game"] = hit[0]
         return True
     return False
+
+
+# ---- 応募に必要なもの（本人確認・会員・購入履歴・レシート・お店のクレジットカード）----
+# お店のクレジットカード：「支払いはクレジットカードのみ」（払い方）とまちがえないよう、持っていることが条件の書き方・カードの名前だけ
+STORE_CC_RE = (r"ゴールドポイントカード・?プラス|ビックカメラSuica|ビックカメラ.{0,4}カード.{0,4}(会員|お持ち)|イオンカード|エディオンカード|"
+               r"ジョーシン.{0,6}カード|JQ\s*CARD|(クレジット|クレカ)カード?.{0,4}(会員|をお持ち|お持ちの|所持|保有|限定|ご利用の方|入会)|"
+               r"(当社|店舗|提携)(の)?クレジット")
+NEEDS_RE = {"購入履歴": r"購入(履歴|実績|歴)|利用(履歴|実績)", "レシート": r"レシート",
+            "お店のクレジットカード": STORE_CC_RE, "アプリ会員": r"アプリ"}
+
+
+def needs_of(i):
+    """抽選に必要なもののリスト（分かっているものだけ）と、本人確認・会員が分からないか（True＝応募ページで確認）"""
+    import re as _re
+    t = " ".join(i.get("tags") or []) + " " + (i.get("conditions") or "") + " " + (i.get("method") or "")
+    out = []
+    if i.get("id_check") is True:
+        out.append("本人確認")
+    if i.get("member") == "card":
+        out.append("お店の会員カード")
+    elif i.get("member") == "account":
+        out.append("会員登録")
+    for w, pat in NEEDS_RE.items():
+        if (w in (i.get("tags") or []) or _re.search(pat, t)) and w not in out:
+            if w == "アプリ会員" and "アプリ" not in (i.get("tags") or []) and not _re.search("アプリ", i.get("method") or ""):
+                continue
+            out.append(w)
+    unknown = i.get("id_check") is None or not i.get("member")
+    return out, unknown

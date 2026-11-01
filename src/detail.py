@@ -193,14 +193,10 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
         row("お店の住所", f'{escape(i["address"])} <a href="{escape(maps_url(store, i["address"]))}" target="_blank" rel="noopener">Googleマップで見る</a>', raw=True)
     row("応募方法", i.get("method"))
     row("応募条件", i.get("conditions"))
-    req = []
-    if i.get("id_check"):
-        req.append("本人確認あり")
-    if i.get("member") == "account":
-        req.append("会員登録が必要")
-    elif i.get("member") == "card":
-        req.append("会員カード・アプリの提示が必要")
-    row("必要なもの", "・".join(req))
+    from common import needs_of
+    req, unk = needs_of(i)
+    row("必要なもの", ("・".join(req) + ("（ほかの条件は応募ページで確認してください）" if unk else "")) if req
+        else "応募ページで確認してください" if unk else "とくになし（告知に書かれていた範囲）")
     prods = [p for p in (i.get("products") or []) if p]
     if prods:
         row("対象商品", "<ul>" + "".join(f"<li>{escape(str(p))}</li>" for p in prods) + "</ul>", raw=True)

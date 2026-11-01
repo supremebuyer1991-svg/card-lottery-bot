@@ -116,7 +116,7 @@ def dedupe(settings=None):
                     filled += 1
             tg = list(t.get("tags") or [])
             for x in it.get("tags") or []:
-                if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート") and x not in tg:
+                if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート", "店舗クレカ") and x not in tg:
                     tg.append(x)
                     filled += 1
             t["tags"] = tg
@@ -140,7 +140,7 @@ def dedupe(settings=None):
                 keep[f] = d[f]
         tg = list(keep.get("tags") or [])
         for x in d.get("tags") or []:
-            if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート") and x not in tg:
+            if x in ("本人確認", "会員", "アプリ", "購入履歴", "レシート", "店舗クレカ") and x not in tg:
                 tg.append(x)
         keep["tags"] = tg
         d["status"], d["duplicate_of"] = "duplicate", keep_k
