@@ -32,7 +32,7 @@ def _token():
     return r.json()["access_token"]
 
 
-def upload(path, title, description, tags=(), publish_at=None, key=None):
+def upload(path, title, description, tags=(), publish_at=None, key=None, private=False):
     """動画を上げて動画IDを返す。鍵が無い・上げ済みなら None"""
     if not ready():
         log("YouTube: 鍵（YT_CLIENT_ID など）が未登録なのでスキップ")
@@ -42,7 +42,7 @@ def upload(path, title, description, tags=(), publish_at=None, key=None):
     if key and key in done:
         log(f"YouTube: 上げ済み {key}")
         return None
-    status = {"privacyStatus": "public", "selfDeclaredMadeForKids": False}
+    status = {"privacyStatus": "private" if private else "public", "selfDeclaredMadeForKids": False}
     if publish_at:
         status = {"privacyStatus": "private", "publishAt": publish_at, "selfDeclaredMadeForKids": False}
     meta = {"snippet": {"title": title[:100], "description": description[:4900], "tags": list(tags)[:15],

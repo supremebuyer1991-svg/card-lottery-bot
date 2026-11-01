@@ -478,9 +478,11 @@ if __name__ == "__main__":
                     at = datetime(today.year, today.month, today.day, hh, 0, tzinfo=now().tzinfo)
                     at_s = at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if at > now() else None
                     try:
-                        vid = youtube.upload(p, title, desc, tags, publish_at=at_s, key=f"{today}|{game}|{kind}|{span}")
+                        test = "--yt-private" in sys.argv  # テスト：非公開で上げるだけ
+                        vid = youtube.upload(p, ("【テスト】" if test else "") + title, desc, tags, publish_at=None if test else at_s,
+                                             key=None if test else f"{today}|{game}|{kind}|{span}", private=test)
                         if vid:
-                            note = f"\n▶YouTube：https://youtube.com/shorts/{vid}" + (f"（{hh}時に公開）" if at_s else "")
+                            note = f"\n▶YouTube：https://youtube.com/shorts/{vid}" + ("（非公開のテスト）" if test else f"（{hh}時に公開）" if at_s else "")
                     except Exception as e:
                         log(f"YouTube: 失敗 {e}")
                         note = f"\n⚠YouTubeへの投稿に失敗：{str(e)[:150]}"
