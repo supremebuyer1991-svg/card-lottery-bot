@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>TikTok連携｜トレカ抽選ナビ</title>
+<style>body{font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;background:#f3f4f7;color:#161c2e;margin:0;line-height:1.8}
+main{max-width:640px;margin:0 auto;padding:24px 16px}code{display:block;word-break:break-all;background:#fff;border:1px solid #dfe2ea;border-radius:8px;padding:12px;font-size:14px}
+button{margin-top:10px;font:inherit;font-weight:700;background:#c8102e;color:#fff;border:0;border-radius:8px;padding:10px 16px}</style></head>
+<body><main>
+<h1>TikTok連携</h1>
+<p id="msg">TikTokから戻ってきました。</p>
+<code id="code">（コードがありません）</code>
+<button id="cp" type="button">コピー</button>
+<p>このページは、トレカ抽選ナビの運営者が自分のTikTokアカウントに動画の下書きを送るための連携用ページです。コードは10分ほどで使えなくなります。</p>
+<p><a href="/">トレカ抽選ナビ トップへ</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/terms.html">利用規約</a></p>
+</main>
+<script>
+var q=new URLSearchParams(location.search),c=q.get("code"),e=q.get("error");
+if(c){document.getElementById("code").textContent=c;document.getElementById("msg").textContent="連携のコードです。コピーして、GitHubの「tiktok-connect」の実行画面に貼ってください。";}
+else if(e){document.getElementById("msg").textContent="連携できませんでした："+e+" "+(q.get("error_description")||"");}
+document.getElementById("cp").onclick=function(){try{navigator.clipboard.writeText(c||"");this.textContent="コピーしました";}catch(x){}};
+</script>
+</body></html>
