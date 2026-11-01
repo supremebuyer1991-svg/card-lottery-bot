@@ -92,10 +92,10 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     # 弾名の表記ゆれをそろえる（スペース・大文字小文字違いは同じ弾として扱う）
     series_names = {normalize(i.get("series")): i["series"] for i in lots.values() if i.get("series")}
 
-    # Xを読むのは1時間に1回（30分ごとの実行の1回おき）。読む量（費用）を抑えるため
+    # Xを読むのは1時間に1回（毎回の実行で読む。実行の間がつまった時だけ休む）。読む量（費用）を抑えるため
     xmeta = load_json("x_meta.json", {})
     last_x = parse_dt(xmeta.get("last_x_run"))
-    x_turn = settings.get("x_every_minutes", 55)
+    x_turn = settings.get("x_every_minutes", 40)
     x_ok = not last_x or (now() - last_x).total_seconds() >= x_turn * 60
     if x_ok and any(s_.get("type") == "x" and s_.get("enabled") is not False for s_ in sources):
         xmeta["last_x_run"] = now().isoformat()

@@ -50,7 +50,7 @@ def _ago(done, d0, days, slack=10):
     if x and (tgt - datetime.fromisoformat(x[0]).date()).days > slack:
         return None
     return x
-PAST_PER_RUN = 15  # 過去の弾は1回の実行で15件まで（朝7時すぎから30分ごとに少しずつ読む）
+PAST_PER_RUN = 15  # 過去の弾は1回の実行で15件まで（朝7時すぎから1時間ごとに少しずつ読む）
 
 
 def _cfg():
@@ -240,7 +240,7 @@ def summary(rec, today=None):
 
 
 # ---------------- 主要シングルカードの相場（スニダン・状態A＝未鑑定の美品・1枚の取引の、その日の平均） ----------------
-# config/souba_cards.yaml の弾ごとのカード（高いカードを数枚）を、朝7時すぎから30分ごとに少しずつ、1日1回読む
+# config/souba_cards.yaml の弾ごとのカード（高いカードを数枚）を、朝7時すぎから1時間ごとに少しずつ、1日1回読む
 # 写真とリンクは楽天の商品検索API（アフィリエイトのリンク）。メルカリは検索へのリンクだけ（写真は使わない）
 CARD_REQ_PER_RUN = 60  # 1回の実行でスニダンを読む回数の上限（初めてのカードは4回、2回目からは状態AとPSA10で2回）。298枚×2回を1日（実際の実行は1日16回ほど）で回り切るため
 COND_A = "trading_card_single_nearly_unused"
