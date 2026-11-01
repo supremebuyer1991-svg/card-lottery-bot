@@ -21,7 +21,7 @@ from common import ROOT, load_json, save_json, now, log
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/130.0 Safari/537.36")
 JST = timezone(timedelta(hours=9))
-WAIT = 3
+WAIT = 1.5  # 1件ずつの間（スニダンに負担をかけない範囲で短め。GitHubの使用時間を減らすため）
 KEEP_DAYS = 400  # 1年前比のために400日分残す（40日より前は1週に1日だけにして軽くする）
 DAILY_DAYS = 40
 
@@ -344,20 +344,28 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
         return 0
     cfg = card_cfg()
     data = load_json("souba_cards.json", {})
-    todo, used = [], 0
+    # GitHubの使用時間を減らすため：状態Aは2日に1回、PSA10（取引が少ない）は7日に1回だけ読む
+    due_a = (t.date() - timedelta(days=settings.get("card_every_days", 2) - 1)).isoformat()
+    due_psa = (t.date() - timedelta(days=settings.get("card_psa_every_days", 7) - 1)).isoformat()
+    todo, used, waiting = [], 0, 0
     for k, cs in cfg.items():
         for c in cs:
             r_ = data.get(str(c["snkr"])) or {}
-            cost = 2 + (not r_.get("pid")) + (not r_.get("vid") and r_.get("vid") != 0)  # 状態A と PSA10 で2回
-            if r_.get("day") != today and used + cost <= budget:
-                todo.append((k, c))
+            if (r_.get("day") or "") >= due_a:
+                continue
+            psa = (r_.get("psa_day") or "") < due_psa
+            cost = 1 + psa + (not r_.get("pid")) + (not r_.get("vid") and r_.get("vid") != 0)
+            if used + cost <= budget:
+                todo.append((k, c, psa))
                 used += cost
+            else:
+                waiting += 1
     rk_on = bool(os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY"))
     got = 0
     if todo:
         sess = sess or requests.Session()
         sess.headers.update({"User-Agent": UA, "Accept-Language": "ja-JP,ja;q=0.9"})
-    for n, (k, c) in enumerate(todo):
+    for n, (k, c, psa) in enumerate(todo):
         rec = data.setdefault(str(c["snkr"]), {})
         rec.update(key=k, label=c["label"], num=c.get("num"))
         if n:
@@ -365,13 +373,15 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
         try:
             rec["jp"] = {**(rec.get("jp") or {}), **_card_daily(sess, c["snkr"], rec)}
             rec["jp"] = _thin(rec["jp"], today)
-            try:  # PSA10（同じ商品の、鑑定品PSA10の1枚の取引）
-                sleep(WAIT)
-                rec["psa"] = _thin({**(rec.get("psa") or {}), **_card_daily(sess, c["snkr"], rec, COND_PSA10)}, today)
-            except requests.HTTPError:
-                raise
-            except Exception as e:
-                log(f"カード相場（PSA10）: {c['label']} 取得失敗 {e}")
+            if psa:
+                try:  # PSA10（同じ商品の、鑑定品PSA10の1枚の取引）
+                    sleep(WAIT)
+                    rec["psa"] = _thin({**(rec.get("psa") or {}), **_card_daily(sess, c["snkr"], rec, COND_PSA10)}, today)
+                    rec["psa_day"] = today
+                except requests.HTTPError:
+                    raise
+                except Exception as e:
+                    log(f"カード相場（PSA10）: {c['label']} 取得失敗 {e}")
             rec["day"] = today
             got += 1
         except requests.HTTPError as e:
@@ -401,10 +411,11 @@ def update_cards(settings, sess=None, sleep=time.sleep, budget=CARD_REQ_PER_RUN,
     if todo or rk_on:
         save_json("souba_cards.json", data)
     if todo:
-        data_s = load_json("souba.json", {})
-        data_s["cards_updated"] = t.isoformat()
-        save_json("souba.json", data_s)  # サイトを出し直す合図
-        log(f"カード相場: {got}/{len(todo)}件")
+        log(f"カード相場: {got}/{len(todo)}件（残り{waiting}件は次の回）")
+        if not waiting:  # その日の分を読み終えた回だけサイトを出し直す（毎回作り直さない）
+            data_s = load_json("souba.json", {})
+            data_s["cards_updated"] = t.isoformat()
+            save_json("souba.json", data_s)
     return got
 
 

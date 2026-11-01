@@ -60,8 +60,15 @@ calls.clear()
 assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None, budget=8) == 1
 # 同じ日はもう読まない
 assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 0
-# 翌日は1枚2回だけ（状態A・PSA10）
+# 翌日は読まない（状態Aは2日に1回）
 souba.now = lambda: datetime(2026, 10, 31, 8, 5, tzinfo=JST)
+calls.clear()
+assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 0 and len(calls) == 0
+# 2日後は1枚1回だけ（状態Aだけ。PSA10は7日に1回）
+souba.now = lambda: datetime(2026, 11, 1, 8, 5, tzinfo=JST)
+assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 3 and len(calls) == 3
+# 7日後はPSA10も
+souba.now = lambda: datetime(2026, 11, 6, 8, 5, tzinfo=JST)
 calls.clear()
 assert souba.update_cards(s, sess=Sess(), sleep=lambda *_: None) == 3 and len(calls) == 6
 
