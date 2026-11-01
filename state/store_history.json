@@ -13304,5 +13304,43 @@
         "c": "store"
       }
     }
+  },
+  "store/bookoff-5689a/": {
+    "name": "ブックオフお宝大陸和泉中央店",
+    "items": {
+      "99d66ed86a8db44f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22",
+        "f": "2026-11-01",
+        "c": "store",
+        "a": "2026-11-25"
+      }
+    }
+  },
+  "store/booksantokuarao-8f974/": {
+    "name": "BOOKSあんとくあらお店",
+    "items": {
+      "e9c8acf5f96e9673": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-02",
+        "f": "2026-11-01",
+        "c": "store",
+        "a": "2026-11-05"
+      }
+    }
+  },
+  "store/torekashoppunakayoshi-66e0e/": {
+    "name": "トレカショップなかよし",
+    "items": {
+      "226ecee4b527f09b": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-04T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
   }
 }
