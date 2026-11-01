@@ -25,7 +25,16 @@ def main():
     step = sys.argv[1] if len(sys.argv) > 1 else "all"
     sync_manual()  # 自分で追加した抽選（config/manual.yaml）
     if step in ("all", "collect"):
-        new = collect(load_sources(), s)
+        srcs = load_sources()
+        try:  # LivePocketの常連店：お店のページを直接見る（Xを使わず無料）
+            import lpshops
+            from common import load_json
+            lots = load_json("lotteries.json", {})
+            lpshops.learn(lots, limit=s.get("lp_learn_per_run", 8))
+            srcs += lpshops.sources(s, lots, srcs)
+        except Exception as e:
+            log(f"LivePocket常連店: スキップ {e}")
+        new = collect(srcs, s)
         log(f"新着 {len(new)} 件")
     if step in ("all", "publish"):
         try:

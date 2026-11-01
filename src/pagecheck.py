@@ -207,6 +207,12 @@ def check_pages(settings, ask=None, fetcher=get, limit=None, ask_details=None):
         if url not in pages:
             try:
                 raw = fetcher(url)
+                if "livepocket.jp/e/" in url:  # ついでにお店のページを覚える（追加のアクセスなし）
+                    try:
+                        import lpshops
+                        lpshops.record(url, raw, it.get("store") or "")
+                    except Exception:
+                        pass
                 names[url] = site_name(raw)
                 pages[url] = html_to_text(raw, url)
             except Exception as e:

@@ -207,7 +207,9 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         gname = settings["game_names"].get(game) or "・".join(settings["game_names"].values())
         texts = []  # (テキスト, 出典URL)
         direct = []  # AIを通さずに読めた抽選
-        first_run = sid not in seen  # 初回は既存の抽選を一気に拾うので、Xには流さずWP掲載だけにする
+        # 初回は既存の抽選を一気に拾うので、Xには流さずWP掲載だけにする
+        # （LivePocket常連店は、知っている抽選を skip_urls で除くので初回でもふつうに新着扱い）
+        first_run = sid not in seen and not src.get("not_first")
 
         if src["type"] == "x":
             try:
@@ -285,8 +287,9 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             # 主催者ページ（LivePocketのお店の一覧など）→ まだ読んでいない抽選ページだけをAIへ（1ページ1回だけ）
             # 抽選ページは残り時間などで中身が少しずつ変わるので、中身の変化では読み直さない
             done = seen.get(sid) if isinstance(seen.get(sid), list) else []
+            skip = set(src.get("skip_urls") or ())  # もう知っている抽選ページ（AIに読ませない）
             for url in article_links(body, src["url"], src.get("link_keywords", []), src.get("max_articles", 30)):
-                if url in done:
+                if url in done or url.split("?")[0].rstrip("/") in skip:
                     continue
                 done.append(url)
                 try:
