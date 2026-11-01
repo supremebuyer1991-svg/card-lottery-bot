@@ -8677,10 +8677,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "b2183971b5ccfa1a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:12.194382+09:00",
     "multi": false,
-    "cls": "93f0f0e6f1a7"
+    "cls": "93f0f0e6f1a7",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T18:09:09.130769+09:00"
   },
   "40a21e4aa7d9e563": {
     "store": "ビックカメラ 大宮西口そごう店",
@@ -9174,10 +9176,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "15e54cea29d8c206",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:16.342450+09:00",
     "multi": false,
-    "cls": "52a890fc6643"
+    "cls": "52a890fc6643",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T18:09:09.131003+09:00"
   },
   "3b8951d6f9adf204": {
     "store": "ビックカメラ 大宮西口そごう店",
@@ -9387,34 +9391,6 @@
     "cls": "46bb49c2b441",
     "x_post": "https://x.com/furu1_toyohama/status/2114589537716629831",
     "address_checked": true
-  },
-  "65dcf11a1cb1afcb": {
-    "store": "ブックオフ横須賀中央店",
-    "product": "ヒロインズエディション vol.2",
-    "series": "ヒロインズエディション vol.2",
-    "start": null,
-    "end": "2026-10-30T18:00:00+09:00",
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://tcg-chusen.com/l/14de6932d4/",
-    "x_post": null,
-    "game": "onepiece",
-    "channel": "store",
-    "area": "神奈川県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.6,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "65dcf11a1cb1afcb",
-    "status": "duplicate",
-    "found_at": "2026-10-28T14:11:19.591880+09:00",
-    "page_checked_at": "2026-10-28T14:17:14.134027+09:00",
-    "multi": false,
-    "cls": "2b1c3fb8ec63",
-    "duplicate_of": "14de6932d41fed07"
   },
   "d7ad089658116b4f": {
     "store": "ふるいちイオンモール浦和美園店",
@@ -9915,10 +9891,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "45cabe177ecb8786",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T14:17:03.834660+09:00",
     "multi": false,
-    "cls": "e660c21d8f90"
+    "cls": "e660c21d8f90",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T18:09:09.130785+09:00"
   },
   "97eb96f20b5d537b": {
     "store": "ビックカメラ京王調布店",
@@ -9944,10 +9922,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "97eb96f20b5d537b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T14:17:07.459457+09:00",
     "multi": false,
-    "cls": "ad4976d534fb"
+    "cls": "ad4976d534fb",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T18:09:09.131011+09:00"
   },
   "6a1a332dc3ddcbf4": {
     "game": "pokemon",
@@ -10602,34 +10582,6 @@
     "multi": false,
     "cls": "029f6d23dec0",
     "closed_at": "2026-10-30T19:15:58.560815+09:00"
-  },
-  "d447c216c89cbdb6": {
-    "store": "ブックオフ横須賀中央店",
-    "product": "Heroines Edition vol.2",
-    "series": "Heroines Edition vol.2",
-    "start": null,
-    "end": "2026-10-30T18:00:00+09:00",
-    "announce": "2026-10-30T19:00:00+09:00",
-    "method": null,
-    "conditions": "購入期間: 2026-10-31T10:00:00+09:00 〜 2026-11-03T20:00:00+09:00",
-    "url": "https://x.com/wattmann_bo_ysc/status/2115277382047121754",
-    "x_post": "https://x.com/AfroTCG/status/2115435778025410881",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "神奈川県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.8,
-    "source": "X 抽選情報アカウント",
-    "source_url": "https://x.com/",
-    "no_quote": true,
-    "key": "d447c216c89cbdb6",
-    "status": "duplicate",
-    "found_at": "2026-10-29T01:17:38.518676+09:00",
-    "multi": false,
-    "cls": "261cc18c06d1",
-    "duplicate_of": "14de6932d41fed07"
   },
   "f86b815dae19e899": {
     "store": "ふるいち・古本市場",
