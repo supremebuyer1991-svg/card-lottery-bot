@@ -32,6 +32,13 @@ site_public_url: "https://tcg-chusen.com"   # サイトのアドレス（独自�
 ga_id: "G-ZEXV2PQSN2"
 x_account: pokepi_tcg            # サイト上部の「Xをフォロー」のボタン
 line_openchat_url: "https://line.me/ti/g2/pEYFxwCG2s2CjX22pI9ga6aE9MfNBLEwOE3taA"   # 【ポケモン&ワンピース】トレカ販売情報ナビ（サイト上部にボタン）   # Googleアナリティクスの測定ID（全ページにタグを入れる）
+line_rooms:                      # 地域ごとのLINEオープンチャット（都道府県ページ・店頭抽選のページに案内が出る。空の地域は「準備中」）
+  北海道・東北: "https://line.me/ti/g2/BZPWiBIOQRf3-dqE5COmwc-QGjGqEiSr3FcQJg"
+  関東: "https://line.me/ti/g2/Nmi4hhO-78jM5O5GZ5Vpk7FTJ6qgGGeCnCN3kQ"
+  中部: "https://line.me/ti/g2/c_wHc36864moyVRPEF2exdmAHHNMGeAbUHhFHA"
+  近畿: "https://line.me/ti/g2/qWuuSBwZaiboyb3jidUHUCCEdLD_PXJvp66s3Q"
+  中国・四国: "https://line.me/ti/g2/WXid5fOJxf1FH6tXBk-rVqVw8mlI92MgqleFQA"
+  九州・沖縄: "https://line.me/ti/g2/2mKyT8VouzK5_xoG5arT-qBafzk10NtCVN3dGw"
 google_site_verification: "AweLnrnTH5dioaZpTllDW71WrQpzIlP_JI0Fbtg9Am0"   # Google Search Console の「HTMLタグ」の content="…" の中身を入れる
 indexnow_key: "267f260c7ca339b86fc2279efeb66039"   # IndexNow（Bing等にページの更新を知らせる）の鍵。変えなくてOK        # 自作サイトのURL（例 https://torecachusen.com）。サイトマップ・正規URLに使う
 site_url: ""              # WordPressのURL（例 https://example.com）。空ならWP更新はスキップ

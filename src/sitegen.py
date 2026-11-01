@@ -447,6 +447,31 @@ def _sb_img(img, alt, cls="sb-img"):
             else f'<span class="{cls}">{pic}</span>')
 
 
+REGION_OF = {}
+for _r, _ps in (("北海道・東北", "北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県"), ("関東", "東京都 神奈川県 埼玉県 千葉県 茨城県 栃木県 群馬県"),
+                 ("中部", "新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県"), ("近畿", "三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県"),
+                 ("中国・四国", "鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県"), ("九州・沖縄", "福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県")):
+    for _p in _ps.split():
+        REGION_OF[_p] = _r
+
+
+def line_room(area):
+    """都道府県 → (地方, オープンチャットのURL)。ルームがなければ None"""
+    r = REGION_OF.get(area or "")
+    u = ((load_settings().get("line_rooms") or {}).get(r) or "").strip() if r else ""
+    return (r, u) if u.startswith("https://") else None
+
+
+def line_box(area):
+    """都道府県ページ・店頭抽選のページ：その地方のオープンチャットの案内"""
+    lr = line_room(area)
+    if not lr:
+        return ""
+    r, u = lr
+    return (f'<a class="line-room" href="{escape(u)}" target="_blank" rel="noopener"><b>LINE</b>'
+            f'<span><strong>{escape(r)}のオプチャに参加する</strong><small>近くの人と「どこで買えた・抽選やってる」をリアルタイムで共有（テスト中）</small></span></a>')
+
+
 def _sns_bar():
     """サイト上部：Xのフォローと、LINEオープンチャット（テスト中）の案内"""
     st = load_settings()
@@ -454,8 +479,8 @@ def _sns_bar():
     b = []
     if xa:
         b.append(f'<a class="sns-x" href="https://x.com/{escape(xa)}" target="_blank" rel="noopener"><b>𝕏</b> 新着をXでお知らせ</a>')
-    if ln.startswith("https://"):
-        b.append(f'<a class="sns-line" href="{escape(ln)}" target="_blank" rel="noopener"><b>LINE</b> オプチャ<small>（テスト中）</small></a>')
+    if ln.startswith("https://") or any((v or "").startswith("https://") for v in (st.get("line_rooms") or {}).values()):
+        b.append(f'<a class="sns-line" href="/line/"><b>LINE</b> オプチャ<small>（テスト中）</small></a>')
     return f'<div class="sns">{"".join(b)}</div>' if b else ""
 
 
@@ -1351,6 +1376,7 @@ def build(settings=None, out_dir=None, sample=None):
                              f'</ul><p class="note">※{a}のお店で、この90日に見つかった{short}の抽選の数です（{sum(t[0] for t in rank_a)}件）。お店の名前を押すと、そのお店のこれまでの抽選が見られます。</p></section>')
             near_html = _links(f"{a}の近くの県の{short}抽選", near_l)
             write(f"{slug}/area/{PREF[a]}/", {"game": g, "channel": "store", "area": a}, {
+                "topsq": line_box(a),
                 "info_html": area_html + (near_html if ai else ""),
                 "title": f"{short} 抽選 {a}｜{a}の店頭抽選" + (f" 受付中{len(ai)}件" if ai else "") + f"【{md}更新】｜トレカ抽選ナビ",
                 "desc": f"【{md}更新】{short}（{name}）の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
@@ -1503,6 +1529,29 @@ def build(settings=None, out_dir=None, sample=None):
                   ("相場はいつ更新されますか？", "毎日、朝と夜21時ごろの2回、スニダンの取引を読み込んで更新しています。朝は前日までの取引、夜はその日の21時ごろまでの取引です（その日の値は夜の時点の平均なので、翌朝に1日分の値に置き換わります）。過去の弾は1日1回（朝）の更新です。")]
         intro = ('<div class="guide"><p>ポケカ・ワンピースカードの未開封BOXの相場を、スニダンで実際に成立した取引の値段で毎日まとめています。'
                  '定価との差も一緒に並べています。「詳しい相場」を押すと、1か月前・1年前との比較、大きいグラフ、その弾の主要カードの相場を見られます。</p></div>')
+        # --- LINEオープンチャットの案内（/line/）：全国の入口ルームと地方ごとのルーム ---
+        st_ = load_settings()
+        rooms = [(r, (u or "").strip()) for r, u in (st_.get("line_rooms") or {}).items()]
+        main_u = (st_.get("line_openchat_url") or "").strip()
+        if any(u.startswith("https://") for _, u in rooms) or main_u.startswith("https://"):
+            cards = "".join(
+                (f'<a class="line-room" href="{escape(u)}" target="_blank" rel="noopener"><b>LINE</b><span><strong>【{escape(r)}】トレカ販売情報共有</strong>'
+                 f'<small>{escape("・".join(p_.replace("県", "").replace("府", "").replace("都", "") for p_, rr in REGION_OF.items() if rr == r))}</small></span></a>')
+                if u.startswith("https://") else f'<div class="line-room off"><b>LINE</b><span><strong>【{escape(r)}】</strong><small>準備中</small></span></div>'
+                for r, u in rooms)
+            main_c = (f'<a class="line-room main" href="{escape(main_u)}" target="_blank" rel="noopener"><b>LINE</b><span><strong>【ポケモン&amp;ワンピース】トレカ販売情報ナビ</strong>'
+                      f'<small>全国向け。どの地域のルームに入るか迷ったらここ</small></span></a>') if main_u.startswith("https://") else ""
+            body_l = ('<div class="guide"><p>地域ごとのLINEオープンチャットで、近くの人と「どこで買えた」「どこで抽選をやっている」を<b>リアルタイムで共有</b>できます（テスト中）。'
+                      '住んでいる地域のルームに参加してください。</p></div>'
+                      f'<div class="line-rooms">{main_c}{cards}</div>'
+                      '<p class="ch-note">※オープンチャットはLINEのサービスです。ルールを守って参加してください。転売目的の売買の呼びかけはご遠慮ください。</p>')
+            write("line/", {"game": games[0], "channel": "store"}, {
+                "title": "地域ごとのLINEオープンチャット（トレカ販売情報共有）｜トレカ抽選ナビ",
+                "desc": "ポケカ・ワンピースカードの販売・抽選情報を、北海道・東北／関東／中部／近畿／中国・四国／九州・沖縄の地域ごとのLINEオープンチャットでリアルタイムに共有できます。",
+                "summary": "", "h1": "地域ごとのLINEオープンチャット",
+                "lead": "地域ごとのLINEオープンチャットの一覧です。下には、いま受付中の店頭抽選を載せています。",
+                "aff": body_l, "links": _menu(items, games, games[0]), "root": "/"},
+                [i for i in items if i["game"] == games[0] and i.get("channel") == "store"], [("トップ", ""), ("LINEオープンチャット", "line/")])
         write("souba/", {"game": games[0]}, {
             "title": f"ポケカ・ワンピースカードBOX相場一覧【{_md(latest) if latest else md}更新】定価との差・前日比・1週間の推移｜トレカ抽選ナビ",
             "desc": f"ポケカ・ワンピースカードの未開封BOXの相場（スニダンの取引価格）を毎日更新。定価との差、前日比、1週間比、30日の値動きのグラフ、海外（TCGplayer）の相場も一覧で比べられます。",
@@ -2150,6 +2199,8 @@ def build(settings=None, out_dir=None, sample=None):
                 dd, cc = _diff(sm_["price"], sm_["prev"][1] if sm_.get("prev") else None)
                 sbx = {"name": x_, "price": _yen(sm_["price"]), "date": _md(sm_["date"]), "diff": dd, "cls": cc,
                        "url": "/" + series_path(g, x_) + "#souba"}
+        if active and d.get("channel") == "store":
+            aff = line_box(d.get("area")) + aff
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
                                    redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx), encoding="utf-8")
         if active:

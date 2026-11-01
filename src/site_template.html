@@ -465,6 +465,11 @@ input[type="search"] { flex: 1 1 160px; }
 }
 /* 弾ページの一番上：発売日・定価・相場・受付中 */
 .ch-note { margin: 4px 0 6px; font-size: 11.5px; color: var(--ink-2); line-height: 1.5; }
+.line-room { display: flex; align-items: center; gap: 10px; margin: 10px 0 6px; padding: 10px 12px; border-radius: 12px; background: #06c755; color: #fff; text-decoration: none; }
+.line-room > b { flex: none; font-size: 13px; font-weight: 900; background: #fff; color: #06c755; border-radius: 6px; padding: 2px 6px; }
+.line-room span { display: grid; gap: 1px; min-width: 0; } .line-room strong { font-size: 14.5px; } .line-room small { font-size: 11.5px; opacity: .9; }
+.line-room.off { background: var(--navy-soft); color: var(--ink-2); } .line-room.off > b { color: var(--ink-2); }
+.line-rooms { display: grid; gap: 0; margin-top: 8px; } .line-room.main { background: #048b3c; }
 .sns { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; padding: 6px 0 8px; }
 .sns a { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 8px; border-radius: 10px; font-size: 12.5px; font-weight: 800; text-decoration: none; white-space: nowrap; overflow: hidden; }
 .sns a b { font-size: 13px; } .sns a small { font-size: 10.5px; font-weight: 600; opacity: .8; }
