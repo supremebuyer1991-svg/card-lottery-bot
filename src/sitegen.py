@@ -683,6 +683,34 @@ def page(data: dict, meta: dict, standalone=True) -> str:
             f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
 
 
+_LIKELY = {}
+
+
+def likely_chains_html(game, series):
+    """発売前・受付前の弾のページに「抽選をしそうなお店」：過去60日に、同じゲームで抽選が多かったチェーン（お店ページの履歴から）"""
+    from datetime import timedelta
+    if game not in _LIKELY:
+        hist = load_json("store_history.json", {})
+        cut = (now() - timedelta(days=60)).date().isoformat()
+        cnt = {}
+        for v in hist.values():
+            c = chain_of(v.get("name"))
+            if not c:
+                continue
+            n = sum(1 for it in (v.get("items") or {}).values() if it.get("g") == game and (it.get("f") or "") >= cut)
+            if n:
+                cnt[c] = cnt.get(c, 0) + n
+        _LIKELY[game] = sorted(cnt, key=lambda c: (-cnt[c], not CHAIN[c][3]))[:12], cnt
+    top, cnt = _LIKELY[game]
+    if not top:
+        return ""
+    return (f'<section class="m-sec"><h3>「{escape(series)}」の抽選をしそうなお店<small>過去60日の実績</small></h3>'
+            '<p class="note">前の弾で抽選をすることが多かったお店です。お店のページを見ておくと、抽選が始まった時にすぐ分かります。</p>'
+            '<div class="m-area">' +
+            "".join(f'<a href="/chain/{c}/">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{cnt[c]}件</span></a>' for c in top) +
+            '</div></section>')
+
+
 def _ser_areas(game, slug, series, si):
     """弾のページに「この弾の店頭抽選がある都道府県」へのリンク"""
     cnt = {}
@@ -1343,7 +1371,7 @@ def build(settings=None, out_dir=None, sample=None):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1時間ごとに更新）。"),
-                "aff": quick_html + _ser_areas(g, slug, x, si) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
+                "aff": quick_html + _ser_areas(g, slug, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
                                                      + info_html + _product_ad(x, name, rr, tag, raff)),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
