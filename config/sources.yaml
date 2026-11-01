@@ -138,7 +138,8 @@ sources:
     keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター) (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード) 抽選'
 
   # 公式サイトの抽選ページ（ページの中身が変わった時だけAIが読む）
-  - id: pokemoncenter_lottery
+  - id: pokemoncenter_lottery   # GitHubからは毎回403で断られるので止める（Claudeの予約タスクがブラウザで見て config/manual.yaml に追加する）
+    enabled: false
     game: pokemon
     name: ポケモンセンターオンライン 抽選
     type: html

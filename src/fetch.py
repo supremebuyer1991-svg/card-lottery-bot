@@ -18,7 +18,7 @@ BROWSER_HOSTS = ("livepocket.jp", "docs.google.com", "forms.gle", "customform.jp
 
 def get(url: str) -> str:
     h = BROWSER if any(x in url for x in BROWSER_HOSTS) else {"User-Agent": UA, "Accept-Language": "ja"}
-    r = requests.get(url, headers=h, timeout=30)
+    r = requests.get(url, headers=h, timeout=(6, 12))  # つながるまで6秒・読み終わるまで12秒（遅いサイトで実行時間がのびないように）
     r.raise_for_status()
     r.encoding = r.apparent_encoding or r.encoding
     time.sleep(2)  # 連続アクセスしない

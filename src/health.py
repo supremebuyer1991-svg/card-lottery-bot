@@ -42,7 +42,7 @@ def check():
             problems.append(f"本体の実行が24時間で{len(bad)}回失敗しています（最新: {bad[0].get('html_url')}）")
         if ok:
             age = (t - parse_dt(ok[0]["updated_at"])).total_seconds() / 3600
-            if 7 <= t.hour <= 24 and age > 2:
+            if 7 <= t.hour <= 24 and age > 2.7:  # 実行は最大2時間おき（run_hours）
                 problems.append(f"本体が{age:.1f}時間うまく動いていません（最後に成功: {parse_dt(ok[0]['updated_at']).astimezone(t.tzinfo):%m/%d %H:%M}）")
     except Exception as e:
         log(f"見張り: 実行の確認に失敗 {e}")

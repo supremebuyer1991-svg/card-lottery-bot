@@ -1015,7 +1015,7 @@ def active_series(settings=None):
     return out
 
 
-def build(settings=None, out_dir=None, sample=None):
+def build(settings=None, out_dir=None, sample=None, force=False):
     s = settings or load_settings()
     site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
     tag = os.environ.get("AMAZON_TAG") or s.get("amazon_tag")
@@ -1096,6 +1096,11 @@ def build(settings=None, out_dir=None, sample=None):
     digest = sha(digest + "".join(sorted(f.name + sha(f.read_bytes().decode("latin-1")) for f in (ROOT / "src" / "static").glob("*"))))  # 共通のファイル（規約・確認用ファイルなど）を変えたら公開し直す
     digest = sha(digest + str(load_json("souba.json", {}).get("updated")) + str(load_json("souba.json", {}).get("cards_updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
     changed = meta_state.get("digest") != digest
+    if not changed and not force and sample is None and out_dir is None:
+        # 中身が前回と同じ → ページを作り直さない（公開もしない。実行時間を短くするため）
+        (out / ".changed").unlink(missing_ok=True)
+        print("サイト: 変化なしなので作り直さない")
+        return out
     updated = now().isoformat() if changed or not meta_state.get("updated") else meta_state["updated"]
 
     common_data = {"sample": False, "updated": updated,

@@ -102,6 +102,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     elif not x_ok:
         log("X: 今回はお休み（1時間に1回だけ読む）")
     src_last = xmeta.setdefault("src_last", {})
+    src_fail = xmeta.setdefault("src_fail", {})
     # Xの検索ごとの「読んだ数・新しく見つかった抽選の数」（どの検索が効いているかを見て件数を調整するため）
     xstats = load_json("x_stats.json", {})
     today_s = now().date().isoformat()
@@ -114,7 +115,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         from fetch_x import budget_left
         h = now().hour
         # Xを読むのは0時台と7時〜23時台の1時間に1回（上限は0時で切り替わるので、0時台はその日の最初の回）
-        runs_left = 19 if h == 0 else (24 - h if h >= 7 else 17)
+        rh = settings.get("run_hours") or list(range(7, 24))  # 1日の実行の時刻（run.yml の cron と合わせる）
+        runs_left = max(1, sum(1 for x in rh if x >= h)) if h >= min(rh) else len(rh)
         x_allow = budget_left(settings) // max(1, runs_left)
         days = sorted(xstats)[-4:]
 
@@ -129,6 +131,10 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     for src in sources:
         if src.get("enabled") is False:
             continue
+        if src["type"] != "x":  # 続けて読めなかった情報元は、しばらくお休み（タイムアウト待ちで実行時間がのびないように）
+            fl = src_fail.get(src["id"]) or {}
+            if fl.get("n", 0) >= 2 and parse_dt(fl.get("until")) and parse_dt(fl["until"]) > now():
+                continue
         if src["type"] != "x" and src.get("every_hours"):  # Xいがいも、数時間に1回だけ見る情報元
             lt = parse_dt(src_last.get(src["id"]))
             if lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
@@ -172,8 +178,13 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         else:
             try:
                 body = fetcher(src["url"])
+                src_fail.pop(sid, None)
             except Exception as e:
-                log(f"取得失敗 {sid}: {e}")
+                fl = src_fail.setdefault(sid, {"n": 0})
+                fl["n"] += 1
+                if fl["n"] >= 2:  # 2回続けて失敗 → 3時間（5回以上は6時間）お休み
+                    fl["until"] = (now() + timedelta(hours=6 if fl["n"] >= 5 else 3)).isoformat()
+                log(f"取得失敗 {sid}: {e}" + (f"（{fl['n']}回続けて失敗。しばらく休む）" if fl["n"] >= 2 else ""))
                 continue
 
         if src["type"] == "rss":
@@ -322,7 +333,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     if live and all(len(v) >= 30 for v in live.values()):  # 拾い漏れチェック用に、まとめサイトに今載っている抽選を残す
         save_json("cc_live.json", {k_: sorted(v_) for k_, v_ in live.items()})
     save_json("x_stats.json", {d_: v_ for d_, v_ in xstats.items() if d_ >= (now().date() - timedelta(days=14)).isoformat()})
-    save_json("x_meta.json", {**load_json("x_meta.json", {}), "last_x_run": xmeta.get("last_x_run"), "src_last": src_last})
+    save_json("x_meta.json", {**load_json("x_meta.json", {}), "last_x_run": xmeta.get("last_x_run"), "src_last": src_last, "src_fail": src_fail})
 
     save_json("seen.json", seen)
     save_json("lotteries.json", lots)

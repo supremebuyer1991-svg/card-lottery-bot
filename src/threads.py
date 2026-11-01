@@ -378,6 +378,7 @@ def prepare(settings, site_dir=None):
     if not os.environ.get("THREADS_ACCESS_TOKEN") or not settings.get("threads_post", True):
         return
     site_dir = site_dir or Path(__file__).resolve().parent.parent / "site"
+    need_site = lambda: not (Path(site_dir) / "index.html").exists()
     meta = load_json("threads_meta.json", {})
     done = meta.get("done", {})
     t = now()
@@ -391,6 +392,9 @@ def prepare(settings, site_dir=None):
             try:
                 png = image_png(kind, game, lots, t, since)
                 if png:
+                    if need_site():  # 今回はサイトを作り直していない → 画像だけ公開するとサイトが消えるので、先に全部作る
+                        from sitegen import build as build_site
+                        build_site(settings, out_dir=None, force=True)
                     name = re.sub(r"[^0-9a-z-]", "-", key.lower()) + ".png"
                     d = Path(site_dir) / "t"
                     d.mkdir(parents=True, exist_ok=True)
