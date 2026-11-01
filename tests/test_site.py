@@ -44,3 +44,9 @@ assert subprocess.run(["node", "--check", str(Path(tempfile.gettempdir(), "s.js"
 sitegen.build(s, out_dir=out)
 assert not (out / ".changed").exists()
 print("SITE ALL OK")
+# お店ごとの解説ページ（config/guides.yaml）と、/guide/ からのリンク・カレンダーの .ics
+gy = (out / "guide/yodobashi/index.html").read_text()
+assert "ヨドバシ（ヨドバシ・ドット・コム）の抽選のやり方" in gy and "受付中のヨドバシカメラの抽選は<b>1件</b>" in gy and "FAQPage" in gy
+assert 'href="/guide/amazon-invite/"' in (out / "guide/index.html").read_text()
+assert any(p.name == "shimekiri.ics" for p in out.rglob("*.ics"))
+print("GUIDES OK")
