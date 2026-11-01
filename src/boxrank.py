@@ -108,90 +108,8 @@ def _photo(key, rk, cache, size):
     return im
 
 
-FPS = 30
-
-
-@lru_cache(maxsize=None)
-def FB(size, w="Black"):
-    return X.F(size, w)
-
-
-@lru_cache(maxsize=None)
-def FD(size):
-    return X.DELA(size)
-
-
-def _eo(x):
-    """だんだんゆっくり止まる（0〜1）"""
-    x = max(0.0, min(1.0, x))
-    return 1 - (1 - x) ** 3
-
-
-def _back(x):
-    """少し大きくなってから戻る（ポンと出る）"""
-    x = max(0.0, min(1.0, x))
-    c = 1.70158
-    return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2
-
-
-def _prog(t, a, b):
-    return max(0.0, min(1.0, (t - a) / (b - a))) if b > a else float(t >= a)
-
-
-def _canvas():
-    im = Image.new("RGBA", (VW, VH), X.PAPER + (255,))
-    return im, ImageDraw.Draw(im)
-
-
-def _layer(w, h):
-    im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    return im, ImageDraw.Draw(im)
-
-
-def _text_layer(txt, font, fill, pad=10):
-    tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
-    l, t, r, b = tmp.textbbox((0, 0), txt, font=font)
-    im, d = _layer(r - l + pad * 2, b - t + pad * 2)
-    d.text((pad - l, pad - t), txt, font=font, fill=fill)
-    return im
-
-
-def _band_layer(txt, size, fill):
-    f = FB(size)
-    tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
-    tw = tmp.textlength(txt, font=f)
-    w, h = int(tw + 60), int(size * 1.5)
-    im, d = _layer(w, h)
-    d.rounded_rectangle((0, 0, w - 1, h - 1), 20, fill=fill)
-    d.text((w / 2, h / 2), txt, font=f, fill=(255, 255, 255), anchor="mm")
-    return im
-
-
-def _put(base, layer, cx, cy, scale=1.0, alpha=1.0):
-    """layer を中心 (cx, cy) に、大きさ scale・濃さ alpha で重ねる"""
-    if scale <= 0.01 or alpha <= 0.01:
-        return
-    if abs(scale - 1) > 0.005:
-        layer = layer.resize((max(1, int(layer.width * scale)), max(1, int(layer.height * scale))), Image.BILINEAR)
-    if alpha < 0.999:
-        a = layer.getchannel("A").point(lambda v: int(v * alpha))
-        layer = layer.copy()
-        layer.putalpha(a)
-    x, y = int(cx - layer.width / 2), int(cy - layer.height / 2)
-    base.alpha_composite(layer, (max(0, x), max(0, y)), (max(0, -x), max(0, -y)))
-
-
-def _header(d):
-    d.rectangle((0, 0, VW, 170), fill=X.CARD)
-    d.text((VW / 2, 92), "トレカ抽選ナビ", font=FD(56), fill=X.INK, anchor="mm")
-
-
-def _footer(d, span):
-    d.rectangle((0, VH - 230, VW, VH), fill=X.CARD)
-    d.text((VW / 2, VH - 150), "毎日の相場は「トレカ抽選ナビ」で", font=FB(44), fill=X.INK, anchor="mm")
-    note = "直近数日と1週間前ごろの値段（中央値）を比べています" if span == "week" else "前の3日の値段（中央値）と比べています"
-    d.text((VW / 2, VH - 92), "スニダンで成立した取引（1BOX）の1日の平均から", font=FB(28, "Medium"), fill=X.INK2, anchor="mm")
-    d.text((VW / 2, VH - 52), note, font=FB(26, "Medium"), fill=X.INK2, anchor="mm")
+import vidkit as V
+from vidkit import FB, FD, eo, back, prog, put, text_layer, band_layer, layer
 
 
 def _md(s):
@@ -199,279 +117,289 @@ def _md(s):
     return f"{d.month}/{d.day}"
 
 
-# ---------------- 場面ごとの絵（t 秒目の1コマ） ----------------
+def _foot(span):
+    return ["毎日の相場は「トレカ抽選ナビ」で", "スニダンで成立した取引（1BOX）の1日の平均から",
+            "直近数日と1週間前ごろの値段（中央値）を比べています" if span == "week" else "前の3日の値段（中央値）と比べています"]
 
-class Intro:
-    def __init__(self, kind, span, game, rows, today):
-        self.dur = 2.6
-        col = UP if kind == "up" else DOWN
-        word, arrow = ("上昇", "↑") if kind == "up" else ("下落", "↓")
-        sj = "今週" if span == "week" else "今日"
-        self.bg, d = _canvas()
-        _header(d)
-        _footer(d, span)
-        self.col = col
-        self.pts = [p for _, p in (rows[0][5] if rows else [])]
-        self.l_game = _text_layer(GN[game], FD(120 if game == "pokemon" else 92), X.INK)
-        self.l_title = _text_layer(f"{sj}のBOX相場", FB(110), X.INK)
-        self.l_band = _band_layer(f"{word}ランキング{arrow}", 100, col)
-        self.l_sub = _text_layer(f"TOP{len(rows)}を{len(rows)}位から発表", FB(60), X.INK2)
-        self.l_date = _text_layer(f"{today.month}/{today.day}({X.WEEK[today.weekday()]})時点", FB(48, "Bold"), X.INK2)
+
+class Ctx:
+    """1本の動画で共通のもの（見た目・電光掲示板・写真）"""
+    def __init__(self, th, kind, span, game, rows, all_rows, rk, today):
+        self.th, self.kind, self.span, self.game, self.rows, self.today = th, kind, span, game, rows, today
+        self.col = th.up if kind == "up" else th.down
+        self.word, self.arrow = ("上昇", "↑") if kind == "up" else ("下落", "↓")
+        self.sj = "今週" if span == "week" else "今日"
+        self.gname = GN[game]
+        self.rk, self.cache = rk, {}
+        items = [(f"{GN[game]}相場", th.accent if th.name != "light" else (255, 255, 255))]
+        for pct, name, price, *_ in all_rows:
+            items.append((f"{name} ¥{price:,} {'▲' if pct > 0 else '▼'}{abs(pct):.1f}%", th.up if pct > 0 else th.down))
+        self.strip = V.ticker_strip(th, items) if th.ticker else None
+
+    def photo(self, key, size):
+        return _photo(key, self.rk, self.cache, size)
+
+    def base(self, t, dots=None, foot=True):
+        im, _ = V.canvas(self.th)
+        V.header(im, self.th, dots)
+        if foot:
+            V.footer(im, self.th, _foot(self.span))
+        return im
+
+    def tick(self, im, t):
+        V.draw_ticker(im, self.strip, t + self.t0)
+
+
+class Hook:
+    """最初の1.8秒：1位をぼかしてチラ見せ"""
+    transition = "fade"
+
+    def __init__(self, c):
+        self.c, self.dur = c, 1.9
+        self.events = [(0.0, "riser"), (1.2, "pop")]
+        th = c.th
+        self.bg = c.base(0)
+        pct, name, price, base, key, _ = c.rows[0]
+        ph = c.photo(key, 520)
+        card, cd = layer(560, 560)
+        cd.rounded_rectangle((0, 0, 559, 559), 30, fill=th.card + (255,))
+        if ph:
+            card.alpha_composite(ph, (20, 20))
+        card = V.blur(card, 22)
+        cd = ImageDraw.Draw(card)
+        cd.text((280, 280), "？", font=FD(260), fill=c.col + (255,), anchor="mm")
+        self.card = card
+        self.l1 = text_layer(f"{c.sj}の{c.word}1位は", FB(84), th.pink)
+        self.l2 = text_layer("まさかの…？", FD(120), c.col)
+        self.l3 = band_layer(f"{c.gname} BOX相場ランキング", 50, c.col)
+        self.l4 = text_layer("最後まで見てね👀".replace("👀", ""), FB(48, "Bold"), th.pink2)
 
     def frame(self, t):
         im = self.bg.copy()
-        # うしろで大きなチャートの線が伸びていく（うすく）
+        self.c.tick(im, t)
+        put(im, self.l3, V.VW / 2, 300, scale=back(prog(t, 0, 0.3)))
+        put(im, self.l1, V.VW / 2, 440, alpha=prog(t, 0.1, 0.35))
+        put(im, self.card, V.VW / 2, 860, scale=1.0 + 0.06 * t)
+        put(im, self.l2, V.VW / 2, 1270, scale=back(prog(t, 0.45, 0.8)))
+        put(im, self.l4, V.VW / 2, 1420, alpha=prog(t, 0.9, 1.2))
+        return im
+
+
+class Intro:
+    def __init__(self, c):
+        self.c, self.dur = c, 2.2
+        self.events = [(0.0, "hit"), (0.5, "pop")]
+        th = c.th
+        self.bg = c.base(0)
+        self.pts = [q for _, q in c.rows[0][5]]
+        self.l_game = text_layer(c.gname, FD(120 if c.game == "pokemon" else 92), th.pink)
+        self.l_title = text_layer(f"{c.sj}のBOX相場", FB(110), th.pink)
+        self.l_band = band_layer(f"{c.word}ランキング{c.arrow}", 100, c.col)
+        n = len(c.rows)
+        self.l_sub = text_layer(f"TOP{n}を{n}位から発表", FB(60), th.pink2)
+        td = c.today
+        self.l_date = text_layer(f"{td.month}/{td.day}({X.WEEK[td.weekday()]})時点", FB(48, "Bold"), th.pink2)
+
+    def frame(self, t):
+        im = self.bg.copy()
+        self.c.tick(im, t)
         v = self.pts
         if len(v) > 1:
-            lo, hi = min(v), max(v) or 1
-            hi = hi if hi > lo else lo + 1
-            p = _eo(_prog(t, 0, 2.0))
-            n = max(2, int(len(v) * p))
-            xy = [(40 + (VW - 80) * k / (len(v) - 1), 1560 - 260 * (q - lo) / (hi - lo)) for k, q in enumerate(v[:n])]
-            lay, d = _layer(VW, VH)
-            d.line(xy, fill=self.col + (60,), width=14, joint="curve")
+            lay, _ = layer(V.VW, V.VH)
+            V.line_chart(lay, (40, 1240, V.VW - 40, 1600), v, eo(prog(t, 0, 2.0)), self.c.col, self.c.th)
+            lay.putalpha(lay.getchannel("A").point(lambda a: a // 3))
             im.alpha_composite(lay)
-        _put(im, self.l_game, VW / 2, 430 - 120 * (1 - _eo(_prog(t, 0, 0.35))), alpha=_prog(t, 0, 0.25))
-        _put(im, self.l_title, VW / 2, 600, alpha=_eo(_prog(t, 0.2, 0.5)))
-        _put(im, self.l_band, VW / 2, 800, scale=_back(_prog(t, 0.5, 0.85)))
-        _put(im, self.l_sub, VW / 2, 990, alpha=_prog(t, 1.0, 1.3))
-        _put(im, self.l_date, VW / 2, 1090, alpha=_prog(t, 1.1, 1.4))
+        put(im, self.l_game, V.VW / 2, 440 - 120 * (1 - eo(prog(t, 0, 0.35))), alpha=prog(t, 0, 0.25))
+        put(im, self.l_title, V.VW / 2, 610, alpha=eo(prog(t, 0.2, 0.5)))
+        put(im, self.l_band, V.VW / 2, 810, scale=back(prog(t, 0.5, 0.85)))
+        put(im, self.l_sub, V.VW / 2, 1000, alpha=prog(t, 0.9, 1.2))
+        put(im, self.l_date, V.VW / 2, 1100, alpha=prog(t, 1.0, 1.3))
         return im
 
 
 class BoxPage:
-    def __init__(self, kind, span, game, rows, r, rk, cache):
-        self.dur = 3.6
-        self.kind, self.r = kind, r
-        pct, name, price, base, key, pts = rows[r]
+    def __init__(self, c, r):
+        self.c, self.r, self.dur = c, r, 3.6
+        th = c.th
+        pct, name, price, base, key, pts = c.rows[r]
         self.pct, self.price, self.base = pct, price, base
-        self.col = col = UP if kind == "up" else DOWN
-        word, self.arrow = ("上昇", "↑") if kind == "up" else ("下落", "↓")
-        sj = "今週" if span == "week" else "今日"
-        self.prev_l = "先週" if span == "week" else "前"
-        self.bg, d = _canvas()
-        _header(d)
-        _footer(d, span)
-        _put(self.bg, _band_layer(f"{GN[game]} {sj}の{word}ランキング", 44, col), VW / 2, 250)
+        self.prev_l = "先週" if c.span == "week" else "前"
+        n = len(c.rows)
+        self.bg = c.base(0, dots=(n, r + 1))
+        put(self.bg, band_layer(f"{c.gname} {c.sj}の{c.word}ランキング", 42, c.col), V.VW / 2, 268)
         d = ImageDraw.Draw(self.bg)
-        d.text((VW / 2, 935), X._fit(d, name, FB(60), VW - 100), font=FB(60), fill=X.INK, anchor="mm")
-        # チャートの枠・目盛り
-        self.cb = (50, 1190, VW - 50, VH - 250)
+        d.text((V.VW / 2, 965), V.fit(d, name, FB(60), V.VW - 100), font=FB(60), fill=th.pink, anchor="mm")
+        self.cb = (50, 1215, V.VW - 50, V.VH - 250)
         x0, y0, x1, y1 = self.cb
-        d.rounded_rectangle(self.cb, 22, fill=X.CARD)
-        d.text((x0 + 26, y0 + 18), "30日の値段の動き", font=FB(28, "Bold"), fill=X.INK2)
+        d.rounded_rectangle(self.cb, 22, fill=th.card, outline=th.rule if th.name == "dark" else None, width=2)
+        d.text((x0 + 26, y0 + 16), "30日の値段の動き", font=FB(28, "Bold"), fill=th.cink2)
         self.v = [q for _, q in pts]
         self.dates = [dd for dd, _ in pts]
-        lo, hi = min(self.v + [base]), max(self.v + [base])
-        padv = max(1, (hi - lo) * 0.12)
-        self.lo, self.hi = lo - padv, hi + padv
-        self.px0, self.px1, self.py0, self.py1 = x0 + 40, x1 - 130, y0 + 80, y1 - 56
+        self.plot = (x0 + 40, y0 + 76, x1 - 130, y1 - 54)
         if self.dates:
-            d.text((self.px0, y1 - 22), _md(self.dates[0]), font=FB(24, "Medium"), fill=X.INK2, anchor="ls")
-            d.text((self.px1, y1 - 22), _md(self.dates[-1]), font=FB(24, "Medium"), fill=X.INK2, anchor="rs")
-        medal = X.MEDAL[r] if r < 3 else X.INK2
-        self.l_rank = _text_layer(f"第{r + 1}位", FD(110), medal)
-        ph = _photo(key, rk, cache, 420)
+            d.text((self.plot[0], y1 - 18), _md(self.dates[0]), font=FB(24, "Medium"), fill=th.cink2, anchor="ls")
+            d.text((self.plot[2], y1 - 18), _md(self.dates[-1]), font=FB(24, "Medium"), fill=th.cink2, anchor="rs")
+        medal = X.MEDAL[r] if r < 3 else th.pink2
+        if th.name == "game" and sum(th.paper) > 500:
+            medal = th.pink  # 黄色の背景では金色が見えにくいので紺に
+        self.l_rank = text_layer(f"第{r + 1}位", FD(110), medal, stroke=4 if th.name == "game" else 0,
+                                 stroke_fill=(255, 255, 255) if th.name == "game" else None)
+        ph = c.photo(key, 420)
         self.l_photo = None
         if ph:
-            card, cd = _layer(460, 460)
+            card, cd = layer(460, 460)
             cd.rounded_rectangle((0, 0, 459, 459), 26, fill=(255, 255, 255, 255))
             card.alpha_composite(ph, (20, 20))
             self.l_photo = card
-        self.l_prices = _text_layer(f"{self.prev_l} ¥{base:,}  →  直近 ¥{price:,}", FB(44), X.INK)
+        self.l_prices = text_layer(f"{self.prev_l} ¥{base:,}  →  直近 ¥{price:,}", FB(44), th.pink)
         rnd = random.Random(r * 7 + 3)
-        self.conf = [(rnd.uniform(0, VW), rnd.uniform(-600, -20), rnd.uniform(-60, 60), rnd.uniform(500, 900),
-                      rnd.uniform(0, 6.28), rnd.choice([UP, (214, 165, 33), (40, 120, 220), (0, 150, 100), (240, 140, 0)]))
-                     for _ in range(110)]
-
-    def _y(self, q):
-        return self.py1 - (self.py1 - self.py0) * (q - self.lo) / (self.hi - self.lo)
+        self.conf = [(rnd.uniform(0, V.VW), rnd.uniform(-700, -20), rnd.uniform(-60, 60), rnd.uniform(500, 900),
+                      rnd.uniform(0, 6.28), rnd.choice([th.up, (214, 165, 33), (40, 120, 220), (0, 170, 110), (240, 140, 0)]))
+                     for _ in range(120)]
+        self.events = [(0.05, "pop")] + [(0.5 + 0.1 * k, "tick") for k in range(15)]
+        if r == 0:
+            self.events = [(0.05, "pop"), (0.3, "drumroll"), (2.0, "crash" if c.kind == "up" else "boom")]
+        else:
+            self.events.append((2.0, "hit"))
 
     def frame(self, t):
+        c, th = self.c, self.c.th
         im = self.bg.copy()
-        col = self.col
-        # 順位がポン・写真がふわっと
-        _put(im, self.l_rank, VW / 2, 360, scale=_back(_prog(t, 0, 0.35)))
+        c.tick(im, t)
+        put(im, self.l_rank, V.VW / 2, 385, scale=back(prog(t, 0, 0.35)))
         if self.l_photo:
-            _put(im, self.l_photo, VW / 2, 650, scale=0.85 + 0.15 * _eo(_prog(t, 0.05, 0.45)), alpha=_prog(t, 0.05, 0.35))
-        # チャート：先週の値段の点線と、30日の線が伸びていく
+            put(im, self.l_photo, V.VW / 2, 685, scale=0.85 + 0.15 * eo(prog(t, 0.05, 0.45)), alpha=prog(t, 0.05, 0.35))
         x0, y0, x1, y1 = self.cb
-        lay, d = _layer(x1 - x0, y1 - y0)
-        ox, oy = x0, y0
-        if _prog(t, 0.3, 0.6) > 0:
-            a = int(255 * _prog(t, 0.3, 0.6))
-            by = self._y(self.base) - oy
-            xx = self.px0 - ox
-            while xx < self.px1 - ox:
-                d.line((xx, by, min(xx + 16, self.px1 - ox), by), fill=X.INK2 + (a,), width=3)
-                xx += 28
-            d.text((self.px1 - ox + 10, by), f"{self.prev_l}\n¥{self.base:,}", font=FB(24, "Bold"), fill=X.INK2 + (a,), anchor="lm")
-        v = self.v
-        p = _eo(_prog(t, 0.4, 2.0))
-        if len(v) > 1 and p > 0:
-            pos = p * (len(v) - 1)
-            k = int(pos)
-            xy = [(self.px0 - ox + (self.px1 - self.px0) * j / (len(v) - 1), self._y(q) - oy) for j, q in enumerate(v[:k + 1])]
-            cur = v[k] if k >= len(v) - 1 else v[k] + (v[k + 1] - v[k]) * (pos - k)
-            xy.append((self.px0 - ox + (self.px1 - self.px0) * pos / (len(v) - 1), self._y(cur) - oy))
-            d.polygon(xy + [(xy[-1][0], self.py1 - oy), (xy[0][0], self.py1 - oy)], fill=col + (38,))
-            d.line(xy, fill=col + (255,), width=8, joint="curve")
-            ex, ey = xy[-1]
-            d.ellipse((ex - 14, ey - 14, ex + 14, ey + 14), fill=col + (255,), outline=(255, 255, 255, 255), width=4)
-            # 値札（線の先についていく）
-            tag = f"¥{round(cur):,}"
-            tw = d.textlength(tag, font=FB(34))
-            bx = min(max(ex - tw / 2 - 16, 10), (x1 - x0) - tw - 42)
-            byy = max(ey - 78, 54)
-            d.rounded_rectangle((bx, byy, bx + tw + 32, byy + 52), 12, fill=X.INK + (235,))
-            d.text((bx + 16, byy + 26), tag, font=FB(34), fill=(255, 255, 255, 255), anchor="lm")
-        im.alpha_composite(lay, (ox, oy))
-        # ％が数えあがる → 止まったらドン
-        q = _eo(_prog(t, 0.5, 2.0))
-        val = abs(self.pct) * q
-        pulse = 1 + 0.18 * math.sin(math.pi * _prog(t, 2.0, 2.3))
-        _put(im, _text_layer(f"{self.arrow}{val:.1f}%", FB(130), col), VW / 2, 1045, scale=pulse, alpha=_prog(t, 0.45, 0.6))
-        _put(im, self.l_prices, VW / 2, 1150, alpha=_prog(t, 2.0, 2.3))
-        # 1位：上昇は紙吹雪、下落は画面がゆれる
+        lay, _ = layer(x1 - x0, y1 - y0)
+        V.line_chart(lay, self.plot, self.v, eo(prog(t, 0.4, 2.0)), c.col, th, base=self.base,
+                     base_label=f"{self.prev_l}\n¥{self.base:,}", ox=x0, oy=y0)
+        im.alpha_composite(lay, (x0, y0))
+        q = eo(prog(t, 0.5, 2.0))
+        pulse = 1 + 0.18 * math.sin(math.pi * prog(t, 2.0, 2.3))
+        put(im, text_layer(f"{c.arrow}{abs(self.pct) * q:.1f}%", FB(130), c.col), V.VW / 2, 1075, scale=pulse, alpha=prog(t, 0.45, 0.6))
+        put(im, self.l_prices, V.VW / 2, 1168, alpha=prog(t, 2.0, 2.3))
         if self.r == 0 and t > 2.0:
             tt = t - 2.0
-            if self.kind == "up":
-                lay, d = _layer(VW, VH)
-                for x, y, vx, vy, rot, c in self.conf:
+            if c.kind == "up":
+                lay, d = layer(V.VW, V.VH)
+                for x, y, vx, vy, rot, cc in self.conf:
                     cx, cy = x + vx * tt, y + vy * tt
-                    if 0 < cy < VH:
+                    if 0 < cy < V.VH:
                         w = 10 + 8 * abs(math.sin(rot + tt * 8))
-                        d.rectangle((cx - w / 2, cy - 7, cx + w / 2, cy + 7), fill=c + (255,))
+                        d.rectangle((cx - w / 2, cy - 7, cx + w / 2, cy + 7), fill=cc + (255,))
                 im.alpha_composite(lay)
-            elif tt < 0.6:
-                amp = 22 * (1 - tt / 0.6)
+            elif tt < 0.7:
+                amp = 24 * (1 - tt / 0.7)
                 dx, dy = int(amp * math.sin(tt * 70)), int(amp * 0.6 * math.cos(tt * 55))
-                sh = Image.new("RGBA", (VW, VH), X.PAPER + (255,))
+                sh = Image.new("RGBA", (V.VW, V.VH), th.paper + (255,))
                 sh.alpha_composite(im, (max(0, dx), max(0, dy)), (max(0, -dx), max(0, -dy)))
                 im = sh
         return im
 
 
 class Summary:
-    def __init__(self, kind, span, game, rows, rk, cache):
-        self.dur = 4.8
-        self.rows, self.kind = rows, kind
-        self.col = col = UP if kind == "up" else DOWN
-        word, self.arrow = ("上昇", "↑") if kind == "up" else ("下落", "↓")
-        sj = "今週" if span == "week" else "今日"
-        self.bg, d = _canvas()
-        _header(d)
-        _footer(d, span)
-        _put(self.bg, _band_layer(f"まとめ｜{GN[game]} {sj}の{word}TOP{len(rows)}", 50, col), VW / 2, 270)
-        self.mx = max(abs(r[0]) for r in rows) or 1
+    transition = "fade"
+
+    def __init__(self, c):
+        self.c, self.dur = c, 4.8
+        th = c.th
+        self.bg = c.base(0)
+        put(self.bg, band_layer(f"まとめ｜{c.gname} {c.sj}の{c.word}TOP{len(c.rows)}", 48, c.col), V.VW / 2, 290)
+        self.mx = max(abs(r[0]) for r in c.rows) or 1
         self.cards = []
-        for r, (pct, name, price, base, key, _) in enumerate(rows):
-            card, d = _layer(VW - 80, 200)
-            d.rounded_rectangle((0, 0, VW - 81, 199), 22, fill=X.CARD + (255,), outline=X.RULE + (255,), width=2)
-            medal = X.MEDAL[r] if r < 3 else X.INK2
+        for r, (pct, name, price, base, key, _) in enumerate(c.rows):
+            card, d = layer(V.VW - 80, 200)
+            d.rounded_rectangle((0, 0, V.VW - 81, 199), 22, fill=th.card + (255,), outline=th.rule + (255,), width=2)
+            medal = X.MEDAL[r] if r < 3 else th.cink2
             d.ellipse((16, 58, 100, 142), fill=medal + (255,))
             d.text((58, 100), str(r + 1), font=FB(50), fill=(255, 255, 255, 255), anchor="mm")
-            ph = _photo(key, rk, cache, 150)
+            ph = c.photo(key, 150)
             if ph:
                 card.alpha_composite(ph, (118, 25))
-            d.text((290, 30), X._fit(d, name, FB(40), VW - 80 - 290 - 190), font=FB(40), fill=X.INK + (255,))
-            d.text((VW - 80 - 24, 34), f"¥{price:,}", font=FB(36), fill=X.INK + (255,), anchor="ra")
+            d.text((290, 30), V.fit(d, name, FB(40), V.VW - 80 - 290 - 190), font=FB(40), fill=th.cink + (255,))
+            d.text((V.VW - 80 - 24, 34), f"¥{price:,}", font=FB(36), fill=th.cink + (255,), anchor="ra")
             self.cards.append(card)
-        self.l_save = _text_layer("保存して相場チェック！", FB(54), X.INK)
+        self.l_save = text_layer("保存して相場チェック！", FB(54), th.pink)
+        self.events = [(0.15 + r * 0.22 + 0.3, "ding") for r in range(len(c.rows))]
 
     def frame(self, t):
+        c = self.c
         im = self.bg.copy()
+        c.tick(im, t)
         for r, card in enumerate(self.cards):
             st = 0.15 + r * 0.22
-            p = _eo(_prog(t, st, st + 0.4))
+            p = eo(prog(t, st, st + 0.4))
             if p <= 0:
                 continue
-            y = 380 + r * 218
-            x = 40 + int((1 - p) * VW)
-            if x < VW:
-                im.alpha_composite(card, (x, y), (0, 0, min(card.width, VW - x), card.height))
-            # 棒グラフがのびて、％が数えあがる
-            b = _eo(_prog(t, st + 0.3, st + 1.2))
-            pct = abs(self.rows[r][0])
+            y = 390 + r * 218
+            x = 40 + int((1 - p) * V.VW)
+            if x < V.VW:
+                im.alpha_composite(card, (x, y), (0, 0, min(card.width, V.VW - x), card.height))
+            b = eo(prog(t, st + 0.3, st + 1.2))
+            pct = abs(c.rows[r][0])
             full = 470 * pct / self.mx
             d = ImageDraw.Draw(im)
             bx0, by0 = x + 290, y + 100
             if b > 0:
-                d.rounded_rectangle((bx0, by0, bx0 + max(16, full * b), by0 + 62), 12, fill=self.col)
-                d.text((bx0 + max(16, full * b) + 14, by0 + 31), f"{self.arrow}{pct * b:.1f}%", font=FB(46), fill=self.col, anchor="lm")
-        n = len(self.rows)
+                d.rounded_rectangle((bx0, by0, bx0 + max(16, full * b), by0 + 62), 12, fill=c.col)
+                d.text((bx0 + max(16, full * b) + 14, by0 + 31), f"{c.arrow}{pct * b:.1f}%", font=FB(46), fill=c.col, anchor="lm")
+        n = len(c.rows)
         pulse = 1 + 0.08 * math.sin(math.pi * 2 * max(0.0, t - 2.4) / 0.8) if t > 2.4 else 1
-        _put(im, self.l_save, VW / 2, 380 + n * 218 + 50, scale=pulse, alpha=_prog(t, 2.2, 2.5))
+        put(im, self.l_save, V.VW / 2, 390 + n * 218 + 50, scale=pulse, alpha=prog(t, 2.2, 2.5))
         return im
 
 
 class Outro:
-    def __init__(self, span):
-        self.dur = 2.8
-        self.bg, d = _canvas()
-        _header(d)
-        self.ls = [(_text_layer("BOXの相場グラフ・", FB(76), X.INK), 560, 0.0),
-                   (_text_layer("抽選の締切は", FB(76), X.INK), 660, 0.1),
-                   (_text_layer("トレカ抽選ナビ", FD(110), X.RED), 830, 0.3),
-                   (_text_layer("tcg-chusen.com", FB(60, "Bold"), X.INK2), 960, 0.5),
-                   (_text_layer("フォローで相場ランキングが届きます", FB(48, "Bold"), X.INK), 1310, 0.9)]
-        self.band = _band_layer("プロフィールのリンクから", 60, X.RED)
+    transition = "fade"
+
+    def __init__(self, c):
+        self.c, self.dur = c, 2.8
+        th = c.th
+        self.bg = c.base(0, foot=False)
+        self.ls = [(text_layer("BOXの相場グラフ・", FB(76), th.pink), 560, 0.0),
+                   (text_layer("抽選の締切は", FB(76), th.pink), 660, 0.1),
+                   (text_layer("トレカ抽選ナビ", FD(110), th.accent), 830, 0.3),
+                   (text_layer("tcg-chusen.com", FB(60, "Bold"), th.pink2), 960, 0.5),
+                   (text_layer("フォローで相場ランキングが届きます", FB(48, "Bold"), th.pink), 1310, 0.9)]
+        self.band = band_layer("プロフィールのリンクから", 60, th.accent, (255, 255, 255) if th.accent != (255, 196, 37) else (13, 30, 66))
+        self.events = [(0.6, "pop")]
 
     def frame(self, t):
         im = self.bg.copy()
+        self.c.tick(im, t)
         for l, y, st in self.ls:
-            _put(im, l, VW / 2, y + 40 * (1 - _eo(_prog(t, st, st + 0.35))), alpha=_prog(t, st, st + 0.3))
-        pulse = _back(_prog(t, 0.6, 0.95)) * (1 + 0.06 * math.sin(max(0.0, t - 1.0) * 7))
-        _put(im, self.band, VW / 2, 1140, scale=pulse)
+            put(im, l, V.VW / 2, y + 40 * (1 - eo(prog(t, st, st + 0.35))), alpha=prog(t, st, st + 0.3))
+        put(im, self.band, V.VW / 2, 1140, scale=back(prog(t, 0.6, 0.95)) * (1 + 0.06 * math.sin(max(0.0, t - 1.0) * 7)))
         return im
 
 
-def scenes(kind, span, game, rows, rk, today):
-    cache = {}
-    out = [Intro(kind, span, game, rows, today)]
-    out += [BoxPage(kind, span, game, rows, r, rk, cache) for r in range(len(rows) - 1, -1, -1)]
-    out += [Summary(kind, span, game, rows, rk, cache), Outro(span)]
-    return out
-
-
-def make(out_dir, kind, span, game, rows, today=None):
+def make(out_dir, kind, span, game, rows, today=None, theme="dark", all_rows=None, hook=True, music=True):
     """動画を1本つくってパスを返す。ランキングが空なら None"""
     today = today or now().date()
     if not rows:
         return None
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    sc = scenes(kind, span, game, rows, load_json("rakuten.json", {}), today)
-    total = sum(s_.dur for s_ in sc)
-    mp4 = out_dir / f"box_{game}_{'joushou' if kind == 'up' else 'geraku'}_{'konshu' if span == 'week' else 'kyou'}_{today:%m%d}.mp4"
-    ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{VW}x{VH}",
-                           "-r", str(FPS), "-i", "-", "-f", "lavfi", "-t", f"{total:.2f}", "-i", "anullsrc=r=44100:cl=stereo",
-                           "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
-                           "-c:a", "aac", "-shortest", "-movflags", "+faststart", str(mp4)], stdin=subprocess.PIPE)
-    SL = 0.35  # 横にスライドする時間
-    last = None
-    for si, s_ in enumerate(sc):
-        nf = int(round(s_.dur * FPS))
-        for f in range(nf):
-            t = f / FPS
-            im = s_.frame(t).convert("RGB")
-            if last is not None and t < SL:
-                p = _eo(t / SL)
-                dx = int(VW * p)
-                if si == len(sc) - 1:
-                    im = Image.blend(last, im, p)  # おわりは ふわっと
-                else:
-                    c = Image.new("RGB", (VW, VH))
-                    c.paste(last, (-dx, 0))
-                    c.paste(im, (VW - dx, 0))
-                    im = c
-            ff.stdin.write(im.tobytes())
-            if f == nf - 1:
-                last = im
-    ff.stdin.close()
-    if ff.wait() != 0:
-        raise RuntimeError("ffmpeg が失敗")
-    return mp4
+    th = V.theme(theme, game)
+    c = Ctx(th, kind, span, game, rows, all_rows or rows, load_json("rakuten.json", {}), today)
+    sc = ([Hook(c)] if hook else []) + [Intro(c)] + [BoxPage(c, r) for r in range(len(rows) - 1, -1, -1)] + [Summary(c), Outro(c)]
+    t0 = 0.0
+    for s_ in sc:  # 電光掲示板は動画全体で流れ続ける
+        s_.c.t0 = t0
+        s_.t0 = t0
+        t0 += s_.dur
+    for s_ in sc:
+        s_.frame = _bind_t0(s_)
+    mp4 = out_dir / f"box_{game}_{'joushou' if kind == 'up' else 'geraku'}_{'konshu' if span == 'week' else 'kyou'}_{theme}_{today:%m%d}.mp4"
+    return V.render(sc, mp4, th, music=music)
+
+
+def _bind_t0(s_):
+    f = s_.frame
+    def g(t):
+        s_.c.t0 = s_.t0
+        return f(t)
+    return g
 
 
 def caption(kind, span, game, rows):
@@ -500,12 +428,18 @@ def send(path, text):
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "video"
     span = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] in ("week", "day") else "week"
+    themes = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--theme=")), ["dark"])
+    only = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--only=")), [])  # 例: pokemon-up,onepiece-up
     today = now().date()
     rk_all = rankings(span, today)
-    for game in GN:
-        for kind in ("up", "down"):
-            rows = rk_all[kind].get(game) or []
-            p = make(out, kind, span, game, rows, today)
-            print(game, kind, p, [(round(x[0], 1), x[1]) for x in rows])
-            if p and "--send" in sys.argv:
-                send(p, "🎬ランキング動画（音はアプリで追加してください）\n\n" + caption(kind, span, game, rows))
+    for th in themes:
+        for game in GN:
+            all_rows = (rk_all["up"].get(game) or []) + (rk_all["down"].get(game) or [])
+            for kind in ("up", "down"):
+                if only and f"{game}-{kind}" not in only:
+                    continue
+                rows = rk_all[kind].get(game) or []
+                p = make(out, kind, span, game, rows, today, theme=th, all_rows=all_rows)
+                print(th, game, kind, p, [(round(x[0], 1), x[1]) for x in rows])
+                if p and "--send" in sys.argv:
+                    send(p, f"🎬ランキング動画（見た目：{th}）\n\n" + caption(kind, span, game, rows))
