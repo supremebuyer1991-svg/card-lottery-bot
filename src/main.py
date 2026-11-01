@@ -55,11 +55,6 @@ def main():
             post_big(s)  # 大手の抽選の速報（見つけたらすぐ・リンク付き）
         except Exception as e:
             log(f"大手の速報: スキップ {e}")
-        try:
-            import threads
-            threads.run(s)  # Threads（@tcg-chusen）への自動投稿（無料のAPI）
-        except Exception as e:
-            log(f"Threads: スキップ {e}")
         post_daily_summary(s)
         try:
             post_buzz(s)  # 1日1回、リンクなしの反応狙い投稿（buzz_hour 時〜）
@@ -97,6 +92,11 @@ def main():
         except Exception as e:
             log(f"話題ネタ: スキップ {e}")
         build_site(s)  # 自作サイト（site/index.html）を書き出し
+        try:
+            import threads
+            threads.prepare(s)  # Threads のまとめの文と一覧の画像（画像はサイトに置く。投稿はサイトの公開のあと）
+        except Exception as e:
+            log(f"Threads: 準備をスキップ {e}")
     log("完了")
 
 

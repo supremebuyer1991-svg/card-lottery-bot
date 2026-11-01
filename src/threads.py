@@ -91,27 +91,37 @@ def _alert(meta, msg):
     meta["alerted"] = today
 
 
-def publish(tok, text, _retry=True):
+def publish(tok, text, _retry=True, image=None):
     """テキストを1件投稿（コンテナを作る → 公開）。投稿IDを返す。
     リンクのカードが作れなかった（Invalid Link Attachment）時は、少し待ってリンクを明示してもう1回"""
     try:
-        return _publish(tok, text, None if _retry else re.search(r"https://\S+", text).group(0))
+        return _publish(tok, text, None if _retry or image else re.search(r"https://\S+", text).group(0), image)
     except RuntimeError as e:
-        if _retry and "4279047" in str(e) and re.search(r"https://\S+", text):
+        if _retry and not image and "4279047" in str(e) and re.search(r"https://\S+", text):
             time.sleep(15)
             return publish(tok, text, _retry=False)
         raise
 
 
-def _publish(tok, text, link=None):
-    data = {"media_type": "TEXT", "text": text[:LIMIT], "access_token": tok}
-    if link:
+def _publish(tok, text, link=None, image=None):
+    data = {"media_type": "IMAGE" if image else "TEXT", "text": text[:LIMIT], "access_token": tok}
+    if image:
+        data["image_url"] = image
+    if link and not image:
         data["link_attachment"] = link
     r = requests.post(f"{API}/me/threads", data=data, timeout=30)
     if r.status_code != 200:
         raise RuntimeError(f"作成 {r.status_code} {r.text[:200]}")
     cid = r.json()["id"]
     time.sleep(1.5)  # 作ってから少し待って公開（長く待つとGitHubの動く時間が増える）
+    if image:  # 画像は読み込みが終わるまで待つ（最大30秒）
+        for _ in range(15):
+            st = requests.get(f"{API}/{cid}", params={"fields": "status,error_message", "access_token": tok}, timeout=20).json()
+            if st.get("status") == "FINISHED":
+                break
+            if st.get("status") == "ERROR":
+                raise RuntimeError(f"画像 {st.get('error_message')}")
+            time.sleep(2)
     r = requests.post(f"{API}/me/threads_publish", data={"creation_id": cid, "access_token": tok}, timeout=30)
     if r.status_code != 200:
         raise RuntimeError(f"公開 {r.status_code} {r.text[:200]}")
@@ -174,10 +184,47 @@ def _open_items(lots, game, t):
     return [i for i in lots.values() if i.get("game") == game and _is_open(i, t)]
 
 
+def _li_today(game, lots, t):
+    return sorted([i for i in _open_items(lots, game, t) if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == t.date()
+                   and parse_dt(i["end"]) > t + timedelta(hours=1)], key=lambda i: i["end"])
+
+
+def _li_soon(game, lots, t):
+    return sorted([i for i in _open_items(lots, game, t) if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == t.date()
+                   and parse_dt(i["end"]) > t + timedelta(minutes=50)], key=lambda i: i["end"])
+
+
+def _li_new(game, lots, t, since):
+    li = [i for i in _open_items(lots, game, t) if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) >= since
+          and not re.search(r"amazon", i.get("store") or "", re.I)
+          and (not parse_dt(i.get("end")) or parse_dt(i["end"]) > t + timedelta(hours=1))]
+    li.sort(key=lambda i: i.get("found_at") or "", reverse=True)
+    return li
+
+
+def image_png(kind, game, lots, t, since=None):
+    """Xと同じ「抽選券」デザインの一覧の画像（PNG）。kind: today / soon / new"""
+    import ximage
+    label = GAME[game][0]
+    li = {"today": lambda: _li_today(game, lots, t), "soon": lambda: _li_soon(game, lots, t),
+          "new": lambda: _li_new(game, lots, t, since)}[kind]()
+    g = _group(li)
+    if not g:
+        return None
+    rows = []
+    for i, n in g:
+        e = parse_dt(i.get("end"))
+        left = (f"あと{max(1, round((e - t).total_seconds() / 3600))}時間\n{_hm(e)}" if kind == "soon" and e else
+                f"締切\n{_hm(e)}" if kind == "today" and e else f"{e.month}/{e.day}\n{_hm(e)}" if e else "告知で\n確認")
+        rows.append((left, i["store"].strip(), n[0] + (f" ほか{len(n) - 1}種" if len(n) > 1 else "")))
+    title = {"today": f"今日締切の{label}抽選", "soon": f"あと数時間で締切｜{label}", "new": f"新着の{label}抽選"}[kind]
+    kicker = {"today": "今日締切", "soon": "まもなく締切", "new": "新着"}[kind]
+    return ximage.render("list", title, rows, kicker=kicker, sub=f"{len(rows)}店｜応募方法・条件はサイトで", handle="Threads @tcg_chusen")
+
+
 def compose_today(game, lots, t):
     label, slug, tag = GAME[game]
-    li = sorted([i for i in _open_items(lots, game, t) if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == t.date()
-                 and parse_dt(i["end"]) > t + timedelta(hours=1)], key=lambda i: i["end"])
+    li = _li_today(game, lots, t)
     rows = [f"・{i['store'].strip()}（{_hm(parse_dt(i['end']))}まで）\n　{n[0]}{f' ほか{len(n) - 1}種' if len(n) > 1 else ''}"
             for i, n in _group(li)]
     return _fit(f"☀️今日締切｜{label}の抽選（{_md(t)}）", rows,
@@ -186,8 +233,7 @@ def compose_today(game, lots, t):
 
 def compose_soon(game, lots, t):
     label, slug, tag = GAME[game]
-    li = sorted([i for i in _open_items(lots, game, t) if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == t.date()
-                 and parse_dt(i["end"]) > t + timedelta(minutes=50)], key=lambda i: i["end"])
+    li = _li_soon(game, lots, t)
     rows = []
     for i, n in _group(li):
         e = parse_dt(i["end"])
@@ -198,11 +244,7 @@ def compose_soon(game, lots, t):
 
 def compose_new(game, lots, t, since, min_stores=1, head_note=""):
     label, slug, tag = GAME[game]
-    li = [i for i in _open_items(lots, game, t) if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) >= since
-          and not re.search(r"amazon", i.get("store") or "", re.I)
-          and (not parse_dt(i.get("end")) or parse_dt(i["end"]) > t + timedelta(hours=1))]
-    li.sort(key=lambda i: i.get("found_at") or "", reverse=True)
-    g = _group(li)
+    g = _group(_li_new(game, lots, t, since))
     if len(g) < min_stores:
         return ""
     rows = []
@@ -305,6 +347,62 @@ def _each_posts(lots, t, done):
     return out
 
 
+def _digests(settings, lots, t):
+    """この時間に出すまとめの投稿：[(キー, 文, 画像の種類 or None, since)]"""
+    today = t.date().isoformat()
+    h = t.hour
+    yday = (t - timedelta(days=1)).replace(hour=17, minute=0, second=0, microsecond=0)
+    noon = t.replace(hour=11, minute=45, second=0, microsecond=0)
+    out = []
+    for game in GAME:
+        if h == 7:
+            out.append((f"{today}|today|{game}", compose_today(game, lots, t), "today", None, game))
+        elif h == 12:
+            out.append((f"{today}|new12|{game}", compose_new(game, lots, t, yday), "new", yday, game))
+        elif h == 17:
+            out.append((f"{today}|new17|{game}", compose_new(game, lots, t, noon, min_stores=3, head_note="（お昼から）"), "new", noon, game))
+        elif h == 20:
+            out.append((f"{today}|soon|{game}", compose_soon(game, lots, t), "soon", None, game))
+        elif h == 21:  # 夜、人が見やすい時間に1日1回（ユーザーの依頼）
+            out.append((f"{today}|amazon|{game}", compose_amazon(game, lots, t, settings), None, None, game))
+    return out
+
+
+QUEUE = "threads_queue.json"
+
+
+def prepare(settings, site_dir=None):
+    """サイトを公開する前に：この時間のまとめの投稿の文と一覧の画像を作り、画像はサイトの /t/ に置く。
+    投稿はサイトの公開のあと（python src/threads.py）。画像はThreadsが公開中のURLから読み込むため"""
+    from pathlib import Path
+    if not os.environ.get("THREADS_ACCESS_TOKEN") or not settings.get("threads_post", True):
+        return
+    site_dir = site_dir or Path(__file__).resolve().parent.parent / "site"
+    meta = load_json("threads_meta.json", {})
+    done = meta.get("done", {})
+    t = now()
+    lots = load_json("lotteries.json", {})
+    q = []
+    for key, text, kind, since, game in _digests(settings, lots, t):
+        if not text or key in done:
+            continue
+        img = None
+        if kind and settings.get("threads_images", True):
+            try:
+                png = image_png(kind, game, lots, t, since)
+                if png:
+                    name = re.sub(r"[^0-9a-z-]", "-", key.lower()) + ".png"
+                    d = Path(site_dir) / "t"
+                    d.mkdir(parents=True, exist_ok=True)
+                    (d / name).write_bytes(png)
+                    (Path(site_dir) / ".changed").write_text(t.isoformat(), encoding="utf-8")  # 画像を公開するため
+                    img = f"https://tcg-chusen.com/t/{name}"
+            except Exception as e:
+                log(f"Threads: 画像を作れなかった {e}")
+        q.append({"key": key, "text": text, "img": img})
+    save_json(QUEUE, {"at": t.isoformat(), "posts": q})
+
+
 def run(settings):
     if not os.environ.get("THREADS_ACCESS_TOKEN") or not settings.get("threads_post", True):
         return
@@ -330,33 +428,30 @@ def run(settings):
         except Exception as e:
             log(f"Threads: 鍵の確認でエラー {e}")
     lots = load_json("lotteries.json", {})
-    posts = []
-    h = t.hour
-    yday = (t - timedelta(days=1)).replace(hour=17, minute=0, second=0, microsecond=0)
-    noon = t.replace(hour=11, minute=45, second=0, microsecond=0)
-    for game in GAME:
-        if h == 7:
-            posts.append((f"{today}|today|{game}", compose_today(game, lots, t)))
-        elif h == 12:
-            posts.append((f"{today}|new12|{game}", compose_new(game, lots, t, yday)))
-        elif h == 17:
-            posts.append((f"{today}|new17|{game}", compose_new(game, lots, t, noon, min_stores=3, head_note="（お昼から）")))
-        elif h == 20:
-            posts.append((f"{today}|soon|{game}", compose_soon(game, lots, t)))
-        elif h == 21:  # 夜、人が見やすい時間に1日1回（ユーザーの依頼）
-            posts.append((f"{today}|amazon|{game}", compose_amazon(game, lots, t, settings)))
-    posts += _big_posts(lots, t, done)
+    # まとめ（prepare で作った文と画像。古い・無いときはここで文だけ作る）
+    qd = load_json(QUEUE, {})
+    if parse_dt(qd.get("at")) and t - parse_dt(qd["at"]) < timedelta(minutes=50):
+        posts = [(p["key"], p["text"], p.get("img")) for p in qd.get("posts") or []]
+    else:
+        posts = [(k, tx, None) for k, tx, *_ in _digests(settings, lots, t)]
+    posts += [(k, tx, None) for k, tx in _big_posts(lots, t, done)]
     if settings.get("threads_each", True):
-        posts += _each_posts(lots, t, done)[:settings.get("threads_each_per_run", 15)]
+        posts += [(k, tx, None) for k, tx in _each_posts(lots, t, done)[:settings.get("threads_each_per_run", 15)]]
     sent = 0
-    for key, text in posts:
+    for key, text, img in posts:
         if not text or key in done:
             continue
         if settings.get("dry_run"):
-            log("DRY_RUN Threads:\n" + text)
+            log("DRY_RUN Threads:\n" + text + (f"\n（画像 {img}）" if img else ""))
             continue
         try:
-            publish(tok, text)
+            try:
+                publish(tok, text, image=img)
+            except RuntimeError as e:
+                if not img:
+                    raise
+                log(f"Threads: 画像つきで出せなかったので文だけで出す {e}")
+                publish(tok, text)
         except Exception as e:
             log(f"Threads: 投稿失敗 {e}")
             if '"code":190' in str(e) or " 401 " in str(e):
@@ -368,3 +463,9 @@ def run(settings):
     if sent:
         log(f"Threads: {sent}件投稿")
     save_json("threads_meta.json", meta)
+    save_json(QUEUE, {})
+
+
+if __name__ == "__main__":  # サイトの公開のあとにワークフローから動かす
+    from common import load_settings
+    run(load_settings())

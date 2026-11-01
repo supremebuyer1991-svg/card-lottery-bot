@@ -82,7 +82,7 @@ def _ticket(img, box, stub=None, radius=22):
             y += 20
 
 
-def _frame(title, kicker=None, sub=None):
+def _frame(title, kicker=None, sub=None, handle="@pokepi_tcg"):
     img = Image.new("RGBA", (W, H), PAPER + (255,))
     d = ImageDraw.Draw(img)
     # ヘッダー：ロゴ（トレカ［抽選］ナビ）と日時
@@ -121,7 +121,7 @@ def _frame(title, kicker=None, sub=None):
         y += 52
     # フッター
     d.rectangle((0, H - 96, W, H), fill=RED)
-    d.text((60, H - 48), "@pokepi_tcg", font=F(32, "Black"), fill=(255, 255, 255), anchor="lm")
+    d.text((60, H - 48), handle, font=F(32, "Black"), fill=(255, 255, 255), anchor="lm")
     d.text((W - 60, H - 48), "tcg-chusen.com", font=F(30, "Bold"), fill=(255, 255, 255), anchor="rm")
     return img, y + 30
 
@@ -214,13 +214,13 @@ def _text(img, y, rows):
         yy += lh
 
 
-def render(kind, title, rows, kicker=None, sub=None, more=None):
+def render(kind, title, rows, kicker=None, sub=None, more=None, handle="@pokepi_tcg"):
     import re
     emo = re.compile("[\U0001F000-\U0001FAFF\u2300-\u23FF\u2600-\u27BF\uFE0F]")
     title, kicker, sub = (emo.sub("", t).strip() if t else t for t in (title, kicker, sub))
     clean = lambda v: emo.sub("", v).strip() if isinstance(v, str) else tuple(clean(x) for x in v) if isinstance(v, tuple) else v
     rows = [clean(r) for r in rows]
-    img, y = _frame(title, kicker, sub)
+    img, y = _frame(title, kicker, sub, handle)
     {"list": lambda: _list(img, y, rows, more), "ranking": lambda: _ranking(img, y, rows),
      "stat": lambda: _stat(img, y, rows), "text": lambda: _text(img, y, rows)}[kind]()
     buf = io.BytesIO()

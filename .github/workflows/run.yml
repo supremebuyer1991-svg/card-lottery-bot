@@ -71,6 +71,14 @@ jobs:
           # 初回だけサイトの置き場所を自動で作る（2回目以降は「もうある」で何もしない）
           npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || true
           npx --yes wrangler@4 pages deploy site --project-name="$PROJECT" --branch=main
+      - name: post to Threads (after the site is published)
+        if: github.event_name != 'issues'
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+          DRY_RUN: ${{ vars.DRY_RUN }}
+        run: python src/threads.py || true
       - name: notify search engines (IndexNow)
         if: hashFiles('site/.changed') != ''
         env:
