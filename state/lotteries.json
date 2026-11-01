@@ -29933,8 +29933,8 @@
     "start": null,
     "end": "2026-11-02T21:59:00+09:00",
     "announce": null,
-    "method": null,
-    "conditions": null,
+    "method": "ポケカ「30THセレブレーション」の抽選販売(応募締切 11/2(月)21:59)。応募方法の詳細は本文に記載なし",
+    "conditions": "会員登録・アプリ・本人確認書類・購入上限・代理購入・価格などの条件は、本文に書かれていません。分かるのは応募の締切が11/2(月)21:59であることだけです。",
     "url": "https://livepocket.jp/e/3tqn7",
     "x_post": "https://x.com/OnchainOutlaw/status/2116799932090999001",
     "game": "pokemon",
@@ -29950,8 +29950,12 @@
     "status": "approved",
     "found_at": "2026-11-01T17:31:15.032831+09:00",
     "multi": false,
-    "cls": "3eab1ae2461e",
-    "tco_checked": true
+    "cls": "d67200862d6b",
+    "tco_checked": true,
+    "page_checked_at": "2026-11-01T17:37:14.422964+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "e95bea833b0b3d6d": {
     "store": "ふるいち イオンモール神戸北店",
