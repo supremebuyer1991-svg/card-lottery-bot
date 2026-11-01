@@ -451,12 +451,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "7e09241930f50420",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.046439+09:00",
     "multi": false,
     "cls": "74dab7c02654",
     "page_checked_at": "2026-11-01T20:21:46.137220+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248324+09:00"
   },
   "1bf673ffc79dad4a": {
     "store": "TSUTAYA Trading Card 平塚",
@@ -1659,10 +1661,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "2c966a8e09624fa1",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047978+09:00",
     "multi": false,
-    "cls": "903c790f838e"
+    "cls": "903c790f838e",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248340+09:00"
   },
   "13174baafa62060e": {
     "store": "TSUTAYA辰巳台店",
@@ -1686,13 +1690,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "13174baafa62060e",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.047996+09:00",
     "multi": false,
     "cls": "b8d5812a17e0",
     "apply_url": "https://livepocket.jp/e/7c2e-",
     "page_checked_at": "2026-11-01T20:21:50.308674+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248345+09:00"
   },
   "cbc03c42be68ec4f": {
     "store": "ふるいち八潮中央店",
@@ -1833,10 +1839,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "63b57d1c776a0319",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-26T18:20:17.048385+09:00",
     "multi": false,
-    "cls": "82a7bf53ea45"
+    "cls": "82a7bf53ea45",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248349+09:00"
   },
   "2281218cf3c4bb67": {
     "store": "TRADING CARD SHOP OTO（オト）鳴門市",
@@ -3528,14 +3536,15 @@
     "source": "X「ポケカ 抽選」",
     "source_url": "https://x.com/",
     "key": "5b02c45271cc4f9c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-26T20:43:24.385213+09:00",
     "multi": false,
     "cls": "9626c2c87918",
     "page_checked_at": "2026-11-01T20:21:56.513017+09:00",
     "page_err": "中身が空",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T22:05:22.734694+09:00"
   },
   "9234371bbec61ffe": {
     "store": "キッズリパブリック",
@@ -8057,12 +8066,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "b68fdd59963defcc",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:12.193612+09:00",
     "page_checked_at": "2026-11-01T20:22:04.750912+09:00",
     "multi": false,
     "cls": "afef4584dc4a",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248352+09:00"
   },
   "babeaee16be30d1d": {
     "store": "しまむらパーク",
@@ -8851,10 +8862,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "79890230ce17e383",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:16.342165+09:00",
     "multi": false,
-    "cls": "626effc19caa"
+    "cls": "626effc19caa",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248562+09:00"
   },
   "c5bf494f9ac00ddb": {
     "store": "古本市場・ふるいち 各店",
@@ -11480,12 +11493,14 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "25fb7de87a078326",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-29T10:30:22.381353+09:00",
     "page_checked_at": "2026-11-01T20:48:39.042529+09:00",
     "multi": false,
     "cls": "99a5e8738af2",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248569+09:00"
   },
   "566b3130afa80a68": {
     "store": "福田屋百貨店（宇都宮店・インターパーク店）",
@@ -12101,36 +12116,6 @@
     "multi": false,
     "cls": "5eb600ab75a5",
     "issue": 215
-  },
-  "0ac30e0de6914d62": {
-    "store": "古本市場 宝塚店",
-    "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（購入権抽選）",
-    "series": "30周年パック",
-    "end": "2026-10-30T22:00:00+09:00",
-    "url": "https://livepocket.jp/e/6mbex",
-    "x_post": null,
-    "channel": "store",
-    "area": "兵庫県",
-    "method": "オンライン",
-    "conditions": "会員・本人確認",
-    "tags": [
-      "会員",
-      "本人確認"
-    ],
-    "id_check": true,
-    "member": "account",
-    "confidence": 0.95,
-    "game": "pokemon",
-    "source": "カード抽選まとめ ポケカ",
-    "source_url": "https://cardchusen.com/pokeka",
-    "no_quote": true,
-    "key": "0ac30e0de6914d62",
-    "status": "duplicate",
-    "found_at": "2026-10-29T13:11:18.726804+09:00",
-    "page_checked_at": "2026-10-29T13:11:31.085899+09:00",
-    "multi": false,
-    "cls": "a256fdb1a850",
-    "duplicate_of": "2ff6f3ed32ccaa57"
   },
   "3a61ed7b45cad82d": {
     "store": "お宝創庫グループ（お宝創庫／おじゃま館／メディオ！／プレイズ 各店）",
@@ -13632,36 +13617,6 @@
     "cls": "615b24076a04",
     "duplicate_of": "069dba1abc2f5ad4"
   },
-  "bfb0aab13e2ae36f": {
-    "store": "古本市場 宝塚店",
-    "product": "拡張パック 30th CELEBRATION",
-    "series": "30th CELEBRATION",
-    "start": null,
-    "end": "2026-10-30T22:00:00+09:00",
-    "announce": "2026-11-04〜2026-11-05",
-    "method": "LivePocket",
-    "conditions": "1人1回、店頭のみ購入、顔写真付き本人確認書が必要、購入は11/6〜8、シュリンク剥がしで渡し",
-    "url": "https://t.co/NsP7ivLiut",
-    "x_post": "https://x.com/Tekabo_BOX/status/2115945273457623285",
-    "game": "pokemon",
-    "channel": "store",
-    "area": "兵庫県",
-    "id_check": true,
-    "member": null,
-    "tags": [
-      "本人確認",
-      "アプリ"
-    ],
-    "confidence": 0.9,
-    "source": "X LivePocket抽選",
-    "source_url": "https://x.com/",
-    "key": "bfb0aab13e2ae36f",
-    "status": "duplicate",
-    "found_at": "2026-10-30T09:00:00.932290+09:00",
-    "multi": false,
-    "cls": "0aa0808df958",
-    "duplicate_of": "2ff6f3ed32ccaa57"
-  },
   "ebb49ec57f6f7e8c": {
     "store": "カードボックス 横浜西口2号店",
     "product": "拡張パック 30th CELEBRATION",
@@ -13746,33 +13701,6 @@
     "tco_checked": true,
     "page_checked_at": "2026-10-30T09:27:49.655314+09:00",
     "duplicate_of": "b68fdd59963defcc"
-  },
-  "568d22e5219f89b5": {
-    "store": "古本市場宝塚店",
-    "product": "30th CELEBRATION",
-    "series": "30th CELEBRATION",
-    "start": null,
-    "end": "2026-10-30T22:00:00+09:00",
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://t.co/e8cmFbAGk6",
-    "x_post": "https://x.com/crashseq/status/2115941759524168058",
-    "game": "pokemon",
-    "channel": "store",
-    "area": "兵庫県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.5,
-    "source": "X LivePocket抽選",
-    "source_url": "https://x.com/",
-    "key": "568d22e5219f89b5",
-    "status": "duplicate",
-    "found_at": "2026-10-30T09:00:00.932497+09:00",
-    "multi": false,
-    "cls": "2b63279ace86",
-    "duplicate_of": "2ff6f3ed32ccaa57"
   },
   "a8b218b2fb23c39a": {
     "store": "キデイランド",
@@ -16393,7 +16321,7 @@
     "url": "https://livepocket.jp/e/8xaaf",
     "slug": "furuichi-fukai-30th-1101",
     "key": "28ce9bcb26342b37",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-30T14:26:53.122283+09:00",
     "manual": true,
     "source": "手動追加",
@@ -16403,7 +16331,8 @@
     "x_post": "https://x.com/OnchainOutlaw/status/2115992134314795419",
     "apply_url": "https://livepocket.jp/e/8xaaf",
     "page_checked_at": "2026-11-01T08:24:59.714534+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T22:05:22.738787+09:00"
   },
   "c1f3de480f81017c": {
     "game": "pokemon",
@@ -18306,7 +18235,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "cd8185b5c5a81c3c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T19:51:45.869425+09:00",
     "multi": false,
     "cls": "68927cb55646",
@@ -18314,7 +18243,8 @@
     "post_checked": true,
     "details_checked": true,
     "address": "茨城県茨城県堀町1094-7",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T22:05:22.739017+09:00"
   },
   "f5d6609e646b0860": {
     "store": "フタバ図書TSUTAYAアルティ福山店",
@@ -18370,12 +18300,13 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "cb3874cc895b8da9",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T19:51:45.869480+09:00",
     "multi": false,
     "cls": "0be0258c8072",
     "page_checked_at": "2026-11-01T08:25:27.133901+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T22:05:22.739034+09:00"
   },
   "21fce31d788004d4": {
     "store": "プレミアムバンダイ",
@@ -20849,12 +20780,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ebc7bef46b6034fb",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T10:29:50.824191+09:00",
     "announce": "2026-11-02",
     "start": "2026-10-30T00:00:00+09:00",
     "multi": false,
-    "cls": "36e88a7ac629"
+    "cls": "36e88a7ac629",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248356+09:00"
   },
   "95fdbaa6c521d804": {
     "store": "フルコンプ（八王子本店ほか対象店舗）",
@@ -22052,12 +21985,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ceb17bfa1239633a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T12:08:49.906212+09:00",
     "page_checked_at": "2026-11-01T21:31:29.188575+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "b350b0f5ff1b"
+    "cls": "b350b0f5ff1b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T22:04:49.248360+09:00"
   },
   "f2a104a1b8661ed4": {
     "store": "イオン九州（iAEONアプリ）",
@@ -22207,14 +22142,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "09fb6640ea32db40",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T12:09:36.658026+09:00",
     "page_checked_at": "2026-11-01T21:31:31.297263+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "694b8077c69b"
+    "cls": "694b8077c69b",
+    "closed_at": "2026-11-01T22:05:22.741743+09:00"
   },
   "93beb4cdf5a65822": {
     "store": "TSUTAYA田宮店",
@@ -23476,14 +23412,15 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "a931abaf0b02eb1e",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-31T16:41:28.089250+09:00",
     "page_checked_at": "2026-11-01T13:39:26.914418+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
     "cls": "324029aeb9fb",
-    "issue": 327
+    "issue": 327,
+    "closed_at": "2026-11-01T22:05:22.742013+09:00"
   },
   "c13341db85fd1376": {
     "store": "TSUTAYA北千住店",
@@ -24435,14 +24372,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "c0a41002d2eb23ee",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T19:59:58.579982+09:00",
     "page_checked_at": "2026-11-01T21:32:09.897068+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "f5ae3cba5206"
+    "cls": "f5ae3cba5206",
+    "closed_at": "2026-11-01T22:05:22.742165+09:00"
   },
   "e560ea625a77cdfa": {
     "store": "深井（大阪府）",
@@ -24532,14 +24470,15 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "8ce7b828169c6d7a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T20:59:59.466501+09:00",
     "multi": false,
     "cls": "ae8e742b42a2",
     "tco_checked": true,
     "page_checked_at": "2026-11-01T17:32:15.352806+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T22:05:22.742235+09:00"
   },
   "1dbabeefa88b069e": {
     "store": "ビックカメラ 新横浜店",
@@ -28101,13 +28040,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "f42753a7264700ea",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-01T15:12:50.377669+09:00",
     "page_checked_at": "2026-11-01T21:32:19.183143+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "3632cd354570",
-    "apply_url": "https://livepocket.jp/e/j2_s8"
+    "apply_url": "https://livepocket.jp/e/j2_s8",
+    "closed_at": "2026-11-01T22:05:22.742756+09:00"
   },
   "02c98ba319991848": {
     "store": "古本市場 東大阪店",
@@ -29069,7 +29009,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "af32f2c5b8b2b7f1",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-01T16:30:43.960603+09:00",
     "multi": false,
     "cls": "3e42c9e5ff91",
@@ -29079,7 +29019,8 @@
     "page_checked_at": "2026-11-01T16:50:21.573187+09:00",
     "page_err": "中身が空",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T22:05:22.742819+09:00"
   },
   "fe63567c6e322e17": {
     "store": "古本市場 草加店",
