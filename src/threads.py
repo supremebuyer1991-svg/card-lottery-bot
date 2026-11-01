@@ -89,9 +89,23 @@ def _alert(meta, msg):
     meta["alerted"] = today
 
 
-def publish(tok, text):
-    """テキストを1件投稿（コンテナを作る → 公開）。投稿IDを返す"""
-    r = requests.post(f"{API}/me/threads", data={"media_type": "TEXT", "text": text[:LIMIT], "access_token": tok}, timeout=30)
+def publish(tok, text, _retry=True):
+    """テキストを1件投稿（コンテナを作る → 公開）。投稿IDを返す。
+    リンクのカードが作れなかった（Invalid Link Attachment）時は、少し待ってリンクを明示してもう1回"""
+    try:
+        return _publish(tok, text, None if _retry else re.search(r"https://\S+", text).group(0))
+    except RuntimeError as e:
+        if _retry and "4279047" in str(e) and re.search(r"https://\S+", text):
+            time.sleep(15)
+            return publish(tok, text, _retry=False)
+        raise
+
+
+def _publish(tok, text, link=None):
+    data = {"media_type": "TEXT", "text": text[:LIMIT], "access_token": tok}
+    if link:
+        data["link_attachment"] = link
+    r = requests.post(f"{API}/me/threads", data=data, timeout=30)
     if r.status_code != 200:
         raise RuntimeError(f"作成 {r.status_code} {r.text[:200]}")
     cid = r.json()["id"]
@@ -277,7 +291,7 @@ def run(settings):
             publish(tok, text)
         except Exception as e:
             log(f"Threads: 投稿失敗 {e}")
-            if "OAuth" in str(e) or "190" in str(e) or "401" in str(e):
+            if '"code":190' in str(e) or " 401 " in str(e):
                 _alert(meta, "Threadsに投稿できませんでした（鍵が切れているかもしれません）。Meta for Developers で新しいトークンを作って、GitHubの THREADS_ACCESS_TOKEN を入れ直してください。")
             break
         done[key] = t.isoformat()
