@@ -241,6 +241,16 @@ def run(settings):
         tok = _refresh(meta, tok)
     except Exception as e:
         log(f"Threads: トークン延長でエラー {e}")
+    if meta.get("checked") != today:  # 1日1回、鍵が使えるか（どのアカウントか）を確かめてログに出す
+        try:
+            r = requests.get(f"{API}/me", params={"fields": "username", "access_token": tok}, timeout=20)
+            log(f"Threads: 鍵の確認 {r.status_code} {r.json().get('username') if r.status_code == 200 else r.text[:150]}")
+            if r.status_code == 200:
+                meta["checked"] = today
+            else:
+                _alert(meta, "Threadsの鍵（アクセストークン）が使えません。Meta for Developers で新しいトークンを作って、GitHubの THREADS_ACCESS_TOKEN を入れ直してください。")
+        except Exception as e:
+            log(f"Threads: 鍵の確認でエラー {e}")
     lots = load_json("lotteries.json", {})
     posts = []
     h = t.hour
