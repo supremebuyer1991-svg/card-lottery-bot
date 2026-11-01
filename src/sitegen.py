@@ -1150,7 +1150,8 @@ def build(settings=None, out_dir=None, sample=None):
         return {"@context": "https://schema.org", "@type": "ItemList", "name": title, "numberOfItems": len(sub),
                 "itemListElement": [{"@type": "ListItem", "position": k + 1,
                                      "name": f"{i['store']} {i.get('series') or i.get('product')}（{_fmt(i['end'])}締切）",
-                                     **({"url": i["url"]} if i.get("url") else {})} for k, i in enumerate(rows)]}
+                                     **({"url": f"{site}/{i['lpath']}"} if i.get("lpath") and site else
+                                        {"url": i["url"]} if i.get("url") else {})} for k, i in enumerate(rows)]}
 
     def write(path, lock, meta, subset, trail=None):
         p = out / path / "index.html"
@@ -2207,6 +2208,9 @@ def build(settings=None, out_dir=None, sample=None):
                                    redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx), encoding="utf-8")
         if active:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
+            ics = detail.cal_ics(d, d.get("store") or "", detail.short_name(d), f"{site}/{lp}" if site else "")
+            if ics:
+                (p.parent / "shimekiri.ics").write_text(ics, encoding="utf-8")
 
     # 応募したリスト（このブラウザの中だけの記録を一覧にする。検索・サイトマップには載せない）
     (out / "mylist").mkdir(parents=True, exist_ok=True)

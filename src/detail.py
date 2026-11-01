@@ -127,6 +127,40 @@ def _status(i, t):
     return "", "受付中"
 
 
+def cal_ics(i, store, name, canon):
+    """締切の1時間前〜締切の予定（.ics）。無ければ None"""
+    from datetime import timedelta, timezone
+    e = parse_dt(i.get("end"))
+    if not e:
+        return None
+    st = e - timedelta(hours=1)
+    z = lambda d: d.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    esc = lambda x: x.replace("\\", "\\\\").replace(",", "\\,").replace(";", "\\;")
+    title = f"【抽選締切】{store}「{name}」"
+    det = f"応募はお早めに。くわしくは {canon}" if canon else "応募はお早めに"
+    return "\r\n".join(["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//tcg-chusen//JP", "BEGIN:VEVENT",
+                         f"UID:{(i.get('key') or 'x')[:16]}@tcg-chusen.com", f"DTSTAMP:{z(st)}", f"DTSTART:{z(st)}", f"DTEND:{z(e)}",
+                         "SUMMARY:" + esc(title), "DESCRIPTION:" + esc(det),
+                         "BEGIN:VALARM", "TRIGGER:-PT30M", "ACTION:DISPLAY", "DESCRIPTION:" + esc(title),
+                         "END:VALARM", "END:VEVENT", "END:VCALENDAR"]) + "\r\n"
+
+
+def _cal_links(i, store, name, canon):
+    """締切をカレンダーに入れるボタン（Googleカレンダー／iPhone・Androidのカレンダー＝同じフォルダの shimekiri.ics）"""
+    from datetime import timedelta, timezone
+    e = parse_dt(i.get("end"))
+    if not e:
+        return ""
+    st = e - timedelta(hours=1)
+    z = lambda d: d.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    title = f"【抽選締切】{store}「{name}」"
+    det = f"応募はお早めに。くわしくは {canon}" if canon else "応募はお早めに"
+    g = ("https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + quote(title) +
+         f"&dates={z(st)}/{z(e)}&details=" + quote(det))
+    return (f'<a href="{escape(g)}" target="_blank" rel="noopener">📅Googleカレンダーに締切を入れる</a>'
+            '<a href="shimekiri.ics">📅スマホのカレンダーに入れる</a>')
+
+
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None):
     """1件分のHTML。i は sitegen の row（＋products / start / announce / buy）"""
     g = i.get("game")
@@ -197,7 +231,8 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             "url": i.get("url"), "lpath": path, "game": g}
     ap_btn = (f'<button type="button" id="ap" class="apb" data-key="{escape(i.get("key") or "")}" '
               f'data-snap="{escape(json.dumps(snap, ensure_ascii=False))}">☐ 応募した</button>') if i.get("key") else ""
-    acts = (f'<div class="acts">{btn}<div class="sub-acts">{ap_btn}<a href="{escape(share_url)}" target="_blank" rel="noopener">Xでシェア</a>'
+    cal_btn = _cal_links(i, store, name, canon) if not is_end else ""
+    acts = (f'<div class="acts">{btn}<div class="sub-acts">{ap_btn}{cal_btn}<a href="{escape(share_url)}" target="_blank" rel="noopener">Xでシェア</a>'
             f'<a href="/{GAME_SLUG.get(g, "")}/">ほかの抽選を見る</a></div>'
             '<p class="note">情報は変わることがあります。応募前に必ず公式の告知をご確認ください。</p></div>')
 
@@ -209,6 +244,11 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
         for k, (n, p) in enumerate(trail)) + "</nav>"
     ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": k + 1, "name": n, "item": f"{site}/{p}"} for k, (n, p) in enumerate(trail)]}]
+    # ページの公開日・更新日（検索で「新しい情報」と分かるように）
+    ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": title, "description": desc, "url": canon or None,
+               "inLanguage": "ja", **({"datePublished": i["found_at"]} if i.get("found_at") else {}),
+               **({"dateModified": updated} if updated else {}),
+               "publisher": {"@type": "Organization", "name": "トレカ抽選ナビ", "url": f"{site}/"}})
 
     og = f"{site}/og.png" if site else "/og.png"
     head = [f"<title>{escape(title)}</title>", f'<meta name="description" content="{escape(desc)}">',
