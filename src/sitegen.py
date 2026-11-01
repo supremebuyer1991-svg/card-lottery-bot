@@ -686,6 +686,17 @@ def page(data: dict, meta: dict, standalone=True) -> str:
 _LIKELY = {}
 
 
+def guide_links_html():
+    """/guide/ に出す「お店ごとの応募のしかた」の一覧（config/guides.yaml）"""
+    import yaml
+    gp = Path(__file__).resolve().parent.parent / "config" / "guides.yaml"
+    gl = ((yaml.safe_load(gp.read_text(encoding="utf-8")) or {}).get("guides") or []) if gp.exists() else []
+    if not gl:
+        return ""
+    return ('<h2>お店ごとの応募のしかた・結果の確かめ方</h2><ul>' +
+            "".join(f'<li><a href="/guide/{escape(g["slug"])}/">{escape(g.get("short") or g["h1"])}</a></li>' for g in gl) + "</ul>")
+
+
 def likely_chains_html(game, series):
     """発売前・受付前の弾のページに「抽選をしそうなお店」：過去60日に、同じゲームで抽選が多かったチェーン（お店ページの履歴から）"""
     from datetime import timedelta
@@ -1499,6 +1510,7 @@ def build(settings=None, out_dir=None, sample=None):
 <li>転売目的の購入を禁止しているお店が多いです。</li>
 <li>応募条件や期間は変わることがあります。応募前に必ずお店の告知を確認してください。</li>
 </ul>
+{guide_links_html()}
 <p class="note">ネット抽選だけを見たいときは<a href="{gl("pokemon", "online")}">ポケカのネット抽選</a>・<a href="{gl("onepiece", "online")}">ワンピースカードのネット抽選</a>をどうぞ。</p>
 </article>"""
         write("guide/", {"game": games[0]}, {
@@ -1512,6 +1524,32 @@ def build(settings=None, out_dir=None, sample=None):
             "lead": "抽選の種類・当たりやすい抽選の選び方・応募前の準備をまとめた解説ページです。下には今受付中のポケカの抽選を載せています。",
             "aff": art, "links": _menu(items, games, games[0]), "root": "/"}, [i for i in items if i["game"] == games[0]],
             [("トップ", ""), ("抽選の当て方", "guide/")])
+
+    # --- お店ごとの解説ページ（/guide/xxx/）：応募のしかた・結果の確かめ方・当選後の購入。中身は config/guides.yaml（公式の告知で確かめた事実だけ）。
+    #     下には、いま受付中のそのお店の抽選（データから）を載せる ---
+    if items:
+        import yaml
+        gp = Path(__file__).resolve().parent.parent / "config" / "guides.yaml"
+        guides = ((yaml.safe_load(gp.read_text(encoding="utf-8")) or {}).get("guides") or []) if gp.exists() else []
+        for gd in guides:
+            rx = re.compile(gd["store_re"], re.I)
+            sub = [i for i in items if rx.search(i.get("store") or "")]
+            n_on = sum(1 for i in sub if i.get("channel") != "store")
+            live = (f'<p class="lead2">いま受付中の{escape(gd["name"])}の抽選は<b>{len(sub)}件</b>です（{upd_hm}時点・下の一覧）。'
+                    '新しい抽選が見つかり次第、自動で追加されます。</p>') if sub else (
+                    f'<p class="lead2">いま受付中の{escape(gd["name"])}の抽選はありません（{upd_hm}時点）。始まり次第、このページの下に自動で載ります。</p>')
+            body = "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in gd.get("sections") or [])
+            src_html = ('<p class="note">参考：' + "・".join(f'<a href="{escape(u)}" target="_blank" rel="noopener nofollow">{escape(t)}</a>'
+                                                          for t, u in (gd.get("sources") or [])) + '。条件は抽選ごとに変わることがあるため、応募前に必ずお店の告知をご確認ください。</p>')
+            art = (f'<article class="guide">{live}<p>{gd["intro"]}</p>{body}{src_html}'
+                   '<p class="note"><a href="/guide/">抽選の当て方・コツ（全体）</a>もあわせてどうぞ。</p></article>')
+            g0 = gd.get("game") or games[0]
+            write(f"guide/{gd['slug']}/", {"game": g0}, {
+                "title": gd["title"] + "｜トレカ抽選ナビ", "desc": gd["desc"],
+                "summary": summary([i for i in sub if i["game"] == g0] or [i for i in items if i["game"] == g0], gd["name"] + "の抽選"),
+                "faq": [tuple(q) for q in gd.get("faq") or []], "h1": gd["h1"],
+                "lead": gd.get("lead") or "", "aff": art, "links": _menu(items, games, g0), "root": "/"},
+                sub, [("トップ", ""), ("抽選の当て方", "guide/"), (gd["name"], f"guide/{gd['slug']}/")])
 
     # --- BOXの相場の一覧（/souba/）：スニダンの取引の相場・定価との差・前日比・1週間比・30日のグラフ ---
     if souba_sm:
