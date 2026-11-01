@@ -15,6 +15,13 @@ on:
         description: "追加の指定（例: --theme=light,dark,game --only=pokemon-up）"
         default: ""
 
+concurrency:
+  group: video
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
 jobs:
   video:
     runs-on: ubuntu-latest
@@ -33,12 +40,26 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
         run: |
           ARGS="${{ github.event.inputs.args }}"
-          if [ "${{ github.event_name }}" = "schedule" ]; then ARGS="--theme=light --youtube --weekly-slot"; fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then ARGS="--theme=light --youtube --tiktok --weekly-slot"; fi
           cd src && python boxrank.py ../video "${{ github.event.inputs.span || 'week' }}" --send $ARGS
       - uses: actions/upload-artifact@v4
         with:
           name: box-rank-video
           path: video/*.mp4
           retention-days: 3
+      - name: save state（TikTokの鍵は使うたびに新しくなるので保存）
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state/
+          git diff --cached --quiet && exit 0
+          git commit -m "update state (video)"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1

@@ -492,5 +492,13 @@ if __name__ == "__main__":
                     except Exception as e:
                         log(f"YouTube: 失敗 {e}")
                         note = f"\n⚠YouTubeへの投稿に失敗：{str(e)[:150]}"
+                if "--tiktok" in sys.argv:
+                    import tiktok
+                    try:
+                        if tiktok.upload_draft(p):
+                            note += "\n📱TikTokの下書きに送りました（アプリの受信箱から曲をのせて「投稿」）"
+                    except Exception as e:
+                        log(f"TikTok: 失敗 {e}")
+                        note += f"\n⚠TikTokの下書きに失敗：{str(e)[:150]}"
                 if "--send" in sys.argv:
                     send(p, "🎬ランキング動画（TikTokなどに手で投稿する用）" + note + "\n\n" + caption(kind, span, game, rows))
