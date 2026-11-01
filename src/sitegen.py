@@ -2041,14 +2041,20 @@ def build(settings=None, out_dir=None, sample=None):
             rqv = _cnt(w for v in hv for w in (v.get("rq") or []))
             li = [f"<li><b>応募方法</b>：{escape(how)}</li>",
                   f"<li><b>受け取り</b>：{escape('・'.join(f'{k}{c_}回' for k, c_ in rec_))}</li>"]
+            ask = "わからなかった抽選は、応募ページで確認してください"
             if idv:
                 yes = sum(1 for x in idv if x)
-                li.append(f"<li><b>本人確認</b>：" + (f"必要だった抽選が{yes}回（確認できた{len(idv)}回のうち）" if yes else f"不要（確認できた{len(idv)}回）") + "</li>")
+                li.append(f"<li><b>本人確認</b>：" + (f"必要だった抽選が{yes}回（確認できた{len(idv)}回のうち）" if yes else f"不要（確認できた{len(idv)}回）") +
+                          (f"<small>（{n_ - len(idv)}回は{ask}）</small>" if len(idv) < n_ else "") + "</li>")
+            else:
+                li.append("<li><b>本人確認</b>：応募ページで確認してください</li>")
             if memv:
                 mm = {"card": "会員カードが必要", "account": "会員登録が必要", "none": "会員登録なしで応募できた"}
-                li.append("<li><b>会員</b>：" + escape("・".join(f"{mm.get(k, k)}{c_}回" for k, c_ in _cnt(memv))) + "</li>")
-            if rqv:
-                li.append("<li><b>そのほかの条件</b>：" + escape("・".join(f"{k}（{c_}回）" for k, c_ in rqv)) + "</li>")
+                li.append("<li><b>会員</b>：" + escape("・".join(f"{mm.get(k, k)}{c_}回" for k, c_ in _cnt(memv))) +
+                          (f"<small>（{n_ - len(memv)}回は{ask}）</small>" if len(memv) < n_ else "") + "</li>")
+            else:
+                li.append("<li><b>会員</b>：応募ページで確認してください</li>")
+            li.append("<li><b>そのほかの条件</b>：" + (escape("・".join(f"{k}（{c_}回）" for k, c_ in rqv)) if rqv else "応募ページで確認してください") + "</li>")
             trend_html = (f'<section class="hist"><h2>{escape(name)}のよくある抽選の形<small>過去{n_}回の抽選から</small></h2><ul>{"".join(li)}</ul>'
                           '<p class="note">※トレカ抽選ナビが見つけた抽選の集計です。条件は抽選ごとに変わるので、応募前に必ずお店の告知をご確認ください。</p></section>')
             top_how = _cnt(v["m"] for v in hv)[0][0]
@@ -2058,7 +2064,9 @@ def build(settings=None, out_dir=None, sample=None):
                 yes = sum(1 for x in idv if x)
                 faq_s.append((f"{name}の抽選に本人確認は必要ですか？",
                               (f"確認できた{len(idv)}回のうち{yes}回は本人確認が必要でした。" if yes else f"確認できた{len(idv)}回はどれも本人確認は不要でした。") +
-                              "抽選ごとに変わることがあるので、告知を確認してください。"))
+                              "抽選ごとに変わることがあるので、応募ページで確認してください。"))
+            else:
+                faq_s.append((f"{name}の抽選に本人確認は必要ですか？", "トレカ抽選ナビでは確認できていません。応募ページで確認してください。"))
         if r.get("address"):
             from address import maps_url
             addr_html = (f'<p class="ann"><b>📍 住所</b>：{escape(r["address"])} '
