@@ -440,7 +440,13 @@ def run(settings):
         posts = [(k, tx, None) for k, tx, *_ in _digests(settings, lots, t)]
     posts += [(k, tx, None) for k, tx in _big_posts(lots, t, done)]
     if settings.get("threads_each", True):
-        posts += [(k, tx, None) for k, tx in _each_posts(lots, t, done)[:settings.get("threads_each_per_run", 15)]]
+        # お店ごとの速報は出しすぎるとスパム扱いで表示されなくなるので、1回1件・1日6件まで・前の速報から55分あける
+        # （出せなかった分は昼・夕方の「新着」のまとめに入る）
+        n_today = sum(1 for k, v in done.items() if k.startswith("each|") and str(v)[:10] == today)
+        last = max((parse_dt(v) for k, v in done.items() if k.startswith("each|") and parse_dt(v)), default=None)
+        room = min(settings.get("threads_each_per_run", 1), settings.get("threads_each_per_day", 6) - n_today)
+        if room > 0 and (not last or t - last >= timedelta(minutes=55)):
+            posts += [(k, tx, None) for k, tx in _each_posts(lots, t, done)[:room]]
     sent = 0
     for key, text, img in posts:
         if not text or key in done:
