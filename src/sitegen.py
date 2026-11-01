@@ -469,7 +469,8 @@ def line_box(area):
         return ""
     r, u = lr
     return (f'<a class="line-room" href="{escape(u)}" target="_blank" rel="noopener"><b>LINE</b>'
-            f'<span><strong>{escape(r)}のオプチャに参加する</strong><small>近くの人と「どこで買えた・抽選やってる」をリアルタイムで共有（テスト中）</small></span></a>')
+            f'<span><strong>{escape(r)}のオプチャに参加する</strong><small>近くの人と「どこで買えた・抽選やってる」をリアルタイムで共有（テスト中）。'
+            f'参加後、サブトークルームから【{escape(r)}】のルームを選んでください</small></span></a>')
 
 
 def _sns_bar():
@@ -1542,7 +1543,8 @@ def build(settings=None, out_dir=None, sample=None):
             main_c = (f'<a class="line-room main" href="{escape(main_u)}" target="_blank" rel="noopener"><b>LINE</b><span><strong>【ポケモン&amp;ワンピース】トレカ販売情報ナビ</strong>'
                       f'<small>全国向け。どの地域のルームに入るか迷ったらここ</small></span></a>') if main_u.startswith("https://") else ""
             body_l = ('<div class="guide"><p>地域ごとのLINEオープンチャットで、近くの人と「どこで買えた」「どこで抽選をやっている」を<b>リアルタイムで共有</b>できます（テスト中）。'
-                      '住んでいる地域のルームに参加してください。</p></div>'
+                      '住んでいる地域のルームに参加してください。</p>'
+                      '<p><b>参加のしかた</b>：ボタンを押すと「トレカ販売情報ナビ」が開きます。参加したあと、<b>サブトークルームから参加したい地域のルーム</b>を選んでください。</p></div>'
                       f'<div class="line-rooms">{main_c}{cards}</div>'
                       '<p class="ch-note">※オープンチャットはLINEのサービスです。ルールを守って参加してください。転売目的の売買の呼びかけはご遠慮ください。</p>')
             write("line/", {"game": games[0], "channel": "store"}, {
