@@ -4899,6 +4899,13 @@
   "store/bookoff-73276/": {
     "name": "ブックオフ西友大森店",
     "items": {
+      "4a37172d75833fca": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T17:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "f622ed419292a5b3": {
         "p": "PRECIOUS BOX",
         "g": "onepiece",
@@ -8982,6 +8989,13 @@
         "e": "2026-11-01T23:00",
         "f": "2026-10-28",
         "c": "store"
+      },
+      "f59b33faae4e2473": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-11-01",
+        "c": "store"
       }
     }
   },
@@ -11492,6 +11506,14 @@
         "f": "2026-10-31",
         "c": "store",
         "a": "2026-11-02"
+      },
+      "fd0760e60efc5924": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-11-01",
+        "c": "store",
+        "a": "2026-11-02"
       }
     }
   },
@@ -12521,6 +12543,14 @@
   "store/furuichi-b4316/": {
     "name": "古本市場三田店",
     "items": {
+      "f42753a7264700ea": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T22:01",
+        "f": "2026-11-01",
+        "c": "store",
+        "a": "2026-11-04"
+      },
       "82d87f46b01d0085": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -12744,6 +12774,13 @@
   "store/no-0dc4f/": {
     "name": "多摩平の森",
     "items": {
+      "ea5474aae802c9e9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "635e55a0a0b2ee6e": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -12805,7 +12842,8 @@
         "g": "pokemon",
         "e": "2026-11-01T22:00",
         "f": "2026-10-31",
-        "c": "store"
+        "c": "store",
+        "a": "2026-11-02"
       }
     }
   },
@@ -13338,6 +13376,54 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-04T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/furuichi-20827/": {
+    "name": "古本市場福山春日店",
+    "items": {
+      "6f02ff4cffef2923": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-02T22:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-eb34c/": {
+    "name": "TSUTAYAトレカ北千住",
+    "items": {
+      "2a69a3d70184b1f4": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T20:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-fec51/": {
+    "name": "TSUTAYAトレカ平塚店",
+    "items": {
+      "cddfbd76c032ee68": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T20:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-5fce1/": {
+    "name": "筑波",
+    "items": {
+      "3aa34068888e75b8": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T20:59",
         "f": "2026-11-01",
         "c": "store"
       }

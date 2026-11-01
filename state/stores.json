@@ -1007,7 +1007,7 @@
   },
   "store/bookoff-73276/": {
     "name": "ブックオフ西友大森店",
-    "last": "2026-10-31",
+    "last": "2026-11-01",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -4364,10 +4364,11 @@
     "area": "福岡県"
   },
   "store/furuichi-b4316/": {
-    "name": "古本市場三田店",
-    "last": "2026-10-31",
+    "name": "古本市場 三田店",
+    "last": "2026-11-01",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "兵庫県"
   },
   "store/furuichi-09aa1/": {
     "name": "古本市場 泉大津店",
@@ -4705,6 +4706,30 @@
   },
   "store/torekashoppunakayoshi-66e0e/": {
     "name": "トレカショップなかよし",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/furuichi-20827/": {
+    "name": "古本市場福山春日店",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "area": "広島県"
+  },
+  "store/tsutaya-eb34c/": {
+    "name": "TSUTAYAトレカ北千住",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/tsutaya-fec51/": {
+    "name": "TSUTAYAトレカ平塚店",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/shop-5fce1/": {
+    "name": "筑波",
     "last": "2026-11-01",
     "game": "pokemon",
     "keep": true
