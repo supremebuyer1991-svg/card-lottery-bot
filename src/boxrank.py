@@ -434,13 +434,31 @@ def send(path, text):
     return r.ok
 
 
+def yt_meta(kind, span, game, rows, today):
+    """YouTube のタイトル・説明・タグ"""
+    word = "上昇" if kind == "up" else "下落"
+    sj = "今週" if span == "week" else "今日"
+    gs = "ポケカ" if game == "pokemon" else "ワンピカード"
+    title = f"【{gs}相場】{sj}のBOX{word}ランキングTOP{len(rows)}｜1位はまさかの…？（{today.month}/{today.day}）#shorts"
+    desc = (caption(kind, span, game, rows) + "\n\n"
+            "▼BOXの相場グラフ・抽選の締切はこちら\nトレカ抽選ナビ https://tcg-chusen.com/souba/\n\n"
+            "※値段はスニダンで成立した取引（1BOX）の1日の平均から、直近数日と1週間前ごろの中央値を比べています。"
+            "値上がり・値下がりを約束するものではありません。\n#shorts")
+    tags = (["ポケカ", "ポケモンカード", "ポケカ相場", "BOX相場", "トレカ", "相場ランキング"] if game == "pokemon"
+            else ["ワンピースカード", "ワンピカード", "ワンピース相場", "BOX相場", "トレカ", "相場ランキング"])
+    return title, desc, tags
+
+
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else "video"
     span = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] in ("week", "day") else "week"
-    themes = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--theme=")), ["dark"])
+    themes = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--theme=")), ["light"])
     only = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--only=")), [])  # 例: pokemon-up,onepiece-up
     today = now().date()
     rk_all = rankings(span, today)
+    # YouTube は1本ずつ時間をずらして予約公開（今日の18時・19時・20時・21時）
+    from datetime import datetime, timezone
+    slots = {"pokemon-up": 18, "onepiece-up": 19, "pokemon-down": 20, "onepiece-down": 21}
     for th in themes:
         for game in GN:
             all_rows = (rk_all["up"].get(game) or []) + (rk_all["down"].get(game) or [])
@@ -450,5 +468,21 @@ if __name__ == "__main__":
                 rows = rk_all[kind].get(game) or []
                 p = make(out, kind, span, game, rows, today, theme=th, all_rows=all_rows)
                 print(th, game, kind, p, [(round(x[0], 1), x[1]) for x in rows])
-                if p and "--send" in sys.argv:
-                    send(p, f"🎬ランキング動画（見た目：{th}）\n\n" + caption(kind, span, game, rows))
+                if not p:
+                    continue
+                note = ""
+                if "--youtube" in sys.argv:
+                    import youtube
+                    title, desc, tags = yt_meta(kind, span, game, rows, today)
+                    hh = slots[f"{game}-{kind}"]
+                    at = datetime(today.year, today.month, today.day, hh, 0, tzinfo=now().tzinfo)
+                    at_s = at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if at > now() else None
+                    try:
+                        vid = youtube.upload(p, title, desc, tags, publish_at=at_s, key=f"{today}|{game}|{kind}|{span}")
+                        if vid:
+                            note = f"\n▶YouTube：https://youtube.com/shorts/{vid}" + (f"（{hh}時に公開）" if at_s else "")
+                    except Exception as e:
+                        log(f"YouTube: 失敗 {e}")
+                        note = f"\n⚠YouTubeへの投稿に失敗：{str(e)[:150]}"
+                if "--send" in sys.argv:
+                    send(p, "🎬ランキング動画（TikTokなどに手で投稿する用）" + note + "\n\n" + caption(kind, span, game, rows))
