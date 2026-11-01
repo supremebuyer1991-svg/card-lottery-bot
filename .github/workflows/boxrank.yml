@@ -1,0 +1,31 @@
+name: box-rank-video
+
+# BOX相場の上昇・下落ランキング動画をつくって Discord に送る（今は手動の実行ボタンだけ）
+on:
+  workflow_dispatch:
+    inputs:
+      span:
+        description: "week（今週）か day（今日）"
+        default: "week"
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+      - name: make video
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: cd src && python boxrank.py ../video "${{ github.event.inputs.span || 'week' }}" --send
+      - uses: actions/upload-artifact@v4
+        with:
+          name: box-rank-video
+          path: video/*.mp4
+          retention-days: 3
