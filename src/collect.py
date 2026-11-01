@@ -154,7 +154,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     # よく抽選が見つかる検索から先に読み、足りなくなったら残りの検索は次の回に回す
     x_allow = 0
     if x_ok:
-        from fetch_x import budget_left
+        from fetch_x import budget_left, peak_set
         h = now().hour
         # Xを読むのは0時台と7時〜23時台の1時間に1回（上限は0時で切り替わるので、0時台はその日の最初の回）
         rh = settings.get("run_hours") or list(range(7, 24))  # 1日の実行の時刻（run.yml の cron と合わせる）
@@ -168,7 +168,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             return -(nw + 1) / (rd + 5)
         xs = sorted([s_ for s_ in sources if s_.get("type") == "x"], key=_yield)
         sources = [s_ for s_ in sources if s_.get("type") != "x"] + xs
-        log(f"X: 今回読める数 {x_allow}件（今日の残り{budget_left(settings)}件・残り{runs_left}回）")
+        log(f"X: 今回読める数 {x_allow}件（今日の残り{budget_left(settings)}件・残り{runs_left}回）" + (f"・新弾「{peak_set(settings)}」の発売前で上限アップ中" if peak_set(settings) else ""))
 
     # X以外の一覧ページは、別々のサイトどうしを同時に先読みしておく（1件ずつ待つより速い）
     pre = prefetch([s_["url"] for s_ in sources if _will_read(s_, src_fail, src_last)], fetcher)

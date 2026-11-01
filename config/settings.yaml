@@ -21,6 +21,8 @@ purge_closed_days: 2      # 終了した抽選は、この日数たったらデ�
 
 # --- X API の費用対策（従量課金） ---
 x_read_budget_per_day: 150  # Xから読む投稿の1日上限（1件 約$0.005 → 150件で約$0.75/日。11/2 に300→150：LivePocket常連店をお店ページで拾うようにしたので）。上限に届いたらGitHubのIssueでお知らせ→OKなら x_read_budget_by_date にその日だけ増やす数を書く
+x_read_budget_peak: 300     # 新弾（拡張パック・ブースターパック）の発売日の x_peak_days_before 日前〜発売日だけ、この上限にする（抽選が多い山場）
+x_peak_days_before: 7
 x_read_budget_by_date:       # 特定の日だけ上限を変える（締切の調べ直しの分。過ぎた日付は自動で無効）
   "2026-10-27": 700
 post_link: false            # 個別告知にリンクを付けるか（リンク付き投稿は1件 約$0.20と高い）

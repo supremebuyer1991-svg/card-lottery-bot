@@ -14,12 +14,47 @@ def _client():
     return tweepy.Client(bearer_token=os.environ["X_BEARER_TOKEN"])
 
 
+PEAK_TYPES = ("拡張パック", "ブースター", "ハイクラス")  # 抽選がどっと増える主力商品（構築デッキなどは対象外）
+
+
+def peak_set(settings, day=None):
+    """新弾（拡張パック・ブースターパック）の発売日の数日前〜発売日なら、その弾の名前を返す（Xの上限を上げる日）"""
+    from datetime import date, timedelta
+    day = day or now().date()
+    before = settings.get("x_peak_days_before", 7)
+    sets = []
+    for g, v in (load_json("newsets.json", {}).get("series") or {}).items():
+        sets += list(v.items())
+    for g, v in (settings.get("series_info") or {}).items():
+        sets += list((v or {}).items())
+    for name, info in sets:
+        if not isinstance(info, dict) or not any(t in str(info.get("type") or "") for t in PEAK_TYPES):
+            continue
+        try:
+            rel = date.fromisoformat(str(info.get("release") or "")[:10])
+        except ValueError:
+            continue
+        if rel - timedelta(days=before) <= day <= rel:
+            return name
+    return None
+
+
+def daily_limit(settings) -> int:
+    today = now().date().isoformat()
+    by_date = (settings.get("x_read_budget_by_date") or {}).get(today)
+    if by_date:
+        return by_date
+    base = settings.get("x_read_budget_per_day", 300)
+    peak = settings.get("x_read_budget_peak")
+    if peak and peak > base and peak_set(settings):
+        return peak  # 新弾の発売前は抽選が多いので、上限を上げてしっかり拾う
+    return base
+
+
 def budget_left(settings) -> int:
     u = load_json("x_usage.json", {})
     used = u.get(now().date().isoformat(), 0)
-    today = now().date().isoformat()
-    limit = (settings.get("x_read_budget_by_date") or {}).get(today) or settings.get("x_read_budget_per_day", 300)
-    return max(0, limit - used)
+    return max(0, daily_limit(settings) - used)
 
 
 def _spend(n):
@@ -37,7 +72,7 @@ def _notify_limit(settings):
         return
     meta["budget_notified"] = today
     save_json("x_meta.json", meta)
-    limit = (settings.get("x_read_budget_by_date") or {}).get(today) or settings.get("x_read_budget_per_day", 300)
+    limit = daily_limit(settings)
     log(f"Xの読み取りが今日の上限（{limit}件）に達しました")
     try:
         from approve import _gh
