@@ -76,7 +76,7 @@ dd ul{margin:0;padding-left:1.1em}dd li{margin:2px 0}
 .acts{padding:14px 16px 16px;display:grid;gap:10px;border-top:1px dashed var(--rule)}
 .go{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;
  font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go-top{margin-top:12px}.pics{display:flex;gap:8px;justify-content:center;margin:12px 0 4px}.pics a,.pics span{display:block;width:150px;height:150px;border-radius:12px;background:#fff;border:1px solid var(--rule);overflow:hidden}.pics.n2 a,.pics.n2 span{width:120px;height:120px}.pics.n3 a,.pics.n3 span,.pics.n4 a,.pics.n4 span{width:84px;height:84px}.pics img{width:100%;height:100%;object-fit:contain;display:block}.line-room{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;border-radius:12px;background:#06c755;color:#fff;text-decoration:none}.line-room>b{flex:none;font-size:13px;font-weight:900;background:#fff;color:#06c755;border-radius:6px;padding:2px 6px}.line-room span{display:grid;gap:1px;min-width:0}.line-room strong{font-size:14.5px}.line-room small{font-size:11.5px;opacity:.9}.sq1{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;justify-content:center;margin:6px 0 10px;padding:8px 12px;border:1px solid var(--rule);border-radius:10px;text-decoration:none;color:var(--ink);font-size:13px}.sq1 b{font-size:17px;font-weight:800}.sq1 em{font-style:normal;font-size:12px;font-weight:700}.sq1 em.up{color:var(--red)}.sq1 em.down{color:#2563eb}.sq1 i{font-style:normal;font-weight:700;color:var(--red)}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
-.sub-acts{display:flex;gap:8px;flex-wrap:wrap}.apb{flex:1;font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{flex:1;text-align:center;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
+.sub-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sub-acts .apb,.calbox{grid-column:1/-1}.calbox{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:grid;gap:8px;text-align:center}.calbox b{font-size:14px}.calbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.calbox .calsub-l{border:0;padding:0;font-size:13px;color:var(--red);text-decoration:underline}.apb{font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{display:block;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
 .note{font-size:12px;color:var(--ink-2);margin:0}
 .ended{background:var(--navy-soft);border-radius:10px;padding:12px 14px;margin:14px 0 0;font-weight:700}
 .more{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;margin:14px 0}
@@ -186,9 +186,10 @@ def _cal_links(i, store, name, canon):
     det = f"応募はお早めに。くわしくは {canon}" if canon else "応募はお早めに"
     g = ("https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + quote(title) +
          f"&dates={z(st)}/{z(e)}&details=" + quote(det))
-    return (f'<a href="{escape(g)}" target="_blank" rel="noopener">📅Googleカレンダーに締切を入れる</a>'
-            '<a href="shimekiri.ics">📅スマホのカレンダーに入れる</a>'
-            '<a href="/calendar/#sub">🔔これからの締切も自動でカレンダーに入れる</a>')
+    return ('<div class="calbox"><b>📅 締切をカレンダーに入れる</b><div class="calbtns">'
+            f'<a href="{escape(g)}" target="_blank" rel="noopener">Googleカレンダー</a>'
+            '<a href="shimekiri.ics">iPhone・スマホ</a></div>'
+            '<a class="calsub-l" href="/calendar/#sub">🔔 これからの締切も自動で入れる →</a></div>')
 
 
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None):
