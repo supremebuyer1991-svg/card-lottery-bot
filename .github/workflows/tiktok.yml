@@ -1,0 +1,58 @@
+name: tiktok-connect
+
+# TikTok の連携（最初の1回）とテスト。url → 許可のページのアドレス / code → 連携 / test → ランキング動画を1本下書きに送る
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "url / code / test"
+        default: "url"
+      code:
+        description: "tiktok-callback.html に出たコード（action=code のとき）"
+        default: ""
+
+concurrency:
+  group: bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  tiktok:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+        if: github.event.inputs.action == 'test'
+      - name: tiktok
+        env:
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          CODE: ${{ github.event.inputs.code }}
+        run: |
+          cd src
+          case "${{ github.event.inputs.action }}" in
+            url)  python tiktok.py url ;;
+            code) python tiktok.py code "$CODE" ;;
+            test) python boxrank.py ../video week --theme=light --only=pokemon-up && python tiktok.py test "$(ls ../video/*.mp4 | head -1)" ;;
+          esac
+      - name: save state
+        if: github.event.inputs.action != 'url'
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state/
+          git diff --cached --quiet && exit 0
+          git commit -m "update state (tiktok)"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1
