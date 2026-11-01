@@ -618,7 +618,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
                  "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]),
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
                  "__CRUMBS__": meta.get("crumbs", ""),
-                 "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__SUPPLY__": meta.get("supply", ""),
+                 "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__TOPSQ__": meta.get("topsq", ""), "__SUPPLY__": meta.get("supply", ""),
                  "__PRERENDER__": meta.get("prerender", ""), "__FAQ__": meta.get("faq_html", "")}.items():
         body = body.replace(k, v)
     if data.get("items") and not data.get("sample"):
@@ -1204,7 +1204,7 @@ def build(settings=None, out_dir=None, sample=None):
                         "30分ごとに自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
                 "supply": _supply_ad(short, name, tag, raff, prices, g),
-                "aff": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
+                "topsq": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
             top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
@@ -1225,7 +1225,7 @@ def build(settings=None, out_dir=None, sample=None):
                             cnt[x_] = cnt.get(x_, 0) + 1
                 xs = sorted(cnt, key=lambda x_: -cnt[x_])
                 strips.append(souba_strip([(x_, souba_sm[f"{gg}|{x_}"]) for x_ in xs if f"{gg}|{x_}" in souba_sm], f"/souba/#{gg}", gg))
-            top["aff"] = "".join(strips)
+            top["topsq"] = "".join(strips)
             write("", {}, top, items)
 
         al_g = {v: k for k, v in ((s.get("series_aliases") or {}).get(g) or {}).items()}
