@@ -5294,7 +5294,7 @@
     "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
     "slug": "shimamura-onepiece-1101",
     "key": "43a7cd454a0c78ef",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-27T12:19:29.258803+09:00",
     "manual": true,
     "source": "手動追加",
@@ -5302,7 +5302,8 @@
     "page_checked_at": "2026-11-01T13:38:42.392456+09:00",
     "area": null,
     "cls": "0dc9bf9dab6b",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+    "closed_at": "2026-11-01T23:16:41.378858+09:00"
   },
   "b8f4b6a0dc1d5403": {
     "store": "ブックオフDCM上磯店",
@@ -5596,11 +5597,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d6d8a2ab368471d1",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250705+09:00",
     "page_checked_at": "2026-11-01T07:25:41.916851+09:00",
     "cls": "08d35277f8d0",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013515/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013515/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646733+09:00"
   },
   "0a855a7e3ac68e13": {
     "store": "しまむらパーク",
@@ -5625,11 +5628,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "0a855a7e3ac68e13",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250734+09:00",
     "page_checked_at": "2026-11-01T07:25:42.021180+09:00",
     "cls": "abe98ba1f514",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013247/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013247/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646740+09:00"
   },
   "a7328578d98117b1": {
     "store": "しまむらパーク",
@@ -5654,11 +5659,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "a7328578d98117b1",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250765+09:00",
     "page_checked_at": "2026-11-01T07:25:42.072075+09:00",
     "cls": "112364edd347",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013117/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013117/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646742+09:00"
   },
   "4aef508e50d207ad": {
     "store": "しまむらパーク",
@@ -5683,11 +5690,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "4aef508e50d207ad",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250797+09:00",
     "page_checked_at": "2026-11-01T07:25:42.152428+09:00",
     "cls": "db2c6e6d9566",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014516/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014516/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646744+09:00"
   },
   "5283786bcd6997b4": {
     "store": "しまむらパーク",
@@ -5712,11 +5721,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "5283786bcd6997b4",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250827+09:00",
     "page_checked_at": "2026-11-01T07:25:42.249419+09:00",
     "cls": "ea5af8d73ffd",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014053/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014053/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646745+09:00"
   },
   "dbb9f4de93a5dd77": {
     "store": "しまむらパーク",
@@ -5741,11 +5752,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "dbb9f4de93a5dd77",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250860+09:00",
     "page_checked_at": "2026-11-01T07:25:42.294518+09:00",
     "cls": "18b4df15447f",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013811/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013811/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646747+09:00"
   },
   "3e7b7352a91ac98c": {
     "store": "しまむらパーク",
@@ -5770,11 +5783,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "3e7b7352a91ac98c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250889+09:00",
     "page_checked_at": "2026-11-01T07:25:42.339952+09:00",
     "cls": "5b2fc1a03921",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013647/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013647/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646749+09:00"
   },
   "7c3c6ace464b00eb": {
     "store": "しまむらパーク",
@@ -5799,11 +5814,13 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "7c3c6ace464b00eb",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-27T14:58:15.250916+09:00",
     "page_checked_at": "2026-11-01T07:25:42.387929+09:00",
     "cls": "886d3cb4fe7d",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014201/?cl=201"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014201/?cl=201",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646750+09:00"
   },
   "d731c0305c912594": {
     "store": "ホビーショップタムタム神戸三宮店",
@@ -6718,11 +6735,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "6afd1fd810bf6eaf",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T00:15:40.386819+09:00",
     "cls": "58a25355e3be",
     "issue": 129,
-    "info_post": "https://x.com/AfroTCG/status/2115086187115524494"
+    "info_post": "https://x.com/AfroTCG/status/2115086187115524494",
+    "closed_at": "2026-11-01T23:16:41.378968+09:00"
   },
   "d5e55a733e8f4516": {
     "store": "TSUTAYA平塚店",
@@ -8098,11 +8116,13 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "babeaee16be30d1d",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T13:26:12.193644+09:00",
     "page_checked_at": "2026-11-01T07:25:49.091780+09:00",
     "cls": "8bfb1a270ae2",
-    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013321/?cl=220"
+    "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100013321/?cl=220",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646324+09:00"
   },
   "a448762fdaf048e3": {
     "store": "トレカショップ「DANDAN」BASE店",
@@ -9315,7 +9335,7 @@
     "url": "https://www.furu1.net/news/news_information/opkl20261031/opklfvol2",
     "slug": "furuichi-heroines-vol2-1101",
     "key": "1b7b43dcfe3d93c4",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-28T13:30:15.963562+09:00",
     "manual": true,
     "source": "手動追加",
@@ -9324,7 +9344,8 @@
     "multi": true,
     "cls": "3bb204b02d90",
     "x_post": "https://x.com/Fuu8qog/status/2115458120562659589",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T23:16:41.379263+09:00"
   },
   "f656e6ed2003a821": {
     "game": "onepiece",
@@ -9347,7 +9368,7 @@
     "url": "https://www.furu1.net/news/news_information/opkl20261031/opklfpreb",
     "slug": "furuichi-heroines-precious-1101",
     "key": "f656e6ed2003a821",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-28T13:30:15.963630+09:00",
     "manual": true,
     "source": "手動追加",
@@ -9356,7 +9377,8 @@
     "multi": true,
     "cls": "46bb49c2b441",
     "x_post": "https://x.com/furu1_toyohama/status/2114589537716629831",
-    "address_checked": true
+    "address_checked": true,
+    "closed_at": "2026-11-01T23:16:41.379275+09:00"
   },
   "d7ad089658116b4f": {
     "store": "ふるいちイオンモール浦和美園店",
@@ -9382,13 +9404,14 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "d7ad089658116b4f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T14:11:19.592012+09:00",
     "page_checked_at": "2026-11-01T07:57:41.950865+09:00",
     "multi": false,
     "cls": "9ff458b28de3",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T23:16:41.379286+09:00"
   },
   "e904efcfb9ee3fc0": {
     "store": "ふるいちイオンモール浦和美園店",
@@ -9413,13 +9436,14 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "e904efcfb9ee3fc0",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-28T14:11:19.592031+09:00",
     "page_checked_at": "2026-11-01T07:57:44.547333+09:00",
     "multi": false,
     "cls": "8cd920108f52",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T23:16:41.379297+09:00"
   },
   "d9cf0f3040026511": {
     "store": "ビックカメラ広島駅前店",
@@ -9553,7 +9577,7 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "13e9bbf15387fb12",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T14:14:49.653143+09:00",
     "multi": false,
     "cls": "4544d8e543cd",
@@ -9562,7 +9586,8 @@
     "deadline_checked_at": "2026-10-29T01:22:32.315511+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・2026年10月28日(水)～11月1日(日)23:00迄",
-    "end_from": "Xの告知（2026年10月28日(水)～11月1日）"
+    "end_from": "Xの告知（2026年10月28日(水)～11月1日）",
+    "closed_at": "2026-11-01T23:16:41.379336+09:00"
   },
   "dbddf939994ac832": {
     "store": "古本市場 箕面店",
@@ -9585,7 +9610,7 @@
     "source": "X 大手チェーンの抽選",
     "source_url": "https://x.com/",
     "key": "dbddf939994ac832",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-28T14:14:49.653190+09:00",
     "multi": false,
     "cls": "d10720b7eb94",
@@ -9593,7 +9618,8 @@
     "deadline_checked_at": "2026-10-29T01:22:34.093267+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・2026年11月1日(日)23:00迄",
-    "end_from": "Xの告知（2026年11月1日(日)23:00迄）"
+    "end_from": "Xの告知（2026年11月1日(日)23:00迄）",
+    "closed_at": "2026-11-01T23:16:41.379348+09:00"
   },
   "0fd7b0fce6236a59": {
     "store": "ビックカメラ浦和店",
@@ -10390,10 +10416,11 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "f86b815dae19e899",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-29T01:17:51.321237+09:00",
     "multi": true,
-    "cls": "aa5ac4c88dca"
+    "cls": "aa5ac4c88dca",
+    "closed_at": "2026-11-01T23:16:41.379509+09:00"
   },
   "356a8c911aa19d34": {
     "store": "ふるいち 八潮中央店",
@@ -14176,13 +14203,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "fb2ef4595b6d652a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T11:17:46.943534+09:00",
     "page_checked_at": "2026-11-01T20:48:53.833349+09:00",
     "multi": false,
     "cls": "07ab5d5c9f82",
     "announce": "2026-11-05",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646339+09:00"
   },
   "21614e687fd315a8": {
     "store": "お宝市番館三重本店",
@@ -14207,10 +14236,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "21614e687fd315a8",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T11:17:46.943563+09:00",
     "multi": false,
-    "cls": "ac603d024269"
+    "cls": "ac603d024269",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646342+09:00"
   },
   "499508fa945d8a98": {
     "store": "オレタン岡山本店",
@@ -14465,10 +14496,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "50901c74d4abbf9a",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-30T11:17:46.943858+09:00",
     "multi": false,
-    "cls": "fa97e59d4bb0"
+    "cls": "fa97e59d4bb0",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646344+09:00"
   },
   "ebe3a865d8f037eb": {
     "store": "ビックカメラなんば店",
@@ -15959,7 +15992,7 @@
     "url": "https://livepocket.jp/e/ir67g",
     "slug": "tsutaya-hirakata-30th-1101",
     "key": "6cc8bf9918d77798",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-30T13:40:59.212017+09:00",
     "manual": true,
     "source": "手動追加",
@@ -15968,7 +16001,8 @@
     "multi": false,
     "cls": "a94b306824e3",
     "address": "大阪府枚方市宮之阪4-28-12",
-    "x_post": "https://x.com/Tekabo_BOX/status/2116375105836130471"
+    "x_post": "https://x.com/Tekabo_BOX/status/2116375105836130471",
+    "closed_at": "2026-11-01T23:16:41.380402+09:00"
   },
   "153f41c0ae9dcc30": {
     "store": "TSUTAYA枚方ベルパルレ店",
@@ -18454,12 +18488,13 @@
     "source_url": "https://cardchusen.com/dragonball",
     "no_quote": true,
     "key": "aefd683f2b7bedf0",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-30T20:36:22.881230+09:00",
     "page_checked_at": "2026-11-01T13:39:19.084512+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014291/?cl=220",
     "cls": "aa04470dfce3",
-    "start": "2026-10-27T13:00:00+09:00"
+    "start": "2026-10-27T13:00:00+09:00",
+    "closed_at": "2026-11-01T23:16:41.380588+09:00"
   },
   "1f689292b7fa8a0c": {
     "store": "しまむらパーク",
@@ -18484,12 +18519,13 @@
     "source_url": "https://cardchusen.com/dragonball",
     "no_quote": true,
     "key": "1f689292b7fa8a0c",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-30T20:36:22.881293+09:00",
     "page_checked_at": "2026-11-01T13:39:19.178078+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014009/?cl=220",
     "cls": "e179b6224710",
-    "start": "2026-10-27T13:00:00+09:00"
+    "start": "2026-10-27T13:00:00+09:00",
+    "closed_at": "2026-11-01T23:16:41.380598+09:00"
   },
   "d4e6f1c7d5121ecc": {
     "store": "しまむらパーク",
@@ -18514,12 +18550,13 @@
     "source_url": "https://cardchusen.com/dragonball",
     "no_quote": true,
     "key": "d4e6f1c7d5121ecc",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-30T20:36:22.881337+09:00",
     "page_checked_at": "2026-11-01T13:39:19.218320+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.shop-shimamura.com/item/0363100014364/?cl=220",
     "cls": "51218926b857",
-    "start": "2026-10-27T13:00:00+09:00"
+    "start": "2026-10-27T13:00:00+09:00",
+    "closed_at": "2026-11-01T23:16:41.380609+09:00"
   },
   "d95fd0e4aaa1a8fe": {
     "store": "ふるいち苫小牧桜木店",
@@ -18910,34 +18947,6 @@
     "multi": false,
     "cls": "00544f94cb3c",
     "info_post": "https://x.com/PokeGetInfoMain/status/2116141087144513801"
-  },
-  "a4e3ceeea76b35ea": {
-    "store": "フルコンプ",
-    "product": "ストームエメラルダ",
-    "series": null,
-    "start": null,
-    "end": null,
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://livepocket.jp/e/x425p",
-    "x_post": "https://x.com/pokemoba_jp/status/2116168224723374121",
-    "game": "pokemon",
-    "channel": "online",
-    "area": null,
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.5,
-    "source": "X LivePocket抽選",
-    "source_url": "https://x.com/",
-    "key": "a4e3ceeea76b35ea",
-    "status": "duplicate",
-    "found_at": "2026-10-30T23:12:55.696791+09:00",
-    "page_checked_at": "2026-10-30T23:14:04.565169+09:00",
-    "page_err": "中身が空",
-    "cls": "fa6093e8de8b",
-    "duplicate_of": "f2ffef2e57ec247b"
   },
   "a1605ba299ad16df": {
     "store": "古本市場 野口(加古川)",
@@ -21307,10 +21316,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "08f527dec8a9ecf0",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T10:29:54.392596+09:00",
     "multi": false,
-    "cls": "c5f34c90ced9"
+    "cls": "c5f34c90ced9",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646752+09:00"
   },
   "c933c4329785594b": {
     "store": "ふるいちイオンモール水戸内原店",
@@ -21332,10 +21343,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c933c4329785594b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T10:29:54.392624+09:00",
     "multi": false,
-    "cls": "86d148514d4e"
+    "cls": "86d148514d4e",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646754+09:00"
   },
   "50c669f3fd4acff1": {
     "store": "ふるいちイオンモール水戸内原店",
@@ -21357,10 +21370,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "50c669f3fd4acff1",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T10:29:54.392655+09:00",
     "multi": false,
-    "cls": "6b8f74b0162b"
+    "cls": "6b8f74b0162b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-01T23:16:03.646756+09:00"
   },
   "afe772b5718375ed": {
     "store": "ビックカメラ アミュプラザくまもと店",
@@ -22141,14 +22156,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "93beb4cdf5a65822",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T12:09:36.658043+09:00",
     "page_checked_at": "2026-11-01T21:31:33.383227+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "42489abbab93"
+    "cls": "42489abbab93",
+    "closed_at": "2026-11-01T23:16:41.382485+09:00"
   },
   "c7b5ad26aaf1ab17": {
     "store": "ふるいちイオンモール多摩平の森店",
@@ -22734,13 +22750,14 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "f63733324f943721",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T14:06:39.313900+09:00",
     "multi": false,
     "cls": "e10452f4ee2d",
     "page_checked_at": "2026-11-01T11:36:01.774776+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T23:16:41.382564+09:00"
   },
   "2e1c2d66663943f9": {
     "store": "バトロコミニ 帯広WOW",
@@ -22850,14 +22867,15 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "b26723ae21e6aed5",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T14:06:39.313957+09:00",
     "multi": false,
     "cls": "cbcdf39121f4",
     "page_checked_at": "2026-11-01T21:31:50.329082+09:00",
     "page_err": "404 Client Error: Not Found for url: https://furu1.net/news/news_info",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-01T23:16:41.382576+09:00"
   },
   "ec936207d1c78f18": {
     "store": "ふるいち(古本市場)",
@@ -24308,14 +24326,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "8e54f2d27e212d78",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-10-31T19:59:58.579963+09:00",
     "page_checked_at": "2026-11-01T21:32:07.677622+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "c6c28c501d84"
+    "cls": "c6c28c501d84",
+    "closed_at": "2026-11-01T23:16:41.382735+09:00"
   },
   "c0a41002d2eb23ee": {
     "store": "古本市場南茨木店",
@@ -25841,10 +25860,11 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "b8268eb86248bd1f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-01T00:57:54.804696+09:00",
     "multi": false,
-    "cls": "1c7ed311f48f"
+    "cls": "1c7ed311f48f",
+    "closed_at": "2026-11-01T23:16:41.382808+09:00"
   },
   "5ff847c95cd1a28c": {
     "store": "古本市場西淀川店",
@@ -25867,10 +25887,11 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "5ff847c95cd1a28c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-01T00:57:54.804772+09:00",
     "multi": false,
-    "cls": "4ef0cd53469e"
+    "cls": "4ef0cd53469e",
+    "closed_at": "2026-11-01T23:16:41.382820+09:00"
   },
   "770b11f1142b6b58": {
     "store": "古本市場深谷店",
@@ -25893,12 +25914,13 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "770b11f1142b6b58",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-01T00:57:54.804799+09:00",
     "multi": false,
     "cls": "c9720fbfcf10",
     "issue": 348,
-    "tco_checked": true
+    "tco_checked": true,
+    "closed_at": "2026-11-01T23:16:41.382832+09:00"
   },
   "1fc0d90d2c1dec1c": {
     "store": "古本市場新琴似店",
@@ -25921,12 +25943,13 @@
     "source": "X 実店舗抽選「ワンピカード」",
     "source_url": "https://x.com/",
     "key": "1fc0d90d2c1dec1c",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-01T00:57:54.804837+09:00",
     "multi": false,
     "cls": "346800986ee7",
     "issue": 349,
-    "tco_checked": true
+    "tco_checked": true,
+    "closed_at": "2026-11-01T23:16:41.382844+09:00"
   },
   "e9f2ea6a90c03449": {
     "store": "イトーヨーカドー",
