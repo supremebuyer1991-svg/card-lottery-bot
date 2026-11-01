@@ -12103,11 +12103,12 @@
     "source_url": "https://nyuka-now.com/archives/157982",
     "no_quote": true,
     "key": "069dba1abc2f5ad4",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T13:11:14.738297+09:00",
     "multi": false,
     "cls": "5eb600ab75a5",
-    "issue": 215
+    "issue": 215,
+    "closed_at": "2026-11-01T23:52:29.684461+09:00"
   },
   "3a61ed7b45cad82d": {
     "store": "お宝創庫グループ（お宝創庫／おじゃま館／メディオ！／プレイズ 各店）",
@@ -12277,7 +12278,7 @@
     ],
     "slug": "otakarasouko-storm-emerald-1101",
     "key": "5bae1a58977d09a8",
-    "status": "listed",
+    "status": "closed",
     "found_at": "2026-10-29T15:04:13.636087+09:00",
     "manual": true,
     "source": "手動追加",
@@ -12291,7 +12292,8 @@
     "page_checked_at": "2026-11-01T09:24:27.373261+09:00",
     "address_checked": true,
     "area": "兵庫県",
-    "x_post": "https://x.com/Tekabo_BOX/status/2116163713040273880"
+    "x_post": "https://x.com/Tekabo_BOX/status/2116163713040273880",
+    "closed_at": "2026-11-01T23:52:29.684541+09:00"
   },
   "1b89e5ad8f4c1b1b": {
     "game": "pokemon",
@@ -13040,11 +13042,12 @@
     "source_url": "https://nyuka-now.com/archives/157982",
     "no_quote": true,
     "key": "80887ddf2843b798",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T23:52:34.292137+09:00",
     "issue": 228,
     "multi": true,
-    "cls": "65a26940232e"
+    "cls": "65a26940232e",
+    "closed_at": "2026-11-01T23:52:29.684930+09:00"
   },
   "59d76af70853e9b4": {
     "store": "HMV（各店）",
@@ -15667,11 +15670,12 @@
     "source_url": "https://nyuka-now.com/archives/157982",
     "no_quote": true,
     "key": "fe6ba29c3a27636c",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-30T12:45:52.583646+09:00",
     "issue": 260,
     "multi": false,
-    "cls": "dd304c745b11"
+    "cls": "dd304c745b11",
+    "closed_at": "2026-11-01T23:52:29.685583+09:00"
   },
   "f80de4281858b3aa": {
     "store": "フルコンプ",
@@ -29041,7 +29045,7 @@
     "multi": false,
     "cls": "d67200862d6b",
     "tco_checked": true,
-    "page_checked_at": "2026-11-01T17:37:14.422964+09:00",
+    "page_checked_at": "2026-11-01T23:51:56.885270+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -29807,7 +29811,7 @@
     "cls": "2d6d15306d17"
   },
   "a92982326745e438": {
-    "store": "その他のストア",
+    "store": "トレカエース",
     "start": null,
     "end": "2026-11-03T23:59:00+09:00",
     "announce": "11月5日(木)頃メールにて当落通知予定",
@@ -29831,16 +29835,17 @@
     "key": "a92982326745e438",
     "status": "approved",
     "found_at": "2026-11-01T21:31:09.414285+09:00",
-    "page_checked_at": "2026-11-01T21:32:34.544621+09:00",
+    "page_checked_at": "2026-11-01T23:51:59.020748+09:00",
     "address": "福島県いわき市平上荒川島田5",
     "address_checked": true,
     "details_checked": true,
     "conditions": "本文に「30th CELEBRATION」の抽選に関する記載がないため、応募・購入の条件は読み取れません。",
     "multi": false,
-    "cls": "ad84879cd71d"
+    "cls": "3682f146c152",
+    "name_checked": true
   },
   "b2231f02adea6fc4": {
-    "store": "その他のストア",
+    "store": "トレカエース",
     "start": null,
     "end": "2026-11-03T23:59:00+09:00",
     "announce": "11月5日(木)頃メールにて当落通知予定",
@@ -29864,13 +29869,14 @@
     "key": "b2231f02adea6fc4",
     "status": "approved",
     "found_at": "2026-11-01T21:31:09.414309+09:00",
-    "page_checked_at": "2026-11-01T21:32:39.550850+09:00",
+    "page_checked_at": "2026-11-01T23:52:02.296120+09:00",
     "address": "福島県いわき市平上荒川島田5",
     "address_checked": true,
     "details_checked": true,
     "conditions": "本文に「その他のストア」「メガブレイブ」の抽選に関する記載はありません。",
     "multi": false,
-    "cls": "40ad978b4a9a"
+    "cls": "a04fe921097f",
+    "name_checked": true
   },
   "05ff29fa5be30d4b": {
     "store": "トレカエース上荒川店",
@@ -29903,7 +29909,34 @@
     "details_checked": true,
     "conditions": "本文は店舗情報と送料・決済の案内のみで、「その他のストア」「メガシンフォニア」の抽選に関する応募・購入条件の記載はありません。",
     "multi": false,
-    "cls": "66fe5e83f6ad",
+    "cls": "9d79652d75f0",
     "area": "福島県"
+  },
+  "b488e5b19e6b554c": {
+    "store": "セブンネットショッピング",
+    "start": "2026-11-04T17:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "buy": null,
+    "method": "WEB抽選受付（当選者にはオンライン販売）",
+    "url": "https://x.com/7_netshopping/status/2116047447793295723",
+    "x_post": "https://x.com/7_netshopping/status/2116047447793295723",
+    "game": "pokemon",
+    "channel": "online",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.6,
+    "product": "ハドウシーカー",
+    "series": "ハドウシーカー",
+    "source": "入荷Now 入荷情報",
+    "source_url": "https://nyuka-now.com/archives/162248",
+    "no_quote": true,
+    "key": "b488e5b19e6b554c",
+    "status": "duplicate",
+    "found_at": "2026-11-01T23:51:40.472938+09:00",
+    "area": null,
+    "cls": "3da433fc97d2",
+    "duplicate_of": "058e370d0b2174ea"
   }
 }
