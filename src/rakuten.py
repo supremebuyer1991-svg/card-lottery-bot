@@ -16,8 +16,12 @@ from common import load_json, save_json, now, parse_dt, log
 
 ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 # 画像に使いたくない商品（オリパ・中古・バラ売り・サプライ等）
-NG_WORDS = ("オリパ", "オリジナルパック", "中古", "シングル", "バラ", "ばら", "1パック", "5パック", "10パック", "15パック", "スリーブ", "ローダー", "ケース",
-            "ファイル", "プレイマット", "福袋", "くじ", "まとめ売り", "空箱", "未開封品 ※")
+NG_WORDS = ("オリパ", "オリジナルパック", "中古", "シングル", "バラ", "ばら", "1パック", "5パック", "10パック", "15パック", "20パック", "スリーブ", "ローダー", "ケース",
+            "ファイル", "プレイマット", "福袋", "くじ", "まとめ売り", "空箱", "未開封品 ※", "ブロック", "デッキシールド", "プロモ", "箱破損", "特価",
+            "ドン!!カード", "パラレル", "確定")
+# シングルカード（1枚売り）の商品名によくある形：「C sv10」「SAR sv6」「U SM9」「(016/064)」「S2a 054/070」など
+SINGLE = re.compile(r"(^|[\s　【\[(（])(C|U|R|RR|RRR|SR|SAR|AR|UR|HR|CHR|CSR|SSR|K|PR|SEC|L|ACE)\s+(sv|s|sm|SM|S|SV)\d|"
+                    r"[(（]\d{2,3}/\d{2,3}[)）]|\b\d{3}/\d{3}\b|ミラー仕様|モンスターボールミラー|ポケモン図鑑|（\s*U\s*）")
 
 
 def _norm(s):
@@ -34,7 +38,10 @@ def _score(item, series, game_name, orig=None):
     n, s = _norm(name), _norm(series)
     if s not in n:
         return None
-    # BOXの写真を使いたいので、パック売り・カートン・シングルカードは使わない
+    # BOXの写真を使いたいので、パック売り・カートン・シングルカードは使わない（商品名に「BOX／ボックス」が必要）
+    deck = re.search(r"デッキ|セット|スターター", series or "")
+    if SINGLE.search(name) or (not deck and not re.search(r"box|ボックス", name, re.I)):
+        return None
     if re.search(r"パック販売|カートン|\b[A-Z]{2}\d{2}-\d{3}\b|\((C|UC|R|SR|SEC|L|P) [^)]*\)", name):
         return None
     if "vol2" in n.replace(".", "") and "vol2" not in (s + _norm(orig)).replace(".", ""):
@@ -124,7 +131,7 @@ def update(settings, series_by_game, session=None, sleep=1.1):
             budget -= 1
             alias = (settings.get("rakuten_aliases") or {}).get(x) or x  # 楽天での商品名が違う弾は別名で探す
             try:
-                items = search(f"{gname} {alias}", settings, session)
+                items = search(f"{gname} {alias}" + ("" if re.search(r"デッキ|セット|スターター", alias) else " BOX"), settings, session)
             except Exception as e:
                 log(f"楽天: {x} 取得失敗 {e}")
                 if "401" in str(e) or "403" in str(e):
