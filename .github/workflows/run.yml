@@ -30,6 +30,11 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: keep the site-upload tool (wrangler) between runs
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-wrangler4-${{ runner.os }}
       - name: run
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -69,9 +74,11 @@ jobs:
           export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
           export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
           echo "トークンの文字数: ${#CLOUDFLARE_API_TOKEN}（通常40前後） / アカウントIDの文字数: ${#CLOUDFLARE_ACCOUNT_ID}（通常32）"
-          # 初回だけサイトの置き場所を自動で作る（2回目以降は「もうある」で何もしない）
-          npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || true
-          npx --yes wrangler@4 pages deploy site --project-name="$PROJECT" --branch=main
+          # サイトの置き場所はもう作ってあるので、作り直しの確認は手動実行のときだけ（毎回やると時間のむだ）
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            npx --yes wrangler@4 pages project create "$PROJECT" --production-branch=main || true
+          fi
+          npx --yes wrangler@4 pages deploy site --project-name="$PROJECT" --branch=main --commit-dirty=true
       - name: post to Threads (after the site is published)
         if: github.event_name != 'issues'
         env:

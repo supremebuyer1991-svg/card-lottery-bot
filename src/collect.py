@@ -82,6 +82,48 @@ def add_manual(lots):
     return n
 
 
+def _will_read(src, src_fail, src_last):
+    """今回この情報元（X以外）のページを読みに行くか（collect の中の判断と同じ。状態は変えない）"""
+    if src.get("enabled") is False or src.get("type") == "x" or not src.get("url"):
+        return False
+    fl = src_fail.get(src["id"]) or {}
+    if fl.get("n", 0) >= 2 and parse_dt(fl.get("until")) and parse_dt(fl["until"]) > now():
+        return False
+    if src.get("every_hours"):
+        lt = parse_dt(src_last.get(src["id"]))
+        if lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
+            return False
+    return True
+
+
+def prefetch(urls, fetcher, workers=6):
+    """一覧ページをまとめて先に読む（時間短縮）。
+    同じサイトは今まで通り1件ずつ順番に（相手に負担をかけない）、別々のサイトだけ同時に読む。
+    戻り値：{url: ("ok", 本文) または ("err", 例外)}"""
+    from concurrent.futures import ThreadPoolExecutor
+    from urllib.parse import urlparse
+    by_host = {}
+    for u in dict.fromkeys(urls):
+        by_host.setdefault(urlparse(u).netloc, []).append(u)
+
+    def run(us):
+        out = {}
+        for u in us:
+            try:
+                out[u] = ("ok", fetcher(u))
+            except Exception as e:
+                out[u] = ("err", e)
+        return out
+
+    res = {}
+    if not by_host:
+        return res
+    with ThreadPoolExecutor(max_workers=max(1, min(workers, len(by_host)))) as ex:
+        for part in ex.map(run, by_host.values()):
+            res.update(part)
+    return res
+
+
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:
     seen = load_json("seen.json", {})
     if seen.get("_v") != SEEN_VERSION:  # 仕組みを直した時は、もう一度全部読み直す
@@ -127,6 +169,17 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         xs = sorted([s_ for s_ in sources if s_.get("type") == "x"], key=_yield)
         sources = [s_ for s_ in sources if s_.get("type") != "x"] + xs
         log(f"X: 今回読める数 {x_allow}件（今日の残り{budget_left(settings)}件・残り{runs_left}回）")
+
+    # X以外の一覧ページは、別々のサイトどうしを同時に先読みしておく（1件ずつ待つより速い）
+    pre = prefetch([s_["url"] for s_ in sources if _will_read(s_, src_fail, src_last)], fetcher)
+
+    def read_top(url):
+        if url in pre:
+            kind, val = pre.pop(url)
+            if kind == "err":
+                raise val
+            return val
+        return fetcher(url)
 
     for src in sources:
         if src.get("enabled") is False:
@@ -177,7 +230,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             body = None
         else:
             try:
-                body = fetcher(src["url"])
+                body = read_top(src["url"])
                 src_fail.pop(sid, None)
             except Exception as e:
                 fl = src_fail.setdefault(sid, {"n": 0})
