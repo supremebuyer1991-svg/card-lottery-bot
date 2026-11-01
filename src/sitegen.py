@@ -2165,9 +2165,16 @@ GA_NOTE = ("当サイトはアクセス解析にGoogleアナリティクスを�
 
 
 def ga_snippet(ga_id):
-    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>'
-            '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-            f"gtag('js',new Date());gtag('config','{ga_id}');</script>")
+    """Googleアナリティクスのタグ。自分たちのアクセス（Claudeアプリのブラウザでの確認・予約作業、自動のブラウザ、
+    「?notrack=1」を一度開いた端末）は数えない（GA4の「AI Assistant」が自分たちで水増しされないように）"""
+    return ('<script>(function(){var u=navigator.userAgent||"",n=false;'
+            'try{if(/[?&]notrack=1/.test(location.search))localStorage.setItem("tcg_notrack","1");'
+            'if(/[?&]notrack=0/.test(location.search))localStorage.removeItem("tcg_notrack");'
+            'n=localStorage.getItem("tcg_notrack")==="1";}catch(e){}'
+            'if(n||navigator.webdriver||/ Claude\\/|HeadlessChrome|Playwright/.test(u))return;'
+            f'var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";'
+            'document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
+            f"gtag('js',new Date());gtag('config','{ga_id}');}})();</script>")
 
 
 def inject_ga(out, ga_id):
@@ -2180,7 +2187,7 @@ def inject_ga(out, ga_id):
         if p.name in GA_SKIP:
             continue
         h = p.read_text(encoding="utf-8")
-        if "googletagmanager.com/gtag/js" in h or "</head>" not in h:
+        if "googletagmanager.com/gtag/js" in h or "</head>" not in h:  # すでに入っている（2回入れない）
             continue
         h = h.replace("</head>", tag + "</head>", 1)
         if "</footer>" in h:
