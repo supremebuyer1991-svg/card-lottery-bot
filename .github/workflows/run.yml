@@ -2,8 +2,8 @@ name: card-lottery-bot
 
 on:
   schedule:
-    # 日本時間 7:00〜24:59 の30分ごと（UTCで記述）
-    - cron: "*/30 0-15,22-23 * * *"
+    # 日本時間 7:17〜24:17 の1時間ごと（UTCで記述）。GitHubの無料枠（月2,000分）に収めるため、30分ごとから1時間ごとに変更
+    - cron: "17 0-15,22-23 * * *"
   workflow_dispatch:      # 手動実行ボタン
   issues:
     types: [labeled]      # 承認ラベルを付けたら即投稿
