@@ -54,7 +54,7 @@ c = rakuten.update(s, {"pokemon": ["テスト弾", "存在しない弾"]}, sessi
 url, params, headers = fs.calls[0]
 assert url.startswith("https://openapi.rakuten.co.jp/") and params["applicationId"] == "uuid-app"
 assert headers["accessKey"] == "pk_test" and headers["Referer"] == "https://toreca-chusen-navi.pages.dev/"
-assert params["affiliateId"] == "aaaa.bbbb" and "ポケモンカード テスト弾" == params["keyword"]
+assert params["affiliateId"] == "aaaa.bbbb" and "ポケモンカード テスト弾 BOX" == params["keyword"]
 r = c["pokemon|テスト弾"]
 assert r["url"].startswith("https://hb.afl.rakuten.co.jp/hgc/aaaa.bbbb/?pc=https%3A%2F%2Fa%2Fok") and r["image"] == "https://img/ok.jpg?_ex=300x300", r   # オリパ・サプライ・別の弾は選ばない
 assert c["pokemon|存在しない弾"]["image"] == ""                                            # 見つからない弾も記録
