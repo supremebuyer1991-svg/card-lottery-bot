@@ -6305,6 +6305,20 @@
         "f": "2026-10-31",
         "c": "store"
       },
+      "3259d60b96c7b548": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
+      "9396ffb632ddd87d": {
+        "p": "ストームエメラルダ",
+        "g": "onepiece",
+        "e": "2026-11-01T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "db4cc18d0dec1f15": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -13401,7 +13415,8 @@
         "g": "pokemon",
         "e": "2026-11-01T20:00",
         "f": "2026-11-01",
-        "c": "store"
+        "c": "store",
+        "a": "2026-11-04"
       }
     }
   },
@@ -13424,6 +13439,80 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-01T20:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/mintgames-amerika-0d94f/": {
+    "name": "MINTGAMES心斎橋アメリカ村店",
+    "items": {
+      "bd1875e91fc32ec7": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T19:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-cf7c2/": {
+    "name": "TSUTAYA函南店",
+    "items": {
+      "1ec5530e9045207e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-d5b31/": {
+    "name": "TSUTAYA辰巳",
+    "items": {
+      "cefe13f43cd2fa5c": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      },
+      "711840eb46ef433c": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      },
+      "452b14deb74010fb": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/ame-381ef/": {
+    "name": "アメ村",
+    "items": {
+      "f3a9c392d9dffb6b": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T19:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-0e9e3/": {
+    "name": "勝田",
+    "items": {
+      "af32f2c5b8b2b7f1": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-01T22:00",
         "f": "2026-11-01",
         "c": "store"
       }

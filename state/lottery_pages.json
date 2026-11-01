@@ -17089,6 +17089,7 @@
       "series": "ストームエメラルダ",
       "end": "2026-11-01T23:59:00+09:00",
       "method": "LivePocket",
+      "conditions": "本文には応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)の記載がなく、抽選販売を行うという告知とリンクのみ。画像の文字も読み取れない。",
       "url": "https://livepocket.jp/e/s1ieq",
       "channel": "store",
       "area": "京都府",
@@ -20177,6 +20178,8 @@
       "product": "30th CELEBRATION カードセット",
       "series": "30th CELEBRATION",
       "end": "2026-11-02T22:00:00+09:00",
+      "method": "ポケカ抽選販売（告知内のリンクから応募、締切11/2(月)22:00）",
+      "conditions": "会員登録、本人確認書類、購入上限、代理購入、価格などの条件は本文に書かれていない。分かるのは、福山春日店で「30th CELEBRATION」と「カードセット」の2件の抽選があり、どちらも11/2(月)22:00が締切という点だけ。",
       "url": "https://livepocket.jp/e/776ko",
       "channel": "store",
       "area": "広島県",
@@ -20195,9 +20198,17 @@
       "product": "30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-11-01T20:00:00+09:00",
+      "announce": "2026-11-04まで",
+      "buy": "11/6(金)10:00〜11/8(日)20:00",
+      "method": "Web",
+      "conditions": "応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)の記載はありません。本文にあるのは、応募の締切が11月1日20:00までということだけです。",
+      "tags": [
+        "本人確認"
+      ],
       "url": "https://livepocket.jp/e/7oxgz",
       "channel": "store",
       "area": "東京都",
+      "id_check": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/tsutaya-eb34c/",
@@ -20247,6 +20258,7 @@
       "product": "ストームエメラルダ",
       "series": "ストームエメラルダ",
       "end": "2026-11-01T21:00:00+09:00",
+      "conditions": "本文には会員登録、アプリ、本人確認書類、購入上限、代理購入、価格などの条件の記載がない。分かるのは、ポケカ「ストームエメラルダ」の抽選販売で、締切が11/1(日)21:00ということだけ。",
       "url": "https://livepocket.jp/e/d6y1u",
       "channel": "store",
       "area": "埼玉県",
@@ -20254,6 +20266,40 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "spath": "store/aeon-02dd6/",
       "found_at": "2026-11-01T15:12:50.378050+09:00"
+    },
+    "last": "2026-11-01"
+  },
+  "l/1ec5530e90/": {
+    "d": {
+      "key": "1ec5530e9045207e",
+      "game": "pokemon",
+      "store": "TSUTAYA函南店",
+      "product": "MEGA 拡張パック 30th CELEBRATION BOX",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-03T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/m82gc",
+      "channel": "store",
+      "area": "静岡県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/tsutaya-cf7c2/",
+      "found_at": "2026-11-01T16:30:43.960431+09:00"
+    },
+    "last": "2026-11-01"
+  },
+  "l/f3a9c392d9/": {
+    "d": {
+      "key": "f3a9c392d9dffb6b",
+      "game": "onepiece",
+      "store": "アメ村",
+      "product": "HEROINES PRECIOUS BOX",
+      "series": "HEROINES PRECIOUS BOX",
+      "end": "2026-11-01T19:59:00+09:00",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfaqTu-k_AKc4x32d6cReMtX_rYi_zmHjuLkvtrIz-f1Xfp7w/viewform",
+      "channel": "store",
+      "area": "大阪府",
+      "spath": "store/ame-381ef/",
+      "found_at": "2026-11-01T16:30:43.960591+09:00"
     },
     "last": "2026-11-01"
   }

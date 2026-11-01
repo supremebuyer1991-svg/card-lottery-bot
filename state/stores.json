@@ -345,7 +345,7 @@
     "area": "大阪府"
   },
   "store/tsutaya-02cfc/": {
-    "name": "TSUTAYA Trading Card北千住",
+    "name": "TSUTAYA Trading Card 北千住",
     "last": "2026-11-01",
     "game": "pokemon",
     "area": "東京都"
@@ -4732,6 +4732,36 @@
     "name": "筑波",
     "last": "2026-11-01",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-cf7c2/": {
+    "name": "TSUTAYA函南店",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "area": "静岡県"
+  },
+  "store/ame-381ef/": {
+    "name": "アメ村",
+    "last": "2026-11-01",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/mintgames-amerika-0d94f/": {
+    "name": "MINTGAMES心斎橋アメリカ村店",
+    "last": "2026-11-01",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/tsutaya-d5b31/": {
+    "name": "TSUTAYA辰巳",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-0e9e3/": {
+    "name": "勝田",
+    "last": "2026-11-01",
+    "game": "onepiece",
     "keep": true
   }
 }
