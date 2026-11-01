@@ -6,6 +6,7 @@
     12時台 … 新着の抽選（前の日の17時以降に見つかった分）
     17時台 … 新着の抽選（お昼以降に見つかった分。3店以上たまった時だけ）
     20時台 … あと数時間で締切
+    21時台 … Amazonの招待リクエスト受付中の商品（【PR】・アソシエイトのリンク付き）
     いつでも … 大手（⭐チェーン＋通販大手）の通販（発送）の抽選の速報（見つけて20分〜3時間のもの。チェーン×弾で1回）
 ・アクセストークンは約60日で切れるので、20日ごとに自動で延長する。延長したトークンは state に暗号化して保存する
   （うまくいかない時は Discord にお知らせ）
@@ -211,6 +212,29 @@ def compose_new(game, lots, t, since, min_stores=1, head_note=""):
                 f"締切・応募方法はこちら👇\nhttps://tcg-chusen.com/{slug}/\n\n{FOLLOW}\n{tag}")
 
 
+def compose_amazon(game, lots, t, settings):
+    """Amazonの招待リクエスト受付中の商品（リンクは自分のアソシエイトのタグ付き。1投稿のリンクは5つまでなので商品は4つまで）"""
+    from sitegen import amazon_invites
+    tag = os.environ.get("AMAZON_TAG") or settings.get("amazon_tag")
+    rows = amazon_invites(_open_items(lots, game, t), tag).get(game) or []
+    rows = [r for r in rows if "/dp/" in (r.get("url") or "")][:4]
+    if not rows:
+        return ""
+    label, slug, tagname = GAME[game]
+    lines = [f"【PR】📦Amazon 招待リクエスト受付中｜{label}（{_md(t)}）", ""]
+    for r in rows:
+        lines += [f"・{r['name']}", r["url"]]
+    lines += ["", "⚠️人によっては、招待メールが届いていないのに招待されている場合があります。当選しているのに購入が漏れないよう、商品ページを定期的に確認するのがおすすめです",
+              "", f"ほかの抽選はこちら👇\nhttps://tcg-chusen.com/{slug}/", tagname]
+    text = "\n".join(lines)
+    while len(text) > LIMIT and len(rows) > 1:  # 長すぎたら商品を減らす
+        i = lines.index(rows[-1]["url"])
+        del lines[i - 1:i + 1]
+        rows = rows[:-1]
+        text = "\n".join(lines)
+    return text
+
+
 def _big_posts(lots, t, done):
     """大手の通販の抽選の速報（Xの post_big と同じ選び方）"""
     from xpost import big_chain, short_product, fmt_dt
@@ -279,6 +303,8 @@ def run(settings):
             posts.append((f"{today}|new17|{game}", compose_new(game, lots, t, noon, min_stores=3, head_note="（お昼から）")))
         elif h == 20:
             posts.append((f"{today}|soon|{game}", compose_soon(game, lots, t)))
+        elif h == 21:  # 夜、人が見やすい時間に1日1回（ユーザーの依頼）
+            posts.append((f"{today}|amazon|{game}", compose_amazon(game, lots, t, settings)))
     posts += _big_posts(lots, t, done)
     sent = 0
     for key, text in posts:
