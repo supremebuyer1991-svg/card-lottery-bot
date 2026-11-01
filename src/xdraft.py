@@ -69,6 +69,17 @@ const fmt=e=>e?`${e.getMonth()+1}/${e.getDate()}(${W[(e.getDay()+6)%7]})${String
 const name=i=>{if(i.series)return i.series;let p=(i.product||"");const q=p.match(/[「『]([^」』]{2,})[」』]/);if(q)p=q[1];
  p=p.replace(/[（(][^）)]{8,}[）)]/g,"").replace(/^(ポケモンカードゲーム|ONE PIECEカードゲーム|ドラゴンボール.{0,12}フュージョンワールド)\\s*/,"").replace(/^(MEGA\\s*)?(拡張パック|強化拡張パック|ブースターパック|プレミアムブースター)\\s*/,"").trim();
  return p.length>20?p.slice(0,20)+"…":p;};
+// 予約投稿の画像に入れる「応募のしかた・受け取り方」と「必要なもの」（Claudeの予約作業が使う。条件が増えたらここだけ直す）
+const STORECC=/ゴールドポイントカード・?プラス|ビックカメラSuica|イオンカード|エディオンカード|JQ\\s*CARD|(クレジット|クレカ)カード?.{0,4}(会員|をお持ち|お持ちの|所持|保有|限定|ご利用の方|入会)|(当社|店舗|提携)(の)?クレジット/;
+window.condX=i=>{const tg=(i.tags||[]).join(" ");const m=(i.method||"")+" "+tg;const t=tg+" "+(i.conditions||"");
+ const how=/SNS|X抽選|ポスト|リポスト/.test(m)?"SNS応募":/アプリ/.test(m)?"アプリ応募":/店頭|整理券|抽選券/.test(m)?"店頭応募":"Web応募";
+ const get=i.channel==="store"?"店頭受取":"通販（発送）";const q=[];
+ if(i.id_check===true)q.push("本人確認");
+ if(i.member==="card"||/会員カード|会員証/.test(t))q.push("店の会員カード");else if(i.member==="account"||/会員登録|会員限定/.test(t))q.push("会員登録");
+ if(/購入(履歴|実績|歴)|利用(履歴|実績)/.test(t))q.push("購入履歴");if(/レシート/.test(t))q.push("レシート");
+ if(/店舗クレカ/.test(tg)||STORECC.test(t))q.push("店のクレカ");
+ const unk=i.id_check==null||!i.member;
+ return [how+"・"+get,q.length?"必要："+q.join("・")+(unk?"・ほか要確認":""):(unk?"条件は応募ページで確認":"")];};
 const xlen=t=>{let n=0;for(const w of t.split(/(\\s+)/)){if(w.startsWith("http")){n+=23;continue;}for(const c of w){n+=/[^\\x00-\\x7F]/.test(c)?2:1;}}return n;};
 const cards=[];
 const hr=now.getHours();
