@@ -8,10 +8,23 @@
 import re
 
 from common import load_json, save_json, now, parse_dt, log
-from fetch import get
+DESKTOP = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "ja-JP,ja;q=0.9"}
+
+
+def get(url):
+    """パソコンのブラウザと同じ見え方で読む（スマホ向けの見え方だとお店のリンクが無いことがあるため）"""
+    import time
+    import requests
+    r = requests.get(url, headers=DESKTOP, timeout=(6, 12))
+    r.raise_for_status()
+    r.encoding = r.apparent_encoding or r.encoding
+    time.sleep(2)  # 連続アクセスしない
+    return r.text
 
 EVENT_RE = re.compile(r"https?://livepocket\.jp/e/([A-Za-z0-9_\-]+)")
-ORG_RE = re.compile(r'href="(?:https?://livepocket\.jp)?(/p/[A-Za-z0-9_\-]+)"')
+ORG_RE = re.compile(r'(?:href|"url")\s*[=:]\s*"(?:https?://livepocket\.jp)?(/p/[A-Za-z0-9_\-]+)"')
+RETRY = ("", "?1")  # お店が分からなかった抽選は、あと1回だけ読み直す（"?2" であきらめ）
 KEYWORDS = ["ポケモンカード", "ポケカ", "ワンピース", "ワンピ", "ONE PIECE", "フュージョンワールド", "ドラゴンボール"]
 FILE = "lp_shops.json"
 
@@ -52,7 +65,7 @@ def record(url, html, store=""):
         return
     db = _load()
     eid = c.rsplit("/", 1)[1]
-    if db["events"].get(eid):
+    if db["events"].get(eid) and db["events"][eid] not in RETRY:
         return
     _remember(db, eid, org_of(html), store)
     save_json(FILE, db)
@@ -67,20 +80,29 @@ def learn(lots, fetcher=get, limit=8):
             c = canon(u)
             if c:
                 eid = c.rsplit("/", 1)[1]
-                if eid not in db["events"] and eid not in todo:
+                if (eid not in db["events"] or db["events"][eid] in RETRY) and eid not in todo:
                     todo[eid] = it.get("store") or ""
                 break
-    n = 0
+    n, shown = 0, False
     for eid, store in list(todo.items())[:limit]:
+        miss = "?2" if db["events"].get(eid) == "?1" else "?1"
         try:
             html = fetcher(f"https://livepocket.jp/e/{eid}")
         except Exception as e:
             log(f"LivePocket常連店: 抽選ページ取得失敗 {eid} {e}")
-            db["events"][eid] = ""  # 読めないページで毎回つまずかないように
+            db["events"][eid] = miss  # 読めないページで毎回つまずかないように
             continue
         org = org_of(html)
-        _remember(db, eid, org, store)
-        n += 1 if org else 0
+        if org:
+            _remember(db, eid, org, store)
+            n += 1
+        else:
+            db["events"][eid] = miss
+            if not shown:  # 原因を調べられるように、1回の実行で1件だけページの様子を残す
+                t = re.search(r"<title>([^<]{0,80})", html or "")
+                log(f"LivePocket常連店: お店が見つからない {eid} 長さ{len(html or '')} タイトル={t.group(1) if t else '-'!r}"
+                    f" 先頭={re.sub(chr(10), ' ', (html or '')[:160])!r}")
+                shown = True
     save_json(FILE, db)
     if todo:
         log(f"LivePocket常連店: 抽選ページ{min(len(todo), limit)}件からお店{n}件を確認（残り{max(0, len(todo) - limit)}件）")
