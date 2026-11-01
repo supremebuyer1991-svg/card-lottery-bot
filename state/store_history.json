@@ -3517,6 +3517,13 @@
         "f": "2026-10-27",
         "c": "store"
       },
+      "0061d3e51687a334": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "7d82f23a3f3bd856": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -6279,6 +6286,13 @@
   "store/books-27bc5/": {
     "name": "草叢BOOKS各務原店",
     "items": {
+      "d5947b1206cddf0b": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01T21:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "f8658c5de60e9d79": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -13532,6 +13546,66 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-02T21:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-ded86/": {
+    "name": "ツタヤ平塚",
+    "items": {
+      "b128387e3fe78dc5": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-01T20:00",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/sanyodo-3d780/": {
+    "name": "三洋堂トレカ館 新開橋店",
+    "items": {
+      "dcea81df01da9de5": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/kikuzawa-nappimoru-2cdbc/": {
+    "name": "きくざわ書店 ナッピィモール店",
+    "items": {
+      "b556c3f1f0733f61": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/biggubantoreka-209de/": {
+    "name": "ビッグバン トレカ館 帯広柏林台店",
+    "items": {
+      "57e261674d894c19": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/tsutaya-d8ea8/": {
+    "name": "TSUTAYA Trading Card 北千住店",
+    "items": {
+      "778e614bd22dbe3c": {
+        "p": "30th Celebration Expansion Pack",
+        "g": "pokemon",
+        "e": "2026-11-01T20:00",
         "f": "2026-11-01",
         "c": "store"
       }
