@@ -4638,7 +4638,7 @@
     "area": "北海道"
   },
   "store/tsutaya-7a15b/": {
-    "name": "TSUTAYA 17号北浦和店",
+    "name": "TSUTAYA17号北浦和店",
     "last": "2026-11-01",
     "game": "pokemon",
     "area": "埼玉県"
@@ -4675,6 +4675,18 @@
   },
   "store/tsukuba-9844b/": {
     "name": "つくば",
+    "last": "2026-11-01",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-3b8bd/": {
+    "name": "勝田(茨城)",
+    "last": "2026-11-01",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/kiddyland-a6b2f/": {
+    "name": "キディランド 鹿児島",
     "last": "2026-11-01",
     "game": "pokemon",
     "keep": true

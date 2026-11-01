@@ -13132,7 +13132,8 @@
       "method": "Web",
       "conditions": "抽選販売の受付中。発売日10月31日の店頭販売はなし。詳細は告知ページで確認",
       "tags": [
-        "アプリ"
+        "アプリ",
+        "会員"
       ],
       "url": "https://furu1.net/news/news_information/opkl20261031",
       "channel": "store",
@@ -20017,6 +20018,7 @@
       "game": "onepiece",
       "store": "岡富店",
       "product": "ONE PIECE HEROINES PRECIOUS BOX",
+      "series": "HEROINES PRECIOUS BOX",
       "end": "2026-11-03T23:59:00+09:00",
       "method": "Web",
       "conditions": "宮崎の3店舗(岡富店・宮交シティ・高千穂通り)まとめての受付で、先に受け取り店舗を決めてから応募する。締切は11/3(火)23:59。会員登録・本人確認・購入個数・価格などの記載は本文にない。",
@@ -20081,6 +20083,30 @@
       "area": "千葉県",
       "spath": "store/shop-1f5da/",
       "found_at": "2026-11-01T10:37:49.472008+09:00"
+    },
+    "last": "2026-11-01"
+  },
+  "l/d143362110/": {
+    "d": {
+      "key": "d1433621103198c2",
+      "game": "pokemon",
+      "store": "TSUTAYA17号北浦和店",
+      "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-03T22:00:00+09:00",
+      "method": "店頭QR（Livepocket）",
+      "conditions": "Livepocket会員登録が必要、お一人様1点",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/9ndqc",
+      "channel": "store",
+      "area": "埼玉県",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jugem2020/cabinet/13772022/imgi_51_1c0e88a.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10001972%2F",
+      "spath": "store/tsutaya-7a15b/",
+      "found_at": "2026-11-01T11:34:52.805281+09:00"
     },
     "last": "2026-11-01"
   }

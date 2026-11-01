@@ -13191,6 +13191,13 @@
   "store/tsutaya-7a15b/": {
     "name": "TSUTAYA 17号北浦和店",
     "items": {
+      "d1433621103198c2": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-01",
+        "c": "store"
+      },
       "021e26f3e206f3f5": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -13255,6 +13262,30 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/shop-3b8bd/": {
+    "name": "勝田(茨城)",
+    "items": {
+      "7ede09e1b3fea5ed": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-01",
+        "c": "store"
+      }
+    }
+  },
+  "store/kiddyland-a6b2f/": {
+    "name": "キディランド 鹿児島",
+    "items": {
+      "139daf5d9883a370": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
         "f": "2026-11-01",
         "c": "store"
       }
