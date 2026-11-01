@@ -1864,6 +1864,7 @@ def build(settings=None, out_dir=None, sample=None):
         if rows_c:
             h = ['<div class="guide cal"><p>ポケカ・ワンピースカードの新弾・新商品の発売日と希望小売価格を、公式サイトの情報からまとめています。'
                  '受付中の抽選の数は1時間ごとに更新しています。弾の名前を押すと、その弾の抽選の一覧に進めます。</p>']
+            h.append(cal_sub_html(site, games))
             cur_m, faq_c = "", []
             for r_, g, x, inf, n_ in rows_c:
                 m_ = r_[:7]
@@ -2326,6 +2327,10 @@ def build(settings=None, out_dir=None, sample=None):
             if ics:
                 (p.parent / "shimekiri.ics").write_text(ics, encoding="utf-8")
 
+    # 締切の購読カレンダー（/cal/xxx.ics）：一度登録すると、これからの締切が自動でカレンダーに入る。
+    # 登録したアドレスが消えると困るので、抽選が0件でも全部のファイルを毎回つくる
+    write_cal_feeds(out, items, site, games)
+
     # 応募したリスト（このブラウザの中だけの記録を一覧にする。検索・サイトマップには載せない）
     (out / "mylist").mkdir(parents=True, exist_ok=True)
     (out / "mylist" / "index.html").write_text(detail.mylist_page(site), encoding="utf-8")
@@ -2381,6 +2386,61 @@ def build(settings=None, out_dir=None, sample=None):
 GA_SKIP = {"x-draft.html", "site_preview.html"}  # 自分用のページは数えない
 GA_NOTE = ("当サイトはアクセス解析にGoogleアナリティクスを使っています。データはCookieを使って匿名で集められ、"
            "個人を特定するものではありません（ブラウザの設定でCookieを無効にできます）。")
+
+
+def cal_feeds(items, games):
+    """{ファイル名: (カレンダー名, [抽選])}。ネット抽選はゲームごと、店頭抽選はゲーム×都道府県ごと"""
+    feeds = {}
+    for g in games:
+        sh = GAME_SHORT[g]
+        feeds[f"{GAME_SLUG[g]}-net.ics"] = (f"{sh}ネット抽選の締切（トレカ抽選ナビ）",
+                                            [i for i in items if i["game"] == g and i.get("channel") != "store"])
+        for a, sl in PREF.items():
+            feeds[f"{GAME_SLUG[g]}-{sl}.ics"] = (f"{sh}店頭抽選の締切・{a}（トレカ抽選ナビ）",
+                                                 [i for i in items if i["game"] == g and i.get("channel") == "store" and i.get("area") == a])
+    return feeds
+
+
+def write_cal_feeds(out, items, site, games):
+    d = out / "cal"
+    d.mkdir(parents=True, exist_ok=True)
+    t0, stamp = now(), now()
+    for fn, (nm, lots) in cal_feeds(items, games).items():
+        evs = []
+        for i in lots:
+            e_ = parse_dt(i.get("end"))
+            if not i.get("key") or not e_ or e_ < t0:
+                continue
+            lp = i.get("lpath") or detail.lottery_path(i)
+            ev = detail.cal_event(i, i.get("store") or "", detail.short_name(i), f"{site}/{lp}" if site else "", stamp=stamp)
+            if ev:
+                evs.append(ev)
+        (d / fn).write_text(detail.ics_wrap(evs, nm), encoding="utf-8")
+
+
+def cal_sub_html(site, games):
+    """/calendar/ の「締切を自動でカレンダーに入れる」。iPhone は webcal://、Android・PC は Googleカレンダーの登録リンク"""
+    host = (site or "https://tcg-chusen.com").split("://", 1)[-1]
+    def btns(fn, idp=""):
+        w = f"webcal://{host}/cal/{fn}"
+        gg = "https://calendar.google.com/calendar/render?cid=" + quote(w, safe="")
+        return (f'<a class="btn" {idp}data-k="i" href="{escape(w)}">iPhoneのカレンダーに登録</a>'
+                f'<a class="btn" {idp}data-k="g" href="{escape(gg)}" target="_blank" rel="noopener">Googleカレンダーに登録（Android・PC）</a>')
+    opts = "".join(f'<option value="{sl}">{escape(a)}</option>' for a, sl in PREF.items())
+    rows = []
+    for g in games:
+        sl = GAME_SLUG[g]
+        rows.append(f'<h3>{escape(GAME_SHORT[g])}</h3><p><b>ネット抽選</b>（全国どこからでも応募できる抽選）<br>{btns(f"{sl}-net.ics")}</p>'
+                    f'<p><b>店頭抽選</b>（お店で受け取る抽選）：<select class="calpref" data-g="{sl}" aria-label="都道府県">{opts}</select><br>'
+                    + btns(f"{sl}-tokyo.ics", f'data-g="{sl}" ') + '</p>')
+    js = ("<script>document.querySelectorAll('select.calpref').forEach(function(s){s.value='tokyo';s.onchange=function(){"
+          f"var w='webcal://{host}/cal/'+s.dataset.g+'-'+s.value+'.ics';"
+          "s.parentNode.querySelectorAll('a[data-k]').forEach(function(a){a.href=a.dataset.k=='i'?w:'https://calendar.google.com/calendar/render?cid='+encodeURIComponent(w)})}})</script>")
+    return ('<section id="sub" class="calsub"><h2>🔔 抽選の締切を自動でカレンダーに入れる</h2>'
+            '<p>一度登録すると、<b>これから見つかった抽選の締切も自動でスマホのカレンダーに入ります</b>（締切の1時間前〜締切の予定）。'
+            'いらなくなったら、カレンダーのアプリから登録をはずせます。料金はかかりません。</p>' + "".join(rows) +
+            '<p class="note">※カレンダーのアプリが数時間ごとに読みこむので、新しい抽選が入るまで少し時間がかかることがあります。'
+            'iPhoneは「設定」→「カレンダー」→「アカウント」から、Googleカレンダーは左の「他のカレンダー」から登録をはずせます。</p></section>' + js)
 
 
 def ga_snippet(ga_id):

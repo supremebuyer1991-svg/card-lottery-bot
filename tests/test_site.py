@@ -20,6 +20,11 @@ lots = [it("a", "pokemon", "ヨドバシ", "弾A", 5), it("b", "pokemon", "イ�
 save_json("lotteries.json", {x["key"]: x for x in lots})
 sitegen.build(s, out_dir=out)
 files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
+_c = (out / "cal" / "pokeka-net.ics").read_bytes().decode("utf-8")
+assert "X-WR-CALNAME" in _c and "ヨドバシ" in _c and "終了店" not in _c and "保留店" not in _c, _c  # 終了・保留は入らない
+assert "イオン難波店" in (out / "cal" / "pokeka-osaka.ics").read_text(encoding="utf-8")
+assert "BEGIN:VCALENDAR" in (out / "cal" / "pokeka-tokyo.ics").read_text(encoding="utf-8")  # 0件でも消さない
+assert all(len(l.encode()) <= 75 for l in _c.split("\r\n"))
 assert "index.html" in files and "pokeka/index.html" in files and "pokeka/area/osaka/index.html" in files, files
 assert "sitemap.xml" in files and "robots.txt" in files and ".changed" in files
 assert sum(1 for f in files if f.startswith("pokeka/s-")) == 2 and any(f.startswith("onepiece/s-") for f in files)

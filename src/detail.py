@@ -127,22 +127,51 @@ def _status(i, t):
     return "", "受付中"
 
 
-def cal_ics(i, store, name, canon):
-    """締切の1時間前〜締切の予定（.ics）。無ければ None"""
+def cal_event(i, store, name, canon, stamp=None):
+    """締切の1時間前〜締切の予定1件（VEVENT の行のリスト）。締切が無ければ None"""
     from datetime import timedelta, timezone
     e = parse_dt(i.get("end"))
     if not e:
         return None
     st = e - timedelta(hours=1)
     z = lambda d: d.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    esc = lambda x: x.replace("\\", "\\\\").replace(",", "\\,").replace(";", "\\;")
+    esc = lambda x: x.replace("\\", "\\\\").replace(",", "\\,").replace(";", "\\;").replace("\n", "\\n")
     title = f"【抽選締切】{store}「{name}」"
     det = f"応募はお早めに。くわしくは {canon}" if canon else "応募はお早めに"
-    return "\r\n".join(["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//tcg-chusen//JP", "BEGIN:VEVENT",
-                         f"UID:{(i.get('key') or 'x')[:16]}@tcg-chusen.com", f"DTSTAMP:{z(st)}", f"DTSTART:{z(st)}", f"DTEND:{z(e)}",
-                         "SUMMARY:" + esc(title), "DESCRIPTION:" + esc(det),
-                         "BEGIN:VALARM", "TRIGGER:-PT30M", "ACTION:DISPLAY", "DESCRIPTION:" + esc(title),
-                         "END:VALARM", "END:VEVENT", "END:VCALENDAR"]) + "\r\n"
+    ev = ["BEGIN:VEVENT", f"UID:{(i.get('key') or 'x')[:16]}@tcg-chusen.com", f"DTSTAMP:{z(stamp or st)}",
+          f"DTSTART:{z(st)}", f"DTEND:{z(e)}", "SUMMARY:" + esc(title), "DESCRIPTION:" + esc(det)]
+    if canon:
+        ev.append("URL:" + canon)
+    return ev + ["BEGIN:VALARM", "TRIGGER:-PT30M", "ACTION:DISPLAY", "DESCRIPTION:" + esc(title), "END:VALARM", "END:VEVENT"]
+
+
+def _fold(line):
+    """.ics の1行は75バイトまで（長い行は折り返す）"""
+    b, out = line.encode("utf-8"), []
+    while len(b) > 73:
+        n = 73
+        while n and (b[n] & 0xC0) == 0x80:  # 文字の途中で切らない
+            n -= 1
+        out.append(b[:n].decode("utf-8"))
+        b = b[n:]
+    out.append(b.decode("utf-8"))
+    return "\r\n ".join(out)
+
+
+def ics_wrap(events, cal_name=None):
+    """VEVENT をまとめて1つの .ics に。cal_name があれば購読用（名前・6時間ごとに更新）"""
+    head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//tcg-chusen//JP", "CALSCALE:GREGORIAN"]
+    if cal_name:
+        head += ["METHOD:PUBLISH", "X-WR-CALNAME:" + cal_name, "X-WR-TIMEZONE:Asia/Tokyo",
+                 "REFRESH-INTERVAL;VALUE=DURATION:PT6H", "X-PUBLISHED-TTL:PT6H"]
+    lines = head + [l for ev in events for l in ev] + ["END:VCALENDAR"]
+    return "\r\n".join(_fold(l) for l in lines) + "\r\n"
+
+
+def cal_ics(i, store, name, canon):
+    """締切の1時間前〜締切の予定（.ics）。無ければ None"""
+    ev = cal_event(i, store, name, canon)
+    return ics_wrap([ev]) if ev else None
 
 
 def _cal_links(i, store, name, canon):
@@ -158,7 +187,8 @@ def _cal_links(i, store, name, canon):
     g = ("https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + quote(title) +
          f"&dates={z(st)}/{z(e)}&details=" + quote(det))
     return (f'<a href="{escape(g)}" target="_blank" rel="noopener">📅Googleカレンダーに締切を入れる</a>'
-            '<a href="shimekiri.ics">📅スマホのカレンダーに入れる</a>')
+            '<a href="shimekiri.ics">📅スマホのカレンダーに入れる</a>'
+            '<a href="/calendar/#sub">🔔これからの締切も自動でカレンダーに入れる</a>')
 
 
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None):
