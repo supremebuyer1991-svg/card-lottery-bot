@@ -447,6 +447,18 @@ def _sb_img(img, alt, cls="sb-img"):
             else f'<span class="{cls}">{pic}</span>')
 
 
+def _sns_bar():
+    """サイト上部：Xのフォローと、LINEオープンチャット（テスト中）の案内"""
+    st = load_settings()
+    xa, ln = (st.get("x_account") or "").strip().lstrip("@"), (st.get("line_openchat_url") or "").strip()
+    b = []
+    if xa:
+        b.append(f'<a class="sns-x" href="https://x.com/{escape(xa)}" target="_blank" rel="noopener"><b>𝕏</b> 新着の抽選をXでお知らせ<small>@{escape(xa)}</small></a>')
+    if ln.startswith("https://"):
+        b.append(f'<a class="sns-line" href="{escape(ln)}" target="_blank" rel="noopener"><b>LINE</b> オープンチャット<small>テスト中</small></a>')
+    return f'<div class="sns">{"".join(b)}</div>' if b else ""
+
+
 def souba_strip(pairs, link, g=""):
     """一覧ページの上：今日のBOX相場を3つだけ（押すと相場の一覧へ）。pairs = [(弾名, 相場のまとめ)]"""
     if not pairs:
@@ -618,7 +630,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
                  "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]),
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
                  "__CRUMBS__": meta.get("crumbs", ""),
-                 "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__TOPSQ__": meta.get("topsq", ""), "__SUPPLY__": meta.get("supply", ""),
+                 "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__TOPSQ__": meta.get("topsq", ""), "__SNS__": _sns_bar(), "__SUPPLY__": meta.get("supply", ""),
                  "__PRERENDER__": meta.get("prerender", ""), "__FAQ__": meta.get("faq_html", "")}.items():
         body = body.replace(k, v)
     if data.get("items") and not data.get("sample"):
