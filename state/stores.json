@@ -614,7 +614,7 @@
     "area": "岡山県"
   },
   "store/kadoshoppurafuteria-59b3c/": {
-    "name": "カードショップ ラフテリア神戸本店",
+    "name": "カードショップラフテリア 神戸本店",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "兵庫県"
@@ -781,7 +781,7 @@
   },
   "store/biccamera-899dc/": {
     "name": "ビックカメラ池袋本店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -2039,7 +2039,7 @@
     "area": "東京都"
   },
   "store/tcgshop193-8f387/": {
-    "name": "TCGShop193",
+    "name": "TCGshop193",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "東京都"
@@ -3909,7 +3909,7 @@
   },
   "store/kiddyland-668b3/": {
     "name": "キデイランド 浦和美園店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon",
     "keep": true,
     "area": "埼玉県"
@@ -4211,10 +4211,10 @@
     "game": "onepiece"
   },
   "store/tsutaya-a5f11/": {
-    "name": "TSUTAYA 中万々店",
+    "name": "TSUTAYA中万々店",
     "last": "2026-11-02",
     "game": "pokemon",
-    "area": "高知県"
+    "area": "和歌山県"
   },
   "store/shop-570db/": {
     "name": "四条河原町",
@@ -4694,7 +4694,7 @@
   },
   "store/bookoff-5689a/": {
     "name": "ブックオフお宝大陸和泉中央店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon",
     "keep": true
   },
@@ -4782,7 +4782,7 @@
     "game": "onepiece"
   },
   "store/kikuzawa-nappimoru-2cdbc/": {
-    "name": "きくざわ書店 ナッピィモール店",
+    "name": "きくざわ書店ナッピィモール店",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "岐阜県"
@@ -4874,6 +4874,98 @@
   "store/furuichi-fdf11/": {
     "name": "ふるいち神戸北店",
     "last": "2026-11-02",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shigaru-ffadb/": {
+    "name": "シーガル各店（ガルモバ会員限定）",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/tsutaya-cfcf1/": {
+    "name": "TSUTAYAフジ夏目店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "愛媛県"
+  },
+  "store/bookoff-4fd0b/": {
+    "name": "ブックオフ高槻栄店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/torekashoppunakayoshi-8da85/": {
+    "name": "トレカショップなかよし 久米川駅前",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/tcgshoppu193-2525e/": {
+    "name": "TCGショップ193各店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/dragonstar-6570a/": {
+    "name": "ドラゴンスター各店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/torekapuraza55-0197e/": {
+    "name": "トレカプラザ55通販",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/noshippo-6d50e/": {
+    "name": "竜のしっぽ",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/kadokorekuto-f5b72/": {
+    "name": "カードコレクト秋葉原本店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/shop-c0447/": {
+    "name": "文教堂書店浦安西友店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/torekaesu-7fd32/": {
+    "name": "トレカエース各店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "茨城県",
+    "address": "福島県いわき市平上荒川島田5"
+  },
+  "store/aeon-ed4ce/": {
+    "name": "イオン北海道（iAEON）",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/japantcgcenter-76db2/": {
+    "name": "Japan TCG Center八王子駅前店",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/erupureido-2d4ea/": {
+    "name": "ウェルプレイド",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/bookoff-df41e/": {
+    "name": "ブックオフ ユーカリが丘",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "千葉県"
+  },
+  "store/poketaun-26dd4/": {
+    "name": "ポケタウン秋葉原",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/furukonpu-a5632/": {
+    "name": "フルコンプ仙台駅前店",
+    "last": "2026-11-01",
     "game": "pokemon",
     "keep": true
   }
