@@ -1,33 +1,649 @@
 {
-  "checked": "2026-11-01",
+  "checked": "2026-11-02",
   "last": {
-    "date": "2026-11-01",
-    "checked_at": "2026-11-01T21:33:22.007710+09:00",
-    "missing": [
-      {
-        "store": "おたいち三重本店（お宝市番館三重本店）",
-        "product": "ONE PIECEカードゲーム 公認店限定「ONE PIECE HEROINES PRECIOUS BOX」（10/30",
-        "end": "2026-11-01T23:00:00+09:00",
-        "status": "expired",
-        "reason": "情報元の一覧から消えた",
-        "merged_into": null,
-        "url": "https://x.com/otaichimiecard/status/2115751749659353554"
-      }
-    ],
+    "date": "2026-11-02",
+    "checked_at": "2026-11-02T21:02:13.602482+09:00",
+    "missing": [],
     "late": [
       {
-        "store": "Luruna Card",
-        "product": "『30thパック』",
-        "end": "2026-11-30T00:00:00+09:00",
-        "first_source": "X 抽選情報アカウント",
-        "found_at": "2026-11-01T07:23:10.168608+09:00",
-        "post": "https://x.com/chang_tingyao/status/2116581099593732407",
-        "posted_at": "2026-11-01T02:20:32.975000+09:00",
-        "hours_late": 5.0
+        "store": "ブックオフお宝大陸和泉中央店",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188695+09:00",
+        "post": "https://x.com/bookoff_otakara/status/2112879431182430312",
+        "posted_at": "2026-10-21T21:11:26.452000+09:00",
+        "hours_late": 278.0
+      },
+      {
+        "store": "カードコレクト秋葉原本店",
+        "product": "30th CELEBRATION カードセット9種",
+        "end": "2026-11-25T13:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188753+09:00",
+        "post": "https://x.com/cardcollect_/status/2113557736978076050",
+        "posted_at": "2026-10-23T18:06:47.156000+09:00",
+        "hours_late": 233.1
+      },
+      {
+        "store": "セブンネットショッピング",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+        "end": null,
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T23:51:40.472938+09:00",
+        "post": "https://x.com/7_netshopping/status/2116047447793295723",
+        "posted_at": "2026-10-30T15:00:00.471000+09:00",
+        "hours_late": 56.9
+      },
+      {
+        "store": "ブックオフ ユーカリが丘",
+        "product": "ONE PIECE Heroines Edition vol.2【EB-05】",
+        "end": "2026-11-05T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751092+09:00",
+        "post": "https://x.com/AkiPokemonLife/status/2116394738634916267",
+        "posted_at": "2026-10-31T14:00:01.060000+09:00",
+        "hours_late": 45.2
+      },
+      {
+        "store": "TSUTAYA森町店トレカコーナー",
+        "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド スタートデッキ 地球育ちのサイヤ人[FS13]・サイヤ人の王子",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ドラゴンボール",
+        "found_at": "2026-11-02T11:11:29.902107+09:00",
+        "post": "https://x.com/t_morimachi_tc/status/2116410634166579456",
+        "posted_at": "2026-10-31T15:03:10.850000+09:00",
+        "hours_late": 44.1
+      },
+      {
+        "store": "TSUTAYA森町店トレカコーナー",
+        "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック REACH THE GOD [FB12]",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ドラゴンボール",
+        "found_at": "2026-11-02T11:11:29.902167+09:00",
+        "post": "https://x.com/t_morimachi_tc/status/2116410634166579456",
+        "posted_at": "2026-10-31T15:03:10.850000+09:00",
+        "hours_late": 44.1
+      },
+      {
+        "store": "カードショップラフテリア 神戸本店",
+        "product": "ポケモンカード 30th CELEBRATION BOX",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188955+09:00",
+        "post": "https://x.com/laughteria_TCG/status/2116507191192785363",
+        "posted_at": "2026-10-31T21:26:51.839000+09:00",
+        "hours_late": 37.7
+      },
+      {
+        "store": "ブックオフ高槻栄店",
+        "product": "ポケモンカード 30th CELEBRATION カードセット各種",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188403+09:00",
+        "post": "https://x.com/bo_taka_tsuki/status/2116701829056933987",
+        "posted_at": "2026-11-01T10:20:17.122000+09:00",
+        "hours_late": 24.9
+      },
+      {
+        "store": "トレカショップなかよし 久米川駅前",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」BOX",
+        "end": "2026-11-04T21:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188444+09:00",
+        "post": "https://x.com/nakayoshi_tcg/status/2116726941847818738",
+        "posted_at": "2026-11-01T12:00:04.478000+09:00",
+        "hours_late": 23.2
+      },
+      {
+        "store": "TSUTAYAフジ夏目店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販）",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188372+09:00",
+        "post": "https://x.com/tsutaya_natsume/status/2116736320752246805",
+        "posted_at": "2026-11-01T12:37:20.583000+09:00",
+        "hours_late": 22.6
+      },
+      {
+        "store": "Japan TCG Center八王子駅前店",
+        "product": "ONE PIECE HEROINES PRECIOUS BOX",
+        "end": "2026-11-04T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751012+09:00",
+        "post": "https://x.com/JTC_hachioji/status/2116774869195170120",
+        "posted_at": "2026-11-01T15:10:31.248000+09:00",
+        "hours_late": 20.0
+      },
+      {
+        "store": "ウェルプレイド",
+        "product": "ONE PIECEカードゲーム エクストラブースター ONE PIECE Heroines Edition vol.2【",
+        "end": "2026-11-04T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751053+09:00",
+        "post": "https://x.com/wellplayed_oka/status/2116830412693819443",
+        "posted_at": "2026-11-01T18:51:13.850000+09:00",
+        "hours_late": 16.3
+      },
+      {
+        "store": "ポケタウン秋葉原",
+        "product": "ONE PIECE エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751170+09:00",
+        "post": "https://x.com/poketown_akiba/status/2116843607093395553",
+        "posted_at": "2026-11-01T19:43:39.640000+09:00",
+        "hours_late": 15.5
+      },
+      {
+        "store": "ビックカメラ池袋本店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188839+09:00",
+        "post": "https://x.com/bicikebukuro/status/2116847739925381454",
+        "posted_at": "2026-11-01T20:00:04.984000+09:00",
+        "hours_late": 15.2
+      },
+      {
+        "store": "ドラゴンスター各店",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-05T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188568+09:00",
+        "post": "https://x.com/ds_ikebukur0/status/2116879445713715691",
+        "posted_at": "2026-11-01T22:06:04.233000+09:00",
+        "hours_late": 13.1
+      },
+      {
+        "store": "竜のしっぽ",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188661+09:00",
+        "post": "https://x.com/ryuunoshippo_3/status/2116880939057844393",
+        "posted_at": "2026-11-01T22:12:00.274000+09:00",
+        "hours_late": 13.0
+      },
+      {
+        "store": "トレカエース各店",
+        "product": "ポケモンカード 30th CELEBRATION BOX",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414285+09:00",
+        "post": "https://x.com/BA_onahamaTA/status/2116696725826220261",
+        "posted_at": "2026-11-01T10:00:00.417000+09:00",
+        "hours_late": 11.5
+      },
+      {
+        "store": "TSUTAYA森町店",
+        "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「REACH THE GOD」抽選販売",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "X LivePocket抽選",
+        "found_at": "2026-11-02T07:43:33.588161+09:00",
+        "post": "https://x.com/OnchainOutlaw/status/2116910715768561957",
+        "posted_at": "2026-11-02T00:10:19.595000+09:00",
+        "hours_late": 7.6
+      },
+      {
+        "store": "トレカチャンピオン/ビデオインアメリカ福知山店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284358+09:00",
+        "post": "https://x.com/CardFukuchiyama/status/2117051563613057113",
+        "posted_at": "2026-11-02T09:30:00.338000+09:00",
+        "hours_late": 7.0
+      },
+      {
+        "store": "シーガル各店（ガルモバ会員限定）",
+        "product": "ポケモンカード 拡張パック 30th CELEBRATION（再販）",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414191+09:00",
+        "post": "https://x.com/SeagullJP/status/2116818423225397371",
+        "posted_at": "2026-11-01T18:03:35.338000+09:00",
+        "hours_late": 3.5
+      },
+      {
+        "store": "シーガル各店（ガルモバ会員限定）",
+        "product": "ポケモンカード 拡張パック ストームエメラルダ（再販）",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414232+09:00",
+        "post": "https://x.com/SeagullJP/status/2116818423225397371",
+        "posted_at": "2026-11-01T18:03:35.338000+09:00",
+        "hours_late": 3.5
       }
     ],
-    "x_missed": [],
-    "new_total": 41
+    "x_missed": [
+      {
+        "store": "シーガル各店（ガルモバ会員限定）",
+        "product": "ポケモンカード 拡張パック 30th CELEBRATION（再販）",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414191+09:00",
+        "post": "https://x.com/SeagullJP/status/2116818423225397371",
+        "posted_at": "2026-11-01T18:03:35.338000+09:00",
+        "hours_late": 3.5
+      },
+      {
+        "store": "シーガル各店（ガルモバ会員限定）",
+        "product": "ポケモンカード 拡張パック ストームエメラルダ（再販）",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414232+09:00",
+        "post": "https://x.com/SeagullJP/status/2116818423225397371",
+        "posted_at": "2026-11-01T18:03:35.338000+09:00",
+        "hours_late": 3.5
+      },
+      {
+        "store": "トレカエース各店",
+        "product": "ポケモンカード 30th CELEBRATION BOX",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T21:31:09.414285+09:00",
+        "post": "https://x.com/BA_onahamaTA/status/2116696725826220261",
+        "posted_at": "2026-11-01T10:00:00.417000+09:00",
+        "hours_late": 11.5
+      },
+      {
+        "store": "セブンネットショッピング",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+        "end": null,
+        "first_source": "入荷Now 入荷情報",
+        "found_at": "2026-11-01T23:51:40.472938+09:00",
+        "post": "https://x.com/7_netshopping/status/2116047447793295723",
+        "posted_at": "2026-10-30T15:00:00.471000+09:00",
+        "hours_late": 56.9
+      },
+      {
+        "store": "TSUTAYAフジ夏目店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販）",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188372+09:00",
+        "post": "https://x.com/tsutaya_natsume/status/2116736320752246805",
+        "posted_at": "2026-11-01T12:37:20.583000+09:00",
+        "hours_late": 22.6
+      },
+      {
+        "store": "ブックオフ高槻栄店",
+        "product": "ポケモンカード 30th CELEBRATION カードセット各種",
+        "end": "2026-11-03T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188403+09:00",
+        "post": "https://x.com/bo_taka_tsuki/status/2116701829056933987",
+        "posted_at": "2026-11-01T10:20:17.122000+09:00",
+        "hours_late": 24.9
+      },
+      {
+        "store": "トレカショップなかよし 久米川駅前",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」BOX",
+        "end": "2026-11-04T21:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188444+09:00",
+        "post": "https://x.com/nakayoshi_tcg/status/2116726941847818738",
+        "posted_at": "2026-11-01T12:00:04.478000+09:00",
+        "hours_late": 23.2
+      },
+      {
+        "store": "ドラゴンスター各店",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-05T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188568+09:00",
+        "post": "https://x.com/ds_ikebukur0/status/2116879445713715691",
+        "posted_at": "2026-11-01T22:06:04.233000+09:00",
+        "hours_late": 13.1
+      },
+      {
+        "store": "竜のしっぽ",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188661+09:00",
+        "post": "https://x.com/ryuunoshippo_3/status/2116880939057844393",
+        "posted_at": "2026-11-01T22:12:00.274000+09:00",
+        "hours_late": 13.0
+      },
+      {
+        "store": "ブックオフお宝大陸和泉中央店",
+        "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188695+09:00",
+        "post": "https://x.com/bookoff_otakara/status/2112879431182430312",
+        "posted_at": "2026-10-21T21:11:26.452000+09:00",
+        "hours_late": 278.0
+      },
+      {
+        "store": "カードコレクト秋葉原本店",
+        "product": "30th CELEBRATION カードセット9種",
+        "end": "2026-11-25T13:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188753+09:00",
+        "post": "https://x.com/cardcollect_/status/2113557736978076050",
+        "posted_at": "2026-10-23T18:06:47.156000+09:00",
+        "hours_late": 233.1
+      },
+      {
+        "store": "ビックカメラ池袋本店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+        "end": "2026-11-03T20:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188839+09:00",
+        "post": "https://x.com/bicikebukuro/status/2116847739925381454",
+        "posted_at": "2026-11-01T20:00:04.984000+09:00",
+        "hours_late": 15.2
+      },
+      {
+        "store": "カードショップラフテリア 神戸本店",
+        "product": "ポケモンカード 30th CELEBRATION BOX",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T11:11:29.188955+09:00",
+        "post": "https://x.com/laughteria_TCG/status/2116507191192785363",
+        "posted_at": "2026-10-31T21:26:51.839000+09:00",
+        "hours_late": 37.7
+      },
+      {
+        "store": "Japan TCG Center八王子駅前店",
+        "product": "ONE PIECE HEROINES PRECIOUS BOX",
+        "end": "2026-11-04T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751012+09:00",
+        "post": "https://x.com/JTC_hachioji/status/2116774869195170120",
+        "posted_at": "2026-11-01T15:10:31.248000+09:00",
+        "hours_late": 20.0
+      },
+      {
+        "store": "ウェルプレイド",
+        "product": "ONE PIECEカードゲーム エクストラブースター ONE PIECE Heroines Edition vol.2【",
+        "end": "2026-11-04T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751053+09:00",
+        "post": "https://x.com/wellplayed_oka/status/2116830412693819443",
+        "posted_at": "2026-11-01T18:51:13.850000+09:00",
+        "hours_late": 16.3
+      },
+      {
+        "store": "ブックオフ ユーカリが丘",
+        "product": "ONE PIECE Heroines Edition vol.2【EB-05】",
+        "end": "2026-11-05T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751092+09:00",
+        "post": "https://x.com/AkiPokemonLife/status/2116394738634916267",
+        "posted_at": "2026-10-31T14:00:01.060000+09:00",
+        "hours_late": 45.2
+      },
+      {
+        "store": "ポケタウン秋葉原",
+        "product": "ONE PIECE エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T11:11:29.751170+09:00",
+        "post": "https://x.com/poketown_akiba/status/2116843607093395553",
+        "posted_at": "2026-11-01T19:43:39.640000+09:00",
+        "hours_late": 15.5
+      },
+      {
+        "store": "TSUTAYA森町店トレカコーナー",
+        "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド スタートデッキ 地球育ちのサイヤ人[FS13]・サイヤ人の王子",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ドラゴンボール",
+        "found_at": "2026-11-02T11:11:29.902107+09:00",
+        "post": "https://x.com/t_morimachi_tc/status/2116410634166579456",
+        "posted_at": "2026-10-31T15:03:10.850000+09:00",
+        "hours_late": 44.1
+      },
+      {
+        "store": "TSUTAYA森町店トレカコーナー",
+        "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック REACH THE GOD [FB12]",
+        "end": "2026-11-06T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ドラゴンボール",
+        "found_at": "2026-11-02T11:11:29.902167+09:00",
+        "post": "https://x.com/t_morimachi_tc/status/2116410634166579456",
+        "posted_at": "2026-10-31T15:03:10.850000+09:00",
+        "hours_late": 44.1
+      },
+      {
+        "store": "TSUTAYA所沢山口店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T13:46:33.160041+09:00",
+        "post": "https://x.com/TSUTAYA_TY/status/2117085159048769677",
+        "posted_at": "2026-11-02T11:43:30.114000+09:00"
+      },
+      {
+        "store": "TSUTAYA浜田山店トレカ",
+        "product": "ポケモンカードゲームMEGA 拡張パック ハドウシーカー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T13:46:33.160072+09:00",
+        "post": "https://x.com/TSUTAYA02302TC/status/2117074392404664365",
+        "posted_at": "2026-11-02T11:00:43.146000+09:00"
+      },
+      {
+        "store": "TSUTAYA南国店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-02T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.283026+09:00",
+        "post": "https://x.com/chang_tingyao/status/2117130080531230990",
+        "posted_at": "2026-11-02T14:42:00.230000+09:00"
+      },
+      {
+        "store": "ビデオ100徳島藍住店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+        "end": "2026-11-02T23:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.283159+09:00",
+        "post": "https://x.com/chang_tingyao/status/2117157763185000839",
+        "posted_at": "2026-11-02T16:32:00.289000+09:00"
+      },
+      {
+        "store": "ブックエース小名浜住吉店（トレカエース）",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「メガシンフォニア」",
+        "end": "2026-11-03T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.283534+09:00",
+        "post": "https://x.com/Nchan_000/status/2117198008765018368",
+        "posted_at": "2026-11-02T19:11:55.583000+09:00"
+      },
+      {
+        "store": "TSUTAYA加須店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+        "end": "2026-11-03T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.283569+09:00",
+        "post": "https://x.com/PICA2200/status/2117130076458524840",
+        "posted_at": "2026-11-02T14:41:59.259000+09:00"
+      },
+      {
+        "store": "トレカチャンピオン/ビデオインアメリカ福知山店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284358+09:00",
+        "post": "https://x.com/CardFukuchiyama/status/2117051563613057113",
+        "posted_at": "2026-11-02T09:30:00.338000+09:00",
+        "hours_late": 7.0
+      },
+      {
+        "store": "トレカチャンピオン江南店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー（1BOX ",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284402+09:00",
+        "post": "https://x.com/CardKonan/status/2117133739621077248",
+        "posted_at": "2026-11-02T14:56:32.625000+09:00"
+      },
+      {
+        "store": "お宝市番館三重本店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー（1BOX ",
+        "end": "2026-11-06T23:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284600+09:00",
+        "post": "https://x.com/otaichimiecard/status/2117132156933914948",
+        "posted_at": "2026-11-02T14:50:15.283000+09:00"
+      },
+      {
+        "store": "TSUTAYA別府上人ヶ浜店",
+        "product": "ポケモンカードゲーム MEGA スペシャルデッキセット「メガオーダイル・メガカイリュー・メガゲンガー」（お一人様1個）",
+        "end": "2026-11-08T22:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284632+09:00",
+        "post": "https://x.com/T_BEPPU_TCG/status/2117138649326453090",
+        "posted_at": "2026-11-02T15:16:03.190000+09:00"
+      },
+      {
+        "store": "トレカステーション豊川店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284663+09:00",
+        "post": "https://x.com/tstoyokawa/status/2117115094018720066",
+        "posted_at": "2026-11-02T13:42:27.167000+09:00"
+      },
+      {
+        "store": "トレカエースそよら成田ニュータウン店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284694+09:00",
+        "post": "https://x.com/TA_soyoranarita/status/2117119921046081599",
+        "posted_at": "2026-11-02T14:01:38.020000+09:00"
+      },
+      {
+        "store": "TSUTAYA宇都宮テクノ店トレカ売場",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284723+09:00",
+        "post": "https://x.com/TECHNO_TCG/status/2117122504041062892",
+        "posted_at": "2026-11-02T14:11:53.854000+09:00"
+      },
+      {
+        "store": "TSUTAYA400号西那須野店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284752+09:00",
+        "post": "https://x.com/T_400nasuTCG/status/2117135107484176461",
+        "posted_at": "2026-11-02T15:01:58.749000+09:00"
+      },
+      {
+        "store": "トレカステーション佐鳴台店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再入荷・お一人様20パック）",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284785+09:00",
+        "post": "https://x.com/ts_sanarudai/status/2117135006342779099",
+        "posted_at": "2026-11-02T15:01:34.635000+09:00"
+      },
+      {
+        "store": "TSUTAYA BOOK STORE島原店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284815+09:00",
+        "post": "https://x.com/tsutaya_shima/status/2117137196784468479",
+        "posted_at": "2026-11-02T15:10:16.877000+09:00"
+      },
+      {
+        "store": "トレカステーションTSUTAYAハレノテラス東大宮店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284844+09:00",
+        "post": "https://x.com/T_higashioomiya/status/2117144227209769019",
+        "posted_at": "2026-11-02T15:38:13.061000+09:00"
+      },
+      {
+        "store": "トレカステーションTSUTAYAハレノテラス東大宮店",
+        "product": "ポケモンカードゲーム スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+        "end": "2026-11-07T21:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284874+09:00",
+        "post": "https://x.com/T_higashioomiya/status/2117147083576852594",
+        "posted_at": "2026-11-02T15:49:34.072000+09:00"
+      },
+      {
+        "store": "ビックカメラあべのキューズモール店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（ポイントカード会員様限定抽選会）",
+        "end": "2026-11-08T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T16:32:10.284905+09:00",
+        "post": "https://x.com/bic_abeno/status/2117137545243054324",
+        "posted_at": "2026-11-02T15:11:39.956000+09:00"
+      },
+      {
+        "store": "キデイランド ららぽーと富士見店",
+        "product": "ONE PIECEカードゲーム エクストラブースター ONE PIECE Heroines Edition vol.2【",
+        "end": "2026-11-02T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T16:32:10.952340+09:00",
+        "post": "https://x.com/shyzeriyan/status/2117158266329506245",
+        "posted_at": "2026-11-02T16:34:00.248000+09:00"
+      },
+      {
+        "store": "ブックエース小名浜住吉店（トレカエース）",
+        "product": "ONE PIECEカードゲーム ブースターパック 世界最強の戦士【OP-17】",
+        "end": "2026-11-03T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T16:32:10.952460+09:00",
+        "post": "https://x.com/Nchan_000/status/2117198008765018368",
+        "posted_at": "2026-11-02T19:11:55.583000+09:00"
+      },
+      {
+        "store": "カードショップ＠ほ～む。鹿児島店",
+        "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】（1BOX 5,760円）",
+        "end": "2026-11-15T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T16:32:10.952781+09:00",
+        "post": "https://x.com/AThome_kagosima/status/2117119515041669394",
+        "posted_at": "2026-11-02T14:00:01.221000+09:00"
+      },
+      {
+        "store": "books交野駅前店",
+        "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー",
+        "end": "2026-11-25T23:59:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T18:11:02.143887+09:00",
+        "post": "https://x.com/books_katano/status/2117162654565638203",
+        "posted_at": "2026-11-02T16:51:26.485000+09:00"
+      },
+      {
+        "store": "TSUTAYAイオンタウン郡山店",
+        "product": "ポケモンカードゲームMEGA 拡張パック ハドウシーカー",
+        "end": "2026-11-08T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T18:11:02.143978+09:00",
+        "post": "https://x.com/tsutaya_atk_tcg/status/2117149763896484253",
+        "posted_at": "2026-11-02T16:00:13.110000+09:00"
+      },
+      {
+        "store": "TSUTAYA静岡流通どおり店",
+        "product": "ポケモンカードゲームMEGA 拡張パック ハドウシーカー",
+        "end": "2026-11-08T22:00:00+09:00",
+        "first_source": "カード抽選まとめ ポケカ",
+        "found_at": "2026-11-02T18:11:02.144011+09:00",
+        "post": "https://x.com/BEOVClMCqEOkcrn/status/2117162443789255047",
+        "posted_at": "2026-11-02T16:50:36.232000+09:00"
+      },
+      {
+        "store": "三洋堂トレカ館 桜井店",
+        "product": "ONE PIECE HEROINES PRECIOUS BOX",
+        "end": "2026-11-08T20:59:00+09:00",
+        "first_source": "カード抽選まとめ ワンピ",
+        "found_at": "2026-11-02T18:11:02.773693+09:00",
+        "post": "https://x.com/sanyodoTCG_saku/status/2117164814308942306",
+        "posted_at": "2026-11-02T17:00:01.408000+09:00"
+      }
+    ],
+    "new_total": 113
   },
   "history": {
     "2026-10-28": {
@@ -59,6 +675,12 @@
       "missing": 1,
       "late": 1,
       "x_missed": 0
+    },
+    "2026-11-02": {
+      "new": 113,
+      "missing": 0,
+      "late": 21,
+      "x_missed": 45
     }
   }
 }
