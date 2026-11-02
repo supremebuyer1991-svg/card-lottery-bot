@@ -13250,6 +13250,18 @@
         "mem": null,
         "rq": []
       },
+      "0a199fbd2737cd83": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-09"
+      },
       "3ecfbcd1eca1c8c1": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -18855,6 +18867,17 @@
         "mem": null,
         "rq": []
       },
+      "3df479522b812343": {
+        "p": "ONE PIECEカードゲーム ブースターパック",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "dc44e888a01a1dba": {
         "p": "神の支配",
         "g": "onepiece",
@@ -19040,6 +19063,278 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-a68be/": {
+    "name": "ジャンプショップ 札幌店",
+    "items": {
+      "3c2a97bbb7deb41e": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-ceb44/": {
+    "name": "ジャンプショップ 仙台店",
+    "items": {
+      "747a6fe8175643f5": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-b3f8d/": {
+    "name": "ジャンプショップ 東京ドームシティ店",
+    "items": {
+      "06325378ed3895f7": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-95868/": {
+    "name": "ジャンプショップ 東京駅店",
+    "items": {
+      "30d0d96eee329222": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-f17c3/": {
+    "name": "ジャンプショップ 東京スカイツリータウン・ソラマチ店",
+    "items": {
+      "c2ef1a30637ac256": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-c52e7/": {
+    "name": "ジャンプショップ 渋谷店",
+    "items": {
+      "888c2fe05013a996": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-7990d/": {
+    "name": "ジャンプショップ 池袋店",
+    "items": {
+      "9818f0726931bc65": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-71a9b/": {
+    "name": "ジャンプショップ 横浜店",
+    "items": {
+      "b7d5090b76b8139f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-4dbb8/": {
+    "name": "ジャンプショップ 名古屋店",
+    "items": {
+      "b168048e54de0c93": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-85e78/": {
+    "name": "ジャンプショップ 大阪梅田店",
+    "items": {
+      "338063c0c422bde6": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-93b6c/": {
+    "name": "ジャンプショップ 大阪心斎橋店",
+    "items": {
+      "beb2ef9265abdc42": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-37b1e/": {
+    "name": "ジャンプショップ 大阪天王寺店",
+    "items": {
+      "3a257f142ede0481": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-8291d/": {
+    "name": "ジャンプショップ 岡山店",
+    "items": {
+      "b9c5185457603c08": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-8c709/": {
+    "name": "ジャンプショップ 広島店",
+    "items": {
+      "b29b2ef47fb1f1f5": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-aaf33/": {
+    "name": "ジャンプショップ 福岡店",
+    "items": {
+      "a6f9aaf117d7d2fd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-1833e/": {
+    "name": "ジャンプショップ 期間限定ららぽーと福岡店",
+    "items": {
+      "7c022d2aef8114bb": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-24e7d/": {
+    "name": "JUMP SHOP 名古屋店",
+    "items": {
+      "a077374fd85033cc": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",
