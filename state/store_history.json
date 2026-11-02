@@ -503,6 +503,17 @@
         "rq": [],
         "a": "2026-11-04"
       },
+      "d9cba9d5611390bb": {
+        "p": "世界最強の戦士",
+        "g": "dragonball",
+        "e": "2026-11-02T21:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "81bc622351ff744f": {
         "p": "メガシンフォニア",
         "g": "pokemon",
@@ -11785,6 +11796,17 @@
   "store/tsutaya-66810/": {
     "name": "TSUTAYA富士八幡町店",
     "items": {
+      "b8150ca6382ff8c8": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "3df64b0d3c0fb0e8": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -13439,6 +13461,17 @@
         "id": true,
         "mem": "account",
         "rq": []
+      },
+      "7b34f3c6dbceb4a1": {
+        "p": "世界最強の戦士",
+        "g": "dragonball",
+        "e": "2026-11-02T21:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -14878,7 +14911,7 @@
         "g": "pokemon",
         "e": "2026-11-02T22:00",
         "f": "2026-11-02",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -16635,7 +16668,7 @@
         "g": "pokemon",
         "e": "2026-11-02T21:59",
         "f": "2026-11-02",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -17347,6 +17380,19 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "5f0a8a89dbdd2f75": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T20:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ]
       }
     }
   },
@@ -17362,6 +17408,17 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      },
+      "a63e776ab6fd553b": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
         "rq": []
       }
     }
@@ -17454,6 +17511,104 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-02T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-1d386/": {
+    "name": "TSUTAYA（LINE抽選・全国の対象店舗）",
+    "items": {
+      "00e8052bb907048e": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-07151/": {
+    "name": "TSUTAYA所沢山口店",
+    "items": {
+      "5a15a537dc802109": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-0f29d/": {
+    "name": "TSUTAYA浜田山店トレカ",
+    "items": {
+      "8db752f8dd818725": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/kiddyland-3997e/": {
+    "name": "キディランド（一部店舗）",
+    "items": {
+      "e783cdeb7bd2f4e4": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-f5763/": {
+    "name": "TSUTAYA北習志野駅前店",
+    "items": {
+      "000e1a0c993f822e": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-f6b1d/": {
+    "name": "TSUTAYA防府",
+    "items": {
+      "5ff19fb89b1205be": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",

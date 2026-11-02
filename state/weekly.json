@@ -7116,7 +7116,7 @@
       "game": "pokemon",
       "store": "古本市場 草加店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "埼玉県",
       "found_at": "2026-11-02T11:11:29.188081+09:00",
       "chain": "furuichi"
@@ -7125,7 +7125,7 @@
       "game": "pokemon",
       "store": "TSUTAYA中万々店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "高知県",
       "found_at": "2026-11-02T11:11:29.188121+09:00",
       "chain": "tsutaya"
@@ -7488,6 +7488,60 @@
       "channel": "store",
       "area": "福岡県",
       "found_at": "2026-11-02T13:01:20.574049+09:00",
+      "chain": "tsutaya"
+    },
+    "00e8052bb907048e": {
+      "game": "pokemon",
+      "store": "TSUTAYA（LINE抽選・全国の対象店舗）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-02T13:46:11.287466+09:00",
+      "chain": "tsutaya"
+    },
+    "5f0a8a89dbdd2f75": {
+      "game": "pokemon",
+      "store": "ふるいちトップブックス中野店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "長野県",
+      "found_at": "2026-11-02T13:46:33.159916+09:00",
+      "chain": "furuichi"
+    },
+    "b8150ca6382ff8c8": {
+      "game": "pokemon",
+      "store": "TSUTAYA富士八幡町店",
+      "series": null,
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-02T13:46:33.159969+09:00",
+      "chain": "tsutaya"
+    },
+    "a63e776ab6fd553b": {
+      "game": "pokemon",
+      "store": "TSUTAYA 合川店",
+      "series": null,
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-02T13:46:33.160008+09:00",
+      "chain": "tsutaya"
+    },
+    "5a15a537dc802109": {
+      "game": "pokemon",
+      "store": "TSUTAYA所沢山口店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-02T13:46:33.160041+09:00",
+      "chain": "tsutaya"
+    },
+    "8db752f8dd818725": {
+      "game": "pokemon",
+      "store": "TSUTAYA浜田山店トレカ",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-02T13:46:33.160072+09:00",
       "chain": "tsutaya"
     }
   }

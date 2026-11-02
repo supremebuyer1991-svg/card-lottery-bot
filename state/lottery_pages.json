@@ -20150,6 +20150,7 @@
       "store": "古本市場福山春日店",
       "product": "30th CELEBRATION カードセット",
       "series": "30th CELEBRATION",
+      "start": "2026-11-01T10:00:00+09:00",
       "end": "2026-11-02T22:00:00+09:00",
       "method": "ポケカ抽選販売（告知内のリンクから応募、締切11/2(月)22:00）",
       "conditions": "会員登録、本人確認書類、購入上限、代理購入、価格などの条件は本文に書かれていない。分かるのは、福山春日店で「30th CELEBRATION」と「カードセット」の2件の抽選があり、どちらも11/2(月)22:00が締切という点だけ。",
@@ -20641,7 +20642,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/3tqn7",
-      "channel": "online",
+      "channel": "store",
       "area": "埼玉県",
       "id_check": true,
       "member": "account",
@@ -20666,7 +20667,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/k7rvc",
-      "channel": "online",
+      "channel": "store",
       "area": "高知県",
       "id_check": true,
       "member": "account",
@@ -21505,6 +21506,7 @@
       "product": "ポケカ抽選販売 30th CELEBRATION",
       "series": "30th CELEBRATION",
       "end": "2026-11-04T22:00:00+09:00",
+      "conditions": "本文から読み取れるのは、ポケカ「30th CELEBRATION」の抽選販売で、応募の締切が11/4(水)22:00ということだけです。会員登録、本人確認書類、購入上限、代理購入、価格などの条件は書かれていません。",
       "url": "https://livepocket.jp/e/ugp5c",
       "channel": "store",
       "area": "東京都",
@@ -21523,6 +21525,7 @@
       "product": "ポケモンカード 拡張パック「ハドウシーカー」",
       "series": "ハドウシーカー",
       "end": "2026-11-08T23:59:00+09:00",
+      "method": "ライブポケット",
       "conditions": "本文から読み取れる条件は、11/8(日)23:59が応募の締切ということだけ。会員登録、アプリ、本人確認書類、購入個数の上限、代理購入、価格については書かれていない。",
       "url": "https://livepocket.jp/e/hehv6",
       "channel": "store",
@@ -21560,6 +21563,8 @@
       "product": "30th CELEBRATION 拡張パック",
       "series": "30th CELEBRATION",
       "end": "2026-11-02T23:59:00+09:00",
+      "method": "ライブポケット(LivePocket)の抽選に、11/2(月)までに応募する",
+      "conditions": "この告知には応募・購入の条件が書かれていない。会員登録、アプリ、本人確認、購入個数の上限、代理購入、価格はいずれも記載なし。分かるのは対象が30th CELEBRATION拡張パックで、神戸北(兵庫)の応募が11/2(月)までということだけ。",
       "url": "https://livepocket.jp/e/z4uwb",
       "channel": "store",
       "area": "兵庫県",
@@ -21595,6 +21600,8 @@
       "product": "ポケモンカードゲーム スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "series": "スペシャルデッキセットMEGA",
       "end": "2026-11-03T22:45:00+09:00",
+      "method": "抽選URLから応募する抽選販売(応募期限は2026年11月3日(火)22:45まで)。当選後の購入方法は記載なし",
+      "conditions": "ページ本文には応募・購入の条件(会員登録、アプリ、本人確認書類、購入個数の上限、代理購入、価格など)の記載がなく、確認できるのは応募期限が2026年11月3日(火)22:45までという点のみ。",
       "url": "https://livepocket.jp/e/u-30b",
       "channel": "store",
       "area": "福岡県",
@@ -21602,6 +21609,158 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsuns-online-store%2Ftcg-01-0006%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fsuns-online-store%2Ftcg-01-0006%2F",
       "spath": "store/tsutaya-48133/",
       "found_at": "2026-11-02T13:01:20.574049+09:00"
+    },
+    "last": "2026-11-02"
+  },
+  "l/tsutaya-line-hadou-1127/": {
+    "d": {
+      "key": "00e8052bb907048e",
+      "game": "pokemon",
+      "store": "TSUTAYA（LINE抽選・全国の対象店舗）",
+      "product": "MEGA 拡張パック ハドウシーカー（1人30パック＝1BOXまで・2026年11月27日発売）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-08T21:00+09:00",
+      "announce": "当選した人にだけLINEのお知らせ（PUSH通知）で連絡（落選の連絡はなし）",
+      "buy": "選んだ店舗の店頭で購入（11/27発売）",
+      "method": "TSUTAYAのLINEの応募フォームから申し込み（都道府県と受け取る店舗を選ぶ）→ 当選者にだけLINEで通知 → 選んだ店舗で購入",
+      "conditions": "1人1回・30パック（1BOX）まで。応募にはV会員番号（モバイルVカード・16桁）が必要。応募から当選発表までLINEのお知らせ通知をONにしておくこと（OFFだと抽選の対象外）。店頭での予約受付はなし。受け取りのときに当選画面・Vカード・顔写真付きの本人確認書類（運転免許証かマイナンバーカード）が必要。パックのビニールを開けて渡す場合あり（店舗に確認）",
+      "tags": [
+        "本人確認",
+        "会員"
+      ],
+      "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=48qx85q2Tk-KYHuicU_sTzbQWbTPmHhLhsOatLVe3WZUNDhESzJEOEwyWDVRT0s1WlQxR1dTQlJKMy4u",
+      "channel": "store",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-1d386/",
+      "found_at": "2026-11-02T13:46:11.287466+09:00",
+      "manual": true
+    },
+    "last": "2026-11-02"
+  },
+  "l/5f0a8a89db/": {
+    "d": {
+      "key": "5f0a8a89dbdd2f75",
+      "game": "pokemon",
+      "store": "ふるいちトップブックス中野店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-03T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "アプリ・会員・本人確認",
+      "tags": [
+        "アプリ",
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/0skwi",
+      "channel": "store",
+      "area": "長野県",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/furuichi-0430b/",
+      "found_at": "2026-11-02T13:46:33.159916+09:00"
+    },
+    "last": "2026-11-02"
+  },
+  "l/b8150ca638/": {
+    "d": {
+      "key": "b8150ca6382ff8c8",
+      "game": "pokemon",
+      "store": "TSUTAYA富士八幡町店",
+      "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "end": "2026-11-03T22:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/eban3",
+      "channel": "store",
+      "area": "静岡県",
+      "id_check": true,
+      "member": "card",
+      "spath": "store/tsutaya-66810/",
+      "found_at": "2026-11-02T13:46:33.159969+09:00"
+    },
+    "last": "2026-11-02"
+  },
+  "l/a63e776ab6/": {
+    "d": {
+      "key": "a63e776ab6fd553b",
+      "game": "pokemon",
+      "store": "TSUTAYA 合川店",
+      "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "end": "2026-11-08T23:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/uk_yi",
+      "channel": "store",
+      "area": "福岡県",
+      "id_check": true,
+      "member": "card",
+      "spath": "store/tsutaya-be8e8/",
+      "found_at": "2026-11-02T13:46:33.160008+09:00"
+    },
+    "last": "2026-11-02"
+  },
+  "l/5a15a537dc/": {
+    "d": {
+      "key": "5a15a537dc802109",
+      "game": "pokemon",
+      "store": "TSUTAYA所沢山口店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー",
+      "series": "ハドウシーカー",
+      "end": "2026-11-08T23:59:00+09:00",
+      "method": "店頭",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://x.com/TSUTAYA_TY/status/2117085159048769677",
+      "channel": "store",
+      "area": "埼玉県",
+      "id_check": false,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-07151/",
+      "found_at": "2026-11-02T13:46:33.160041+09:00"
+    },
+    "last": "2026-11-02"
+  },
+  "l/8db752f8dd/": {
+    "d": {
+      "key": "8db752f8dd818725",
+      "game": "pokemon",
+      "store": "TSUTAYA浜田山店トレカ",
+      "product": "ポケモンカードゲームMEGA 拡張パック ハドウシーカー",
+      "series": "ハドウシーカー",
+      "end": "2026-11-08T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "アプリ・会員",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://x.com/TSUTAYA02302TC/status/2117074392404664365",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-0f29d/",
+      "found_at": "2026-11-02T13:46:33.160072+09:00"
     },
     "last": "2026-11-02"
   }
