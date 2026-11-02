@@ -2468,7 +2468,8 @@
     "name": "TSUTAYA BOOK STORE島原店",
     "last": "2026-11-02",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "長崎県"
   },
   "store/tsutaya-5d9bc/": {
     "name": "TSUTAYA唐津店 トレカコーナー",
@@ -5130,17 +5131,20 @@
   "store/tsutaya-b19b8/": {
     "name": "TSUTAYA宇都宮テクノ店トレカ売場",
     "last": "2026-11-02",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/tsutaya-aac1a/": {
     "name": "TSUTAYA400号西那須野店",
     "last": "2026-11-02",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/torecastation-df3d6/": {
     "name": "トレカステーション佐鳴台店",
     "last": "2026-11-02",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "静岡県"
   },
   "store/tsutaya-dff5e/": {
     "name": "トレカステーションTSUTAYAハレノテラス東大宮店",
@@ -5151,12 +5155,14 @@
   "store/kadokingudamu-014ff/": {
     "name": "カードキングダム秋葉原駅前店",
     "last": "2026-11-02",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "東京都"
   },
   "store/nyuko-wan-49f40/": {
     "name": "ニューコ・ワン（宮崎県内対象3店舗：岡富店・宮交シティ・高千穂通り）",
     "last": "2026-11-02",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "宮崎県"
   },
   "store/gemupuraza-f7991/": {
     "name": "ゲームプラザ元気",
@@ -5166,7 +5172,8 @@
   "store/batoroco-3f695/": {
     "name": "TCバトロコ新静岡駅前",
     "last": "2026-11-02",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "静岡県"
   },
   "store/toredingukadoshoppuairando-edefa/": {
     "name": "トレーディングカードショップ アイランド",
@@ -5261,6 +5268,30 @@
     "name": "トレカチャンピオン",
     "last": "2026-11-02",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/yamada-9e18b/": {
+    "name": "ヤマダデンキ（アプリ抽選・全国の店舗）",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "千葉県"
+  },
+  "store/shop-15264/": {
+    "name": "加須店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/jumpshop-6a436/": {
+    "name": "JUMP SHOP 池袋店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/jumpshop-4b1f2/": {
+    "name": "JUMP SHOP 東京駅店",
+    "last": "2026-11-02",
+    "game": "onepiece",
     "keep": true
   }
 }
