@@ -27,13 +27,16 @@ def main():
     if step in ("all", "collect"):
         srcs = load_sources()
         try:  # LivePocketの常連店：お店のページを直接見る（Xを使わず無料）
+            if not s.get("lp_shops_enabled"):
+                raise RuntimeError("停止中（LivePocketがGitHubからのアクセスを断るため。settings の lp_shops_enabled）")
             import lpshops
             from common import load_json
             lots = load_json("lotteries.json", {})
             lpshops.learn(lots, limit=s.get("lp_learn_per_run", 8))
             srcs += lpshops.sources(s, lots, srcs)
         except Exception as e:
-            log(f"LivePocket常連店: スキップ {e}")
+            if s.get("lp_shops_enabled"):
+                log(f"LivePocket常連店: スキップ {e}")
         new = collect(srcs, s)
         log(f"新着 {len(new)} 件")
     if step in ("all", "publish"):

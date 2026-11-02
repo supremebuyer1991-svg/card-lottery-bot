@@ -382,3 +382,7 @@ affiliate:
 # 抽選のまとめブログ（お店・公式ではない）。応募ボタンのリンク先がここになっていたら、リンクを外す
 # ※アメブロ・はてな・noteなどはお店が自分で告知に使っていることがあるので入れない
 blog_domains: [mikeco-room.com, cardchusen.com, nyuka-now.com]
+
+# LivePocket常連店のお店ページを直接見る仕組み（src/lpshops.py）。11/2 試したが、LivePocketはGitHubの実行環境からのアクセスには
+# 中身のないページ（ボット対策）を返すため停止中。読める環境に移したら true に
+lp_shops_enabled: false

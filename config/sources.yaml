@@ -173,6 +173,7 @@ sources:
 
   # --- お店のLivePocket主催者ページ：新しい抽選ページが増えたら、そのページだけ読む ---
   - id: lp_kiddyland
+    enabled: false   # 11/2 停止：LivePocketはGitHubからのアクセスに中身のないページを返すため、一度も拾えていなかった
     game: auto
     name: キデイランド（LivePocket）
     type: html_newlinks
