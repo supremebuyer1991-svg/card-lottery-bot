@@ -260,8 +260,9 @@ def big_chain(store):
     return None
 
 
-def compose_big(name, game, series, items, settings):
-    """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切"""
+def compose_big(name, game, series, items, settings, started=False):
+    """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切。
+    started=True は「予告の段階で見つけていた抽選が、受付開始になった」お知らせ"""
     from detail import lottery_path
     from sitegen import series_path
     own = public_site(settings)
@@ -276,7 +277,9 @@ def compose_big(name, game, series, items, settings):
         where = f"{name} {len(items)}店舗" + (f"（{'・'.join(areas[:3])}{' ほか' if len(areas) > 3 else ''}）" if areas else "")
         link = f"{own}/{series_path(game, series)}" if own and series else f"{own}/"
     kind = "店頭抽選" if first.get("channel") == "store" else "抽選"
-    lines = [f"🚨抽選速報｜{GAME_HEAD[game]}", "", f"{name}で「{series or short_product(first)}」の{kind}", "",
+    head = f"🔔受付開始｜{GAME_HEAD[game]}" if started else f"🚨抽選速報｜{GAME_HEAD[game]}"
+    what = f"{name}で「{series or short_product(first)}」の{kind}" + ("が始まりました" if started else "")
+    lines = [head, "", what, "",
              f"📍{where}", (f"⏰{fmt_dt(first.get('end'))} 締切" + ("（早い店）" if len(items) > 1 else "") if first.get("end") else "⏰締切はお店の告知で確認"), "",
              "応募条件・方法はこちら👇", link, "", FOLLOW, "", TAGS[game]]
     return "\n".join(lines)
@@ -301,24 +304,31 @@ def post_big(settings, client=None):
     for i in lots.values():
         if i.get("status") not in ("approved", "listed", "posted") or i.get("game") not in GAME_HEAD:
             continue
-        f, e = parse_dt(i.get("found_at")), parse_dt(i.get("end"))
-        if not f or not (timedelta(minutes=20) <= t - f <= timedelta(hours=3)) or (e and e < t + timedelta(hours=1)):
+        f, e, st = parse_dt(i.get("found_at")), parse_dt(i.get("end")), parse_dt(i.get("start"))
+        if not f or (e and e < t + timedelta(hours=1)):
+            continue
+        if timedelta(minutes=20) <= t - f <= timedelta(hours=3):
+            kind = "new"  # 見つけたばかり
+        elif (st and st - f >= timedelta(minutes=30) and timedelta(0) <= t - st <= timedelta(hours=9)
+              and st >= (parse_dt(settings.get("big_start_since")) or st)):
+            kind = "start"  # 予告の段階で見つけていた抽選が受付開始（夜中に始まったものも朝の回で出せるよう9時間まで）
+        else:
             continue
         if i.get("channel") == "store":
             continue  # ユーザーの指示：お店ごとの店頭抽選（TSUTAYA〇〇店など）は出さない。通販（発送）だけ
         bc = big_chain(i.get("store"))
         if not bc:
             continue
-        groups.setdefault((bc[0], bc[1], i["game"], i.get("series") or short_product(i)), []).append(i)
+        groups.setdefault((bc[0], bc[1], i["game"], i.get("series") or short_product(i), kind), []).append(i)
     dry = settings["dry_run"] or (client is None and not os.environ.get("X_API_KEY"))
-    for (slug, name, game, series), items in sorted(groups.items(), key=lambda kv: min(i.get("end") or "9" for i in kv[1])):
-        key = f"{slug}|{game}|{series}"
+    for (slug, name, game, series, kind), items in sorted(groups.items(), key=lambda kv: min(i.get("end") or "9" for i in kv[1])):
+        key = f"{slug}|{game}|{series}" + ("|start" if kind == "start" else "")
         if key in done:
             continue
         if count >= cap:
             log(f"大手の速報: 今日の上限（{cap}件）に届いたので {key} は出さない")
             break
-        text = compose_big(name, game, series, items, settings)
+        text = compose_big(name, game, series, items, settings, started=(kind == "start"))
         if dry:
             log("DRY_RUN 大手の速報:\n" + text)
             continue
