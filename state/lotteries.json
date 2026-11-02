@@ -32683,7 +32683,7 @@
     "series": null,
     "end": "2026-11-02T22:00:00+09:00",
     "url": "https://livepocket.jp/e/9lmsl",
-    "x_post": null,
+    "x_post": "https://x.com/Nchan_000/status/2117210903519350844",
     "channel": "store",
     "area": "栃木県",
     "method": "店頭",
@@ -32851,9 +32851,10 @@
     "key": "070a9541e0fd2102",
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952487+09:00",
-    "page_checked_at": "2026-11-02T18:12:23.358811+09:00",
+    "page_checked_at": "2026-11-02T21:56:56.351998+09:00",
     "multi": false,
-    "cls": "23a41b1961dc"
+    "cls": "23a41b1961dc",
+    "address_checked": true
   },
   "f984d0e4d62adb7b": {
     "store": "ゲームプラザ元気302",
@@ -32940,9 +32941,10 @@
     "key": "edc022ff7d17a04b",
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952587+09:00",
-    "page_checked_at": "2026-11-02T18:12:30.242070+09:00",
+    "page_checked_at": "2026-11-02T21:56:58.599360+09:00",
     "multi": false,
-    "cls": "522426c052f3"
+    "cls": "522426c052f3",
+    "address_checked": true
   },
   "e0b897085c0d0dfa": {
     "store": "ゲームプラザ元気",
@@ -32996,9 +32998,10 @@
     "key": "008022190526342b",
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952645+09:00",
-    "page_checked_at": "2026-11-02T18:12:34.687442+09:00",
+    "page_checked_at": "2026-11-02T21:57:00.807429+09:00",
     "multi": false,
-    "cls": "726788a0ff26"
+    "cls": "726788a0ff26",
+    "address_checked": true
   },
   "9581323cab0ac7dd": {
     "store": "TCバトロコ新静岡駅前",
@@ -33026,9 +33029,10 @@
     "key": "9581323cab0ac7dd",
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952691+09:00",
-    "page_checked_at": "2026-11-02T18:12:34.687644+09:00",
+    "page_checked_at": "2026-11-02T21:57:03.036332+09:00",
     "multi": false,
-    "cls": "8c456a7967b7"
+    "cls": "8c456a7967b7",
+    "address_checked": true
   },
   "7611b172dbc281a5": {
     "store": "トーナメントセンターバトロコ新潟万代",
@@ -33056,9 +33060,10 @@
     "key": "7611b172dbc281a5",
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952718+09:00",
-    "page_checked_at": "2026-11-02T18:12:37.335404+09:00",
+    "page_checked_at": "2026-11-02T21:57:05.539778+09:00",
     "multi": false,
-    "cls": "502e46b97a83"
+    "cls": "502e46b97a83",
+    "address_checked": true
   },
   "5071fcf546abb9c6": {
     "store": "トレーディングカードショップ アイランド",
@@ -33087,7 +33092,8 @@
     "status": "approved",
     "found_at": "2026-11-02T16:32:10.952748+09:00",
     "page_checked_at": "2026-11-02T18:12:39.649237+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "cls": "abbee6fa7005"
   },
   "aa5caa9e96cf57da": {
     "store": "カードショップ＠ほ～む。鹿児島店",
@@ -33112,7 +33118,9 @@
     "no_quote": true,
     "key": "aa5caa9e96cf57da",
     "status": "approved",
-    "found_at": "2026-11-02T16:32:10.952781+09:00"
+    "found_at": "2026-11-02T16:32:10.952781+09:00",
+    "multi": false,
+    "cls": "e2c9e37aeb71"
   },
   "140cea1b8ac3bbae": {
     "store": "TierOne 渋谷店",
@@ -33140,7 +33148,9 @@
     "found_at": "2026-11-02T16:32:10.952811+09:00",
     "page_checked_at": "2026-11-02T18:12:41.697250+09:00",
     "address": "東京都渋谷区神南1-11-4FPG",
-    "address_checked": true
+    "address_checked": true,
+    "multi": false,
+    "cls": "362329f5fb5d"
   },
   "e15ba0167cf3c295": {
     "store": "TierOne 浜松店",
@@ -33168,7 +33178,9 @@
     "found_at": "2026-11-02T16:32:10.952837+09:00",
     "page_checked_at": "2026-11-02T18:12:44.078491+09:00",
     "address": "静岡県浜松市中央区鍛冶町140-2",
-    "address_checked": true
+    "address_checked": true,
+    "multi": false,
+    "cls": "c2782b176fd5"
   },
   "6f4ff0ce1bd60ed9": {
     "store": "ビデオ100 徳島藍住店",
@@ -33286,7 +33298,7 @@
     "key": "5a1487b5b4f46af3",
     "status": "approved",
     "found_at": "2026-11-02T16:32:48.292903+09:00",
-    "cls": "6199b8ac99ee",
+    "cls": "f76a4e28b87a",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T18:12:48.200902+09:00",
     "page_err": "中身が空",
@@ -33826,7 +33838,9 @@
     "found_at": "2026-11-02T19:14:09.356888+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:50.182828+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "multi": false,
+    "cls": "52f439705f05"
   },
   "0e04885f32105b2b": {
     "store": "JUMP SHOP大阪心斎橋店",
@@ -33853,7 +33867,9 @@
     "found_at": "2026-11-02T19:14:09.356935+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:52.385587+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "multi": false,
+    "cls": "d60b0a18f72e"
   },
   "affea323e8599e3b": {
     "store": "JUMP SHOP東京ドームシティ店",
@@ -33880,7 +33896,9 @@
     "found_at": "2026-11-02T19:14:09.356957+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:54.426444+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "multi": false,
+    "cls": "b77c62ad1028"
   },
   "014003267dde0956": {
     "store": "ブックエース小名浜店",
@@ -34282,7 +34300,9 @@
     "status": "approved",
     "found_at": "2026-11-02T21:00:05.167534+09:00",
     "page_checked_at": "2026-11-02T21:01:06.989523+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery",
+    "multi": false,
+    "cls": "85fecbea9f39"
   },
   "0f2500feb009e630": {
     "store": "トレカステーション",
@@ -34413,11 +34433,10 @@
     "end": "2026-11-04T23:59+09:00",
     "announce": "11月24日(火)中（アプリでお知らせ）",
     "buy": "当選後、店舗で購入（11/27発売）",
-    "conditions": "ヤマダデジタル会員アプリの会員であること。これまでのヤマダの抽選では「購入履歴があること」か「ゴールド会員への入会」が条件のことが多いので、応募画面の条件を確認してください",
+    "conditions": "ヤマダデジタル会員アプリの会員であること。これまでのヤマダの抽選では、過去にヤマダでのお買い物の記録があることか、ゴールド会員への入会が条件のことが多かったので、応募画面の条件を確認してください（今回の条件は未確認）",
     "member": "account",
     "tags": [
-      "会員",
-      "購入履歴"
+      "会員"
     ],
     "slug": "yamada-app-hadou-1104",
     "key": "f0b51edcb88845fd",
@@ -34428,7 +34447,9 @@
     "confidence": 1.0,
     "area": "千葉県",
     "url": "https://x.com/omusubicororiin/status/2115283831389577695",
-    "x_post": "https://x.com/omusubicororiin/status/2115283831389577695"
+    "x_post": "https://x.com/omusubicororiin/status/2115283831389577695",
+    "multi": true,
+    "cls": "c178e8d8da4e"
   },
   "484034c8b5e98910": {
     "store": "ふるいち イオンモール東浦店",
@@ -34487,7 +34508,9 @@
     "deadline_note": "画像0/0枚読込・加須店(埼玉) 11/3(火)まで",
     "end_from": "応募ページ（加須店(埼玉) 11/3(火)まで）",
     "issue": 420,
-    "tco_checked": true
+    "tco_checked": true,
+    "multi": false,
+    "cls": "4302aad14994"
   },
   "c409324320bb0ef3": {
     "store": "ふるいち イオンモール熱田店",
@@ -34560,12 +34583,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "dc44e888a01a1dba",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-02T21:52:45.187909+09:00",
     "multi": false,
     "cls": "4d3e49984e75",
     "issue": 421,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T21:57:07.961715+09:00",
+    "page_err": "中身が空",
+    "duplicate_of": "affea323e8599e3b"
   },
   "cb499af3e85c00bb": {
     "store": "JUMP SHOP 池袋店",
@@ -34593,7 +34619,9 @@
     "multi": false,
     "cls": "116646b877f2",
     "issue": 422,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T21:57:10.022338+09:00",
+    "page_err": "中身が空"
   },
   "5e477dd5e6225699": {
     "store": "JUMP SHOP 東京駅店",
@@ -34621,7 +34649,9 @@
     "multi": false,
     "cls": "8d9b14babd65",
     "issue": 423,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T21:57:12.160497+09:00",
+    "page_err": "中身が空"
   },
   "026fbe501e3f14fc": {
     "store": "TSUTAYA400号西那須野店",
@@ -34644,10 +34674,13 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "026fbe501e3f14fc",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T21:52:45.187961+09:00",
     "multi": false,
     "cls": "f05724e7525b",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T21:57:14.280944+09:00",
+    "page_err": "中身が空",
+    "duplicate_of": "1066025195126bb2"
   }
 }
