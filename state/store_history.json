@@ -838,6 +838,17 @@
   "store/kiddyland-7879f/": {
     "name": "キデイランド ららぽーと富士見店",
     "items": {
+      "72408dc16984e6f2": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "e9c85ece8d1012ab": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -885,6 +896,17 @@
       },
       "689fd1639382b701": {
         "p": "30thセレブレーション",
+        "g": "pokemon",
+        "e": "2026-11-02T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "222c1f8c1dab357e": {
+        "p": "ストームエメラルダ",
         "g": "pokemon",
         "e": "2026-11-02T23:59",
         "f": "2026-11-02",
@@ -17796,7 +17818,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-05"
       },
       "27db76bffaa04034": {
         "p": "スペシャルデッキセットMEGA",
@@ -18366,7 +18389,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-02",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "none",
@@ -18382,7 +18405,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-02",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "none",
@@ -18725,6 +18748,151 @@
         "p": "世界最強の戦士",
         "g": "onepiece",
         "e": "2026-11-02T21:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-2d164/": {
+    "name": "JUMP SHOP福岡店",
+    "items": {
+      "34d3491a05777684": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-c29d7/": {
+    "name": "JUMP SHOP大阪心斎橋店",
+    "items": {
+      "0e04885f32105b2b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-domushiti-07b64/": {
+    "name": "JUMP SHOP東京ドームシティ店",
+    "items": {
+      "affea323e8599e3b": {
+        "p": "ONE PIECEカードゲームコーナー",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/bukkuesu-953ca/": {
+    "name": "ブックエース小名浜店",
+    "items": {
+      "014003267dde0956": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "7ab5f62f6a154763": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "cc136717746cdda3": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "a754d58cb1bf94fb": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-992ff/": {
+    "name": "JUMP SHOP仙台店",
+    "items": {
+      "06ea933b6b2f686f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-d1d05/": {
+    "name": "JUMP SHOP札幌店",
+    "items": {
+      "e597c99517b28970": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-2e710/": {
+    "name": "JUMP SHOP大阪梅田店",
+    "items": {
+      "2b3ea5da958aed45": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",

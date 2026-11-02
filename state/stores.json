@@ -4931,7 +4931,7 @@
     "area": "東京都"
   },
   "store/shop-c0447/": {
-    "name": "文教堂書店 浦安西友店",
+    "name": "文教堂書店浦安西友店",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "千葉県"
@@ -5112,12 +5112,14 @@
   "store/geo-869fc/": {
     "name": "SuperKaBoS+ゲオwasse店",
     "last": "2026-11-02",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "福井県"
   },
   "store/kabos-geo-d962f/": {
     "name": "KaBoS+GEO三国店",
     "last": "2026-11-02",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "福井県"
   },
   "store/torecastation-74665/": {
     "name": "トレカステーション豊川店",
@@ -5211,6 +5213,48 @@
     "name": "錦糸町",
     "last": "2026-11-02",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/jumpshop-2d164/": {
+    "name": "JUMP SHOP福岡店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "福岡県"
+  },
+  "store/jumpshop-c29d7/": {
+    "name": "JUMP SHOP大阪心斎橋店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/jumpshop-domushiti-07b64/": {
+    "name": "JUMP SHOP東京ドームシティ店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/jumpshop-992ff/": {
+    "name": "JUMP SHOP仙台店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "宮城県"
+  },
+  "store/jumpshop-d1d05/": {
+    "name": "JUMP SHOP札幌店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "北海道"
+  },
+  "store/jumpshop-2e710/": {
+    "name": "JUMP SHOP大阪梅田店",
+    "last": "2026-11-02",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/bukkuesu-953ca/": {
+    "name": "ブックエース小名浜店",
+    "last": "2026-11-02",
+    "game": "pokemon",
     "keep": true
   }
 }
