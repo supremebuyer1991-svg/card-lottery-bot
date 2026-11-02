@@ -33157,10 +33157,10 @@
     "store": "JUMP SHOP東京ドームシティ店",
     "product": "ONE PIECEカードゲームコーナー",
     "series": null,
-    "start": null,
+    "start": "2026-11-02T17:00:00+09:00",
     "end": "2026-11-07T23:59:00+09:00",
     "announce": null,
-    "method": null,
+    "method": "Web",
     "conditions": "事前抽選申込",
     "url": "https://livepocket.jp/e/h_36i",
     "x_post": "https://x.com/OnchainOutlaw/status/2117198032475394313",
@@ -33972,9 +33972,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "北海道",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/hsapporo",
     "slug": "jumpshop-hsapporo-op18",
     "key": "3c2a97bbb7deb41e",
@@ -33986,7 +33986,9 @@
     "page_checked_at": "2026-11-02T23:10:44.407357+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "b60013d25cc4"
+    "cls": "3c296d854dab",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "747a6fe8175643f5": {
     "game": "onepiece",
@@ -33995,9 +33997,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "宮城県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/sendai",
     "slug": "jumpshop-sendai-op18",
     "key": "747a6fe8175643f5",
@@ -34009,7 +34011,9 @@
     "page_checked_at": "2026-11-02T23:10:46.523180+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "12e5c94a8fc3"
+    "cls": "0d4a4a495e16",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "06325378ed3895f7": {
     "game": "onepiece",
@@ -34018,9 +34022,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "東京都",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/tokyodome",
     "slug": "jumpshop-tokyodome-op18",
     "key": "06325378ed3895f7",
@@ -34032,7 +34036,9 @@
     "page_checked_at": "2026-11-02T23:10:48.568774+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "7a76d5a7a8a1"
+    "cls": "92e4c9d58759",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "30d0d96eee329222": {
     "game": "onepiece",
@@ -34041,9 +34047,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "東京都",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/tokyostation",
     "slug": "jumpshop-tokyostation-op18",
     "key": "30d0d96eee329222",
@@ -34055,7 +34061,9 @@
     "page_checked_at": "2026-11-02T23:10:50.680025+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "46a4b4c7d57d"
+    "cls": "3064566177c0",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "c2ef1a30637ac256": {
     "game": "onepiece",
@@ -34064,9 +34072,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "東京都",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/soramachi",
     "slug": "jumpshop-soramachi-op18",
     "key": "c2ef1a30637ac256",
@@ -34078,7 +34086,9 @@
     "page_checked_at": "2026-11-02T23:10:52.725831+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "474bf534bdc7"
+    "cls": "d9e2df3db3f6",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "888c2fe05013a996": {
     "game": "onepiece",
@@ -34087,9 +34097,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "東京都",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/shibuya",
     "slug": "jumpshop-shibuya-op18",
     "key": "888c2fe05013a996",
@@ -34101,7 +34111,9 @@
     "page_checked_at": "2026-11-02T23:10:54.771984+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "a7ac072f50b5"
+    "cls": "7c5187df595c",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "9818f0726931bc65": {
     "game": "onepiece",
@@ -34110,9 +34122,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "東京都",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/ikebukuro",
     "slug": "jumpshop-ikebukuro-op18",
     "key": "9818f0726931bc65",
@@ -34124,7 +34136,9 @@
     "page_checked_at": "2026-11-02T23:10:56.817357+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "2483ed668018"
+    "cls": "1090b263361e",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "b7d5090b76b8139f": {
     "game": "onepiece",
@@ -34133,9 +34147,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "神奈川県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/yokohama",
     "slug": "jumpshop-yokohama-op18",
     "key": "b7d5090b76b8139f",
@@ -34147,7 +34161,9 @@
     "page_checked_at": "2026-11-02T23:10:58.875258+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "73d103fc2ae5"
+    "cls": "513847499b8b",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "b168048e54de0c93": {
     "game": "onepiece",
@@ -34156,9 +34172,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "愛知県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/nagoya",
     "slug": "jumpshop-nagoya-op18",
     "key": "b168048e54de0c93",
@@ -34170,7 +34186,9 @@
     "page_checked_at": "2026-11-02T23:11:00.943524+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "a173605d788f"
+    "cls": "c5a3efbfbaa7",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "338063c0c422bde6": {
     "game": "onepiece",
@@ -34179,9 +34197,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "大阪府",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/osakaumeda",
     "slug": "jumpshop-osakaumeda-op18",
     "key": "338063c0c422bde6",
@@ -34193,7 +34211,9 @@
     "page_checked_at": "2026-11-02T23:11:03.057240+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "b80e7de29d8e"
+    "cls": "a53934a3cb53",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "beb2ef9265abdc42": {
     "game": "onepiece",
@@ -34202,9 +34222,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "大阪府",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/osakashinsaibashi",
     "slug": "jumpshop-osakashinsaibashi-op18",
     "key": "beb2ef9265abdc42",
@@ -34216,7 +34236,9 @@
     "page_checked_at": "2026-11-02T23:11:05.105278+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "19db0c4c5810"
+    "cls": "c6e0f37ae1b7",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "3a257f142ede0481": {
     "game": "onepiece",
@@ -34225,9 +34247,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "大阪府",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/tennoji-j",
     "slug": "jumpshop-tennoji-j-op18",
     "key": "3a257f142ede0481",
@@ -34239,7 +34261,9 @@
     "page_checked_at": "2026-11-02T23:11:07.152115+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "eff877f09db5"
+    "cls": "ded06b18cde6",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "b9c5185457603c08": {
     "game": "onepiece",
@@ -34248,9 +34272,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "岡山県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/okayama-j",
     "slug": "jumpshop-okayama-j-op18",
     "key": "b9c5185457603c08",
@@ -34262,7 +34286,9 @@
     "page_checked_at": "2026-11-02T23:11:09.199149+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "2740717a984e"
+    "cls": "b05df5d82166",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "b29b2ef47fb1f1f5": {
     "game": "onepiece",
@@ -34271,9 +34297,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "広島県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/hiroshima",
     "slug": "jumpshop-hiroshima-op18",
     "key": "b29b2ef47fb1f1f5",
@@ -34285,7 +34311,9 @@
     "page_checked_at": "2026-11-02T23:11:11.312881+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "3735f39a0389"
+    "cls": "a805ef32ca15",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "a6f9aaf117d7d2fd": {
     "game": "onepiece",
@@ -34294,9 +34322,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "福岡県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/fukuoka",
     "slug": "jumpshop-fukuoka-op18",
     "key": "a6f9aaf117d7d2fd",
@@ -34308,7 +34336,9 @@
     "page_checked_at": "2026-11-02T23:11:13.358636+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "b52e20a6ebcb"
+    "cls": "5b07fdfefa17",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入"
   },
   "7c022d2aef8114bb": {
     "game": "onepiece",
@@ -34317,9 +34347,9 @@
     "series": "神の支配",
     "channel": "store",
     "area": "福岡県",
-    "method": "LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入",
+    "method": "LivePocket（ライブポケット）の抽選ページから応募（事前入店抽選）→ 当選したら11/21(土)に店頭で購入",
     "end": "2026-11-07T23:59+09:00",
-    "conditions": "応募条件・購入数・受け取り日は応募ページで確認してください",
+    "conditions": "応募条件・購入数は応募ページで確認してください",
     "url": "https://livepocket.jp/t/lala-fukuoka",
     "slug": "jumpshop-lala-fukuoka-op18",
     "key": "7c022d2aef8114bb",
@@ -34329,7 +34359,11 @@
     "source": "手動追加",
     "confidence": 1.0,
     "multi": false,
-    "cls": "0701759ab55e"
+    "cls": "a42c58fa4a86",
+    "announce": "11月8日(日)〜11月9日(月)",
+    "buy": "11月21日(土)に店頭で購入",
+    "page_checked_at": "2026-11-02T23:18:48.576228+09:00",
+    "page_err": "中身が空"
   },
   "0a199fbd2737cd83": {
     "store": "TSUTAYA 中津店",
@@ -34357,7 +34391,9 @@
     "multi": false,
     "cls": "5f1228ff7ad8",
     "issue": 424,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T23:18:50.682195+09:00",
+    "page_err": "中身が空"
   },
   "a077374fd85033cc": {
     "store": "JUMP SHOP 名古屋店",
@@ -34384,7 +34420,9 @@
     "found_at": "2026-11-02T23:09:54.493003+09:00",
     "multi": false,
     "cls": "994a9967fb8e",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T23:18:52.790585+09:00",
+    "page_err": "中身が空"
   },
   "3df479522b812343": {
     "store": "JUMP SHOP 東京ドームシティ店",
@@ -34407,11 +34445,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "3df479522b812343",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T23:09:54.493043+09:00",
     "multi": false,
     "cls": "d31ae612f8b3",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-02T23:18:54.989450+09:00",
+    "page_err": "中身が空",
+    "duplicate_of": "affea323e8599e3b"
   },
   "05a7697f08d5a592": {
     "store": "ブックエース小名浜住吉店",
