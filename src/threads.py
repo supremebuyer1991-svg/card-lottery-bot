@@ -91,20 +91,22 @@ def _alert(meta, msg):
     meta["alerted"] = today
 
 
-def publish(tok, text, _retry=True, image=None):
+def publish(tok, text, _retry=True, image=None, reply_to=None):
     """テキストを1件投稿（コンテナを作る → 公開）。投稿IDを返す。
     リンクのカードが作れなかった（Invalid Link Attachment）時は、少し待ってリンクを明示してもう1回"""
     try:
-        return _publish(tok, text, None if _retry or image else re.search(r"https://\S+", text).group(0), image)
+        return _publish(tok, text, None if _retry or image else re.search(r"https://\S+", text).group(0), image, reply_to)
     except RuntimeError as e:
         if _retry and not image and "4279047" in str(e) and re.search(r"https://\S+", text):
             time.sleep(15)
-            return publish(tok, text, _retry=False)
+            return publish(tok, text, _retry=False, reply_to=reply_to)
         raise
 
 
-def _publish(tok, text, link=None, image=None):
+def _publish(tok, text, link=None, image=None, reply_to=None):
     data = {"media_type": "IMAGE" if image else "TEXT", "text": text[:LIMIT], "access_token": tok}
+    if reply_to:
+        data["reply_to_id"] = reply_to
     if image:
         data["image_url"] = image
     if link and not image:
@@ -126,6 +128,57 @@ def _publish(tok, text, link=None, image=None):
     if r.status_code != 200:
         raise RuntimeError(f"公開 {r.status_code} {r.text[:200]}")
     return r.json().get("id")
+
+
+# ---- スレッズ向けの出し方：1行目に軽い問いかけ・リンクは自分の返信（リプ欄）へ ----
+# スレッズは会話っぽい投稿を広めるので（ユーザーの依頼・2026/11/2）。結果や売り買いを予想する言い方はしない
+HOOKS = {
+    "today": ["今日締切の{label}抽選、まだ{n}店あります。もう応募した？", "今日が締切の{label}抽選まとめ。抽選し忘れてるのない？",
+              "今日まで受付の{label}抽選が{n}店。応募まだの人いる？"],
+    "new": ["新しい{label}の抽選が{n}店。今回はどこに応募する？", "{label}の抽選、また新しく{n}店出てきた。近くのお店ある？",
+            "新着の{label}抽選{n}店まとめ。気になるお店ある？"],
+    "soon": ["あと数時間で締切の{label}抽選が{n}店。駆け込みで応募する人いる？", "{label}抽選、今夜締切がまだ{n}店。間に合いそう？"],
+    "amazon": ["Amazonの招待リクエスト、通知きた人いる？", "Amazonの招待リクエスト、もう申し込んだ？"],
+    "big": ["{store}の抽選きた。今回は応募する？", "{store}で抽選が始まった。応募する？"],
+    "each": ["{store}で抽選。応募する？", "{store}の抽選、近くの人いる？"],
+}
+
+
+def _kind(key):
+    p = key.split("|")
+    if p[0] == "big":
+        return "big", p[2]
+    if p[0] == "each":
+        return "each", p[1]
+    k = {"today": "today", "new12": "new", "new17": "new", "soon": "soon", "amazon": "amazon"}.get(p[1] if len(p) > 1 else "")
+    return k, (p[2] if len(p) > 2 else None)
+
+
+def threads_style(key, text, t):
+    """(本文, 返信) にする。本文の1行目に問いかけ、サイトへのリンクは返信に回す。Amazon招待は商品リンクが中身なのでそのまま"""
+    kind, game = _kind(key)
+    if not kind or not text:
+        return text, None
+    label = GAME.get(game, ("トレカ",))[0]
+    n = sum(1 for ln in text.splitlines() if ln.startswith("・"))
+    m = re.search(r"📍(.+?)（", text)
+    store = m.group(1).strip() if m else ""
+    opts = HOOKS[kind]
+    if kind in ("big", "each") and not store:
+        hook = ""
+    else:
+        hook = opts[(t.timetuple().tm_yday + t.hour + len(key)) % len(opts)].format(label=label, n=n, store=store)
+    body, reply = text, None
+    if kind != "amazon":
+        m = re.search(r"\n([^\n]*👇)\n(https://tcg-chusen\.com/\S+)", text)
+        if m:
+            body = text[:m.start()] + "\n🔗" + m.group(1).replace("こちら👇", "リプ欄に👇").replace("今のうちに👇", "今のうちに（リンクはリプ欄）👇") + text[m.end():]
+            reply = f"{m.group(1)}\n{m.group(2)}"
+    if hook:
+        body = hook + "\n\n" + body
+    if len(body) > LIMIT:
+        body = body.replace("\n" + FOLLOW, "")
+    return body[:LIMIT], reply
 
 
 # ---- 投稿文 ----
@@ -452,16 +505,24 @@ def run(settings):
         if not text or key in done:
             continue
         if settings.get("dry_run"):
-            log("DRY_RUN Threads:\n" + text + (f"\n（画像 {img}）" if img else ""))
+            b_, r_ = threads_style(key, text, t)
+            log("DRY_RUN Threads:\n" + b_ + (f"\n（画像 {img}）" if img else "") + (f"\n── 返信 ──\n{r_}" if r_ else ""))
             continue
+        body, reply = threads_style(key, text, t) if settings.get("threads_style", True) else (text, None)
         try:
             try:
-                publish(tok, text, image=img)
+                pid = publish(tok, body, image=img)
             except RuntimeError as e:
                 if not img:
                     raise
                 log(f"Threads: 画像つきで出せなかったので文だけで出す {e}")
-                publish(tok, text)
+                pid = publish(tok, body)
+            if reply and pid:  # リンクは自分の投稿への返信に（失敗しても本文は出ているので続ける）
+                try:
+                    time.sleep(2)
+                    publish(tok, reply, reply_to=pid)
+                except Exception as e:
+                    log(f"Threads: リンクの返信を出せなかった {e}")
         except Exception as e:
             log(f"Threads: 投稿失敗 {e}")
             if '"code":190' in str(e) or " 401 " in str(e):
