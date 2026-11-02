@@ -148,6 +148,7 @@ sources:
 
   # ジャンプショップ公式の「入店抽選のご案内」ページ（ワンピカードの新弾ごとに各店のLivePocket応募リンクが載る）
   - id: jumpshop_enter
+    enabled: false   # 11/2 試したが、ページには店のリンクだけで商品名・締切は画像/PDFにしか無く、0件だった。Xの検索で拾う
     game: onepiece
     name: ジャンプショップ 入店抽選
     type: html
