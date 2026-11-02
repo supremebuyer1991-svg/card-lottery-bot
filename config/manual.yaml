@@ -561,3 +561,196 @@ lotteries:
     conditions: ヤマダデジタル会員アプリの会員であること。これまでのヤマダの抽選では、過去にヤマダでのお買い物の記録があることか、ゴールド会員への入会が条件のことが多かったので、応募画面の条件を確認してください（今回の条件は未確認）
     member: account
     tags: [会員]
+
+  - slug: jumpshop-hsapporo-op18
+    game: onepiece
+    store: ジャンプショップ 札幌店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 北海道
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/hsapporo
+
+  - slug: jumpshop-sendai-op18
+    game: onepiece
+    store: ジャンプショップ 仙台店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 宮城県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/sendai
+
+  - slug: jumpshop-tokyodome-op18
+    game: onepiece
+    store: ジャンプショップ 東京ドームシティ店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 東京都
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/tokyodome
+
+  - slug: jumpshop-tokyostation-op18
+    game: onepiece
+    store: ジャンプショップ 東京駅店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 東京都
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/tokyostation
+
+  - slug: jumpshop-soramachi-op18
+    game: onepiece
+    store: ジャンプショップ 東京スカイツリータウン・ソラマチ店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 東京都
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/soramachi
+
+  - slug: jumpshop-shibuya-op18
+    game: onepiece
+    store: ジャンプショップ 渋谷店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 東京都
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/shibuya
+
+  - slug: jumpshop-ikebukuro-op18
+    game: onepiece
+    store: ジャンプショップ 池袋店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 東京都
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/ikebukuro
+
+  - slug: jumpshop-yokohama-op18
+    game: onepiece
+    store: ジャンプショップ 横浜店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 神奈川県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/yokohama
+
+  - slug: jumpshop-nagoya-op18
+    game: onepiece
+    store: ジャンプショップ 名古屋店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 愛知県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/nagoya
+
+  - slug: jumpshop-osakaumeda-op18
+    game: onepiece
+    store: ジャンプショップ 大阪梅田店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 大阪府
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/osakaumeda
+
+  - slug: jumpshop-osakashinsaibashi-op18
+    game: onepiece
+    store: ジャンプショップ 大阪心斎橋店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 大阪府
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/osakashinsaibashi
+
+  - slug: jumpshop-tennoji-j-op18
+    game: onepiece
+    store: ジャンプショップ 大阪天王寺店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 大阪府
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/tennoji-j
+
+  - slug: jumpshop-okayama-j-op18
+    game: onepiece
+    store: ジャンプショップ 岡山店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 岡山県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/okayama-j
+
+  - slug: jumpshop-hiroshima-op18
+    game: onepiece
+    store: ジャンプショップ 広島店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 広島県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/hiroshima
+
+  - slug: jumpshop-fukuoka-op18
+    game: onepiece
+    store: ジャンプショップ 福岡店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 福岡県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/fukuoka
+
+  - slug: jumpshop-lala-fukuoka-op18
+    game: onepiece
+    store: ジャンプショップ 期間限定ららぽーと福岡店
+    series: 神の支配
+    product: ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】
+    channel: store
+    area: 福岡県
+    method: LivePocket（ライブポケット）の抽選ページから応募 → 当選したら店頭で購入
+    end: 2026-11-07T23:59
+    conditions: 応募条件・購入数・受け取り日は応募ページで確認してください
+    url: https://livepocket.jp/t/lala-fukuoka
+
