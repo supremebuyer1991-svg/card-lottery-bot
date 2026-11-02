@@ -17272,5 +17272,70 @@
         "rq": []
       }
     }
+  },
+  "store/furukonpu-530f9/": {
+    "name": "フルコンプ福岡天神店",
+    "items": {
+      "208a20617658619d": {
+        "p": "30th CELEBRATION・ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-02"
+      }
+    }
+  },
+  "store/furuichi-0430b/": {
+    "name": "ふるいちトップブックス中野店",
+    "items": {
+      "85136b38752af720": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T20:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-be8e8/": {
+    "name": "TSUTAYA合川店",
+    "items": {
+      "6f65a810bf800193": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-b6977/": {
+    "name": "秋葉原",
+    "items": {
+      "44e3da08b74c44d2": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-03",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
   }
 }
