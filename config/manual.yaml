@@ -546,3 +546,18 @@ lotteries:
     id_check: true
     tags: [本人確認, 会員]
     url: https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=48qx85q2Tk-KYHuicU_sTzbQWbTPmHhLhsOatLVe3WZUNDhESzJEOEwyWDVRT0s1WlQxR1dTQlJKMy4u
+
+  - slug: yamada-app-hadou-1104
+    game: pokemon
+    store: ヤマダデンキ（アプリ抽選・全国の店舗）
+    series: ハドウシーカー
+    product: MEGA 拡張パック ハドウシーカー（2026年11月27日発売）
+    channel: store
+    method: ヤマダデジタル会員アプリ →「店頭セール」から応募 → 当選したら店舗で購入
+    start: 2026-11-02T23:00
+    end: 2026-11-04T23:59
+    announce: 11月24日(火)中（アプリでお知らせ）
+    buy: 当選後、店舗で購入（11/27発売）
+    conditions: ヤマダデジタル会員アプリの会員であること。これまでのヤマダの抽選では「購入履歴があること」か「ゴールド会員への入会」が条件のことが多いので、応募画面の条件を確認してください
+    member: account
+    tags: [会員, 購入履歴]
