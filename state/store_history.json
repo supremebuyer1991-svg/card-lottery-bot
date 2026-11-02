@@ -1330,6 +1330,17 @@
         "f": "2026-10-30",
         "c": "store"
       },
+      "4070b9f616193c1b": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-15",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "6f69f658874b447d": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -3255,6 +3266,20 @@
   "store/tsutaya-b2d46/": {
     "name": "TSUTAYA錦糸町",
     "items": {
+      "13bbf68f484960d0": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-02T21:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ],
+        "a": "2026-11-04"
+      },
       "363eddb85b9dc10a": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -10997,6 +11022,17 @@
   "store/kiddyland-37f4d/": {
     "name": "キディランド吉祥寺",
     "items": {
+      "c1db4f3edfceaa47": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "889724da87fce9e2": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -16588,6 +16624,98 @@
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
         "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-11e3f/": {
+    "name": "フルコンプ新宿南口店",
+    "items": {
+      "ae23a071cf24e33a": {
+        "p": "30th CELEBRATION・ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-30",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-02"
+      }
+    }
+  },
+  "store/bukkuesu-d5094/": {
+    "name": "ブックエース小名浜住吉店",
+    "items": {
+      "a9219cb78ced7018": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "3afbbbfb97528d2b": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/kiddyland-7ce77/": {
+    "name": "キディランド二子玉川",
+    "items": {
+      "80a719632f5f4ed2": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/kiddyland-f15c3/": {
+    "name": "キディランド アミュプラザくまもと",
+    "items": {
+      "218367f7003ad8f3": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-fdf11/": {
+    "name": "ふるいち神戸北店",
+    "items": {
+      "f41f2462cefeac6e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-02T21:01",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",
