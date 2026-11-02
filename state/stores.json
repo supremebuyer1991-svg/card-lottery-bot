@@ -21,17 +21,17 @@
   },
   "store/torecastation-ae3f2/": {
     "name": "トレカステーション",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon"
   },
   "store/tsutaya-bf899/": {
-    "name": "TSUTAYA TRADING CARD錦糸町",
+    "name": "TSUTAYA Trading Card 錦糸町",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "東京都"
   },
   "store/tsutaya-de7b4/": {
-    "name": "TSUTAYA ココアドバンス大村店",
+    "name": "TSUTAYAココアドバンス大村店",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "長崎県"
@@ -85,7 +85,7 @@
   },
   "store/tsutaya-e0dc6/": {
     "name": "TSUTAYA福井高柳店",
-    "last": "2026-10-28",
+    "last": "2026-11-02",
     "game": "pokemon",
     "area": "福井県"
   },
@@ -1057,7 +1057,7 @@
   },
   "store/batoroco-c9125/": {
     "name": "トーナメントセンターバトロコ新潟万代",
-    "last": "2026-10-28",
+    "last": "2026-11-02",
     "game": "onepiece",
     "area": "新潟県"
   },
@@ -1250,8 +1250,8 @@
     "area": "北海道"
   },
   "store/tsutaya-0b07c/": {
-    "name": "TSUTAYA南国店",
-    "last": "2026-10-29",
+    "name": "TSUTAYA 南国店",
+    "last": "2026-11-02",
     "game": "onepiece",
     "area": "高知県"
   },
@@ -1552,7 +1552,7 @@
   },
   "store/batoroco-a508a/": {
     "name": "TCバトロコ渋谷センター街",
-    "last": "2026-10-29",
+    "last": "2026-11-02",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -2080,7 +2080,7 @@
   },
   "store/biccamera-a8304/": {
     "name": "ビックカメラあべのキューズモール店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon",
     "area": "大阪府"
   },
@@ -2349,9 +2349,10 @@
   },
   "store/furuichi-6c5c1/": {
     "name": "古本市場福山曙店",
-    "last": "2026-10-26",
+    "last": "2026-11-02",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "広島県"
   },
   "store/tsutaya-2d349/": {
     "name": "TSUTAYA鳥栖店",
@@ -2465,7 +2466,7 @@
   },
   "store/tsutaya-15dfb/": {
     "name": "TSUTAYA BOOK STORE島原店",
-    "last": "2026-10-26",
+    "last": "2026-11-02",
     "game": "pokemon",
     "keep": true
   },
@@ -2531,9 +2532,10 @@
   },
   "store/torekaesusoyora-nyutaun-87fff/": {
     "name": "トレカエースそよら成田ニュータウン店",
-    "last": "2026-08-30",
+    "last": "2026-11-02",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "千葉県"
   },
   "store/hobishoppusupafurikusu-9b71d/": {
     "name": "ホビーショップ スーパーフリークス岡山店",
@@ -3709,7 +3711,7 @@
   },
   "store/o-705ea/": {
     "name": "お宝市番館三重本店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon",
     "area": "三重県"
   },
@@ -4022,7 +4024,7 @@
     "area": "埼玉県"
   },
   "store/batoroco-b5495/": {
-    "name": "TC バトロコ川崎駅前",
+    "name": "TCバトロコ川崎駅前",
     "last": "2026-11-02",
     "game": "onepiece",
     "area": "神奈川県"
@@ -4124,7 +4126,7 @@
   },
   "store/cardlabo-b178a/": {
     "name": "カードラボなんば店",
-    "last": "2026-11-01",
+    "last": "2026-11-02",
     "game": "pokemon",
     "area": "大阪府"
   },
@@ -4371,7 +4373,7 @@
     "area": "兵庫県"
   },
   "store/furuichi-09aa1/": {
-    "name": "古本市場 泉大津店",
+    "name": "古本市場泉大津店",
     "last": "2026-11-02",
     "game": "pokemon",
     "area": "大阪府"
@@ -4658,10 +4660,10 @@
     "area": "宮崎県"
   },
   "store/tsutaya-4db1f/": {
-    "name": "TSUTAYA 御座店",
+    "name": "TSUTAYA御座店",
     "last": "2026-11-02",
     "game": "pokemon",
-    "area": "高知県"
+    "area": "千葉県"
   },
   "store/shop-1f5da/": {
     "name": "文教堂浦安西友店",
@@ -5056,10 +5058,133 @@
     "name": "TSUTAYA北習志野駅前店",
     "last": "2026-11-02",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "千葉県"
   },
   "store/tsutaya-f6b1d/": {
     "name": "TSUTAYA防府",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/bukkuesu-4b4f8/": {
+    "name": "ブックエース小名浜住吉店（トレカエース）",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "福島県"
+  },
+  "store/tsutaya-a2088/": {
+    "name": "TSUTAYA加須店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/books-ba997/": {
+    "name": "草叢BOOKS 新守山店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/cardbox-19aca/": {
+    "name": "SuperKaBoS敦賀店（CARDBOX）",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "福井県"
+  },
+  "store/superkabos-geo-bf112/": {
+    "name": "SuperKaBoS+GEO武生店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "福井県"
+  },
+  "store/torekachanpion-bideoinamerika-198e9/": {
+    "name": "トレカチャンピオン/ビデオインアメリカ福知山店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "京都府"
+  },
+  "store/torekachanpion-424c1/": {
+    "name": "トレカチャンピオン江南店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/geo-869fc/": {
+    "name": "SuperKaBoS+ゲオwasse店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/kabos-geo-d962f/": {
+    "name": "KaBoS+GEO三国店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/torecastation-74665/": {
+    "name": "トレカステーション豊川店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/tsutaya-b19b8/": {
+    "name": "TSUTAYA宇都宮テクノ店トレカ売場",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/tsutaya-aac1a/": {
+    "name": "TSUTAYA400号西那須野店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/torecastation-df3d6/": {
+    "name": "トレカステーション佐鳴台店",
+    "last": "2026-11-02",
+    "game": "pokemon"
+  },
+  "store/tsutaya-dff5e/": {
+    "name": "トレカステーションTSUTAYAハレノテラス東大宮店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/kadokingudamu-014ff/": {
+    "name": "カードキングダム秋葉原駅前店",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/nyuko-wan-49f40/": {
+    "name": "ニューコ・ワン（宮崎県内対象3店舗：岡富店・宮交シティ・高千穂通り）",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/gemupuraza-f7991/": {
+    "name": "ゲームプラザ元気",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/batoroco-3f695/": {
+    "name": "TCバトロコ新静岡駅前",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/toredingukadoshoppuairando-edefa/": {
+    "name": "トレーディングカードショップ アイランド",
+    "last": "2026-11-02",
+    "game": "onepiece"
+  },
+  "store/aeon-9afe9/": {
+    "name": "ふるいちイオンモール東浦店",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/aeon-8c1e6/": {
+    "name": "ふるいちイオンモール神戸北",
+    "last": "2026-11-02",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/furuichi-b90de/": {
+    "name": "古本市場草加",
     "last": "2026-11-02",
     "game": "pokemon",
     "keep": true
