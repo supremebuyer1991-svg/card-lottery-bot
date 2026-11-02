@@ -10,7 +10,8 @@ from common import load_json, save_json, log, load_settings
 
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
 STORE_ALIAS = {"電機": "デンキ", "ヤマダ電器": "ヤマダデンキ", "ビックカメラ": "ビックカメラ", "ヨドバシカメラ": "ヨドバシ",
-               "トイザらス": "トイザラス", "ツタヤ": "TSUTAYA", "ふるいち": "古本市場"}
+               "トイザらス": "トイザラス", "ツタヤ": "TSUTAYA", "ふるいち": "古本市場",
+               "JUMP SHOP": "ジャンプショップ", "JUMPSHOP": "ジャンプショップ", "Jump Shop": "ジャンプショップ", "ドラスタ": "ドラゴンスター"}
 
 
 def norm_store(s):

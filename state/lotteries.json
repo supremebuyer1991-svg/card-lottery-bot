@@ -30332,7 +30332,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "34d3491a05777684",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.356888+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:50.182828+09:00",
@@ -30340,7 +30340,8 @@
     "multi": false,
     "cls": "52f439705f05",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "a6f9aaf117d7d2fd"
   },
   "0e04885f32105b2b": {
     "store": "JUMP SHOP大阪心斎橋店",
@@ -30363,7 +30364,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "0e04885f32105b2b",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.356935+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:52.385587+09:00",
@@ -30371,7 +30372,8 @@
     "multi": false,
     "cls": "d60b0a18f72e",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "beb2ef9265abdc42"
   },
   "affea323e8599e3b": {
     "store": "JUMP SHOP東京ドームシティ店",
@@ -30394,7 +30396,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "affea323e8599e3b",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.356957+09:00",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T21:00:54.426444+09:00",
@@ -30402,7 +30404,8 @@
     "multi": false,
     "cls": "2936a3890fd1",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "06325378ed3895f7"
   },
   "014003267dde0956": {
     "store": "ブックエース小名浜店",
@@ -30545,7 +30548,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "06ea933b6b2f686f",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.357055+09:00",
     "multi": false,
     "cls": "fc0820debbeb",
@@ -30554,7 +30557,8 @@
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
-    "buy": "11/21(土)"
+    "buy": "11/21(土)",
+    "duplicate_of": "747a6fe8175643f5"
   },
   "e597c99517b28970": {
     "store": "JUMP SHOP札幌店",
@@ -30577,14 +30581,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "e597c99517b28970",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.357070+09:00",
     "page_checked_at": "2026-11-02T19:14:22.104161+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "489ae777abde",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "3c2a97bbb7deb41e"
   },
   "72408dc16984e6f2": {
     "store": "キデイランド ららぽーと富士見店",
@@ -30755,14 +30760,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "2b3ea5da958aed45",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T19:14:09.357154+09:00",
     "page_checked_at": "2026-11-02T19:14:32.500988+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "aae876e12e51",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "338063c0c422bde6"
   },
   "546c6f7aa3091a28": {
     "store": "TSUTAYA",
@@ -31130,7 +31136,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "cb499af3e85c00bb",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-02T21:52:45.187922+09:00",
     "multi": true,
     "cls": "cb9626cccfb4",
@@ -31143,7 +31149,8 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・本文に応募期間の記載なし",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "9818f0726931bc65"
   },
   "5e477dd5e6225699": {
     "store": "JUMP SHOP 東京駅店",
@@ -31166,7 +31173,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "5e477dd5e6225699",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-02T21:52:45.187934+09:00",
     "multi": false,
     "cls": "8d9b14babd65",
@@ -31177,7 +31184,8 @@
     "apply_url": "https://livepocket.jp/e/h_36i",
     "deadline_checked_at": "2026-11-03T00:02:31.668936+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "duplicate_of": "30d0d96eee329222"
   },
   "026fbe501e3f14fc": {
     "store": "TSUTAYA400号西那須野店",
@@ -31259,7 +31267,10 @@
     "multi": false,
     "cls": "0d4a4a495e16",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/OnchainOutlaw/status/2117197990037471586",
+    "start": "2026-11-02T17:00:00+09:00",
+    "tags": []
   },
   "06325378ed3895f7": {
     "game": "onepiece",
@@ -31313,7 +31324,8 @@
     "announce": "11月8日(日)〜11月9日(月)",
     "buy": "11月21日(土)に店頭で購入",
     "x_post": "https://x.com/Zabi_pokeka/status/2117216266389946623",
-    "tags": []
+    "tags": [],
+    "apply_url": "https://livepocket.jp/e/h_36i"
   },
   "c2ef1a30637ac256": {
     "game": "onepiece",
@@ -31388,7 +31400,10 @@
     "multi": false,
     "cls": "1090b263361e",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/Nchan_000/status/2117212551671148902",
+    "apply_url": "https://livepocket.jp/e/h_36i",
+    "tags": []
   },
   "b7d5090b76b8139f": {
     "game": "onepiece",
@@ -31438,7 +31453,10 @@
     "multi": false,
     "cls": "c5a3efbfbaa7",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/TCG_LP_Navi/status/2117252896182157344",
+    "start": "2026-11-02T17:00:00+09:00",
+    "tags": []
   },
   "338063c0c422bde6": {
     "game": "onepiece",
@@ -31463,7 +31481,9 @@
     "multi": false,
     "cls": "a53934a3cb53",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/OnchainOutlaw/status/2117195018717057366",
+    "tags": []
   },
   "beb2ef9265abdc42": {
     "game": "onepiece",
@@ -31488,7 +31508,9 @@
     "multi": false,
     "cls": "c6e0f37ae1b7",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/OnchainOutlaw/status/2117198116785152366",
+    "tags": []
   },
   "3a257f142ede0481": {
     "game": "onepiece",
@@ -31588,7 +31610,9 @@
     "multi": false,
     "cls": "5b07fdfefa17",
     "announce": "11月8日(日)〜11月9日(月)",
-    "buy": "11月21日(土)に店頭で購入"
+    "buy": "11月21日(土)に店頭で購入",
+    "x_post": "https://x.com/OnchainOutlaw/status/2117198201044529593",
+    "tags": []
   },
   "7c022d2aef8114bb": {
     "game": "onepiece",
@@ -31666,13 +31690,14 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "a077374fd85033cc",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-02T23:09:54.493003+09:00",
     "multi": false,
     "cls": "994a9967fb8e",
     "tco_checked": true,
     "page_checked_at": "2026-11-02T23:18:52.790585+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "duplicate_of": "b168048e54de0c93"
   },
   "3df479522b812343": {
     "store": "JUMP SHOP 東京ドームシティ店",
