@@ -530,3 +530,18 @@ lotteries:
     member: account
     tags: [アプリ, 会員, 本人確認]
     url: https://livepocket.jp/e/63x1l
+
+  - slug: tsutaya-line-hadou-1127
+    game: pokemon
+    store: TSUTAYA（LINE抽選・全国の対象店舗）
+    series: ハドウシーカー
+    product: MEGA 拡張パック ハドウシーカー（1人30パック＝1BOXまで・2026年11月27日発売）
+    channel: store
+    method: TSUTAYAのLINEの応募フォームから申し込み（都道府県と受け取る店舗を選ぶ）→ 当選者にだけLINEで通知 → 選んだ店舗で購入
+    announce: 当選した人にだけLINEのお知らせ（PUSH通知）で連絡（落選の連絡はなし）
+    buy: 選んだ店舗の店頭で購入（11/27発売）
+    conditions: 1人1回・30パック（1BOX）まで。応募にはV会員番号（モバイルVカード・16桁）が必要。応募から当選発表までLINEのお知らせ通知をONにしておくこと（OFFだと抽選の対象外）。店頭での予約受付はなし。受け取りのときに当選画面・Vカード・顔写真付きの本人確認書類（運転免許証かマイナンバーカード）が必要。パックのビニールを開けて渡す場合あり（店舗に確認）
+    member: card
+    id_check: true
+    tags: [本人確認, 会員]
+    url: https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=48qx85q2Tk-KYHuicU_sTzbQWbTPmHhLhsOatLVe3WZUNDhESzJEOEwyWDVRT0s1WlQxR1dTQlJKMy4u
