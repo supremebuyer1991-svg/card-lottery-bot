@@ -98,6 +98,11 @@ def load_area_overrides():
     return {str(k).strip(): v for k, v in ((yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}).items() if v in PREFS}
 
 
+def _nationwide(it):
+    """全国の店舗が対象の抽選（「全国」と書いた手動追加など）は、都道府県を1つに決めない"""
+    return "全国" in (it.get("store") or "")
+
+
 def apply_overrides(lots, ov):
     n = 0
     areas = load_area_overrides()
@@ -110,6 +115,10 @@ def apply_overrides(lots, ov):
         if ar and ar not in PREFS:
             fixed = next((p for p in PREFS if p.rstrip("都府県") == ar.rstrip("都府県") and ar.rstrip("都府県")), None)
             it["area"] = fixed
+            n += 1
+        if _nationwide(it) and it.get("area"):
+            it["area"] = None
+            it["multi"] = True
             n += 1
         a = areas.get((it.get("store") or "").strip())
         if a and it.get("area") != a:
@@ -163,7 +172,7 @@ def classify(settings, ask=None, batch=40, max_batches=20):
                 log(f"振り分け: {it.get('store')} {it.get('channel')} → {ch}")
                 it["channel"] = ch
                 changed += 1
-            if it.get("channel") == "store" and not it.get("area") and r.get("area") in PREFS:
+            if it.get("channel") == "store" and not it.get("area") and r.get("area") in PREFS and not _nationwide(it):
                 it["area"] = r["area"]
                 changed += 1
             if it.get("channel") == "store" and isinstance(r.get("multi"), bool):
@@ -175,7 +184,7 @@ def classify(settings, ask=None, batch=40, max_batches=20):
     norm = lambda s: re.sub(r"[\s　・()（）「」【】-]", "", s or "")
     known = {norm(i.get("store")): i["area"] for i in lots.values() if i.get("area") and i.get("channel") == "store"}
     for it in lots.values():
-        if it.get("channel") == "store" and not it.get("area") and known.get(norm(it.get("store"))):
+        if it.get("channel") == "store" and not it.get("area") and known.get(norm(it.get("store"))) and not _nationwide(it):
             it["area"] = known[norm(it.get("store"))]
             changed += 1
     if changed or todo:
