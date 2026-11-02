@@ -883,6 +883,17 @@
         "mem": "account",
         "rq": []
       },
+      "689fd1639382b701": {
+        "p": "30thセレブレーション",
+        "g": "pokemon",
+        "e": "2026-11-02T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "0384fb0fd3e50cf8": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -3400,6 +3411,17 @@
   "store/shop-ab157/": {
     "name": "北国書林辰口店",
     "items": {
+      "769f7af17bf65d58": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-14T00:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "830d20777ca5c109": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -5907,6 +5929,19 @@
   "store/tsutaya-62a3f/": {
     "name": "TSUTAYAイオンタウン郡山店",
     "items": {
+      "d74795300deed996": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "1f0ff4dada00118c": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -6940,7 +6975,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-09"
       },
       "12cf55822d5992f6": {
         "p": "スペシャルデッキセットMEGA",
@@ -16678,6 +16714,17 @@
         "mem": null,
         "rq": []
       },
+      "954eddcda1c18108": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-02T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "2a890b58ac81b65e": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -17750,6 +17797,18 @@
         "id": true,
         "mem": "account",
         "rq": []
+      },
+      "27db76bffaa04034": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-03T20:30",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-05"
       }
     }
   },
@@ -18552,6 +18611,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "21cbb93394b03def": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T21:05",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
       }
     }
   },
@@ -18589,6 +18659,72 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-02T21:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/books-bf35f/": {
+    "name": "books交野駅前店",
+    "items": {
+      "aa9b646677a57f0b": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-1ca13/": {
+    "name": "TSUTAYA静岡流通どおり店",
+    "items": {
+      "ed1525d5156205fb": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/sanyodo-f6ea2/": {
+    "name": "三洋堂トレカ館 桜井店",
+    "items": {
+      "9fb180cef1fbbb6b": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-08T20:59",
+        "f": "2026-11-02",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/shop-903d7/": {
+    "name": "錦糸町",
+    "items": {
+      "9dc0648d0eb41582": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-02T21:00",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",
