@@ -135,9 +135,10 @@ def _publish(tok, text, link=None, image=None, reply_to=None):
 HOOKS = {
     "today": ["今日締切の{label}抽選、まだ{n}店あります。もう応募した？", "今日が締切の{label}抽選まとめ。抽選し忘れてるのない？",
               "今日まで受付の{label}抽選が{n}店。応募まだの人いる？"],
-    "new": ["新しい{label}の抽選が{n}店。今回はどこに応募する？", "{label}の抽選、また新しく{n}店出てきた。近くのお店ある？",
-            "新着の{label}抽選{n}店まとめ。気になるお店ある？"],
-    "soon": ["あと数時間で締切の{label}抽選が{n}店。駆け込みで応募する人いる？", "{label}抽選、今夜締切がまだ{n}店。間に合いそう？"],
+    # 新着・まもなく締切はユーザーが考えた言い回し（新着は見つかった時間帯に合わせて「昨日の夕方から／お昼から」）
+    "new12": ["昨日の夕方から新しい{label}抽選が{n}店。今回応募できそうなとこある？"],
+    "new17": ["お昼から新しい{label}抽選が{n}店。今回応募できそうなとこある？"],
+    "soon": ["あと数時間で締切の{label}抽選が{n}店。抽選し忘れてるとこない？"],
     "amazon": ["Amazonの招待リクエスト、通知きた人いる？", "Amazonの招待リクエスト、もう申し込んだ？"],
     "big": ["{store}の抽選きた。今回は応募する？", "{store}で抽選が始まった。応募する？"],
     "each": ["{store}で抽選。応募する？", "{store}の抽選、近くの人いる？"],
@@ -150,7 +151,7 @@ def _kind(key):
         return "big", p[2]
     if p[0] == "each":
         return "each", p[1]
-    k = {"today": "today", "new12": "new", "new17": "new", "soon": "soon", "amazon": "amazon"}.get(p[1] if len(p) > 1 else "")
+    k = {"today": "today", "new12": "new12", "new17": "new17", "soon": "soon", "amazon": "amazon"}.get(p[1] if len(p) > 1 else "")
     return k, (p[2] if len(p) > 2 else None)
 
 
