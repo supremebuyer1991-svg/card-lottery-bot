@@ -136,7 +136,7 @@ sources:
     type: x
     require_links: false
     max_results: 10
-    keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター) (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード) 抽選'
+    keywords: '(ヤマダデンキ OR ヤマダ電機 OR ジョーシン OR Joshin OR ビックカメラ OR ヨドバシ OR エディオン OR トイザらス OR ゲオ OR 古本市場 OR ふるいち OR ポケモンセンター OR ジャンプショップ OR "JUMP SHOP") (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR ワンピース) 抽選'
 
   # 公式サイトの抽選ページ（ページの中身が変わった時だけAIが読む）
   - id: pokemoncenter_lottery   # GitHubからは毎回403で断られるので止める（Claudeの予約タスクがブラウザで見て config/manual.yaml に追加する）
@@ -145,6 +145,14 @@ sources:
     name: ポケモンセンターオンライン 抽選
     type: html
     url: https://www.pokemoncenter-online.com/lottery/apply.html
+
+  # ジャンプショップ公式の「入店抽選のご案内」ページ（ワンピカードの新弾ごとに各店のLivePocket応募リンクが載る）
+  - id: jumpshop_enter
+    game: onepiece
+    name: ジャンプショップ 入店抽選
+    type: html
+    url: https://jumpshop-benelic.com/pages/about-enter-shop
+    every_hours: 2
 
   - id: yodobashi_lottery
     game: auto
@@ -159,7 +167,8 @@ sources:
     name: X LivePocket抽選
     type: x
     # LivePocket のURLはほぼ抽選の応募ページなので「抽選」という言葉が無くても拾う（カードの話であることだけ確認）
-    keywords: 'url:livepocket.jp (ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR "ONE PIECEカード" OR フュージョンワールド OR トレカ OR 拡張パック OR ブースターパック)'
+    # 11/2 「抽選」「ワンピース」も追加：ジャンプショップの告知（「神の支配【OP-18】」とだけ書いてある）を取りこぼしたため
+    keywords: 'url:livepocket.jp (抽選 OR ポケカ OR ポケモンカード OR ワンピカード OR ワンピースカード OR ワンピース OR "ONE PIECE" OR フュージョンワールド OR トレカ OR 拡張パック OR ブースターパック)'
     max_results: 15
 
   # ワンピカード公式アカウント（公式の抽選・新商品告知）
