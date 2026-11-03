@@ -260,6 +260,19 @@ def big_chain(store):
     return None
 
 
+CHAIN_WIDE = r"全国|各店|全店|対象店舗|全国の店舗|アプリ抽選"
+
+
+def big_target(i):
+    """大手の速報に出すか（11/3 ユーザーの決まり）：
+    ・発送の抽選（通販）か
+    ・全国チェーンの「各店で受け取り」の抽選（ヤマダのアプリ抽選・TSUTAYAのLINE抽選など、1つの応募でチェーンの各店舗から選べるもの）
+    1店だけの店頭抽選（TSUTAYA〇〇店・ビックカメラ〇〇店など）は出さない"""
+    if i.get("channel") != "store":
+        return True
+    return bool(re.search(CHAIN_WIDE, i.get("store") or "")) or (bool(i.get("multi")) and not i.get("area"))
+
+
 def compose_big(name, game, series, items, settings, started=False):
     """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切。
     started=True は「予告の段階で見つけていた抽選が、受付開始になった」お知らせ"""
@@ -314,8 +327,8 @@ def post_big(settings, client=None):
             kind = "start"  # 予告の段階で見つけていた抽選が受付開始（夜中に始まったものも朝の回で出せるよう9時間まで）
         else:
             continue
-        if i.get("channel") == "store":
-            continue  # ユーザーの指示：お店ごとの店頭抽選（TSUTAYA〇〇店など）は出さない。通販（発送）だけ
+        if not big_target(i):
+            continue  # ユーザーの指示：発送の抽選か、全国チェーンの各店で受け取る抽選だけ。1店だけの店頭抽選（TSUTAYA〇〇店など）は出さない
         bc = big_chain(i.get("store"))
         if not bc:
             continue

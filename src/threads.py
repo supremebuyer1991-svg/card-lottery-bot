@@ -335,12 +335,12 @@ def compose_amazon(game, lots, t, settings):
 
 def _big_posts(lots, t, done):
     """大手の通販の抽選の速報（Xの post_big と同じ選び方）"""
-    from xpost import big_chain, short_product, fmt_dt
+    from xpost import big_chain, short_product, fmt_dt, big_target
     from detail import lottery_path
     from sitegen import series_path
     groups = {}
     for i in lots.values():
-        if i.get("status") not in ("approved", "listed", "posted") or i.get("game") not in GAME or i.get("channel") == "store":
+        if i.get("status") not in ("approved", "listed", "posted") or i.get("game") not in GAME or not big_target(i):
             continue
         f, e = parse_dt(i.get("found_at")), parse_dt(i.get("end"))
         if not f or not (timedelta(minutes=20) <= t - f <= timedelta(hours=3)) or (e and e < t + timedelta(hours=1)):
