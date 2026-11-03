@@ -33920,7 +33920,9 @@
     "page_err": "中身が空",
     "announce": "11月10日(火)",
     "buy": "11/13(金)〜11/15(日)",
-    "start": "2026-11-02T00:00:00+09:00"
+    "start": "2026-11-02T00:00:00+09:00",
+    "multi": false,
+    "cls": "28f383d3010b"
   },
   "8f877c570d7c2381": {
     "store": "トレカステーション中島新町店",
@@ -33930,7 +33932,7 @@
     "url": "https://x.com/ts_nakazima/status/2117180063045329077",
     "x_post": "https://x.com/ts_nakazima/status/2117180063045329077",
     "channel": "store",
-    "area": null,
+    "area": "愛知県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33946,7 +33948,9 @@
     "no_quote": true,
     "key": "8f877c570d7c2381",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949432+09:00"
+    "found_at": "2026-11-03T11:14:45.949432+09:00",
+    "multi": false,
+    "cls": "c42018dd3638"
   },
   "5e96bfdc7c9a18f7": {
     "store": "トレカステーション荒尾店",
@@ -33972,7 +33976,9 @@
     "no_quote": true,
     "key": "5e96bfdc7c9a18f7",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949455+09:00"
+    "found_at": "2026-11-03T11:14:45.949455+09:00",
+    "multi": false,
+    "cls": "ac9cccafa098"
   },
   "60124335e7bc7eaa": {
     "store": "トレカステーション豊川店",
@@ -33998,7 +34004,9 @@
     "no_quote": true,
     "key": "60124335e7bc7eaa",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949488+09:00"
+    "found_at": "2026-11-03T11:14:45.949488+09:00",
+    "multi": false,
+    "cls": "7ec13f980591"
   },
   "367d6641e6713a24": {
     "store": "トレカステーション佐鳴台店",
@@ -34024,7 +34032,9 @@
     "no_quote": true,
     "key": "367d6641e6713a24",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949511+09:00"
+    "found_at": "2026-11-03T11:14:45.949511+09:00",
+    "multi": false,
+    "cls": "b4760fac4b27"
   },
   "f111096bef0fe37e": {
     "store": "TSUTAYA鹿嶋南店",
@@ -34050,7 +34060,9 @@
     "no_quote": true,
     "key": "f111096bef0fe37e",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949532+09:00"
+    "found_at": "2026-11-03T11:14:45.949532+09:00",
+    "multi": false,
+    "cls": "82b797932879"
   },
   "e87c75e0a3f7c47f": {
     "store": "TSUTAYA仙台荒井店",
@@ -34060,7 +34072,7 @@
     "url": "https://x.com/tsutaya0517/status/2117097580043915629",
     "x_post": "https://x.com/tsutaya0517/status/2117097580043915629",
     "channel": "store",
-    "area": null,
+    "area": "宮城県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -34076,7 +34088,9 @@
     "no_quote": true,
     "key": "e87c75e0a3f7c47f",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949555+09:00"
+    "found_at": "2026-11-03T11:14:45.949555+09:00",
+    "multi": false,
+    "cls": "f09f851471d5"
   },
   "638ef40b6f37050a": {
     "store": "TSUTAYA広田店",
@@ -34102,7 +34116,9 @@
     "no_quote": true,
     "key": "638ef40b6f37050a",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949576+09:00"
+    "found_at": "2026-11-03T11:14:45.949576+09:00",
+    "multi": false,
+    "cls": "747b4bcad851"
   },
   "d375e00cde50c00d": {
     "store": "TSUTAYA南古谷店",
@@ -34112,7 +34128,7 @@
     "url": "https://x.com/tsutaya1475/status/2117075398857208251",
     "x_post": "https://x.com/tsutaya1475/status/2117075398857208251",
     "channel": "store",
-    "area": null,
+    "area": "埼玉県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -34128,7 +34144,9 @@
     "no_quote": true,
     "key": "d375e00cde50c00d",
     "status": "approved",
-    "found_at": "2026-11-03T11:14:45.949595+09:00"
+    "found_at": "2026-11-03T11:14:45.949595+09:00",
+    "multi": false,
+    "cls": "d5eff7a6c1ae"
   },
   "057c6430688938d2": {
     "store": "TSUTAYA籠原店",
@@ -34237,7 +34255,7 @@
     "status": "approved",
     "found_at": "2026-11-03T11:14:45.949671+09:00",
     "multi": false,
-    "cls": "aa3217678105"
+    "cls": "effeafd705e3"
   },
   "dcb95dc20af42ae6": {
     "store": "カードボックス刈谷店（本の王国＆すまいるキング）",
@@ -34948,7 +34966,7 @@
     "key": "cb373b1112dc2bf5",
     "status": "approved",
     "found_at": "2026-11-03T11:14:46.498951+09:00",
-    "cls": "63d83ccb36c7"
+    "cls": "200b352ebd91"
   },
   "ae7cc310c52398e6": {
     "store": "わくわくらんど土浦店",
@@ -35135,7 +35153,9 @@
     "no_quote": true,
     "key": "a9d2c1c6943549c5",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998607+09:00"
+    "found_at": "2026-11-03T11:57:16.998607+09:00",
+    "multi": false,
+    "cls": "030d7b53c82f"
   },
   "62ae8d363fba8725": {
     "store": "トレカステーション荒尾店",
@@ -35145,7 +35165,7 @@
     "url": "https://livepocket.jp/e/g32t1",
     "x_post": null,
     "channel": "online",
-    "area": "愛知県",
+    "area": null,
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -35163,7 +35183,8 @@
     "status": "approved",
     "found_at": "2026-11-03T11:57:16.998652+09:00",
     "page_checked_at": "2026-11-03T11:57:19.951584+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "cls": "d66aa0c72599"
   },
   "02ce4bb6adc23b49": {
     "store": "トレカステーション領家店",
@@ -35173,7 +35194,7 @@
     "url": "https://livepocket.jp/e/g32t1",
     "x_post": null,
     "channel": "online",
-    "area": "静岡県",
+    "area": null,
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -35191,7 +35212,8 @@
     "status": "approved",
     "found_at": "2026-11-03T11:57:16.998675+09:00",
     "page_checked_at": "2026-11-03T11:57:22.088955+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "cls": "7a425cb30502"
   },
   "154d8aa6db3baee5": {
     "store": "トレカステーション中島新町店",
@@ -35219,7 +35241,8 @@
     "status": "approved",
     "found_at": "2026-11-03T11:57:16.998693+09:00",
     "page_checked_at": "2026-11-03T11:57:22.088971+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "cls": "9bccca33f61a"
   },
   "d5b9d15626d6a219": {
     "store": "トレカステーション蒲郡三谷店",
@@ -35229,7 +35252,7 @@
     "url": "https://livepocket.jp/e/g32t1",
     "x_post": null,
     "channel": "online",
-    "area": "愛知県",
+    "area": null,
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -35247,7 +35270,8 @@
     "status": "approved",
     "found_at": "2026-11-03T11:57:16.998710+09:00",
     "page_checked_at": "2026-11-03T11:57:22.088974+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "cls": "38340facc226"
   },
   "6e991d593a24859c": {
     "store": "文真堂トレカ丸足利助戸店",
@@ -35257,7 +35281,7 @@
     "url": "https://x.com/buntcsukedo_jp/status/2117429408466424133",
     "x_post": "https://x.com/buntcsukedo_jp/status/2117429408466424133",
     "channel": "store",
-    "area": null,
+    "area": "栃木県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -35273,7 +35297,9 @@
     "no_quote": true,
     "key": "6e991d593a24859c",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998725+09:00"
+    "found_at": "2026-11-03T11:57:16.998725+09:00",
+    "multi": false,
+    "cls": "d90e8f7cb57a"
   },
   "4caaaa577c8d0485": {
     "store": "文真堂トレカ丸葉鹿店",
@@ -35283,7 +35309,7 @@
     "url": "https://x.com/buntchajika_jp/status/2117424606491574458",
     "x_post": "https://x.com/buntchajika_jp/status/2117424606491574458",
     "channel": "store",
-    "area": null,
+    "area": "栃木県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -35299,7 +35325,9 @@
     "no_quote": true,
     "key": "4caaaa577c8d0485",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998742+09:00"
+    "found_at": "2026-11-03T11:57:16.998742+09:00",
+    "multi": false,
+    "cls": "d5d685e071b4"
   },
   "fbd94c993c59f8ee": {
     "store": "TSUTAYA光吉店トレカコーナー",
@@ -35324,7 +35352,9 @@
     "no_quote": true,
     "key": "fbd94c993c59f8ee",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998758+09:00"
+    "found_at": "2026-11-03T11:57:16.998758+09:00",
+    "multi": false,
+    "cls": "3be7c171a3fb"
   },
   "84391d02c88919be": {
     "store": "カードボックス岡崎店（本の王国＆すまいるキング）",
@@ -35347,7 +35377,9 @@
     "no_quote": true,
     "key": "84391d02c88919be",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998774+09:00"
+    "found_at": "2026-11-03T11:57:16.998774+09:00",
+    "multi": false,
+    "cls": "b84835a25875"
   },
   "d6f8f26e9733d7e5": {
     "store": "カードボックス岡崎店（本の王国＆すまいるキング）",
@@ -35370,7 +35402,9 @@
     "no_quote": true,
     "key": "d6f8f26e9733d7e5",
     "status": "approved",
-    "found_at": "2026-11-03T11:57:16.998791+09:00"
+    "found_at": "2026-11-03T11:57:16.998791+09:00",
+    "multi": false,
+    "cls": "a2c9d8fe9ccf"
   },
   "7a68d05fac027811": {
     "store": "ヤマダデンキ",
@@ -35408,8 +35442,8 @@
     "series": "30周年パック",
     "end": "2026-11-05T21:01:00+09:00",
     "url": "https://livepocket.jp/e/kmh6u",
-    "x_post": "https://x.com/PICA2200/status/2117462384331923814",
-    "channel": "online",
+    "x_post": null,
+    "channel": "store",
     "area": "愛知県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -35426,9 +35460,11 @@
     "no_quote": true,
     "key": "f1b52efe56a0c196",
     "status": "approved",
-    "found_at": "2026-11-03T12:51:39.749423+09:00",
-    "page_checked_at": "2026-11-03T12:52:27.922575+09:00",
-    "page_err": "中身が空"
+    "found_at": "2026-11-03T12:45:17.463397+09:00",
+    "page_checked_at": "2026-11-03T12:46:04.131272+09:00",
+    "page_err": "中身が空",
+    "multi": false,
+    "cls": "b3d97b6f7ce2"
   },
   "0da76d3046744ed6": {
     "store": "カードラボ福岡天神店",

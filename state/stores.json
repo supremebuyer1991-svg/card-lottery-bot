@@ -2389,7 +2389,8 @@
     "name": "TSUTAYA仙台荒井店",
     "last": "2026-11-03",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "宮城県"
   },
   "store/bookoff-47d0a/": {
     "name": "ブックオフお宝大陸高松新屋島店",
@@ -5643,7 +5644,8 @@
   "store/torecastation-26c70/": {
     "name": "トレカステーション中島新町店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "愛知県"
   },
   "store/torecastation-61013/": {
     "name": "トレカステーション荒尾店",
@@ -5660,7 +5662,8 @@
   "store/tsutaya-52eeb/": {
     "name": "TSUTAYA南古谷店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "埼玉県"
   },
   "store/tsutaya-141f3/": {
     "name": "TSUTAYA土佐道路店",
@@ -5763,12 +5766,14 @@
   "store/toreka-ddfda/": {
     "name": "文真堂トレカ丸足利助戸店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/toreka-a1ff5/": {
     "name": "文真堂トレカ丸葉鹿店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/tsutaya-e30b1/": {
     "name": "TSUTAYA光吉店トレカコーナー",
