@@ -172,7 +172,7 @@ def threads_style(key, text, t):
         hook = opts[(t.timetuple().tm_yday + t.hour + len(key)) % len(opts)].format(label=label, n=n, store=store)
     body, reply = text, None
     if kind != "amazon":
-        m = re.search(r"\n([^\n]*👇)\n(https://tcg-chusen\.com/\S+)", text)
+        m = re.search(r"\n([^\n]*👇)\n(https://tcg-chusen\.com/\S*)", text)
         if m:
             body = text[:m.start()] + "\n🔗" + m.group(1).replace("こちら👇", "リプ欄に👇").replace("今のうちに👇", "今のうちに（リンクはリプ欄）👇") + text[m.end():]
             reply = f"{m.group(1)}\n{m.group(2)}"
