@@ -76,7 +76,7 @@ dd ul{margin:0;padding-left:1.1em}dd li{margin:2px 0}
 .acts{padding:14px 16px 16px;display:grid;gap:10px;border-top:1px dashed var(--rule)}
 .go{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;
  font-size:17px;letter-spacing:.04em;padding:14px;border-radius:10px}.go-top{margin-top:12px}.pics{display:flex;gap:8px;justify-content:center;margin:12px 0 4px}.pics a,.pics span{display:block;width:150px;height:150px;border-radius:12px;background:#fff;border:1px solid var(--rule);overflow:hidden}.pics.n2 a,.pics.n2 span{width:120px;height:120px}.pics.n3 a,.pics.n3 span,.pics.n4 a,.pics.n4 span{width:84px;height:84px}.pics img{width:100%;height:100%;object-fit:contain;display:block}.line-room{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;border-radius:12px;background:#06c755;color:#fff;text-decoration:none}.line-room>b{flex:none;font-size:13px;font-weight:900;background:#fff;color:#06c755;border-radius:6px;padding:2px 6px}.line-room span{display:grid;gap:1px;min-width:0}.line-room strong{font-size:14.5px}.line-room small{font-size:11.5px;opacity:.9}.sq1{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;justify-content:center;margin:6px 0 10px;padding:8px 12px;border:1px solid var(--rule);border-radius:10px;text-decoration:none;color:var(--ink);font-size:13px}.sq1 b{font-size:17px;font-weight:800}.sq1 em{font-style:normal;font-size:12px;font-weight:700}.sq1 em.up{color:var(--red)}.sq1 em.down{color:#2563eb}.sq1 i{font-style:normal;font-weight:700;color:var(--red)}.go.off{background:var(--rule);color:var(--ink-2);pointer-events:none}
-.sub-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sub-acts .apb,.calbox{grid-column:1/-1}.calbox{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:grid;gap:8px;text-align:center}.calbox b{font-size:14px}.calbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.calbox .calsub-l{border:0;padding:0;font-size:13px;color:var(--red);text-decoration:underline}.apb{font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{display:block;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
+.followbox{margin:14px 0 0;border:1px solid var(--rule);border-radius:12px;padding:12px;background:#f8fafc;text-align:center}.followbox b{font-size:15px}.followbox p{margin:6px 0 10px;font-size:13px;color:#475569}.fbtns{display:grid;gap:8px}.fbtns a{display:block;border-radius:10px;padding:10px 6px;font-weight:700;font-size:14px;text-decoration:none;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fbtns .fx{background:#111}.fbtns .fl{background:#06c755}.sub-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sub-acts .apb,.calbox{grid-column:1/-1}.calbox{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:grid;gap:8px;text-align:center}.calbox b{font-size:14px}.calbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.calbox .calsub-l{border:0;padding:0;font-size:13px;color:var(--red);text-decoration:underline}.apb{font:inherit;font-weight:700;font-size:14px;border:1px solid var(--rule);border-radius:10px;padding:9px;background:#fff;cursor:pointer}.apb.on{color:#15803d;border-color:#15803d}.mlk{display:block;text-align:center;font-size:13px;margin-top:8px}.sub-acts a{display:block;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid var(--rule);border-radius:10px;padding:9px;text-decoration:none;font-weight:700;font-size:14px}
 .note{font-size:12px;color:var(--ink-2);margin:0}
 .ended{background:var(--navy-soft);border-radius:10px;padding:12px 14px;margin:14px 0 0;font-weight:700}
 .more{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;margin:14px 0}
@@ -174,6 +174,19 @@ def cal_ics(i, store, name, canon):
     return ics_wrap([ev]) if ev else None
 
 
+_XACC = []
+
+
+def _x_account():
+    if not _XACC:
+        try:
+            from common import load_settings
+            _XACC.append((load_settings().get("x_account") or "").strip().lstrip("@"))
+        except Exception:
+            _XACC.append("")
+    return _XACC[0]
+
+
 def _cal_links(i, store, name, canon):
     """締切をカレンダーに入れるボタン（Googleカレンダー／iPhone・Androidのカレンダー＝同じフォルダの shimekiri.ics）"""
     from datetime import timedelta, timezone
@@ -265,6 +278,13 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     acts = (f'<div class="acts">{btn}<div class="sub-acts">{ap_btn}{cal_btn}<a href="{escape(share_url)}" target="_blank" rel="noopener">Xでシェア</a>'
             f'<a href="/{GAME_SLUG.get(g, "")}/">ほかの抽選を見る</a></div>'
             '<p class="note">情報は変わることがあります。応募前に必ず公式の告知をご確認ください。</p></div>')
+    # 検索から来た人をフォロワーにする（11/3 SNS集客プラン）：同じ弾の次の抽選・締切をXで受け取れることを案内
+    acct = _x_account()
+    what = f"「{i.get('series')}」" if i.get("series") else f"{gshort}"
+    follow = (f'<div class="followbox"><b>🔔 {escape(what)}の次の抽選を見逃さない</b>'
+              f'<p>新しい抽選が始まったとき・締切が近いときに、Xでお知らせしています。</p>'
+              f'<div class="fbtns"><a class="fx" href="https://x.com/{escape(acct)}" target="_blank" rel="noopener">𝕏 @{escape(acct)} をフォローする</a></div></div>') if acct else ""
+    acts = acts + follow
 
     rel = "".join(f'<a href="{escape(h)}">{escape(t)}</a>' for t, h in related)
     rel_html = f'<nav class="more" aria-label="関連ページ"><h2>ほかの抽選もチェック</h2>{rel}</nav>' if rel else ""
