@@ -142,6 +142,7 @@ HOOKS = {
     "amazon": ["Amazonの招待リクエスト、通知きた人いる？メールが来てなくても招待されてることがあるので、一度確認してみて！"],
     "big": ["{store}の抽選きた。今回は応募する？", "{store}で抽選が始まった。応募する？"],
     "each": ["{store}で抽選。応募する？", "{store}の抽選、近くの人いる？"],
+    "news": ["今日のポケカ・ワンピの話題まとめ。気になるのある？"],
 }
 
 
@@ -151,7 +152,7 @@ def _kind(key):
         return "big", p[2]
     if p[0] == "each":
         return "each", p[1]
-    k = {"today": "today", "new12": "new12", "new17": "new17", "soon": "soon", "amazon": "amazon"}.get(p[1] if len(p) > 1 else "")
+    k = {"today": "today", "new12": "new12", "new17": "new17", "soon": "soon", "amazon": "amazon", "news": "news"}.get(p[1] if len(p) > 1 else "")
     return k, (p[2] if len(p) > 2 else None)
 
 
@@ -429,6 +430,25 @@ def _digests(settings, lots, t):
 
 
 QUEUE = "threads_queue.json"
+NEWS = "threads_news.json"   # 毎晩の「今日のトレカニュース」（Claudeの予約タスクが19時台に書く：date・text・png_b64）
+NEWS_HOUR = 21               # Threadsに出す時刻（20時台はワンピの締切間近があるので、ずらす）
+
+
+def _news(t):
+    """今日のニュースがあれば (キー, 文, PNGのバイト列 or None)。出す時間でなければ None"""
+    if t.hour != NEWS_HOUR:
+        return None
+    n = load_json(NEWS, {})
+    if n.get("date") != t.date().isoformat() or not n.get("text"):
+        return None
+    png = None
+    if n.get("png_b64"):
+        try:
+            import base64 as _b
+            png = _b.b64decode(n["png_b64"])
+        except Exception:
+            png = None
+    return f"{n['date']}|news|all", n["text"], png
 
 
 def prepare(settings, site_dir=None):
@@ -464,6 +484,24 @@ def prepare(settings, site_dir=None):
             except Exception as e:
                 log(f"Threads: 画像を作れなかった {e}")
         q.append({"key": key, "text": text, "img": img})
+    nw = _news(t)
+    if nw and nw[0] not in done:
+        key, text, png = nw
+        img = None
+        if png and settings.get("threads_images", True):
+            try:
+                if need_site():
+                    from sitegen import build as build_site
+                    build_site(settings, out_dir=None, force=True)
+                name = re.sub(r"[^0-9a-z-]", "-", key.lower()) + ".png"
+                d = Path(site_dir) / "t"
+                d.mkdir(parents=True, exist_ok=True)
+                (d / name).write_bytes(png)
+                (Path(site_dir) / ".changed").write_text(t.isoformat(), encoding="utf-8")
+                img = f"https://tcg-chusen.com/t/{name}"
+            except Exception as e:
+                log(f"Threads: ニュースの画像を置けなかった {e}")
+        q.append({"key": key, "text": text, "img": img})
     save_json(QUEUE, {"at": t.isoformat(), "posts": q})
 
 
@@ -498,6 +536,9 @@ def run(settings):
         posts = [(p["key"], p["text"], p.get("img")) for p in qd.get("posts") or []]
     else:
         posts = [(k, tx, None) for k, tx, *_ in _digests(settings, lots, t)]
+        nw = _news(t)
+        if nw:
+            posts.append((nw[0], nw[1], None))
     posts += [(k, tx, None) for k, tx in _big_posts(lots, t, done)]
     if settings.get("threads_each", True):
         # お店ごとの速報は出しすぎるとスパム扱いで表示されなくなるので、1回1件・1日6件まで・前の速報から55分あける
