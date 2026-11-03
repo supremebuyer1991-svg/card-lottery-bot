@@ -11,7 +11,7 @@
   },
   "store/hobbystation-af17c/": {
     "name": "ホビーステーション",
-    "last": "2026-10-27",
+    "last": "2026-11-03",
     "game": "pokemon"
   },
   "store/omochanoperikan-ef4ab/": {
@@ -5499,7 +5499,8 @@
   "store/bookoff-548cb/": {
     "name": "ブックオフ1号京都伏見店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "京都府"
   },
   "store/torekachanpion-c72b0/": {
     "name": "トレカチャンピオン豊橋牛川店",
@@ -5827,6 +5828,12 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-03",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-893f9/": {
+    "name": "別府",
+    "last": "2026-11-03",
+    "game": "pokemon",
     "keep": true
   }
 }

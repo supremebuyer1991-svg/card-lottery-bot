@@ -8736,7 +8736,7 @@
       "game": "pokemon",
       "store": "TSUTAYA積文館書店シュロアモール店",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "found_at": "2026-11-03T11:14:45.948312+09:00",
       "chain": "tsutaya"
@@ -8754,7 +8754,7 @@
       "game": "pokemon",
       "store": "北国書林松任店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "found_at": "2026-11-03T11:14:45.948357+09:00",
       "chain": null
@@ -8763,7 +8763,7 @@
       "game": "pokemon",
       "store": "きくざわ書店ナッピィモール店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "found_at": "2026-11-03T11:14:45.948378+09:00",
       "chain": null
@@ -8781,7 +8781,7 @@
       "game": "pokemon",
       "store": "カードショップ＠ほ～む。熊本店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "熊本県",
       "found_at": "2026-11-03T11:14:45.948419+09:00",
       "chain": null
@@ -8799,8 +8799,8 @@
       "game": "pokemon",
       "store": "ブックオフ1号京都伏見店",
       "series": "30周年エーフィ・ブラッキーデッキ",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "京都府",
       "found_at": "2026-11-03T11:14:45.948467+09:00",
       "chain": "bookoff"
     },
@@ -9736,8 +9736,8 @@
       "store": "ふるいち名古屋大須店",
       "series": "30th CELEBRATION",
       "channel": "online",
-      "area": null,
-      "found_at": "2026-11-03T12:45:17.463397+09:00",
+      "area": "愛知県",
+      "found_at": "2026-11-03T12:51:39.749423+09:00",
       "chain": "furuichi"
     },
     "0da76d3046744ed6": {
@@ -9746,7 +9746,7 @@
       "series": "30周年エーフィ・ブラッキーデッキ",
       "channel": "store",
       "area": "福岡県",
-      "found_at": "2026-11-03T12:45:17.463427+09:00",
+      "found_at": "2026-11-03T12:51:39.749476+09:00",
       "chain": "cardlabo"
     },
     "9bc965d84004b999": {
@@ -9755,7 +9755,7 @@
       "series": null,
       "channel": "store",
       "area": "福岡県",
-      "found_at": "2026-11-03T12:45:17.463443+09:00",
+      "found_at": "2026-11-03T12:51:39.749515+09:00",
       "chain": "tsutaya"
     },
     "f58433cdca9f7d36": {
@@ -9764,7 +9764,7 @@
       "series": null,
       "channel": "store",
       "area": "福井県",
-      "found_at": "2026-11-03T12:45:17.463458+09:00",
+      "found_at": "2026-11-03T12:51:39.749550+09:00",
       "chain": "geo"
     },
     "71c3bf4e4ec57917": {
@@ -9773,7 +9773,7 @@
       "series": "ストームエメラルダ",
       "channel": "store",
       "area": "福井県",
-      "found_at": "2026-11-03T12:45:17.463471+09:00",
+      "found_at": "2026-11-03T12:51:39.749583+09:00",
       "chain": "geo"
     },
     "dea9d0fff8c53998": {
@@ -9782,7 +9782,7 @@
       "series": "30th CELEBRATION",
       "channel": "store",
       "area": "福井県",
-      "found_at": "2026-11-03T12:45:17.463484+09:00",
+      "found_at": "2026-11-03T12:51:39.749615+09:00",
       "chain": "geo"
     },
     "c121939ff9bdcefc": {
@@ -9791,7 +9791,7 @@
       "series": null,
       "channel": "store",
       "area": "兵庫県",
-      "found_at": "2026-11-03T12:45:17.463497+09:00",
+      "found_at": "2026-11-03T12:51:39.749645+09:00",
       "chain": null
     },
     "556d66e9d57b49fb": {
@@ -9800,7 +9800,7 @@
       "series": null,
       "channel": "store",
       "area": "埼玉県",
-      "found_at": "2026-11-03T12:45:17.463509+09:00",
+      "found_at": "2026-11-03T12:51:39.749675+09:00",
       "chain": null
     },
     "093766beaf73f1c8": {
@@ -9809,7 +9809,7 @@
       "series": "ハドウシーカー",
       "channel": "store",
       "area": "福岡県",
-      "found_at": "2026-11-03T12:45:17.463523+09:00",
+      "found_at": "2026-11-03T12:51:39.749707+09:00",
       "chain": "tsutaya"
     },
     "c479f90f3c8b1fe3": {
@@ -9818,7 +9818,7 @@
       "series": "ハドウシーカー",
       "channel": "store",
       "area": "鳥取県",
-      "found_at": "2026-11-03T12:45:17.463535+09:00",
+      "found_at": "2026-11-03T12:51:39.749738+09:00",
       "chain": "tsutaya"
     },
     "3051e0b3765ca8e9": {
@@ -9827,7 +9827,7 @@
       "series": "神の支配",
       "channel": "store",
       "area": "東京都",
-      "found_at": "2026-11-03T12:45:17.838276+09:00",
+      "found_at": "2026-11-03T12:51:40.537625+09:00",
       "chain": "tsutaya"
     },
     "1863135334d73e08": {
@@ -9836,8 +9836,17 @@
       "series": "ヒロインズエディション vol.2",
       "channel": "store",
       "area": "宮城県",
-      "found_at": "2026-11-03T12:45:17.838307+09:00",
+      "found_at": "2026-11-03T12:51:40.537690+09:00",
       "chain": "tsutaya"
+    },
+    "d1bf4446dbe9bc97": {
+      "game": "pokemon",
+      "store": "ホビーステーション",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-03T12:52:08.391332+09:00",
+      "chain": "hobbystation"
     }
   }
 }
