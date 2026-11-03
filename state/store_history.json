@@ -19531,5 +19531,37 @@
         "rq": []
       }
     }
+  },
+  "store/dragonstar-ccf02/": {
+    "name": "ドラスタ通販",
+    "items": {
+      "90453fe04d6660a9": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-10-29",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/pokepa365-5a8d8/": {
+    "name": "ポケパ365",
+    "items": {
+      "eb482ed0b191b26a": {
+        "p": "ポケパ365の抽選に応募する！を開く（広告・外部サイト）",
+        "g": "pokemon",
+        "e": "2026-11-30T23:59",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
   }
 }
