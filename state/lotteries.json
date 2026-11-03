@@ -29766,7 +29766,9 @@
     "buy": "11月21日(土)に店頭で購入",
     "x_post": "https://x.com/Eyt5aO/status/2117555896176013462",
     "apply_url": "https://livepocket.jp/t/soramachi",
-    "tags": []
+    "tags": [],
+    "post_checked": true,
+    "details_checked": true
   },
   "888c2fe05013a996": {
     "game": "onepiece",
@@ -29794,7 +29796,9 @@
     "buy": "11月21日(土)に店頭で購入",
     "x_post": "https://x.com/Eyt5aO/status/2117555676834844951",
     "apply_url": "https://livepocket.jp/t/shibuya",
-    "tags": []
+    "tags": [],
+    "post_checked": true,
+    "details_checked": true
   },
   "9818f0726931bc65": {
     "game": "onepiece",
@@ -37152,7 +37156,9 @@
     "multi": false,
     "cls": "1f3fd2d82b0f",
     "issue": 438,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-03T19:06:00.019052+09:00",
+    "page_err": "中身が空"
   },
   "9ae5becd1979b3b2": {
     "store": "TSUTAYA Trading Card 松戸",
@@ -37181,7 +37187,9 @@
     "found_at": "2026-11-03T19:00:26.951704+09:00",
     "multi": false,
     "cls": "9245e6d04445",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-03T19:06:02.173335+09:00",
+    "page_err": "中身が空"
   },
   "1cf5ef53b220adf9": {
     "store": "TSUTAYA Trading Card 松戸",
@@ -37238,14 +37246,15 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "ed59c0d5b0a89408",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-03T19:00:26.951769+09:00",
     "page_checked_at": "2026-11-03T19:01:19.412350+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "6fc33f4041ec"
+    "cls": "6fc33f4041ec",
+    "duplicate_of": "9ae5becd1979b3b2"
   },
   "e2ec44b18c7a2d31": {
     "store": "TSUTAYA函南店",
