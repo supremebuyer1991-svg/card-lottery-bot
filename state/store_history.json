@@ -8274,6 +8274,17 @@
         "mem": "card",
         "rq": []
       },
+      "69e0233e50281f29": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "0accd3724106bdb1": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -22180,6 +22191,39 @@
         "id": null,
         "mem": null,
         "rq": []
+      }
+    }
+  },
+  "store/bukkuesu-9e2af/": {
+    "name": "ブックエース坂東店",
+    "items": {
+      "2dbc1bfaaf2446c7": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/nexustradingcards-c54dd/": {
+    "name": "Nexus Trading Cards",
+    "items": {
+      "74c081a68dca0d3c": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-12"
       }
     }
   }
