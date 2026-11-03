@@ -22079,5 +22079,76 @@
         "rq": []
       }
     }
+  },
+  "store/tsutaya-54494/": {
+    "name": "TSUTAYA Trading Card 松戸",
+    "items": {
+      "202dc2f2b7bb987b": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "9ae5becd1979b3b2": {
+        "p": "ヒロインズエディション Vol.2 EB-05",
+        "g": "onepiece",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      },
+      "1cf5ef53b220adf9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      },
+      "ed59c0d5b0a89408": {
+        "p": "ヒロインズエディション Vol.2【EB-05】",
+        "g": "onepiece",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      }
+    }
+  },
+  "store/toreka-9ae06/": {
+    "name": "トレカ丸葉鹿店",
+    "items": {
+      "413862799e15e90a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T21:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
   }
 }
