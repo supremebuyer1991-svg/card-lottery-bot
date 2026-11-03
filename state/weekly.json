@@ -8619,7 +8619,7 @@
       "game": "pokemon",
       "store": "カードボックス広島店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "広島県",
       "found_at": "2026-11-03T11:14:45.948002+09:00",
       "chain": "cardbox"
@@ -8745,7 +8745,7 @@
       "game": "pokemon",
       "store": "SuperKaBoS敦賀店（CARDBOX）",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "福井県",
       "found_at": "2026-11-03T11:14:45.948335+09:00",
       "chain": "cardbox"
@@ -8772,7 +8772,7 @@
       "game": "pokemon",
       "store": "SuperKaBoS+GEO武生店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "福井県",
       "found_at": "2026-11-03T11:14:45.948398+09:00",
       "chain": null
@@ -8817,7 +8817,7 @@
       "game": "pokemon",
       "store": "SuperKaBoS+ゲオwasse店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "福井県",
       "found_at": "2026-11-03T11:14:45.948511+09:00",
       "chain": "geo"
@@ -9730,6 +9730,114 @@
       "area": "愛知県",
       "found_at": "2026-11-03T11:57:16.998791+09:00",
       "chain": "cardbox"
+    },
+    "f1b52efe56a0c196": {
+      "game": "pokemon",
+      "store": "ふるいち名古屋大須店",
+      "series": "30th CELEBRATION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-03T12:45:17.463397+09:00",
+      "chain": "furuichi"
+    },
+    "0da76d3046744ed6": {
+      "game": "pokemon",
+      "store": "カードラボ福岡天神店",
+      "series": "30周年エーフィ・ブラッキーデッキ",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-03T12:45:17.463427+09:00",
+      "chain": "cardlabo"
+    },
+    "9bc965d84004b999": {
+      "game": "pokemon",
+      "store": "TSUTAYA柳川店",
+      "series": null,
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-03T12:45:17.463443+09:00",
+      "chain": "tsutaya"
+    },
+    "f58433cdca9f7d36": {
+      "game": "pokemon",
+      "store": "SuperKaBoS＋ゲオ二の宮本店",
+      "series": null,
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-03T12:45:17.463458+09:00",
+      "chain": "geo"
+    },
+    "71c3bf4e4ec57917": {
+      "game": "pokemon",
+      "store": "SuperKaBoS＋ゲオ二の宮本店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-03T12:45:17.463471+09:00",
+      "chain": "geo"
+    },
+    "dea9d0fff8c53998": {
+      "game": "pokemon",
+      "store": "SuperKaBoS＋ゲオ二の宮本店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-03T12:45:17.463484+09:00",
+      "chain": "geo"
+    },
+    "c121939ff9bdcefc": {
+      "game": "pokemon",
+      "store": "トレカチャンピオン神戸三宮店",
+      "series": null,
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-03T12:45:17.463497+09:00",
+      "chain": null
+    },
+    "556d66e9d57b49fb": {
+      "game": "pokemon",
+      "store": "文真堂トレカ丸幸手店",
+      "series": null,
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-03T12:45:17.463509+09:00",
+      "chain": null
+    },
+    "093766beaf73f1c8": {
+      "game": "pokemon",
+      "store": "TSUTAYA BOOKSTORE サンリブ三ヶ森",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-03T12:45:17.463523+09:00",
+      "chain": "tsutaya"
+    },
+    "c479f90f3c8b1fe3": {
+      "game": "pokemon",
+      "store": "TSUTAYA東福原店（トレカ部門）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "鳥取県",
+      "found_at": "2026-11-03T12:45:17.463535+09:00",
+      "chain": "tsutaya"
+    },
+    "3051e0b3765ca8e9": {
+      "game": "onepiece",
+      "store": "TSUTAYA Trading Card府中駅前",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-03T12:45:17.838276+09:00",
+      "chain": "tsutaya"
+    },
+    "1863135334d73e08": {
+      "game": "onepiece",
+      "store": "ヤマト屋書店TSUTAYA BOOKSTORE仙台長命ヶ丘店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "宮城県",
+      "found_at": "2026-11-03T12:45:17.838307+09:00",
+      "chain": "tsutaya"
     }
   }
 }

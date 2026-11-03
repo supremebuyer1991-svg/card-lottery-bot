@@ -102,7 +102,7 @@
   },
   "store/furuichi-329a3/": {
     "name": "ふるいち名古屋大須店",
-    "last": "2026-10-28",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "愛知県"
   },
@@ -153,7 +153,7 @@
   },
   "store/cardlabo-1d856/": {
     "name": "カードラボ福岡天神店",
-    "last": "2026-10-28",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "福岡県"
   },
@@ -2418,10 +2418,11 @@
     "area": "岐阜県"
   },
   "store/tsutaya-771dd/": {
-    "name": "TSUTAYA Trading Card 府中駅前",
-    "last": "2026-10-26",
+    "name": "TSUTAYA Trading Card府中駅前",
+    "last": "2026-11-03",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/ojama-8a9bf/": {
     "name": "おじゃま館 長居店",
@@ -5779,6 +5780,42 @@
     "last": "2026-11-03",
     "game": "pokemon",
     "area": "愛知県"
+  },
+  "store/geo-a7162/": {
+    "name": "SuperKaBoS＋ゲオ二の宮本店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "福井県"
+  },
+  "store/torekachanpion-0abbb/": {
+    "name": "トレカチャンピオン神戸三宮店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "兵庫県"
+  },
+  "store/toreka-05e7d/": {
+    "name": "文真堂トレカ丸幸手店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/tsutaya-d652f/": {
+    "name": "TSUTAYA BOOKSTORE サンリブ三ヶ森",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "福岡県"
+  },
+  "store/tsutaya-68640/": {
+    "name": "TSUTAYA東福原店（トレカ部門）",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "鳥取県"
+  },
+  "store/tsutaya-a2f5a/": {
+    "name": "ヤマト屋書店TSUTAYA BOOKSTORE仙台長命ヶ丘店",
+    "last": "2026-11-03",
+    "game": "onepiece",
+    "area": "宮城県"
   },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
