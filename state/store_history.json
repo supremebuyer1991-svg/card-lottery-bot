@@ -884,6 +884,17 @@
         "mem": null,
         "rq": []
       },
+      "7ac5611b855c8879": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "e9c85ece8d1012ab": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -2292,6 +2303,17 @@
   "store/cardbox-18b0c/": {
     "name": "カードボックス 本の王国大垣店",
     "items": {
+      "dac8444dd2d7a5a8": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "64e6d2e63e58b505": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -2492,6 +2514,17 @@
   "store/cardbox-9a155/": {
     "name": "カードボックス日本橋店",
     "items": {
+      "256659abf14c4227": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "3e2920792e5d9845": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -10139,6 +10172,17 @@
   "store/tsutaya-4b64f/": {
     "name": "TSUTAYA 八戸ニュータウン店",
     "items": {
+      "acabf74d6cf21366": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "8f62e4be53c93c97": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -12398,6 +12442,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "fc0cb1a78cc64b7c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
       }
     }
   },
@@ -13194,6 +13249,17 @@
   "store/machikyara-ee088/": {
     "name": "まちキャラ松戸店",
     "items": {
+      "465c5be7694b8c69": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-06T17:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "a6cb790cbc89ea78": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -14574,6 +14640,17 @@
   "store/cardlabo-90078/": {
     "name": "カードラボ小倉店",
     "items": {
+      "c737b53ae014187c": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "32dfd667b6c1dec1": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -15160,6 +15237,17 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      },
+      "a11cec740372d334": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       },
       "a34f3b1f4df8d316": {
@@ -21795,6 +21883,199 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      },
+      "466eb0ccb3f07a03": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "9444eaad355a9873": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "eb7a025021cd8f0f": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/cardlabo-b3e14/": {
+    "name": "カードラボ",
+    "items": {
+      "393488f1a202558d": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-20"
+      },
+      "40c4b79a8da292b7": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-07"
+      }
+    }
+  },
+  "store/basudei-b466c/": {
+    "name": "バースデイ",
+    "items": {
+      "acc9b6a0717e0758": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-09"
+      },
+      "a6f556778b79da35": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-09"
+      },
+      "62df77f217a518c2": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-09"
+      },
+      "8b0c6ec158d4bef8": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-09"
+      }
+    }
+  },
+  "store/furuichi-90db2/": {
+    "name": "古本市場鶴見店",
+    "items": {
+      "093896d03c403620": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-f8326/": {
+    "name": "文真堂トレカ丸渋川中央店",
+    "items": {
+      "7dbb4cae7b69d7d3": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T21:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-fd7e0/": {
+    "name": "フタバ図書 TSUTAYA 広店",
+    "items": {
+      "f3e0051b5da8684d": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/torekano-2dd33/": {
+    "name": "トレカノ青森大野店",
+    "items": {
+      "76e909952facfe9a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T18:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
         "rq": []
       }
     }

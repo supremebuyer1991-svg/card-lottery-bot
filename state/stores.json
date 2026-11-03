@@ -257,7 +257,7 @@
   },
   "store/cardbox-18b0c/": {
     "name": "カードボックス 本の王国大垣店",
-    "last": "2026-11-01",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "岐阜県"
   },
@@ -299,7 +299,7 @@
   },
   "store/cardbox-9a155/": {
     "name": "カードボックス日本橋店",
-    "last": "2026-11-02",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "大阪府"
   },
@@ -2944,10 +2944,11 @@
     "keep": true
   },
   "store/tsutaya-4b64f/": {
-    "name": "TSUTAYA 八戸ニュータウン店",
-    "last": "2026-10-27",
+    "name": "TSUTAYA八戸ニュータウン店",
+    "last": "2026-11-03",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "青森県"
   },
   "store/shop-1feb7/": {
     "name": "勝木書店大野店",
@@ -3367,7 +3368,7 @@
   },
   "store/machikyara-ee088/": {
     "name": "まちキャラ松戸店",
-    "last": "2026-10-30",
+    "last": "2026-11-03",
     "game": "onepiece",
     "area": "千葉県"
   },
@@ -3778,7 +3779,7 @@
   },
   "store/cardlabo-90078/": {
     "name": "カードラボ小倉店",
-    "last": "2026-11-01",
+    "last": "2026-11-03",
     "game": "onepiece",
     "area": "福岡県"
   },
@@ -5876,6 +5877,40 @@
     "last": "2026-11-03",
     "game": "onepiece",
     "area": "兵庫県"
+  },
+  "store/cardlabo-b3e14/": {
+    "name": "カードラボ",
+    "last": "2026-11-03",
+    "game": "pokemon"
+  },
+  "store/basudei-b466c/": {
+    "name": "バースデイ",
+    "last": "2026-11-03",
+    "game": "pokemon"
+  },
+  "store/furuichi-90db2/": {
+    "name": "古本市場鶴見店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/toreka-f8326/": {
+    "name": "文真堂トレカ丸渋川中央店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "群馬県"
+  },
+  "store/tsutaya-fd7e0/": {
+    "name": "フタバ図書 TSUTAYA 広店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "広島県"
+  },
+  "store/torekano-2dd33/": {
+    "name": "トレカノ青森大野店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "青森県"
   },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
