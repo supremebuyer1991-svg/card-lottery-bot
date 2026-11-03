@@ -135,6 +135,11 @@ def apply_overrides(lots, ov):
             if note not in (it.get("conditions") or ""):
                 it["conditions"] = ((it.get("conditions") or "").rstrip("。 ") + "。" if it.get("conditions") else "") + note
                 n += 1
+        # TSUTAYAの抽選は店頭渡しだけ（発送なし）。通販と確認したお店（channel_overrides の online）だけはそのまま（11/3 ユーザー指摘）
+        if re.search(r"TSUTAYA|ツタヤ", it.get("store") or "", re.I) and ov.get((it.get("store") or "").strip()) != "online" \
+                and it.get("channel") != "store":
+            it["channel"] = "store"
+            n += 1
         ch = ov.get((it.get("store") or "").strip())
         if ch and it.get("channel") != ch:
             it["channel"] = ch
