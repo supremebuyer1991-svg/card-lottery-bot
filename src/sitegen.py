@@ -1925,6 +1925,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             h = ['<div class="guide cal"><p>ポケカ・ワンピースカードの新弾・新商品の発売日と希望小売価格を、公式サイトの情報からまとめています。'
                  '受付中の抽選の数は1時間ごとに更新しています。弾の名前を押すと、その弾の抽選の一覧に進めます。</p>']
             h.append(cal_sub_html(site, games))
+            # 11/3 ユーザー指摘：下の一覧が「発売日」の一覧だと一目でわかるように見出しと説明を付ける
+            h.append('<div class="cal-head"><b>📦 新弾・新商品の発売日一覧</b>'
+                     '<p>日付は<strong>発売日</strong>です（過去2か月〜これから発売の弾）。「抽選 受付中〇件」を押すと、その弾の抽選の一覧が見られます。</p></div>')
             cur_m, faq_c = "", []
             for r_, g, x, inf, n_ in rows_c:
                 m_ = r_[:7]
@@ -1936,7 +1939,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 d_ = _dtm.date.fromisoformat(r_)
                 tag = '<span class="cal-new">発売前</span>' if r_ > today_c else ""
                 lot = f'<a class="cal-n" href="/{series_path(g, x)}">抽選 受付中{n_}件</a>' if n_ else '<span class="cal-n none">抽選情報待ち</span>'
-                h.append(f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})</time>'
+                h.append(f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})<small class="cal-rl">発売</small></time>'
                          f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{tag}'
                          f'<a class="cal-t" href="/{series_path(g, x)}">{escape(x)}</a>'
                          f'<small>{escape(inf.get("type") or "")}' + (f'｜{escape(inf["price"])}' if inf.get("price") else "") + f'</small>{lot}</li>')
