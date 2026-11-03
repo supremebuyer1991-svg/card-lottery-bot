@@ -5530,17 +5530,20 @@
   "store/toreka-ec2e4/": {
     "name": "文真堂トレカ丸新井店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/kintore-no-1960a/": {
     "name": "キントレ竹の塚店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "東京都"
   },
   "store/shop-b67f1/": {
     "name": "文真堂書店上原店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/tsutaya-29629/": {
     "name": "TSUTAYA真岡店",
@@ -5617,7 +5620,8 @@
   "store/tsutaya-ecb89/": {
     "name": "TSUTAYAブックセンター名豊刈谷店",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "愛知県"
   },
   "store/tsutaya-9c421/": {
     "name": "TSUTAYAリノアス八尾店",
@@ -5628,12 +5632,14 @@
   "store/tsutaya-d361e/": {
     "name": "TSUTAYA三ノ輪店（1Fトレカ）",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "東京都"
   },
   "store/tsutaya-da4aa/": {
     "name": "TSUTAYA BOOKSTORE AIZU",
     "last": "2026-11-03",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "福島県"
   },
   "store/torecastation-06ccb/": {
     "name": "トレカステーション豊橋店",
@@ -5823,6 +5829,12 @@
     "game": "onepiece",
     "area": "宮城県"
   },
+  "store/shop-893f9/": {
+    "name": "別府",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "keep": true
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -5833,12 +5845,6 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-03",
     "game": "onepiece",
-    "keep": true
-  },
-  "store/shop-893f9/": {
-    "name": "別府",
-    "last": "2026-11-03",
-    "game": "pokemon",
     "keep": true
   }
 }
