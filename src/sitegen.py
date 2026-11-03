@@ -110,12 +110,12 @@ CHAINS = [
     ("surugaya", "駿河屋", r"駿河屋", False),
     ("bigmagic", "BIGMAGIC", r"BIG\s*MAGIC|ビッグマジック", False),
     ("yellowsubmarine", "イエローサブマリン", r"イエローサブマリン", False),
-    ("dragonstar", "ドラゴンスター", r"ドラゴンスター", False),
+    ("dragonstar", "ドラゴンスター", r"ドラゴンスター|ドラスタ", False),
     ("sanyodo", "三洋堂", r"三洋堂", False),
     ("batoroco", "バトロコ", r"バトロコ", False),
     ("miraiya", "未来屋書店", r"未来屋", False),
     ("wondergoo", "WonderGOO", r"WonderGOO|ワンダーグー", False),
-    ("jumpshop", "ジャンプショップ", r"ジャンプショップ", False),
+    ("jumpshop", "ジャンプショップ", r"ジャンプショップ|JUMP ?SHOP", False),
     ("dmm", "DMM", r"DMM", False),
 ]
 
