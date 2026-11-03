@@ -701,7 +701,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
         head.append('<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>")
     body = TEMPLATE.read_text(encoding="utf-8")
     for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]),
-                 "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]),
+                 "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]) + ('<span class="h1-tag">' + escape(meta["h1_tag"]) + "</span>" if meta.get("h1_tag") else ""),
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
                  "__CRUMBS__": meta.get("crumbs", ""),
                  "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__TOPSQ__": meta.get("topsq", ""), "__SNS__": _sns_bar(), "__SUPPLY__": meta.get("supply", ""),
@@ -1677,7 +1677,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             write("line/", {"game": games[0], "channel": "store"}, {
                 "title": "地域ごとのLINEオープンチャット（トレカ販売情報共有）｜トレカ抽選ナビ",
                 "desc": "ポケカ・ワンピースカードの販売・抽選情報を、北海道・東北／関東／中部／近畿／中国・四国／九州・沖縄の地域ごとのLINEオープンチャットでリアルタイムに共有できます。",
-                "summary": "", "h1": "地域ごとのLINEオープンチャット",
+                "summary": "", "h1": "地域ごとのLINEオープンチャット", "h1_tag": "現在テスト運行中",
                 "lead": "地域ごとのLINEオープンチャットの一覧です。下には、いま受付中の店頭抽選を載せています。",
                 "aff": body_l, "links": _menu(items, games, games[0]), "root": "/"},
                 [i for i in items if i["game"] == games[0] and i.get("channel") == "store"], [("トップ", ""), ("LINEオープンチャット", "line/")])
