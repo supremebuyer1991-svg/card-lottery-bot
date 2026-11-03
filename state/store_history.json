@@ -3739,6 +3739,28 @@
   "store/tsutaya-909ae/": {
     "name": "TSUTAYA積文館書店シュロアモール店",
     "items": {
+      "11851e55173b34ed": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T21:45",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "69a1da37f86f585e": {
+        "p": "スタートデッキ100 バトルコレクション",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "63b57d1c776a0319": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -14621,6 +14643,17 @@
   "store/tsutaya-69522/": {
     "name": "TSUTAYA柳川店",
     "items": {
+      "6bab30bc32ac687d": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T22:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "b559f3f33f35db2d": {
         "p": "Heroines Precius",
         "g": "onepiece",
@@ -19460,6 +19493,38 @@
         "e": "2026-11-08T23:45",
         "f": "2026-11-03",
         "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/193-d31a5/": {
+    "name": "193日本橋(SDS)",
+    "items": {
+      "776e53fb9718463b": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-04",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-d5091/": {
+    "name": "JUMP SHOP",
+    "items": {
+      "222389ce58f008b9": {
+        "p": "ONE PIECEカードゲームコーナー（事前入店申込・抽選）",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-03",
+        "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,

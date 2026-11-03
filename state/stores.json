@@ -573,8 +573,8 @@
     "area": "東京都"
   },
   "store/tsutaya-909ae/": {
-    "name": "TSUTAYA 積文館書店 シュロアモール店",
-    "last": "2026-11-01",
+    "name": "TSUTAYA積文館書店シュロアモール店",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "福岡県"
   },
@@ -3959,7 +3959,7 @@
   },
   "store/tsutaya-69522/": {
     "name": "TSUTAYA柳川店",
-    "last": "2026-11-01",
+    "last": "2026-11-03",
     "game": "onepiece",
     "area": "福岡県",
     "address": "福岡県福岡県柳川市三橋町藤吉５０９-１"
@@ -5429,6 +5429,18 @@
     "name": "193日本橋",
     "last": "2026-11-03",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/193-d31a5/": {
+    "name": "193日本橋(SDS)",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/jumpshop-d5091/": {
+    "name": "JUMP SHOP",
+    "last": "2026-11-03",
+    "game": "onepiece",
     "keep": true
   }
 }
