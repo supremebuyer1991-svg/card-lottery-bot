@@ -2439,7 +2439,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in urls)
             + "</urlset>\n", encoding="utf-8")
-        (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /x-draft.html\nSitemap: {site}/sitemap.xml\n", encoding="utf-8")
+        (out / "robots.txt").write_text(  # 検索エンジンとAI検索（ChatGPT検索・Perplexity・Claude など）の読み取りをはっきり許可（11/3）
+            "".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\n\n" for b in
+                    ("Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot", "Claude-User", "*"))
+            + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
     inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
 
