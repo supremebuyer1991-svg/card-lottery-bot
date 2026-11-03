@@ -126,6 +126,15 @@ def apply_overrides(lots, ov):
             if it.get("channel") != "online":
                 it["channel"] = "store"
             n += 1
+        # KaBoS（ゲオ系のカードショップ）の抽選は、応募した店舗で購入・受け取りできる人だけが対象（発送なし。11/3 ユーザー指摘）
+        if re.search(r"KaBoS", it.get("store") or "", re.I):
+            if it.get("channel") != "store":
+                it["channel"] = "store"
+                n += 1
+            note = "応募した店舗で購入（受け取り）できる人のみ"
+            if note not in (it.get("conditions") or ""):
+                it["conditions"] = ((it.get("conditions") or "").rstrip("。 ") + "。" if it.get("conditions") else "") + note
+                n += 1
         ch = ov.get((it.get("store") or "").strip())
         if ch and it.get("channel") != ch:
             it["channel"] = ch
