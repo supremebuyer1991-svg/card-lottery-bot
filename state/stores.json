@@ -1152,7 +1152,7 @@
   },
   "store/surugaya-aa99d/": {
     "name": "駿河屋 千葉中央店",
-    "last": "2026-10-28",
+    "last": "2026-11-03",
     "game": "onepiece",
     "area": "千葉県"
   },
@@ -1639,8 +1639,8 @@
     "game": "pokemon"
   },
   "store/cardlabo-b7fb1/": {
-    "name": "カードラボ マルイ海老名店",
-    "last": "2026-10-28",
+    "name": "カードラボマルイ海老名店",
+    "last": "2026-11-03",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -2950,10 +2950,11 @@
     "keep": true
   },
   "store/shop-1feb7/": {
-    "name": "勝木書店 大野店",
-    "last": "2026-10-27",
+    "name": "勝木書店大野店",
+    "last": "2026-11-03",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "福井県"
   },
   "store/shimamura-0ff59/": {
     "name": "しまむら",
@@ -5853,6 +5854,29 @@
     "last": "2026-11-03",
     "game": "pokemon"
   },
+  "store/toreka-b578f/": {
+    "name": "トレカ丸新井店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-fe0b3/": {
+    "name": "TSUTAYA鴻巣吹上店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/torekano-f3906/": {
+    "name": "トレカの郷 伊達店",
+    "last": "2026-11-03",
+    "game": "onepiece"
+  },
+  "store/furuichi-19787/": {
+    "name": "古本市場 魚住店",
+    "last": "2026-11-03",
+    "game": "onepiece",
+    "area": "兵庫県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -5863,12 +5887,6 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-03",
     "game": "onepiece",
-    "keep": true
-  },
-  "store/toreka-b578f/": {
-    "name": "トレカ丸新井店",
-    "last": "2026-11-03",
-    "game": "pokemon",
     "keep": true
   }
 }

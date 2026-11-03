@@ -7164,6 +7164,17 @@
   "store/surugaya-aa99d/": {
     "name": "駿河屋 千葉中央店",
     "items": {
+      "b4df57f87083f22e": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "4d882efe00d8086c": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -9310,6 +9321,17 @@
   "store/cardlabo-b7fb1/": {
     "name": "カードラボマルイ海老名店",
     "items": {
+      "a0cd45ebe0dbd7b5": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "8f8e79fb3f07b56e": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -10129,6 +10151,28 @@
   "store/shop-1feb7/": {
     "name": "勝木書店 大野店",
     "items": {
+      "6f248b28008e4cb9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "73c57e58f5bc6d07": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "2f1118761cb8a7fb": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -21048,6 +21092,17 @@
         "id": false,
         "mem": "none",
         "rq": []
+      },
+      "e3ee06512a59fd92": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
       }
     }
   },
@@ -21665,6 +21720,76 @@
         "p": "スペシャルデッキセット 抽選予約",
         "g": "pokemon",
         "e": "2026-11-05T21:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-fe0b3/": {
+    "name": "TSUTAYA鴻巣吹上店",
+    "items": {
+      "1863e4604f5c1cc9": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T19:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/torekano-f3906/": {
+    "name": "トレカの郷 伊達店",
+    "items": {
+      "5dbf85d14bf87625": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-10T17:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-19787/": {
+    "name": "古本市場 魚住店",
+    "items": {
+      "1c87875b4586df46": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "9457fd859ca0f71d": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-03T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "153fc67414221acf": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-03T22:00",
         "f": "2026-11-03",
         "c": "store",
         "m": "Web",
