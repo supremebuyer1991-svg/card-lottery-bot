@@ -623,7 +623,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
       <div class="brand-r">
         <button type="button" class="menu-btn" id="menu-open" aria-haspopup="dialog"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>さがす</button></div>
     </div>
-    <p class="sample" id="sample" hidden>表示しているのはサンプルデータです</p>
+    <p class="sample" id="sample" hidden></p>
     <nav class="games" role="tablist" id="games"></nav>
     __SNS__
   </div>
@@ -1214,7 +1214,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
     });
   }, 1000);
 
-  $("sample").hidden = !DATA.sample;
+  $("sample").hidden = !DATA.sample; if (DATA.sample) $("sample").textContent = "表示しているのはサンプルデータです";
   (function () {
     var dlg = $("menu-sheet"), src = document.querySelector(".foot-nav .menu"), btn = $("menu-open");
     if (!src || !dlg.showModal) { btn.hidden = true; return; }
