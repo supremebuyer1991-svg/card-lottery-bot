@@ -8968,6 +8968,17 @@
   "store/torecastation-3b08f/": {
     "name": "トレカステーション領家店",
     "items": {
+      "02ce4bb6adc23b49": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "1c66d771de65e03a": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -20802,6 +20813,17 @@
         "id": true,
         "mem": "card",
         "rq": []
+      },
+      "154d8aa6db3baee5": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
       }
     }
   },
@@ -20817,6 +20839,17 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
+        "rq": []
+      },
+      "62ae8d363fba8725": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       }
     }
@@ -21090,6 +21123,113 @@
         "c": "store",
         "m": "店頭",
         "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/bideoinamerika-59b90/": {
+    "name": "ビデオインアメリカ尼崎店（トレカチャンピオン尼崎店）",
+    "items": {
+      "a9d2c1c6943549c5": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/torecastation-c5ee0/": {
+    "name": "トレカステーション蒲郡三谷店",
+    "items": {
+      "d5b9d15626d6a219": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-ddfda/": {
+    "name": "文真堂トレカ丸足利助戸店",
+    "items": {
+      "6e991d593a24859c": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-a1ff5/": {
+    "name": "文真堂トレカ丸葉鹿店",
+    "items": {
+      "4caaaa577c8d0485": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T20:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-e30b1/": {
+    "name": "TSUTAYA光吉店トレカコーナー",
+    "items": {
+      "fbd94c993c59f8ee": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-09T22:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/cardbox-80f48/": {
+    "name": "カードボックス岡崎店（本の王国＆すまいるキング）",
+    "items": {
+      "84391d02c88919be": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "d6f8f26e9733d7e5": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
         "mem": "none",
         "rq": []
       }
