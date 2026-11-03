@@ -408,17 +408,23 @@ def _digests(settings, lots, t):
     yday = (t - timedelta(days=1)).replace(hour=17, minute=0, second=0, microsecond=0)
     noon = t.replace(hour=11, minute=45, second=0, microsecond=0)
     out = []
-    for game in GAME:
-        if h == 7:
-            out.append((f"{today}|today|{game}", compose_today(game, lots, t), "today", None, game))
-        elif h == 12:
-            out.append((f"{today}|new12|{game}", compose_new(game, lots, t, yday), "new", yday, game))
-        elif h == 17:
-            out.append((f"{today}|new17|{game}", compose_new(game, lots, t, noon, min_stores=3, head_note="（お昼から）"), "new", noon, game))
-        elif h == 20:
-            out.append((f"{today}|soon|{game}", compose_soon(game, lots, t), "soon", None, game))
-        elif h == 21:  # 夜、人が見やすい時間に1日1回（ユーザーの依頼）
-            out.append((f"{today}|amazon|{game}", compose_amazon(game, lots, t, settings), None, None, game))
+    # 11/3 ユーザーと決定：Threadsはまとめだけにし、ポケカとワンピを同じ時間に続けて出さない（連投で表示を絞られていたため）
+    #   7時 ポケカ今日締切 / 9時 ワンピ今日締切 / 12時 ポケカ新着 / 15時 ワンピ新着 / 18時 ポケカ締切間近 / 20時 ワンピ締切間近 / 23時 Amazon招待
+    plan = {7: ("today", "pokemon"), 9: ("today", "onepiece"), 12: ("new12", "pokemon"), 15: ("new12", "onepiece"),
+            18: ("soon", "pokemon"), 20: ("soon", "onepiece"), 23: ("amazon", "pokemon")}
+    kind, game = plan.get(h, (None, None))
+    if kind == "today":
+        out.append((f"{today}|today|{game}", compose_today(game, lots, t), "today", None, game))
+    elif kind == "new12":
+        out.append((f"{today}|new12|{game}", compose_new(game, lots, t, yday), "new", yday, game))
+    elif kind == "soon":
+        out.append((f"{today}|soon|{game}", compose_soon(game, lots, t), "soon", None, game))
+    elif kind == "amazon":
+        for g in GAME:  # Amazonの招待はワンピが無い日も多いので、ある方だけ（両方あれば2本目は次の日の分にしない：1本にまとめる）
+            tx = compose_amazon(g, lots, t, settings)
+            if tx:
+                out.append((f"{today}|amazon|{g}", tx, None, None, g))
+                break
     return out
 
 
@@ -505,6 +511,8 @@ def run(settings):
     for key, text, img in posts:
         if not text or key in done:
             continue
+        if sent >= 1:  # 1回の実行で出すのは1本まで（続けて出すと表示を絞られる。残りは次の回に）
+            break
         if settings.get("dry_run"):
             b_, r_ = threads_style(key, text, t)
             log("DRY_RUN Threads:\n" + b_ + (f"\n（画像 {img}）" if img else "") + (f"\n── 返信 ──\n{r_}" if r_ else ""))
