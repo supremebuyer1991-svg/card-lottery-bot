@@ -31,7 +31,7 @@
     "area": "東京都"
   },
   "store/tsutaya-de7b4/": {
-    "name": "TSUTAYAココアドバンス大村店",
+    "name": "TSUTAYA ココアドバンス大村店",
     "last": "2026-11-03",
     "game": "pokemon",
     "area": "長崎県"
@@ -5924,6 +5924,12 @@
     "game": "pokemon",
     "area": "栃木県"
   },
+  "store/furuichi-5db36/": {
+    "name": "古本市場 中仙道店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "岡山県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -5934,6 +5940,12 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-03",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-9edd9/": {
+    "name": "函南（店舗名不明）",
+    "last": "2026-11-03",
+    "game": "pokemon",
     "keep": true
   }
 }
