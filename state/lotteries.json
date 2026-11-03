@@ -25762,7 +25762,7 @@
     "key": "7b10b2bf0588c3e9",
     "status": "pending",
     "found_at": "2026-11-02T11:11:29.751200+09:00",
-    "deadline_checked_at": "2026-11-02T11:11:56.949538+09:00",
+    "deadline_checked_at": "2026-11-03T11:14:47.030266+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページを読めず（HTTPSConnectionPool(host='c-labo.jp', po）",
     "multi": false,
@@ -32152,7 +32152,7 @@
     "no_quote": true,
     "key": "c674a42649eb2350",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649589+09:00"
+    "found_at": "2026-11-03T11:14:45.947956+09:00"
   },
   "f762c2e04aaec7ab": {
     "store": "カードボックス広島店",
@@ -32178,7 +32178,7 @@
     "no_quote": true,
     "key": "f762c2e04aaec7ab",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649630+09:00"
+    "found_at": "2026-11-03T11:14:45.948002+09:00"
   },
   "de74dde49a30af21": {
     "store": "ヤマダデンキ",
@@ -32204,8 +32204,8 @@
     "no_quote": true,
     "key": "de74dde49a30af21",
     "status": "duplicate",
-    "found_at": "2026-11-03T11:07:36.649653+09:00",
-    "page_checked_at": "2026-11-03T11:07:37.386835+09:00",
+    "found_at": "2026-11-03T11:14:45.948026+09:00",
+    "page_checked_at": "2026-11-03T11:14:47.070432+09:00",
     "page_err": "HTTPSConnectionPool(host='www.yamada-denki.jp', port=443): Max retries exceeded with url: /service/pointservice/digital-",
     "duplicate_of": "f0b51edcb88845fd"
   },
@@ -32233,8 +32233,8 @@
     "no_quote": true,
     "key": "ed4c8dfd42c75084",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649672+09:00",
-    "page_checked_at": "2026-11-03T11:07:44.024199+09:00",
+    "found_at": "2026-11-03T11:14:45.948047+09:00",
+    "page_checked_at": "2026-11-03T11:14:53.364024+09:00",
     "address_checked": true
   },
   "503ad9f75eedd5de": {
@@ -32260,7 +32260,7 @@
     "no_quote": true,
     "key": "503ad9f75eedd5de",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649691+09:00"
+    "found_at": "2026-11-03T11:14:45.948067+09:00"
   },
   "a342538956da2bd4": {
     "store": "三洋堂トレカ館 菰野店",
@@ -32285,7 +32285,7 @@
     "no_quote": true,
     "key": "a342538956da2bd4",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649710+09:00"
+    "found_at": "2026-11-03T11:14:45.948089+09:00"
   },
   "d12e50d3e571018e": {
     "store": "ブックオフJR蒲田駅東口店",
@@ -32310,7 +32310,7 @@
     "no_quote": true,
     "key": "d12e50d3e571018e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649729+09:00"
+    "found_at": "2026-11-03T11:14:45.948109+09:00"
   },
   "0d87dae2d3e57300": {
     "store": "カードラボ鹿児島店",
@@ -32335,8 +32335,8 @@
     "no_quote": true,
     "key": "0d87dae2d3e57300",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649750+09:00",
-    "page_checked_at": "2026-11-03T11:07:48.284106+09:00",
+    "found_at": "2026-11-03T11:14:45.948133+09:00",
+    "page_checked_at": "2026-11-03T11:14:57.666047+09:00",
     "address_checked": true
   },
   "317e00daee6f8e62": {
@@ -32362,8 +32362,8 @@
     "no_quote": true,
     "key": "317e00daee6f8e62",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649768+09:00",
-    "page_checked_at": "2026-11-03T11:07:53.231370+09:00",
+    "found_at": "2026-11-03T11:14:45.948154+09:00",
+    "page_checked_at": "2026-11-03T11:15:02.142424+09:00",
     "address_checked": true
   },
   "2fc9660287d65fd8": {
@@ -32389,8 +32389,8 @@
     "no_quote": true,
     "key": "2fc9660287d65fd8",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649787+09:00",
-    "page_checked_at": "2026-11-03T11:07:58.794280+09:00",
+    "found_at": "2026-11-03T11:14:45.948175+09:00",
+    "page_checked_at": "2026-11-03T11:15:07.520502+09:00",
     "address_checked": true
   },
   "83534e9d0de36906": {
@@ -32416,8 +32416,8 @@
     "no_quote": true,
     "key": "83534e9d0de36906",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649805+09:00",
-    "page_checked_at": "2026-11-03T11:08:02.814397+09:00",
+    "found_at": "2026-11-03T11:14:45.948195+09:00",
+    "page_checked_at": "2026-11-03T11:15:11.592334+09:00",
     "address_checked": true
   },
   "514818bf91622d95": {
@@ -32443,8 +32443,8 @@
     "no_quote": true,
     "key": "514818bf91622d95",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649823+09:00",
-    "page_checked_at": "2026-11-03T11:08:08.238181+09:00",
+    "found_at": "2026-11-03T11:14:45.948213+09:00",
+    "page_checked_at": "2026-11-03T11:15:15.337503+09:00",
     "address_checked": true
   },
   "ef338429e70ae54b": {
@@ -32470,8 +32470,8 @@
     "no_quote": true,
     "key": "ef338429e70ae54b",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649841+09:00",
-    "page_checked_at": "2026-11-03T11:08:12.341526+09:00",
+    "found_at": "2026-11-03T11:14:45.948236+09:00",
+    "page_checked_at": "2026-11-03T11:15:19.189947+09:00",
     "address_checked": true
   },
   "446ad216b1e37810": {
@@ -32498,8 +32498,8 @@
     "no_quote": true,
     "key": "446ad216b1e37810",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649858+09:00",
-    "page_checked_at": "2026-11-03T11:08:15.989227+09:00",
+    "found_at": "2026-11-03T11:14:45.948258+09:00",
+    "page_checked_at": "2026-11-03T11:15:23.252842+09:00",
     "address_checked": true
   },
   "0931e525ae44e477": {
@@ -32525,7 +32525,7 @@
     "no_quote": true,
     "key": "0931e525ae44e477",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649877+09:00"
+    "found_at": "2026-11-03T11:14:45.948279+09:00"
   },
   "4ff053611a9a56f5": {
     "store": "TSUTAYA積文館書店シュロアモール店",
@@ -32551,8 +32551,8 @@
     "no_quote": true,
     "key": "4ff053611a9a56f5",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649896+09:00",
-    "page_checked_at": "2026-11-03T11:08:20.161473+09:00",
+    "found_at": "2026-11-03T11:14:45.948312+09:00",
+    "page_checked_at": "2026-11-03T11:15:27.457559+09:00",
     "page_err": "中身が空"
   },
   "98a08a9bbf70c9cf": {
@@ -32578,7 +32578,7 @@
     "no_quote": true,
     "key": "98a08a9bbf70c9cf",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649914+09:00"
+    "found_at": "2026-11-03T11:14:45.948335+09:00"
   },
   "02d5f2a71b54132e": {
     "store": "北国書林松任店",
@@ -32603,7 +32603,7 @@
     "no_quote": true,
     "key": "02d5f2a71b54132e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649936+09:00"
+    "found_at": "2026-11-03T11:14:45.948357+09:00"
   },
   "9c2e8e203b677600": {
     "store": "きくざわ書店ナッピィモール店",
@@ -32628,7 +32628,7 @@
     "no_quote": true,
     "key": "9c2e8e203b677600",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649957+09:00"
+    "found_at": "2026-11-03T11:14:45.948378+09:00"
   },
   "207cf59c3049bce2": {
     "store": "SuperKaBoS+GEO武生店",
@@ -32653,7 +32653,7 @@
     "no_quote": true,
     "key": "207cf59c3049bce2",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649975+09:00"
+    "found_at": "2026-11-03T11:14:45.948398+09:00"
   },
   "7f1f2e1dc58ff92a": {
     "store": "カードショップ＠ほ～む。熊本店",
@@ -32679,8 +32679,8 @@
     "no_quote": true,
     "key": "7f1f2e1dc58ff92a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.649994+09:00",
-    "page_checked_at": "2026-11-03T11:08:22.335360+09:00"
+    "found_at": "2026-11-03T11:14:45.948419+09:00",
+    "page_checked_at": "2026-11-03T11:15:29.654393+09:00"
   },
   "16daa83f217e7ea3": {
     "store": "トレカチャンピオンMEGAドン・キホーテ豊橋店",
@@ -32705,7 +32705,7 @@
     "no_quote": true,
     "key": "16daa83f217e7ea3",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650014+09:00"
+    "found_at": "2026-11-03T11:14:45.948442+09:00"
   },
   "ed1cb771db585516": {
     "store": "ブックオフ1号京都伏見店",
@@ -32730,7 +32730,7 @@
     "no_quote": true,
     "key": "ed1cb771db585516",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650035+09:00"
+    "found_at": "2026-11-03T11:14:45.948467+09:00"
   },
   "7e32262734ccec80": {
     "store": "トレカチャンピオン豊橋牛川店",
@@ -32755,7 +32755,7 @@
     "no_quote": true,
     "key": "7e32262734ccec80",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650055+09:00"
+    "found_at": "2026-11-03T11:14:45.948488+09:00"
   },
   "f579842b09f9b003": {
     "store": "SuperKaBoS+ゲオwasse店",
@@ -32780,7 +32780,7 @@
     "no_quote": true,
     "key": "f579842b09f9b003",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650076+09:00"
+    "found_at": "2026-11-03T11:14:45.948511+09:00"
   },
   "ec18000b62aa9d25": {
     "store": "ブックオフスーパーバザー17号鴻巣吹上店",
@@ -32805,7 +32805,7 @@
     "no_quote": true,
     "key": "ec18000b62aa9d25",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650098+09:00"
+    "found_at": "2026-11-03T11:14:45.948532+09:00"
   },
   "69b405e206cde6e1": {
     "store": "TierOne 渋谷店",
@@ -32830,8 +32830,8 @@
     "no_quote": true,
     "key": "69b405e206cde6e1",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650118+09:00",
-    "page_checked_at": "2026-11-03T11:08:24.753609+09:00"
+    "found_at": "2026-11-03T11:14:45.948549+09:00",
+    "page_checked_at": "2026-11-03T11:15:32.016000+09:00"
   },
   "872de95791128a2f": {
     "store": "TierOne 浜松店",
@@ -32856,8 +32856,8 @@
     "no_quote": true,
     "key": "872de95791128a2f",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650139+09:00",
-    "page_checked_at": "2026-11-03T11:08:27.029814+09:00"
+    "found_at": "2026-11-03T11:14:45.948566+09:00",
+    "page_checked_at": "2026-11-03T11:15:34.350001+09:00"
   },
   "88886703784d04ac": {
     "store": "ブックオフプラス新宿駅西口店",
@@ -32882,7 +32882,7 @@
     "no_quote": true,
     "key": "88886703784d04ac",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650160+09:00"
+    "found_at": "2026-11-03T11:14:45.948586+09:00"
   },
   "3f8fe2c353aa8a58": {
     "store": "TSUTAYA積文館書店佐大通り店",
@@ -32908,8 +32908,8 @@
     "no_quote": true,
     "key": "3f8fe2c353aa8a58",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650181+09:00",
-    "page_checked_at": "2026-11-03T11:08:27.029961+09:00",
+    "found_at": "2026-11-03T11:14:45.948607+09:00",
+    "page_checked_at": "2026-11-03T11:15:34.350159+09:00",
     "page_err": "中身が空"
   },
   "55293259bc52e170": {
@@ -32936,8 +32936,8 @@
     "no_quote": true,
     "key": "55293259bc52e170",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650202+09:00",
-    "page_checked_at": "2026-11-03T11:08:29.104001+09:00",
+    "found_at": "2026-11-03T11:14:45.948628+09:00",
+    "page_checked_at": "2026-11-03T11:15:36.440977+09:00",
     "page_err": "中身が空"
   },
   "33656803374b53bd": {
@@ -32964,8 +32964,8 @@
     "no_quote": true,
     "key": "33656803374b53bd",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650220+09:00",
-    "page_checked_at": "2026-11-03T11:08:29.104019+09:00",
+    "found_at": "2026-11-03T11:14:45.948649+09:00",
+    "page_checked_at": "2026-11-03T11:15:36.440996+09:00",
     "page_err": "中身が空"
   },
   "1def0d619d338282": {
@@ -32991,7 +32991,7 @@
     "no_quote": true,
     "key": "1def0d619d338282",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650240+09:00"
+    "found_at": "2026-11-03T11:14:45.948672+09:00"
   },
   "6ef5d7ff6c5af065": {
     "store": "CARDBOX丸井八文字屋（山形県新庄市）",
@@ -33017,7 +33017,7 @@
     "no_quote": true,
     "key": "6ef5d7ff6c5af065",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650259+09:00"
+    "found_at": "2026-11-03T11:14:45.948692+09:00"
   },
   "ac4246e90a5f4b9d": {
     "store": "文真堂トレカ丸新井店",
@@ -33043,7 +33043,7 @@
     "no_quote": true,
     "key": "ac4246e90a5f4b9d",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650279+09:00"
+    "found_at": "2026-11-03T11:14:45.948713+09:00"
   },
   "4e97ccd704833701": {
     "store": "キントレ竹の塚店",
@@ -33069,7 +33069,7 @@
     "no_quote": true,
     "key": "4e97ccd704833701",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650299+09:00"
+    "found_at": "2026-11-03T11:14:45.948733+09:00"
   },
   "13f0acd1802649b4": {
     "store": "TSUTAYA神明店",
@@ -33079,7 +33079,7 @@
     "url": "https://x.com/TSUTAYA10912325/status/2117167253330497901",
     "x_post": "https://x.com/TSUTAYA10912325/status/2117167253330497901",
     "channel": "store",
-    "area": "愛知県",
+    "area": null,
     "method": "店頭",
     "conditions": "会員",
     "tags": [
@@ -33094,7 +33094,7 @@
     "no_quote": true,
     "key": "13f0acd1802649b4",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650319+09:00"
+    "found_at": "2026-11-03T11:14:45.948754+09:00"
   },
   "842f0fc352e9d680": {
     "store": "文真堂書店上原店",
@@ -33120,7 +33120,7 @@
     "no_quote": true,
     "key": "842f0fc352e9d680",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650337+09:00"
+    "found_at": "2026-11-03T11:14:45.948774+09:00"
   },
   "34171044d82ebc7a": {
     "store": "TSUTAYA積文館書店 鹿島店",
@@ -33146,7 +33146,7 @@
     "no_quote": true,
     "key": "34171044d82ebc7a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650358+09:00"
+    "found_at": "2026-11-03T11:14:45.948793+09:00"
   },
   "427f5b2f23f8dbba": {
     "store": "TSUTAYA真岡店",
@@ -33172,7 +33172,7 @@
     "no_quote": true,
     "key": "427f5b2f23f8dbba",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650377+09:00"
+    "found_at": "2026-11-03T11:14:45.948809+09:00"
   },
   "1b2730d3c094da8e": {
     "store": "TSUTAYA鴨川店",
@@ -33198,7 +33198,7 @@
     "no_quote": true,
     "key": "1b2730d3c094da8e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650393+09:00",
+    "found_at": "2026-11-03T11:14:45.948824+09:00",
     "multi": false,
     "cls": "46b0cea920cd"
   },
@@ -33226,7 +33226,7 @@
     "no_quote": true,
     "key": "324dc173aa9d0e05",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650410+09:00",
+    "found_at": "2026-11-03T11:14:45.948841+09:00",
     "multi": false,
     "cls": "8a439fedaae7"
   },
@@ -33254,7 +33254,7 @@
     "no_quote": true,
     "key": "ab2bc20ab628c6d5",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650426+09:00",
+    "found_at": "2026-11-03T11:14:45.948857+09:00",
     "multi": false,
     "cls": "8e494d5a2bb6"
   },
@@ -33282,7 +33282,7 @@
     "no_quote": true,
     "key": "9539bd83d4d829c4",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650457+09:00",
+    "found_at": "2026-11-03T11:14:45.948873+09:00",
     "multi": false,
     "cls": "a77b47bc878a"
   },
@@ -33310,7 +33310,7 @@
     "no_quote": true,
     "key": "83988ce4893a1e93",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650477+09:00",
+    "found_at": "2026-11-03T11:14:45.948889+09:00",
     "multi": false,
     "cls": "55e7224600b3"
   },
@@ -33338,7 +33338,7 @@
     "no_quote": true,
     "key": "277c925230bcef8d",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650495+09:00",
+    "found_at": "2026-11-03T11:14:45.948907+09:00",
     "multi": false,
     "cls": "7a6b2bbbe110"
   },
@@ -33366,7 +33366,7 @@
     "no_quote": true,
     "key": "2cdf4d41cbcaebf7",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650512+09:00",
+    "found_at": "2026-11-03T11:14:45.948925+09:00",
     "multi": false,
     "cls": "eaef636cb28d"
   },
@@ -33394,7 +33394,7 @@
     "no_quote": true,
     "key": "27c15562c2e89254",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650528+09:00",
+    "found_at": "2026-11-03T11:14:45.948941+09:00",
     "multi": false,
     "cls": "f26d40684108"
   },
@@ -33422,7 +33422,7 @@
     "no_quote": true,
     "key": "6e5ee601bf0acbfa",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650543+09:00",
+    "found_at": "2026-11-03T11:14:45.948957+09:00",
     "multi": false,
     "cls": "305cfccc8fb8"
   },
@@ -33450,7 +33450,7 @@
     "no_quote": true,
     "key": "88a39e2cd607e5a3",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650560+09:00",
+    "found_at": "2026-11-03T11:14:45.948972+09:00",
     "multi": false,
     "cls": "e9a66f961e6c"
   },
@@ -33477,9 +33477,7 @@
     "no_quote": true,
     "key": "e5759d2bdf33f703",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650579+09:00",
-    "multi": false,
-    "cls": "9e003bb870a3"
+    "found_at": "2026-11-03T11:14:45.948989+09:00"
   },
   "def369c83c419e41": {
     "store": "TSUTAYA白河店（みどり書房白河店）",
@@ -33505,9 +33503,7 @@
     "no_quote": true,
     "key": "def369c83c419e41",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650596+09:00",
-    "multi": false,
-    "cls": "913a5b58c16d"
+    "found_at": "2026-11-03T11:14:45.949007+09:00"
   },
   "71da34644793807a": {
     "store": "トレカエース新取手店",
@@ -33533,9 +33529,7 @@
     "no_quote": true,
     "key": "71da34644793807a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650616+09:00",
-    "multi": false,
-    "cls": "9b588288def6"
+    "found_at": "2026-11-03T11:14:45.949024+09:00"
   },
   "ffff14794c654dec": {
     "store": "TSUTAYAフレスポ小田原シティーモール店",
@@ -33561,9 +33555,7 @@
     "no_quote": true,
     "key": "ffff14794c654dec",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650634+09:00",
-    "multi": false,
-    "cls": "c6fae1e3e7ae"
+    "found_at": "2026-11-03T11:14:45.949040+09:00"
   },
   "06eec593ff5faa4c": {
     "store": "TSUTAYA17号北浦和店",
@@ -33589,9 +33581,7 @@
     "no_quote": true,
     "key": "06eec593ff5faa4c",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650651+09:00",
-    "multi": false,
-    "cls": "992672d86b0f"
+    "found_at": "2026-11-03T11:14:45.949056+09:00"
   },
   "416a8e2b3bcedd01": {
     "store": "TSUTAYA BOOKSTORE 伊万里店",
@@ -33617,9 +33607,7 @@
     "no_quote": true,
     "key": "416a8e2b3bcedd01",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650668+09:00",
-    "multi": false,
-    "cls": "cde69ed289cd"
+    "found_at": "2026-11-03T11:14:45.949073+09:00"
   },
   "a069606d0e5f5f38": {
     "store": "TSUTAYA金沢店",
@@ -33645,9 +33633,7 @@
     "no_quote": true,
     "key": "a069606d0e5f5f38",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650687+09:00",
-    "multi": false,
-    "cls": "08e8d8f78d54"
+    "found_at": "2026-11-03T11:14:45.949088+09:00"
   },
   "e6814261cd06e4bd": {
     "store": "TSUTAYA神明店",
@@ -33657,7 +33643,7 @@
     "url": "https://x.com/TSUTAYA10912325/status/2117117481626276244",
     "x_post": "https://x.com/TSUTAYA10912325/status/2117117481626276244",
     "channel": "store",
-    "area": "愛知県",
+    "area": null,
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33673,9 +33659,7 @@
     "no_quote": true,
     "key": "e6814261cd06e4bd",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650704+09:00",
-    "multi": false,
-    "cls": "5be7b71f3e42"
+    "found_at": "2026-11-03T11:14:45.949103+09:00"
   },
   "d6e3892d98e500b9": {
     "store": "TSUTAYA福井高柳店",
@@ -33701,9 +33685,7 @@
     "no_quote": true,
     "key": "d6e3892d98e500b9",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650721+09:00",
-    "multi": false,
-    "cls": "2a6035b7c941"
+    "found_at": "2026-11-03T11:14:45.949119+09:00"
   },
   "1a4cc1d51d1ba979": {
     "store": "トレカエース日立鮎川店",
@@ -33729,9 +33711,7 @@
     "no_quote": true,
     "key": "1a4cc1d51d1ba979",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650740+09:00",
-    "multi": false,
-    "cls": "7a7cffa4313c"
+    "found_at": "2026-11-03T11:14:45.949136+09:00"
   },
   "465af42651fc5d36": {
     "store": "トレカエース小名浜住吉店",
@@ -33757,9 +33737,7 @@
     "no_quote": true,
     "key": "465af42651fc5d36",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650760+09:00",
-    "multi": false,
-    "cls": "2d08a7163119"
+    "found_at": "2026-11-03T11:14:45.949154+09:00"
   },
   "c65a4d789ec61ea3": {
     "store": "啓文社コア福山西店",
@@ -33785,9 +33763,7 @@
     "no_quote": true,
     "key": "c65a4d789ec61ea3",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650779+09:00",
-    "multi": false,
-    "cls": "a9ac9f9bf325"
+    "found_at": "2026-11-03T11:14:45.949171+09:00"
   },
   "819487b8db449d3a": {
     "store": "TSUTAYA中万々店",
@@ -33813,9 +33789,7 @@
     "no_quote": true,
     "key": "819487b8db449d3a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650799+09:00",
-    "multi": false,
-    "cls": "ac578dac79b6"
+    "found_at": "2026-11-03T11:14:45.949190+09:00"
   },
   "0852a83659481230": {
     "store": "TSUTAYAブックセンター名豊刈谷店",
@@ -33825,7 +33799,7 @@
     "url": "https://x.com/TSUTAYAkariya/status/2117107358216421624",
     "x_post": "https://x.com/TSUTAYAkariya/status/2117107358216421624",
     "channel": "store",
-    "area": "愛知県",
+    "area": null,
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33841,9 +33815,7 @@
     "no_quote": true,
     "key": "0852a83659481230",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650817+09:00",
-    "multi": false,
-    "cls": "5ad059ffb752"
+    "found_at": "2026-11-03T11:14:45.949207+09:00"
   },
   "b14d85740af819a2": {
     "store": "TSUTAYAリノアス八尾店",
@@ -33869,9 +33841,7 @@
     "no_quote": true,
     "key": "b14d85740af819a2",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650837+09:00",
-    "multi": false,
-    "cls": "5ddc3aa03801"
+    "found_at": "2026-11-03T11:14:45.949226+09:00"
   },
   "e58f68156ed91585": {
     "store": "TSUTAYA佐野店",
@@ -33897,9 +33867,7 @@
     "no_quote": true,
     "key": "e58f68156ed91585",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650877+09:00",
-    "multi": false,
-    "cls": "1ab38253862f"
+    "found_at": "2026-11-03T11:14:45.949262+09:00"
   },
   "1dbe9f28fc524870": {
     "store": "TSUTAYA三ノ輪店（1Fトレカ）",
@@ -33909,7 +33877,7 @@
     "url": "https://x.com/tsutaya_minowa/status/2117060800846364709",
     "x_post": "https://x.com/tsutaya_minowa/status/2117060800846364709",
     "channel": "store",
-    "area": "東京都",
+    "area": null,
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33925,9 +33893,7 @@
     "no_quote": true,
     "key": "1dbe9f28fc524870",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650898+09:00",
-    "multi": false,
-    "cls": "7daf67ae377d"
+    "found_at": "2026-11-03T11:14:45.949281+09:00"
   },
   "95d9c3839002663d": {
     "store": "TSUTAYA森町店トレカコーナー",
@@ -33953,9 +33919,7 @@
     "no_quote": true,
     "key": "95d9c3839002663d",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650916+09:00",
-    "multi": false,
-    "cls": "2564702a53ff"
+    "found_at": "2026-11-03T11:14:45.949320+09:00"
   },
   "62aa5ba02625c31a": {
     "store": "TSUTAYA BOOKSTORE AIZU",
@@ -33965,7 +33929,7 @@
     "url": "https://x.com/tbs_aizutcg/status/2117233957087686987",
     "x_post": "https://x.com/tbs_aizutcg/status/2117233957087686987",
     "channel": "store",
-    "area": "福島県",
+    "area": null,
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33981,9 +33945,7 @@
     "no_quote": true,
     "key": "62aa5ba02625c31a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650933+09:00",
-    "multi": false,
-    "cls": "afae22fe7589"
+    "found_at": "2026-11-03T11:14:45.949340+09:00"
   },
   "f66fcd381fd5b76c": {
     "store": "TSUTAYA田宮店",
@@ -34009,9 +33971,7 @@
     "no_quote": true,
     "key": "f66fcd381fd5b76c",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650951+09:00",
-    "multi": false,
-    "cls": "ff0f1e3e2ed5"
+    "found_at": "2026-11-03T11:14:45.949358+09:00"
   },
   "584d03c9a86708e7": {
     "store": "TSUTAYA宇都宮東簗瀬店",
@@ -34037,9 +33997,7 @@
     "no_quote": true,
     "key": "584d03c9a86708e7",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650968+09:00",
-    "multi": false,
-    "cls": "d178ec261ea3"
+    "found_at": "2026-11-03T11:14:45.949376+09:00"
   },
   "f2db1fb564f53303": {
     "store": "トレカステーション豊橋店",
@@ -34065,8 +34023,8 @@
     "no_quote": true,
     "key": "f2db1fb564f53303",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.650999+09:00",
-    "page_checked_at": "2026-11-03T11:08:29.104021+09:00",
+    "found_at": "2026-11-03T11:14:45.949411+09:00",
+    "page_checked_at": "2026-11-03T11:15:36.440999+09:00",
     "page_err": "中身が空",
     "announce": "11月10日(火)",
     "buy": "11/13(金)〜11/15(日)",
@@ -34096,7 +34054,7 @@
     "no_quote": true,
     "key": "8f877c570d7c2381",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651019+09:00"
+    "found_at": "2026-11-03T11:14:45.949432+09:00"
   },
   "5e96bfdc7c9a18f7": {
     "store": "トレカステーション荒尾店",
@@ -34122,7 +34080,7 @@
     "no_quote": true,
     "key": "5e96bfdc7c9a18f7",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651037+09:00"
+    "found_at": "2026-11-03T11:14:45.949455+09:00"
   },
   "60124335e7bc7eaa": {
     "store": "トレカステーション豊川店",
@@ -34148,7 +34106,7 @@
     "no_quote": true,
     "key": "60124335e7bc7eaa",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651056+09:00"
+    "found_at": "2026-11-03T11:14:45.949488+09:00"
   },
   "367d6641e6713a24": {
     "store": "トレカステーション佐鳴台店",
@@ -34174,7 +34132,7 @@
     "no_quote": true,
     "key": "367d6641e6713a24",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651072+09:00"
+    "found_at": "2026-11-03T11:14:45.949511+09:00"
   },
   "f111096bef0fe37e": {
     "store": "TSUTAYA鹿嶋南店",
@@ -34200,7 +34158,7 @@
     "no_quote": true,
     "key": "f111096bef0fe37e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651090+09:00"
+    "found_at": "2026-11-03T11:14:45.949532+09:00"
   },
   "e87c75e0a3f7c47f": {
     "store": "TSUTAYA仙台荒井店",
@@ -34226,7 +34184,7 @@
     "no_quote": true,
     "key": "e87c75e0a3f7c47f",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651108+09:00"
+    "found_at": "2026-11-03T11:14:45.949555+09:00"
   },
   "638ef40b6f37050a": {
     "store": "TSUTAYA広田店",
@@ -34252,7 +34210,7 @@
     "no_quote": true,
     "key": "638ef40b6f37050a",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651125+09:00"
+    "found_at": "2026-11-03T11:14:45.949576+09:00"
   },
   "d375e00cde50c00d": {
     "store": "TSUTAYA南古谷店",
@@ -34278,7 +34236,7 @@
     "no_quote": true,
     "key": "d375e00cde50c00d",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651142+09:00"
+    "found_at": "2026-11-03T11:14:45.949595+09:00"
   },
   "057c6430688938d2": {
     "store": "TSUTAYA籠原店",
@@ -34304,7 +34262,7 @@
     "no_quote": true,
     "key": "057c6430688938d2",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651158+09:00",
+    "found_at": "2026-11-03T11:14:45.949614+09:00",
     "multi": false,
     "cls": "7afb25159b47"
   },
@@ -34332,7 +34290,7 @@
     "no_quote": true,
     "key": "221c0903e37eec27",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651174+09:00",
+    "found_at": "2026-11-03T11:14:45.949633+09:00",
     "multi": false,
     "cls": "07229f649021"
   },
@@ -34360,7 +34318,7 @@
     "no_quote": true,
     "key": "b2d0e65c5f2890bd",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651190+09:00",
+    "found_at": "2026-11-03T11:14:45.949653+09:00",
     "multi": false,
     "cls": "b50ef465b4d3"
   },
@@ -34385,7 +34343,7 @@
     "no_quote": true,
     "key": "f4b872085de25fdb",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651207+09:00",
+    "found_at": "2026-11-03T11:14:45.949671+09:00",
     "multi": false,
     "cls": "aa3217678105"
   },
@@ -34412,7 +34370,7 @@
     "no_quote": true,
     "key": "dcb95dc20af42ae6",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651225+09:00",
+    "found_at": "2026-11-03T11:14:45.949690+09:00",
     "multi": false,
     "cls": "6ef3fbc2f5c2"
   },
@@ -34437,7 +34395,7 @@
     "no_quote": true,
     "key": "2b182b1b642bd5c8",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651244+09:00",
+    "found_at": "2026-11-03T11:14:45.949709+09:00",
     "multi": false,
     "cls": "564b97a6fafd"
   },
@@ -34466,7 +34424,7 @@
     "no_quote": true,
     "key": "1672593395d83f87",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:36.651263+09:00",
+    "found_at": "2026-11-03T11:14:45.949731+09:00",
     "multi": false,
     "cls": "b3f5a7b3300b"
   },
@@ -34494,7 +34452,7 @@
     "no_quote": true,
     "key": "4407c3c448d9d557",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171616+09:00",
+    "found_at": "2026-11-03T11:14:46.498484+09:00",
     "multi": false,
     "cls": "20d6a0bfcb41"
   },
@@ -34521,7 +34479,7 @@
     "no_quote": true,
     "key": "0ea8c7587a258bf7",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171654+09:00",
+    "found_at": "2026-11-03T11:14:46.498526+09:00",
     "multi": false,
     "cls": "7b641703c4e3"
   },
@@ -34548,7 +34506,7 @@
     "no_quote": true,
     "key": "2b2b8ad1e53ff223",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171674+09:00",
+    "found_at": "2026-11-03T11:14:46.498548+09:00",
     "multi": false,
     "cls": "f5b0378e65a3"
   },
@@ -34576,7 +34534,7 @@
     "no_quote": true,
     "key": "b21a776f592f37ed",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171693+09:00",
+    "found_at": "2026-11-03T11:14:46.498569+09:00",
     "multi": false,
     "cls": "b071863bdd07"
   },
@@ -34604,7 +34562,7 @@
     "no_quote": true,
     "key": "a092d1ac91914193",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171711+09:00",
+    "found_at": "2026-11-03T11:14:46.498589+09:00",
     "multi": false,
     "cls": "280ebcbe3f1c"
   },
@@ -34631,7 +34589,7 @@
     "no_quote": true,
     "key": "a02118097aea0c8f",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171728+09:00",
+    "found_at": "2026-11-03T11:14:46.498607+09:00",
     "multi": false,
     "cls": "e89fcf9db654"
   },
@@ -34658,7 +34616,7 @@
     "no_quote": true,
     "key": "85a4d4482081f0e6",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171749+09:00",
+    "found_at": "2026-11-03T11:14:46.498632+09:00",
     "multi": false,
     "cls": "138e25f2ef96"
   },
@@ -34683,7 +34641,7 @@
     "no_quote": true,
     "key": "440c44a4e3342143",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171766+09:00",
+    "found_at": "2026-11-03T11:14:46.498650+09:00",
     "multi": false,
     "cls": "74862a3cd145"
   },
@@ -34711,8 +34669,8 @@
     "no_quote": true,
     "key": "725572267d3423eb",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171784+09:00",
-    "page_checked_at": "2026-11-03T11:08:31.314035+09:00",
+    "found_at": "2026-11-03T11:14:46.498671+09:00",
+    "page_checked_at": "2026-11-03T11:15:39.364033+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d51e4536f600"
@@ -34740,7 +34698,7 @@
     "no_quote": true,
     "key": "a7482cc4ad1c56e0",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171803+09:00",
+    "found_at": "2026-11-03T11:14:46.498690+09:00",
     "multi": false,
     "cls": "1ce1e3c8d1d6"
   },
@@ -34767,7 +34725,7 @@
     "no_quote": true,
     "key": "018312f96b24a511",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171820+09:00",
+    "found_at": "2026-11-03T11:14:46.498708+09:00",
     "multi": false,
     "cls": "275e88bc8c84"
   },
@@ -34794,7 +34752,7 @@
     "no_quote": true,
     "key": "d4db7594a767d315",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171836+09:00",
+    "found_at": "2026-11-03T11:14:46.498726+09:00",
     "multi": false,
     "cls": "4cd050caf6b9"
   },
@@ -34821,7 +34779,7 @@
     "no_quote": true,
     "key": "447b2adf44ad4f06",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171852+09:00",
+    "found_at": "2026-11-03T11:14:46.498743+09:00",
     "multi": false,
     "cls": "365eb36c91e0"
   },
@@ -34833,7 +34791,7 @@
     "url": "https://livepocket.jp/e/6jcb2",
     "x_post": null,
     "channel": "store",
-    "area": "愛知県",
+    "area": null,
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -34849,8 +34807,8 @@
     "no_quote": true,
     "key": "ea3c0fce987d4089",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171868+09:00",
-    "page_checked_at": "2026-11-03T11:08:33.504948+09:00",
+    "found_at": "2026-11-03T11:14:46.498762+09:00",
+    "page_checked_at": "2026-11-03T11:15:41.549893+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "4adab7b800fa"
@@ -34878,7 +34836,7 @@
     "no_quote": true,
     "key": "8bffc8db0e7fbde1",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171886+09:00",
+    "found_at": "2026-11-03T11:14:46.498784+09:00",
     "multi": false,
     "cls": "2740ab75d125"
   },
@@ -34906,8 +34864,8 @@
     "no_quote": true,
     "key": "becd3d24f257824e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171905+09:00",
-    "page_checked_at": "2026-11-03T11:08:35.560521+09:00",
+    "found_at": "2026-11-03T11:14:46.498808+09:00",
+    "page_checked_at": "2026-11-03T11:15:43.608554+09:00",
     "page_err": "中身が空",
     "multi": true,
     "cls": "5b0a1ecf84b8",
@@ -34937,7 +34895,7 @@
     "no_quote": true,
     "key": "c3afc0eaffc941dd",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171922+09:00",
+    "found_at": "2026-11-03T11:14:46.498826+09:00",
     "multi": false,
     "cls": "cf41a10e1716"
   },
@@ -34964,7 +34922,7 @@
     "no_quote": true,
     "key": "4c1e0a3d3e5d2da5",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171940+09:00",
+    "found_at": "2026-11-03T11:14:46.498845+09:00",
     "multi": false,
     "cls": "3a3b9a491499"
   },
@@ -34991,7 +34949,7 @@
     "no_quote": true,
     "key": "2c0e975743aad86e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171960+09:00",
+    "found_at": "2026-11-03T11:14:46.498865+09:00",
     "multi": false,
     "cls": "c52a88651d33"
   },
@@ -35016,7 +34974,7 @@
     "no_quote": true,
     "key": "7518a86a9abe1c1f",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171975+09:00",
+    "found_at": "2026-11-03T11:14:46.498884+09:00",
     "multi": false,
     "cls": "f6dc607d7804"
   },
@@ -35044,7 +35002,7 @@
     "no_quote": true,
     "key": "899b893761a9c874",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.171991+09:00",
+    "found_at": "2026-11-03T11:14:46.498904+09:00",
     "multi": false,
     "cls": "541f50ee34cd"
   },
@@ -35072,7 +35030,7 @@
     "no_quote": true,
     "key": "e5fb8e138d74bf7e",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172010+09:00",
+    "found_at": "2026-11-03T11:14:46.498926+09:00",
     "multi": false,
     "cls": "c55f237b5b23"
   },
@@ -35097,7 +35055,7 @@
     "no_quote": true,
     "key": "cb373b1112dc2bf5",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172032+09:00",
+    "found_at": "2026-11-03T11:14:46.498951+09:00",
     "cls": "63d83ccb36c7"
   },
   "ae7cc310c52398e6": {
@@ -35123,7 +35081,7 @@
     "no_quote": true,
     "key": "ae7cc310c52398e6",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172053+09:00",
+    "found_at": "2026-11-03T11:14:46.498973+09:00",
     "multi": false,
     "cls": "c57544a9a280"
   },
@@ -35150,7 +35108,7 @@
     "no_quote": true,
     "key": "93dc8109e5a97eb7",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172071+09:00",
+    "found_at": "2026-11-03T11:14:46.498993+09:00",
     "multi": false,
     "cls": "0a97c32f698f"
   },
@@ -35177,7 +35135,7 @@
     "no_quote": true,
     "key": "a0c2cd73e1d102eb",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172091+09:00",
+    "found_at": "2026-11-03T11:14:46.499009+09:00",
     "multi": false,
     "cls": "cddbd30d685c"
   },
@@ -35204,7 +35162,7 @@
     "no_quote": true,
     "key": "506082a83f2e4012",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172109+09:00",
+    "found_at": "2026-11-03T11:14:46.499027+09:00",
     "multi": false,
     "cls": "6762ff45f335"
   },
@@ -35231,7 +35189,7 @@
     "no_quote": true,
     "key": "fc0a3fb89cf5cdb1",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172127+09:00",
+    "found_at": "2026-11-03T11:14:46.499050+09:00",
     "multi": false,
     "cls": "3d203ca85f1e"
   },
@@ -35258,7 +35216,7 @@
     "no_quote": true,
     "key": "7e6d3debf630dc04",
     "status": "approved",
-    "found_at": "2026-11-03T11:07:37.172144+09:00",
+    "found_at": "2026-11-03T11:14:46.499070+09:00",
     "multi": false,
     "cls": "c81560369b8b"
   }
