@@ -1801,6 +1801,17 @@
   "store/hobbystation-ab30b/": {
     "name": "ホビーステーション各店",
     "items": {
+      "177adcbcf8cf15db": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "85695f439a384bf6": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -3125,6 +3136,19 @@
   "store/tsutaya-cd57b/": {
     "name": "ビッグワンTSUTAYA さくら店",
     "items": {
+      "f667a2a5efbc9a67": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "d6e0972a9695c529": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -10379,6 +10403,71 @@
   "store/shimamurapaku-97403/": {
     "name": "しまむらパーク",
     "items": {
+      "eca907a062851b61": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "535211157bc181c9": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "a4297c8cdd60c52a": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "f722226a459302cd": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "9425dd4b3c42e4a3": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-03",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "d6d8a2ab368471d1": {
         "p": "ヒロインズエディション",
         "g": "onepiece",
@@ -21420,6 +21509,162 @@
         "p": "神の支配",
         "g": "pokemon",
         "e": "2026-11-05",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/torekachanpion-478d7/": {
+    "name": "トレカチャンピオン大須店",
+    "items": {
+      "65295f5e964da657": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
+      "54d0108a2553c451": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "b6514935475a6258": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "1c2b42dbabc57122": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "2b8a50817f479cdb": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "17187dde685a2b18": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "3078d27b7e1e18d5": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "efa9231d2b442e04": {
+        "p": "STORY BOOSTER 01",
+        "g": "dragonball",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "a4781058841eb08b": {
+        "p": "DUAL EVOLUTION",
+        "g": "dragonball",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-81999/": {
+    "name": "TSUTAYA鹿沼店",
+    "items": {
+      "9232238697630231": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/tsutaya-4092c/": {
+    "name": "TSUTAYAインターパーク店",
+    "items": {
+      "d20176ccdea6fa7c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/toreka-b578f/": {
+    "name": "トレカ丸新井店",
+    "items": {
+      "418eaeba70f023f3": {
+        "p": "スペシャルデッキセット 抽選予約",
+        "g": "pokemon",
+        "e": "2026-11-05T21:59",
         "f": "2026-11-03",
         "c": "store",
         "m": "Web",

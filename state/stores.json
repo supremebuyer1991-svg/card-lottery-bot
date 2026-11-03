@@ -164,7 +164,7 @@
   },
   "store/hobbystation-ab30b/": {
     "name": "ホビーステーション各店",
-    "last": "2026-10-28",
+    "last": "2026-11-03",
     "game": "pokemon",
     "area": "大阪府"
   },
@@ -401,9 +401,10 @@
     "area": "青森県"
   },
   "store/tsutaya-cd57b/": {
-    "name": "ビッグワンTSUTAYA さくら店",
-    "last": "2026-10-27",
-    "game": "pokemon"
+    "name": "ビッグワンTSUTAYAさくら店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "栃木県"
   },
   "store/torekakafekurabukurabu-50adb/": {
     "name": "トレカカフェ クラブクラブ",
@@ -1995,7 +1996,7 @@
   },
   "store/shimamurapaku-97403/": {
     "name": "しまむらパーク",
-    "last": "2026-11-01",
+    "last": "2026-11-03",
     "game": "onepiece"
   },
   "store/furuichi-e7ee4/": {
@@ -5835,6 +5836,23 @@
     "game": "pokemon",
     "keep": true
   },
+  "store/torekachanpion-478d7/": {
+    "name": "トレカチャンピオン大須店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/tsutaya-81999/": {
+    "name": "TSUTAYA鹿沼店",
+    "last": "2026-11-03",
+    "game": "pokemon",
+    "area": "栃木県"
+  },
+  "store/tsutaya-4092c/": {
+    "name": "TSUTAYAインターパーク店",
+    "last": "2026-11-03",
+    "game": "pokemon"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -5845,6 +5863,12 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-03",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/toreka-b578f/": {
+    "name": "トレカ丸新井店",
+    "last": "2026-11-03",
+    "game": "pokemon",
     "keep": true
   }
 }
