@@ -315,6 +315,9 @@ def _series_stats(game, x, raw, short):
             '</ul><p class="note">※トレカ抽選ナビがこれまでに見つけた抽選の数です（同じ抽選の重複はのぞいています）。1時間ごとに更新します。</p></section>')
 
 
+_SER_WRITTEN = set()  # このビルドで作った弾ページ（ページがない弾にリンクしないため）
+
+
 def old_series_path(game, series):
     """前のアドレス（弾名の記号）。転送（_redirects）に使う"""
     return f"{GAME_SLUG[game]}/s-{sha(normalize(series))[:8]}/"
@@ -1061,6 +1064,7 @@ def active_series(settings=None):
 
 
 def build(settings=None, out_dir=None, sample=None, force=False):
+    _SER_WRITTEN.clear()
     s = settings or load_settings()
     site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
     tag = os.environ.get("AMAZON_TAG") or s.get("amazon_tag")
@@ -1417,6 +1421,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             except Exception as e:
                 print("OGP画像を作れませんでした", x, e)
                 og_rel = ""
+            _SER_WRITTEN.add(series_path(g, x))
             write(series_path(g, x), {"game": g, "series": x}, {
                 "og_image": f"{site}/{og_rel}" if og_rel else None,
                 "title": (f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
@@ -1453,7 +1458,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             ai = [i for i in gi if i.get("channel") == "store" and i.get("area") == a]
             today_a = sum(1 for i in ai if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date())
             new_a = sum(1 for i in ai if parse_dt(i.get("found_at")) and (now() - parse_dt(i["found_at"])).total_seconds() < 86400)
-            near_l = [(f"{b}（{acnt_g.get(b, 0)}件）" if acnt_g.get(b) else b, f"/{slug}/area/{PREF[b]}/") for b in NEAR.get(a, [])]
+            near_l = [(f"{b}（{acnt_g.get(b, 0)}件）" if acnt_g.get(b) else b, f"/{slug}/area/{PREF[b]}/") for b in NEAR.get(a, [])
+                      if g in ("pokemon", "onepiece") or acnt_g.get(b)]  # ページがない県にはリンクしない（フュージョンワールドは抽選がある県だけページがある）
             near_l.sort(key=lambda t: "（" not in t[0])  # 抽選がある県を先に
             # この県で抽選が多いお店（過去90日・お店ページの履歴から）
             rank_a = []
@@ -1750,7 +1756,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 h.append(f'<h2>{escape(v["name"])}：{v["total"]}件（ネット{v["online"]}件・店頭{v["total"] - v["online"]}件）</h2><ul>')
                 if v["series"]:
                     h.append("<li><b>多かった弾</b>：" + "、".join(
-                        f'<a href="/{series_path(g_, n_)}">{escape(n_)}</a>（{c_}件）' for n_, c_ in v["series"]) + "</li>")
+                        (f'<a href="/{series_path(g_, n_)}">{escape(n_)}</a>（{c_}件）' if series_path(g_, n_) in _SER_WRITTEN else f'{escape(n_)}（{c_}件）') for n_, c_ in v["series"]) + "</li>")
                 if v["chains"]:
                     h.append("<li><b>多かったお店（チェーン）</b>：" + "、".join(f"{escape(n_)}（{c_}件）" for n_, c_ in v["chains"]) + "</li>")
                 if v["areas"]:

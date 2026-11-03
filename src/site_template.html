@@ -953,7 +953,7 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
   // 締切間近・新着の抽選（それぞれ別の欄・横にスワイプ）
   // 新着・締切間近のカードの商品写真：写真を押すと楽天の商品ページ、それ以外はその抽選の個別ページ
   function hcImg(i) {
-    return '<span class="hc-img"' + (i.img_url ? ' data-rk="' + esc(i.img_url) + '" role="link" title="楽天市場で見る"' : "") + '><img src="' + esc(i.image) + '" alt="" loading="lazy">' +
+    return '<span class="hc-img"' + (i.img_url ? ' data-rk="' + esc(i.img_url) + '" role="link" title="楽天市場で見る"' : "") + '><img src="' + esc(i.image) + '" alt="' + esc(i.series || "") + '" loading="lazy">' +
 '</span>';
   }
   document.addEventListener("click", function (e) {
