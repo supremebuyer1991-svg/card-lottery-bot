@@ -1,4 +1,4 @@
-// 楽天ブックスのトレカの見張り（Cloudflare Worker・2分おき）
+// 楽天ブックスのトレカの見張り（Cloudflare Worker・1分おき）
 // 楽天市場API（shopCode=book）で「注文できない(0)」→「注文できる(1)」に変わった商品を見つけたら、
 // Xに楽天アフィリエイトのリンク付きで自動投稿する。前の状態は KV（STATE）に置く。
 // ・最初の1回は記録だけ（投稿しない）
@@ -80,9 +80,11 @@ async function run(env, { dry = false } = {}) {
     await sleep(1300);
   }
   const fresh = {};
+  let changed = !st.init && Object.keys(found).length > 0;
   for (const [code, it] of Object.entries(found)) {
     const prev = st.items[code];
     const now = it.availability === 1 ? 1 : 0;
+    if (prev !== now) changed = true;
     if (st.init && prev === 0 && now === 1 && !(st.posted[code] && Date.now() - st.posted[code] < COOLDOWN)) {
       (fresh[it.game] = fresh[it.game] || []).push(it);
     }
@@ -95,14 +97,15 @@ async function run(env, { dry = false } = {}) {
     if (dry) { out.push(text); continue; }
     try {
       const id = await tweet(env, text);
-      st.count++;
+      st.count++; changed = true;
       for (const it of items) st.posted[it.itemCode] = Date.now();
       out.push(`posted ${id}`);
     } catch (e) { log.push(String(e)); }
   }
   if (Object.keys(found).length) st.init = true;
   st.last = { at: new Date().toISOString(), found: Object.keys(found).length, avail: Object.values(found).filter((i) => i.availability === 1).length, out, log };
-  if (!dry) await env.STATE.put("state", JSON.stringify(st));
+  // KVの保存は無料だと1日1,000回まで。1分おきに動くので、在庫が変わった・投稿した・エラーのときだけ保存する
+  if (!dry && (changed || log.length)) await env.STATE.put("state", JSON.stringify(st));
   return st.last;
 }
 

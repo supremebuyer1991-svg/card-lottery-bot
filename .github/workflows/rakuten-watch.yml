@@ -43,7 +43,7 @@ jobs:
           compatibility_date = "2026-10-01"
           workers_dev = true
           [triggers]
-          crons = ["*/2 * * * *"]
+          crons = ["* * * * *"]
           [[kv_namespaces]]
           binding = "STATE"
           id = "$ID"
