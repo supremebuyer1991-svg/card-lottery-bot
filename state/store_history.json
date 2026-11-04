@@ -2078,6 +2078,17 @@
         "mem": "none",
         "rq": []
       },
+      "e27ad50664b2d06f": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-24T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "4517a074dfecc85f": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -11811,6 +11822,17 @@
   "store/torekashoppufuronto-f01f1/": {
     "name": "トレカショップフロント",
     "items": {
+      "e6cfa0a162ee1a94": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T21:30",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "04462b43141d3b7b": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -14626,6 +14648,17 @@
   "store/kiddyland-205bd/": {
     "name": "キデイランド鹿児島店",
     "items": {
+      "3311c9b8f5df5a74": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "25422037c323df4d": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -23371,6 +23404,161 @@
         "f": "2026-11-04",
         "c": "store",
         "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/kado-buranchi-19163/": {
+    "name": "カード・ブランチ本山店",
+    "items": {
+      "183261db278a2780": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-05T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/surugaya-cc295/": {
+    "name": "駿河屋 新天町店トレカ館",
+    "items": {
+      "6ed74b8e91756ecd": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/sanyodo-37757/": {
+    "name": "三洋堂トレカ館 垂井店",
+    "items": {
+      "f4087ae40cf71d08": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "18ce3b63c4801085": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/torekano-92cbb/": {
+    "name": "トレカノ十和田元町店",
+    "items": {
+      "1876e6fcab3757cc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/torekaesu-f7bb9/": {
+    "name": "トレカエース下妻店",
+    "items": {
+      "eed372d187ec6c09": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/itoyokado-ario-ecaff/": {
+    "name": "イトーヨーカドー／アリオ（一部店舗）",
+    "items": {
+      "5128019381909eac": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/yuupura-124ea/": {
+    "name": "ゆうぷら 郡山店",
+    "items": {
+      "3b9ad780b324fcf7": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-1067d/": {
+    "name": "古本市場市川鬼高店",
+    "items": {
+      "b47c311ae5730920": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-05T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-f1a5d/": {
+    "name": "フタバ図書TSUTAYA 戸田店",
+    "items": {
+      "dc9940f62df2f281": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
         "id": null,
         "mem": null,
         "rq": []
