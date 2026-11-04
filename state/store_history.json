@@ -4753,6 +4753,17 @@
   "store/cardlabo-6a1de/": {
     "name": "カードラボ秋葉原ラジオ会館本店",
     "items": {
+      "e73ffb8065248460": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "9fbb0bed826b5fc4": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -7055,6 +7066,17 @@
           "アプリ会員"
         ]
       },
+      "efdea05084dc0b4b": {
+        "p": "PRECIOUS",
+        "g": "onepiece",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "ddc82b1cb813275f": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -8987,6 +9009,17 @@
   "store/kadorando-96b9f/": {
     "name": "カードランド秋葉原店",
     "items": {
+      "b70c17fb6390508c": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "ab524204351b195a": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -23234,6 +23267,58 @@
         "m": "店頭",
         "id": true,
         "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-fdfd2/": {
+    "name": "古本市場原山台店",
+    "items": {
+      "851b0ac6f20878cf": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-04T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/furuichi-6c7c8/": {
+    "name": "ふるいちトレカパーク三宮店",
+    "items": {
+      "17b79747721c898c": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-06T20:01",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/tsutaya-f22c1/": {
+    "name": "フタバ図書 TSUTAYAトレーディングカード戸田店",
+    "items": {
+      "e1b0e14c21db8581": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
         "rq": []
       }
     }
