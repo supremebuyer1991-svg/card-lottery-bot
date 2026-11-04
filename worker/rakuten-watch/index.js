@@ -59,8 +59,8 @@ async function tweet(env, text) {
 }
 
 function compose(game, items, aff) {
-  // Xはプレミアム（長いポストOK）なので、商品は3つまでのせる
-  const g = GAME[game], list = items.slice(0, 3), more = items.length - list.length;
+  // Xはプレミアム（長いポストOK）。ユーザーの指示：発売された商品は全部アフィリンク付きで1つのポストに並べる（念のため最大10個）
+  const g = GAME[game], list = items.slice(0, 10), more = items.length - list.length;
   const lines = ["🚨🚨速報🚨🚨", `楽天ブックスで${g.head}が販売開始🔥`, "", "今なら買えます！急いで👇", ""];
   for (const it of list) lines.push(`・${shortName(it.itemName)}`, affLink(it.itemUrl, aff), "");
   if (more > 0) lines.push(`ほか${more}商品も販売中`, "");
