@@ -20,11 +20,13 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function search(env, kw) {
   const p = new URLSearchParams({ applicationId: env.RAKUTEN_APP_ID, keyword: kw, shopCode: "book", format: "json",
-    formatVersion: "2", hits: "30", sort: "-updateTimestamp" });
+    formatVersion: "2", hits: "30", availability: "0", sort: "-updateTimestamp" });
   const r = await fetch(`${ENDPOINT}?${p}`, { headers: { accessKey: env.RAKUTEN_ACCESS_KEY, Referer: REFERER,
     Origin: REFERER.slice(0, -1), "User-Agent": "toreca-chusen-navi/1.0" } });
   if (!r.ok) throw new Error(`楽天API ${r.status} ${(await r.text()).slice(0, 120)}`);
-  return (await r.json()).Items || [];
+  const j = await r.json();
+  if (!j.Items) throw new Error(`楽天API 結果なし ${JSON.stringify(j).slice(0, 160)}`);
+  return j.Items;
 }
 
 function affLink(url, aff) {
