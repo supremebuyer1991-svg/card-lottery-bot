@@ -1536,7 +1536,9 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [
+          "アプリ会員"
+        ]
       },
       "d1b1f00a40041364": {
         "p": "30周年御三家カードセット",
@@ -1667,6 +1669,17 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      },
+      "0a9cc60f11b73783": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "590552e3eb3c9320": {
@@ -9846,6 +9859,17 @@
   "store/yamada-17d10/": {
     "name": "ヤマダ電機",
     "items": {
+      "0e1f1db0f28c5df5": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-03T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "852369bf9da4b408": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -9993,6 +10017,17 @@
         "mem": "account",
         "rq": [],
         "a": "2026-11-10"
+      },
+      "d038e4b7d6b18afd": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       },
       "089a425447fee320": {
         "p": "30th CELEBRATION",
@@ -15591,6 +15626,17 @@
   "store/aeon-31a96/": {
     "name": "ふるいち イオンモール座間店",
     "items": {
+      "fb00efee501a26d4": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-04T21:01",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "d7bcc7f580001af2": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -19174,7 +19220,7 @@
       "e783cdeb7bd2f4e4": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
-        "e": "",
+        "e": "2026-11-03T23:59",
         "f": "2026-11-02",
         "c": "store",
         "m": "Web",
@@ -22221,9 +22267,41 @@
         "c": "online",
         "m": "Web",
         "id": null,
-        "mem": null,
+        "mem": "account",
         "rq": [],
         "a": "2026-11-12"
+      }
+    }
+  },
+  "store/kiddyland-48432/": {
+    "name": "キデイランド鹿児島",
+    "items": {
+      "c6f39df1628f73c1": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-ed8c2/": {
+    "name": "TSUTAYA入間仏子店",
+    "items": {
+      "dbe8736265605f89": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T21:45",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   }

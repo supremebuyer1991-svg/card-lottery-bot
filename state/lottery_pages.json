@@ -27611,7 +27611,8 @@
       "conditions": "会員・本人確認",
       "tags": [
         "会員",
-        "本人確認"
+        "本人確認",
+        "アプリ"
       ],
       "url": "https://livepocket.jp/e/kmh6u",
       "channel": "store",
@@ -29266,12 +29267,74 @@
       "announce": "2026-11-12",
       "method": "Web",
       "conditions": "LivePocketで無料の抽選に応募",
+      "tags": [
+        "会員"
+      ],
       "url": "https://livepocket.jp/e/a35_-",
       "channel": "online",
+      "area": "東京都",
+      "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/nexustradingcards-c54dd/",
       "found_at": "2026-11-04T07:52:24.609701+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/fb00efee50/": {
+    "d": {
+      "key": "fb00efee501a26d4",
+      "game": "onepiece",
+      "store": "ふるいちイオンモール座間店",
+      "product": "ワンピースカード「世界最強の戦士」",
+      "series": "世界最強の戦士",
+      "end": "2026-11-04T21:01:00+09:00",
+      "url": "https://livepocket.jp/e/0hr74",
+      "channel": "store",
+      "area": "神奈川県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
+      "spath": "store/aeon-31a96/",
+      "found_at": "2026-11-04T10:11:44.928348+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/dbe8736265/": {
+    "d": {
+      "key": "dbe8736265605f89",
+      "game": "pokemon",
+      "store": "TSUTAYA入間仏子店",
+      "product": "スペシャルデッキセットMEGA",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-08T21:45:00+09:00",
+      "method": "Web",
+      "conditions": "1家族につき1回の応募。1個購入権の抽選",
+      "url": "https://livepocket.jp/e/ewhgu",
+      "channel": "store",
+      "area": "埼玉県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/tsutaya-ed8c2/",
+      "found_at": "2026-11-04T10:11:44.929236+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/d038e4b7d6/": {
+    "d": {
+      "key": "d038e4b7d6b18afd",
+      "game": "pokemon",
+      "store": "ドラゴンスター",
+      "product": "スペシャルデッキセットMEGA",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-04T23:59:00+09:00",
+      "method": "Web",
+      "conditions": "通販での抽選受付",
+      "url": "https://dorasuta.membercard.jp",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/dragonstar-d49e0/",
+      "found_at": "2026-11-04T10:11:44.929273+09:00"
     },
     "last": "2026-11-04"
   }

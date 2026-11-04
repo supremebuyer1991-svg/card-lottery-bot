@@ -10348,9 +10348,36 @@
       "store": "Nexus Trading Cards",
       "series": "30th CELEBRATION",
       "channel": "online",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-04T07:52:24.609701+09:00",
       "chain": null
+    },
+    "fb00efee501a26d4": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール座間店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-04T10:11:44.928348+09:00",
+      "chain": "aeon"
+    },
+    "dbe8736265605f89": {
+      "game": "pokemon",
+      "store": "TSUTAYA入間仏子店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-04T10:11:44.929236+09:00",
+      "chain": "tsutaya"
+    },
+    "d038e4b7d6b18afd": {
+      "game": "pokemon",
+      "store": "ドラゴンスター",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-04T10:11:44.929273+09:00",
+      "chain": "dragonstar"
     }
   }
 }
