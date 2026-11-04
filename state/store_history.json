@@ -18718,6 +18718,17 @@
   "store/sono-nosutoa-55b7a/": {
     "name": "その他のストア",
     "items": {
+      "b4b804bb7a6c69c6": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "6a9178f13f370fd8": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -22492,6 +22503,17 @@
         "mem": "none",
         "rq": []
       },
+      "b3a94a2192896bf9": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "f3e0051b5da8684d": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -23319,6 +23341,38 @@
         "m": "Web",
         "id": false,
         "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/surugaya-487e4/": {
+    "name": "駿河屋 新天町店",
+    "items": {
+      "0aab5c6b079e9ab9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/no-da7f0/": {
+    "name": "高の原",
+    "items": {
+      "c5b07b8c9c0b4f7c": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-05",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }

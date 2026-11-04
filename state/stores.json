@@ -5902,7 +5902,7 @@
     "area": "群馬県"
   },
   "store/tsutaya-fd7e0/": {
-    "name": "フタバ図書 TSUTAYA 広店",
+    "name": "フタバ図書TSUTAYA 広店",
     "last": "2026-11-04",
     "game": "pokemon",
     "area": "広島県"
@@ -6152,6 +6152,12 @@
     "game": "onepiece",
     "area": "埼玉県"
   },
+  "store/surugaya-487e4/": {
+    "name": "駿河屋 新天町店",
+    "last": "2026-11-04",
+    "game": "pokemon",
+    "area": "福岡県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6160,6 +6166,12 @@
   },
   "store/jumpshop-domushiti-07b64/": {
     "name": "JUMP SHOP東京ドームシティ店",
+    "last": "2026-11-04",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/no-da7f0/": {
+    "name": "高の原",
     "last": "2026-11-04",
     "game": "onepiece",
     "keep": true
