@@ -1,0 +1,26 @@
+{
+ "ONE PIECEカードゲーム ブースターパック|av0": {
+  "err": 403,
+  "t": "{\n  \"errors\": {\n    \"errorCode\": 403,\n    \"errorMessage\": \"HTTP_REFERRER_NOT_ALLOWED\"\n  }\n}"
+ },
+ "ONE PIECEカードゲーム ブースターパック|av1": {
+  "err": 403,
+  "t": "{\n  \"errors\": {\n    \"errorCode\": 403,\n    \"errorMessage\": \"HTTP_REFERRER_NOT_ALLOWED\"\n  }\n}"
+ },
+ "ポケモンカードゲーム 拡張パック|av0": {
+  "err": 429,
+  "t": "{ \"statusCode\": 429, \"message\": \"Rate limit is exceeded. Try again in 1 seconds.\" }"
+ },
+ "ポケモンカードゲーム 拡張パック|av1": {
+  "err": 403,
+  "t": "{\n  \"errors\": {\n    \"errorCode\": 403,\n    \"errorMessage\": \"HTTP_REFERRER_NOT_ALLOWED\"\n  }\n}"
+ },
+ "ポケモンカードゲーム 強化拡張パック|av0": {
+  "err": 429,
+  "t": "{ \"statusCode\": 429, \"message\": \"Rate limit is exceeded. Try again in 1 seconds.\" }"
+ },
+ "ポケモンカードゲーム 強化拡張パック|av1": {
+  "err": 429,
+  "t": "{ \"statusCode\": 429, \"message\": \"Rate limit is exceeded. Try again in 1 seconds.\" }"
+ }
+}
