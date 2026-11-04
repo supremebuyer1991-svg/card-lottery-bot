@@ -239,6 +239,8 @@ def post_daily_summary(settings, client=None):
 BIG_ONLINE = [("pbandai", "プレミアムバンダイ", r"プレミアムバンダイ|プレバン"),
               ("rakutenbooks", "楽天ブックス", r"楽天ブックス"),
               ("sevennet", "セブンネット", r"セブンネット|セブン-?イレブン|7net"),
+              ("famima", "ファミマオンライン", r"ファミマ|ファミリーマート|FamilyMart"),
+              ("lawson", "ローソン", r"ローソン|HMV&BOOKS online|Loppi"),
               ("amazon", "Amazon", r"Amazon|アマゾン"),
               ("amiami", "あみあみ", r"あみあみ|amiami"),
               ("aeon", "イオン", r"イオン|AEON"),
