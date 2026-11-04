@@ -912,7 +912,7 @@
     "found_at": "2026-10-26T18:20:17.047459+09:00",
     "cls": "e801ea26b65a",
     "page_checked_at": "2026-11-04T07:52:49.895009+09:00",
-    "deadline_checked_at": "2026-11-03T19:00:40.227511+09:00",
+    "deadline_checked_at": "2026-11-04T19:10:35.983473+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページを読めず（404 Client Error: Not Found for url: htt）",
     "page_err": "404 Client Error: Not Found for url: https://contents.online.nojima.co.jp/secret202609/"
@@ -942,9 +942,9 @@
     "status": "listed",
     "found_at": "2026-10-26T18:20:17.047796+09:00",
     "cls": "4b83a55a274e",
-    "deadline_checked_at": "2026-11-03T19:00:40.227545+09:00",
+    "deadline_checked_at": "2026-11-04T19:10:35.983491+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・終了は不定期、締切記載なし",
+    "deadline_note": "画像0/0枚読込・終了は不定期で締切の記載なし",
     "page_checked_at": "2026-11-04T07:52:52.207059+09:00"
   },
   "ae0cf876e11ad06d": {
@@ -2876,44 +2876,6 @@
     "cls": "67b5c93e8b38",
     "closed_reason": "情報元の一覧から消えた",
     "closed_at": "2026-11-03T00:02:22.014528+09:00"
-  },
-  "52d98ef8f2633167": {
-    "store": "ポケモンセンターオンライン",
-    "product": "ピカピカボックス2027",
-    "series": null,
-    "start": "2026-10-27T17:00+09:00",
-    "end": "2026-11-02T16:59+09:00",
-    "announce": "11/6(金)15:00以降",
-    "method": "Web抽選（ポケモンセンターオンライン限定・実店舗での販売なし）",
-    "conditions": "5,500円（税込）。1人1回まで。会員登録・電話番号認証が必要",
-    "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
-    "x_post": "https://x.com/e57ej/status/2117104953219273021",
-    "game": "pokemon",
-    "channel": "online",
-    "area": null,
-    "id_check": false,
-    "member": "account",
-    "tags": [
-      "会員"
-    ],
-    "confidence": 0.8,
-    "source": "X「ポケカ 抽選」",
-    "source_url": "https://x.com/",
-    "key": "52d98ef8f2633167",
-    "status": "closed",
-    "found_at": "2026-10-27T10:14:09.577612+09:00",
-    "cls": "bf0af0716175",
-    "products": [
-      "ぬいぐるみ1体（ピチュー・ピカチュウ・ライチュウのどれか）",
-      "ポケモングッズ数点"
-    ],
-    "buy": "11/6(金)15:00〜11/17(火)16:59（発送は12/11(金)〜12/25(金)）",
-    "slug": "pikapika-box-2027",
-    "manual": true,
-    "page_checked_at": "2026-11-02T07:45:05.618434+09:00",
-    "closed_reason": null,
-    "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261027ltr&ver=javascript-4.4.3&cve",
-    "closed_at": "2026-11-02T18:14:07.047978+09:00"
   },
   "8f8ef763dedfda86": {
     "store": "トレカノ奥州水沢店",
@@ -15480,37 +15442,6 @@
     "multi": false,
     "cls": "696e14cc0d81"
   },
-  "c6255d82cb5c8533": {
-    "store": "福山春日",
-    "product": "30th CELEBRATION 拡張パック",
-    "series": "30th CELEBRATION",
-    "start": null,
-    "end": null,
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://x.com/shyzeriyan/status/2117180693671542784",
-    "x_post": "https://x.com/shyzeriyan/status/2117180693671542784",
-    "game": "pokemon",
-    "channel": "store",
-    "area": "広島県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.5,
-    "source": "X LivePocket抽選",
-    "source_url": "https://x.com/",
-    "key": "c6255d82cb5c8533",
-    "status": "duplicate",
-    "found_at": "2026-11-02T18:11:29.510741+09:00",
-    "apply_url": "https://livepocket.jp/e/3tqn7",
-    "deadline_checked_at": "2026-11-02T18:11:44.340098+09:00",
-    "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・福山春日の日付記載なし",
-    "multi": false,
-    "cls": "fed63fde4f5d",
-    "duplicate_of": "ee2c5bad4d4cd474"
-  },
   "27db76bffaa04034": {
     "store": "文教堂書店 浦安西友店",
     "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
@@ -26511,7 +26442,7 @@
     "multi": false,
     "cls": "772500193ac7",
     "apply_url": "https://livepocket.jp/e/0hr74",
-    "page_checked_at": "2026-11-04T12:59:33.673069+09:00",
+    "page_checked_at": "2026-11-04T19:10:37.458026+09:00",
     "page_err": "中身が空"
   },
   "ef481b16fd4970fe": {
@@ -27233,7 +27164,7 @@
     "key": "6a9178f13f370fd8",
     "status": "approved",
     "found_at": "2026-11-04T12:59:21.196358+09:00",
-    "page_checked_at": "2026-11-04T13:00:02.052647+09:00",
+    "page_checked_at": "2026-11-04T19:10:39.628775+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://ryuunoshippo.membercard.jp/",
     "multi": true,
     "cls": "79bd4c69df8f"
