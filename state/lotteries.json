@@ -27867,7 +27867,7 @@
     "start": null,
     "end": "2026-11-09T22:00:00+09:00",
     "announce": null,
-    "method": null,
+    "method": "抽選販売(応募締切 11/9(月)22:00。具体的な応募方法の記載なし)",
     "conditions": "公認店限定",
     "url": "https://livepocket.jp/e/b8x97",
     "x_post": "https://x.com/OnchainOutlaw/status/2117866944829542690",
@@ -27884,10 +27884,12 @@
     "status": "approved",
     "found_at": "2026-11-04T16:24:40.437369+09:00",
     "multi": false,
-    "cls": "0f1250303c73",
+    "cls": "1d1d65119d8c",
     "tco_checked": true,
     "page_checked_at": "2026-11-04T17:36:14.086577+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "172cd97c6e191b72": {
     "store": "駿河屋 新天町店",
@@ -28248,7 +28250,9 @@
     "page_checked_at": "2026-11-04T17:36:20.266910+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "d1dacc2a3e37"
+    "cls": "d1dacc2a3e37",
+    "post_checked": true,
+    "details_checked": true
   },
   "dc9940f62df2f281": {
     "store": "フタバ図書TSUTAYA 戸田店",
@@ -28276,6 +28280,8 @@
     "page_checked_at": "2026-11-04T17:36:22.324096+09:00",
     "page_err": "中身が空",
     "multi": false,
-    "cls": "b29917cd5f5e"
+    "cls": "b29917cd5f5e",
+    "post_checked": true,
+    "details_checked": true
   }
 }
