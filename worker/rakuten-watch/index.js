@@ -59,12 +59,13 @@ async function tweet(env, text) {
 }
 
 function compose(game, items, aff) {
-  const g = GAME[game];
-  const lines = [`🚨楽天ブックスで販売開始｜${g.head}`, "", "楽天ブックスで購入できるようになっています！", ""];
-  for (const it of items.slice(0, 3)) lines.push(`・${shortName(it.itemName)}`, affLink(it.itemUrl, aff), "");
-  lines.push("⚠️売り切れても、すぐに復活することがあります！", "売り切れていても、定期的にリンクを見張ってみてください👀", "",
-    "🔔フォロー＆通知ONで、販売・抽選の速報を受け取れます", "", g.tags);
-  return lines.join("\n");
+  // Xの文字数（280）に収まるよう商品リンクは1つだけ。ほかにもあれば「ほか○商品も」と書く
+  const g = GAME[game], it = items[0], more = items.length - 1;
+  return ["🚨🚨速報🚨🚨", `楽天ブックスで${g.head}が販売開始🔥`, "",
+    more > 0 ? `ほか${more}商品も！急いで👇` : "今なら買えます！急いで👇", "",
+    `・${shortName(it.itemName).slice(0, 22)}`, affLink(it.itemUrl, aff), "",
+    "⚠️売り切れてもすぐ復活することあり！", "定期的にリンクを見張って👀", "",
+    "🔔フォロー＆通知ONで速報が届きます", "", g.tags].join("\n");
 }
 
 async function run(env, { dry = false } = {}) {
