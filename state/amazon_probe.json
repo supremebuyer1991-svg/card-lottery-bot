@@ -1,0 +1,28 @@
+{
+ "have": {
+  "AMAZON_CREDENTIAL_ID": true,
+  "AMAZON_CREDENTIAL_SECRET": true,
+  "AMAZON_CREDENTIAL_VERSION": true
+ },
+ "version": "v3.3",
+ "token_status": 200,
+ "search": [
+  {
+   "res": [
+    "itemInfo.title",
+    "offersV2.listings.availability",
+    "offersV2.listings.price",
+    "offersV2.listings.merchantInfo"
+   ],
+   "status": 403,
+   "body": "{\"message\":\"Your account does not currently meet the eligibility requirements.\",\"reason\":\"AssociateNotEligible\",\"type\":\"AccessDeniedException\"}"
+  },
+  {
+   "res": [
+    "itemInfo.title"
+   ],
+   "status": 403,
+   "body": "{\"message\":\"Your account does not currently meet the eligibility requirements.\",\"reason\":\"AssociateNotEligible\",\"type\":\"AccessDeniedException\"}"
+  }
+ ]
+}
