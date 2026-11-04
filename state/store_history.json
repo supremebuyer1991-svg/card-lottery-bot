@@ -515,6 +515,17 @@
   "store/tsutaya-bf899/": {
     "name": "TSUTAYA Trading Card 錦糸町",
     "items": {
+      "8201005e123005dd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9162c27a19f00831": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -6689,6 +6700,17 @@
         "mem": "account",
         "rq": []
       },
+      "0eaaf2c7cf5083fc": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "846b057bcf1dddd9": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -9621,6 +9643,19 @@
   "store/cardlabo-39e4d/": {
     "name": "カードラボ札幌店",
     "items": {
+      "721334c4e4513d6d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      },
       "ed4c8dfd42c75084": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -16702,6 +16737,17 @@
   "store/cardbox-a4b69/": {
     "name": "カードボックス ブックスジュピター店",
     "items": {
+      "6e2ae5e306d31694": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "c9d7945bdb2243f9": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -23211,7 +23257,8 @@
         "m": "Web",
         "id": true,
         "mem": "none",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-13"
       }
     }
   },
@@ -23637,6 +23684,103 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "2026-11-08",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/yamashiroya-79c07/": {
+    "name": "ヤマシロヤ",
+    "items": {
+      "dfb059ed2c757104": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-06T21:30",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-09"
+      }
+    }
+  },
+  "store/toreka-4a5b9/": {
+    "name": "トレカ丸足利助戸店",
+    "items": {
+      "88653e45640719d2": {
+        "p": "スペシャルデッキセット",
+        "g": "pokemon",
+        "e": "2026-11-05T21:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-c84a2/": {
+    "name": "トレカ丸倉賀野店",
+    "items": {
+      "20df753bd494aba7": {
+        "p": "スペシャルデッキセット",
+        "g": "pokemon",
+        "e": "2026-11-05T21:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-6d7cd/": {
+    "name": "フタバ図書TSUTAYA GIGA防府店",
+    "items": {
+      "c9c21b7c1ffc8807": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T21:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/no-3752f/": {
+    "name": "竹の塚（東京）",
+    "items": {
+      "c73959530f35ec1e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-94746/": {
+    "name": "イオン キッズリパブリック",
+    "items": {
+      "e0e08a9ee7febef9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-05T19:59",
         "f": "2026-11-04",
         "c": "store",
         "m": "Web",

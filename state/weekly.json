@@ -8926,7 +8926,7 @@
       "store": "TSUTAYA神明店",
       "series": "30周年エーフィ・ブラッキーデッキ",
       "channel": "store",
-      "area": null,
+      "area": "福井県",
       "found_at": "2026-11-03T11:14:45.948754+09:00",
       "chain": "tsutaya"
     },
@@ -9115,7 +9115,7 @@
       "store": "TSUTAYA神明店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "福井県",
       "found_at": "2026-11-03T11:14:45.949103+09:00",
       "chain": "tsutaya"
     },
@@ -9502,7 +9502,7 @@
       "store": "TSUTAYA神明店",
       "series": null,
       "channel": "store",
-      "area": null,
+      "area": "福井県",
       "found_at": "2026-11-03T11:14:46.498762+09:00",
       "chain": "tsutaya"
     },
@@ -11143,6 +11143,60 @@
       "area": "茨城県",
       "found_at": "2026-11-04T21:01:19.246579+09:00",
       "chain": null
+    },
+    "dfb059ed2c757104": {
+      "game": "pokemon",
+      "store": "ヤマシロヤ",
+      "series": "30周年御三家カードセット",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-04T22:11:38.971432+09:00",
+      "chain": null
+    },
+    "0eaaf2c7cf5083fc": {
+      "game": "pokemon",
+      "store": "TSUTAYA神明店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-04T22:12:16.962876+09:00",
+      "chain": "tsutaya"
+    },
+    "c9c21b7c1ffc8807": {
+      "game": "pokemon",
+      "store": "フタバ図書TSUTAYA GIGA防府店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "山口県",
+      "found_at": "2026-11-04T22:12:16.962998+09:00",
+      "chain": "tsutaya"
+    },
+    "721334c4e4513d6d": {
+      "game": "onepiece",
+      "store": "カードラボ札幌店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-04T22:12:52.055351+09:00",
+      "chain": "cardlabo"
+    },
+    "8201005e123005dd": {
+      "game": "onepiece",
+      "store": "TSUTAYA TRADING CARD錦糸町",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-04T22:12:52.055391+09:00",
+      "chain": "tsutaya"
+    },
+    "6e2ae5e306d31694": {
+      "game": "onepiece",
+      "store": "カードボックス ブックスジュピター店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "広島県",
+      "found_at": "2026-11-04T22:12:52.055429+09:00",
+      "chain": "cardbox"
     }
   }
 }

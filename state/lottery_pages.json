@@ -25416,6 +25416,7 @@
       ],
       "url": "https://x.com/TSUTAYA10912325/status/2117167253330497901",
       "channel": "store",
+      "area": "福井県",
       "id_check": false,
       "member": "card",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300",
@@ -25951,6 +25952,7 @@
       ],
       "url": "https://x.com/TSUTAYA10912325/status/2117117481626276244",
       "channel": "store",
+      "area": "福井県",
       "id_check": true,
       "member": "card",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
@@ -27000,6 +27002,7 @@
       ],
       "url": "https://livepocket.jp/e/6jcb2",
       "channel": "store",
+      "area": "福井県",
       "id_check": true,
       "member": "account",
       "spath": "store/tsutaya-cb3b7/",
@@ -30580,6 +30583,7 @@
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】（1個 5,760円）",
       "series": "神の支配",
       "end": "2026-11-11T23:59:00+09:00",
+      "announce": "2026-11-13",
       "method": "オンライン",
       "conditions": "本人確認",
       "tags": [
@@ -31034,6 +31038,7 @@
       "store": "駿河屋 新天町店トレカ館",
       "product": "ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」1BOX（再販）",
       "series": "30th CELEBRATION",
+      "start": "2026-11-04T14:00:00+09:00",
       "end": "2026-11-05T23:59:00+09:00",
       "method": "オンライン",
       "conditions": "会員・本人確認",
@@ -31321,6 +31326,7 @@
       "series": "神の支配",
       "end": "2026-11-08T11:59:00+09:00",
       "method": "Web",
+      "conditions": "会員登録・本人確認・購入上限・代理購入・価格などの条件は書かれていない。フルコンプ(全国)の「神の支配」について「11/8(日)まで」とあるだけで、詳細はリンク先を見る必要がある。",
       "url": "https://livepocket.jp/e/2nyas",
       "channel": "store",
       "area": "神奈川県",
@@ -31357,6 +31363,7 @@
       "store": "トレカエース常陸太田店",
       "product": "ハイクラスパック MEGAドリーム 1BOX購入権",
       "series": "MEGAドリーム",
+      "start": "2026-11-03T09:00:00+09:00",
       "end": "2026-11-08T22:00:00+09:00",
       "method": "Web",
       "conditions": "ページ本文には1BOXの購入権を抽選で販売するとあるが、会員登録・アプリ・本人確認書類・購入数の上限・代理購入・価格については記載がない。",
@@ -31367,6 +31374,127 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbell-world%2Fpokeka-dream-box%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbell-world%2Fpokeka-dream-box%2F",
       "spath": "store/torekaesu-f65a3/",
       "found_at": "2026-11-04T21:01:19.246579+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/dfb059ed2c/": {
+    "d": {
+      "key": "dfb059ed2c757104",
+      "game": "pokemon",
+      "store": "ヤマシロヤ",
+      "product": "30th CELEBRATION カードセット各種",
+      "series": "30周年御三家カードセット",
+      "start": "2026-11-04T21:30:00+09:00",
+      "end": "2026-11-06T21:30:00+09:00",
+      "announce": "11月9日(月)",
+      "method": "WEB抽選受付（当選者にはオンライン販売）",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSd6O9PhrqOHX4xxcRV4APYy_B_0OyCAW_ZkTa-Rp7htUleUjQ/viewform",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/cocos-life/cabinet/compass1791124895.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fcocos-life%2F4509%2F",
+      "spath": "store/yamashiroya-79c07/",
+      "found_at": "2026-11-04T22:11:38.971432+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/0eaaf2c7cf/": {
+    "d": {
+      "key": "0eaaf2c7cf5083fc",
+      "game": "pokemon",
+      "store": "TSUTAYA神明店",
+      "product": "ポケモンカードゲーム MEGA 「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」購入券",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-05T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/f07ms",
+      "channel": "store",
+      "area": "福井県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F",
+      "spath": "store/tsutaya-cb3b7/",
+      "found_at": "2026-11-04T22:12:16.962876+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/c9c21b7c1f/": {
+    "d": {
+      "key": "c9c21b7c1ffc8807",
+      "game": "pokemon",
+      "store": "フタバ図書TSUTAYA GIGA防府店",
+      "product": "『スペシャルデッキセットMEGA』（メガオーダイル・メガカイリュー・メガゲンガー）",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-06T21:00:00+09:00",
+      "method": "LivePocket",
+      "conditions": "購入権抽選",
+      "url": "https://livepocket.jp/e/5s4y2",
+      "channel": "store",
+      "area": "山口県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/tsutaya-6d7cd/",
+      "found_at": "2026-11-04T22:12:16.962998+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/721334c4e4/": {
+    "d": {
+      "key": "721334c4e4513d6d",
+      "game": "onepiece",
+      "store": "カードラボ札幌店",
+      "product": "ブースターパック 神の支配（11/21発売）",
+      "series": "神の支配",
+      "start": "2026-11-04",
+      "end": "2026-11-08",
+      "method": "SNS応募",
+      "conditions": "当アカウントをフォロー＆ポストをリポストして応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://www.c-labo.jp/shop/sapporo/blog/623697/",
+      "channel": "store",
+      "area": "北海道",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/cardlabo-39e4d/",
+      "found_at": "2026-11-04T22:12:52.055351+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/8201005e12/": {
+    "d": {
+      "key": "8201005e123005dd",
+      "game": "onepiece",
+      "store": "TSUTAYA TRADING CARD錦糸町",
+      "product": "ワンピースカード ブースターパック『神の支配』",
+      "series": "神の支配",
+      "end": "2026-11-08T21:00:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/2zkfx",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tsutaya-bf899/",
+      "found_at": "2026-11-04T22:12:52.055391+09:00"
+    },
+    "last": "2026-11-04"
+  },
+  "l/6e2ae5e306/": {
+    "d": {
+      "key": "6e2ae5e306d31694",
+      "game": "onepiece",
+      "store": "カードボックス ブックスジュピター店",
+      "product": "ワンピースカード ブースターパック「神の支配」",
+      "series": "神の支配",
+      "start": "2026-11-04T18:00:00+09:00",
+      "end": "2026-11-10T23:59:00+09:00",
+      "method": "Web",
+      "url": "https://shoplottery.e-starbox.com/lottery/entry?code=vYRX9aOngc",
+      "channel": "store",
+      "area": "広島県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/cardbox-a4b69/",
+      "found_at": "2026-11-04T22:12:52.055429+09:00"
     },
     "last": "2026-11-04"
   }
