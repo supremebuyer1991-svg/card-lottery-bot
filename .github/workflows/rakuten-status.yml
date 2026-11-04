@@ -1,0 +1,11 @@
+name: rakuten-status
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: curl -s -m 20 https://rakuten-watch.supreme-buyer-1991.workers.dev/status | python3 -c "import sys,json;d=json.load(sys.stdin);print(json.dumps(d,ensure_ascii=False,indent=1)[:3000])"
