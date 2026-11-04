@@ -9612,6 +9612,18 @@
   "store/biccamera-7ddb2/": {
     "name": "ビックカメラ",
     "items": {
+      "67b18ecda0514e3c": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-14"
+      },
       "5067cf1469893b1f": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -11309,6 +11321,17 @@
   "store/tsutaya-73274/": {
     "name": "TSUTAYA サンリブ宗像店",
     "items": {
+      "0e910525eb5fdb52": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-14T20:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "9539bd83d4d829c4": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -15456,6 +15479,17 @@
   "store/aeon-1f601/": {
     "name": "ふるいちイオンモール高の原店",
     "items": {
+      "715a6822f21eecf4": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "4f98211adade8dd8": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -18651,6 +18685,18 @@
   "store/sono-nosutoa-55b7a/": {
     "name": "その他のストア",
     "items": {
+      "6a9178f13f370fd8": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-11"
+      },
       "a92982326745e438": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -22830,7 +22876,8 @@
         "m": "Web",
         "id": false,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-11"
       }
     }
   },
@@ -22864,7 +22911,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-25"
       }
     }
   },
@@ -23122,6 +23170,70 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-46f7c/": {
+    "name": "ティーズ イオンタウン宇多津",
+    "items": {
+      "b2c4f2c6907390ef": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/torekashoppusukippu-123ce/": {
+    "name": "トレカショップ スキップ 通販店",
+    "items": {
+      "53eadb4f7ae04ac2": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T12:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/torekachanpion-b66b0/": {
+    "name": "トレカチャンピオン（ビデオインアメリカ）大徳寺店",
+    "items": {
+      "62d7e7bb40325afa": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/papurutaun-a410e/": {
+    "name": "今井書店倉吉パープルタウン店（トレカ）",
+    "items": {
+      "9f14b5b324a96261": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T18:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
         "rq": []
       }
     }

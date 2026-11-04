@@ -3914,7 +3914,7 @@
   },
   "store/aeon-1f601/": {
     "name": "ふるいちイオンモール高の原店",
-    "last": "2026-11-01",
+    "last": "2026-11-04",
     "game": "pokemon",
     "area": "京都府"
   },
@@ -4823,7 +4823,7 @@
   },
   "store/sono-nosutoa-55b7a/": {
     "name": "その他のストア",
-    "last": "2026-11-01",
+    "last": "2026-11-04",
     "game": "pokemon",
     "address": "福島県いわき市平上荒川島田5"
   },
@@ -6087,18 +6087,6 @@
     "game": "onepiece",
     "area": "愛媛県"
   },
-  "store/dorasuta-ccf02/": {
-    "name": "ドラスタ通販",
-    "last": "2026-10-29",
-    "game": "onepiece",
-    "keep": true
-  },
-  "store/jumpshop-domushiti-07b64/": {
-    "name": "JUMP SHOP東京ドームシティ店",
-    "last": "2026-11-04",
-    "game": "onepiece",
-    "keep": true
-  },
   "store/hobbystation-3375d/": {
     "name": "ホビステ(各店)",
     "last": "2026-11-04",
@@ -6119,6 +6107,41 @@
   },
   "store/shop-ba6d5/": {
     "name": "八戸",
+    "last": "2026-11-04",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/aeon-46f7c/": {
+    "name": "ティーズ イオンタウン宇多津",
+    "last": "2026-11-04",
+    "game": "pokemon",
+    "area": "香川県"
+  },
+  "store/torekashoppusukippu-123ce/": {
+    "name": "トレカショップ スキップ 通販店",
+    "last": "2026-11-04",
+    "game": "pokemon"
+  },
+  "store/torekachanpion-b66b0/": {
+    "name": "トレカチャンピオン（ビデオインアメリカ）大徳寺店",
+    "last": "2026-11-04",
+    "game": "pokemon",
+    "area": "京都府"
+  },
+  "store/papurutaun-a410e/": {
+    "name": "今井書店倉吉パープルタウン店（トレカ）",
+    "last": "2026-11-04",
+    "game": "pokemon",
+    "area": "鳥取県"
+  },
+  "store/dorasuta-ccf02/": {
+    "name": "ドラスタ通販",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/jumpshop-domushiti-07b64/": {
+    "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-04",
     "game": "onepiece",
     "keep": true

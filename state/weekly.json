@@ -10843,7 +10843,7 @@
       "store": "ワンハッピー（東京）",
       "series": "神の支配",
       "channel": "online",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-04T11:56:33.152995+09:00",
       "chain": null
     },
@@ -10882,6 +10882,69 @@
       "area": "愛媛県",
       "found_at": "2026-11-04T11:56:33.153084+09:00",
       "chain": null
+    },
+    "6a9178f13f370fd8": {
+      "game": "pokemon",
+      "store": "その他のストア",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-04T12:59:21.196358+09:00",
+      "chain": null
+    },
+    "b2c4f2c6907390ef": {
+      "game": "pokemon",
+      "store": "ティーズ イオンタウン宇多津",
+      "series": null,
+      "channel": "store",
+      "area": "香川県",
+      "found_at": "2026-11-04T12:59:22.222680+09:00",
+      "chain": "aeon"
+    },
+    "53eadb4f7ae04ac2": {
+      "game": "pokemon",
+      "store": "トレカショップ スキップ 通販店",
+      "series": null,
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-04T12:59:22.222717+09:00",
+      "chain": null
+    },
+    "62d7e7bb40325afa": {
+      "game": "pokemon",
+      "store": "トレカチャンピオン（ビデオインアメリカ）大徳寺店",
+      "series": null,
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-04T12:59:22.222739+09:00",
+      "chain": null
+    },
+    "9f14b5b324a96261": {
+      "game": "pokemon",
+      "store": "今井書店倉吉パープルタウン店（トレカ）",
+      "series": null,
+      "channel": "store",
+      "area": "鳥取県",
+      "found_at": "2026-11-04T12:59:22.222758+09:00",
+      "chain": null
+    },
+    "715a6822f21eecf4": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール高の原店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-04T12:59:22.693259+09:00",
+      "chain": "aeon"
+    },
+    "0e910525eb5fdb52": {
+      "game": "onepiece",
+      "store": "TSUTAYAサンリブ宗像店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-04T12:59:22.693295+09:00",
+      "chain": "tsutaya"
     }
   }
 }
