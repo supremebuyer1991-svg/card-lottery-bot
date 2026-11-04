@@ -13677,6 +13677,17 @@
         "mem": "card",
         "rq": []
       },
+      "ea9ee0b4af94926c": {
+        "p": "MEGAドリーム",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "7438ddd6d74c1d0a": {
         "p": "決戦の刻",
         "g": "onepiece",
@@ -14634,6 +14645,17 @@
         "m": "Web",
         "id": false,
         "mem": "account",
+        "rq": []
+      },
+      "4e0dbd046ed3f702": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-04T23:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "dbd18c5e4c10d3df": {
@@ -20231,6 +20253,17 @@
   "store/shop-903d7/": {
     "name": "錦糸町",
     "items": {
+      "077127f8657e8594": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9dc0648d0eb41582": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -23559,6 +23592,54 @@
         "f": "2026-11-04",
         "c": "store",
         "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/pokemoncenter-876ec/": {
+    "name": "ポケモンセンター",
+    "items": {
+      "ab6b4fb4fdd21320": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-10T16:59",
+        "f": "2026-11-04",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-4ccc7/": {
+    "name": "フルコンプ横浜店",
+    "items": {
+      "362362083477c9da": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T11:59",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-51d97/": {
+    "name": "フルコンプ(全国)",
+    "items": {
+      "1ce62b365718e8cd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08",
+        "f": "2026-11-04",
+        "c": "store",
+        "m": "Web",
         "id": null,
         "mem": null,
         "rq": []
