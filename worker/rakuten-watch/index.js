@@ -62,7 +62,7 @@ function compose(game, items, aff) {
   const g = GAME[game];
   const lines = [`🚨楽天ブックスで販売開始｜${g.head}`, "", "楽天ブックスで購入できるようになっています！", ""];
   for (const it of items.slice(0, 3)) lines.push(`・${shortName(it.itemName)}`, affLink(it.itemUrl, aff), "");
-  lines.push("⚠️すぐ売り切れることがあります。売り切れても、キャンセル分などで在庫が復活することもあるので、こまめに確認するのがおすすめです", "",
+  lines.push("⚠️売り切れても、すぐに復活することがあります！", "売り切れていても、定期的にリンクを見張ってみてください👀", "",
     "🔔フォロー＆通知ONで、販売・抽選の速報を受け取れます", "", g.tags);
   return lines.join("\n");
 }
