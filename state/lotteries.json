@@ -4877,7 +4877,7 @@
     "key": "29e2d179eb68e5ca",
     "status": "pending",
     "found_at": "2026-10-29T15:05:25.233418+09:00",
-    "deadline_checked_at": "2026-11-03T17:46:20.017256+09:00",
+    "deadline_checked_at": "2026-11-04T18:02:51.774167+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
     "page_checked_at": "2026-11-04T07:53:17.810062+09:00",
@@ -23681,7 +23681,7 @@
     "found_at": "2026-11-03T17:46:16.324484+09:00",
     "multi": false,
     "cls": "851b2937937c",
-    "page_checked_at": "2026-11-04T11:56:58.661091+09:00",
+    "page_checked_at": "2026-11-04T18:02:51.801733+09:00",
     "page_err": "中身が空"
   },
   "c737b53ae014187c": {
@@ -23769,7 +23769,7 @@
     "found_at": "2026-11-03T17:46:16.324582+09:00",
     "multi": false,
     "cls": "a2e8ca9987a9",
-    "page_checked_at": "2026-11-04T11:57:00.981253+09:00",
+    "page_checked_at": "2026-11-04T18:02:53.885029+09:00",
     "page_err": "中身が空"
   },
   "f3e0051b5da8684d": {
@@ -24108,7 +24108,7 @@
     "cls": "60a1c7094fcf",
     "issue": 438,
     "tco_checked": true,
-    "page_checked_at": "2026-11-04T11:57:03.059189+09:00",
+    "page_checked_at": "2026-11-04T18:02:55.973544+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -24267,7 +24267,7 @@
     "key": "413862799e15e90a",
     "status": "approved",
     "found_at": "2026-11-03T19:00:26.951840+09:00",
-    "page_checked_at": "2026-11-04T11:57:09.476917+09:00",
+    "page_checked_at": "2026-11-04T18:02:58.063432+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -24451,7 +24451,7 @@
     "found_at": "2026-11-04T07:52:24.609451+09:00",
     "multi": false,
     "cls": "35dc454408bc",
-    "page_checked_at": "2026-11-04T11:57:13.785604+09:00",
+    "page_checked_at": "2026-11-04T18:03:00.128797+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -24830,7 +24830,7 @@
     "multi": false,
     "cls": "509691c75fd7",
     "issue": 440,
-    "page_checked_at": "2026-11-04T11:57:22.126008+09:00",
+    "page_checked_at": "2026-11-04T18:03:02.208522+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -25509,7 +25509,7 @@
     "key": "4b4533f1f6678e10",
     "status": "approved",
     "found_at": "2026-11-04T11:56:32.600556+09:00",
-    "page_checked_at": "2026-11-04T11:57:26.430266+09:00",
+    "page_checked_at": "2026-11-04T18:03:04.383348+09:00",
     "page_err": "中身が空",
     "start": "2026-11-03T18:00:00+09:00"
   },
@@ -25565,7 +25565,7 @@
     "key": "21ec9cf38705e719",
     "status": "approved",
     "found_at": "2026-11-04T11:56:32.600610+09:00",
-    "page_checked_at": "2026-11-04T11:57:26.430274+09:00",
+    "page_checked_at": "2026-11-04T18:03:06.442746+09:00",
     "page_err": "中身が空"
   },
   "c4356eb63c2fad92": {
@@ -26087,8 +26087,10 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e27564ec4bb8fc16",
-    "status": "approved",
-    "found_at": "2026-11-04T11:56:32.600983+09:00"
+    "status": "expired",
+    "found_at": "2026-11-04T11:56:32.600983+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-04T18:02:48.868057+09:00"
   },
   "6f4d018c6b09f8de": {
     "store": "八文字屋北店（Cardbox）",
@@ -26619,7 +26621,7 @@
     "key": "117a3834756ec449",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.152918+09:00",
-    "page_checked_at": "2026-11-04T11:57:34.958043+09:00",
+    "page_checked_at": "2026-11-04T18:03:08.498787+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "64932d3be1c4",
@@ -26758,7 +26760,7 @@
     "key": "01a2203ed4c5ffe7",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153013+09:00",
-    "page_checked_at": "2026-11-04T11:57:37.384788+09:00",
+    "page_checked_at": "2026-11-04T18:03:10.557124+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=118",
     "multi": false,
     "cls": "a9606263ac62"
@@ -26787,7 +26789,7 @@
     "key": "9c957b2a49dcb30d",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153032+09:00",
-    "page_checked_at": "2026-11-04T11:57:37.631394+09:00",
+    "page_checked_at": "2026-11-04T18:03:10.749068+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=119",
     "multi": false,
     "cls": "f1778911f193"
@@ -26816,7 +26818,7 @@
     "key": "ed9ab9ff28df4f3d",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153064+09:00",
-    "page_checked_at": "2026-11-04T11:57:37.729715+09:00",
+    "page_checked_at": "2026-11-04T18:03:10.822183+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=120",
     "multi": false,
     "cls": "1e6723f3d4e4"
