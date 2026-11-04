@@ -8,4 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - run: curl -s -m 20 https://rakuten-watch.supreme-buyer-1991.workers.dev/status | python3 -c "import sys,json;d=json.load(sys.stdin);print(json.dumps(d,ensure_ascii=False,indent=1)[:3000])"
+      - env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+        run: |
+          B=https://rakuten-watch.supreme-buyer-1991.workers.dev
+          echo "== status"; curl -s -m 20 $B/status | head -c 3000; echo
+          ADMIN=$(printf '%s' "$X_API_KEY$RAKUTEN_APP_ID" | sha256sum | cut -c1-24)
+          echo "== dry"; curl -s -m 60 "$B/dry?k=$ADMIN" | python3 -c "import sys,json;d=json.load(sys.stdin);d.pop('out',None);print(json.dumps(d,ensure_ascii=False)[:2000])"
