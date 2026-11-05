@@ -10410,7 +10410,7 @@
       "game": "pokemon",
       "store": "古本市場中仙道店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "岡山県",
       "found_at": "2026-11-04T11:56:32.600514+09:00",
       "chain": "furuichi"
@@ -10419,7 +10419,7 @@
       "game": "pokemon",
       "store": "カードラボ秋葉原ラジオ会館本店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-04T11:56:32.600536+09:00",
       "chain": "cardlabo"
@@ -10437,7 +10437,7 @@
       "game": "pokemon",
       "store": "ブックエース坂東店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "茨城県",
       "found_at": "2026-11-04T11:56:32.600591+09:00",
       "chain": null
@@ -10482,7 +10482,7 @@
       "game": "pokemon",
       "store": "ときわ書房ニューコースト新浦安店",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-11-04T11:56:32.600681+09:00",
       "chain": null
@@ -12250,6 +12250,15 @@
       "area": "熊本県",
       "found_at": "2026-11-05T22:18:52.496149+09:00",
       "chain": "tsutaya"
+    },
+    "8931bec57377ae24": {
+      "game": "pokemon",
+      "store": "晴れる屋2(通販)",
+      "series": null,
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-06T00:04:28.040142+09:00",
+      "chain": null
     }
   }
 }

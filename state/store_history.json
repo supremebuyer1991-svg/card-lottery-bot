@@ -4890,7 +4890,7 @@
         "g": "pokemon",
         "e": "2026-11-07T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -23651,7 +23651,7 @@
         "g": "pokemon",
         "e": "2026-11-06T22:00",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -23694,7 +23694,7 @@
         "g": "pokemon",
         "e": "2026-11-08T21:00",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -23868,7 +23868,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -25590,6 +25590,38 @@
         "g": "onepiece",
         "e": "2026-11-08T23:59",
         "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/reru-2-68759/": {
+    "name": "晴れる屋2(通販)",
+    "items": {
+      "8931bec57377ae24": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-11T18:00",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/girafullnanba-27765/": {
+    "name": "GIRAFULLなんば",
+    "items": {
+      "b9ab7f40abde0f6b": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08",
+        "f": "2026-11-06",
         "c": "store",
         "m": "Web",
         "id": null,
