@@ -2273,7 +2273,7 @@
   },
   "store/bookoff-81764/": {
     "name": "ブックオフ西友岡崎店",
-    "last": "2026-10-29",
+    "last": "2026-11-05",
     "game": "onepiece",
     "area": "愛知県"
   },
@@ -2727,9 +2727,10 @@
   },
   "store/tsutaya-037fe/": {
     "name": "TSUTAYA遊ING城山店",
-    "last": "2026-10-26",
+    "last": "2026-11-05",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "長崎県"
   },
   "store/ingkomasharumoru-fc0bb/": {
     "name": "遊INGコマーシャルモール博多店",
@@ -3450,8 +3451,8 @@
     "keep": true
   },
   "store/furuichi-8251d/": {
-    "name": "古本市場 野口店",
-    "last": "2026-10-31",
+    "name": "古本市場野口店",
+    "last": "2026-11-05",
     "game": "pokemon",
     "area": "兵庫県"
   },
@@ -3463,7 +3464,7 @@
   },
   "store/tsutaya-ed184/": {
     "name": "TSUTAYA BOOKSTORE宮交シティ",
-    "last": "2026-11-01",
+    "last": "2026-11-05",
     "game": "onepiece",
     "area": "宮崎県"
   },
@@ -3487,7 +3488,7 @@
   },
   "store/o-gurupu-0a945/": {
     "name": "お宝創庫グループ（お宝創庫／おじゃま館／メディオ！／プレイズ 各店）",
-    "last": "2026-10-30",
+    "last": "2026-11-05",
     "game": "pokemon"
   },
   "store/o-d23f3/": {
@@ -4440,9 +4441,10 @@
   },
   "store/shop-ea337/": {
     "name": "太宰府",
-    "last": "2026-10-31",
+    "last": "2026-11-05",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "福岡県"
   },
   "store/4-75e71/": {
     "name": "宮崎県内4店舗",
@@ -5230,9 +5232,10 @@
   },
   "store/shop-903d7/": {
     "name": "錦糸町",
-    "last": "2026-11-02",
+    "last": "2026-11-05",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/jumpshop-2d164/": {
     "name": "JUMP SHOP福岡店",
@@ -5858,9 +5861,10 @@
   },
   "store/toreka-b578f/": {
     "name": "トレカ丸新井店",
-    "last": "2026-11-03",
+    "last": "2026-11-05",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "群馬県"
   },
   "store/tsutaya-fe0b3/": {
     "name": "TSUTAYA鴻巣吹上店",
@@ -6393,6 +6397,58 @@
     "game": "onepiece",
     "area": "埼玉県"
   },
+  "store/furuichi-d5b33/": {
+    "name": "古本市場小平店",
+    "last": "2026-11-05",
+    "game": "pokemon"
+  },
+  "store/tsutaya-41999/": {
+    "name": "ヤマト屋書店TSUTAYAあけぼの店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "宮城県"
+  },
+  "store/cardlabo-b6c50/": {
+    "name": "カードラボ千葉中央店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "千葉県"
+  },
+  "store/bookoff-4983e/": {
+    "name": "ブックオフ イトーヨーカドー溝ノ口店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/ing-64e0e/": {
+    "name": "遊ING浜町店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "長崎県"
+  },
+  "store/surugaya-d5831/": {
+    "name": "駿河屋 通販",
+    "last": "2026-11-05",
+    "game": "pokemon"
+  },
+  "store/tsutaya-31c6d/": {
+    "name": "TSUTAYAココアドバンス愛野店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "長崎県"
+  },
+  "store/tsutaya-64f71/": {
+    "name": "TSUTAYA出雲店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "島根県"
+  },
+  "store/shop-61ff3/": {
+    "name": "中仙道",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "岡山県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6403,6 +6459,12 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-05",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-0bce5/": {
+    "name": "小平",
+    "last": "2026-11-05",
+    "game": "pokemon",
     "keep": true
   }
 }
