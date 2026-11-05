@@ -25477,6 +25477,7 @@
       "game": "pokemon",
       "store": "TSUTAYA積文館書店 鹿島店",
       "product": "ポケモンカードゲーム MEGA「スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー」（目の前で封のテープをカットしてお渡し）",
+      "start": "2026-11-03T09:55:00+09:00",
       "end": "2026-11-08T20:00:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -31761,7 +31762,9 @@
       "store": "ヤマシロヤ オンラインショップ",
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」BOX",
       "series": "30th CELEBRATION",
+      "start": "2026-11-04T21:30:00+09:00",
       "end": "2026-11-06T21:30:00+09:00",
+      "announce": "11月9日(月)",
       "method": "オンライン",
       "conditions": "会員",
       "tags": [
@@ -33715,6 +33718,8 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX（再販分・税込6,000円）",
       "series": "ストームエメラルダ",
       "end": "2026-11-08T11:59:00+09:00",
+      "announce": "11月11日(水)〜11月13日(金)（LivePocketのメールで発表）",
+      "buy": "11/14(土)〜11/16(月)",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -33741,6 +33746,8 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（再販分・税込7,200円）",
       "series": "30th CELEBRATION",
       "end": "2026-11-08T11:59:00+09:00",
+      "announce": "11月11日(水)〜11月13日(金)（LivePocketのメールで発表）",
+      "buy": "11/14(土)〜11/16(月)",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -34222,6 +34229,8 @@
       "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "start": "2026-11-06T12:00:00+09:00",
       "end": "2026-11-08T23:59:00+09:00",
+      "announce": "11月10日(火)",
+      "buy": "11/13(金)12:00〜",
       "method": "お店のX告知にある受付ページ（URL）から抽選に応募する。受付期間は11/6(金)12:00〜11/8(日)23:59。",
       "conditions": "お一人様につき1個までの購入制限がある。画像に書かれているのは発売予定日(2026年11月13日)、対象店舗(ジラフルなんば店)と、受付期間(11/6(金)12:00〜11/8(日)23:59)まで。価格、会員登録、本人確認、代理購入の可否は記載なし。",
       "url": "https://livepocket.jp/p/puf0p",
@@ -34242,6 +34251,7 @@
       "start": "2026-11-05T18:00:00+09:00",
       "end": "2026-11-11T18:00:00+09:00",
       "announce": "2026-11-16",
+      "buy": "11/16(月)〜11/20(金)15:00",
       "method": "Web（LivePocket）",
       "conditions": "晴れる屋2のLINE会員登録とLivePocketアカウントが必要。お一人様1回まで",
       "tags": [
@@ -34311,6 +34321,73 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10101524%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10101524%2F",
       "spath": "store/cardwings-89791/",
       "found_at": "2026-11-05T21:04:29.949598+09:00"
+    },
+    "last": "2026-11-05"
+  },
+  "l/abc5c33ec5/": {
+    "d": {
+      "key": "abc5c33ec5476450",
+      "game": "pokemon",
+      "store": "ブックオフ",
+      "product": "30th CELEBRATION BOX",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-11T23:59:00+09:00",
+      "announce": "11月12日(木)",
+      "buy": "11/13〜11/15",
+      "method": "店頭抽選受付（当選者には店頭販売）",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://x.com/boc_248okazaki/status/2118166437923795004",
+      "channel": "store",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/bookoff-ded42/",
+      "found_at": "2026-11-05T22:18:12.293469+09:00"
+    },
+    "last": "2026-11-05"
+  },
+  "l/cde61c3e54/": {
+    "d": {
+      "key": "cde61c3e5475fe47",
+      "game": "pokemon",
+      "store": "駿河屋新天町店(福岡)",
+      "product": "30th CELEBRATION",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-05T23:59:00+09:00",
+      "method": "Web",
+      "conditions": "顔写真付き身分証が必要、店頭受け取りのみ",
+      "tags": [
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/e1sd5",
+      "channel": "store",
+      "area": "福岡県",
+      "id_check": true,
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/surugaya-2c7bf/",
+      "found_at": "2026-11-05T22:18:52.496058+09:00"
+    },
+    "last": "2026-11-05"
+  },
+  "l/71b619d4cb/": {
+    "d": {
+      "key": "71b619d4cb636d3a",
+      "game": "onepiece",
+      "store": "TSUTAYA・蔦屋書店（熊本県内対象5店舗）",
+      "product": "ブースターパック「神の支配」2BOX",
+      "series": "神の支配",
+      "end": "2026-11-08T23:59:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/5w5j8",
+      "channel": "store",
+      "area": "熊本県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tsutaya-13924/",
+      "found_at": "2026-11-05T22:18:52.496149+09:00"
     },
     "last": "2026-11-05"
   }

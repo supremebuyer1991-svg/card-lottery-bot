@@ -9950,6 +9950,30 @@
   "store/biccamera-7ddb2/": {
     "name": "ビックカメラ",
     "items": {
+      "965a9a339cb63d85": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-13"
+      },
+      "0c91c9222f94dae5": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-13"
+      },
       "67b18ecda0514e3c": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -11738,6 +11762,18 @@
   "store/bookoff-ded42/": {
     "name": "ブックオフ",
     "items": {
+      "abc5c33ec5476450": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-12"
+      },
       "cb6c08e9daae1ad4": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -14456,6 +14492,28 @@
       },
       "49183c33f0bd6056": {
         "p": "ポケモンカードMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T22:00",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "ef965346f556a566": {
+        "p": "プレミアムデッキセットエーフィ・ブラッキー",
+        "g": "pokemon",
+        "e": "2026-11-06T22:00",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "14b20c4eb34227c9": {
+        "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-06T22:00",
         "f": "2026-11-05",
@@ -24732,7 +24790,8 @@
         "m": "Web",
         "id": false,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-09"
       }
     }
   },
@@ -25020,7 +25079,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-11"
       },
       "d2ffeebcad20aa4c": {
         "p": "30th CELEBRATION",
@@ -25031,7 +25091,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-11"
       }
     }
   },
@@ -25403,7 +25464,8 @@
         "m": "Web",
         "id": null,
         "mem": null,
-        "rq": []
+        "rq": [],
+        "a": "2026-11-10"
       }
     }
   },
@@ -25479,6 +25541,54 @@
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
         "e": "2026-11-09T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jirafuru-f2dd1/": {
+    "name": "ジラフル",
+    "items": {
+      "8c6bdabd157d34f7": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/surugaya-2c7bf/": {
+    "name": "駿河屋新天町店(福岡)",
+    "items": {
+      "cde61c3e5475fe47": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-13924/": {
+    "name": "TSUTAYA・蔦屋書店（熊本県内対象5店舗）",
+    "items": {
+      "71b619d4cb636d3a": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
         "f": "2026-11-05",
         "c": "store",
         "m": "Web",
