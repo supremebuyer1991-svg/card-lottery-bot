@@ -9520,7 +9520,7 @@
       "store": "JUMP SHOP各店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-03T11:14:46.498808+09:00",
       "chain": "jumpshop"
     },
@@ -12173,7 +12173,7 @@
     "88828485f2386166": {
       "game": "onepiece",
       "store": "文教堂書店 湘南とうきゅう店",
-      "series": null,
+      "series": "HEROINES PRECIOUS BOX",
       "channel": "store",
       "area": "神奈川県",
       "found_at": "2026-11-05T18:08:40.663215+09:00",
@@ -12183,8 +12183,8 @@
       "game": "pokemon",
       "store": "GIRAFULL（ジラフル）",
       "series": null,
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "大阪府",
       "found_at": "2026-11-05T19:12:52.725772+09:00",
       "chain": null
     },
@@ -12196,6 +12196,33 @@
       "area": null,
       "found_at": "2026-11-05T19:12:52.726306+09:00",
       "chain": null
+    },
+    "49183c33f0bd6056": {
+      "game": "pokemon",
+      "store": "古本市場宝塚店",
+      "series": "ポケモンカードMEGA",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-05T21:03:45.537783+09:00",
+      "chain": "furuichi"
+    },
+    "fa808c3090407d3a": {
+      "game": "pokemon",
+      "store": "王の洞窟岐南本店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-05T21:03:45.537861+09:00",
+      "chain": null
+    },
+    "99bb3c3c2f259612": {
+      "game": "onepiece",
+      "store": "CARD WINGS 秋葉原駅前店",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-05T21:04:29.949598+09:00",
+      "chain": "cardwings"
     }
   }
 }

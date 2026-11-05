@@ -9715,6 +9715,17 @@
         "mem": "account",
         "rq": []
       },
+      "0c9d50de31f57e04": {
+        "p": "神の支配",
+        "g": "pokemon",
+        "e": "2026-11-06T20:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "afcb1054be73b9ea": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -9782,6 +9793,17 @@
   "store/cardwings-89791/": {
     "name": "CARD WINGS秋葉原駅前店",
     "items": {
+      "99bb3c3c2f259612": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "e189ab37d81ee495": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -14432,6 +14454,17 @@
         "mem": "account",
         "rq": []
       },
+      "49183c33f0bd6056": {
+        "p": "ポケモンカードMEGA",
+        "g": "pokemon",
+        "e": "2026-11-06T22:00",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "78d19dbc543d44c1": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -16093,6 +16126,17 @@
   "store/furukonpu-fbee8/": {
     "name": "フルコンプ",
     "items": {
+      "c2afb12ea7dab0ba": {
+        "p": "神の支配",
+        "g": "pokemon",
+        "e": "2026-11-08T11:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "f80de4281858b3aa": {
         "p": "30th CELEBRATION・ストームエメラルダ",
         "g": "pokemon",
@@ -22938,6 +22982,17 @@
   "store/hobbystation-af17c/": {
     "name": "ホビーステーション",
     "items": {
+      "f79a5f940f128519": {
+        "p": "神の支配",
+        "g": "pokemon",
+        "e": "2026-11-05T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "d1bf4446dbe9bc97": {
         "p": "神の支配",
         "g": "pokemon",
@@ -23114,7 +23169,8 @@
         "m": "Web",
         "id": null,
         "mem": null,
-        "rq": []
+        "rq": [],
+        "a": "2026-11-10"
       }
     }
   },
@@ -23241,6 +23297,17 @@
         "mem": "account",
         "rq": [],
         "a": "2026-11-20"
+      },
+      "d448f410320d1e6f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       },
       "40c4b79a8da292b7": {
         "p": "スペシャルデッキセットMEGA",
@@ -23603,6 +23670,17 @@
         "mem": "account",
         "rq": [],
         "a": "2026-11-12"
+      },
+      "b1556c1e5b7120d3": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-05",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": []
       }
     }
   },
@@ -25321,7 +25399,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,
@@ -25341,7 +25419,8 @@
         "m": "Web",
         "id": null,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-16"
       }
     }
   },
@@ -25352,6 +25431,54 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/wanhappi-63647/": {
+    "name": "ワンハッピー",
+    "items": {
+      "3c2354c2bcb210c1": {
+        "p": "神の支配",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/famirimato-9f293/": {
+    "name": "ファミリーマート",
+    "items": {
+      "1bea74c32bdb475c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/no-1b80e/": {
+    "name": "王の洞窟岐南本店",
+    "items": {
+      "fa808c3090407d3a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
         "f": "2026-11-05",
         "c": "store",
         "m": "Web",
