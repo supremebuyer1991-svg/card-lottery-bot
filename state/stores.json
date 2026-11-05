@@ -148,7 +148,7 @@
   },
   "store/gangihobbyshop-2337f/": {
     "name": "ガンギ HOBBYSHOP",
-    "last": "2026-10-28",
+    "last": "2026-11-05",
     "game": "pokemon"
   },
   "store/cardlabo-1d856/": {
@@ -1668,7 +1668,7 @@
     "area": "千葉県"
   },
   "store/cardwings-89791/": {
-    "name": "CARDWINGS秋葉原駅前店",
+    "name": "CARD WINGS秋葉原駅前店",
     "last": "2026-11-05",
     "game": "onepiece",
     "area": "東京都"
@@ -6458,7 +6458,8 @@
   "store/furuichi-30eff/": {
     "name": "古本市場 倉敷堀南店",
     "last": "2026-11-05",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "岡山県"
   },
   "store/bookoff-6a210/": {
     "name": "ブックオフお宝大陸倉敷笹沖店",
@@ -6478,6 +6479,18 @@
     "game": "pokemon",
     "area": "愛知県"
   },
+  "store/shop-e7d62/": {
+    "name": "各店（店舗名の記載なし）",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/toukyuu-e460e/": {
+    "name": "文教堂書店 湘南とうきゅう店",
+    "last": "2026-11-05",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6490,8 +6503,8 @@
     "game": "onepiece",
     "keep": true
   },
-  "store/shop-e7d62/": {
-    "name": "各店（店舗名の記載なし）",
+  "store/yamashiroya-fdb8b/": {
+    "name": "ヤマシロヤ通販",
     "last": "2026-11-05",
     "game": "pokemon",
     "keep": true

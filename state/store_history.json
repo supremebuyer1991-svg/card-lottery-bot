@@ -1820,6 +1820,17 @@
   "store/gangihobbyshop-2337f/": {
     "name": "ガンギ HOBBYSHOP",
     "items": {
+      "b2c104e2be9af724": {
+        "p": "スターターセットex",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-05",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "c6ed3dac0d1bc9fe": {
         "p": "ポケモンカードゲーム スカーレット＆バイオレット スターターセット テラスタイプ ステラ ソウブレイズex（1,800円",
         "g": "pokemon",
@@ -3879,6 +3890,39 @@
         "rq": [
           "アプリ会員"
         ]
+      },
+      "eb9c62d2d4404cfe": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "e1b696775fee61d5": {
+        "p": "受け継がれる意志",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "2c33e77ab44e6f42": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-06T23:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
       },
       "a63e898c25c8d3c0": {
         "p": "インフェルノX",
@@ -9665,7 +9709,7 @@
         "g": "onepiece",
         "e": "2026-11-06T20:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -9743,7 +9787,7 @@
         "g": "onepiece",
         "e": "2026-11-06T18:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -10869,7 +10913,7 @@
         "g": "onepiece",
         "e": "2026-11-06T23:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -14382,10 +14426,21 @@
         "g": "pokemon",
         "e": "2026-11-06T22:00",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      },
+      "78d19dbc543d44c1": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-06",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "2ff6f3ed32ccaa57": {
@@ -24872,7 +24927,7 @@
         "g": "pokemon",
         "e": "2026-11-08T11:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -24883,7 +24938,7 @@
         "g": "pokemon",
         "e": "2026-11-08T11:59",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -24919,6 +24974,17 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      },
+      "4e6dfad6fcf37d0e": {
+        "p": "インフェルノ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
@@ -24996,7 +25062,7 @@
         "g": "onepiece",
         "e": "2026-11-09T17:00",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -25121,7 +25187,7 @@
         "g": "pokemon",
         "e": "2026-11-07T22:00",
         "f": "2026-11-05",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -25186,6 +25252,49 @@
         "e": "2026-11-08",
         "f": "2026-11-05",
         "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/toukyuu-e460e/": {
+    "name": "文教堂書店 湘南とうきゅう店",
+    "items": {
+      "dbbaa8017fb06ec3": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:30",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "88828485f2386166": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-08T20:30",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/yamashiroya-fdb8b/": {
+    "name": "ヤマシロヤ通販",
+    "items": {
+      "03c35e135e667118": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-06T21:30",
+        "f": "2026-11-05",
+        "c": "online",
         "m": "Web",
         "id": null,
         "mem": null,
