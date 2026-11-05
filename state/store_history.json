@@ -2,6 +2,28 @@
   "store/amazon-cbc62/": {
     "name": "Amazon",
     "items": {
+      "895690319b8339ae": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "2e8492027c91728f": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "2075d8557bdb4468": {
         "p": "ワンピースカード",
         "g": "onepiece",
@@ -414,28 +436,6 @@
         "m": "Web",
         "id": null,
         "mem": "account",
-        "rq": []
-      },
-      "60cfb699a845789d": {
-        "p": "30th CELEBRATION",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-10-26",
-        "c": "online",
-        "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
-      },
-      "4e0c6dfe0368b89b": {
-        "p": "エーフィ・ブラッキー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-10-26",
-        "c": "online",
-        "m": "Web",
-        "id": null,
-        "mem": null,
         "rq": []
       }
     }
@@ -1127,6 +1127,17 @@
   "store/tsutaya-de7b4/": {
     "name": "TSUTAYAココアドバンス大村店",
     "items": {
+      "9e1fa165de6be704": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "e6b25393282bb957": {
         "p": "REACH THE GOD",
         "g": "dragonball",
@@ -2851,7 +2862,7 @@
         "g": "pokemon",
         "e": "2026-11-22T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -4781,7 +4792,7 @@
         "g": "pokemon",
         "e": "2026-11-06T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "none",
@@ -21976,7 +21987,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -23900,7 +23911,7 @@
         "g": "pokemon",
         "e": "2026-11-08T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -23986,7 +23997,7 @@
         "g": "pokemon",
         "e": "2026-11-15T23:59",
         "f": "2026-11-04",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": false,
         "mem": "account",
@@ -25627,6 +25638,25 @@
         "id": null,
         "mem": null,
         "rq": []
+      }
+    }
+  },
+  "store/furuichi-98b00/": {
+    "name": "ふるいち",
+    "items": {
+      "d3d065c5dfd71c9a": {
+        "p": "神の支配者",
+        "g": "onepiece",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "アプリ",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-18"
       }
     }
   }

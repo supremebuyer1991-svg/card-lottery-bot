@@ -31,8 +31,8 @@
     "area": "東京都"
   },
   "store/tsutaya-de7b4/": {
-    "name": "TSUTAYA ココアドバンス大村店",
-    "last": "2026-11-04",
+    "name": "TSUTAYAココアドバンス大村店",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "長崎県"
   },
@@ -2076,7 +2076,7 @@
   },
   "store/furuichi-98b00/": {
     "name": "ふるいち",
-    "last": "2026-10-28",
+    "last": "2026-11-06",
     "game": "onepiece"
   },
   "store/biccamera-a8304/": {
@@ -5461,7 +5461,7 @@
   },
   "store/jumpshop-07b64/": {
     "name": "JUMP SHOP東京ドームシティ店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -6003,7 +6003,8 @@
   "store/o-44871/": {
     "name": "お宝市番館 瀬戸大橋店（おたいち 瀬戸トレカ）",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "香川県"
   },
   "store/torekachanpion-c06dc/": {
     "name": "トレカチャンピオン各務原店",
@@ -6558,6 +6559,12 @@
     "last": "2026-11-06",
     "game": "pokemon"
   },
+  "store/girafullnanba-27765/": {
+    "name": "GIRAFULLなんば",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6568,12 +6575,6 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-06",
     "game": "onepiece",
-    "keep": true
-  },
-  "store/girafullnanba-27765/": {
-    "name": "GIRAFULLなんば",
-    "last": "2026-11-06",
-    "game": "pokemon",
     "keep": true
   }
 }

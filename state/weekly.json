@@ -10509,8 +10509,8 @@
       "game": "pokemon",
       "store": "ブックオフ1号京都伏見店",
       "series": "スタートデッキ100 バトルコレクション",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "京都府",
       "found_at": "2026-11-04T11:56:32.600737+09:00",
       "chain": "bookoff"
     },
@@ -10518,7 +10518,7 @@
       "game": "pokemon",
       "store": "お宝市番館 瀬戸大橋店（おたいち 瀬戸トレカ）",
       "series": null,
-      "channel": "online",
+      "channel": "store",
       "area": "香川県",
       "found_at": "2026-11-04T11:56:32.600757+09:00",
       "chain": null
@@ -10564,7 +10564,7 @@
       "store": "Nexus Trading Cards",
       "series": "30th CELEBRATION",
       "channel": "online",
-      "area": "東京都",
+      "area": null,
       "found_at": "2026-11-04T11:56:32.600849+09:00",
       "chain": null
     },
@@ -10599,7 +10599,7 @@
       "game": "pokemon",
       "store": "BOOKOFFお宝大陸和泉中央店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "found_at": "2026-11-04T11:56:32.600926+09:00",
       "chain": "bookoff"
@@ -10617,7 +10617,7 @@
       "game": "pokemon",
       "store": "ドン・キホーテ／アピタ・ピアゴ／ロビンフッド（majica対象店舗）",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-04T11:56:32.600965+09:00",
       "chain": null
@@ -10680,7 +10680,7 @@
       "game": "pokemon",
       "store": "カードボックスあづみ野店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": "長野県",
       "found_at": "2026-11-04T11:56:32.601137+09:00",
       "chain": "cardbox"
@@ -12259,6 +12259,24 @@
       "area": null,
       "found_at": "2026-11-06T00:04:28.040142+09:00",
       "chain": null
+    },
+    "9e1fa165de6be704": {
+      "game": "onepiece",
+      "store": "TSUTAYAココアドバンス大村店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "長崎県",
+      "found_at": "2026-11-06T07:55:11.963298+09:00",
+      "chain": "tsutaya"
+    },
+    "d3d065c5dfd71c9a": {
+      "game": "onepiece",
+      "store": "ふるいち",
+      "series": "神の支配者",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T07:55:11.963474+09:00",
+      "chain": "furuichi"
     }
   }
 }

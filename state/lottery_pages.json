@@ -29735,7 +29735,8 @@
         "SNS応募"
       ],
       "url": "https://x.com/bookoff_hushimi/status/2117123169727426968",
-      "channel": "online",
+      "channel": "store",
+      "area": "京都府",
       "id_check": false,
       "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7270/4521329427270.jpg?_ex=300x300",
@@ -29760,7 +29761,7 @@
         "本人確認"
       ],
       "url": "https://x.com/otaichi_toreka/status/2117787670168650104",
-      "channel": "online",
+      "channel": "store",
       "area": "香川県",
       "id_check": true,
       "member": "account",
@@ -29882,7 +29883,6 @@
       ],
       "url": "https://livepocket.jp/e/a35_-",
       "channel": "online",
-      "area": "東京都",
       "id_check": false,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -29985,7 +29985,7 @@
         "SNS応募"
       ],
       "url": "https://x.com/bookoff_otakara/status/2116712527635927260",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "id_check": false,
       "member": "none",
@@ -30037,7 +30037,7 @@
         "会員"
       ],
       "url": "https://www.majica-net.com/app/",
-      "channel": "online",
+      "channel": "store",
       "id_check": false,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
@@ -30204,7 +30204,7 @@
         "本人確認"
       ],
       "url": "https://x.com/Cardbox_azumino/status/2117089816265302358",
-      "channel": "online",
+      "channel": "store",
       "area": "長野県",
       "id_check": true,
       "member": "none",
@@ -34407,6 +34407,49 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/reru-2-68759/",
       "found_at": "2026-11-06T00:04:28.040142+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/9e1fa165de/": {
+    "d": {
+      "key": "9e1fa165de6be704",
+      "game": "onepiece",
+      "store": "TSUTAYAココアドバンス大村店",
+      "product": "ONE PIECEカードゲーム ブースターパック神の支配 OP18",
+      "series": "神の支配",
+      "start": "2026-11-04T09:00:00+09:00",
+      "end": "2026-11-10T22:00:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/ell39",
+      "channel": "store",
+      "area": "長崎県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tsutaya-de7b4/",
+      "found_at": "2026-11-06T07:55:11.963298+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/d3d065c5df/": {
+    "d": {
+      "key": "d3d065c5dfd71c9a",
+      "game": "onepiece",
+      "store": "ふるいち",
+      "product": "神の支配者 OP-18",
+      "series": "神の支配者",
+      "end": "2026-11-08T23:00:00+09:00",
+      "announce": "2026-11-18T23:00:00+09:00",
+      "method": "アプリ",
+      "conditions": "ふるいちアプリからのみ応募（WEB・店頭応募不可）",
+      "tags": [
+        "アプリ"
+      ],
+      "url": "https://www.furu1.net/news/news_information/pkop20261113",
+      "channel": "store",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/furuichi-98b00/",
+      "found_at": "2026-11-06T07:55:11.963474+09:00"
     },
     "last": "2026-11-06"
   }
