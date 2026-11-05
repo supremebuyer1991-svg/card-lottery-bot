@@ -22024,6 +22024,17 @@
         "id": true,
         "mem": "card",
         "rq": []
+      },
+      "0c42856980501f1c": {
+        "p": "スペシャルデッキセット",
+        "g": "pokemon",
+        "e": "2026-11-05T22:59",
+        "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -25295,6 +25306,54 @@
         "e": "2026-11-06T21:30",
         "f": "2026-11-05",
         "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/girafull-1cd54/": {
+    "name": "GIRAFULL（ジラフル）",
+    "items": {
+      "7ac8b1b0a7bbe0e5": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-05",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/reru-2-3ce7c/": {
+    "name": "晴れる屋2 通販",
+    "items": {
+      "d2469862fad3241b": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-11T18:00",
+        "f": "2026-11-05",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/shop-57662/": {
+    "name": "倉敷",
+    "items": {
+      "550542147e267974": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-05",
+        "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,

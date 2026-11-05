@@ -33843,6 +33843,7 @@
       "store": "BIGMAGICなんば店",
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】4BOX購入権抽選（税込23,040円・郵送なし）",
       "series": "神の支配",
+      "start": "2026-11-05T14:13:00+09:00",
       "end": "2026-11-06T20:59:00+09:00",
       "method": "オンライン",
       "conditions": "会員・本人確認",
@@ -34130,6 +34131,45 @@
       "area": "神奈川県",
       "spath": "store/toukyuu-e460e/",
       "found_at": "2026-11-05T18:08:40.663215+09:00"
+    },
+    "last": "2026-11-05"
+  },
+  "l/7ac8b1b0a7/": {
+    "d": {
+      "key": "7ac8b1b0a7bbe0e5",
+      "game": "pokemon",
+      "store": "GIRAFULL（ジラフル）",
+      "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "start": "2026-11-06T12:00:00+09:00",
+      "end": "2026-11-08T23:59:00+09:00",
+      "url": "https://livepocket.jp/p/puf0p",
+      "channel": "online",
+      "spath": "store/girafull-1cd54/",
+      "found_at": "2026-11-05T19:12:52.725772+09:00"
+    },
+    "last": "2026-11-05"
+  },
+  "l/d2469862fa/": {
+    "d": {
+      "key": "d2469862fad3241b",
+      "game": "pokemon",
+      "store": "晴れる屋2 通販",
+      "product": "ポケモンカードゲーム ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-05T18:00:00+09:00",
+      "end": "2026-11-11T18:00:00+09:00",
+      "method": "Web（LivePocket）",
+      "conditions": "晴れる屋2のLINE会員登録とLivePocketアカウントが必要。お一人様1回まで",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/s191v",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/reru-2-3ce7c/",
+      "found_at": "2026-11-05T19:12:52.726306+09:00"
     },
     "last": "2026-11-05"
   }
