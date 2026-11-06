@@ -27076,6 +27076,7 @@
       "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】（11/21来店購入のための事前入店申込・抽選／チケット無料）",
       "series": "神の支配",
       "end": "2026-11-07T23:59:00+09:00",
+      "announce": "2026-11-08〜2026-11-09",
       "method": "オンライン",
       "conditions": "会員・本人確認 ／ 対象地域：北海道・宮城県・東京都・神奈川県・愛知県・大阪府・岡山県・広島県・福岡県",
       "tags": [
@@ -38194,7 +38195,7 @@
     "d": {
       "key": "f3ab4985adfccf60",
       "game": "pokemon",
-      "store": "その他のストア",
+      "store": "Tokyo Otaku Mode",
       "product": "ストームエメラルダ",
       "series": "ストームエメラルダ",
       "start": "2026-11-06T19:00:00+09:00",
@@ -38209,8 +38210,123 @@
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
-      "spath": "store/sono-nosutoa-55b7a/",
+      "spath": "store/tokyootakumode-05e1a/",
       "found_at": "2026-11-06T20:58:01.960570+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/pokemon-card-lounge-shibuya-hadou-seeker-1108/": {
+    "d": {
+      "key": "37250785e7e120c6",
+      "game": "pokemon",
+      "store": "ポケモンカードラウンジ（SHIBUYA TSUTAYA 5F）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX 6,000円(税込)（1人1〜2BOXまで）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-08T23:59+09:00",
+      "announce": "2026年11月20日(金) 18時以降順次",
+      "buy": "2026年11月27日(金)〜12月6日(日) 10時〜22時30分に店頭で受取り（配送なし）",
+      "method": "CLOUD PASSの抽選ページから受取り日・数量を選んで応募 → 当選したら受取り日に来店し、チケットと顔写真付き本人確認書類を提示して購入（キャッシュレス決済のみ）",
+      "conditions": "顔写真付き本人確認書類の提示が必要。おひとり様1回限り。3歳未満のお子様への販売なし",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://cloud-pass.jp/pr/c3d80628e17314fee84030533c8566c1c6c0f060dc1d0fd8c54e00d248311ad3",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-b9a06/",
+      "found_at": "2026-11-06T22:11:10.056721+09:00",
+      "manual": true
+    },
+    "last": "2026-11-06"
+  },
+  "l/d8210fee6c/": {
+    "d": {
+      "key": "d8210fee6ceef4fb",
+      "game": "pokemon",
+      "store": "torevi",
+      "product": "ポケモンカード「30th CELEBRATION 拡張パック」",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-06T23:00:00+09:00",
+      "method": "LivePocket",
+      "conditions": "公式Xアカウント（@torevi_official）のフォローが条件",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://livepocket.jp/e/ufbho",
+      "channel": "store",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/torevi-41f69/",
+      "found_at": "2026-11-06T22:12:25.093990+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/9eca70d6c1/": {
+    "d": {
+      "key": "9eca70d6c15d5324",
+      "game": "onepiece",
+      "store": "富士八幡町店",
+      "product": "ブースターパック「神の支配」",
+      "series": "神の支配",
+      "end": "2026-11-08T22:00:00+09:00",
+      "method": "店頭QR→LivePocket",
+      "conditions": "店頭QRからの申込のみ有効（QR撮影経由は無効）",
+      "url": "https://x.com/zero_toreca/status/2118690123592368270",
+      "channel": "store",
+      "area": "静岡県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/shop-b6818/",
+      "found_at": "2026-11-06T22:13:07.544167+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/d4391bea55/": {
+    "d": {
+      "key": "d4391bea55708d8f",
+      "game": "onepiece",
+      "store": "ONE PIECEカードゲーム公式サイト",
+      "product": "ブースターパック「神の支配」（OP-18）",
+      "series": "神の支配",
+      "start": "2026-11-06",
+      "end": "2026-11-12",
+      "method": "Web（公式サイト）",
+      "conditions": "対象: 全国",
+      "url": "https://www.onepiece-cardgame.com/products/op18.html",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/onepiecekadogemu-saito-238e8/",
+      "found_at": "2026-11-06T22:13:07.544232+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/3f0300d3af/": {
+    "d": {
+      "key": "3f0300d3afddacb7",
+      "game": "onepiece",
+      "store": "カードラボ大分店",
+      "product": "ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "start": "2026-11-06T00:00:00+09:00",
+      "end": "2026-11-08T23:59:00+09:00",
+      "method": "X（公式アカウントのフォロー＆ポストのリポスト）",
+      "conditions": "公式アカウントをフォローし、告知ポストをリポストして応募。詳細はHPの注意事項を確認",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://www.c-labo.jp/shop/oita/blog/624013/",
+      "channel": "store",
+      "area": "大分県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/cardlabo-b07af/",
+      "found_at": "2026-11-06T22:13:07.544405+09:00"
     },
     "last": "2026-11-06"
   }

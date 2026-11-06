@@ -3270,6 +3270,17 @@
   "store/amazon-76d96/": {
     "name": "Amazon.co.jp",
     "items": {
+      "8bb032766b6c5244": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "f3fd34fb1df1b73c": {
         "p": "30周年エーフィ・ブラッキーデッキ",
         "g": "pokemon",
@@ -22609,6 +22620,19 @@
   "store/cardlabo-2d314/": {
     "name": "カードラボ熊本店",
     "items": {
+      "17c2d9de3f6720ca": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      },
       "317e00daee6f8e62": {
         "p": "30周年エーフィ・ブラッキーデッキ",
         "g": "pokemon",
@@ -23519,7 +23543,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-08"
       }
     }
   },
@@ -27241,6 +27266,19 @@
         "rq": [
           "X（旧Twitter）のフォロー"
         ]
+      },
+      "d8210fee6ceef4fb": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-06T23:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
       }
     }
   },
@@ -27955,6 +27993,122 @@
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
         "e": "2026-11-09",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tokyootakumode-05e1a/": {
+    "name": "Tokyo Otaku Mode",
+    "items": {
+      "f3ab4985adfccf60": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-10T12:00",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-12"
+      }
+    }
+  },
+  "store/tsutaya-b9a06/": {
+    "name": "ポケモンカードラウンジ（SHIBUYA TSUTAYA 5F）",
+    "items": {
+      "37250785e7e120c6": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-20"
+      }
+    }
+  },
+  "store/furuichi-8874a/": {
+    "name": "古本市場西神戸店",
+    "items": {
+      "0bdff3c162492123": {
+        "p": "世界最強の戦士",
+        "g": "dragonball",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-b6818/": {
+    "name": "富士八幡町店",
+    "items": {
+      "9eca70d6c15d5324": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/onepiecekadogemu-saito-238e8/": {
+    "name": "ONE PIECEカードゲーム公式サイト",
+    "items": {
+      "d4391bea55708d8f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-12",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/cardlabo-b07af/": {
+    "name": "カードラボ大分店",
+    "items": {
+      "3f0300d3afddacb7": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
+      }
+    }
+  },
+  "store/tsutaya-e0433/": {
+    "name": "TSUTAYA TRADING CARD錦糸町店",
+    "items": {
+      "3a8c9b3398b44a21": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
         "f": "2026-11-06",
         "c": "store",
         "m": "Web",
