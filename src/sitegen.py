@@ -1405,6 +1405,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                      sorted(load_json("results.json", {})), ensure_ascii=False))  # 新弾が増えたら公開し直す
     digest = sha(digest + "".join(sorted(f.name + sha(f.read_bytes().decode("latin-1")) for f in (ROOT / "src" / "static").glob("*"))))  # 共通のファイル（規約・確認用ファイルなど）を変えたら公開し直す
     digest = sha(digest + str(load_json("souba.json", {}).get("updated")) + str(load_json("souba.json", {}).get("cards_updated")))  # BOX相場を読み直したら（朝・夜21時ごろ）公開し直す  # 話題ネタが更新されたら下書きページも出し直す
+    digest = sha(digest + now().date().isoformat())  # 日付が変わったら作り直す（今日締切のページ・朝の投稿文のため。11/7）
     changed = meta_state.get("digest") != digest
     force = force or os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"  # 手動で実行した時はいつも作り直して公開
     if not changed and not force and sample is None and out_dir is None:
@@ -1815,6 +1816,14 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             og_t = f"{site}/og/today.png?d={t0:%Y%m%d}"
         except Exception as e:
             print("今日締切の画像を作れませんでした", e)
+        try:  # 朝のX投稿（Xのサイトで予約投稿する）用の文章（11/7）
+            from xpost import compose_today
+            (out / "x").mkdir(exist_ok=True)
+            tdf = [i for i in td if parse_dt(i["end"]) > now()]
+            (out / "x" / "today.json").write_text(json.dumps({"date": t0.date().isoformat(), "n": len(tdf),
+                "text": compose_today(tdf, s) if len(tdf) >= 2 else "", "img": f"/og/today.png?d={t0:%Y%m%d}"}, ensure_ascii=False), encoding="utf-8")
+        except Exception as e:
+            print("今日締切の投稿文を作れませんでした", e)
         h1 = f"今日締切のトレカ抽選（{dlabel}）"
         lead = ("今日が応募締切のポケカ・ワンピースカードなどの抽選です。締切時刻が近い順に並んでいます。"
                 "「☐ 応募した」を押しておくと、締切の3時間前に通知でお知らせすることもできます（応募したリストのページから）。")
@@ -2814,7 +2823,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         (out / rel_).write_text(txt_, encoding="utf-8")
     (out / "_headers").write_text("/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n"
                                   "/sw.js\n  Cache-Control: no-cache\n/push.js\n  Cache-Control: public, max-age=3600\n"
-                                  "/manifest.webmanifest\n  Content-Type: application/manifest+json\n", encoding="utf-8")
+                                  "/manifest.webmanifest\n  Content-Type: application/manifest+json\n"
+                                  "/og/*\n  Access-Control-Allow-Origin: *\n/x/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: no-cache\n", encoding="utf-8")
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
 
