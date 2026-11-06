@@ -15,6 +15,9 @@ jobs:
           B=https://rakuten-watch.supreme-buyer-1991.workers.dev
           echo "== status"; curl -s -m 20 $B/status | head -c 3000; echo
           echo "== push key"; curl -s -m 20 $B/push/key; echo
+          echo "== site"; for p in today/ manifest.webmanifest sw.js push.js icon-512.png mylist/; do echo "$p $(curl -s -o /dev/null -w '%{http_code} %{content_type}' https://tcg-chusen.com/$p)"; done
+          curl -s https://tcg-chusen.com/today/ | grep -o '<title>[^<]*\|manifest.webmanifest\|og:image" content="[^"]*' | head -4
+          curl -s https://tcg-chusen.com/pokeka/special-deck-set-mega/ | grep -o 'og:image" content="[^"]*'
           echo "== push stats"; curl -s -m 20 $B/push/stats; echo
           echo "== push bad sub"; curl -s -m 20 -X POST -H "Content-Type: application/json" -d '{"sub":{"endpoint":"https://evil.example/x"}}' $B/push/sub; echo
           ADMIN=$(printf '%s' "$X_API_KEY$RAKUTEN_APP_ID" | sha256sum | cut -c1-24)
