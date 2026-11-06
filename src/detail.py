@@ -405,8 +405,9 @@ function qn(o){return (/ONE PIECE|ワンピ/.test((o.product||"")+(o.store||""))
 var REL='target="_blank" rel="nofollow sponsored noopener"';
 function offerLose(o){var q=qn(o),sb=null,S=(window.MLCFG||{}).souba||{};for(var k in S){if(o.series&&k.indexOf("|"+o.series)>0){sb=S[k];break}}
  return '<div class="off"><b>抽選には外れても、まだ買えます</b> <span class="pr">PR</span>'+
-  '<a '+REL+' href="'+esc(rk("https://books.rakuten.co.jp/search?sitem="+encodeURIComponent(q)))+'">楽天ブックスで定価の販売・予約をさがす</a>'+
-  '<a '+REL+' href="'+esc(az(q))+'">Amazonで販売・招待リクエストをさがす</a>'+
+  '<small style="flex-basis:100%">在庫はタッチの差で復活することがあるので、こまめにチェックがおすすめです。</small>'+
+  '<a '+REL+' href="'+esc(rk("https://books.rakuten.co.jp/search?sitem="+encodeURIComponent(q)))+'">楽天ブックスの在庫をチェック</a>'+
+  '<a '+REL+' href="'+esc(az(q))+'">Amazonの在庫・招待リクエストをチェック</a>'+
   '<a '+REL+' href="'+esc(rk("https://search.rakuten.co.jp/search/mall/"+encodeURIComponent(q)+"/"))+'">楽天市場でさがす'+(sb?'（相場 ¥'+Number(sb[0]).toLocaleString()+'）':'')+'</a></div>'}
 function offerWin(o){var g=/ONE PIECE|ワンピ/.test((o.product||"")+(o.store||""))?"ONE PIECEカードゲーム ":"ポケモンカードゲーム ";
  return '<div class="off win"><b>🎉 当選おめでとうございます！開封前にそろえたいもの</b> <span class="pr">PR</span>'+

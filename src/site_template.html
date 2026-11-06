@@ -638,6 +638,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
 .anchor .an-st { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; } .anchor .an-st a { font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
 .b-rakb { background: #bf0000; color: #fff !important; }
 .thumb { position: relative; } .th-pr { position: absolute; right: 2px; bottom: 2px; font-size: 9px; line-height: 1; padding: 2px 3px; border-radius: 3px; background: rgba(0,0,0,.6); color: #fff; }
+.anchor .an-re { flex-basis: 100%; margin: 0; font-size: 12.5px; color: var(--ink-2); }
 </style>
 
 <header class="top">
@@ -898,7 +899,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     if (!list.length) return "";
     var one = function (x) {
       var img = '<img src="' + esc(x.src) + '" alt="' + alt + '" loading="lazy">';
-      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="th-pr">楽天 PR</span></a>'
+      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '</a>'
         : '<div class="thumb">' + img + '</div>';
     };
     // 複数の商品の抽選は、4枚までを2×2で並べる

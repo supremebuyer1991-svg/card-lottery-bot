@@ -1005,15 +1005,15 @@ def _after_lose_ad(x, name, sm, tag, aff, invite_url=None, game=None):
     rows = _stock_rows(game, x, aff, "after_lose") if game else []
     if invite_url:
         rows.append(("Amazon 招待リクエスト", "無料で申し込んで、招待が届いたら定価で買えます", invite_url, "リクエストする", "amz"))
-    rows.append(("楽天ブックス", "定価での予約・販売が出ることがあります", _rakb(q, aff), "楽天ブックスで見る", "rakb"))
+    rows.append(("楽天ブックス", "売り切れでも、キャンセル分などで在庫が復活することがあります", _rakb(q, aff), "在庫をチェック", "rakb"))
     if tag:
-        rows.append(("Amazon", "Amazon.co.jp 本体の販売・招待制販売をさがす", _amz(q, tag), "Amazonで見る", "amz"))
+        rows.append(("Amazon", "Amazon.co.jp 本体の販売・招待リクエストが急に始まることがあります", _amz(q, tag), "在庫をチェック", "amz"))
     rows.append(("通販でさがす", (f"いまの相場は {_yen(sm['price'])}（スニダン {_md(sm['date'])}）" if sm else "楽天市場のショップをまとめて検索"),
                  _rak(q, aff), "楽天市場でさがす", "rak"))
     li = "".join(f'<li><div><b>{escape(t)}</b><small>{escape(sub)}</small></div><a class="b-{c}" href="{escape(u)}" {_REL} data-pl="after_lose">{escape(btn)}</a></li>'
                  for t, sub, u, btn, c in rows)
     return (f'<aside class="ad lose"><div class="ad-top"><span>抽選には外れても、まだ買えます</span>{PR_B}</div>'
-            f'<p class="lose-sub">「{escape(x)}」をいま手に入れる方法</p><ul class="lose-l">{li}</ul>'
+            f'<p class="lose-sub">「{escape(x)}」をいま手に入れる方法。<b>在庫はタッチの差で復活することがあるので、こまめにチェックがおすすめです。</b></p><ul class="lose-l">{li}</ul>'
             '<p class="ad-note">楽天・Amazonへのリンクは広告です。在庫・価格はリンク先で確認してください。</p></aside>')
 
 
@@ -1026,7 +1026,8 @@ def _price_anchor(x, name, sm, tag, aff, release="", game=None):
     q = f"{name} {x}"
     pre = bool(release) and str(release) > now().date().isoformat()
     return (f'<div class="anchor"><div class="an-p"><span>定価 <b>{_yen(sm["teika"])}</b></span><span>相場 <b>{_yen(sm["price"])}</b></span></div>'
-            + (f'<div class="an-st">{st_html}</div>' if st_html else "") +
+            + (f'<div class="an-st">{st_html}</div>' if st_html else
+               '<p class="an-re">🔄 売り切れでも、キャンセル分などで<b>在庫がすぐ復活する</b>ことがあります。こまめにチェックしてみてください。</p>') +
             f'<div class="an-b"><a class="b-rak" href="{escape(_rakb(q, aff))}" {_REL} data-pl="souba_anchor">{"定価で予約できる店（楽天ブックス）" if pre else "定価で買える店をさがす（楽天ブックス）"}</a>'
             + (f'<a class="b-amz" href="{escape(_amz(q, tag))}" {_REL} data-pl="souba_anchor">Amazonで見る</a>' if tag else "") + f'{PR_B}</div></div>')
 
