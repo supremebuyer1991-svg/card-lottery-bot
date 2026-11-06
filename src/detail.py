@@ -225,11 +225,14 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     # 同じお店・同じ弾で中身だけ違う商品（御三家カードセットの各組み合わせなど）は、カッコの中身もタイトルに入れて区別する（11/3 タイトル重複の対策）
     _v = re.search(r"（([^（）]{2,30})）\s*$", i.get("product") or "")
     tname = name + (f"（{_v.group(1)}）" if _v and _v.group(1) not in name and not re.search(r"円|税込|BOX|名様|抽選|お一人|1人|まで|送料", _v.group(1)) else "")
-    title = f"{store}の{gshort}抽選「{tname}」" + (f"【{end_s}締切】" if end_s else "") + "｜トレカ抽選ナビ"
+    store_t = re.sub(r"\s*[（(][^）)]*[）)]", "", store).strip() or store  # タイトルはカッコ書きを省いて短く（本文はそのまま。11/7 Fable）
+    title = f"{store_t}の{gshort}抽選「{tname}」" + (f"【{end_s}締切】" if end_s else "") + "｜トレカ抽選ナビ"
     desc = (f"{store}で受付中の{gshort}の抽選販売「{name}」。" + ((f"応募期間 {start_s}〜{end_s}。" if start_s else f"応募締切 {end_s}。") if end_s else "") +
             "応募方法・応募条件・対象商品・当選発表日をまとめています。")
     if is_end:
-        desc = f"{store}の{gshort}の抽選「{name}」は受付を終了しました。いま受付中の抽選は一覧からさがせます。"
+        title = f"【受付終了】{store_t}の{gshort}抽選「{tname}」" + (f"（{end_s}締切）" if end_s else "") + "｜トレカ抽選ナビ"
+        desc = (f"{store}の{gshort}の抽選「{name}」は受付を終了しました。" +
+                (f"{next_link[0].replace('を見る', '')}。" if next_link else "いま受付中の抽選は一覧からさがせます。"))
 
     rows = []
 

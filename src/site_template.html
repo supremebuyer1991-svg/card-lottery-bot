@@ -561,6 +561,8 @@ input[type="search"] { flex: 1 1 160px; }
 
 /* ヘッダーのメニューボタンとシート */
 .brand-r { display: flex; align-items: center; gap: 10px; }
+.lead-sum { margin: 4px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+.lead-sum:empty { display: none; }
 #updated { margin: 0; font-family: var(--font-num); font-size: 12px; color: var(--ink-2); }
 #updated::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--done); margin-right: 6px; vertical-align: 1px; }
 .menu-btn { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: var(--card);
@@ -661,7 +663,8 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   <section class="lead">
     __CRUMBS__
     <h1>__H1__</h1>
-    <p id="updated"></p>
+    <p id="updated">__UPDATED__</p>
+    <p class="lead-sum">__SUMSHORT__</p>
     __AFF__
   </section>
   <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
@@ -696,6 +699,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   </section>
   <div class="sortbar"><span id="list-n"></span><label class="sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label></div>
   <div class="list" id="list">__PRERENDER__</div>
+  __SUPPLY_BOTTOM__
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
   <section class="about" aria-label="このページについて">
