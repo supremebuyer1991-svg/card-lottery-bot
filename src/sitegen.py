@@ -2466,6 +2466,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
     inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
+    inject_linkswitch(out, s.get("vc_linkswitch_pid"))  # バリューコマースのLinkSwitch（提携先への普通のリンクを自動でアフィリンクに）
 
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
@@ -2565,6 +2566,25 @@ def inject_ga(out, ga_id):
         if "</footer>" in h:
             h = h.replace("</footer>", f'<p class="ga-note">{GA_NOTE}</p></footer>', 1)
         p.write_text(h, encoding="utf-8")
+        n += 1
+    return n
+
+
+def inject_linkswitch(out, pid):
+    """全ページの <head> にバリューコマースの LinkSwitch のタグを入れる（11/7 ユーザーから受け取ったタグ）"""
+    pid = str(pid or "").strip()
+    if not pid.isdigit():
+        return 0
+    tag = (f'<script>var vc_pid = "{pid}";</script>'
+           '<script src="//aml.valuecommerce.com/vcdal.js" async></script>')
+    n = 0
+    for p in Path(out).rglob("*.html"):
+        if p.name in GA_SKIP:
+            continue
+        h = p.read_text(encoding="utf-8")
+        if "vcdal.js" in h or "</head>" not in h:
+            continue
+        p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
 

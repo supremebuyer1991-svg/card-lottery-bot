@@ -36,6 +36,7 @@ summary_hours: []           # 自動のまとめ投稿（リンク付き・1件�
 
 site_public_url: "https://tcg-chusen.com"   # サイトのアドレス（独自ドメイン）。楽天だけは登録済みの pages.dev のまま
 ga_id: "G-ZEXV2PQSN2"
+vc_linkswitch_pid: "886504249"  # バリューコマース LinkSwitch（トレカ抽選ナビ用）
 x_account: pokepi_tcg            # サイト上部の「Xをフォロー」のボタン
 line_openchat_url: "https://line.me/ti/g2/pEYFxwCG2s2CjX22pI9ga6aE9MfNBLEwOE3taA"   # 【ポケモン&ワンピース】トレカ販売情報ナビ（サイト上部にボタン）   # Googleアナリティクスの測定ID（全ページにタグを入れる）
 line_rooms:                      # 地域ごとのLINEオープンチャット（都道府県ページ・店頭抽選のページに案内が出る。空の地域は「準備中」）
