@@ -182,7 +182,7 @@ T = {
         "release": "JP release", "msrp": "MSRP", "price": "Japan price", "x": "vs MSRP", "chg": "30d", "trend": "90-day trend",
         "us": "US (TCGplayer)", "set": "Set", "card": "Card", "upcoming": "Upcoming Japanese releases",
         "movers": "Japanese booster box prices", "hot": "Most expensive Japanese cards right now", "more": "See all",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set", "ln_jp": "Japanese box in Japan", "ln_us": "Japanese box in the US", "ln_en": "English version", "etb": "Elite Trainer Box", "chart": "Price chart: Japan vs US vs English version", "chart_note": "All lines converted to {unit} at today's exchange rate. Japan = SNKRDUNK sold prices; US and English version = TCGplayer market price.", "set_title": "{name} ({code}) Japanese Booster Box Price & Chart", "set_h1": "{name} ({code}) Japanese Box Price", "set_desc": "{name} {code} Japanese booster box price in Japan: {jp} ({local}), MSRP {msrp}. Chart comparing the Japan price, the US price of the Japanese box and the English version.", "no_local": "", "jprel": "🇯🇵 Japan", "enrel": "🇺🇸 English", "twrel": "", "krrel": "", "tba": "TBA",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set", "ln_jp": "Japanese box in Japan", "ln_us": "Japanese box in the US", "ln_en": "English version", "ln_kr": "Korean version (Korea)", "ln_tw": "Chinese (TW/HK) version", "etb": "Elite Trainer Box", "chart": "Price chart: Japan vs US vs English, Korean & Chinese versions", "chart_note": "All lines converted to {unit} at today's exchange rate. Japan = SNKRDUNK sold prices; US and English version = TCGplayer market price; Korean version = lowest prices at Korean shops (Naver Shopping); Chinese version = eBay listings.", "set_title": "{name} ({code}) Japanese Booster Box Price & Chart", "set_h1": "{name} ({code}) Japanese Box Price", "set_desc": "{name} {code} Japanese booster box price in Japan: {jp} ({local}), MSRP {msrp}. Chart comparing the Japan price, the US price of the Japanese box and the English version.", "no_local": "", "jprel": "🇯🇵 Japan", "enrel": "🇺🇸 English", "twrel": "", "krrel": "", "tba": "TBA",
         "local": "", "sources": "Sources & notes",
         "src": "Japan prices are the latest sold prices of sealed boxes and ungraded single cards on SNKRDUNK, a major Japanese marketplace (not asking prices). Release dates and MSRP come from the official Japanese Pokémon Card Game and ONE PIECE Card Game websites. Exchange rate: $1 = ¥{fx} ({fxd}); converted prices are approximate.",
         "names": "Set names: the Japanese set's English name and code are shown first; \"English set\" is the international English-language release with the same cards where one exists.",
@@ -194,7 +194,7 @@ T = {
         "release": "日版發售", "msrp": "建議售價", "price": "日本市價", "x": "定價倍數", "chg": "30日", "trend": "90日走勢",
         "us": "美國（TCGplayer）", "set": "系列", "card": "單卡", "upcoming": "即將發售的日版新彈",
         "movers": "日版卡盒（補充包盒）價格", "hot": "日本目前最貴的單卡", "more": "看全部",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版", "ln_jp": "日版・日本市價", "ln_us": "日版・美國市價", "ln_en": "英文版", "etb": "訓練家寶箱", "chart": "價格走勢：日本 vs 美國 vs 英文版", "chart_note": "所有線條以今天的匯率換算成{unit}。日本＝SNKRDUNK成交價；美國與英文版＝TCGplayer市價。", "set_title": "{name}（{code}）日版卡盒價格・走勢圖", "set_h1": "{name}（{code}）日版卡盒價格", "set_desc": "{name} {code} 日版卡盒日本市價{jp}（{local}），建議售價{msrp}。比較日本市價、美國的日版價格與英文版價格的走勢圖。", "no_local": "繁中版卡盒的價格目前沒有可靠的公開資料來源，找到後會加入圖表。", "jprel": "🇯🇵 日版", "enrel": "🇺🇸 英文版", "twrel": "🇹🇼 繁中版", "krrel": "", "tba": "未公布",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版", "ln_jp": "日版・日本市價", "ln_us": "日版・美國市價", "ln_en": "英文版", "ln_kr": "韓文版（韓國）", "ln_tw": "繁中版", "etb": "訓練家寶箱", "chart": "價格走勢：日版 vs 英文版 vs 韓文版 vs 繁中版", "chart_note": "所有線條以今天的匯率換算成{unit}。日本＝SNKRDUNK成交價；美國與英文版＝TCGplayer市價；韓文版＝韓國商店售價（Naver購物）；繁中版＝eBay刊登價。", "set_title": "{name}（{code}）日版卡盒價格・走勢圖", "set_h1": "{name}（{code}）日版卡盒價格", "set_desc": "{name} {code} 日版卡盒日本市價{jp}（{local}），建議售價{msrp}。比較日本市價、美國的日版價格與英文版價格的走勢圖。", "no_local": "繁中版的價格取自eBay的刊登價，台灣當地的價格可能不同。資料從2026年11月起每天累積。", "jprel": "🇯🇵 日版", "enrel": "🇺🇸 英文版", "twrel": "🇹🇼 繁中版", "krrel": "", "tba": "未公布",
         "local": "繁中版", "sources": "資料來源與說明",
         "src": "日本市價為日本大型交易平台 SNKRDUNK 上未拆封卡盒與未鑑定單卡的最新成交價（非掛牌價）。發售日與建議售價來自日本寶可夢卡牌與航海王卡牌官方網站。匯率：1美元＝{fx}日圓（{fxd}），換算金額僅供參考。",
         "names": "系列名稱：先列出日版的英文名稱與系列代碼，「繁中版」為台灣・香港發售的官方中文名稱，「英文版」為收錄相同卡片的國際英文版系列（若有）。",
@@ -206,7 +206,7 @@ T = {
         "release": "일본 발매", "msrp": "정가", "price": "일본 시세", "x": "정가 대비", "chg": "30일", "trend": "90일 추이",
         "us": "미국 (TCGplayer)", "set": "세트", "card": "카드", "upcoming": "곧 발매되는 일판 신규 세트",
         "movers": "일판 부스터 박스 시세", "hot": "지금 일본에서 가장 비싼 카드", "more": "전체 보기",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판", "ln_jp": "일판 일본 시세", "ln_us": "일판 미국 시세", "ln_en": "영문판 시세", "etb": "엘리트 트레이너 박스", "chart": "시세 차트: 일본 vs 미국 vs 영문판", "chart_note": "모든 선은 오늘 환율로 {unit} 환산. 일본=SNKRDUNK 실거래가, 미국・영문판=TCGplayer 시세.", "set_title": "{name} ({code}) 일판 박스 시세 차트", "set_h1": "{name} ({code}) 일판 박스 시세", "set_desc": "{name} {code} 일판 박스 일본 시세 {jp}({local}), 정가 {msrp}. 일본 시세・미국 일판 시세・영문판 시세 비교 차트.", "no_local": "한글판 박스 시세는 현재 믿을 수 있는 공개 데이터가 없어, 찾는 대로 차트에 추가하겠습니다.", "jprel": "🇯🇵 일판", "enrel": "🇺🇸 영문판", "twrel": "", "krrel": "🇰🇷 한글판", "tba": "미정",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판", "ln_jp": "일판 일본 시세", "ln_us": "일판 미국 시세", "ln_en": "영문판 시세", "ln_kr": "한글판 국내 시세", "ln_tw": "중문판(대만) 시세", "etb": "엘리트 트레이너 박스", "chart": "시세 차트: 일판 vs 한글판 vs 영문판 vs 중문판", "chart_note": "모든 선은 오늘 환율로 {unit} 환산. 일본=SNKRDUNK 실거래가, 미국・영문판=TCGplayer 시세, 한글판=국내 쇼핑몰 최저가(네이버쇼핑), 중문판=eBay 판매가.", "set_title": "{name} ({code}) 일판 박스 시세 차트", "set_h1": "{name} ({code}) 일판 박스 시세", "set_desc": "{name} {code} 일판 박스 일본 시세 {jp}({local}), 정가 {msrp}. 일본 시세・미국 일판 시세・영문판 시세 비교 차트.", "no_local": "한글판 시세는 네이버쇼핑 국내 쇼핑몰의 판매가 기준이며, 2026년 11월부터 매일 쌓아 갑니다.", "jprel": "🇯🇵 일판", "enrel": "🇺🇸 영문판", "twrel": "", "krrel": "🇰🇷 한글판", "tba": "미정",
         "local": "한글판", "sources": "출처 및 안내",
         "src": "일본 시세는 일본 대형 거래 플랫폼 SNKRDUNK(스니덩)에서 미개봉 박스와 미감정 싱글 카드가 실제로 거래된 최근 가격입니다(호가 아님). 발매일과 정가는 일본 포켓몬 카드 게임・원피스 카드 게임 공식 사이트 기준입니다. 환율: 1달러 = {fx}엔({fxd}), 환산 금액은 참고용입니다.",
         "names": "세트 이름: 일판의 영어 이름과 세트 코드를 먼저 표시하고, '한글판'은 한국 정식 발매명, '영문판'은 같은 카드가 수록된 해외 영문판 세트입니다(있는 경우).",
@@ -514,7 +514,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                      "us": us, "rel": rel, "jpser": v.get("jp") or {}, "usser": v.get("us") or {},
                      # ワンピースの tcg は英語版のBOX（souba.yaml の説明どおり）なので、英語版として扱う
                      "enser": v.get("en") or (v.get("us") if g == "onepiece" else None) or {},
-                     "en_kind": v.get("en_kind") or "box"})
+                     "en_kind": v.get("en_kind") or "box", "krser": v.get("kr") or {}, "twser": v.get("tw") or {}})
     rows.sort(key=lambda r: (r["rel"] or "0000"), reverse=True)
 
     cards = []
@@ -607,6 +607,10 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         if r["enser"]:
             lines.append((t["ln_en"] + ("" if r["en_kind"] == "box" else f' ({t["etb"]})'), "#16a34a",
                           {d: to_cur(L, v * fx)[0] for d, v in r["enser"].items()}))
+        if r["krser"] and jpy_per.get("KRW"):
+            lines.append((t["ln_kr"], "#f59e0b", {d: to_cur(L, v * jpy_per["KRW"])[0] for d, v in r["krser"].items()}))
+        if r["twser"]:
+            lines.append((t["ln_tw"], "#8b5cf6", {d: to_cur(L, v * fx)[0] for d, v in r["twser"].items()}))
         unit = to_cur(L, 1)[1]
         alld = sorted({d for _, _, m in lines for d in m})
         if not alld:
@@ -667,6 +671,12 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             stats.append((t["ln_us"], f'${us_now:,.0f}', ""))
         if en_now:
             stats.append((t["ln_en"], f'${en_now:,.0f}', "" if r["en_kind"] == "box" else t["etb"]))
+        kr_now, _ = _last(r["krser"])
+        if kr_now:
+            stats.append((t["ln_kr"], (f'{kr_now / 10000:,.1f}만원' if L == "ko" else f'₩{kr_now:,.0f}'), ""))
+        tw_now, _ = _last(r["twser"])
+        if tw_now:
+            stats.append((t["ln_tw"], f'${tw_now:,.0f}', "eBay"))
         st_html = "".join(f'<div class="stat"><small>{escape(a)}</small><b>{b}</b><span>{escape(c)}</span></div>' for a, b, c in stats)
         body = (f'<div class="card">{top}<span class="jp">{escape(sub)}</span>{rel_line(L, g, x, t, r["rel"])}{buy_btns(g, x, t)}</div>'
                 f'<div class="stats">{st_html}</div><h2>{escape(t["chart"])}</h2>{chart_svg(L, t, r)}'

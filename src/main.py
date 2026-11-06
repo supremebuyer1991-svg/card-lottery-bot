@@ -95,6 +95,11 @@ def main():
         except Exception as e:
             log(f"BOX相場: スキップ {e}")
         try:
+            from intl_prices import update_local_prices
+            update_local_prices(s)  # 海外向けページ：韓国版（NAVER）・台湾版（eBay）のBOXの値段（1日1回・公式API）
+        except Exception as e:
+            log(f"韓国版・台湾版の相場: スキップ {e}")
+        try:
             from souba import update_cards
             update_cards(s)  # 弾ごとの主要カードの相場（スニダン・1日1回・少しずつ）と楽天の写真
         except Exception as e:
