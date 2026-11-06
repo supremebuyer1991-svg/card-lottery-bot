@@ -6580,22 +6580,26 @@
   "store/bookoff-de077/": {
     "name": "ブックオフ東大和仲原店",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "東京都"
   },
   "store/toreka-girafullnanba-96966/": {
     "name": "トレカ専門店GIRAFULLなんば店（ビル一棟）",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "大阪府"
   },
   "store/toreka-girafull-3b6e4/": {
     "name": "トレカ専門店GIRAFULL京都店（ジラフル京都店）",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "京都府"
   },
   "store/girafullotarodo-08e4e/": {
     "name": "GIRAFULLオタロード店（ジラフルオタロード店）",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "大阪府"
   },
   "store/toukyuu-c8baa/": {
     "name": "文教堂湘南とうきゅう店",
@@ -6796,6 +6800,12 @@
     "game": "onepiece",
     "area": "千葉県"
   },
+  "store/gemuaku-4ef32/": {
+    "name": "ゲームアーク/ 宝島",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6806,12 +6816,6 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-06",
     "game": "onepiece",
-    "keep": true
-  },
-  "store/gemuaku-4ef32/": {
-    "name": "ゲームアーク/ 宝島",
-    "last": "2026-11-06",
-    "game": "pokemon",
     "keep": true
   }
 }
