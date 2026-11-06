@@ -2470,7 +2470,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
     inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
-    inject_linkswitch(out, s.get("vc_linkswitch_pid"))  # バリューコマースのLinkSwitch（提携先への普通のリンクを自動でアフィリンクに）
+    inject_linkswitch(out, s.get("vc_linkswitch_pid"))
+    inject_meta(out, "naver-site-verification", s.get("naver_site_verification"))  # NAVERサーチアドバイザーの確認（トップページで確認される）  # バリューコマースのLinkSwitch（提携先への普通のリンクを自動でアフィリンクに）
 
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
@@ -2589,6 +2590,21 @@ def inject_linkswitch(out, pid):
         if "</head>" not in h:
             continue
         h = re.sub(r'<script>var vc_pid = "\d+";</script><script src="//aml\.valuecommerce\.com/vcdal\.js" async></script>', "", h)  # 古いIDのタグは入れ替える
+        p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
+        n += 1
+    return n
+
+
+def inject_meta(out, name, value):
+    """全ページの <head> に <meta name=… content=…> を入れる（検索エンジンの確認コードなど）"""
+    value = str(value or "").strip()
+    if not value:
+        return 0
+    tag, n = f'<meta name="{name}" content="{escape(value)}">', 0
+    for p in Path(out).rglob("*.html"):
+        h = p.read_text(encoding="utf-8")
+        if f'name="{name}"' in h or "</head>" not in h:
+            continue
         p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
