@@ -1,7 +1,7 @@
 """海外向けページのチャート用：韓国版・台湾（繁体字）版のBOXの値段を、公式のAPIで1日1回記録する（11/7）
-- 韓国版：NAVERショッピングの公式検索API（Client ID/Secret が必要。1日25,000回まで無料）→ 韓国のショップの値段（ウォン）
-- 台湾版：eBayの公式 Browse API（App ID/Cert ID が必要）→ 繁体字版BOXの出品価格（ドル）
-どちらも「今の値段」しか取れないので、毎日の値を souba.json に足していく（rec["kr"]：ウォン、rec["tw"]：ドル）。
+- 韓国版・台湾版とも：eBayの公式 Browse API（App ID/Cert ID が必要）→ 韓国語版・繁体字版BOXの出品価格（ドル）
+  （NAVERショッピングの検索APIは 2026/7/31 で終了していて代わりもないため、韓国版もeBayで取る）
+「今の値段」しか取れないので、毎日の値を souba.json に足していく（rec["kr"]・rec["tw"]：どちらもドル）。
 規約で自動取得を禁止しているサイト（KREAM・蝦皮・露天など）は使わない。
 """
 import os
@@ -34,31 +34,6 @@ def _pick(prices):
     return round(statistics.median(lo), 2)
 
 
-def naver_kr(sess, name_ko):
-    """NAVERショッピングで韓国版のBOXを探して、値段（ウォン）を1つ返す"""
-    cid, sec = os.environ.get("NAVER_CLIENT_ID"), os.environ.get("NAVER_CLIENT_SECRET")
-    if not (cid and sec):
-        return None
-    q = f"포켓몬카드 {name_ko} 박스"
-    r = sess.get("https://openapi.naver.com/v1/search/shop.json", params={"query": q, "display": 50, "sort": "sim"},
-                 headers={"X-Naver-Client-Id": cid, "X-Naver-Client-Secret": sec}, timeout=20)
-    r.raise_for_status()
-    key = _norm(name_ko)
-    out = []
-    for it in r.json().get("items") or []:
-        t = _clean(it.get("title"))
-        tn = _norm(t)
-        if key not in tn or not re.search(r"박스|box", tn):
-            continue
-        if re.search(r"일본|일판|일어|영문|북미|영어|카톤|낱팩|1팩|슬리브|파일|바인더|중고|케이스|미니", t):
-            continue
-        try:
-            out.append(float(it.get("lprice") or 0))
-        except ValueError:
-            pass
-    return _pick(out)
-
-
 _EBAY_TOKEN = {}
 
 
@@ -76,22 +51,28 @@ def _ebay_token(sess):
     return _EBAY_TOKEN["v"]
 
 
-def ebay_tw(sess, code):
-    """eBayで繁体字版（台湾・香港版）のBOXの出品価格（ドル）。弾コード＋F（例 M4F）で探す"""
+def ebay_local(sess, code, lang, name_en=""):
+    """eBayで韓国語版（lang="kr"）・繁体字版（lang="tw"）のBOXの出品価格（ドル）"""
     tok = _ebay_token(sess)
     if not (tok and code):
         return None
     c = code.upper()
+    if lang == "tw":
+        q, must, code_re = f"pokemon {c}F booster box chinese", r"chinese|中文|繁", rf"\b{re.escape(c)}F?\b"
+        bad = r"japanese|korean|english|simplified|\bCSV"
+    else:
+        q, must, code_re = f"pokemon korean {name_en or c} booster box", r"korean|한글|한국", rf"\b{re.escape(c)}\b|{re.escape(name_en)}" if name_en else rf"\b{re.escape(c)}\b"
+        bad = r"japanese|chinese|english|\bjp\b"
     r = sess.get("https://api.ebay.com/buy/browse/v1/item_summary/search", timeout=20,
-                 params={"q": f"pokemon {c}F booster box chinese", "limit": 50, "filter": "buyingOptions:{FIXED_PRICE},conditions:{NEW}"},
+                 params={"q": q, "limit": 50, "filter": "buyingOptions:{FIXED_PRICE},conditions:{NEW}"},
                  headers={"Authorization": f"Bearer {tok}", "X-EBAY-C-MARKETPLACE-ID": "EBAY_US"})
     r.raise_for_status()
     out = []
     for it in r.json().get("itemSummaries") or []:
         t = it.get("title") or ""
-        if not re.search(rf"\b{re.escape(c)}F\b", t, re.I) or not re.search(r"chinese|中文|繁", t, re.I):
+        if not re.search(code_re, t, re.I) or not re.search(must, t, re.I) or not re.search(r"box", t, re.I):
             continue
-        if re.search(r"case|pack only|single pack|sleeve|japanese|korean|english|simplified|\bCSV|\b\d+\s*box(es)?\b", t, re.I):
+        if re.search(bad, t, re.I) or re.search(r"case|pack only|single pack|sleeve|\b\d+\s*box(es)?\b|empty", t, re.I):
             continue
         try:
             out.append(float((it.get("price") or {}).get("value") or 0))
@@ -102,8 +83,7 @@ def ebay_tw(sess, code):
 
 def update_local_prices(settings, sess=None):
     """1日1回：韓国版・台湾版の値段を記録する（キーがなければ何もしない）"""
-    has_kr = bool(os.environ.get("NAVER_CLIENT_ID") and os.environ.get("NAVER_CLIENT_SECRET"))
-    has_tw = bool(os.environ.get("EBAY_APP_ID") and os.environ.get("EBAY_CERT_ID"))
+    has_tw = has_kr = bool(os.environ.get("EBAY_APP_ID") and os.environ.get("EBAY_CERT_ID"))
     if not (has_kr or has_tw):
         return
     data = load_json("souba.json", {})
@@ -118,19 +98,19 @@ def update_local_prices(settings, sess=None):
         g, x = key.split("|", 1)
         if g != "pokemon":
             continue
-        code, _en, _ctp, zh, ko = intl.set_info(g, x)
-        if has_kr and ko:
+        code, en, _ctp, zh, ko = intl.set_info(g, x)
+        if has_kr and ko and code:
             try:
-                v = naver_kr(sess, ko)
+                v = ebay_local(sess, code, "kr", en)
                 if v:
                     rec["kr"] = {**(rec.get("kr") or {}), today: v}
                     n_kr += 1
             except Exception as e:
-                log(f"韓国版の相場（NAVER）: {x} 取得失敗 {e}")
+                log(f"韓国版の相場（eBay）: {x} 取得失敗 {e}")
             time.sleep(0.3)
         if has_tw and zh and code:
             try:
-                v = ebay_tw(sess, code)
+                v = ebay_local(sess, code, "tw")
                 if v:
                     rec["tw"] = {**(rec.get("tw") or {}), today: v}
                     n_tw += 1
