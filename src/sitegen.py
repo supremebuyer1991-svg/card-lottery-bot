@@ -1029,7 +1029,7 @@ def _price_anchor(x, name, sm, tag, aff, release="", game=None):
             + (f'<div class="an-st">{st_html}</div>' if st_html else
                '<p class="an-re">🔄 売り切れでも、キャンセル分などで<b>在庫がすぐ復活する</b>ことがあります。こまめにチェックしてみてください。</p>') +
             f'<div class="an-b"><a class="b-rak" href="{escape(_rakb(q, aff))}" {_REL} data-pl="souba_anchor">{"定価で予約できる店（楽天ブックス）" if pre else "定価で買える店をさがす（楽天ブックス）"}</a>'
-            + (f'<a class="b-amz" href="{escape(_amz(q, tag))}" {_REL} data-pl="souba_anchor">Amazonで見る</a>' if tag else "") + f'{PR_B}</div></div>')
+            + (f'<a class="b-amz" href="{escape(_amz(q, tag))}" {_REL} data-pl="souba_anchor">Amazonで見る</a>' if tag else "") + '</div></div>')
 
 
 # サプライのアイコン（自作の簡単な図形）
