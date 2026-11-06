@@ -4013,6 +4013,17 @@
         "mem": "card",
         "rq": []
       },
+      "501a53b80d7a3b31": {
+        "p": "ワンピースカードゲーム エクストラブースター（再販2）",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9808fa4dee1de492": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -4193,6 +4204,17 @@
   "store/tsutaya-15dfb/": {
     "name": "TSUTAYA BOOK STORE島原店",
     "items": {
+      "f44e8adc128e90f6": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "32a850e6204058e9": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -6037,6 +6059,17 @@
   "store/cardbox-2efe8/": {
     "name": "カードボックス船橋駅前店",
     "items": {
+      "fe142b9808e13f84": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "6fb4dd60be375bb3": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -15079,6 +15112,17 @@
   "store/tsutaya-b7cb6/": {
     "name": "TSUTAYA伊那店",
     "items": {
+      "317cc37cc3b75fd1": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "8b76468aba3f40a0": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -15703,6 +15747,17 @@
   "store/shop-1bc80/": {
     "name": "北国書林松任店",
     "items": {
+      "0348f90025ca2808": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T22:30",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "02d5f2a71b54132e": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -26126,6 +26181,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "31f07f4014990938": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:30",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -27057,6 +27123,17 @@
         "id": true,
         "mem": "account",
         "rq": []
+      },
+      "81f3597f9446f8ce": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -27228,6 +27305,151 @@
         "m": "店頭",
         "id": true,
         "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-e2582/": {
+    "name": "ふるいち ららぽーと富士見店",
+    "items": {
+      "bdfea1640e884638": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-e63d7/": {
+    "name": "フルコンプ（八王子本店・札幌駅前店・新宿南口店・立川南口店・吉祥寺店・町田店・大阪日本橋店・仙台駅前店・福岡天神店）",
+    "items": {
+      "3ca65c92da3c6f05": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-10"
+      }
+    }
+  },
+  "store/bukkumaketto-omochanobanbi-d82b9/": {
+    "name": "ブックマーケット上飯野店 / おもちゃのバンビ",
+    "items": {
+      "6c8790fcfe149bbe": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-e17ff/": {
+    "name": "ふるいちイオンモール甲府昭和店",
+    "items": {
+      "9d49bb1a8cc6b2b6": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/kadoshoppuoribu-e3781/": {
+    "name": "カードショップ オリーブ（岐阜県多治見市）",
+    "items": {
+      "bc717376981c4f89": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/shop-14138/": {
+    "name": "上野(東京)",
+    "items": {
+      "df0075240d80ad68": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/akebono-709f0/": {
+    "name": "あけぼの(宮城)",
+    "items": {
+      "c9ef74e3101672d4": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-50c02/": {
+    "name": "錦糸町(東京)",
+    "items": {
+      "92ee0b0f296eecec": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-bba57/": {
+    "name": "金沢(石川)",
+    "items": {
+      "0fa051fef1622ee3": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }

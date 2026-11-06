@@ -2707,9 +2707,10 @@
   },
   "store/cardbox-2efe8/": {
     "name": "カードボックス船橋駅前店",
-    "last": "2026-10-26",
+    "last": "2026-11-06",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "千葉県"
   },
   "store/tokiwa-sukuea-17dcd/": {
     "name": "ときわ書房 本八幡スクエア店",
@@ -3521,7 +3522,7 @@
   },
   "store/tsutaya-b7cb6/": {
     "name": "TSUTAYA伊那店",
-    "last": "2026-11-04",
+    "last": "2026-11-06",
     "game": "onepiece",
     "area": "長野県"
   },
@@ -6757,7 +6758,7 @@
     "area": "広島県"
   },
   "store/furuichi-f8671/": {
-    "name": "古本市場与野本町店",
+    "name": "古本市場 与野本町店",
     "last": "2026-11-06",
     "game": "pokemon",
     "area": "埼玉県"
@@ -6817,6 +6818,35 @@
     "last": "2026-11-06",
     "game": "pokemon"
   },
+  "store/furuichi-e2582/": {
+    "name": "ふるいち ららぽーと富士見店",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/furukonpu-e63d7/": {
+    "name": "フルコンプ（八王子本店・札幌駅前店・新宿南口店・立川南口店・吉祥寺店・町田店・大阪日本橋店・仙台駅前店・福岡天神店）",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/bukkumaketto-omochanobanbi-d82b9/": {
+    "name": "ブックマーケット上飯野店 / おもちゃのバンビ",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "富山県"
+  },
+  "store/aeon-e17ff/": {
+    "name": "ふるいちイオンモール甲府昭和店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "山梨県"
+  },
+  "store/kadoshoppuoribu-e3781/": {
+    "name": "カードショップ オリーブ（岐阜県多治見市）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "岐阜県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6827,6 +6857,30 @@
     "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-06",
     "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-14138/": {
+    "name": "上野(東京)",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/akebono-709f0/": {
+    "name": "あけぼの(宮城)",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-50c02/": {
+    "name": "錦糸町(東京)",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-bba57/": {
+    "name": "金沢(石川)",
+    "last": "2026-11-06",
+    "game": "pokemon",
     "keep": true
   }
 }
