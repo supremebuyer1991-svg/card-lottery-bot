@@ -130,6 +130,30 @@ SETS = {
     },
 }
 
+# 各国の発売日（調べて確かめられたものだけ。11/7）。en＝英語版（対応する弾）、tw＝台湾・香港の繁体字版、kr＝韓国版
+LOCAL_REL = {
+    "pokemon": {
+        "ハドウシーカー": {"en": "2027-02-05"},
+        "30th CELEBRATION": {"en": "2026-09-16"},
+        "ストームエメラルダ": {"en": "2026-11-06", "tw": "2026-08-07", "kr": "2026-08-21"},
+        "アビスアイ": {"en": "2026-07-17", "tw": "2026-06-05"},
+        "ニンジャスピナー": {"en": "2026-05-22", "tw": "2026-03-27", "kr": "2026-05-01"},
+        "ムニキスゼロ": {"en": "2026-03-27"},
+        "MEGAドリームex": {"en": "2026-01-30", "tw": "2025-12-05", "kr": "2026-01-23"},
+        "インフェルノX": {"en": "2025-11-14", "tw": "2025-10-09", "kr": "2025-11-28"},
+        "テラスタルフェスex": {"en": "2025-01-17", "tw": "2024-12-20", "kr": "2025-01-22"},
+        "ポケモンカード151": {"en": "2023-09-22"},
+        "VSTARユニバース": {"en": "2023-01-20"},
+        "イーブイヒーローズ": {"en": "2021-08-27", "tw": "2021-06-11", "kr": "2021-08-11"},
+    },
+    "onepiece": {
+        "神の支配": {"en": "2026-11-20"},
+        "ヒロインズエディション vol.2": {"en": "2026-10-30"},
+        "世界最強の戦士": {"en": "2026-08-28"},
+        "決戦の刻": {"en": "2026-06-12"},
+    },
+}
+
 # カード名の中の日本語（キャラ名・レアリティの説明）→ 英語。長いものから順に置き換える
 CARD_EN = {
     "モンキー・D・ルフィ": "Monkey.D.Luffy", "ポートガス・D・エース": "Portgas.D.Ace", "ゴール・D・ロジャー": "Gol.D.Roger", "サボ": "Sabo",
@@ -158,7 +182,7 @@ T = {
         "release": "JP release", "msrp": "MSRP", "price": "Japan price", "x": "vs MSRP", "chg": "30d", "trend": "90-day trend",
         "us": "US (TCGplayer)", "set": "Set", "card": "Card", "upcoming": "Upcoming Japanese releases",
         "movers": "Japanese booster box prices", "hot": "Most expensive Japanese cards right now", "more": "See all",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set", "jprel": "🇯🇵 Japan", "enrel": "🇺🇸 English", "twrel": "", "krrel": "", "tba": "TBA",
         "local": "", "sources": "Sources & notes",
         "src": "Japan prices are the latest sold prices of sealed boxes and ungraded single cards on SNKRDUNK, a major Japanese marketplace (not asking prices). Release dates and MSRP come from the official Japanese Pokémon Card Game and ONE PIECE Card Game websites. Exchange rate: $1 = ¥{fx} ({fxd}); converted prices are approximate.",
         "names": "Set names: the Japanese set's English name and code are shown first; \"English set\" is the international English-language release with the same cards where one exists.",
@@ -170,7 +194,7 @@ T = {
         "release": "日版發售", "msrp": "建議售價", "price": "日本市價", "x": "定價倍數", "chg": "30日", "trend": "90日走勢",
         "us": "美國（TCGplayer）", "set": "系列", "card": "單卡", "upcoming": "即將發售的日版新彈",
         "movers": "日版卡盒（補充包盒）價格", "hot": "日本目前最貴的單卡", "more": "看全部",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版", "jprel": "🇯🇵 日版", "enrel": "🇺🇸 英文版", "twrel": "🇹🇼 繁中版", "krrel": "", "tba": "未公布",
         "local": "繁中版", "sources": "資料來源與說明",
         "src": "日本市價為日本大型交易平台 SNKRDUNK 上未拆封卡盒與未鑑定單卡的最新成交價（非掛牌價）。發售日與建議售價來自日本寶可夢卡牌與航海王卡牌官方網站。匯率：1美元＝{fx}日圓（{fxd}），換算金額僅供參考。",
         "names": "系列名稱：先列出日版的英文名稱與系列代碼，「繁中版」為台灣・香港發售的官方中文名稱，「英文版」為收錄相同卡片的國際英文版系列（若有）。",
@@ -182,7 +206,7 @@ T = {
         "release": "일본 발매", "msrp": "정가", "price": "일본 시세", "x": "정가 대비", "chg": "30일", "trend": "90일 추이",
         "us": "미국 (TCGplayer)", "set": "세트", "card": "카드", "upcoming": "곧 발매되는 일판 신규 세트",
         "movers": "일판 부스터 박스 시세", "hot": "지금 일본에서 가장 비싼 카드", "more": "전체 보기",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판", "jprel": "🇯🇵 일판", "enrel": "🇺🇸 영문판", "twrel": "", "krrel": "🇰🇷 한글판", "tba": "미정",
         "local": "한글판", "sources": "출처 및 안내",
         "src": "일본 시세는 일본 대형 거래 플랫폼 SNKRDUNK(스니덩)에서 미개봉 박스와 미감정 싱글 카드가 실제로 거래된 최근 가격입니다(호가 아님). 발매일과 정가는 일본 포켓몬 카드 게임・원피스 카드 게임 공식 사이트 기준입니다. 환율: 1달러 = {fx}엔({fxd}), 환산 금액은 참고용입니다.",
         "names": "세트 이름: 일판의 영어 이름과 세트 코드를 먼저 표시하고, '한글판'은 한국 정식 발매명, '영문판'은 같은 카드가 수록된 해외 영문판 세트입니다(있는 경우).",
@@ -319,6 +343,7 @@ td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.jp{d
 .spark{display:block;margin-top:4px}.spark path{fill:none;stroke:var(--ink2);stroke-width:1.5}
 .rel{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}.rel:last-child{border-bottom:0}.rel time{font-weight:800;min-width:118px}.rel .g{font-size:11px;padding:1px 6px;border-radius:4px;background:var(--bg);color:var(--ink2);margin-right:6px}
 .soon{font-size:11px;font-weight:700;color:#fff;background:var(--acc);border-radius:4px;padding:1px 6px;margin-left:6px}
+.rl{display:block;font-size:12px;font-weight:700;color:var(--ink);margin-top:2px}.rl:empty{display:none}
 .src{font-size:12px;color:var(--ink2)}.src p{margin:0 0 8px}
 footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:12px;color:var(--ink2)}
 @media (max-width:600px){.hide-s{display:none}h1{font-size:22px}.rel{flex-direction:column;gap:2px}.rel time{min-width:0}}"""
@@ -448,6 +473,21 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             sub.append(f'{t["counterpart"]}: {ctp}')
         return top, " · ".join(sub)
 
+    def rel_line(L, g, x, t, jp=""):
+        """日本の発売日と、その国（繁中版・韓国版）・英語版の発売日を1行に"""
+        lr = (LOCAL_REL.get(g) or {}).get(x) or {}
+        recent = bool(jp) and jp >= (today - _dt.timedelta(days=150)).isoformat()
+        parts = [f'{t["jprel"]} {fmt_date(L, jp)}'] if jp else []
+        loc_key = "tw" if L == "zh-tw" else "kr" if L == "ko" else ""
+        lab = t["twrel"] if L == "zh-tw" else t["krrel"] if L == "ko" else ""
+        if loc_key and g == "pokemon" and (lr.get(loc_key) or (recent and set_info(g, x)[0])):
+            parts.append(f'{lab} {fmt_date(L, lr[loc_key]) if lr.get(loc_key) else t["tba"]}')
+        if lr.get("en"):
+            parts.append(f'{t["enrel"]} {fmt_date(L, lr["en"])}')
+        elif recent and g == "pokemon" and set_info(g, x)[0]:
+            parts.append(f'{t["enrel"]} {t["tba"]}')
+        return f'<span class="rl">{escape(" ／ ".join(parts))}</span>' if parts else ""
+
     # 弾ごとの相場
     rows = []
     for k, v in items.items():
@@ -493,11 +533,9 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
              f'<th class="n">{t["x"]}</th><th class="n hide-s">{t["chg"]}</th></tr>']
         for r in rs:
             top, sub = names_html(L, game, r["x"], t)
-            if r["rel"]:
-                sub = (sub + " · " if sub else "") + f'{t["release"]} {fmt_date(L, r["rel"])}'
             mult = f'×{r["p"] / r["teika"]:.1f}' if r.get("teika") else "–"
             us = f'<span class="jp">{t["us"]}: ${r["us"]:,.0f}</span>' if (r["us"] and game == "pokemon") else ""
-            h.append(f'<tr><td>{top}<span class="jp">{escape(sub)}</span>{buy_btns(game, r["x"], t)}</td>'
+            h.append(f'<tr><td>{top}<span class="jp">{escape(sub)}</span>{rel_line(L, game, r["x"], t, r["rel"])}{buy_btns(game, r["x"], t)}</td>'
                      f'<td class="n"><b>¥{r["p"]:,}</b><span class="jp">{money(L, r["p"])}</span>{us}{_spark(r["jpser"])}</td>'
                      f'<td class="n hide-s">' + (f'¥{r["teika"]:,}' if r.get("teika") else "–") + f'</td><td class="n">{mult}</td>'
                      f'<td class="n hide-s">{chg(r)}</td></tr>')
@@ -526,7 +564,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             extra = [e for e in (sub, ty, (f'{t["msrp"]} ¥{yen[-1]} ({money(L, int(yen[-1].replace(",", "")))})' if yen else "")) if e]
             h.append(f'<div class="rel"><time datetime="{r}">{fmt_date(L, r)}</time><div><span class="g">{"Pokémon" if g == "pokemon" else "ONE PIECE"}</span>'
                      f'{top}' + (f'<span class="soon">{t["unreleased"]}</span>' if r > tdy else "")
-                     + f'<span class="jp">{escape(" · ".join(extra))}</span></div></div>')
+                     + f'<span class="jp">{escape(" · ".join(extra))}</span>{rel_line(L, g, x, t, r).replace(escape(t["jprel"] + " " + fmt_date(L, r)) + " ／ ", "").replace(escape(t["jprel"] + " " + fmt_date(L, r)), "")}</div></div>')
         return "".join(h)
 
     ex_rel = ", ".join(f'{set_name(g, x)} {set_info(g, x)[0]} ({r[5:7].lstrip("0")}/{r[8:]})'.replace(" ()", "")
