@@ -1949,12 +1949,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     h.append(f"<h2>{int(m_[:4])}年{int(m_[5:7])}月</h2><ul class=\"cal-list\">")
                     cur_m = m_
                 d_ = _dtm.date.fromisoformat(r_)
-                tag = '<span class="cal-new">発売前</span>' if r_ > today_c else ""
+                # 注意：ここで tag という名前を使うと、build全体のAmazonのタグが上書きされる（11/6 修正）
+                new_b = '<span class="cal-new">発売前</span>' if r_ > today_c else ""
                 lot = f'<a class="cal-n" href="/{series_path(g, x)}">抽選 受付中{n_}件</a>' if n_ else '<span class="cal-n none">抽選情報待ち</span>'
+                # 発売前の弾は、楽天とAmazonで予約・在庫を探せるリンクを並べる（11/6 ユーザー指示：楽天とのバランスを見てAmazonも）
+                q_ = f"{s['game_names'][g]} {x}"
+                buy_ = ((f'<span class="cal-buy">予約・在庫：' + (f'<a href="{escape(_rak(q_, raff))}" {_REL}>楽天</a>' if raff else "")
+                         + (f'<a href="{escape(_amz(q_, tag))}" {_REL}>Amazon</a>' if tag else "") + '</span>')
+                        if r_ > today_c and (raff or tag) else "")
                 h.append(f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})<small class="cal-rl">発売</small></time>'
-                         f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{tag}'
+                         f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{new_b}'
                          f'<a class="cal-t" href="/{series_path(g, x)}">{escape(x)}</a>'
-                         f'<small>{escape(inf.get("type") or "")}' + (f'｜{escape(inf["price"])}' if inf.get("price") else "") + f'</small>{lot}</li>')
+                         f'<small>{escape(inf.get("type") or "")}' + (f'｜{escape(inf["price"])}' if inf.get("price") else "") + f'</small>{lot}{buy_}</li>')
             h.append("</ul><p class=\"note\">※発売日・価格は変更になることがあります。最新の情報は公式サイトで確認してください。</p></div>")
             for g in games:
                 up_ = [t for t in rows_c if t[1] == g and t[0] > today_c]
@@ -2299,7 +2305,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "desc": f"【{md}更新】{cname}の{sh}の抽選販売・予約抽選" + (f"{len(cig)}件" if cig else "") +
                         "を店舗別・締切順にまとめ。応募方法・受け取り方・本人確認や会員の条件、これまでの抽選もひと目で分かります。",
                 "summary": summary(cig, f"{cname}の{sh}の抽選"), "h1": f"{cname}の{sh}抽選情報", "lead": lead_g,
-                "aff": ctabs(g) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if cig else chist_g),
+                "aff": ctabs(g) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if cig else chist_g)
+                       + _supply_ad(sh, s["game_names"][g], tag, raff, prices, g),  # 11/6 チェーンページにも楽天＋Amazonのサプライ
                 "info_html": chist_g if cig else "",
                 "links": _menu(items, games, g) + stl, "root": "/"}, cig,
                 [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/"), (sh, f"chain/{slug}/{GAME_SLUG[g]}/")])
