@@ -24,6 +24,8 @@ jobs:
           X_API_SECRET: ${{ secrets.X_API_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
         run: |
           export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
           export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
@@ -51,8 +53,8 @@ jobs:
           sed -i 's/^          //' wrangler.toml
           npx --yes wrangler@4 deploy
           ADMIN=$(printf '%s' "$X_API_KEY$RAKUTEN_APP_ID" | sha256sum | cut -c1-24)
-          for k in RAKUTEN_APP_ID RAKUTEN_ACCESS_KEY RAKUTEN_AFF X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET; do
-            printf '%s' "${!k}" | tr -d '[:space:]' | npx --yes wrangler@4 secret put "$k" >/dev/null
+          for k in RAKUTEN_APP_ID RAKUTEN_ACCESS_KEY RAKUTEN_AFF X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET AMAZON_CREDENTIAL_ID AMAZON_CREDENTIAL_SECRET; do
+            for n in 1 2 3; do printf '%s' "${!k}" | tr -d '[:space:]' | npx --yes wrangler@4 secret put "$k" >/dev/null && break; sleep 5; done
           done
           printf '%s' "$ADMIN" | npx --yes wrangler@4 secret put ADMIN_KEY >/dev/null
           echo "公開しました"

@@ -113,15 +113,121 @@ async function run(env, { dry = false } = {}) {
   return st.last;
 }
 
+// ---- Amazon（Creators API）----
+// Amazon.co.jp 本体が売っている物だけを見る（業者の転売在庫は対象外）。
+// 「買えない」→「招待リクエスト受付中」または「販売中」に変わったら速報する（ユーザーの指示）
+const AMZ_SELLER = "AN1VRQENFRJN5"; // Amazon.co.jp
+const AMZ_TAG = "st9994ststst-22";
+const AMZ_QUERIES = [
+  ["pokemon", "ポケモンカードゲーム 拡張パック BOX"],
+  ["pokemon", "ポケモンカードゲーム 強化拡張パック BOX"],
+  ["onepiece", "ONE PIECEカードゲーム ブースターパック BOX"],
+  ["onepiece", "ONE PIECEカードゲーム エクストラブースター BOX"],
+];
+const RANK = { none: 0, invite: 1, buy: 2 };
+let amzTok = null;
+async function amzToken(env) {
+  if (amzTok && amzTok.exp > Date.now() + 60e3) return amzTok.v;
+  const r = await fetch("https://api.amazon.co.jp/auth/o2/token", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ grant_type: "client_credentials", client_id: env.AMAZON_CREDENTIAL_ID, client_secret: env.AMAZON_CREDENTIAL_SECRET, scope: "creatorsapi::default" }) });
+  if (!r.ok) throw new Error(`Amazonトークン ${r.status} ${(await r.text()).slice(0, 120)}`);
+  const j = await r.json();
+  amzTok = { v: j.access_token, exp: Date.now() + (j.expires_in || 3600) * 1000 };
+  return amzTok.v;
+}
+async function amzSearch(env, kw) {
+  const r = await fetch("https://creatorsapi.amazon/catalog/v1/searchItems", { method: "POST",
+    headers: { Authorization: `Bearer ${await amzToken(env)}`, "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp" },
+    body: JSON.stringify({ keywords: kw, searchIndex: "All", marketplace: "www.amazon.co.jp", partnerTag: AMZ_TAG, itemCount: 10,
+      resources: ["itemInfo.title", "offersV2.listings.availability", "offersV2.listings.price", "offersV2.listings.merchantInfo"] }) });
+  if (!r.ok) throw new Error(`Amazon ${r.status} ${(await r.text()).slice(0, 160)}`);
+  return (await r.json()).searchResult?.items || [];
+}
+function amzState(it) {
+  const l = (it.offersV2?.listings || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
+  if (!l) return { s: "none" };
+  const a = l.availability || {};
+  if (/招待/.test(a.message || "")) return { s: "invite", price: l.price?.money?.displayAmount };
+  if (/^IN_STOCK/.test(a.type || "") && (a.maxOrderQuantity ?? 1) > 0) return { s: "buy", price: l.price?.money?.displayAmount };
+  return { s: "none" };
+}
+function amzCompose(game, kind, items) {
+  const g = GAME[game], invite = kind === "invite";
+  const lines = ["🚨🚨速報🚨🚨", invite ? `Amazonで${g.head}の招待リクエスト受付開始🔥` : `Amazonで${g.head}が販売開始🔥`, "",
+    invite ? "Amazon.co.jp本体の販売！リクエストは今すぐ👇" : "Amazon.co.jp本体の販売！今なら買えます👇", ""];
+  for (const it of items.slice(0, 10)) {
+    const t = shortName(it.itemInfo?.title?.displayValue || "");
+    lines.push(`・${t}`, it.detailPageURL || `https://www.amazon.co.jp/dp/${it.asin}?tag=${AMZ_TAG}`, "");
+  }
+  if (items.length > 10) lines.push(`ほか${items.length - 10}商品も`, "");
+  if (invite) lines.push("📩リクエストして、招待メールが届いた人が購入できる方式です", "");
+  lines.push("⚠️売り切れてもすぐ復活することあり！", "定期的にリンクを見張って👀", "", "🔔フォロー＆通知ONで速報が届きます", "",
+    g.tags.replace("#PR", "#Amazon #PR"));
+  return lines.join("\n");
+}
+async function runAmazon(env, { dry = false } = {}) {
+  if (!env.AMAZON_CREDENTIAL_ID || !env.AMAZON_CREDENTIAL_SECRET) return { skip: "鍵なし" };
+  const st = (await env.STATE.get("amz", "json")) || { items: {}, posted: {}, day: "", count: 0, init: false };
+  const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+  if (st.day !== today) { st.day = today; st.count = 0; }
+  const found = {}, log = [];
+  for (const [game, kw] of AMZ_QUERIES) {
+    try {
+      for (const it of await amzSearch(env, kw)) {
+        const t = it.itemInfo?.title?.displayValue || "";
+        if (!/ポケモンカード|ONE PIECE|ワンピース/.test(t) || /スリーブ|デッキケース|ローダー|ファイル|セット商品/.test(t)) continue;
+        found[it.asin] = { ...it, game };
+      }
+    } catch (e) { log.push(String(e)); }
+    await sleep(1100);
+  }
+  const fresh = {};
+  let changed = !st.init && Object.keys(found).length > 0;
+  for (const [asin, it] of Object.entries(found)) {
+    const prev = st.items[asin], cur = amzState(it);
+    it._price = cur.price;
+    if (prev !== cur.s) changed = true;
+    if (st.init && prev !== undefined && RANK[cur.s] > RANK[prev] && !(st.posted[asin + cur.s] && Date.now() - st.posted[asin + cur.s] < COOLDOWN)) {
+      const k = `${it.game}|${cur.s}`;
+      (fresh[k] = fresh[k] || []).push(it);
+    }
+    st.items[asin] = cur.s;
+  }
+  const out = [];
+  for (const [k, items] of Object.entries(fresh)) {
+    if (st.count >= PER_DAY) { log.push("1日の上限"); break; }
+    const [game, kind] = k.split("|");
+    const text = amzCompose(game, kind, items);
+    if (dry) { out.push(text); continue; }
+    try {
+      const id = await tweet(env, text);
+      st.count++; changed = true;
+      for (const it of items) st.posted[it.asin + kind] = Date.now();
+      out.push(`posted ${id}`);
+    } catch (e) { log.push(String(e)); }
+  }
+  if (Object.keys(found).length) st.init = true;
+  const cnt = (x) => Object.values(st.items).filter((v) => v === x).length;
+  st.last = { at: new Date().toISOString(), found: Object.keys(found).length, buy: cnt("buy"), invite: cnt("invite"), out, log };
+  if (!dry && (changed || log.length)) await env.STATE.put("amz", JSON.stringify(st));
+  return st.last;
+}
+
 export default {
-  async scheduled(event, env, ctx) { ctx.waitUntil(run(env)); },
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(run(env));
+    // Amazonは2分おき（APIの回数に余裕を持たせる）
+    if (new Date(event.scheduledTime).getUTCMinutes() % 2 === 0) ctx.waitUntil(runAmazon(env));
+  },
   async fetch(req, env) {
     const u = new URL(req.url);
     if (u.pathname === "/status") {
       const st = (await env.STATE.get("state", "json")) || {};
-      return Response.json({ last: st.last, count: st.count, items: Object.keys(st.items || {}).length });
+      const az = (await env.STATE.get("amz", "json")) || {};
+      return Response.json({ last: st.last, count: st.count, items: Object.keys(st.items || {}).length, amazon: { last: az.last, count: az.count, items: Object.keys(az.items || {}).length } });
     }
     if (u.pathname === "/dry" && u.searchParams.get("k") === env.ADMIN_KEY) return Response.json(await run(env, { dry: true }));
+    if (u.pathname === "/dry-amazon" && u.searchParams.get("k") === env.ADMIN_KEY) return Response.json(await runAmazon(env, { dry: true }));
     return new Response("ok");
   },
 };
