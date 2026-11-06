@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-06",
+  "checked": "2026-11-07",
   "series": {
     "pokemon": {
       "30th CELEBRATION FUTURISTIC BOX": {
@@ -15,6 +15,13 @@
         "type": "拡張パック",
         "price": "1パック360円（税込）／1BOX（30パック）10,800円",
         "slug": "30th-celebration"
+      },
+      "ハドウシーカー": {
+        "first_seen": "2026-11-07",
+        "release": "2026-11-27",
+        "type": "拡張パック",
+        "price": "1パック200円（税込）／1BOX（30パック）6,000円",
+        "slug": "hadouseeker"
       }
     },
     "onepiece": {
@@ -55,7 +62,8 @@
     }
   },
   "snkr": {
-    "onepiece|神の支配": 924232
+    "onepiece|神の支配": 924232,
+    "pokemon|ハドウシーカー": 931526
   },
   "pk_ex_next": 8,
   "qc_ready": true
