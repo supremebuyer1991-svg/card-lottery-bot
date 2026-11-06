@@ -89,6 +89,11 @@ footer{color:var(--ink-2);font-size:12px;padding:8px 0 40px}
 .ad-info{display:grid;gap:4px}.ad-info small{color:var(--ink-2)}.ad-btns,.ad-sup>div,.ad-amz{display:flex;flex-wrap:wrap;gap:6px}
 .ad-btns a,.ad-sup a,.ad-amz a{border:1px solid var(--rule);border-radius:8px;padding:6px 10px;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .b-rak{background:#bf0000;color:#fff!important;border-color:#bf0000!important}.b-amz{background:#ffd814;color:#0f1111!important;border-color:#fcd200!important}.b-ymd{background:#e60012;color:#fff!important;border-color:#e60012!important}
+.ad-pr{font-size:10px;letter-spacing:.08em;color:#fff;background:#6b7280;border-radius:3px;padding:1px 5px}.ad .ad-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ad.lose{border:2px solid #f3d9a4;background:#fffaf0}.lose-sub{margin:4px 0 8px;font-size:13px;color:var(--ink-2)}.lose-l{list-style:none;margin:0;padding:0}
+.lose-l li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #f0e2c4}.lose-l li:first-child{border-top:0}
+.lose-l small{display:block;font-size:12px;color:var(--ink-2)}.lose-l a{flex:none;font-size:13px;font-weight:700;padding:8px 12px;border-radius:8px;text-decoration:none}
+.lose-l .b-rakb{background:#bf0000;color:#fff!important}.ad-note{font-size:11px;color:var(--ink-2);margin:6px 0 0}
 .ad-sup p{font-size:12px;color:var(--ink-2);margin:10px 0 6px}.ad-sup strong{font-family:var(--font-num)}.ad-note{font-size:11px;color:var(--ink-2)}
 .ad-amz{margin-top:8px;align-items:center;font-size:12px}.ph{display:inline-flex;width:84px;height:84px;align-items:center;justify-content:center;color:var(--ink-2)}
 .ad-flow,.rec-note{display:none}
@@ -329,7 +334,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     ended_note = ('<p class="ended">この抽選の受付は終了しました。いま受付中の抽選は下の一覧からさがせます。</p>' if is_end else "")
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + "\n".join(head) +
-            '</head><body><header><div class="wrap"><p style="margin:0;padding-top:4px;font-size:10px;line-height:1.4;color:var(--ink-2);text-align:right">本ページはプロモーションを含みます</p><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
+            '</head><body><header><div class="wrap"><p style="margin:0;padding-top:4px;font-size:12px;line-height:1.4;color:var(--ink);text-align:right">本ページはプロモーションを含みます</p><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             f'<main class="wrap">{crumbs}{ended_note}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
             f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}</div>'
@@ -393,6 +398,19 @@ function ics(rows){var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//toreca-lott
    L.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:今日が結果発表","TRIGGER:PT9H","END:VALARM","END:VEVENT")}});
  L.push("END:VCALENDAR");return L.join("\r\n")}
 var ROWS=[];
+// 落選・当選と報告した直後に出す案内（11/7）：落選→まだ買える方法、当選→開封前にそろえたいもの。リンクは広告（PR表記）
+function rk(u){var a=(window.MLCFG||{}).raff;return a?"https://hb.afl.rakuten.co.jp/hgc/"+a+"/?pc="+encodeURIComponent(u)+"&m="+encodeURIComponent(u):u}
+function az(q){var t=(window.MLCFG||{}).tag;return "https://www.amazon.co.jp/s?k="+encodeURIComponent(q)+(t?"&tag="+encodeURIComponent(t):"")}
+function qn(o){return (/ONE PIECE|ワンピ/.test((o.product||"")+(o.store||""))?"ONE PIECEカードゲーム ":"ポケモンカードゲーム ")+(o.series||o.product||"")}
+var REL='target="_blank" rel="nofollow sponsored noopener"';
+function offerLose(o){var q=qn(o),sb=null,S=(window.MLCFG||{}).souba||{};for(var k in S){if(o.series&&k.indexOf("|"+o.series)>0){sb=S[k];break}}
+ return '<div class="off"><b>抽選には外れても、まだ買えます</b> <span class="pr">PR</span>'+
+  '<a '+REL+' href="'+esc(rk("https://books.rakuten.co.jp/search?sitem="+encodeURIComponent(q)))+'">楽天ブックスで定価の販売・予約をさがす</a>'+
+  '<a '+REL+' href="'+esc(az(q))+'">Amazonで販売・招待リクエストをさがす</a>'+
+  '<a '+REL+' href="'+esc(rk("https://search.rakuten.co.jp/search/mall/"+encodeURIComponent(q)+"/"))+'">楽天市場でさがす'+(sb?'（相場 ¥'+Number(sb[0]).toLocaleString()+'）':'')+'</a></div>'}
+function offerWin(o){var g=/ONE PIECE|ワンピ/.test((o.product||"")+(o.store||""))?"ONE PIECEカードゲーム ":"ポケモンカードゲーム ";
+ return '<div class="off win"><b>🎉 当選おめでとうございます！開封前にそろえたいもの</b> <span class="pr">PR</span>'+
+  ["スリーブ","ローダー","デッキケース","ストレージ"].map(function(k){return '<a '+REL+' href="'+esc(rk("https://search.rakuten.co.jp/search/mall/"+encodeURIComponent(g+k)+"/"))+'">'+k+'（楽天）</a>'}).join("")+'</div>'}
 function render(){var a=ld(),box=document.getElementById("ml");
  if(a===null){box.innerHTML='<p class="empty">このブラウザでは記録を読み込めませんでした（プライベートモードなど）。</p>';return}
  var ks=Object.keys(a);document.getElementById("mln").textContent=ks.length;
@@ -411,6 +429,7 @@ function render(){var a=ld(),box=document.getElementById("ml");
    (o.announce?'<span class="an">結果発表 '+esc(/^\d{4}-/.test(o.announce)&&o.A?md(o.A):o.announce)+'</span>':'<span>結果発表日は告知で確認</span>')+
    '</div><div class="cl">'+(o.E&&o.E>now?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"end"))+'">＋締切をGoogleカレンダーへ</a>':'')+
    (o.A&&ymd(o.A)>=T?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"ann"))+'">＋発表日をGoogleカレンダーへ</a>':'')+'</div>'+
+   (o.g!==1&&o.res==="lose"?offerLose(o):'')+(o.g!==1&&o.res==="win"?offerWin(o):'')+
    (o.g!==1?'<div class="rp">'+(o.res?'<span>'+(o.res==="win"?"🎉 当選と報告しました":"落選と報告しました")+'</span><a href="#" data-r="none" data-rk="'+esc(o.k)+'">取り消す</a>'
     :'<span>結果は？</span><a href="#" class="w" data-r="win" data-rk="'+esc(o.k)+'">🎉 当選した</a><a href="#" data-r="lose" data-rk="'+esc(o.k)+'">落選した</a>')+'</div>':'')+
    '<button type="button" data-k="'+esc(o.k)+'">外す</button></li>'});
@@ -428,7 +447,7 @@ render();})();
 """
 
 
-def mylist_page(site=""):
+def mylist_page(site="", raff="", tag="", souba=None):
     """応募したリスト（/mylist/）：このブラウザの中だけに記録した「応募した」抽選の一覧。検索には載せない"""
     css = CSS + """
 .ml h1{font-size:22px;margin:16px 0 4px}.ml .lead{color:var(--ink-2);font-size:14px;margin:0 0 12px}
@@ -443,7 +462,11 @@ def mylist_page(site=""):
 .ml .empty{background:var(--card);border:1px dashed var(--rule);border-radius:12px;padding:24px;text-align:center;color:var(--ink-2)}
 .ml .small{font-size:11.5px;color:var(--ink-2);margin:14px 0 30px}
 .ml .rp{grid-column:1;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;margin-top:4px}.ml .rp a{padding:4px 10px;border:1px solid var(--rule);border-radius:999px;text-decoration:none;color:var(--ink)}
-.ml .rp a.w{border-color:var(--red);color:var(--red);font-weight:700}"""
+.ml .rp a.w{border-color:var(--red);color:var(--red);font-weight:700}
+.ml .off{grid-column:1/3;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff7e6;border:1px solid #f3d9a4;border-radius:10px;padding:10px;margin-top:6px;font-size:13px}
+.ml .off b{flex-basis:100%}.ml .off.win{background:#ecfdf3;border-color:#a6e3c0}.ml .off a{background:#bf0000;color:#fff;border-radius:8px;padding:6px 10px;text-decoration:none;font-weight:700;font-size:12.5px}
+.ml .off .pr{font-size:10px;background:#888;color:#fff;border-radius:3px;padding:0 4px}
+.ml [hidden]{display:none!important}"""
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             '<title>応募したリスト｜トレカ抽選ナビ</title><meta name="robots" content="noindex">'
@@ -462,4 +485,5 @@ def mylist_page(site=""):
             'ブラウザの履歴やサイトのデータを消したとき、プライベートモードのとき、別のブラウザ・別の端末では表示されません。'
             '結果は必ずお店の告知・メールで確認してください。</p>'
             '<p><a href="/">← 抽選の一覧にもどる</a></p></main>'
+            f'<script>var MLCFG={json.dumps({"raff": raff, "tag": tag, "souba": souba or {}}, ensure_ascii=False)};</script>'
             f'<script>{MYLIST_JS}</script></body></html>')

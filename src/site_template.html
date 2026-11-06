@@ -499,7 +499,7 @@ input[type="search"] { flex: 1 1 160px; }
 .sq-i small { font-size: 10.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sq-i b { font-family: var(--font-num); font-size: 15px; font-weight: 800; }
 .sq-i em { font-style: normal; font-size: 11px; font-weight: 700; } .sq-i em.up { color: var(--red); } .sq-i em.down { color: #2563eb; }
-.promo { margin: 0; padding-top: 4px; font-size: 10px; line-height: 1.4; color: var(--ink-2); text-align: right; }  /* ヘッダーの右上に小さく */
+.promo { margin: 0; padding-top: 4px; font-size: 12px; line-height: 1.4; color: var(--ink); text-align: right; }  /* ヘッダーの右上に小さく */
 .squick { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; margin: 4px 0 12px; }
 .squick > a, .squick > div { display: grid; gap: 1px; background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 8px 10px; text-decoration: none; color: var(--ink); }
 .squick span { font-size: 11px; color: var(--ink-2); } .squick b { font-size: 16px; font-family: var(--font-num); font-weight: 800; }
@@ -626,6 +626,14 @@ footer { color: var(--ink-2); font-size: 12px; padding-block: 8px 40px; display:
 .cguide ul { margin: 6px 0 8px 1.2em; } .cguide p { margin: 4px 0; }
 table.wr { width: 100%; border-collapse: collapse; background: var(--card, #fff); font-size: 14px; margin: 6px 0 14px; }
 table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; } table.wr th { font-size: 12px; color: var(--ink-2); }
+.ad .ad-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ad.lose { border: 2px solid #f3d9a4; background: #fffaf0; } .lose-sub { margin: 4px 0 8px; font-size: 13px; color: var(--ink-2); }
+.lose-l { list-style: none; margin: 0; padding: 0; } .lose-l li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #f0e2c4; }
+.lose-l li:first-child { border-top: 0; } .lose-l small { display: block; font-size: 12px; color: var(--ink-2); } .lose-l a { flex: none; font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
+.lose-l .b-rakb { background: #bf0000; color: #fff; } .ad-note { font-size: 11px; color: var(--ink-2); margin: 6px 0 0; }
+.anchor { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: var(--card); border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; margin: 8px 0 14px; }
+.anchor .an-p { display: flex; gap: 14px; font-size: 13px; } .anchor .an-p b { font-size: 16px; }
+.anchor .an-b { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; } .anchor .an-b a { font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
 </style>
 
 <header class="top">
@@ -819,7 +827,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   }
 
   // 抽選5件ごとに1つ、Amazonの紹介（直前5件で一番多い弾）
-  var AD_EVERY = 5;
+  var AD_EVERY = 8;  // 11/7：5件ごとだと多すぎて見られなくなる（広告の見慣れ）
   function feedAd(chunk) {
     if (!DATA.amazonTag) return "";
     var c = {}, best = "", g = (DATA.gameNames || {})[st.game] || "";
@@ -828,9 +836,9 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var url = "https://www.amazon.co.jp/s?k=" + encodeURIComponent(q) + "&tag=" + encodeURIComponent(DATA.amazonTag);
     var g2 = { pokemon: "ポケモンカードゲーム", onepiece: "ONE PIECEカードゲーム", dragonball: "ドラゴンボールスーパーカードゲーム フュージョンワールド" }[st.game] || g;
     return '<article class="ticket feed">' +
-      '<div class="stub"><span class="cd">販売中</span></div>' +
+      '<div class="stub"><span class="cd">PR</span></div>' +
       '<div class="body"><div class="info"><div class="store">Amazon</div>' +
-      '<div class="product">' + esc(g2) + '「' + esc(best || "最新弾") + '」の通販・予約</div>' +
+      '<div class="product">' + esc(g2) + '「' + esc(best || "最新弾") + '」をAmazonでさがす（抽選に外れたとき用）</div>' +
       '<div class="flow"><span>Web購入</span><i aria-hidden="true">→</i><span class="sh">発送</span></div>' +
       '</div></div>' +
       '<div class="acts"><a class="go amz" href="' + esc(url) + '" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a></div>' +

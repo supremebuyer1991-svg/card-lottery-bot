@@ -955,6 +955,44 @@ def _rak(q, aff):
     return f"https://hb.afl.rakuten.co.jp/hgc/{aff}/?pc={quote(u, safe='')}&m={quote(u, safe='')}" if aff else u
 
 
+def _rakb(q, aff):
+    """楽天ブックスの検索結果へのアフィリエイトリンク（ポケカ・ワンピのBOXは楽天ブックスで定価販売・予約になることが多い）"""
+    u = f"https://books.rakuten.co.jp/search?sitem={quote(q)}"
+    return f"https://hb.afl.rakuten.co.jp/hgc/{aff}/?pc={quote(u, safe='')}&m={quote(u, safe='')}" if aff else u
+
+
+PR_B = '<span class="ad-pr">PR</span>'
+
+
+def _after_lose_ad(x, name, sm, tag, aff, invite_url=None):
+    """受付が終わった抽選・落選したとき：「まだ買える方法」（11/7 ユーザー心理：落選直後がいちばん買いたい瞬間）。在庫・価格の断定はしない"""
+    q = f"{name} {x}"
+    rows = []
+    if invite_url:
+        rows.append(("Amazon 招待リクエスト", "無料で申し込んで、招待が届いたら定価で買えます", invite_url, "リクエストする", "amz"))
+    rows.append(("楽天ブックス", "定価での予約・販売が出ることがあります", _rakb(q, aff), "楽天ブックスで見る", "rakb"))
+    if tag:
+        rows.append(("Amazon", "Amazon.co.jp 本体の販売・招待制販売をさがす", _amz(q, tag), "Amazonで見る", "amz"))
+    rows.append(("通販でさがす", (f"いまの相場は {_yen(sm['price'])}（スニダン {_md(sm['date'])}）" if sm else "楽天市場のショップをまとめて検索"),
+                 _rak(q, aff), "楽天市場でさがす", "rak"))
+    li = "".join(f'<li><div><b>{escape(t)}</b><small>{escape(sub)}</small></div><a class="b-{c}" href="{escape(u)}" {_REL} data-pl="after_lose">{escape(btn)}</a></li>'
+                 for t, sub, u, btn, c in rows)
+    return (f'<aside class="ad lose"><div class="ad-top"><span>抽選には外れても、まだ買えます</span>{PR_B}</div>'
+            f'<p class="lose-sub">「{escape(x)}」をいま手に入れる方法</p><ul class="lose-l">{li}</ul>'
+            '<p class="ad-note">楽天・Amazonへのリンクは広告です。在庫・価格はリンク先で確認してください。</p></aside>')
+
+
+def _price_anchor(x, name, sm, tag, aff, release=""):
+    """相場の横に「定価・相場」と、定価で買える店をさがすリンク（価格のものさしを見せる）"""
+    if not sm or not sm.get("teika"):
+        return ""
+    q = f"{name} {x}"
+    pre = bool(release) and str(release) > now().date().isoformat()
+    return (f'<div class="anchor"><div class="an-p"><span>定価 <b>{_yen(sm["teika"])}</b></span><span>相場 <b>{_yen(sm["price"])}</b></span></div>'
+            f'<div class="an-b"><a class="b-rak" href="{escape(_rakb(q, aff))}" {_REL} data-pl="souba_anchor">{"定価で予約できる店（楽天ブックス）" if pre else "定価で買える店をさがす（楽天ブックス）"}</a>'
+            + (f'<a class="b-amz" href="{escape(_amz(q, tag))}" {_REL} data-pl="souba_anchor">Amazonで見る</a>' if tag else "") + f'{PR_B}</div></div>')
+
+
 # サプライのアイコン（自作の簡単な図形）
 _ICON = {
     "スリーブ": '<rect x="7" y="4" width="14" height="20" rx="2"/><rect x="10" y="7" width="8" height="12" rx="1" opacity=".45"/>',
@@ -972,19 +1010,29 @@ def _icon(k):
 _REL = 'target="_blank" rel="nofollow sponsored noopener"'
 
 
-def _product_ad(x, name, rr, tag, aff):
-    """弾ページの広告：商品写真＋楽天／Amazonのボタン＋一緒に使うサプライ"""
+def _product_ad(x, name, rr, tag, aff, release=""):
+    """弾ページの広告：商品写真＋楽天／Amazonのボタン＋一緒に使うサプライ。発売前は「予約」の言い方にする"""
     if not (tag or aff or rr.get("url")):
         return ""
+    import datetime as _d
+    days = None
+    if release and str(release) > now().date().isoformat():
+        try:
+            days = (_d.date.fromisoformat(str(release)[:10]) - now().date()).days
+        except ValueError:
+            days = None
     rak = rr.get("url") or _rak(f"{name} {x}", aff)
     amz = _amz(f"{name} {x}", tag) if tag else ""
     img = (f'<img src="{escape(rr["image"])}" alt="{escape(x)}" loading="lazy">' if rr.get("image")
            else f'<span class="ph">{_icon("ストレージ")}</span>')
-    btns = (f'<a class="b-rak" href="{escape(rak)}" {_REL}>楽天市場で見る</a>' +
-            (f'<a class="b-amz" href="{escape(amz)}" {_REL}>Amazonで見る</a>' if amz else ""))
+    btns = ((f'<a class="b-rak" href="{escape(_rakb(f"{name} {x}", aff))}" {_REL} data-pl="product_ad">楽天ブックスで予約</a>' +
+             (f'<a class="b-amz" href="{escape(amz)}" {_REL} data-pl="product_ad">Amazonで予約</a>' if amz else "")) if days is not None else
+            (f'<a class="b-rak" href="{escape(rak)}" {_REL} data-pl="product_ad">楽天市場で見る</a>' +
+             (f'<a class="b-amz" href="{escape(amz)}" {_REL} data-pl="product_ad">Amazonで見る</a>' if amz else "")))
     sup = "".join(f'<a href="{escape(_amz(f"{name} {k}", tag) if tag else _rak(f"{name} {k}", aff))}" {_REL}>{_icon(k)}<span>{k}</span></a>'
                   for k in ("スリーブ", "ローダー", "デッキケース"))
-    return (f'<aside class="ad"><div class="ad-top"><span>抽選に外れても、通販で探せます</span></div>'
+    top_ = (f"発売まであと{days}日｜定価で予約できる店" if days else "発売日です｜定価で買える店" if days == 0 else "抽選に外れても、通販で探せます")
+    return (f'<aside class="ad"><div class="ad-top"><span>{top_}</span>{PR_B}</div>'
             f'<div class="ad-main"><a class="ad-img" href="{escape(rak)}" {_REL}>{img}</a>'
             f'<div class="ad-info"><small>{escape(name)}</small><b>{escape(x)}</b><div class="ad-btns">{btns}</div></div></div>'
             f'<div class="ad-sup"><p>一緒にそろえたいサプライ</p><div>{sup}</div></div></aside>')
@@ -1000,7 +1048,7 @@ def _flow_ad(prods, title):
         f'<small>{escape(g)}・抽選{n}件</small><b>{escape(x)}</b><em>楽天で見る</em></a>'
         for g, x, img, u, n in prods)
     sec = max(24, len(prods) * 5)  # 1枚あたり約5秒で流れる
-    return (f'<aside class="ad ad-flow"><div class="ad-top"><span>{escape(title)}</span></div>'
+    return (f'<aside class="ad ad-flow"><div class="ad-top"><span>{escape(title)}</span>{PR_B}</div>'
             f'<div class="flow-wrap"><div class="flow-track" style="--sec:{sec}s">{cards}'
             f'<span class="flow-dup" aria-hidden="true">{cards}</span></div></div></aside>')
 
@@ -1026,7 +1074,7 @@ def _supply_ad(short, name, tag, aff, prices=None, game=None):
     if dates:
         d = parse_dt(max(dates))
         note = f'<p class="ad-note">価格は楽天市場の{d.month}/{d.day}時点の最安値（税込）</p>' if d else ""
-    return (f'<aside class="ad"><div class="ad-top"><span>{escape(short)}のサプライをさがす</span></div>'
+    return (f'<aside class="ad"><div class="ad-top"><span>{escape(short)}のサプライをさがす</span>{PR_B}</div>'
             f'<div class="ad-sup ad-tiles"><div>{"".join(tiles)}</div></div>{note}'
             + (f'<div class="ad-amz"><b>Amazonで見る</b>{amz}</div>' if amz else "") + '</aside>')
 
@@ -1475,7 +1523,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                                canon_series(g, k.split("|", 1)[1])[:1] == [x] and v.get("image")), {})
             sm = souba_sm.get(f"{g}|{x}")
             sb_img = rr if rr.get("image") else None
-            aff = souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + _product_ad(x, name, rr, tag, raff)
+            info0 = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
+            aff = (_product_ad(x, name, rr, tag, raff, info0.get("release")) + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img)
+                   + _price_anchor(x, name, sm, tag, raff, info0.get("release")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag))
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -1541,8 +1591,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1時間ごとに更新）。"),
-                "aff": quick_html + _ser_areas(g, slug, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag)
-                                                     + info_html + _product_ad(x, name, rr, tag, raff) + stat_html + ser_hist_html(g, x, info.get("release"))),
+                "aff": quick_html + _ser_areas(g, slug, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
+                                                     + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"))
+                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + info_html + stat_html + ser_hist_html(g, x, info.get("release"))),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
@@ -2079,8 +2130,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 lot = f'<a class="cal-n" href="/{series_path(g, x)}">抽選 受付中{n_}件</a>' if n_ else '<span class="cal-n none">抽選情報待ち</span>'
                 # 発売前の弾は、楽天とAmazonで予約・在庫を探せるリンクを並べる（11/6 ユーザー指示：楽天とのバランスを見てAmazonも）
                 q_ = f"{s['game_names'][g]} {x}"
-                buy_ = ((f'<span class="cal-buy">予約・在庫：' + (f'<a href="{escape(_rak(q_, raff))}" {_REL}>楽天</a>' if raff else "")
-                         + (f'<a href="{escape(_amz(q_, tag))}" {_REL}>Amazon</a>' if tag else "") + '</span>')
+                dd_ = (_dtm.date.fromisoformat(r_) - _dtm.date.fromisoformat(today_c)).days
+                buy_ = ((f'<span class="cal-buy">あと{dd_}日で発売｜定価で予約：' + (f'<a href="{escape(_rakb(q_, raff))}" {_REL} data-pl="calendar">楽天ブックス</a>' if raff else "")
+                         + (f'<a href="{escape(_amz(q_, tag))}" {_REL} data-pl="calendar">Amazon</a>' if tag else "") + ' <span class="ad-pr">PR</span></span>')
                         if r_ > today_c and (raff or tag) else "")
                 h.append(f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})<small class="cal-rl">発売</small></time>'
                          f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{new_b}'
@@ -2519,6 +2571,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     if sample is None:
         save_json("lottery_pages.json", lreg)
     raw = raw_lots if sample is None else {}
+    inv_all = amazon_invites(items, tag) if tag else {}
     for lp, r in lreg.items():
         d = r["d"]
         g = d.get("game") if d.get("game") in GAME_SLUG else games[0]
@@ -2529,7 +2582,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             tgt = (raw.get(d.get("key")) or {}).get("duplicate_of")
             redirect = active_paths.get(tgt) if tgt else None
         if active and d.get("series"):
-            aff = _product_ad(d["series"], s["game_names"][g], (rk if sample is None else {}).get(f"{g}|{d['series']}") or {}, tag, raff)
+            aff = _product_ad(d["series"], s["game_names"][g], (rk if sample is None else {}).get(f"{g}|{d['series']}") or {}, tag, raff,
+                              ((_ser_cfg()["info"].get(g) or {}).get(d["series"]) or {}).get("release"))
+        elif d.get("series"):  # 受付が終わった抽選：落選した人・間に合わなかった人に「まだ買える方法」
+            x_l = (canon_series(g, d["series"]) or [d["series"]])[0]
+            inv_ = next((v["url"] for v in (inv_all.get(g) or []) if x_l and x_l in v["name"]), None)
+            aff = _after_lose_ad(x_l, s["game_names"][g], souba_sm.get(f"{g}|{x_l}"), tag, raff, inv_)
         else:
             aff = _supply_ad(short, s["game_names"][g], tag, raff, prices, g)
         rel = [(f"{short}の抽選をすべて見る", f"/{GAME_SLUG[g]}/")]
@@ -2579,7 +2637,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
 
     # 応募したリスト（このブラウザの中だけの記録を一覧にする。検索・サイトマップには載せない）
     (out / "mylist").mkdir(parents=True, exist_ok=True)
-    (out / "mylist" / "index.html").write_text(detail.mylist_page(site), encoding="utf-8")
+    (out / "mylist" / "index.html").write_text(detail.mylist_page(site, raff=raff, tag=tag or "", souba={k: [v["price"], v.get("teika")] for k, v in souba_sm.items()}), encoding="utf-8")
     # 404.html が無いと Cloudflare Pages は無いURLにトップページを200で返す（ソフト404）。消えた抽選ページなどのため（11/7）
     (out / "404.html").write_text(
         '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -2741,7 +2799,13 @@ def ga_snippet(ga_id):
             'if(n||navigator.webdriver||/ Claude\\/|HeadlessChrome|Playwright/.test(u))return;'
             f'var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";'
             'document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
-            f"gtag('js',new Date());gtag('config','{ga_id}');}})();</script>")
+            f"gtag('js',new Date());gtag('config','{ga_id}');"
+            # アフィリンクのクリックを数える（11/7）：どこに置いたリンクが押されたか（placement）
+            'document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.href||"";'
+            'var n=/rakuten\\.co\\.jp/.test(h)?"rakuten":/amazon\\.(co\\.jp|com)/.test(h)?"amazon":/valuecommerce|7net|yamada/.test(h)?"vc":/ebay\\.com/.test(h)?"ebay":"";'
+            'if(!n||!/sponsored/.test(a.rel||""))return;var p=a.dataset.pl||(a.closest("[data-pl]")||{}).dataset&&a.closest("[data-pl]").dataset.pl||(a.closest(".ad,.lose,.feed,.anchor,.cal-buy,.ticket")||{}).className||"other";'
+            'gtag("event","affiliate_click",{network:n,placement:String(p).slice(0,40),page:location.pathname.slice(0,60)});},true);'
+            "})();</script>")
 
 
 def inject_ga(out, ga_id):
