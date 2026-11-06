@@ -114,7 +114,7 @@
   },
   "store/booksantoku-b63f7/": {
     "name": "BOOKSあんとく（みづま店・あらお店・やまが店）",
-    "last": "2026-10-28",
+    "last": "2026-11-06",
     "game": "pokemon"
   },
   "store/tiawan-23f05/": {
@@ -136,13 +136,13 @@
   },
   "store/kiddyland-60c89/": {
     "name": "キデイランド二子玉川店",
-    "last": "2026-11-04",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "東京都"
   },
   "store/kiddyland-76f8e/": {
     "name": "キデイランド吉祥寺店",
-    "last": "2026-11-03",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -723,7 +723,7 @@
   },
   "store/tsutaya-88f88/": {
     "name": "TSUTAYA光吉店",
-    "last": "2026-11-03",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "大分県"
   },
@@ -3287,7 +3287,7 @@
   },
   "store/tsutaya-66810/": {
     "name": "TSUTAYA富士八幡町店",
-    "last": "2026-11-03",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "静岡県"
   },
@@ -3921,8 +3921,8 @@
     "area": "京都府"
   },
   "store/kiddyland-668b3/": {
-    "name": "キデイランド 浦和美園店",
-    "last": "2026-11-04",
+    "name": "キデイランド浦和美園店",
+    "last": "2026-11-06",
     "game": "pokemon",
     "keep": true,
     "area": "埼玉県"
@@ -6046,12 +6046,12 @@
   },
   "store/tsutaya-0c2c1/": {
     "name": "TSUTAYAルビットタウン戸田店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "pokemon"
   },
   "store/tsutaya-3ff51/": {
     "name": "TSUTAYAウイングタウン岡崎店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "愛知県"
   },
@@ -6316,7 +6316,7 @@
   },
   "store/tsutaya-70aed/": {
     "name": "TSUTAYA大垣店（トレカ）",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "岐阜県"
   },
@@ -6629,6 +6629,100 @@
     "game": "onepiece",
     "area": "三重県"
   },
+  "store/pureban-93f47/": {
+    "name": "プレバン",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/edion-1d7e7/": {
+    "name": "エディオン各店・エディオンネットショップ",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/toreka-kyapitaru-0be4a/": {
+    "name": "トレカ・キャピタル各店",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/otofuke-715cf/": {
+    "name": "岡書おとふけ木野店",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/tsutaya-ce6d5/": {
+    "name": "ヤマト屋書店TSUTAYA中里店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "山形県"
+  },
+  "store/kiddyland-7b044/": {
+    "name": "キデイランド ららぽーと湘南平塚店",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/cardbox-ab8bb/": {
+    "name": "カードボックスカサモ関口商店",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/tsutaya-0ff0f/": {
+    "name": "TSUTAYA横須賀粟田店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/hobbyoffmutsu-5e73d/": {
+    "name": "Hobby OFFむつ店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "青森県"
+  },
+  "store/tsutaya-1aed9/": {
+    "name": "TSUTAYA南足柄店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/tsutaya-16b2a/": {
+    "name": "TSUTAYA Trading Card 宇都宮インターパークビレッジ",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "栃木県"
+  },
+  "store/tsutaya-28752/": {
+    "name": "TSUTAYA唐津店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "佐賀県"
+  },
+  "store/kiddyland-50e38/": {
+    "name": "キデイランド 神戸店",
+    "last": "2026-11-06",
+    "game": "onepiece"
+  },
+  "store/bookoff-f9489/": {
+    "name": "BOOKOFF鹿児島唐湊店",
+    "last": "2026-11-06",
+    "game": "onepiece"
+  },
+  "store/tsutaya-0cfc1/": {
+    "name": "TSUTAYA春日井店（トレカ）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "愛知県"
+  },
+  "store/tsutaya-d9562/": {
+    "name": "TSUTAYA大垣店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "岐阜県"
+  },
+  "store/torevi-41f69/": {
+    "name": "torevi",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6641,10 +6735,16 @@
     "game": "onepiece",
     "keep": true
   },
-  "store/pureban-93f47/": {
-    "name": "プレバン",
+  "store/kiddyland-36041/": {
+    "name": "キデイランド湘南平塚",
     "last": "2026-11-06",
-    "game": "onepiece",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/kiddyland-4d7ed/": {
+    "name": "キデイランド吉祥寺",
+    "last": "2026-11-06",
+    "game": "pokemon",
     "keep": true
   }
 }
