@@ -242,6 +242,8 @@ BIG_ONLINE = [("pbandai", "プレミアムバンダイ", r"プレミアムバン
               ("famima", "ファミマオンライン", r"ファミマ|ファミリーマート|FamilyMart"),
               ("lawson", "ローソン", r"ローソン|HMV&BOOKS online|Loppi"),
               ("amazon", "Amazon", r"Amazon|アマゾン"),
+              ("donki", "ドン・キホーテ", r"ドン・?キホーテ|ドンキ|majica"),
+              ("itoyokado", "イトーヨーカドー", r"イトーヨーカ[ドド]ー|ヨーカドー"),
               ("amiami", "あみあみ", r"あみあみ|amiami"),
               ("aeon", "イオン", r"イオン|AEON"),
               ("tsutaya", "TSUTAYA", r"TSUTAYA|ツタヤ|蔦屋")]
@@ -322,7 +324,9 @@ def post_big(settings, client=None):
         f, e, st = parse_dt(i.get("found_at")), parse_dt(i.get("end")), parse_dt(i.get("start"))
         if not f or (e and e < t + timedelta(hours=1)):
             continue
-        if timedelta(minutes=20) <= t - f <= timedelta(hours=3):
+        if i.get("key") in (settings.get("big_force") or []):
+            kind = "new"  # 手動で「速報を出して」と言われた抽選（1回だけ。出したら done に入る）
+        elif timedelta(minutes=20) <= t - f <= timedelta(hours=3):
             kind = "new"  # 見つけたばかり
         elif (st and st - f >= timedelta(minutes=30) and timedelta(0) <= t - st <= timedelta(hours=9)
               and st >= (parse_dt(settings.get("big_start_since")) or st)):
