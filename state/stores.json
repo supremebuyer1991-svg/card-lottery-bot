@@ -2675,9 +2675,10 @@
   },
   "store/tsutaya-f9561/": {
     "name": "TSUTAYA フレスタモール岩国店（フタバ図書）",
-    "last": "2026-10-26",
+    "last": "2026-11-06",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "山口県"
   },
   "store/tsutaya-39877/": {
     "name": "TSUTAYA 東仙台店",
@@ -5719,7 +5720,7 @@
   },
   "store/iforamu-da679/": {
     "name": "イーフォーラム河内長野店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "onepiece",
     "area": "大阪府"
   },
@@ -6805,6 +6806,16 @@
     "last": "2026-11-06",
     "game": "pokemon",
     "keep": true
+  },
+  "store/pao-c0ab6/": {
+    "name": "PAO（パオ）",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/supafurikusu-9a692/": {
+    "name": "スーパーフリークス米子店",
+    "last": "2026-11-06",
+    "game": "pokemon"
   },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",

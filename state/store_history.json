@@ -5918,6 +5918,17 @@
   "store/tsutaya-f9561/": {
     "name": "TSUTAYA フレスタモール岩国店（フタバ図書）",
     "items": {
+      "3c5daa88f562a7e0": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "ec418b6f56b0e2e3": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -17694,6 +17705,17 @@
         "mem": "none",
         "rq": []
       },
+      "415e8c9a02ce1ed6": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "5b069e0cf5da4dc9": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -23193,6 +23215,17 @@
   "store/iforamu-da679/": {
     "name": "イーフォーラム河内長野店",
     "items": {
+      "5b86dbe12f50474b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-12T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "a7482cc4ad1c56e0": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -27055,7 +27088,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-19"
       },
       "60c9b854c61edc46": {
         "p": "ストームエメラルダ",
@@ -27077,7 +27111,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-17"
       }
     }
   },
@@ -27160,6 +27195,39 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/pao-c0ab6/": {
+    "name": "PAO（パオ）",
+    "items": {
+      "1e4b08257ffb3c07": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-17"
+      }
+    }
+  },
+  "store/supafurikusu-9a692/": {
+    "name": "スーパーフリークス米子店",
+    "items": {
+      "b968a7b295606070": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
         "rq": []
       }
     }
