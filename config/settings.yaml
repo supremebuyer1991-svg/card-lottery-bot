@@ -36,6 +36,8 @@ summary_hours: []           # 自動のまとめ投稿（リンク付き・1件�
 
 site_public_url: "https://tcg-chusen.com"   # サイトのアドレス（独自ドメイン）。楽天だけは登録済みの pages.dev のまま
 ga_id: "G-ZEXV2PQSN2"
+intl_amazon_tag: "gachapla-20"  # 海外向けページ（/en/ など）のアメリカAmazonのトラッキングID
+ebay_campid: "5339241377"  # eBay Partner Network の Campaign ID（届いたら入れる）
 vc_linkswitch_pid: "892742451"  # バリューコマース LinkSwitch（トレカ抽選ナビ用）
 x_account: pokepi_tcg            # サイト上部の「Xをフォロー」のボタン
 line_openchat_url: "https://line.me/ti/g2/pEYFxwCG2s2CjX22pI9ga6aE9MfNBLEwOE3taA"   # 【ポケモン&ワンピース】トレカ販売情報ナビ（サイト上部にボタン）   # Googleアナリティクスの測定ID（全ページにタグを入れる）

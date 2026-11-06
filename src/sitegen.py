@@ -2455,6 +2455,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         (out / "_redirects").write_text("".join(f"{o} {n} 301\n" + (f"{o.rstrip('/')} {n} 301\n" if both else "") for o, n in sorted(olds.items())),
                                         encoding="utf-8")
 
+    if sample is None and site:  # 海外向けページ（英語・繁体字・韓国語）11/7
+        import intl
+        urls += intl.build_intl(out, s, souba_raw, card_raw, _ser_cfg()["info"], site, now().date())
+
     if site:
         (out / "sitemap.xml").write_text(
             '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
