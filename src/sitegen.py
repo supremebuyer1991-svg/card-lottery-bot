@@ -2582,8 +2582,9 @@ def inject_linkswitch(out, pid):
         if p.name in GA_SKIP:
             continue
         h = p.read_text(encoding="utf-8")
-        if "vcdal.js" in h or "</head>" not in h:
+        if "</head>" not in h:
             continue
+        h = re.sub(r'<script>var vc_pid = "\d+";</script><script src="//aml\.valuecommerce\.com/vcdal\.js" async></script>', "", h)  # 古いIDのタグは入れ替える
         p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
