@@ -93,6 +93,9 @@ async function run(env, { dry = false } = {}) {
       (fresh[it.game] = fresh[it.game] || []).push(it);
     }
     st.items[code] = now;
+    // サイトの「いま買える」表示用に、名前とURLも覚えておく（新しい商品の時だけ＝保存回数は増えない）
+    st.info = st.info || {};
+    if (!st.info[code]) { st.info[code] = { n: shortName(it.itemName), u: it.itemUrl, g: it.game }; changed = true; }
   }
   const out = [];
   for (const [game, items] of Object.entries(fresh)) {
@@ -192,6 +195,8 @@ async function runAmazon(env, { dry = false } = {}) {
       (fresh[k] = fresh[k] || []).push(it);
     }
     st.items[asin] = cur.s;
+    st.info = st.info || {};
+    if (!st.info[asin]) { st.info[asin] = { n: shortName(it.itemInfo?.title?.displayValue || ""), u: it.detailPageURL || `https://www.amazon.co.jp/dp/${asin}?tag=${AMZ_TAG}`, g: it.game }; changed = true; }
   }
   const out = [];
   for (const [k, items] of Object.entries(fresh)) {
@@ -269,6 +274,12 @@ export default {
     if (u.pathname === "/report") {
       if (req.method === "OPTIONS") return new Response(null, { headers: cors(req) });
       if (req.method === "POST") return report(req, env);
+    }
+    if (u.pathname === "/stock") {  // サイト用：いま楽天ブックス・Amazon.co.jp本体で買える（または招待リクエスト受付中の）商品
+      const st = (await env.STATE.get("state", "json")) || {}, az = (await env.STATE.get("amz", "json")) || {};
+      const rk = Object.entries(st.items || {}).filter(([, v]) => v === 1).map(([k]) => ({ ...(st.info || {})[k], a: "buy" })).filter((x) => x.n);
+      const am = Object.entries(az.items || {}).filter(([, v]) => v === "buy" || v === "invite").map(([k, v]) => ({ ...(az.info || {})[k], a: v })).filter((x) => x.n);
+      return Response.json({ at: st.last?.at, amz_at: az.last?.at, rakuten: rk, amazon: am }, { headers: { "Cache-Control": "max-age=60" } });
     }
     if (u.pathname === "/rates") return Response.json(await rates(env), { headers: { "Cache-Control": "max-age=300" } });
     if (u.pathname === "/status") {

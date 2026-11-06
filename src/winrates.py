@@ -16,3 +16,20 @@ def update_winrates():
             log(f"当選の報告: {len(data)}件の抽選・{sum(v.get('n', 0) for v in data.values())}人分")
     except Exception as e:
         log(f"当選の報告: 取得できず {e}")
+
+
+STOCK_URL = "https://rakuten-watch.supreme-buyer-1991.workers.dev/stock"
+
+
+def update_stock():
+    """いま楽天ブックス・Amazon.co.jp本体で買える商品（Workerが1〜2分おきに見ている）を state/stock.json に。サイトの「いま買える」表示用"""
+    from datetime import datetime, timezone
+    try:
+        r = requests.get(STOCK_URL, timeout=30, headers={"User-Agent": "tcg-chusen-bot/1.0"})
+        r.raise_for_status()
+        d = r.json()
+        d["fetched"] = datetime.now(timezone.utc).isoformat()
+        save_json("stock.json", d)
+        log(f"いま買える: 楽天ブックス{len(d.get('rakuten') or [])}件・Amazon{len(d.get('amazon') or [])}件")
+    except Exception as e:
+        log(f"いま買える: 取得できず {e}")

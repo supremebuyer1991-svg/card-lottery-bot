@@ -962,12 +962,47 @@ def _rakb(q, aff):
 
 
 PR_B = '<span class="ad-pr">PR</span>'
+_STOCK = {}
 
 
-def _after_lose_ad(x, name, sm, tag, aff, invite_url=None):
-    """受付が終わった抽選・落選したとき：「まだ買える方法」（11/7 ユーザー心理：落選直後がいちばん買いたい瞬間）。在庫・価格の断定はしない"""
+def stock_for(game, x):
+    """いま楽天ブックス・Amazon.co.jp本体で買える（招待リクエスト含む）その弾の商品。[(店, 状態, 名前, URL)]、確認した時刻（JST HH:MM）"""
+    if not _STOCK:
+        d = load_json("stock.json", {})
+        _STOCK["_t"] = d.get("fetched") or ""
+        for src, lst in (("rakuten", d.get("rakuten") or []), ("amazon", d.get("amazon") or [])):
+            for it in lst:
+                g_ = it.get("g") if it.get("g") in GAME_SLUG else None
+                if not g_:
+                    continue
+                gx = guess_series(g_, it.get("n") or "")
+                for x_ in (canon_series(g_, gx) if gx else [])[:1]:
+                    _STOCK.setdefault((g_, x_), []).append((src, it.get("a"), it.get("n") or "", it.get("u") or ""))
+    from common import JST
+    t = parse_dt(_STOCK.get("_t"))
+    hm = (t.astimezone(JST) if t and t.tzinfo else t)
+    return _STOCK.get((game, x), []), (f"{hm.month}/{hm.day} {hm:%H:%M}" if hm else "")
+
+
+def _stock_rows(game, x, aff, pl):
+    """「いま買える」の行（在庫を確認できた時だけ。確認した時刻を書く）"""
+    lst, when = stock_for(game, x)
+    out = []
+    for src, a, n, u in lst[:3]:
+        if src == "rakuten":
+            href = f"https://hb.afl.rakuten.co.jp/hgc/{aff}/?pc={quote(u, safe='')}&m={quote(u, safe='')}" if aff else u
+            out.append(("✅ 楽天ブックスで販売中", f"{n}（{when}時点）", href, "楽天ブックスで買う", "rakb"))
+        else:
+            out.append(("✅ Amazon.co.jp " + ("で販売中" if a == "buy" else "で招待リクエスト受付中"), f"{n}（{when}時点）", u,
+                        "Amazonで見る" if a == "buy" else "リクエストする", "amz"))
+    return out
+
+
+def _after_lose_ad(x, name, sm, tag, aff, invite_url=None, game=None):
+    """受付が終わった抽選・落選したとき：「まだ買える方法」（11/7 ユーザー心理：落選直後がいちばん買いたい瞬間）。
+    在庫はWorkerで確認できた時だけ「販売中（時刻）」と出す。それ以外は断定しない"""
     q = f"{name} {x}"
-    rows = []
+    rows = _stock_rows(game, x, aff, "after_lose") if game else []
     if invite_url:
         rows.append(("Amazon 招待リクエスト", "無料で申し込んで、招待が届いたら定価で買えます", invite_url, "リクエストする", "amz"))
     rows.append(("楽天ブックス", "定価での予約・販売が出ることがあります", _rakb(q, aff), "楽天ブックスで見る", "rakb"))
@@ -982,13 +1017,16 @@ def _after_lose_ad(x, name, sm, tag, aff, invite_url=None):
             '<p class="ad-note">楽天・Amazonへのリンクは広告です。在庫・価格はリンク先で確認してください。</p></aside>')
 
 
-def _price_anchor(x, name, sm, tag, aff, release=""):
-    """相場の横に「定価・相場」と、定価で買える店をさがすリンク（価格のものさしを見せる）"""
+def _price_anchor(x, name, sm, tag, aff, release="", game=None):
+    """相場の横に「定価・相場」と、定価で買える店をさがすリンク（価格のものさしを見せる）。いま買える店があれば一番上に"""
     if not sm or not sm.get("teika"):
         return ""
+    st_ = _stock_rows(game, x, aff, "souba_anchor") if game else []
+    st_html = "".join(f'<a class="b-{c} st" href="{escape(u)}" {_REL} data-pl="stock">{escape(t)}（{escape(sub.split("（")[-1])}</a>' for t, sub, u, b, c in st_)
     q = f"{name} {x}"
     pre = bool(release) and str(release) > now().date().isoformat()
     return (f'<div class="anchor"><div class="an-p"><span>定価 <b>{_yen(sm["teika"])}</b></span><span>相場 <b>{_yen(sm["price"])}</b></span></div>'
+            + (f'<div class="an-st">{st_html}</div>' if st_html else "") +
             f'<div class="an-b"><a class="b-rak" href="{escape(_rakb(q, aff))}" {_REL} data-pl="souba_anchor">{"定価で予約できる店（楽天ブックス）" if pre else "定価で買える店をさがす（楽天ブックス）"}</a>'
             + (f'<a class="b-amz" href="{escape(_amz(q, tag))}" {_REL} data-pl="souba_anchor">Amazonで見る</a>' if tag else "") + f'{PR_B}</div></div>')
 
@@ -1294,7 +1332,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                    "games": [{"id": g, "name": GAME_SHORT[g], "tab": GAME_TAB.get(g, GAME_SHORT[g])} for g in games],
                    "gameUrls": {"all": "/", **{g: f"/{GAME_SLUG[g]}/" for g in games}}, "items": items,
                    "gameNames": {g: s["game_names"][g] for g in games},
-                   "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
+                   "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {},
+                   "souba": {k: [v.get("teika"), v["price"]] for k, v in souba_sm.items() if v.get("price")}}
     urls = []
     # 11/7 監査：中身が本当に変わった日を lastmod・dateModified にする（毎回「今日」だとGoogleがlastmodを信用しなくなる）
     pmod = load_json("page_lastmod.json", {}) if sample is None else {}  # {path: [中身の指紋, 変わった日, 最初の日]}
@@ -1525,7 +1564,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             sb_img = rr if rr.get("image") else None
             info0 = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             aff = (_product_ad(x, name, rr, tag, raff, info0.get("release")) + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img)
-                   + _price_anchor(x, name, sm, tag, raff, info0.get("release")) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag))
+                   + _price_anchor(x, name, sm, tag, raff, info0.get("release"), g) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag))
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
             on_ = sum(1 for i in si if i.get("channel") != "store")
@@ -1592,7 +1631,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1時間ごとに更新）。"),
                 "aff": quick_html + _ser_areas(g, slug, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
-                                                     + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"))
+                                                     + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"), g)
                                                      + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + info_html + stat_html + ser_hist_html(g, x, info.get("release"))),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
@@ -2515,6 +2554,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/"), (sh, f"chain/{slug}/{GAME_SLUG[g]}/")])
         # 受付中が0件のときは「前回の抽選」と「これまでの件数」を出す（検索結果で中身が分かるように。11/3 クリック0件の対策）
         _last = (f"前回は{_cd(cpast[0][0])}締切の「{_cp(cpast[0][0])}」。" if cpast else "")
+        lose_c = ""  # 受付中が0件のチェーン：前回の抽選の弾を、いま買える方法（11/7）
+        if not ci and cpast:
+            g_l = cpast[0][0]["g"]
+            gx_ = guess_series(g_l, cpast[0][0]["p"]) if g_l in GAME_SLUG else None
+            x_l = (canon_series(g_l, gx_) or [None])[0] if gx_ else None
+            if x_l:
+                lose_c = _after_lose_ad(x_l, s["game_names"][g_l], souba_sm.get(f"{g_l}|{x_l}"), tag, raff, None, g_l)
         write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
             "title": (f"{cname}の{words}抽選情報【{md}更新】受付中{len(ci)}件・店舗別・締切順" if ci else
                       f"{cname}の{words}抽選｜応募方法・結果発表・前回の抽選" + (f"（これまで{len(cpast)}件）" if cpast else "")) + "｜トレカ抽選ナビ",
@@ -2523,7 +2569,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                      (f"これまでに見つけた{len(cpast)}件の抽選" + ("と、応募のしかた・本人確認などの傾向" if guide_c else "") + "をまとめています。" if cpast else "") +
                      "新しい抽選が始まり次第、このページに自動で載ります。"),
             "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
-            "aff": ctabs(None) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if ci else guide_c + chist),
+            "aff": ctabs(None) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if ci else lose_c + guide_c + chist),
             "info_html": (guide_c + chist) if ci else "",
             "faq": faq_c or None,
             "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
@@ -2587,7 +2633,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         elif d.get("series"):  # 受付が終わった抽選：落選した人・間に合わなかった人に「まだ買える方法」
             x_l = (canon_series(g, d["series"]) or [d["series"]])[0]
             inv_ = next((v["url"] for v in (inv_all.get(g) or []) if x_l and x_l in v["name"]), None)
-            aff = _after_lose_ad(x_l, s["game_names"][g], souba_sm.get(f"{g}|{x_l}"), tag, raff, inv_)
+            aff = _after_lose_ad(x_l, s["game_names"][g], souba_sm.get(f"{g}|{x_l}"), tag, raff, inv_, g)
         else:
             aff = _supply_ad(short, s["game_names"][g], tag, raff, prices, g)
         rel = [(f"{short}の抽選をすべて見る", f"/{GAME_SLUG[g]}/")]

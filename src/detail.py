@@ -466,7 +466,7 @@ def mylist_page(site="", raff="", tag="", souba=None):
 .ml .off{grid-column:1/3;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff7e6;border:1px solid #f3d9a4;border-radius:10px;padding:10px;margin-top:6px;font-size:13px}
 .ml .off b{flex-basis:100%}.ml .off.win{background:#ecfdf3;border-color:#a6e3c0}.ml .off a{background:#bf0000;color:#fff;border-radius:8px;padding:6px 10px;text-decoration:none;font-weight:700;font-size:12.5px}
 .ml .off .pr{font-size:10px;background:#888;color:#fff;border-radius:3px;padding:0 4px}
-.ml [hidden]{display:none!important}"""
+.ml [hidden]{display:none!important}.ml .follow-ml{font-size:13px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;margin:12px 0}.ml .follow-ml a{font-weight:700}"""
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             '<title>応募したリスト｜トレカ抽選ナビ</title><meta name="robots" content="noindex">'
@@ -481,6 +481,8 @@ def mylist_page(site="", raff="", tag="", souba=None):
             '<button type="button" class="calbtn" id="mlcal" hidden></button>'
             '<p class="calnote" id="mlcaln" hidden>iPhoneはそのまま「カレンダーに追加」、Androidはダウンロードしたファイルを開くとカレンダーに入ります。締切の3時間前と発表日の朝9時に通知します。1件ずつならGoogleカレンダーのリンクも使えます。</p>'
             '<div id="ml"><p class="empty">読み込み中…</p></div>'
+            '<p class="follow-ml">🔔 再販・在庫復活は、楽天ブックス・Amazonを1〜2分おきに見て、買えるようになった瞬間にXで知らせています。'
+            '<a href="https://x.com/pokepi_tcg" target="_blank" rel="noopener">@pokepi_tcg をフォロー</a></p>'
             '<p class="small">※記録はこのスマホ・パソコンのブラウザの中だけに保存しています（ほかの人には見えません）。'
             'ブラウザの履歴やサイトのデータを消したとき、プライベートモードのとき、別のブラウザ・別の端末では表示されません。'
             '結果は必ずお店の告知・メールで確認してください。</p>'

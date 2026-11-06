@@ -634,6 +634,10 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
 .anchor { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: var(--card); border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; margin: 8px 0 14px; }
 .anchor .an-p { display: flex; gap: 14px; font-size: 13px; } .anchor .an-p b { font-size: 16px; }
 .anchor .an-b { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; } .anchor .an-b a { font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
+.pr-row { font-size: 12px; color: var(--ink-2); margin: 2px 0 4px; font-family: var(--font-num, inherit); }
+.anchor .an-st { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; } .anchor .an-st a { font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
+.b-rakb { background: #bf0000; color: #fff !important; }
+.thumb { position: relative; } .th-pr { position: absolute; right: 2px; bottom: 2px; font-size: 9px; line-height: 1; padding: 2px 3px; border-radius: 3px; background: rgba(0,0,0,.6); color: #fff; }
 </style>
 
 <header class="top">
@@ -894,7 +898,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     if (!list.length) return "";
     var one = function (x) {
       var img = '<img src="' + esc(x.src) + '" alt="' + alt + '" loading="lazy">';
-      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '</a>'
+      return x.url ? '<a class="thumb" href="' + esc(x.url) + '" target="_blank" rel="nofollow sponsored noopener" title="楽天市場で見る">' + img + '<span class="th-pr">楽天 PR</span></a>'
         : '<div class="thumb">' + img + '</div>';
     };
     // 複数の商品の抽選は、4枚までを2×2で並べる
@@ -954,6 +958,12 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var plc = it.channel === "store" ? c("gr", "📍", esc(it.area || "店頭"), "店頭受取") : c("gr", "📦", "通販", "発送");
     return '<div class="conds">' + id + mem + oth + plc + '</div>';
   }
+  // 定価と相場を1行で（応募する価値がひと目で分かる。11/7）。相場がない弾は出さない
+  function priceRow(it) {
+    var m = (DATA.souba || {})[(it.game || st.game) + "|" + (it.series || "")];
+    if (!m || !m[1]) return "";
+    return '<div class="pr-row">' + (m[0] ? '定価 ¥' + Number(m[0]).toLocaleString() + ' ／ ' : '') + '相場 ¥' + Number(m[1]).toLocaleString() + '</div>';
+  }
   function ticket(it) {
     var cd = countdown(it._end), bd = bandOf(it._end), done = !!applied[it.key], cal = gcal(it), pre = preOf(it);
     return '<article class="ticket tb' + (done ? " applied" : "") + (pre ? " pre" : "") + '" data-key="' + esc(it.key) + '">' +
@@ -962,7 +972,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
       (function () { var t = thumb(it); return '<div class="body' + (t ? " has-img" : "") + '">' + t; })() + '<div class="info"><div class="store">' + (it.spath && !LOCK.store ? '<a class="st-link" href="/' + esc(it.spath) + '">' + esc(it.store) + '</a>' : esc(it.store)) +
         (st.game === "all" && GSHORT[it.game] ? '<span class="badge gm g-' + esc(it.game) + '">' + esc(GSHORT[it.game]) + '</span>' : "") +
         (isNew(it) ? '<span class="badge new">NEW</span>' : "") + (it.rec ? '<span class="badge rec">おすすめ</span>' : "") + '</div>' +
-        '<div class="product">' + esc(it.product) + '</div>' + flow(it) +
+        '<div class="product">' + esc(it.product) + '</div>' + priceRow(it) + flow(it) +
       '</div></div>' + condCells(it) +
       (condText(it) ? '<div class="cond tb-cond">' + esc(condText(it)) + '</div>' : "") +
       '<div class="acts tb-acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +

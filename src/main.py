@@ -95,8 +95,9 @@ def main():
         except Exception as e:
             log(f"BOX相場: スキップ {e}")
         try:
-            from winrates import update_winrates
-            update_winrates()  # 当選・落選の報告（応募したリスト→Worker）の集計
+            from winrates import update_winrates, update_stock
+            update_winrates()
+            update_stock()  # 当選・落選の報告（応募したリスト→Worker）の集計
         except Exception as e:
             log(f"当選の報告: スキップ {e}")
         try:
