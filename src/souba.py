@@ -142,9 +142,16 @@ def _tcg_daily(sess, tid):
     return out
 
 
+_FX_ALL = {}
+
+
 def _fx(sess):
+    """1ドル何円か。ついでに海外向けページ用に、1ドルあたりの台湾ドル・香港ドル・ウォンも覚えておく（11/7）"""
     try:
-        return round(float(sess.get("https://open.er-api.com/v6/latest/USD", timeout=20).json()["rates"]["JPY"]), 1)
+        r = sess.get("https://open.er-api.com/v6/latest/USD", timeout=20).json()["rates"]
+        _FX_ALL.clear()
+        _FX_ALL.update({k: round(float(r[k]), 4) for k in ("JPY", "TWD", "HKD", "KRW") if r.get(k)})
+        return round(float(r["JPY"]), 1)
     except Exception:
         return None
 
@@ -208,6 +215,8 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     fx = _fx(sess)
     if fx:
         data["fx"] = fx
+        if _FX_ALL:
+            data["fx_usd"] = dict(_FX_ALL)
     if got:
         data["updated"] = t.isoformat()  # サイトの「相場の更新」の日時（数字が1つでも読めた時だけ進める）
     save_json("souba.json", data)
