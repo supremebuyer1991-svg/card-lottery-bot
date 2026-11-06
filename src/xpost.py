@@ -392,7 +392,7 @@ def compose_today(td, settings):
     return (f"⏰今日締切の抽選｜{t.month}/{t.day}\n"
             + "／".join(f"{gs.get(g, g)} {n}件" for g, n in cnt.items()) + "\n\n"
             + "\n".join(lines) + "\n\n応募し忘れはない？全部の締切はこちら👇\n"
-            + f"{site}/today/\n{tags}").strip()
+            + f"{site}/today/?d={t:%Y%m%d}\n{tags}").strip()  # 日付つき：Xのリンク画像（その日の締切一覧）が毎日新しくなる
 
 
 def post_today_deadline(settings, client=None):
