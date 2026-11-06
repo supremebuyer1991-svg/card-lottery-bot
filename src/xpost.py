@@ -244,9 +244,7 @@ BIG_ONLINE = [("pbandai", "プレミアムバンダイ", r"プレミアムバン
               ("amazon", "Amazon", r"Amazon|アマゾン"),
               ("donki", "ドン・キホーテ", r"ドン・?キホーテ|ドンキ|majica"),
               ("itoyokado", "イトーヨーカドー", r"イトーヨーカ[ドド]ー|ヨーカドー"),
-              ("amiami", "あみあみ", r"あみあみ|amiami"),
-              ("aeon", "イオン", r"イオン|AEON"),
-              ("tsutaya", "TSUTAYA", r"TSUTAYA|ツタヤ|蔦屋")]
+]  # 11/7 ユーザー：速報は本当に大きいところだけ（あみあみ・イオン・TSUTAYAは新着まとめで出す）
 GAME_HEAD = {"pokemon": "ポケカ", "onepiece": "ワンピースカード"}
 TAGS = {"pokemon": "#ポケモンカード #ポケカ #ポケカ抽選", "onepiece": "#ワンピースカード #ワンピースカード抽選"}
 FOLLOW = "🔔フォロー＆通知ONで、抽選の開始・締切のお知らせを受け取れます"
