@@ -1414,7 +1414,7 @@
   },
   "store/bookoff-2f8fa/": {
     "name": "ブックオフ 町田中央通り店",
-    "last": "2026-10-29",
+    "last": "2026-11-06",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -1612,7 +1612,7 @@
   },
   "store/cardlabo-a8368/": {
     "name": "カードラボ名古屋大須店",
-    "last": "2026-10-27",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "愛知県"
   },
@@ -2414,8 +2414,8 @@
     "area": "埼玉県"
   },
   "store/cardlabo-817ef/": {
-    "name": "カードラボ 岐阜店",
-    "last": "2026-10-31",
+    "name": "カードラボ岐阜店",
+    "last": "2026-11-06",
     "game": "pokemon",
     "keep": true,
     "area": "岐阜県"
@@ -4337,7 +4337,7 @@
   },
   "store/tsutaya-fd3df/": {
     "name": "TSUTAYA札幌菊水店",
-    "last": "2026-11-01",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "北海道"
   },
@@ -4500,10 +4500,11 @@
     "keep": true
   },
   "store/cardlabo-e5d4c/": {
-    "name": "カードラボ 仙台店",
-    "last": "2026-10-31",
+    "name": "カードラボ仙台店",
+    "last": "2026-11-06",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "宮城県"
   },
   "store/tsutaya-d36f0/": {
     "name": "TSUTAYA鈴鹿中央通店",
@@ -5488,13 +5489,13 @@
   },
   "store/cardlabo-1bea8/": {
     "name": "カードラボ岡山西口店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "岡山県"
   },
   "store/cardlabo-82b1c/": {
     "name": "カードラボ広島店",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "pokemon",
     "area": "広島県"
   },
@@ -6847,18 +6848,6 @@
     "game": "onepiece",
     "area": "岐阜県"
   },
-  "store/dorasuta-ccf02/": {
-    "name": "ドラスタ通販",
-    "last": "2026-10-29",
-    "game": "onepiece",
-    "keep": true
-  },
-  "store/jumpshop-domushiti-07b64/": {
-    "name": "JUMP SHOP東京ドームシティ店",
-    "last": "2026-11-06",
-    "game": "onepiece",
-    "keep": true
-  },
   "store/shop-14138/": {
     "name": "上野(東京)",
     "last": "2026-11-06",
@@ -6881,6 +6870,119 @@
     "name": "金沢(石川)",
     "last": "2026-11-06",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/bee-1cd0e/": {
+    "name": "Bee本舗大阪本店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/mint-ab2ef/": {
+    "name": "ミント梅田店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/santy-kurisurodo-810d2/": {
+    "name": "santy（サンティ）仙台クリスロード店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "宮城県"
+  },
+  "store/poke-4c45c/": {
+    "name": "ポケ堂北上店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "岩手県"
+  },
+  "store/poke-6557a/": {
+    "name": "ポケ堂盛岡店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "岩手県"
+  },
+  "store/supafurikusu-8da4d/": {
+    "name": "スーパーフリークス 土佐道路店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "高知県"
+  },
+  "store/manasosu-001f4/": {
+    "name": "マナソース",
+    "last": "2026-11-06",
+    "game": "onepiece"
+  },
+  "store/cardlabo-23651/": {
+    "name": "カードラボ郡山店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "福島県"
+  },
+  "store/cardlabo-18f03/": {
+    "name": "カードラボ アバンティ京都店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "京都府"
+  },
+  "store/jumpshop-5d68a/": {
+    "name": "JUMP SHOPららぽーと福岡店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "福岡県"
+  },
+  "store/tsutaya-76059/": {
+    "name": "TSUTAYAシュロアモール店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "福岡県"
+  },
+  "store/dorasuta-ccf02/": {
+    "name": "ドラスタ通販",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/jumpshop-domushiti-07b64/": {
+    "name": "JUMP SHOP東京ドームシティ店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-a78a0/": {
+    "name": "六高",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-f535a/": {
+    "name": "福山",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-fb1bf/": {
+    "name": "唐津（佐賀）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-1fae3/": {
+    "name": "大崎町（鹿児島）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-80c6b/": {
+    "name": "戸田（埼玉）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/shop-af4a8/": {
+    "name": "呉（広島）",
+    "last": "2026-11-06",
+    "game": "onepiece",
     "keep": true
   }
 }
