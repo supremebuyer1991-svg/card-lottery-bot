@@ -822,6 +822,56 @@ def today_image(path, td, dlabel):
     im.save(path, optimize=True)
 
 
+def countdown_image(path, d):
+    """毎日19:15のX「新弾カウントダウン」の画像（1200×675・白ベース。11/7 Fable案）。公式のロゴ・パッケージ写真は使わない"""
+    from PIL import Image, ImageDraw, ImageFont
+    fdir = Path(__file__).with_name("fonts")
+    F = lambda w, n: ImageFont.truetype(str(fdir / f"ZenKakuGothicNew-{w}.ttf"), n)
+    W, H = 1200, 675
+    col = "#E8B400" if d["game"] == "pokemon" else "#D7263D"
+    im = Image.new("RGB", (W, H), "#ffffff")
+    g = ImageDraw.Draw(im)
+    g.rectangle([0, 0, 22, H], fill=col)
+    g.rounded_rectangle([60, 40, 60 + g.textlength(d["gname"], font=F("Bold", 26)) + 40, 84], radius=22, fill=col)
+    g.text((80, 62), d["gname"], font=F("Bold", 26), fill="#111111" if d["game"] == "pokemon" else "#ffffff", anchor="lm")
+    title = d["title"]
+    fs = 56
+    while fs > 32 and g.textlength(title, font=F("Black", fs)) > W - 120:
+        fs -= 2
+    g.text((60, 140), title, font=F("Black", fs), fill="#111111", anchor="lm")
+    g.text((60, 200), d["sub"], font=F("Bold", 30), fill="#6b7280", anchor="lm")
+    # 左：大きい日数
+    lx, ly = 60, 250
+    if d["mode"] == "pre":
+        g.text((lx, ly + 40), "発売まで あと", font=F("Bold", 34), fill="#374151", anchor="lm")
+        num, unit = str(d["days"]), "日"
+        ncol = "#D7263D" if d["days"] <= 3 else "#111111"
+    else:
+        g.text((lx, ly + 40), "発売から", font=F("Bold", 34), fill="#374151", anchor="lm")
+        num, unit = str(d["days"]), "日目"
+        ncol = "#111111"
+    nf = F("Black", 210 if len(num) <= 2 else 160)
+    g.text((lx - 6, ly + 190), num, font=nf, fill=ncol, anchor="lm")
+    g.text((lx + g.textlength(num, font=nf) + 10, ly + 268), unit, font=F("Black", 64), fill=ncol, anchor="ls")
+    # 右：3つのタイル
+    tx, tw, th = 620, 520, 106
+    for k, (lab, val, sub, scol) in enumerate(d["tiles"][:3]):
+        ty = 245 + k * (th + 14)
+        g.rounded_rectangle([tx, ty, tx + tw, ty + th], radius=16, fill="#f3f4f6")
+        g.rounded_rectangle([tx, ty, tx + 8, ty + th], radius=4, fill=col)
+        g.text((tx + 30, ty + 28), lab, font=F("Bold", 24), fill="#6b7280", anchor="lm")
+        vf = 44
+        while vf > 28 and g.textlength(val, font=F("Black", vf)) > tw - 60:
+            vf -= 2
+        g.text((tx + 30, ty + 74), val, font=F("Black", vf), fill="#111111", anchor="lm")
+        if sub:
+            g.text((tx + tw - 24, ty + 28), sub, font=F("Bold", 24), fill=scol or "#6b7280", anchor="rm")
+    g.text((60, H - 34), d["foot"], font=F("Medium", 20), fill="#6b7280", anchor="lm")
+    g.text((W - 40, H - 34), "トレカ抽選ナビ  tcg-chusen.com", font=F("Bold", 22), fill="#111111", anchor="rm")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    im.save(path, optimize=True)
+
+
 ASSETS = {}  # {"assets/app.<hash>.css": 中身} 全ページ共通のCSS・JS（11/7 監査：毎ページに100KBインラインで入っていた→別ファイルで長くキャッシュ）
 
 
@@ -1905,6 +1955,86 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "summary": summary(td, h1), "faq": faq_for(td, h1), "h1": h1, "lead": lead,
             "links": _menu(items, games, games[0]), "root": "/"}, td,
             [("トップ", ""), ("今日締切の抽選", "today/")])
+
+    # --- 毎日19:15のX「新弾カウントダウン」の画像と文（/x/countdown.json・/og/countdown.png。11/7 Fable案）---
+    if items and sample is None:
+        try:
+            import datetime as _dt
+            t0 = now()
+            td0 = t0.date()
+            WD = "月火水木金土日"
+            def _teika(g_, x_, inf_):
+                sm0 = souba_sm.get(f"{g_}|{x_}") or {}
+                if sm0.get("teika"):
+                    return int(sm0["teika"])
+                p_ = str(inf_.get("price") or "")
+                m_ = re.search(r"BOX[^0-9円]*?([\d,]{3,})円", p_) or re.search(r"([\d,]{4,})円", p_)
+                return int(m_.group(1).replace(",", "")) if m_ else None
+            def _pick(g_):
+                inf = _ser_cfg()["info"].get(g_) or {}
+                up = sorted((str(v.get("release"))[:10], x_) for x_, v in inf.items() if v.get("release") and str(v["release"])[:10] > td0.isoformat())
+                up = [(r, x_) for r, x_ in up if (_dt.date.fromisoformat(r) - td0).days <= 60]
+                if up:
+                    return "pre", up[0][1], up[0][0], inf[up[0][1]]
+                done = sorted(((str(v.get("release"))[:10], x_) for x_, v in inf.items() if v.get("release") and str(v["release"])[:10] <= td0.isoformat()), reverse=True)
+                done = [(r, x_) for r, x_ in done if (td0 - _dt.date.fromisoformat(r)).days <= 14]
+                return ("post", done[0][1], done[0][0], inf[done[0][1]]) if done else None
+            order = ["pokemon", "onepiece"] if td0.day % 2 else ["onepiece", "pokemon"]
+            cd = None
+            for g_ in order:
+                pk = _pick(g_)
+                if pk:
+                    cd = (g_,) + pk
+                    break
+            if cd:
+                g_, mode, x_, rel, inf_ = cd
+                rd = _dt.date.fromisoformat(rel)
+                days = (rd - td0).days if mode == "pre" else (td0 - rd).days + 1
+                si_ = [i for i in items if i["game"] == g_ and in_ser(i, x_)]
+                noid = sum(1 for i in si_ if i.get("id_check") is False)
+                onl = sum(1 for i in si_ if i.get("channel") != "store")
+                sm0 = souba_sm.get(f"{g_}|{x_}") or {}
+                tk = _teika(g_, x_, inf_)
+                tiles = [("定価（税込）", f"¥{tk:,}" if tk else "公式で確認", "", "")]
+                if sm0.get("price"):
+                    pv = (sm0.get("prev") or [None, None])[1]
+                    df = sm0["price"] - pv if pv else None
+                    tiles.append((f"スニダン相場（{_md(sm0['date'])}）", f"¥{sm0['price']:,}",
+                                  (f"前日比 {'+' if df > 0 else '−' if df < 0 else '±'}{abs(df):,}" if df is not None else ""),
+                                  "#D7263D" if df and df > 0 else "#2563eb" if df and df < 0 else "#6b7280"))
+                else:
+                    tiles.append(("スニダン相場", "まだ取引なし", "", ""))
+                tiles.append(("受付中の抽選（当サイト掲載）", f"{len(si_)}件", (f"本人確認なし {noid}件" if noid else f"ネット応募 {onl}件" if onl else ""), "#374151"))
+                gname = "ポケカ" if g_ == "pokemon" else "ワンピースカード"
+                sub = f"発売日 {rd.month}/{rd.day}（{WD[rd.weekday()]}）"
+                foot = (f"相場はスニダンの日別相場（1個）{_md(sm0['date'])}時点" if sm0.get("price") else "相場はスニダンの日別相場（1個）") + "｜抽選は当サイトに掲載中の件数"
+                countdown_image(out / "og" / "countdown.png", {"game": g_, "gname": gname, "title": x_, "sub": sub, "mode": mode,
+                                                               "days": days, "tiles": tiles, "foot": foot})
+                emo = "🎴" if g_ == "pokemon" else "🏴‍☠️"
+                tags = "#ポケモンカード #ポケカ" if g_ == "pokemon" else "#ワンピースカード #ワンピカード抽選".replace("ワンピカード抽選", "ワンピースカード抽選")
+                lines = [(f"【あと{days}日】「{x_}」{rd.month}/{rd.day}発売{emo}" if mode == "pre" else f"【発売{days}日目】「{x_}」のいま{emo}")]
+                if tk and mode == "pre":
+                    lines.append(f"定価 ¥{tk:,}（税込）")
+                if sm0.get("price"):
+                    pv = (sm0.get("prev") or [None, None])[1]
+                    df = sm0["price"] - pv if pv else None
+                    lines.append(f"スニダン相場 ¥{sm0['price']:,}" + (f"（前日比 {'+' if df > 0 else '−' if df < 0 else '±'}{abs(df):,}）" if df is not None else ""))
+                lines.append(f"受付中の抽選 {len(si_)}件" + (f"（本人確認なし {noid}件）" if noid else f"（ネット応募 {onl}件）" if onl else ""))
+                ask = (["応募するお店、もう決めた？", "定価で確保できそうな人、どれくらいいる？", "今回は何箱ねらってる？"][td0.day % 3] if mode == "pre"
+                       else ["再販や抽選、拾えた人いる？", "もう開封した？", "定価で買えた人いる？"][td0.day % 3])
+                text = "\n".join(lines) + "\n\n" + ask + "\n\n" + tags
+                reply = (f"受付中の抽選の一覧と締切はこちら（締切前の通知・カレンダー登録もできます）👇\n{site}/{series_path(g_, x_)}?utm_source=x&utm_campaign=countdown")
+                (out / "x").mkdir(exist_ok=True)
+                (out / "x" / "countdown.json").write_text(json.dumps({"date": td0.isoformat(), "game": g_, "series": x_, "mode": mode, "days": days,
+                    "text": text, "reply": reply, "img": f"/og/countdown.png?d={t0:%Y%m%d}"}, ensure_ascii=False), encoding="utf-8")
+                (out / "x" / "countdown.html").write_text(
+                    '<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>countdown</title><body>'
+                    '<img id="i" style="max-width:100%"><script>(async()=>{const j=await fetch("/x/countdown.json?"+Date.now(),{cache:"no-store"}).then(r=>r.json());'
+                    'const b=await fetch(j.img+"&t="+Date.now(),{cache:"no-store"}).then(r=>r.blob());const u=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});'
+                    'document.getElementById("i").src=u;window.__json=j;window.name=JSON.stringify({type:"tcg-imgs",list:[{name:"countdown.png",dataURL:u}],text:j.text,reply:j.reply,date:j.date});window.__done=true;})();</script>',
+                    encoding="utf-8")
+        except Exception as e:
+            print("カウントダウンの画像を作れませんでした", e)
 
     # --- 解説ページ（/guide/）：抽選の種類・当たりやすい抽選の選び方・応募前の準備。数字は今の掲載データから ---
     if items:
