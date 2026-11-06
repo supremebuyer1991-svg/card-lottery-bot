@@ -14,7 +14,7 @@ jobs:
         run: |
           B=https://rakuten-watch.supreme-buyer-1991.workers.dev
           echo "== status"; curl -s -m 20 $B/status | head -c 3000; echo
-          echo "== push key"; curl -s -m 20 -H "Origin: https://tcg-chusen.com" -i $B/push/key | grep -i "access-control\|^{"; echo
+          echo "== push key"; curl -s -m 20 $B/push/key; echo
           echo "== push stats"; curl -s -m 20 $B/push/stats; echo
           echo "== push bad sub"; curl -s -m 20 -X POST -H "Content-Type: application/json" -d '{"sub":{"endpoint":"https://evil.example/x"}}' $B/push/sub; echo
           ADMIN=$(printf '%s' "$X_API_KEY$RAKUTEN_APP_ID" | sha256sum | cut -c1-24)
