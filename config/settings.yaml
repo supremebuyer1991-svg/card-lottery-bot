@@ -400,3 +400,10 @@ threads_each: false
 # 朝の「今日締切の抽選まとめ」をXに画像つきで出す（11/7・サンプルをユーザーに確認してから true にする）
 deadline_post: false
 deadline_post_hour: 7
+
+# 大手の速報をバリューコマースのアフィリエイトリンクにする（11/7）。
+# vc_x_site_id：バリューコマースの「サイト追加」で @pokepi_tcg（X）を登録したときのサイトID（数字）
+# vc_programs：提携できたお店ごとの広告主のプログラムID（数字）。空のお店は今まで通りサイトへのリンク
+vc_x_site_id: ""
+vc_programs:
+  sevennet: ""

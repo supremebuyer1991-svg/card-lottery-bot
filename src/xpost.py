@@ -275,7 +275,7 @@ def big_target(i):
     return bool(re.search(CHAIN_WIDE, i.get("store") or "")) or (bool(i.get("multi")) and not i.get("area"))
 
 
-def compose_big(name, game, series, items, settings, started=False):
+def compose_big(name, game, series, items, settings, started=False, slug=None):
     """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切。
     started=True は「予告の段階で見つけていた抽選が、受付開始になった」お知らせ"""
     from detail import lottery_path
@@ -291,12 +291,19 @@ def compose_big(name, game, series, items, settings, started=False):
         areas = list(dict.fromkeys(i.get("area") for i in items if i.get("area")))
         where = f"{name} {len(items)}店舗" + (f"（{'・'.join(areas[:3])}{' ほか' if len(areas) > 3 else ''}）" if areas else "")
         link = f"{own}/{series_path(game, series)}" if own and series else f"{own}/"
+    # バリューコマースで提携しているお店（セブンネットなど）は、応募ページへのアフィリエイトリンクにする（11/7 ユーザー：元が取れるように）
+    # settings: vc_x_site_id＝バリューコマースに登録したXアカウントのサイトID、vc_programs＝{お店: 広告主のプログラムID}。どちらかが空なら今まで通り
+    vc_sid, vc_pid = str(settings.get("vc_x_site_id") or "").strip(), str((settings.get("vc_programs") or {}).get(slug) or "").strip()
+    is_ad = bool(vc_sid and vc_pid and first.get("url"))
+    if is_ad:
+        from urllib.parse import quote
+        link = f"https://ck.jp.ap.valuecommerce.com/servlet/referral?sid={vc_sid}&pid={vc_pid}&vc_url={quote(first['url'], safe='')}"
     kind = "店頭抽選" if first.get("channel") == "store" else "抽選"
     head = f"🔔受付開始｜{GAME_HEAD[game]}" if started else f"🚨抽選速報｜{GAME_HEAD[game]}"
     what = f"{name}で「{series or short_product(first)}」の{kind}" + ("が始まりました" if started else "")
     lines = [head, "", what, "",
              f"📍{where}", (f"⏰{fmt_dt(first.get('end'))} 締切" + ("（早い店）" if len(items) > 1 else "") if first.get("end") else "⏰締切はお店の告知で確認"), "",
-             "応募条件・方法はこちら👇", link, "", FOLLOW, "", TAGS[game]]
+             ("応募ページはこちら👇（PR）" if is_ad else "応募条件・方法はこちら👇"), link, "", FOLLOW, "", TAGS[game] + (" #PR" if is_ad else "")]
     return "\n".join(lines)
 
 
@@ -345,7 +352,7 @@ def post_big(settings, client=None):
         if count >= cap:
             log(f"大手の速報: 今日の上限（{cap}件）に届いたので {key} は出さない")
             break
-        text = compose_big(name, game, series, items, settings, started=(kind == "start"))
+        text = compose_big(name, game, series, items, settings, started=(kind == "start"), slug=slug)
         if dry:
             log("DRY_RUN 大手の速報:\n" + text)
             continue
