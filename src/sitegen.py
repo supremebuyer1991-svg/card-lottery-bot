@@ -2466,7 +2466,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             + "</urlset>\n", encoding="utf-8")
         (out / "robots.txt").write_text(  # 検索エンジンとAI検索（ChatGPT検索・Perplexity・Claude など）の読み取りをはっきり許可（11/3）
             "".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\n\n" for b in
-                    ("Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot", "Claude-User", "*"))
+                    ("Googlebot", "Bingbot", "Yeti", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot", "Claude-User", "*"))
             + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
 
     inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
