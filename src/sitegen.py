@@ -340,6 +340,11 @@ def _fmt(s):
     return f"{dt.month}/{dt.day}({WEEK[dt.weekday()]}) {dt:%H:%M}" if dt else "締切 要確認"
 
 
+def _soon(lst, n=20):
+    """締切が近い順に n 件（相場・結果・ガイドなど、一覧が主役でないページの下に載せる分。11/7 ページを軽く・重複を減らす）"""
+    return sorted(lst, key=lambda i: i.get("end") or "9999")[:n]
+
+
 def prerender(items) -> str:
     """JSが動く前（＝検索エンジンが最初に読む）一覧。JSが動くと本来の表示に置き換わる"""
     if not items:
@@ -353,7 +358,10 @@ def prerender(items) -> str:
             dt = parse_dt(i.get("end"))
             when = f'<time datetime="{dt.isoformat()}">{_fmt(i.get("end"))}</time>' if dt else "締切 要確認"
             link = f' <a href="{escape(i["url"])}" target="_blank" rel="nofollow noopener">応募ページ</a>' if i.get("url") else ""
-            rows.append(f"<li><b>{escape(where + i['store'])}</b> {escape(i.get('product') or '')} ／ 締切 {when}{link}</li>")
+            st_ = escape(where + i['store'])
+            if i.get("spath"):  # 検索エンジンが最初に読む一覧から、お店ページへもリンク（11/7）
+                st_ = f'<a href="/{escape(i["spath"])}">{st_}</a>'
+            rows.append(f"<li><b>{st_}</b> {escape(i.get('product') or '')} ／ 締切 {when}{link}</li>")
         if rows:
             out.append(f'<h2>{title}</h2><ul class="pre">{"".join(rows)}</ul>')
     return "".join(out)
@@ -683,6 +691,21 @@ def og_image(path, game_label, color, title, rows, sub=""):
     im.save(path, optimize=True)
 
 
+ASSETS = {}  # {"assets/app.<hash>.css": 中身} 全ページ共通のCSS・JS（11/7 監査：毎ページに100KBインラインで入っていた→別ファイルで長くキャッシュ）
+
+
+def _externalize(tpl):
+    import hashlib
+    for pat, ext, tag in ((r"<style>\n(.*?)</style>", "css", '<link rel="stylesheet" href="/assets/app.{h}.css">'),
+                          (r"(?<=</script>\n)<script>\n(.*?)</script>", "js", '<script defer src="/assets/app.{h}.js"></script>')):
+        m = re.search(pat, tpl, re.S)
+        if m:
+            h = hashlib.sha1(m.group(1).encode("utf-8")).hexdigest()[:10]
+            ASSETS[f"assets/app.{h}.{ext}"] = m.group(1)
+            tpl = tpl.replace(m.group(0), tag.format(h=h), 1)
+    return tpl
+
+
 def page(data: dict, meta: dict, standalone=True) -> str:
     base = meta.get("root", "/")
     canon = meta.get("canonical")
@@ -712,6 +735,8 @@ def page(data: dict, meta: dict, standalone=True) -> str:
     for ld in meta.get("ld") or []:
         head.append('<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>")
     body = TEMPLATE.read_text(encoding="utf-8")
+    if standalone:
+        body = _externalize(body)
     for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]),
                  "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]) + ('<span class="h1-tag">' + escape(meta["h1_tag"]) + "</span>" if meta.get("h1_tag") else ""),
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
@@ -1171,6 +1196,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                    "gameNames": {g: s["game_names"][g] for g in games},
                    "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {}}
     urls = []
+    # 11/7 監査：中身が本当に変わった日を lastmod・dateModified にする（毎回「今日」だとGoogleがlastmodを信用しなくなる）
+    pmod = load_json("page_lastmod.json", {}) if sample is None else {}  # {path: [中身の指紋, 変わった日, 最初の日]}
+    today_iso = now().date().isoformat()
     upd = parse_dt(updated) or now()
     md = f"{upd.month}/{upd.day}"
     verify = s.get("google_site_verification") or os.environ.get("GOOGLE_SITE_VERIFICATION") or ""
@@ -1216,7 +1244,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         on = sum(1 for i in sub if i.get("channel") != "store")
         if n:
             qa.append((f"{what}はどこで応募できますか？",
-                       f"{upd_hm}時点で受付中の{what}は{n}件です（ネット抽選{on}件・店頭抽選{n - on}件）。"
+                       f"{upd.month}/{upd.day}時点で受付中の{what}は{n}件です（ネット抽選{on}件・店頭抽選{n - on}件）。"
                        "ネット抽選は当選すると自宅に発送され、店頭抽選は店舗で受け取ります。"
                        "一覧の「応募する」から各店舗の応募ページに進めます。"))
             noid = sum(1 for i in sub if i.get("id_check") is False)
@@ -1233,7 +1261,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                            f"いちばん締切が近いのは{i['store']}の「{i.get('series') or i.get('product')}」で、{_fmt(i['end'])}締切です。"
                            "一覧は締切が近い順に並んでいます。"))
         qa.append(("抽選情報はいつ更新されますか？",
-                   f"1時間ごとに自動で更新しています（最終更新 {upd_hm}）。新しい抽選は見つかり次第追加し、締切を過ぎた抽選は一覧から外します。"))
+                   f"1時間ごとに自動で更新しています。新しい抽選は見つかり次第追加し、締切を過ぎた抽選は一覧から外します。"))
         return qa
 
     def stores_of(sub, k=4):
@@ -1266,7 +1294,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         meta["canonical"] = f"{site}/{path}" if site else None
         meta["site"], meta["verify"] = site, verify
         meta["prerender"] = prerender(subset)
-        ld = [item_list(subset, meta["h1"])]
+        ld = []  # ItemList は外部の応募ページを含みリッチリザルトの対象外なので出さない（11/7 監査）
         if trail:
             meta["crumbs"], bl = crumbs(trail)
             ld.insert(0, bl)
@@ -1275,10 +1303,17 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
                           "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
-        first = min([i.get("found_at") or "" for i in subset if i.get("found_at")] or [updated])
+        sig = sha(json.dumps([re.sub(r"【[^】]*更新】", "", meta["title"]), meta.get("h1"), meta.get("lead"),
+                              re.sub(r"\d{1,2}:\d{2}", "", str(meta.get("info_html") or "")), str(meta.get("aff") or ""),
+                              sorted((i.get("key") or "", i.get("end") or "", str(i.get("conditions") or "")) for i in subset)],
+                             ensure_ascii=False, default=str))
+        prev = pmod.get(path) or []
+        lm = prev[1] if prev[:1] == [sig] and len(prev) > 1 else today_iso
+        first = prev[2] if len(prev) > 2 else (min([i["found_at"] for i in subset if i.get("found_at")] or [today_iso])[:10])
+        pmod[path] = [sig, lm, first]
         ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": meta["title"], "headline": meta["h1"],
                    "description": meta["desc"], "url": f"{site}/{path}", "inLanguage": "ja",
-                   "datePublished": first, "dateModified": updated, "publisher": org})
+                   "datePublished": first, "dateModified": lm, "publisher": org})
         if meta.get("faq"):
             ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
                 {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in meta["faq"]]})
@@ -1302,9 +1337,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if meta.get("upd"):  # ページ上の「更新」を、そのページの中身の更新日時にする（BOX相場＝相場を読んだ日時）
             data = {**data, "updated": meta["upd"][1], "updLabel": meta["upd"][0]}
         p.write_text(page(data, meta), encoding="utf-8")
-        last = max([i.get("found_at") or "" for i in subset] + [""]) or updated
         if not meta.get("noindex"):  # 中身のうすいページ（抽選も履歴もない）は検索に出さない・サイトマップにも入れない
-            urls.append((f"{site}/{path}", (last or updated)[:10]))
+            urls.append((f"{site}/{path}", lm))
 
     def prods_of(game):
         cnt = {}
@@ -1437,7 +1471,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             write(series_path(g, x), {"game": g, "series": x}, {
                 "og_image": f"{site}/{og_rel}" if og_rel else None,
                 "title": (f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
-                          f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"),
+                          (f"【{short}】{x}のBOX相場・高額カード" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"
+                           if sm and str(info.get("release") or "") < cut90 else  # 古い弾は「抽選」より「相場」で探される（11/7）
+                           f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ")),
                 "desc": (f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
                          f"の抽選販売・予約・再販情報を1時間ごとに更新。" + ("・".join(sts) + "など" if sts else "") +
                          f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。") if si else
@@ -1585,7 +1621,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
 {guide_links_html()}
 <p class="note">ネット抽選だけを見たいときは<a href="{gl("pokemon", "online")}">ポケカのネット抽選</a>・<a href="{gl("onepiece", "online")}">ワンピースカードのネット抽選</a>をどうぞ。</p>
 </article>"""
-        write("guide/", {"game": games[0]}, {
+        write("guide/", {"game": games[0], "subset": True}, {
             "title": "ポケカ・ワンピースカード抽選の当て方｜当たりやすい抽選の選び方と応募のコツ｜トレカ抽選ナビ",
             "desc": f"ポケカ・ワンピースカードの抽選の種類（Web・SNS・アプリ・店頭）、当たりやすい抽選の選び方、応募前の準備をまとめました。掲載中の抽選{n_all}件のデータ付き。",
             "summary": summary([i for i in items if i["game"] == games[0]], "ポケカの抽選"),
@@ -1593,8 +1629,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     ("当たりやすい抽選はありますか？", "倍率は公表されないことがほとんどですが、地元のお店の店頭抽選や、会員カード・購入実績が条件の抽選など、応募できる人が限られる抽選は応募者が少なくなりやすいと考えられます。"),
                     ("本人確認なしで応募できる抽選はありますか？", f"本人確認がいらない抽選は{noid}件あります。ゲームごとの「本人確認なし」のページにまとめています。")],
             "h1": "ポケカ・ワンピースカード抽選の当て方と応募のコツ",
-            "lead": "抽選の種類・当たりやすい抽選の選び方・応募前の準備をまとめた解説ページです。下には今受付中のポケカの抽選を載せています。",
-            "aff": art, "links": _menu(items, games, games[0]), "root": "/"}, [i for i in items if i["game"] == games[0]],
+            "lead": "抽選の種類・当たりやすい抽選の選び方・応募前の準備をまとめた解説ページです。下には締切が近いポケカの抽選を載せています。",
+            "aff": art, "links": _menu(items, games, games[0]), "root": "/"}, _soon([i for i in items if i["game"] == games[0]]),
             [("トップ", ""), ("抽選の当て方", "guide/")])
 
     # --- お店ごとの解説ページ（/guide/xxx/）：応募のしかた・結果の確かめ方・当選後の購入。中身は config/guides.yaml（公式の告知で確かめた事実だけ）。
@@ -1686,22 +1722,22 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                       '<p><b>参加のしかた</b>：ボタンを押すと「トレカ販売情報ナビ」が開きます。参加したあと、<b>サブトークルームから参加したい地域のルーム</b>を選んでください。</p></div>'
                       f'<div class="line-rooms">{main_c}{cards}</div>'
                       '<p class="ch-note">※オープンチャットはLINEのサービスです。ルールを守って参加してください。転売目的の売買の呼びかけはご遠慮ください。</p>')
-            write("line/", {"game": games[0], "channel": "store"}, {
+            write("line/", {"game": games[0], "channel": "store", "subset": True}, {
                 "title": "地域ごとのLINEオープンチャット（トレカ販売情報共有）｜トレカ抽選ナビ",
                 "desc": "ポケカ・ワンピースカードの販売・抽選情報を、北海道・東北／関東／中部／近畿／中国・四国／九州・沖縄の地域ごとのLINEオープンチャットでリアルタイムに共有できます。",
                 "summary": "", "h1": "地域ごとのLINEオープンチャット", "h1_tag": "現在テスト運行中",
-                "lead": "地域ごとのLINEオープンチャットの一覧です。下には、いま受付中の店頭抽選を載せています。",
+                "lead": "地域ごとのLINEオープンチャットの一覧です。下には、締切が近い店頭抽選を載せています。",
                 "aff": body_l, "links": _menu(items, games, games[0]), "root": "/"},
-                [i for i in items if i["game"] == games[0] and i.get("channel") == "store"], [("トップ", ""), ("LINEオープンチャット", "line/")])
-        write("souba/", {"game": games[0]}, {
+                _soon([i for i in items if i["game"] == games[0] and i.get("channel") == "store"]), [("トップ", ""), ("LINEオープンチャット", "line/")])
+        write("souba/", {"game": games[0], "subset": True}, {
             "title": f"ポケカ・ワンピースカードBOX相場一覧【{_md(latest) if latest else md}更新】定価との差・前日比・1週間の推移｜トレカ抽選ナビ",
             "desc": f"ポケカ・ワンピースカードの未開封BOXの相場（スニダンの取引価格）を毎日更新。定価との差、前日比、1週間比、30日の値動きのグラフ、海外（TCGplayer）の相場も一覧で比べられます。",
             "summary": "", "faq": faq_s,
             "h1": "ポケカ・ワンピースカード BOX相場一覧",
-            "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には今受付中のポケカの抽選を載せています。",
+            "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には締切が近いポケカの抽選を載せています。",
             "aff": intro + _sb_tabs([g for g in games if any(f'data-g="{g}"' in x_ for x_ in secs)]) + "".join(secs), "links": _menu(items, games, games[0]), "root": "/",
             "upd": ("相場の更新 ", souba_raw["updated"]) if souba_raw.get("updated") else None},
-            [i for i in items if i["game"] == games[0]], [("トップ", ""), ("BOX相場", "souba/")])
+            _soon([i for i in items if i["game"] == games[0]]), [("トップ", ""), ("BOX相場", "souba/")])
 
     # --- 新しく見つけた弾の一覧（Xの告知の予約作業が読む。検索には載せない）---
     if sample is None:
@@ -1910,13 +1946,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                      "store": r["store"], "series": r.get("series"), "check": r.get("check")})
         h.append('<p class="note">※トレカ抽選ナビが見つけた分だけです。すべての抽選の結果を載せているわけではありません。'
                  '発表日はお店の告知に書かれていた予定で、変わることがあります。</p></div>')
-        write("kekka/", {"game": games[0]}, {
+        write("kekka/", {"game": games[0], "subset": True}, {
             "title": f"ポケカ・ワンピースカードの抽選結果・当選発表まとめ【{md}更新】｜トレカ抽選ナビ",
             "desc": "ポケカ・ワンピースカードの抽選結果（当選発表）が出たお店と、これから結果が出るお店を日付ごとにまとめています。確かめ方（メール・アプリなど）も。",
             "summary": "", "h1": "抽選結果・当選発表のまとめ",
-            "lead": "結果が出たお店・これから結果が出るお店を日付ごとにまとめています。下には今受付中の抽選を載せています。",
+            "lead": "結果が出たお店・これから結果が出るお店を日付ごとにまとめています。下には締切が近い抽選を載せています。",
             "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
-            [i for i in items if i["game"] == games[0]], [("トップ", ""), ("抽選結果", "kekka/")])
+            _soon([i for i in items if i["game"] == games[0]]), [("トップ", ""), ("抽選結果", "kekka/")])
         (out / "results.json").write_text(json.dumps(feed, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # --- 発売カレンダー（/calendar/）：最近出た弾〜これから出る弾を月ごとに。発売日・定価・受付中の抽選の数 ---
@@ -2176,8 +2212,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         elif ann_li:
             hist_html = f'<section class="hist"><h2>{escape(name)}の抽選結果の発表</h2>{ann_li}</section>'
         write(path, {"game": g0, "store": path, "channel": ch}, {
-            "title": f"{name}の{words}抽選情報【{md}更新】" + (f"受付中{len(si)}件" if si else "受付状況") + "｜トレカ抽選ナビ",
-            "desc": f"【{md}更新】{name}{where}の{words}の抽選販売・予約抽選" + (f"{len(si)}件" if si else "") +
+            "title": f"{name}の{words}抽選情報" + (f"【{md}更新】受付中{len(si)}件" if si else "｜前回の抽選・応募方法") + "｜トレカ抽選ナビ",
+            "desc": (f"【{md}更新】" if si else "") + f"{name}{where}の{words}の抽選販売・予約抽選" + (f"{len(si)}件" if si else "") +
                     "を締切順にまとめ。応募方法（Web・店頭）、受け取り方、本人確認・会員カードの有無もひと目で分かります。",
             "summary": summary(si, f"{name}の抽選"),
             "h1": f"{name}の抽選情報", "lead": lead,
@@ -2185,7 +2221,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "info_html": addr_html + trend_html + hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
             "faq": faq_s or None,
             "links": links, "root": "/",
-            "noindex": not si and not hist_html}, si,  # 受付中もこれまでの抽選もないお店は検索に出さない
+            "noindex": not si and len(past) < 3}, si,  # 受付中なし・過去2件以下のお店は中身が薄いので検索に出さない（11/7）
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
     # --- チェーンごとのページ（/chain/xxx/）---
@@ -2408,10 +2444,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                        "url": "/" + series_path(g, x_) + "#souba"}
         if active and d.get("channel") == "store":
             aff = line_box(d.get("area")) + aff
+        # 11/7 監査：受付は中央値4.5日と短く、1店舗だけの店頭抽選のページは検索に載る前に終わる＆中身が薄い。
+        # 検索に出すのは「ネット抽選」と「大手チェーンの店頭抽選」だけ（1店舗だけの抽選はお店ページで受ける）
+        c_ = chain_of(d.get("store"))
+        l_index = d.get("channel") != "store" or bool(c_ and CHAIN[c_][3])
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
-                                   redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx), encoding="utf-8")
-        if active:
+                                   redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx, noindex=not l_index), encoding="utf-8")
+        if active and l_index:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
+        if active:
             ics = detail.cal_ics(d, d.get("store") or "", detail.short_name(d), f"{site}/{lp}" if site else "")
             if ics:
                 (p.parent / "shimekiri.ics").write_text(ics, encoding="utf-8")
@@ -2423,11 +2464,23 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     # 応募したリスト（このブラウザの中だけの記録を一覧にする。検索・サイトマップには載せない）
     (out / "mylist").mkdir(parents=True, exist_ok=True)
     (out / "mylist" / "index.html").write_text(detail.mylist_page(site), encoding="utf-8")
+    # 404.html が無いと Cloudflare Pages は無いURLにトップページを200で返す（ソフト404）。消えた抽選ページなどのため（11/7）
+    (out / "404.html").write_text(
+        '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="robots" content="noindex"><title>ページが見つかりません｜トレカ抽選ナビ</title>'
+        '<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:32px 16px;line-height:1.7;color:#222}a{color:#c8102e}</style></head>'
+        '<body><h1>ページが見つかりません</h1><p>抽選の受付が終わり、ページを削除した可能性があります。</p>'
+        '<p><a href="/">受付中の抽選一覧</a> ・ <a href="/pokeka/">ポケカ</a> ・ <a href="/onepiece/">ワンピースカード</a> ・ '
+        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a></p></body></html>', encoding="utf-8")
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
     import shutil
     for f in (ROOT / "src" / "static").glob("*"):
         shutil.copy(f, out / f.name)
+    for rel_, txt_ in ASSETS.items():  # 共通のCSS・JS（名前に中身の指紋が入っているので、ずっとキャッシュしてよい）
+        (out / rel_).parent.mkdir(parents=True, exist_ok=True)
+        (out / rel_).write_text(txt_, encoding="utf-8")
+    (out / "_headers").write_text("/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n", encoding="utf-8")
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
 
@@ -2460,10 +2513,29 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         urls += intl.build_intl(out, s, souba_raw, card_raw, _ser_cfg()["info"], site, now().date())
 
     if site:
-        (out / "sitemap.xml").write_text(
-            '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in urls)
-            + "</urlset>\n", encoding="utf-8")
+        # 11/7 監査：サイトマップを種類ごとに分ける（Search Consoleで、どの種類が載っていないか分かる）。sitemap.xml は索引
+        def _kind(u):
+            p_ = u[len(site):].strip("/").split("/")
+            if p_[0] in ("en", "zh-tw", "ko"):
+                return "intl"
+            if p_[0] in ("store", "chain", "l") and len(p_) > 1:
+                return p_[0]
+            if len(p_) > 1 and p_[1] == "area":
+                return "area"
+            if len(p_) > 1 and p_[0] in GAME_SLUG.values() and p_[1] not in ("today", "online", "no-id"):
+                return "sets"
+            return "main"
+        groups = {}
+        for u, lm_ in dict(urls).items():
+            groups.setdefault(_kind(u), []).append((u, lm_))
+        idx_ = []
+        for k_, lst_ in sorted(groups.items()):
+            (out / f"sitemap-{k_}.xml").write_text(
+                '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+                + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm_}</lastmod></url>" for u, lm_ in lst_) + "</urlset>\n", encoding="utf-8")
+            idx_.append(f"<sitemap><loc>{site}/sitemap-{k_}.xml</loc><lastmod>{max(l_ for _, l_ in lst_)}</lastmod></sitemap>")
+        (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+                                         + "".join(idx_) + "</sitemapindex>\n", encoding="utf-8")
         (out / "robots.txt").write_text(  # 検索エンジンとAI検索（ChatGPT検索・Perplexity・Claude など）の読み取りをはっきり許可（11/3）
             "".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\n\n" for b in
                     ("Googlebot", "Bingbot", "Yeti", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot", "Claude-User", "*"))
@@ -2475,6 +2547,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
 
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
+        save_json("page_lastmod.json", pmod)
     (out / ".changed").unlink(missing_ok=True)
     if changed:
         (out / ".changed").write_text(updated, encoding="utf-8")  # ワークフローはこれがある時だけ公開
@@ -2584,7 +2657,7 @@ def inject_linkswitch(out, pid):
            '<script src="//aml.valuecommerce.com/vcdal.js" async></script>')
     n = 0
     for p in Path(out).rglob("*.html"):
-        if p.name in GA_SKIP:
+        if p.name in GA_SKIP or p.relative_to(out).parts[0] in ("en", "zh-tw", "ko"):  # 海外向けページは国内の広告主に関係ないので入れない
             continue
         h = p.read_text(encoding="utf-8")
         if "</head>" not in h:
