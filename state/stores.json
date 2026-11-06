@@ -135,13 +135,13 @@
     "area": "静岡県"
   },
   "store/kiddyland-60c89/": {
-    "name": "キデイランド二子玉川店",
+    "name": "キデイランド 二子玉川店",
     "last": "2026-11-06",
     "game": "pokemon",
     "area": "東京都"
   },
   "store/kiddyland-76f8e/": {
-    "name": "キデイランド吉祥寺店",
+    "name": "キデイランド 吉祥寺店",
     "last": "2026-11-06",
     "game": "pokemon",
     "area": "東京都"
@@ -1648,7 +1648,8 @@
     "name": "BIGMAGICなんば店",
     "last": "2026-11-06",
     "game": "pokemon",
-    "area": "大阪府"
+    "area": "大阪府",
+    "address": "大阪府大阪市浪速区難波中２丁目４-１５"
   },
   "store/aeon-2f753/": {
     "name": "ふるいちイオンモール熱田店",
@@ -2446,9 +2447,10 @@
   },
   "store/cardlabo-1c57d/": {
     "name": "カードラボ宇都宮店",
-    "last": "2026-08-09",
+    "last": "2026-11-06",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "栃木県"
   },
   "store/otachuu-5-4a74e/": {
     "name": "おたちゅう。秋葉原5号店",
@@ -3921,7 +3923,7 @@
     "area": "京都府"
   },
   "store/kiddyland-668b3/": {
-    "name": "キデイランド浦和美園店",
+    "name": "キデイランド 浦和美園店",
     "last": "2026-11-06",
     "game": "pokemon",
     "keep": true,
@@ -4316,7 +4318,7 @@
   },
   "store/geo-e8193/": {
     "name": "GEO",
-    "last": "2026-11-05",
+    "last": "2026-11-06",
     "game": "onepiece"
   },
   "store/tsutaya-e823e/": {
@@ -6047,7 +6049,8 @@
   "store/tsutaya-0c2c1/": {
     "name": "TSUTAYAルビットタウン戸田店",
     "last": "2026-11-06",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "埼玉県"
   },
   "store/tsutaya-3ff51/": {
     "name": "TSUTAYAウイングタウン岡崎店",
@@ -6571,7 +6574,8 @@
     "name": "TSUTAYA二十世紀が丘店",
     "last": "2026-11-06",
     "game": "pokemon",
-    "area": "千葉県"
+    "area": "千葉県",
+    "address": "千葉県市川市堀之内3-31-16"
   },
   "store/bookoff-de077/": {
     "name": "ブックオフ東大和仲原店",
@@ -6597,7 +6601,8 @@
     "name": "文教堂湘南とうきゅう店",
     "last": "2026-11-06",
     "game": "pokemon",
-    "area": "神奈川県"
+    "area": "神奈川県",
+    "address": "神奈川県藤沢市遠藤698-10"
   },
   "store/tsutaya-3ac4a/": {
     "name": "TSUTAYA武雄店",
@@ -6723,6 +6728,74 @@
     "last": "2026-11-06",
     "game": "pokemon"
   },
+  "store/kiddyland-36041/": {
+    "name": "キデイランド湘南平塚",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/kiddyland-4d7ed/": {
+    "name": "キデイランド吉祥寺",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/geo-ade4d/": {
+    "name": "ゲオ（アプリ）",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/reputon-b9295/": {
+    "name": "レプトン各店（レプトン会員アプリ）",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "広島県"
+  },
+  "store/furuichi-f8671/": {
+    "name": "古本市場与野本町店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "埼玉県"
+  },
+  "store/tsutaya-b3a5c/": {
+    "name": "POKÉMON CARD LOUNGE（SHIBUYA TSUTAYA 5F）",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/nopao-pao-7f30d/": {
+    "name": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/toreka-girafull-db89f/": {
+    "name": "トレカ専門店GIRAFULL 名古屋大須店",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/gemuaku-f55c9/": {
+    "name": "ゲームアーク×宝島各店（モバイル会員限定）",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/aeon-80468/": {
+    "name": "キッズリパブリック（イオン・本州／四国限定）",
+    "last": "2026-11-06",
+    "game": "pokemon",
+    "area": "北海道"
+  },
+  "store/torevi-6aefb/": {
+    "name": "torevi（通販）",
+    "last": "2026-11-06",
+    "game": "pokemon"
+  },
+  "store/o-attomakettomini-nyutaun-9346f/": {
+    "name": "お宝あっとマーケットmini 千葉ニュータウン店",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "area": "千葉県"
+  },
   "store/dorasuta-ccf02/": {
     "name": "ドラスタ通販",
     "last": "2026-10-29",
@@ -6735,14 +6808,8 @@
     "game": "onepiece",
     "keep": true
   },
-  "store/kiddyland-36041/": {
-    "name": "キデイランド湘南平塚",
-    "last": "2026-11-06",
-    "game": "pokemon",
-    "keep": true
-  },
-  "store/kiddyland-4d7ed/": {
-    "name": "キデイランド吉祥寺",
+  "store/gemuaku-4ef32/": {
+    "name": "ゲームアーク/ 宝島",
     "last": "2026-11-06",
     "game": "pokemon",
     "keep": true

@@ -12940,7 +12940,7 @@
       "store": "TSUTAYAルビットタウン戸田店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "埼玉県",
       "found_at": "2026-11-06T11:21:39.655662+09:00",
       "chain": "tsutaya"
     },
@@ -13015,6 +13015,222 @@
       "area": null,
       "found_at": "2026-11-06T11:22:29.276705+09:00",
       "chain": null
+    },
+    "cc81610f2587f0d9": {
+      "game": "pokemon",
+      "store": "ゲオ（アプリ）",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:03.844330+09:00",
+      "chain": "geo"
+    },
+    "f45097d5b117c4fb": {
+      "game": "pokemon",
+      "store": "レプトン各店（レプトン会員アプリ）",
+      "series": null,
+      "channel": "store",
+      "area": "広島県",
+      "found_at": "2026-11-06T12:59:04.994056+09:00",
+      "chain": null
+    },
+    "e85bee150cea2450": {
+      "game": "pokemon",
+      "store": "古本市場与野本町店",
+      "series": "スタートデッキ100 バトルコレクション",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-06T12:59:04.994090+09:00",
+      "chain": "furuichi"
+    },
+    "a0d5881b475ec62c": {
+      "game": "pokemon",
+      "store": "POKÉMON CARD LOUNGE（SHIBUYA TSUTAYA 5F）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-06T12:59:04.994141+09:00",
+      "chain": "tsutaya"
+    },
+    "28b4abe5cb2870fd": {
+      "game": "pokemon",
+      "store": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994160+09:00",
+      "chain": null
+    },
+    "60c9b854c61edc46": {
+      "game": "pokemon",
+      "store": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994177+09:00",
+      "chain": null
+    },
+    "fd7296b91d5d2146": {
+      "game": "pokemon",
+      "store": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994193+09:00",
+      "chain": null
+    },
+    "ded14afd8af4c47c": {
+      "game": "pokemon",
+      "store": "トレカ専門店GIRAFULL 名古屋大須店",
+      "series": null,
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-06T12:59:04.994209+09:00",
+      "chain": null
+    },
+    "7f2b1fc42e7c2bda": {
+      "game": "pokemon",
+      "store": "ゲームアーク×宝島各店（モバイル会員限定）",
+      "series": null,
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994223+09:00",
+      "chain": null
+    },
+    "33105313c551b3fd": {
+      "game": "pokemon",
+      "store": "キッズリパブリック（イオン・本州／四国限定）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-06T12:59:04.994239+09:00",
+      "chain": "aeon"
+    },
+    "347423608a9a50c2": {
+      "game": "pokemon",
+      "store": "torevi（通販）",
+      "series": "30th CELEBRATION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994254+09:00",
+      "chain": null
+    },
+    "f010d51e40166689": {
+      "game": "pokemon",
+      "store": "GEO",
+      "series": "30th CELEBRATION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994269+09:00",
+      "chain": "geo"
+    },
+    "03a0e76010fe2b80": {
+      "game": "pokemon",
+      "store": "GEO",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994282+09:00",
+      "chain": "geo"
+    },
+    "bcc90ec372fd0306": {
+      "game": "pokemon",
+      "store": "TSUTAYA400号西那須野店",
+      "series": null,
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-06T12:59:04.994296+09:00",
+      "chain": "tsutaya"
+    },
+    "044d5185938db6c8": {
+      "game": "pokemon",
+      "store": "TSUTAYAフレスポ小田原シティーモール店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-06T12:59:04.994321+09:00",
+      "chain": "tsutaya"
+    },
+    "f5fe47162c21ba28": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 宇都宮インターパークビレッジ",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-06T12:59:04.994337+09:00",
+      "chain": "tsutaya"
+    },
+    "5a811135bd95a05c": {
+      "game": "pokemon",
+      "store": "ハイパートレカ駒井沢",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-06T12:59:04.994352+09:00",
+      "chain": null
+    },
+    "16df4f306957030d": {
+      "game": "onepiece",
+      "store": "キデイランド 浦和美園店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-06T12:59:05.519331+09:00",
+      "chain": "kiddyland"
+    },
+    "b62c40dfbec0edbd": {
+      "game": "onepiece",
+      "store": "お宝あっとマーケットmini 千葉ニュータウン店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-06T12:59:05.519362+09:00",
+      "chain": null
+    },
+    "227262b3aa55e3e4": {
+      "game": "onepiece",
+      "store": "カードラボ宇都宮店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-06T12:59:05.519377+09:00",
+      "chain": "cardlabo"
+    },
+    "a7972d4d796fab03": {
+      "game": "onepiece",
+      "store": "TSUTAYA光吉店トレカコーナー",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "大分県",
+      "found_at": "2026-11-06T12:59:05.519392+09:00",
+      "chain": "tsutaya"
+    },
+    "f65719cd9994472d": {
+      "game": "onepiece",
+      "store": "TSUTAYA大垣店（トレカ）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-06T12:59:05.519404+09:00",
+      "chain": "tsutaya"
+    },
+    "6842f524249f2257": {
+      "game": "onepiece",
+      "store": "キデイランド 吉祥寺店",
+      "series": "神の支配",
+      "channel": "online",
+      "area": "東京都",
+      "found_at": "2026-11-06T12:59:05.519419+09:00",
+      "chain": "kiddyland"
+    },
+    "6ebc185ecc89c542": {
+      "game": "onepiece",
+      "store": "キデイランド 二子玉川店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-06T12:59:05.519432+09:00",
+      "chain": "kiddyland"
     }
   }
 }

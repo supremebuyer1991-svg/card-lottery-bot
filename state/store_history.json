@@ -1770,6 +1770,17 @@
         "mem": "account",
         "rq": []
       },
+      "6ebc185ecc89c542": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "057016f22d5d520f": {
         "p": "神の支配",
         "g": "onepiece",
@@ -1854,7 +1865,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-12"
       },
       "7469a3676610d36c": {
         "p": "ストームエメラルダ",
@@ -1873,6 +1885,17 @@
         "e": "2026-11-11T23:59",
         "f": "2026-11-06",
         "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "6842f524249f2257": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-06",
+        "c": "online",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -3353,6 +3376,17 @@
   "store/cardlabo-1c57d/": {
     "name": "カードラボ宇都宮店",
     "items": {
+      "227262b3aa55e3e4": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "10b8e082c8441ae9": {
         "p": "スタートデッキ100 バトルコレクション",
         "g": "pokemon",
@@ -16650,6 +16684,18 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": [],
+        "a": "2026-11-12"
+      },
+      "16df4f306957030d": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       },
       "d7432c67ac214431": {
@@ -18051,6 +18097,30 @@
   "store/geo-e8193/": {
     "name": "GEO",
     "items": {
+      "f010d51e40166689": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-12T17:59",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "03a0e76010fe2b80": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-12T17:59",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "aafac63cdf56f782": {
         "p": "神の支配",
         "g": "onepiece",
@@ -18484,22 +18554,22 @@
         "mem": null,
         "rq": []
       },
-      "598b561173d2d651": {
-        "p": "世界最強の戦士",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-11-01",
+      "95693feb53050cf3": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-31",
         "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,
         "rq": []
       },
-      "95693feb53050cf3": {
-        "p": "スペシャルデッキセットMEGA",
-        "g": "pokemon",
+      "598b561173d2d651": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
         "e": "",
-        "f": "2026-10-31",
+        "f": "2026-11-01",
         "c": "store",
         "m": "Web",
         "id": null,
@@ -18522,22 +18592,22 @@
         "mem": null,
         "rq": []
       },
-      "fc7accb649c9c07e": {
-        "p": "世界最強の戦士",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-11-01",
+      "79a67549237e56b1": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-01T23:59",
+        "f": "2026-10-31",
         "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,
         "rq": []
       },
-      "79a67549237e56b1": {
-        "p": "スペシャルデッキセットMEGA",
-        "g": "pokemon",
+      "fc7accb649c9c07e": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
         "e": "",
-        "f": "2026-10-31",
+        "f": "2026-11-01",
         "c": "store",
         "m": "Web",
         "id": null,
@@ -21211,6 +21281,17 @@
         "mem": null,
         "rq": []
       },
+      "bcc90ec372fd0306": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "1066025195126bb2": {
         "p": "ヒロインズエディション",
         "g": "onepiece",
@@ -22668,6 +22749,17 @@
   "store/tsutaya-78fb8/": {
     "name": "TSUTAYAフレスポ小田原シティーモール店",
     "items": {
+      "044d5185938db6c8": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "ffff14794c654dec": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -23160,6 +23252,17 @@
   "store/haipatoreka-0b2ae/": {
     "name": "ハイパートレカ駒井沢",
     "items": {
+      "5a811135bd95a05c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "899b893761a9c874": {
         "p": "神の支配",
         "g": "onepiece",
@@ -23342,6 +23445,17 @@
   "store/tsutaya-e30b1/": {
     "name": "TSUTAYA光吉店トレカコーナー",
     "items": {
+      "a7972d4d796fab03": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T22:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "fbd94c993c59f8ee": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -25112,7 +25226,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-09"
       },
       "dfb059ed2c757104": {
         "p": "30周年御三家カードセット",
@@ -25357,6 +25472,17 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "2026-11-12T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "f65719cd9994472d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T11:14",
         "f": "2026-11-06",
         "c": "store",
         "m": "店頭",
@@ -26491,7 +26617,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-19"
       },
       "1de210db1a898c94": {
         "p": "ストームエメラルダ",
@@ -26502,7 +26629,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-19"
       }
     }
   },
@@ -26634,6 +26762,17 @@
     "items": {
       "1edd4e34e41df418": {
         "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T20:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "f5fe47162c21ba28": {
+        "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-09T20:00",
         "f": "2026-11-06",
@@ -26815,6 +26954,212 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/geo-ade4d/": {
+    "name": "ゲオ（アプリ）",
+    "items": {
+      "cc81610f2587f0d9": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-12T17:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/gemuaku-4ef32/": {
+    "name": "ゲームアーク/ 宝島",
+    "items": {
+      "7303225aefdb2b48": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-11"
+      }
+    }
+  },
+  "store/reputon-b9295/": {
+    "name": "レプトン各店（レプトン会員アプリ）",
+    "items": {
+      "f45097d5b117c4fb": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/furuichi-f8671/": {
+    "name": "古本市場与野本町店",
+    "items": {
+      "e85bee150cea2450": {
+        "p": "スタートデッキ100 バトルコレクション",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-b3a5c/": {
+    "name": "POKÉMON CARD LOUNGE（SHIBUYA TSUTAYA 5F）",
+    "items": {
+      "a0d5881b475ec62c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/nopao-pao-7f30d/": {
+    "name": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
+    "items": {
+      "28b4abe5cb2870fd": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "60c9b854c61edc46": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "fd7296b91d5d2146": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-girafull-db89f/": {
+    "name": "トレカ専門店GIRAFULL 名古屋大須店",
+    "items": {
+      "ded14afd8af4c47c": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/gemuaku-f55c9/": {
+    "name": "ゲームアーク×宝島各店（モバイル会員限定）",
+    "items": {
+      "7f2b1fc42e7c2bda": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-80468/": {
+    "name": "キッズリパブリック（イオン・本州／四国限定）",
+    "items": {
+      "33105313c551b3fd": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-12T19:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-26"
+      }
+    }
+  },
+  "store/torevi-6aefb/": {
+    "name": "torevi（通販）",
+    "items": {
+      "347423608a9a50c2": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-13T21:00",
+        "f": "2026-11-06",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/o-attomakettomini-nyutaun-9346f/": {
+    "name": "お宝あっとマーケットmini 千葉ニュータウン店",
+    "items": {
+      "b62c40dfbec0edbd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-06",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
         "rq": []
       }
     }
