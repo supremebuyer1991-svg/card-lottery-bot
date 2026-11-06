@@ -117,6 +117,12 @@ CHAINS = [
     ("wondergoo", "WonderGOO", r"WonderGOO|ワンダーグー", False),
     ("jumpshop", "ジャンプショップ", r"ジャンプショップ|JUMP ?SHOP", False),
     ("dmm", "DMM", r"DMM", False),
+    # 11/7 追加：解説ページ（guides.yaml）があり「〇〇 ポケカ 抽選」で探されるお店
+    ("heiwado", "平和堂", r"平和堂", False),
+    ("itoyokado", "イトーヨーカドー", r"イトーヨーカ[ドド]ー|ヨーカドー", False),
+    ("famima", "ファミリーマート（ファミマオンライン）", r"ファミマ|ファミリーマート", False),
+    ("lawson", "ローソン・HMV", r"ローソン|HMV", False),
+    ("pokemoncardlounge", "ポケモンカードラウンジ", r"ポケモンカードラウンジ|ポケカラウンジ", False),
 ]
 
 
