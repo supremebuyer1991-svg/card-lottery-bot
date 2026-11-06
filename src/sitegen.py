@@ -2739,6 +2739,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         save_json("lottery_pages.json", lreg)
     raw = raw_lots if sample is None else {}
     inv_all = amazon_invites(items, tag) if tag else {}
+    _chain_n, _ser_n = {}, {}  # いま受付中の抽選の数（終わった抽選のページから案内するため）
+    for i in items:
+        c0 = chain_of(i.get("store"))
+        if c0:
+            _chain_n[c0] = _chain_n.get(c0, 0) + 1
+        if i.get("series"):
+            _ser_n[(i["game"], i["series"])] = _ser_n.get((i["game"], i["series"]), 0) + 1
     for lp, r in lreg.items():
         d = r["d"]
         g = d.get("game") if d.get("game") in GAME_SLUG else games[0]
@@ -2789,8 +2796,17 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         # 検索に出すのは「ネット抽選」と「大手チェーンの店頭抽選」だけ（1店舗だけの抽選はお店ページで受ける）
         c_ = chain_of(d.get("store"))
         l_index = d.get("channel") != "store" or bool(c_ and CHAIN[c_][3])
+        nxt = None
+        if not active:
+            if c_ and _chain_n.get(c_) and (out / "chain" / c_ / "index.html").exists():
+                nxt = (f"{CHAIN[c_][1]}でいま受付中の抽選を見る（{_chain_n[c_]}件）", f"/chain/{c_}/")
+            elif d.get("series") and _ser_n.get((g, d["series"])) and (out / series_path(g, d["series"]).strip("/") / "index.html").exists():
+                nxt = (f"「{d['series']}」のいま受付中の抽選を見る（{_ser_n[(g, d['series'])]}件）", "/" + series_path(g, d["series"]))
+            else:
+                nxt = (f"いま受付中の{short}の抽選を見る", f"/{GAME_SLUG[g]}/")
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
-                                   redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx, noindex=not l_index), encoding="utf-8")
+                                   redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx, noindex=not l_index,
+                                   next_link=nxt), encoding="utf-8")
         if active and l_index:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
         if active:

@@ -90,6 +90,7 @@ footer{color:var(--ink-2);font-size:12px;padding:8px 0 40px}
 .ad-btns a,.ad-sup a,.ad-amz a{border:1px solid var(--rule);border-radius:8px;padding:6px 10px;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .b-rak{background:#bf0000;color:#fff!important;border-color:#bf0000!important}.b-amz{background:#ffd814;color:#0f1111!important;border-color:#fcd200!important}.b-ymd{background:#e60012;color:#fff!important;border-color:#e60012!important}
 .ad-pr{font-size:10px;letter-spacing:.08em;color:#fff;background:#6b7280;border-radius:3px;padding:1px 5px}.ad .ad-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nextgo{display:block;margin:0 0 14px;padding:14px 16px;border-radius:12px;background:var(--red,#c8102e);color:#fff;font-weight:700;font-size:16px;text-decoration:none;text-align:center}.nextgo b{margin-left:4px}
 .ad.lose{border:2px solid #f3d9a4;background:#fffaf0}.lose-sub{margin:4px 0 8px;font-size:13px;color:var(--ink-2)}.lose-l{list-style:none;margin:0;padding:0}
 .lose-l li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #f0e2c4}.lose-l li:first-child{border-top:0}
 .lose-l small{display:block;font-size:12px;color:var(--ink-2)}.lose-l a{flex:none;font-size:13px;font-weight:700;padding:8px 12px;border-radius:8px;text-decoration:none}
@@ -210,7 +211,7 @@ def _cal_links(i, store, name, canon):
             '<a class="calsub-l" href="/calendar/#sub">🔔 これからの締切も自動で入れる →</a></div>')
 
 
-def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None, noindex=False):
+def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None, noindex=False, next_link=None):
     """1件分のHTML。i は sitegen の row（＋products / start / announce / buy）"""
     g = i.get("game")
     gshort = GAME_SHORT.get(g, "")
@@ -332,6 +333,8 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     upd = parse_dt(updated)
     foot = f"情報の更新：{upd.month}/{upd.day} {upd:%H:%M}" if upd else ""
     ended_note = ('<p class="ended">この抽選の受付は終了しました。いま受付中の抽選は下の一覧からさがせます。</p>' if is_end else "")
+    if is_end and next_link:  # 終わった抽選のページに検索から来た人を、いま受付中の抽選へ（11/7 検索：終了ページの表示が多くクリック率1%）
+        ended_note += (f'<a class="nextgo" href="{escape(next_link[1])}">{escape(next_link[0])} <b>→</b></a>')
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + "\n".join(head) +
             '</head><body><header><div class="wrap"><p style="margin:0;padding-top:4px;font-size:12px;line-height:1.4;color:var(--ink);text-align:right">本ページはプロモーションを含みます</p><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
