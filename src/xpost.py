@@ -362,3 +362,71 @@ def post_big(settings, client=None):
         log(f"大手の速報: {key}")
     meta["big_count"] = {today: count}
     save_json("x_meta.json", meta)
+
+
+# ---- 朝の「今日締切の抽選まとめ」（画像つき・1日1回。11/7）----
+def compose_today(td, settings):
+    t = now()
+    gs = {"pokemon": "ポケカ", "onepiece": "ワンピースカード", "dragonball": "DBフュージョンワールド"}
+    cnt = {}
+    for i in td:
+        cnt[i["game"]] = cnt.get(i["game"], 0) + 1
+    online = [i for i in td if i.get("channel") != "store"]
+    pick, seen = [], set()
+    for i in sorted(online, key=lambda i: (0 if big_target(i) else 1, parse_dt(i["end"]))) or td:
+        if i.get("store") in seen:
+            continue
+        seen.add(i.get("store"))
+        pick.append(i)
+        if len(pick) >= 3:
+            break
+    lines = []
+    for i in pick:
+        e = parse_dt(i["end"])
+        pr = re.sub(r"ポケモンカードゲーム|ONE PIECEカードゲーム|[「」]", " ", short_product(i))
+        pr = re.sub(r"\s+", " ", pr).strip()
+        pr = pr[:22] + ("…" if len(pr) > 22 else "")
+        lines.append(f"・{i.get('store')}「{pr}」{e:%H:%M}")
+    site = public_site(settings) or settings.get("site_url")
+    tags = " ".join(dict.fromkeys(TAGS.get(g, "").split()[-1] for g in cnt if TAGS.get(g)))
+    return (f"⏰今日締切の抽選｜{t.month}/{t.day}\n"
+            + "／".join(f"{gs.get(g, g)} {n}件" for g, n in cnt.items()) + "\n\n"
+            + "\n".join(lines) + "\n\n応募し忘れはない？全部の締切はこちら👇\n"
+            + f"{site}/today/\n{tags}").strip()
+
+
+def post_today_deadline(settings, client=None):
+    """毎朝（deadline_post_hour 時以降に1回）：今日締切の抽選を画像つきで投稿。settings の deadline_post が true のときだけ"""
+    if not settings.get("deadline_post"):
+        return
+    meta = load_json("x_meta.json", {})
+    today = now().date().isoformat()
+    if meta.get("today_post") == today or now().hour < int(settings.get("deadline_post_hour") or 7) or now().hour >= 12:
+        return
+    lots = load_json("lotteries.json", {})
+    td = [i for i in lots.values() if i["status"] in ("approved", "posted", "listed") and parse_dt(i.get("end"))
+          and parse_dt(i["end"]).date() == now().date() and parse_dt(i["end"]) > now()]
+    if len(td) < 2:
+        return
+    td.sort(key=lambda i: parse_dt(i["end"]))
+    text = compose_today(td, settings)
+    import io
+    from pathlib import Path
+    from sitegen import today_image
+    t = now()
+    p = Path("/tmp/today_post.png")
+    today_image(p, td, f"{t.month}/{t.day}（{'月火水木金土日'[t.weekday()]}）")
+    dry = settings["dry_run"] or (client is None and not os.environ.get("X_API_KEY"))
+    if dry:
+        log("DRY_RUN 今日締切まとめ:\n" + text)
+        return
+    client = client or _client()
+    mid = upload_image(p.read_bytes())
+    try:
+        client.create_tweet(text=text, media_ids=[mid] if mid else None)
+    except Exception as e:
+        log(f"今日締切まとめ 投稿失敗: {e}")
+        return
+    meta["today_post"] = today
+    save_json("x_meta.json", meta)
+    log("今日締切まとめ 投稿OK")

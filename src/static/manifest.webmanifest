@@ -1,0 +1,19 @@
+{
+  "name": "トレカ抽選ナビ",
+  "short_name": "抽選ナビ",
+  "description": "ポケカ・ワンピースカードの抽選・予約情報を毎日まとめています。締切前に通知も届きます。",
+  "lang": "ja",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c8102e",
+  "icons": [
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ],
+  "shortcuts": [
+    {"name": "応募したリスト", "url": "/mylist/", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]},
+    {"name": "発売日カレンダー", "url": "/calendar/", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]}
+  ]
+}

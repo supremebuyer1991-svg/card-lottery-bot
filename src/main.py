@@ -4,7 +4,7 @@ import sys
 from common import load_settings, load_sources, log
 from collect import collect, sync_manual
 from approve import approve
-from xpost import post_all, post_daily_summary, post_big
+from xpost import post_all, post_daily_summary, post_big, post_today_deadline
 from xbuzz import post_buzz
 from xtrend import update_trends
 from pagecheck import check_pages
@@ -68,6 +68,10 @@ def main():
         except Exception as e:
             log(f"大手の速報: スキップ {e}")
         post_daily_summary(s)
+        try:
+            post_today_deadline(s)  # 朝の「今日締切の抽選まとめ」（画像つき・settings の deadline_post が true のとき）
+        except Exception as e:
+            log(f"今日締切まとめ: スキップ {e}")
         try:
             post_buzz(s)  # 1日1回、リンクなしの反応狙い投稿（buzz_hour 時〜）
         except Exception as e:

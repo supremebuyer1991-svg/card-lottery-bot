@@ -396,3 +396,7 @@ lp_shops_enabled: false
 
 # 11/3 Threadsはお店ごとの速報をやめてまとめだけに（表示が1〜8回しかなかった）
 threads_each: false
+
+# 朝の「今日締切の抽選まとめ」をXに画像つきで出す（11/7・サンプルをユーザーに確認してから true にする）
+deadline_post: false
+deadline_post_hour: 7

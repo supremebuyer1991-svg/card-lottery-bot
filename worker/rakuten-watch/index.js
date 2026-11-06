@@ -1,3 +1,4 @@
+import { pushApi, runPush, pushStats } from "./push.js";
 // 楽天ブックスのトレカの見張り（Cloudflare Worker・1分おき）
 // 楽天市場API（shopCode=book）で「注文できない(0)」→「注文できる(1)」に変わった商品を見つけたら、
 // Xに楽天アフィリエイトのリンク付きで自動投稿する。前の状態は KV（STATE）に置く。
@@ -268,12 +269,20 @@ export default {
     ctx.waitUntil(run(env));
     // Amazonは2分おき（APIの回数に余裕を持たせる）
     if (new Date(event.scheduledTime).getUTCMinutes() % 2 === 0) ctx.waitUntil(runAmazon(env));
+    // 締切の通知は10分おき（11/7）
+    if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 3) ctx.waitUntil(runPush(env));
   },
   async fetch(req, env) {
     const u = new URL(req.url);
     if (u.pathname === "/report") {
       if (req.method === "OPTIONS") return new Response(null, { headers: cors(req) });
       if (req.method === "POST") return report(req, env);
+    }
+    if (u.pathname.startsWith("/push/")) {
+      if (req.method === "OPTIONS") return new Response(null, { headers: cors(req) });
+      if (u.pathname === "/push/stats") return Response.json(await pushStats(env));
+      if (u.pathname === "/push/run" && u.searchParams.get("k") === env.ADMIN_KEY) return Response.json(await runPush(env));
+      if (u.pathname === "/push/key" || req.method === "POST") return pushApi(req, env, u.pathname, cors(req));
     }
     if (u.pathname === "/stock") {  // サイト用：いま楽天ブックス・Amazon.co.jp本体で買える（または招待リクエスト受付中の）商品
       const st = (await env.STATE.get("state", "json")) || {}, az = (await env.STATE.get("amz", "json")) || {};

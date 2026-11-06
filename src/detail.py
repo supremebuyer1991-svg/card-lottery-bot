@@ -479,6 +479,7 @@ def mylist_page(site="", raff="", tag="", souba=None):
             '<main class="wrap ml"><h1>応募したリスト（<span id="mln">0</span>件）</h1>'
             '<p class="lead">「☐ 応募した」を押した抽選の、締切と結果発表日をまとめています。結果発表の日になると一番上に出ます。会員登録はいりません。'
             '結果が出たら「当選した／落選した」を押してください。みんなの報告から<a href="/tousenritsu/">お店ごとの当選率</a>を出しています（名前などは送りません）。</p>'
+            '<div id="pushbox"></div>'
             '<button type="button" class="calbtn" id="mlcal" hidden></button>'
             '<p class="calnote" id="mlcaln" hidden>iPhoneはそのまま「カレンダーに追加」、Androidはダウンロードしたファイルを開くとカレンダーに入ります。締切の3時間前と発表日の朝9時に通知します。1件ずつならGoogleカレンダーのリンクも使えます。</p>'
             '<div id="ml"><p class="empty">読み込み中…</p></div>'

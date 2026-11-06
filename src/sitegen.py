@@ -663,8 +663,33 @@ def cards_block(x, cards, tag=None):
             + ('楽天市場・Amazonへのリンクは広告（PR）です。' if tag or any((r_.get("rk") or {}).get("url") for _, r_, _s in cards) else "") + '</p></section>')
 
 
-def og_image(path, game_label, color, title, rows, sub=""):
-    """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630"""
+_OG_PHOTO = {}
+
+
+def _og_photo(url):
+    """共有画像に入れる商品写真（楽天の写真を大きめで取る。取れなければ None）"""
+    if not url:
+        return None
+    if url in _OG_PHOTO:
+        return _OG_PHOTO[url]
+    im = None
+    try:
+        import io
+        import requests
+        from PIL import Image
+        u = re.sub(r"\?_ex=\d+x\d+", "", url) + "?_ex=500x500" if "thumbnail.image.rakuten" in url else url
+        r = requests.get(u, timeout=6, headers={"User-Agent": "tcg-chusen-bot/1.0 (+https://tcg-chusen.com)"})
+        if r.ok:
+            im = Image.open(io.BytesIO(r.content)).convert("RGB")
+    except Exception:
+        im = None
+    _OG_PHOTO[url] = im
+    return im
+
+
+def og_image(path, game_label, color, title, rows, sub="", photo=None):
+    """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630。
+    商品写真があれば右上に入れる（Googleの「おすすめ（Discover）」やXで目に止まりやすくする・11/7）"""
     from PIL import Image, ImageDraw, ImageFont
     fdir = Path(__file__).with_name("fonts")
     F = lambda w, n: ImageFont.truetype(str(fdir / f"ZenKakuGothicNew-{w}.ttf"), n)
@@ -679,12 +704,25 @@ def og_image(path, game_label, color, title, rows, sub=""):
     tw = d.textlength(game_label, font=f)
     d.rounded_rectangle([60, 52, 60 + tw + 44, 104], radius=26, fill=color)
     d.text((82, 78), game_label, font=f, fill="#111827", anchor="lm")
+    ph = _og_photo(photo) if photo else None
+    tw_max = W - 120
+    if ph is not None:
+        box = 236
+        p2 = ph.copy()
+        p2.thumbnail((box - 16, box - 16))
+        bx, by = W - 60 - box, 36
+        d.rounded_rectangle([bx, by, bx + box, by + box], radius=18, fill="#ffffff")
+        im.paste(p2, (bx + (box - p2.width) // 2, by + (box - p2.height) // 2))
+        tw_max = bx - 30 - 60
     size = 76
-    while size > 40 and d.textlength(title, font=F("Black", size)) > W - 120:
+    while size > 34 and d.textlength(title, font=F("Black", size)) > tw_max:
         size -= 4
     d.text((60, 175), title, font=F("Black", size), fill="#ffffff", anchor="lm")
     if sub:
-        d.text((60, 250), sub, font=F("Medium", 32), fill="#cbd5e1", anchor="lm")
+        fs = 32
+        while fs > 22 and d.textlength(sub, font=F("Medium", fs)) > tw_max:
+            fs -= 2
+        d.text((60, 250), sub, font=F("Medium", fs), fill="#cbd5e1", anchor="lm")
     y = 298
     for k, v, hl in rows[:4]:
         d.rounded_rectangle([60, y, W - 60, y + 52], radius=14, fill="#1e293b")
@@ -693,6 +731,53 @@ def og_image(path, game_label, color, title, rows, sub=""):
         y += 62
     d.text((60, H - 26), "トレカ抽選ナビ", font=F("Black", 28), fill="#ffffff", anchor="ls")
     d.text((W - 60, H - 26), "tcg-chusen.com", font=F("Bold", 26), fill=color, anchor="rs")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    im.save(path, optimize=True)
+
+
+def today_image(path, td, dlabel):
+    """今日締切の抽選の画像（1200×630）：締切の近い順に7件まで。Xの朝の投稿と /today/ の共有画像に使う（11/7）"""
+    from PIL import Image, ImageDraw, ImageFont
+    fdir = Path(__file__).with_name("fonts")
+    F = lambda w, n: ImageFont.truetype(str(fdir / f"ZenKakuGothicNew-{w}.ttf"), n)
+    W, H = 1200, 630
+    im = Image.new("RGB", (W, H), "#0f172a")
+    d = ImageDraw.Draw(im)
+    for y in range(H):
+        t = y / H
+        d.line([(0, y), (W, y)], fill=(int(15 + 15 * t), int(23 + 8 * t), int(42 + 20 * t)))
+    d.rectangle([0, 0, 14, H], fill="#c8102e")
+    d.text((60, 70), "今日締切", font=F("Black", 64), fill="#ffffff", anchor="lm")
+    d.text((60 + d.textlength("今日締切", font=F("Black", 64)) + 16, 78), f"の抽選　{dlabel}", font=F("Bold", 36), fill="#cbd5e1", anchor="lm")
+    n = len(td)
+    d.rounded_rectangle([W - 60 - 220, 34, W - 60, 106], radius=36, fill="#c8102e")
+    d.text((W - 60 - 110, 70), f"{n}件", font=F("Black", 44), fill="#ffffff", anchor="mm")
+    col = {"pokemon": "#facc15", "onepiece": "#f87171", "dragonball": "#38bdf8"}
+    gs = {"pokemon": "ポケカ", "onepiece": "ワンピ", "dragonball": "DB"}
+    y = 132
+    show = td[:7]
+    if not show:
+        d.text((W // 2, 330), "今日締切の抽選はありません", font=F("Bold", 40), fill="#cbd5e1", anchor="mm")
+    for i in show:
+        e = parse_dt(i["end"])
+        d.rounded_rectangle([60, y, W - 60, y + 54], radius=12, fill="#1e293b")
+        d.text((84, y + 27), f"{e:%H:%M}", font=F("Black", 30), fill="#ffffff", anchor="lm")
+        g = i.get("game")
+        tag = gs.get(g, "")
+        d.rounded_rectangle([190, y + 12, 190 + 86, y + 42], radius=15, fill=col.get(g, "#94a3b8"))
+        d.text((233, y + 27), tag, font=F("Bold", 20), fill="#111827", anchor="mm")
+        pr = re.sub(r"ポケモンカードゲーム|ONE PIECEカードゲーム|スカーレット[＆&]バイオレット|[「」『』]", " ", i.get("series") or i.get("product") or "")
+        txt = f"{i.get('store') or ''}　{re.sub(r'\s+', ' ', pr).strip()}"
+        f = F("Bold", 28)
+        while d.textlength(txt, font=f) > W - 60 - 24 - 292 and len(txt) > 4:
+            txt = txt[:-2] + "…"
+            txt = txt.replace("……", "…")
+        d.text((292, y + 27), txt, font=f, fill="#e2e8f0", anchor="lm")
+        y += 62
+    if n > len(show):
+        d.text((W // 2, H - 26), f"＋ほか{n - len(show)}件", font=F("Bold", 28), fill="#cbd5e1", anchor="ms")
+    d.text((60, H - 26), "トレカ抽選ナビ", font=F("Black", 28), fill="#ffffff", anchor="ls")
+    d.text((W - 60, H - 26), "tcg-chusen.com/today/", font=F("Bold", 26), fill="#facc15", anchor="rs")
     path.parent.mkdir(parents=True, exist_ok=True)
     im.save(path, optimize=True)
 
@@ -1454,6 +1539,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": meta["title"], "headline": meta["h1"],
                    "description": meta["desc"], "url": f"{site}/{path}", "inLanguage": "ja",
                    "datePublished": first, "dateModified": lm, "publisher": org})
+        if meta.get("og_image"):  # ページの代表の画像（Googleの「おすすめ（Discover）」などで使われる・11/7）
+            ld[-1]["primaryImageOfPage"] = {"@type": "ImageObject", "url": meta["og_image"], "width": 1200, "height": 630}
         if meta.get("faq"):
             ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
                 {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in meta["faq"]]})
@@ -1605,7 +1692,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 og_rows.append(("希望小売価格", info["price"].split("／")[-1].replace("（税込）", ""), False))
             try:
                 og_image(out / og_rel, GAME_SHORT[g], "#facc15" if g == "pokemon" else "#f87171" if g == "onepiece" else "#38bdf8",
-                         x, og_rows, f"{name}の抽選販売・予約情報")
+                         x, og_rows, f"{name}の抽選販売・予約情報", photo=rr.get("image"))
             except Exception as e:
                 print("OGP画像を作れませんでした", x, e)
                 og_rel = ""
@@ -1715,6 +1802,30 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "summary": summary(sub, h1), "faq": faq_for(sub, h1), "h1": h1, "lead": lead,
                 "links": _menu(items, games, g), "root": "/"}, sub,
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (h1, f"{slug}/{key}/")])
+
+    # --- 今日締切の抽選（全ゲーム）：/today/ と、その日の画像（Xの朝の投稿・共有画像に使う。11/7）---
+    if items and sample is None:
+        td = [i for i in items if parse_dt(i.get("end")) and parse_dt(i["end"]).date() == now().date()]
+        td.sort(key=lambda i: parse_dt(i["end"]))
+        t0 = now()
+        dlabel = f"{t0.month}/{t0.day}（{'月火水木金土日'[t0.weekday()]}）"
+        og_t = ""
+        try:
+            today_image(out / "og" / "today.png", td, dlabel)
+            og_t = f"{site}/og/today.png?d={t0:%Y%m%d}"
+        except Exception as e:
+            print("今日締切の画像を作れませんでした", e)
+        h1 = f"今日締切のトレカ抽選（{dlabel}）"
+        lead = ("今日が応募締切のポケカ・ワンピースカードなどの抽選です。締切時刻が近い順に並んでいます。"
+                "「☐ 応募した」を押しておくと、締切の3時間前に通知でお知らせすることもできます（応募したリストのページから）。")
+        on_ = sum(1 for i in td if i.get("channel") != "store")
+        write("today/", {"checks": ["f-today"]}, {
+            "og_image": og_t or None,
+            "title": f"【{md}】今日締切のトレカ抽選まとめ｜ポケカ・ワンピ{len(td)}件｜トレカ抽選ナビ",
+            "desc": f"【{md}更新】今日が締切のポケカ・ワンピースカードの抽選{len(td)}件（ネット{on_}件・店頭{len(td) - on_}件）を締切が近い順に。応募し忘れのチェックに。",
+            "summary": summary(td, h1), "faq": faq_for(td, h1), "h1": h1, "lead": lead,
+            "links": _menu(items, games, games[0]), "root": "/"}, td,
+            [("トップ", ""), ("今日締切の抽選", "today/")])
 
     # --- 解説ページ（/guide/）：抽選の種類・当たりやすい抽選の選び方・応募前の準備。数字は今の掲載データから ---
     if items:
@@ -2701,7 +2812,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     for rel_, txt_ in ASSETS.items():  # 共通のCSS・JS（名前に中身の指紋が入っているので、ずっとキャッシュしてよい）
         (out / rel_).parent.mkdir(parents=True, exist_ok=True)
         (out / rel_).write_text(txt_, encoding="utf-8")
-    (out / "_headers").write_text("/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n", encoding="utf-8")
+    (out / "_headers").write_text("/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n"
+                                  "/sw.js\n  Cache-Control: no-cache\n/push.js\n  Cache-Control: public, max-age=3600\n"
+                                  "/manifest.webmanifest\n  Content-Type: application/manifest+json\n", encoding="utf-8")
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
 
@@ -2764,6 +2877,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
 
     inject_ga(out, os.environ.get("GA_ID") or s.get("ga_id"))  # Googleアナリティクス（IDがある時だけ）
     inject_linkswitch(out, s.get("vc_linkswitch_pid"))
+    inject_pwa(out)  # ホーム画面に追加・締切の通知（11/7）
     inject_meta(out, "naver-site-verification", s.get("naver_site_verification"))  # NAVERサーチアドバイザーの確認（トップページで確認される）  # バリューコマースのLinkSwitch（提携先への普通のリンクを自動でアフィリンクに）
 
     if sample is None:
@@ -2890,6 +3004,23 @@ def inject_linkswitch(out, pid):
         if "</head>" not in h:
             continue
         h = re.sub(r'<script>var vc_pid = "\d+";</script><script src="//aml\.valuecommerce\.com/vcdal\.js" async></script>', "", h)  # 古いIDのタグは入れ替える
+        p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
+        n += 1
+    return n
+
+
+def inject_pwa(out):
+    """国内向けの全ページに、ホーム画面アプリの設定と通知のしくみ（/push.js）を入れる（11/7）"""
+    tag = ('<link rel="manifest" href="/manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes">'
+           '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="抽選ナビ">'
+           '<script src="/push.js" defer></script>')
+    n = 0
+    for p in Path(out).rglob("*.html"):
+        if p.name in GA_SKIP or p.relative_to(out).parts[0] in ("en", "zh-tw", "ko"):
+            continue
+        h = p.read_text(encoding="utf-8")
+        if "</head>" not in h or 'href="/manifest.webmanifest"' in h:
+            continue
         p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
