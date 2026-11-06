@@ -362,7 +362,8 @@ def snapshot(i):
 
 
 MYLIST_JS = r"""
-(function(){var K="lot_applied",W="日月火水木金土";
+(function(){var K="lot_applied",W="日月火水木金土",RU="https://rakuten-watch.supreme-buyer-1991.workers.dev/report";
+function uid(){try{var u=localStorage.getItem("lot_uid");if(!u){u=(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)+Date.now());localStorage.setItem("lot_uid",u)}return u}catch(e){return""}}
 function ld(){try{return JSON.parse(localStorage.getItem(K)||"{}")}catch(e){return null}}
 function sv(v){try{localStorage.setItem(K,JSON.stringify(v))}catch(e){}}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -410,9 +411,16 @@ function render(){var a=ld(),box=document.getElementById("ml");
    (o.announce?'<span class="an">結果発表 '+esc(/^\d{4}-/.test(o.announce)&&o.A?md(o.A):o.announce)+'</span>':'<span>結果発表日は告知で確認</span>')+
    '</div><div class="cl">'+(o.E&&o.E>now?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"end"))+'">＋締切をGoogleカレンダーへ</a>':'')+
    (o.A&&ymd(o.A)>=T?'<a target="_blank" rel="noopener" href="'+esc(gcal(o,"ann"))+'">＋発表日をGoogleカレンダーへ</a>':'')+'</div>'+
+   (o.g!==1?'<div class="rp">'+(o.res?'<span>'+(o.res==="win"?"🎉 当選と報告しました":"落選と報告しました")+'</span><a href="#" data-r="none" data-rk="'+esc(o.k)+'">取り消す</a>'
+    :'<span>結果は？</span><a href="#" class="w" data-r="win" data-rk="'+esc(o.k)+'">🎉 当選した</a><a href="#" data-r="lose" data-rk="'+esc(o.k)+'">落選した</a>')+'</div>':'')+
    '<button type="button" data-k="'+esc(o.k)+'">外す</button></li>'});
  box.innerHTML=h+"</ul>";}
-document.getElementById("ml").addEventListener("click",function(e){var b=e.target.closest("button[data-k]");if(!b)return;var a=ld()||{};delete a[b.dataset.k];sv(a);render();});
+document.getElementById("ml").addEventListener("click",function(e){var r=e.target.closest("a[data-rk]");
+ if(r){e.preventDefault();var a0=ld()||{},k0=r.dataset.rk,o0=a0[k0];if(!o0||typeof o0!=="object")return;var v=r.dataset.r;
+  if(v==="none")delete o0.res;else o0.res=v;sv(a0);render();
+  try{fetch(RU,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({k:k0,res:v,uid:uid(),store:o0.store||"",series:o0.series||o0.product||"",game:o0.game||""})})}catch(_){}
+  return}
+ var b=e.target.closest("button[data-k]");if(!b)return;var a=ld()||{};delete a[b.dataset.k];sv(a);render();});
 var cb=document.getElementById("mlcal");if(cb)cb.addEventListener("click",function(){
  var blob=new Blob([ics(ROWS)],{type:"text/calendar;charset=utf-8"}),u=URL.createObjectURL(blob),x=document.createElement("a");
  x.href=u;x.download="toreca-chusen.ics";document.body.appendChild(x);x.click();setTimeout(function(){URL.revokeObjectURL(u);x.remove()},1500);});
@@ -433,7 +441,9 @@ def mylist_page(site=""):
 .ml .calbtn{display:block;width:100%;font:inherit;font-weight:700;font-size:14px;padding:11px;margin:0 0 6px;border-radius:10px;border:1px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer}
 .ml .calnote{font-size:11.5px;color:var(--ink-2);margin:0 0 12px}.ml li button{grid-column:2;grid-row:1/3;align-self:center;font:inherit;font-size:12px;border:1px solid var(--rule);background:none;border-radius:6px;padding:3px 8px;color:var(--ink-2);cursor:pointer}
 .ml .empty{background:var(--card);border:1px dashed var(--rule);border-radius:12px;padding:24px;text-align:center;color:var(--ink-2)}
-.ml .small{font-size:11.5px;color:var(--ink-2);margin:14px 0 30px}"""
+.ml .small{font-size:11.5px;color:var(--ink-2);margin:14px 0 30px}
+.ml .rp{grid-column:1;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;margin-top:4px}.ml .rp a{padding:4px 10px;border:1px solid var(--rule);border-radius:999px;text-decoration:none;color:var(--ink)}
+.ml .rp a.w{border-color:var(--red);color:var(--red);font-weight:700}"""
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             '<title>応募したリスト｜トレカ抽選ナビ</title><meta name="robots" content="noindex">'
@@ -443,7 +453,8 @@ def mylist_page(site=""):
             f'<style>{css}</style></head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             '<main class="wrap ml"><h1>応募したリスト（<span id="mln">0</span>件）</h1>'
-            '<p class="lead">「☐ 応募した」を押した抽選の、締切と結果発表日をまとめています。結果発表の日になると一番上に出ます。会員登録はいりません。</p>'
+            '<p class="lead">「☐ 応募した」を押した抽選の、締切と結果発表日をまとめています。結果発表の日になると一番上に出ます。会員登録はいりません。'
+            '結果が出たら「当選した／落選した」を押してください。みんなの報告から<a href="/tousenritsu/">お店ごとの当選率</a>を出しています（名前などは送りません）。</p>'
             '<button type="button" class="calbtn" id="mlcal" hidden></button>'
             '<p class="calnote" id="mlcaln" hidden>iPhoneはそのまま「カレンダーに追加」、Androidはダウンロードしたファイルを開くとカレンダーに入ります。締切の3時間前と発表日の朝9時に通知します。1件ずつならGoogleカレンダーのリンクも使えます。</p>'
             '<div id="ml"><p class="empty">読み込み中…</p></div>'

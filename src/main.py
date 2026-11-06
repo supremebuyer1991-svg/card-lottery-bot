@@ -95,6 +95,11 @@ def main():
         except Exception as e:
             log(f"BOX相場: スキップ {e}")
         try:
+            from winrates import update_winrates
+            update_winrates()  # 当選・落選の報告（応募したリスト→Worker）の集計
+        except Exception as e:
+            log(f"当選の報告: スキップ {e}")
+        try:
             from intl_prices import update_local_prices
             update_local_prices(s)  # 海外向けページ：韓国版（NAVER）・台湾版（eBay）のBOXの値段（1日1回・公式API）
         except Exception as e:

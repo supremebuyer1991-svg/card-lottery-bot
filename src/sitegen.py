@@ -934,7 +934,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
-                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/calendar/">発売日カレンダー</a><a href="/mylist/">応募したリスト</a></div></section>')
+                 '<a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/tousenritsu/">当選率</a><a href="/calendar/">発売日カレンダー</a><a href="/mylist/">応募したリスト</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -2000,6 +2000,43 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
             _soon([i for i in items if i["game"] == games[0]]), [("トップ", ""), ("抽選結果", "kekka/")])
         (out / "results.json").write_text(json.dumps(feed, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # --- 当選率（/tousenritsu/）：応募したリストの「当選した／落選した」の報告から（11/7）---
+    if items and sample is None:
+        wr = load_json("winrates.json", {})
+        by_c, by_x, tot_w, tot_n = {}, {}, 0, 0
+        for k_, v_ in wr.items():
+            n_, w_ = int(v_.get("n") or 0), int(v_.get("w") or 0)
+            if not n_:
+                continue
+            tot_w, tot_n = tot_w + w_, tot_n + n_
+            c_ = chain_of(v_.get("s")) or ""
+            nm_ = CHAIN[c_][1] if c_ else (v_.get("s") or "その他")
+            a_ = by_c.setdefault(nm_, [0, 0, set()])
+            a_[0] += w_; a_[1] += n_; a_[2].add(k_)
+            if v_.get("x"):
+                b_ = by_x.setdefault(v_["x"][:40], [0, 0])
+                b_[0] += w_; b_[1] += n_
+        def _tbl(d, head):
+            rs = sorted(((k_, w_, n_) for k_, (w_, n_, *_r) in d.items() if n_ >= 3), key=lambda t: (-t[2], t[0]))
+            if not rs:
+                return ""
+            return (f'<h2>{head}</h2><table class="wr"><tr><th>{"お店" if "お店" in head else "商品"}</th><th>報告</th><th>当選率</th></tr>' +
+                    "".join(f'<tr><td>{escape(k_)}</td><td>{n_}人</td><td>' + (f'<b>{w_ * 100 // n_}%</b>（{w_}人）' if n_ >= 5 else '<small>報告5人から表示</small>') + '</td></tr>'
+                            for k_, w_, n_ in rs[:60]) + '</table>')
+        body_w = (f'<article class="guide"><p>「応募したリスト」で<b>当選した／落選した</b>を押してもらった報告から、お店・商品ごとの当選率を出しています。'
+                  f'いまの報告は<b>{tot_n}人分</b>（当選{tot_w}人）です。報告が5人以上集まったものから当選率を表示します。</p>'
+                  + _tbl(by_c, "お店（チェーン）ごとの当選率") + _tbl(by_x, "商品ごとの当選率") +
+                  '<h2>報告のしかた</h2><ol><li>抽選の一覧や個別ページで「☐ 応募した」を押す</li><li>結果が出たら<a href="/mylist/">応募したリスト</a>を開いて「🎉 当選した」か「落選した」を押す</li></ol>'
+                  '<p class="note">※報告は名前やメールアドレスなしで、抽選ごとの人数だけを数えています。応募した人のうち報告してくれた人の割合なので、実際の倍率とは違います。目安としてご覧ください。</p></article>')
+        write("tousenritsu/", {"game": games[0], "subset": True}, {
+            "title": "ポケカ・ワンピースカード抽選の当選率（お店別・商品別）｜みんなの当選報告から｜トレカ抽選ナビ",
+            "desc": f"ポケカ・ワンピースカードの抽選の当選率を、応募した人の当選・落選の報告からお店（チェーン）別・商品別にまとめています。いまの報告は{tot_n}人分。",
+            "summary": "", "h1": "抽選の当選率（みんなの当選報告から）",
+            "lead": "お店・商品ごとの当選率を、応募した人の報告から集計しています。下には締切が近い抽選を載せています。",
+            "aff": body_w, "links": _menu(items, games, games[0]), "root": "/",
+            "noindex": tot_n < 20},  # 報告が少ないうちは検索に出さない
+            _soon([i for i in items if i["game"] == games[0]]), [("トップ", ""), ("当選率", "tousenritsu/")])
 
     # --- 発売カレンダー（/calendar/）：最近出た弾〜これから出る弾を月ごとに。発売日・定価・受付中の抽選の数 ---
     if items:

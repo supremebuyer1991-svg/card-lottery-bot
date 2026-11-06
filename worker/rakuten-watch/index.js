@@ -213,6 +213,51 @@ async function runAmazon(env, { dry = false } = {}) {
   return st.last;
 }
 
+// ---- 当選・落選の報告（11/7）：サイトの「応募したリスト」から送られる。抽選ごとに数えるだけ（個人の情報は持たない）----
+const ORIGINS = ["https://tcg-chusen.com", "https://toreca-chusen-navi.pages.dev"];
+function cors(req) {
+  const o = req.headers.get("Origin") || "";
+  return { "Access-Control-Allow-Origin": ORIGINS.includes(o) ? o : ORIGINS[0], "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+           "Access-Control-Allow-Headers": "Content-Type", "Vary": "Origin" };
+}
+async function sha8(t) {
+  const h = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return [...new Uint8Array(h)].slice(0, 6).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+async function report(req, env) {
+  let b;
+  try { b = await req.json(); } catch { return new Response("bad", { status: 400, headers: cors(req) }); }
+  const k = String(b.k || ""), res = b.res, uid = String(b.uid || "");
+  if (!/^[\w-]{4,40}$/.test(k) || !["win", "lose", "none"].includes(res) || !/^[\w-]{8,64}$/.test(uid))
+    return new Response("bad", { status: 400, headers: cors(req) });
+  const key = "r:" + k, cur = (await env.STATE.get(key, "json")) || { s: "", x: "", g: "", u: {} };
+  cur.s = String(b.store || cur.s || "").slice(0, 80);
+  cur.x = String(b.series || cur.x || "").slice(0, 80);
+  cur.g = String(b.game || cur.g || "").slice(0, 20);
+  const h = await sha8(uid + k);
+  if (res === "none") delete cur.u[h]; else cur.u[h] = res === "win" ? 1 : 0;
+  const ks = Object.keys(cur.u);
+  if (ks.length > 2000) delete cur.u[ks[0]];
+  await env.STATE.put(key, JSON.stringify(cur));
+  const v = Object.values(cur.u);
+  return Response.json({ ok: true, w: v.filter((x) => x === 1).length, n: v.length }, { headers: cors(req) });
+}
+async function rates(env) {
+  const out = {};
+  let cursor;
+  do {
+    const r = await env.STATE.list({ prefix: "r:", cursor });
+    for (const k of r.keys) {
+      const v = await env.STATE.get(k.name, "json");
+      if (!v) continue;
+      const vs = Object.values(v.u || {});
+      out[k.name.slice(2)] = { s: v.s, x: v.x, g: v.g, w: vs.filter((x) => x === 1).length, n: vs.length };
+    }
+    cursor = r.list_complete ? null : r.cursor;
+  } while (cursor);
+  return out;
+}
+
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(run(env));
@@ -221,6 +266,11 @@ export default {
   },
   async fetch(req, env) {
     const u = new URL(req.url);
+    if (u.pathname === "/report") {
+      if (req.method === "OPTIONS") return new Response(null, { headers: cors(req) });
+      if (req.method === "POST") return report(req, env);
+    }
+    if (u.pathname === "/rates") return Response.json(await rates(env), { headers: { "Cache-Control": "max-age=300" } });
     if (u.pathname === "/status") {
       const st = (await env.STATE.get("state", "json")) || {};
       const az = (await env.STATE.get("amz", "json")) || {};
