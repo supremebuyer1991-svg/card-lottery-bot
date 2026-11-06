@@ -124,6 +124,18 @@ def _rec_note(cname):
     return '<p class="rec-note"><b>★おすすめ</b></p>'
 
 
+def _ymall_box(s):
+    """ヤマダモール（バリューコマース）のリンク。ヤマダの抽選ページ・チェーンページだけに出す"""
+    v = s.get("yamada_mall_vc") or {}
+    if not (v.get("sid") and v.get("pid")):
+        return ""
+    q = f"sid={v['sid']}&pid={v['pid']}"
+    return (f'<aside class="ad ymall"><div class="ad-top"><span>ヤマダの抽選に外れても、ヤマダの通販で探せます</span></div>'
+            f'<p style="margin:.4em 0">ヤマダデンキの公式通販「ヤマダモール」でも、ポケカ・ワンピースカードが販売されることがあります。</p>'
+            f'<div class="ad-btns"><a class="b-ymd" href="https://ck.jp.ap.valuecommerce.com/servlet/referral?{q}" {_REL}>ヤマダモールで探す</a></div>'
+            f'<img src="https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?{q}" height="1" width="1" alt="" style="border:0;position:absolute"></aside>')
+
+
 def chain_of(store):
     import re
     for slug, name, pat, big in CHAINS:
@@ -2287,7 +2299,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "desc": f"【{md}更新】{cname}の{sh}の抽選販売・予約抽選" + (f"{len(cig)}件" if cig else "") +
                         "を店舗別・締切順にまとめ。応募方法・受け取り方・本人確認や会員の条件、これまでの抽選もひと目で分かります。",
                 "summary": summary(cig, f"{cname}の{sh}の抽選"), "h1": f"{cname}の{sh}抽選情報", "lead": lead_g,
-                "aff": ctabs(g) + (_rec_note(cname) if big else "") + ("" if cig else chist_g),
+                "aff": ctabs(g) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if cig else chist_g),
                 "info_html": chist_g if cig else "",
                 "links": _menu(items, games, g) + stl, "root": "/"}, cig,
                 [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/"), (sh, f"chain/{slug}/{GAME_SLUG[g]}/")])
@@ -2301,7 +2313,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                      (f"これまでに見つけた{len(cpast)}件の抽選" + ("と、応募のしかた・本人確認などの傾向" if guide_c else "") + "をまとめています。" if cpast else "") +
                      "新しい抽選が始まり次第、このページに自動で載ります。"),
             "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
-            "aff": ctabs(None) + (_rec_note(cname) if big else "") + ("" if ci else guide_c + chist),
+            "aff": ctabs(None) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if ci else guide_c + chist),
             "info_html": (guide_c + chist) if ci else "",
             "links": _menu(items, games, g0) + stl, "root": "/"}, ci,
             [("トップ", ""), ("店舗一覧", "store/"), (cname, f"chain/{slug}/")])
@@ -2369,6 +2381,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if d.get("spath") and d["spath"] in reg:
             rel.append((f"{d.get('store')}の抽選", "/" + d["spath"]))
         c = chain_of(d.get("store"))
+        if c == "yamada":
+            aff = _ymall_box(s) + aff
         if c:
             rel.append((f"{CHAIN[c][1]}の抽選", f"/chain/{c}/"))
         if d.get("channel") == "store" and d.get("area") in PREF:

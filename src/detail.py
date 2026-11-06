@@ -88,7 +88,7 @@ footer{color:var(--ink-2);font-size:12px;padding:8px 0 40px}
 .ad-main{display:flex;gap:12px;align-items:center}.ad-img img{width:84px;height:84px;object-fit:contain;border-radius:8px;background:#fff}
 .ad-info{display:grid;gap:4px}.ad-info small{color:var(--ink-2)}.ad-btns,.ad-sup>div,.ad-amz{display:flex;flex-wrap:wrap;gap:6px}
 .ad-btns a,.ad-sup a,.ad-amz a{border:1px solid var(--rule);border-radius:8px;padding:6px 10px;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
-.b-rak{background:#bf0000;color:#fff!important;border-color:#bf0000!important}.b-amz{background:#ffd814;color:#0f1111!important;border-color:#fcd200!important}
+.b-rak{background:#bf0000;color:#fff!important;border-color:#bf0000!important}.b-amz{background:#ffd814;color:#0f1111!important;border-color:#fcd200!important}.b-ymd{background:#e60012;color:#fff!important;border-color:#e60012!important}
 .ad-sup p{font-size:12px;color:var(--ink-2);margin:10px 0 6px}.ad-sup strong{font-family:var(--font-num)}.ad-note{font-size:11px;color:var(--ink-2)}
 .ad-amz{margin-top:8px;align-items:center;font-size:12px}.ph{display:inline-flex;width:84px;height:84px;align-items:center;justify-content:center;color:var(--ink-2)}
 .ad-flow,.rec-note{display:none}
