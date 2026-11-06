@@ -182,7 +182,7 @@ T = {
         "release": "JP release", "msrp": "MSRP", "price": "Japan price", "x": "vs MSRP", "chg": "30d", "trend": "90-day trend",
         "us": "US (TCGplayer)", "set": "Set", "card": "Card", "upcoming": "Upcoming Japanese releases",
         "movers": "Japanese booster box prices", "hot": "Most expensive Japanese cards right now", "more": "See all",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set", "jprel": "🇯🇵 Japan", "enrel": "🇺🇸 English", "twrel": "", "krrel": "", "tba": "TBA",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "Updated", "unreleased": "Coming soon", "counterpart": "English set", "ln_jp": "Japanese box in Japan", "ln_us": "Japanese box in the US", "ln_en": "English version", "etb": "Elite Trainer Box", "chart": "Price chart: Japan vs US vs English version", "chart_note": "All lines converted to {unit} at today's exchange rate. Japan = SNKRDUNK sold prices; US and English version = TCGplayer market price.", "set_title": "{name} ({code}) Japanese Booster Box Price & Chart", "set_h1": "{name} ({code}) Japanese Box Price", "set_desc": "{name} {code} Japanese booster box price in Japan: {jp} ({local}), MSRP {msrp}. Chart comparing the Japan price, the US price of the Japanese box and the English version.", "no_local": "", "jprel": "🇯🇵 Japan", "enrel": "🇺🇸 English", "twrel": "", "krrel": "", "tba": "TBA",
         "local": "", "sources": "Sources & notes",
         "src": "Japan prices are the latest sold prices of sealed boxes and ungraded single cards on SNKRDUNK, a major Japanese marketplace (not asking prices). Release dates and MSRP come from the official Japanese Pokémon Card Game and ONE PIECE Card Game websites. Exchange rate: $1 = ¥{fx} ({fxd}); converted prices are approximate.",
         "names": "Set names: the Japanese set's English name and code are shown first; \"English set\" is the international English-language release with the same cards where one exists.",
@@ -194,7 +194,7 @@ T = {
         "release": "日版發售", "msrp": "建議售價", "price": "日本市價", "x": "定價倍數", "chg": "30日", "trend": "90日走勢",
         "us": "美國（TCGplayer）", "set": "系列", "card": "單卡", "upcoming": "即將發售的日版新彈",
         "movers": "日版卡盒（補充包盒）價格", "hot": "日本目前最貴的單卡", "more": "看全部",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版", "jprel": "🇯🇵 日版", "enrel": "🇺🇸 英文版", "twrel": "🇹🇼 繁中版", "krrel": "", "tba": "未公布",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "更新", "unreleased": "即將發售", "counterpart": "英文版", "ln_jp": "日版・日本市價", "ln_us": "日版・美國市價", "ln_en": "英文版", "etb": "訓練家寶箱", "chart": "價格走勢：日本 vs 美國 vs 英文版", "chart_note": "所有線條以今天的匯率換算成{unit}。日本＝SNKRDUNK成交價；美國與英文版＝TCGplayer市價。", "set_title": "{name}（{code}）日版卡盒價格・走勢圖", "set_h1": "{name}（{code}）日版卡盒價格", "set_desc": "{name} {code} 日版卡盒日本市價{jp}（{local}），建議售價{msrp}。比較日本市價、美國的日版價格與英文版價格的走勢圖。", "no_local": "繁中版卡盒的價格目前沒有可靠的公開資料來源，找到後會加入圖表。", "jprel": "🇯🇵 日版", "enrel": "🇺🇸 英文版", "twrel": "🇹🇼 繁中版", "krrel": "", "tba": "未公布",
         "local": "繁中版", "sources": "資料來源與說明",
         "src": "日本市價為日本大型交易平台 SNKRDUNK 上未拆封卡盒與未鑑定單卡的最新成交價（非掛牌價）。發售日與建議售價來自日本寶可夢卡牌與航海王卡牌官方網站。匯率：1美元＝{fx}日圓（{fxd}），換算金額僅供參考。",
         "names": "系列名稱：先列出日版的英文名稱與系列代碼，「繁中版」為台灣・香港發售的官方中文名稱，「英文版」為收錄相同卡片的國際英文版系列（若有）。",
@@ -206,7 +206,7 @@ T = {
         "release": "일본 발매", "msrp": "정가", "price": "일본 시세", "x": "정가 대비", "chg": "30일", "trend": "90일 추이",
         "us": "미국 (TCGplayer)", "set": "세트", "card": "카드", "upcoming": "곧 발매되는 일판 신규 세트",
         "movers": "일판 부스터 박스 시세", "hot": "지금 일본에서 가장 비싼 카드", "more": "전체 보기",
-        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판", "jprel": "🇯🇵 일판", "enrel": "🇺🇸 영문판", "twrel": "", "krrel": "🇰🇷 한글판", "tba": "미정",
+        "ebay": "eBay", "amazon": "Amazon", "updated": "업데이트", "unreleased": "발매 예정", "counterpart": "영문판", "ln_jp": "일판 일본 시세", "ln_us": "일판 미국 시세", "ln_en": "영문판 시세", "etb": "엘리트 트레이너 박스", "chart": "시세 차트: 일본 vs 미국 vs 영문판", "chart_note": "모든 선은 오늘 환율로 {unit} 환산. 일본=SNKRDUNK 실거래가, 미국・영문판=TCGplayer 시세.", "set_title": "{name} ({code}) 일판 박스 시세 차트", "set_h1": "{name} ({code}) 일판 박스 시세", "set_desc": "{name} {code} 일판 박스 일본 시세 {jp}({local}), 정가 {msrp}. 일본 시세・미국 일판 시세・영문판 시세 비교 차트.", "no_local": "한글판 박스 시세는 현재 믿을 수 있는 공개 데이터가 없어, 찾는 대로 차트에 추가하겠습니다.", "jprel": "🇯🇵 일판", "enrel": "🇺🇸 영문판", "twrel": "", "krrel": "🇰🇷 한글판", "tba": "미정",
         "local": "한글판", "sources": "출처 및 안내",
         "src": "일본 시세는 일본 대형 거래 플랫폼 SNKRDUNK(스니덩)에서 미개봉 박스와 미감정 싱글 카드가 실제로 거래된 최근 가격입니다(호가 아님). 발매일과 정가는 일본 포켓몬 카드 게임・원피스 카드 게임 공식 사이트 기준입니다. 환율: 1달러 = {fx}엔({fxd}), 환산 금액은 참고용입니다.",
         "names": "세트 이름: 일판의 영어 이름과 세트 코드를 먼저 표시하고, '한글판'은 한국 정식 발매명, '영문판'은 같은 카드가 수록된 해외 영문판 세트입니다(있는 경우).",
@@ -344,6 +344,10 @@ td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.jp{d
 .rel{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}.rel:last-child{border-bottom:0}.rel time{font-weight:800;min-width:118px}.rel .g{font-size:11px;padding:1px 6px;border-radius:4px;background:var(--bg);color:var(--ink2);margin-right:6px}
 .soon{font-size:11px;font-weight:700;color:#fff;background:var(--acc);border-radius:4px;padding:1px 6px;margin-left:6px}
 .rl{display:block;font-size:12px;font-weight:700;color:var(--ink);margin-top:2px}.rl:empty{display:none}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}.chart svg{width:100%;height:auto;font-size:11px;fill:var(--ink2)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin:6px 4px}.leg i{display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin:12px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+.stat small{display:block;font-size:12px;color:var(--ink2)}.stat b{display:block;font-size:20px}.stat span{font-size:12px;color:var(--ink2)}
 .src{font-size:12px;color:var(--ink2)}.src p{margin:0 0 8px}
 footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:12px;color:var(--ink2)}
 @media (max-width:600px){.hide-s{display:none}h1{font-size:22px}.rel{flex-direction:column;gap:2px}.rel time{min-width:0}}"""
@@ -368,6 +372,15 @@ def _ago(d, days):
 def set_info(g, x):
     """(コード, 日本版の英語名, 英語版の弾, 繁中名, 韓国名)"""
     return SETS.get(g, {}).get(x) or ("", x, "", "", "")
+
+
+def set_slug(g, x):
+    """弾ページのアドレス（例 pokemon-m7-aura-seeker）"""
+    code, en = set_info(g, x)[:2]
+    base = f"{code} {en}" if code and code.lower() not in en.lower() else en
+    sl = re.sub(r"[^a-z0-9]+", "-", re.sub(r"[éÉ]", "e", base.lower())).strip("-")
+    import hashlib
+    return f"{'pokemon' if g == 'pokemon' else 'one-piece'}-{sl or hashlib.md5(x.encode()).hexdigest()[:8]}"
 
 
 def set_name(g, x):
@@ -498,7 +511,10 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         us, _ = _last(v.get("us") or {})
         rel = str(((info.get(g) or {}).get(x) or {}).get("release") or "")
         rows.append({"g": g, "x": x, "p": p, "day": day, "teika": v.get("teika"), "old": _ago(v.get("jp") or {}, 30),
-                     "us": us, "rel": rel, "jpser": v.get("jp") or {}})
+                     "us": us, "rel": rel, "jpser": v.get("jp") or {}, "usser": v.get("us") or {},
+                     # ワンピースの tcg は英語版のBOX（souba.yaml の説明どおり）なので、英語版として扱う
+                     "enser": v.get("en") or (v.get("us") if g == "onepiece" else None) or {},
+                     "en_kind": v.get("en_kind") or "box"})
     rows.sort(key=lambda r: (r["rel"] or "0000"), reverse=True)
 
     cards = []
@@ -533,6 +549,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
              f'<th class="n">{t["x"]}</th><th class="n hide-s">{t["chg"]}</th></tr>']
         for r in rs:
             top, sub = names_html(L, game, r["x"], t)
+            top = f'<a href="/{L}/sets/{set_slug(game, r["x"])}/" style="color:inherit">{top}</a>'
             mult = f'×{r["p"] / r["teika"]:.1f}' if r.get("teika") else "–"
             us = f'<span class="jp">{t["us"]}: ${r["us"]:,.0f}</span>' if (r["us"] and game == "pokemon") else ""
             h.append(f'<tr><td>{top}<span class="jp">{escape(sub)}</span>{rel_line(L, game, r["x"], t, r["rel"])}{buy_btns(game, r["x"], t)}</td>'
@@ -567,6 +584,96 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                      + f'<span class="jp">{escape(" · ".join(extra))}</span>{rel_line(L, g, x, t, r).replace(escape(t["jprel"] + " " + fmt_date(L, r)) + " ／ ", "").replace(escape(t["jprel"] + " " + fmt_date(L, r)), "")}</div></div>')
         return "".join(h)
 
+    # ---- 弾ごとのページ：日本の相場・アメリカでの日本版の相場・英語版の相場を1つのチャートに（11/7 ユーザー指示）----
+    def to_cur(L, yen):
+        """円 → そのページの通貨（チャートの縦軸）"""
+        if L == "zh-tw" and jpy_per.get("TWD"):
+            return yen / jpy_per["TWD"], "NT$"
+        if L == "ko" and jpy_per.get("KRW"):
+            return yen / jpy_per["KRW"], "원"
+        return yen / fx, "$"
+
+    def cur_fmt(L, v, unit):
+        if unit == "원":
+            return f"{v / 10000:,.1f}만원" if v >= 10000 else f"{v:,.0f}원"
+        return f"{unit}{v:,.0f}"
+
+    def chart_svg(L, t, r):
+        lines = []  # (ラベル, 色, {日付: 現地通貨})
+        if r["jpser"]:
+            lines.append((t["ln_jp"], "#c8102e", {d: to_cur(L, v)[0] for d, v in r["jpser"].items()}))
+        if r["usser"] and r["g"] == "pokemon":
+            lines.append((t["ln_us"], "#2563eb", {d: to_cur(L, v * fx)[0] for d, v in r["usser"].items()}))
+        if r["enser"]:
+            lines.append((t["ln_en"] + ("" if r["en_kind"] == "box" else f' ({t["etb"]})'), "#16a34a",
+                          {d: to_cur(L, v * fx)[0] for d, v in r["enser"].items()}))
+        unit = to_cur(L, 1)[1]
+        alld = sorted({d for _, _, m in lines for d in m})
+        if not alld:
+            return ""
+        d1 = alld[-1]
+        d0 = max(alld[0], (_dt.date.fromisoformat(d1) - _dt.timedelta(days=120)).isoformat())
+        vals = [v for _, _, m in lines for d, v in m.items() if d >= d0]
+        if not vals:
+            return ""
+        lo, hi = min(vals), max(vals)
+        pad = (hi - lo) * 0.08 or hi * 0.05 or 1
+        lo, hi = max(0, lo - pad), hi + pad
+        W, H, L0, R0, T0, B0 = 640, 260, 64, 12, 12, 28
+        t0 = _dt.date.fromisoformat(d0).toordinal()
+        span = max(1, _dt.date.fromisoformat(d1).toordinal() - t0)
+
+        def X(d):
+            return L0 + (_dt.date.fromisoformat(d).toordinal() - t0) / span * (W - L0 - R0)
+
+        def Y(v):
+            return T0 + (hi - v) / (hi - lo) * (H - T0 - B0)
+        g = []
+        for i in range(5):  # 横の目盛り線
+            v = lo + (hi - lo) * i / 4
+            y = Y(v)
+            g.append(f'<line x1="{L0}" x2="{W - R0}" y1="{y:.1f}" y2="{y:.1f}" stroke="var(--line)"/>'
+                     f'<text x="{L0 - 6}" y="{y + 4:.1f}" text-anchor="end">{escape(cur_fmt(L, v, unit))}</text>')
+        for d in (d0, d1):
+            g.append(f'<text x="{X(d):.1f}" y="{H - 8}" text-anchor="{"start" if d == d0 else "end"}">{d[5:].replace("-", "/")}</text>')
+        for lab, col, m in lines:
+            pts = sorted((d, v) for d, v in m.items() if d >= d0)
+            if len(pts) >= 2:
+                g.append(f'<path d="M' + " L".join(f"{X(d):.1f},{Y(v):.1f}" for d, v in pts) + f'" fill="none" stroke="{col}" stroke-width="2.2"/>')
+            if pts:
+                g.append(f'<circle cx="{X(pts[-1][0]):.1f}" cy="{Y(pts[-1][1]):.1f}" r="3.5" fill="{col}"/>')
+        leg = "".join(f'<span><i style="background:{c}"></i>{escape(lab)}</span>' for lab, c, _ in lines)
+        return (f'<div class="chart"><svg viewBox="0 0 {W} {H}" role="img" aria-label="{escape(t["chart"])}">{"".join(g)}</svg>'
+                f'<div class="leg">{leg}</div><p class="note">{escape(t["chart_note"].format(unit=unit))}</p></div>')
+
+    def set_page(L, t, r):
+        g, x = r["g"], r["x"]
+        code, en, ctp, zh, ko = set_info(g, x)
+        nm = (zh if L == "zh-tw" else ko if L == "ko" else "") or en
+        game = "Pokémon" if g == "pokemon" else "One Piece"
+        title = t["set_title"].format(name=nm, code=code, game=game).replace("  ", " ").replace("（）", "").replace("()", "")
+        h1 = t["set_h1"].format(name=nm, code=code, game=game).replace("  ", " ").replace("（）", "").replace("()", "")
+        en_now, _ = _last(r["enser"])
+        us_now = r["us"] if g == "pokemon" else None
+        desc = t["set_desc"].format(name=nm, code=code, jp=f'¥{r["p"]:,}', local=money(L, r["p"]),
+                                    msrp=(f'¥{r["teika"]:,}' if r.get("teika") else "–"))
+        top, sub = names_html(L, g, x, t)
+        stats = [(t["ln_jp"], f'¥{r["p"]:,}', money(L, r["p"]))]
+        if r.get("teika"):
+            stats.append((t["msrp"], f'¥{r["teika"]:,}', f'×{r["p"] / r["teika"]:.1f}'))
+        if r["old"]:
+            stats.append((t["chg"], chg(r), ""))
+        if us_now:
+            stats.append((t["ln_us"], f'${us_now:,.0f}', ""))
+        if en_now:
+            stats.append((t["ln_en"], f'${en_now:,.0f}', "" if r["en_kind"] == "box" else t["etb"]))
+        st_html = "".join(f'<div class="stat"><small>{escape(a)}</small><b>{b}</b><span>{escape(c)}</span></div>' for a, b, c in stats)
+        body = (f'<div class="card">{top}<span class="jp">{escape(sub)}</span>{rel_line(L, g, x, t, r["rel"])}{buy_btns(g, x, t)}</div>'
+                f'<div class="stats">{st_html}</div><h2>{escape(t["chart"])}</h2>{chart_svg(L, t, r)}'
+                + (f'<p class="note">{escape(t["no_local"])}</p>' if L in ("zh-tw", "ko") else "")
+                + f'<p><a href="/{L}/box-prices/">{t["box"]} →</a> · <a href="/{L}/releases/">{t["releases"]} →</a></p>')
+        return (f"sets/{set_slug(g, x)}/", "set", title, h1, desc, "", body, "box")
+
     ex_rel = ", ".join(f'{set_name(g, x)} {set_info(g, x)[0]} ({r[5:7].lstrip("0")}/{r[8:]})'.replace(" ()", "")
                        for r, g, x, _ in fut[:3])
 
@@ -574,6 +681,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         t = T[L]
         src_html = (f'<section class="src"><h2>{t["sources"]}</h2><p>{escape(t["src"].format(fx=round(fx, 1), fxd=fxd))}</p>'
                     f'<p>{escape(t["names"])}</p><p>{escape(t["aff"])}</p></section>')
+        specs = []  # (path, key, title, h1, desc, lead, body, 親ページのkey)
         for path, key in PAGES:
             title, h1, desc = META[L][key]
             title = title.format(y=today.year, y1=today.year + 1)
@@ -598,14 +706,20 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             else:
                 body = "".join(f'<div class="card"><h2 style="margin-top:0">{escape(a)}</h2><p>{escape(b)}</p></div>' for a, b in BUY[L])
                 body += f'<p><a href="/{L}/box-prices/">{t["box"]} →</a> · <a href="/{L}/releases/">{t["releases"]} →</a></p>'
+            specs.append((path, key, title, h1, desc, lead, body, None))
+        for r in rows:  # 弾ごとのページ（チャート付き）
+            specs.append(set_page(L, t, r))
+        for path, key, title, h1, desc, lead, body, parent in specs:
             url = f"{site}/{L}/{path}"
             # hreflang：自分を含む全言語。中国語は zh-Hant・zh-TW・zh-HK を同じページに
             alt = "".join(f'<link rel="alternate" hreflang="{hl}" href="{site}/{l}/{path}">' for l, m in LANGS.items() for hl in m["hreflang"])
             alt += f'<link rel="alternate" hreflang="x-default" href="{site}/en/{path}">'
             # 構造化データ：パンくず・ページ（更新日）・一覧
             crumbs = [{"@type": "ListItem", "position": 1, "name": t["home"], "item": f"{site}/{L}/"}]
+            if parent:
+                crumbs.append({"@type": "ListItem", "position": 2, "name": t[parent], "item": f"{site}/{L}/box-prices/"})
             if path:
-                crumbs.append({"@type": "ListItem", "position": 2, "name": t[key], "item": url})
+                crumbs.append({"@type": "ListItem", "position": len(crumbs) + 1, "name": h1 if parent else t[key], "item": url})
             ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs},
                   {"@context": "https://schema.org", "@type": "WebPage", "name": title, "description": desc, "url": url,
                    "inLanguage": meta["html"], "dateModified": tdy, "isPartOf": {"@type": "WebSite", "name": t["site"], "url": f"{site}/{L}/"}}]
@@ -618,9 +732,14 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             ld_html = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
             og_img = f"{site}/og-{L}.png"
             ogalt = '<meta property="og:locale:alternate" content="zh_HK">' if L == "zh-tw" else ""
-            tabs = "".join(f'<a href="/{L}/{p}"{" aria-current=\"page\"" if p == path else ""}>{t[k]}</a>' for p, k in PAGES)
+            cur = parent or key
+            tabs = "".join(f'<a href="/{L}/{p}"{" aria-current=\"page\"" if k == cur else ""}>{t[k]}</a>' for p, k in PAGES)
             langs = "".join(f'<a href="/{l}/{path}" hreflang="{m["html"]}"{" aria-current=\"true\"" if l == L else ""}>{m["name"]}</a>' for l, m in LANGS.items())
-            crumb_html = (f'<p class="crumb"><a href="/{L}/">{t["home"]}</a> › {escape(t[key])}</p>' if path else "")
+            crumb_html = ""
+            if parent:
+                crumb_html = f'<p class="crumb"><a href="/{L}/">{t["home"]}</a> › <a href="/{L}/box-prices/">{escape(t[parent])}</a> › {escape(h1)}</p>'
+            elif path:
+                crumb_html = f'<p class="crumb"><a href="/{L}/">{t["home"]}</a> › {escape(t[key])}</p>'
             html = (f'<!doctype html><html lang="{meta["html"]}"><head><meta charset="utf-8">'
                     f'<meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}</title>'
                     f'<meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}">{alt}'

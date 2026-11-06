@@ -1,26 +1,27 @@
 # サイトに載せるBOXの相場（スニダン＝日本の取引、TCGplayer＝アメリカの取引）
 # series：サイトの弾名（settings.yaml の series_info / series_slugs と同じ名前）
 # snkr：スニダンの商品番号（https://snkrdunk.com/apparels/○○ の数字）
+# en_tcg：英語版のBOX（ないときはエリートトレーナーボックス＝en_kind: etb）のTCGplayer商品番号。海外向けページの弾ごとのチャート用（11/7）
 # tcg：TCGplayerの商品番号（日本版BOX。ワンピースは英語版なので値段そのものは比べない）
 # teika：BOXの定価（税込・円）
 items:
   pokemon:
-    - {series: 30th CELEBRATION, name: 30th CELEBRATION BOX, snkr: 881421, tcg: 718620, teika: 7200}
+    - {series: 30th CELEBRATION, name: 30th CELEBRATION BOX, snkr: 881421, tcg: 718620, teika: 7200, en_tcg: 704143, en_kind: etb}
     - {series: 30周年 FUTURISTIC BOX, name: 30th CELEBRATION FUTURISTIC BOX, snkr: 881424, teika: 27500}
     - {series: 30周年エーフィ・ブラッキーデッキ, name: 30th プレミアムデッキセット エーフィ・ブラッキー, snkr: 881423, teika: 6200}
     - {series: スペシャルデッキセットMEGA, name: スペシャルデッキセットMEGA, snkr: 921659, teika: 5500}
-    - {series: ストームエメラルダ, name: ストームエメラルダ BOX, snkr: 846048, tcg: 709110, teika: 6000}
-    - {series: アビスアイ, name: アビスアイ BOX, snkr: 806644, tcg: 695112, teika: 6000}
-    - {series: ニンジャスピナー, name: ニンジャスピナー BOX, snkr: 762693, tcg: 683774, teika: 5400}
-    - {series: MEGAドリームex, name: MEGAドリームex BOX, snkr: 721913, teika: 5500}
-    - {series: インフェルノX, name: インフェルノX BOX, snkr: 687430, tcg: 655968, teika: 5400}
-    - {series: テラスタルフェスex, name: テラスタルフェスex BOX, snkr: 424297, tcg: 603428, teika: 5500}
-    - {series: ポケモンカード151, name: ポケモンカード151 BOX, snkr: 118914, teika: 5800}
+    - {series: ストームエメラルダ, name: ストームエメラルダ BOX, snkr: 846048, tcg: 709110, teika: 6000, en_tcg: 712094}
+    - {series: アビスアイ, name: アビスアイ BOX, snkr: 806644, tcg: 695112, teika: 6000, en_tcg: 692939}
+    - {series: ニンジャスピナー, name: ニンジャスピナー BOX, snkr: 762693, tcg: 683774, teika: 5400, en_tcg: 684444}
+    - {series: MEGAドリームex, name: MEGAドリームex BOX, snkr: 721913, teika: 5500, en_tcg: 668496, en_kind: etb}
+    - {series: インフェルノX, name: インフェルノX BOX, snkr: 687430, tcg: 655968, teika: 5400, en_tcg: 654137}
+    - {series: テラスタルフェスex, name: テラスタルフェスex BOX, snkr: 424297, tcg: 603428, teika: 5500, en_tcg: 593355, en_kind: etb}
+    - {series: ポケモンカード151, name: ポケモンカード151 BOX, snkr: 118914, teika: 5800, en_tcg: 503313, en_kind: etb}
   onepiece:
     - {series: ヒロインズエディション vol.2, name: ヒロインズエディション vol.2 BOX, snkr: 910479, tcg: 711385, teika: 5760}
     - {series: HEROINES PRECIOUS BOX, name: HEROINES PRECIOUS BOX, snkr: 912024, teika: 8470}
     - {series: 世界最強の戦士, name: 世界最強の戦士 BOX, snkr: 864495, tcg: 704752, teika: 5760}
-    - {series: 神の島の冒険, name: 神の島の冒険 BOX, snkr: 755998, teika: 5280}
+    - {series: 神の島の冒険, name: 神の島の冒険 BOX, snkr: 755998, teika: 5280, en_tcg: 682057}
     - {series: EGGHEAD CRISIS, name: EGGHEAD CRISIS BOX, snkr: 751287, teika: 5280}
     - {series: ヒロインズエディション, name: ヒロインズエディション BOX, snkr: 691521, tcg: 666891, teika: 5280}
     - {series: 受け継がれる意志, name: 受け継がれる意志 BOX, snkr: 548909, tcg: 628352, teika: 5280}
@@ -32,7 +33,7 @@ past:
   pokemon:
     - {series: メガブレイブ, name: メガブレイブ BOX, snkr: 628146, teika: 5400}
     - {series: メガシンフォニア, name: メガシンフォニア BOX, snkr: 628148, teika: 5400}
-    - {series: ムニキスゼロ, name: ムニキスゼロ BOX, snkr: 743533}
+    - {series: ムニキスゼロ, name: ムニキスゼロ BOX, snkr: 743533, en_tcg: 672394}
     - {series: ロケット団の栄光, name: ロケット団の栄光 BOX, snkr: 550896, teika: 5400, slug: glory-of-team-rocket}
     - {series: ブラックボルト, name: ブラックボルト BOX, snkr: 584770, teika: 5400, slug: black-bolt}
     - {series: ホワイトフレア, name: ホワイトフレア BOX, snkr: 584772, teika: 5400, slug: white-flare}
@@ -56,7 +57,7 @@ past:
     - {series: トリプレットビート, name: トリプレットビート BOX, snkr: 111467, teika: 5400, slug: triplet-beat}
     - {series: スカーレットex, name: スカーレットex BOX, snkr: 106863, teika: 5400, slug: scarlet-ex}
     - {series: バイオレットex, name: バイオレットex BOX, snkr: 106864, teika: 5400, slug: violet-ex}
-    - {series: VSTARユニバース, name: VSTARユニバース BOX, snkr: 101885, teika: 5500, slug: vstar-universe}
+    - {series: VSTARユニバース, name: VSTARユニバース BOX, snkr: 101885, teika: 5500, slug: vstar-universe, en_tcg: 453470, en_kind: etb}
     - {series: パラダイムトリガー, name: パラダイムトリガー BOX, snkr: 97143, slug: paradigm-trigger}
     - {series: 白熱のアルカナ, name: 白熱のアルカナ BOX, snkr: 89881, slug: incandescent-arcana}
     - {series: ロストアビス, name: ロストアビス BOX, snkr: 86213, slug: lost-abyss}
@@ -71,7 +72,7 @@ past:
     - {series: フュージョンアーツ, name: フュージョンアーツ BOX, snkr: 14024, slug: fusion-arts}
     - {series: 蒼空ストリーム, name: 蒼空ストリーム BOX, snkr: 12889, slug: soukuu-stream}
     - {series: 摩天パーフェクト, name: 摩天パーフェクト BOX, snkr: 12888, slug: maten-perfect}
-    - {series: イーブイヒーローズ, name: イーブイヒーローズ BOX, snkr: 12883, slug: eevee-heroes}
+    - {series: イーブイヒーローズ, name: イーブイヒーローズ BOX, snkr: 12883, slug: eevee-heroes, en_tcg: 242436}
     - {series: 一撃マスター, name: 一撃マスター BOX, snkr: 12877, slug: ichigeki-master}
     - {series: 連撃マスター, name: 連撃マスター BOX, snkr: 12876, slug: rengeki-master}
     - {series: 双璧のファイター, name: 双璧のファイター BOX, snkr: 12878, slug: souheki-no-fighter}
@@ -91,8 +92,8 @@ past:
     - {series: 裂空のカリスマ, name: 裂空のカリスマ BOX, snkr: 15530, slug: rekkuu-no-charisma}
     - {series: 20th Anniversary, name: 20th Anniversary BOX, snkr: 86179, slug: 20th-anniversary}
   onepiece:
-    - {series: 決戦の刻, name: 決戦の刻 BOX, snkr: 816932}
-    - {series: 蒼海の七傑, name: 蒼海の七傑 BOX, snkr: 725356, teika: 5280}
+    - {series: 決戦の刻, name: 決戦の刻 BOX, snkr: 816932, en_tcg: 689336}
+    - {series: 蒼海の七傑, name: 蒼海の七傑 BOX, snkr: 725356, teika: 5280, en_tcg: 665598}
     - {series: 師弟の絆, name: 師弟の絆 BOX, snkr: 542574, teika: 5280, slug: op12-shitei-no-kizuna}
     - {series: 神速の拳, name: 神速の拳 BOX, snkr: 498158, teika: 5280, slug: op11-shinsoku-no-kobushi}
     - {series: 新たなる皇帝, name: 新たなる皇帝 BOX, snkr: 299926, teika: 5280}

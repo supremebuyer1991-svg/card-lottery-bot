@@ -129,9 +129,9 @@ def _snkr_daily(sess, aid):
     return day
 
 
-def _tcg_daily(sess, tid):
+def _tcg_daily(sess, tid, rng="month"):
     """TCGplayerの商品番号 → {アメリカの日付: marketPrice(ドル)}。いちばん新しい日はまだ途中なので外す"""
-    r = sess.get(f"https://infinite-api.tcgplayer.com/price/history/{tid}?range=month", timeout=30)
+    r = sess.get(f"https://infinite-api.tcgplayer.com/price/history/{tid}?range={rng}", timeout=30)
     r.raise_for_status()
     res = r.json().get("result") or []
     out = {}
@@ -209,7 +209,14 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
                 rec["us"] = {**(rec.get("us") or {}), **_tcg_daily(sess, it["tcg"])}
             except Exception as e:
                 log(f"相場（TCGplayer）: {it['name']} 取得失敗 {e}")
-        for f in ("jp", "us"):
+        # 英語版のBOX（海外向けページのチャート用。11/7）。初めての時は3か月分さかのぼる
+        if it.get("en_tcg") and main_due:
+            try:
+                rec["en"] = {**(rec.get("en") or {}), **_tcg_daily(sess, it["en_tcg"], "month" if rec.get("en") else "quarter")}
+                rec["en_kind"] = it.get("en_kind") or "box"
+            except Exception as e:
+                log(f"相場（TCGplayer 英語版）: {it['name']} 取得失敗 {e}")
+        for f in ("jp", "us", "en"):
             if rec.get(f):
                 rec[f] = _thin(rec[f], today)
     fx = _fx(sess)
