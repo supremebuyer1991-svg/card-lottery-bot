@@ -37552,6 +37552,7 @@
       "url": "https://docs.google.com/forms/d/e/1FAIpQLScfsgKEXZFuSPOzcV6c1DZ-7J-tQwW-uGfDCdYuy9H_TL7u_w/viewform",
       "channel": "store",
       "area": "大阪府",
+      "address": "大阪府大阪市北区芝田1-1-3",
       "id_check": true,
       "member": "account",
       "spath": "store/mint-ab2ef/",
@@ -38017,6 +38018,7 @@
       "product": "ONE PIECE神の支配",
       "series": "神の支配",
       "end": "2026-11-07T23:59:00+09:00",
+      "conditions": "会員登録、アプリ、本人確認書類、購入上限、代理購入、価格などの条件は本文に書かれていない。ららぽーと福岡店の神の支配について、リンクと「11/7(土)23:59まで」という期限の表記があるだけ。",
       "url": "https://livepocket.jp/e/so8ib",
       "channel": "store",
       "area": "福岡県",
@@ -38054,6 +38056,7 @@
       "series": "スタートデッキ100 バトルコレクション",
       "end": "2026-11-08T21:45:00+09:00",
       "method": "Web",
+      "conditions": "条件の詳細はページに記載がなく不明。応募は告知内のリンク先から行う形で、締切は11/8(日)21:45。会員登録、本人確認書類、購入数の上限、代理購入、価格についての記載はない。",
       "url": "https://livepocket.jp/e/jw0ss",
       "channel": "store",
       "area": "福岡県",
@@ -38072,6 +38075,7 @@
       "product": "ポケモンカード拡張パック「ハドウシーカー」",
       "series": "ハドウシーカー",
       "end": "2026-11-08T21:00:00+09:00",
+      "method": "予約抽選（応募締切は11/8(日)21:00）。具体的な応募手順の記載はなし",
       "conditions": "予約抽選",
       "url": "https://livepocket.jp/e/ymk8x",
       "channel": "store",
@@ -38080,6 +38084,65 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/tsutaya-fd3df/",
       "found_at": "2026-11-06T18:04:35.974524+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/391cc750e2/": {
+    "d": {
+      "key": "391cc750e25ec59b",
+      "game": "pokemon",
+      "store": "キディランド吉祥寺店",
+      "product": "30th CELEBRATION 拡張パック",
+      "series": "30th CELEBRATION",
+      "start": "2026-11-09T10:00:00+09:00",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/wk1f_",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/kiddyland-e4913/",
+      "found_at": "2026-11-06T19:09:54.007381+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/5033e52415/": {
+    "d": {
+      "key": "5033e52415f573fa",
+      "game": "pokemon",
+      "store": "キディランド二子玉川店",
+      "product": "30th CELEBRATION 拡張パック",
+      "series": "30th CELEBRATION",
+      "start": "2026-11-09T10:00:00+09:00",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/mt1eq",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/kiddyland-31038/",
+      "found_at": "2026-11-06T19:09:54.007422+09:00"
+    },
+    "last": "2026-11-06"
+  },
+  "l/e0037973aa/": {
+    "d": {
+      "key": "e0037973aaed2ba3",
+      "game": "pokemon",
+      "store": "キディランド吉祥寺店",
+      "product": "ストームエメラルダ",
+      "series": "ストームエメラルダ",
+      "start": "2026-11-09T10:00:00+09:00",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "Web",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/kiddyland-e4913/",
+      "found_at": "2026-11-06T19:09:54.007453+09:00"
     },
     "last": "2026-11-06"
   }

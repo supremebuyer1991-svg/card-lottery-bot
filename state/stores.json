@@ -4005,15 +4005,17 @@
   },
   "store/kiddyland-e4913/": {
     "name": "キディランド吉祥寺店",
-    "last": "2026-10-30",
+    "last": "2026-11-06",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/kiddyland-31038/": {
     "name": "キディランド二子玉川店",
-    "last": "2026-10-30",
+    "last": "2026-11-06",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "東京都"
   },
   "store/furuichi-c67d5/": {
     "name": "ふるいち座間店",
@@ -6882,7 +6884,8 @@
     "name": "ミント梅田店",
     "last": "2026-11-06",
     "game": "pokemon",
-    "area": "大阪府"
+    "area": "大阪府",
+    "address": "大阪府大阪市北区芝田1-1-3"
   },
   "store/santy-kurisurodo-810d2/": {
     "name": "santy（サンティ）仙台クリスロード店",
@@ -6937,18 +6940,6 @@
     "game": "pokemon",
     "area": "福岡県"
   },
-  "store/dorasuta-ccf02/": {
-    "name": "ドラスタ通販",
-    "last": "2026-10-29",
-    "game": "onepiece",
-    "keep": true
-  },
-  "store/jumpshop-domushiti-07b64/": {
-    "name": "JUMP SHOP東京ドームシティ店",
-    "last": "2026-11-06",
-    "game": "onepiece",
-    "keep": true
-  },
   "store/shop-a78a0/": {
     "name": "六高",
     "last": "2026-11-06",
@@ -6981,6 +6972,18 @@
   },
   "store/shop-af4a8/": {
     "name": "呉（広島）",
+    "last": "2026-11-06",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/dorasuta-ccf02/": {
+    "name": "ドラスタ通販",
+    "last": "2026-10-29",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/jumpshop-domushiti-07b64/": {
+    "name": "JUMP SHOP東京ドームシティ店",
     "last": "2026-11-06",
     "game": "onepiece",
     "keep": true
