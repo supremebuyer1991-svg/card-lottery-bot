@@ -70,7 +70,7 @@ amazon_tag: "st9994ststst-22"
 
 # 楽天：商品画像と楽天リンク（アプリID・アクセスキーは GitHub Secrets の RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY）
 rakuten_affiliate_id: "0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"  # 楽天アフィリエイトID
-yamada_mall_vc: {sid: "3787021", pid: "892741957"}  # ヤマダモール（バリューコマース）。ヤマダの抽選ページとヤマダのチェーンページに出す
+# yamada_mall_vc: {sid: "", pid: ""}  # ヤマダモール（バリューコマース）。トレカ抽選ナビをバリューコマースにサイト登録して、そのサイトIDのコードを入れると表示される（3787021はガチャプラネット用なので使わない）
 rakuten_refresh_days: 3         # 1つの弾の画像を何日ごとに取り直すか
 rakuten_max_calls_per_run: 20   # 1回の実行で楽天に問い合わせる最大数（写真の選び直し中は多め）
 rakuten_aliases:                # 楽天での商品名がサイトの弾名と違うもの（弾名: 楽天で探す名前）
