@@ -140,6 +140,14 @@ def apply_overrides(lots, ov):
                 and it.get("channel") != "store":
             it["channel"] = "store"
             n += 1
+        # 告知に「ご来店」「店頭にて（支払い・受け取り）」とある抽選と、ふるいち・古本市場の各店（通販・Web抽選以外）は店頭受取（11/7 ユーザー指摘：ららぽーと富士見店）
+        st_ = it.get("store") or ""
+        txt_ = " ".join(str(it.get(k) or "") for k in ("conditions", "method", "note", "buy", "text"))
+        if it.get("channel") != "store" and ov.get(st_.strip()) != "online" and (
+                re.search(r"ご来店|店頭にて|店頭(で)?(の)?(受け?取|お渡し|引き?渡|受取|購入|お支払)", txt_)
+                or (re.search(r"ふるいち|古本市場", st_) and re.search(r"店$|店\s", st_) and not re.search(r"Web|WEB|通販|オンライン|全国", st_))):
+            it["channel"] = "store"
+            n += 1
         ch = ov.get((it.get("store") or "").strip())
         if ch and it.get("channel") != ch:
             it["channel"] = ch
