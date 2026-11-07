@@ -23,10 +23,10 @@ LANGS = {
 # (code, en_name, en_counterpart, zh, ko)
 SETS = {
     "pokemon": {
-        "ハドウシーカー": ("M7", "Aura Seeker", "Flowing Fists", "", ""),
+        "ハドウシーカー": ("M7", "Aura Seeker", "Flowing Fists", "波導探求者", ""),
         "スペシャルデッキセットMEGA": ("", "Special Deck Set MEGA", "", "", ""),
         "30周年御三家カードセット": ("", "30th Anniversary Starter Card Set", "", "", ""),
-        "30th CELEBRATION": ("M6a", "30th CELEBRATION", "30th Celebration", "", ""),
+        "30th CELEBRATION": ("M6a", "30th CELEBRATION", "30th Celebration", "30th CELEBRATION", ""),
         "30周年 FUTURISTIC BOX": ("", "30th CELEBRATION FUTURISTIC BOX", "", "", ""),
         "30周年エーフィ・ブラッキーデッキ": ("", "30th Premium Deck Set Espeon & Umbreon", "", "", ""),
         "ストームエメラルダ": ("M6", "Storm Emeralda", "Delta Reign", "綠寶石風暴", "스톰에메랄다"),
@@ -133,12 +133,12 @@ SETS = {
 # 各国の発売日（調べて確かめられたものだけ。11/7）。en＝英語版（対応する弾）、tw＝台湾・香港の繁体字版、kr＝韓国版
 LOCAL_REL = {
     "pokemon": {
-        "ハドウシーカー": {"en": "2027-02-05"},
-        "30th CELEBRATION": {"en": "2026-09-16"},
+        "ハドウシーカー": {"en": "2027-02-05", "tw": "2026-12-04"},
+        "30th CELEBRATION": {"en": "2026-09-16", "tw": "2026-09-16"},
         "ストームエメラルダ": {"en": "2026-11-06", "tw": "2026-08-07", "kr": "2026-08-21"},
         "アビスアイ": {"en": "2026-07-17", "tw": "2026-06-05"},
         "ニンジャスピナー": {"en": "2026-05-22", "tw": "2026-03-27", "kr": "2026-05-01"},
-        "ムニキスゼロ": {"en": "2026-03-27"},
+        "ムニキスゼロ": {"en": "2026-03-27", "tw": "2026-02-06"},
         "MEGAドリームex": {"en": "2026-01-30", "tw": "2025-12-05", "kr": "2026-01-23"},
         "インフェルノX": {"en": "2025-11-14", "tw": "2025-10-09", "kr": "2025-11-28"},
         "テラスタルフェスex": {"en": "2025-01-17", "tw": "2024-12-20", "kr": "2025-01-22"},
