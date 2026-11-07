@@ -28364,6 +28364,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "2a163e1f66ada73c": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -28378,6 +28389,22 @@
         "c": "store",
         "m": "Web",
         "id": true,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-f480e/": {
+    "name": "JUMP SHOP 東京ドームシティ",
+    "items": {
+      "02fc4e6bccd2283a": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
         "mem": null,
         "rq": []
       }

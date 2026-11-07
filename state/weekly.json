@@ -13642,7 +13642,7 @@
       "store": "TSUTAYA",
       "series": "30周年御三家カードセット",
       "channel": "store",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-06T20:58:01.960515+09:00",
       "chain": "tsutaya"
     },
@@ -13771,6 +13771,15 @@
       "area": null,
       "found_at": "2026-11-07T09:51:26.527684+09:00",
       "chain": null
+    },
+    "2a163e1f66ada73c": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 伊勢丘",
+      "series": "メガブレイブ",
+      "channel": "store",
+      "area": "広島県",
+      "found_at": "2026-11-07T09:44:04.512280+09:00",
+      "chain": "tsutaya"
     }
   }
 }

@@ -4181,7 +4181,8 @@
   "store/tsutaya-acb5a/": {
     "name": "TSUTAYA",
     "last": "2026-11-07",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "東京都"
   },
   "store/tsutaya-a5f11/": {
     "name": "TSUTAYA中万々店",
@@ -6561,7 +6562,7 @@
     "area": "東京都"
   },
   "store/furuichi-683a6/": {
-    "name": "古本市場 志木店",
+    "name": "古本市場志木店",
     "last": "2026-11-07",
     "game": "onepiece",
     "area": "埼玉県"
@@ -7056,6 +7057,13 @@
     "last": "2026-11-07",
     "game": "pokemon"
   },
+  "store/tsutaya-3b93c/": {
+    "name": "TSUTAYA Trading Card 伊勢丘",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "keep": true,
+    "area": "広島県"
+  },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "last": "2026-10-27",
@@ -7146,10 +7154,10 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/tsutaya-3b93c/": {
-    "name": "TSUTAYA Trading Card 伊勢丘",
+  "store/jumpshop-f480e/": {
+    "name": "JUMP SHOP 東京ドームシティ",
     "last": "2026-11-07",
-    "game": "pokemon",
+    "game": "onepiece",
     "keep": true
   }
 }
