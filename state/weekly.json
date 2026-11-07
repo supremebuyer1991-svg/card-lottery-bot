@@ -12319,7 +12319,7 @@
       "store": "古本市場・ふるいち 各店",
       "series": null,
       "channel": "store",
-      "area": null,
+      "area": "香川県",
       "found_at": "2026-11-06T10:15:09.696227+09:00",
       "chain": "furuichi"
     },
@@ -14968,6 +14968,105 @@
       "area": "北海道",
       "found_at": "2026-11-07T13:59:41.663902+09:00",
       "chain": "batoroco"
+    },
+    "54ba106ebb4b85e7": {
+      "game": "pokemon",
+      "store": "バトロコ札幌狸小路",
+      "series": null,
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-07T16:08:47.409292+09:00",
+      "chain": "batoroco"
+    },
+    "b98ae870e1d7c16f": {
+      "game": "pokemon",
+      "store": "トレカ買取王国小牧店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-07T16:08:47.409329+09:00",
+      "chain": null
+    },
+    "da27f58dee7fe998": {
+      "game": "pokemon",
+      "store": "ダイソー楽器トレカ店（中津川）",
+      "series": null,
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-07T16:08:47.409348+09:00",
+      "chain": null
+    },
+    "a9a968c810929270": {
+      "game": "pokemon",
+      "store": "TSUTAYA流山店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-07T16:08:47.409366+09:00",
+      "chain": "tsutaya"
+    },
+    "bcc34ced5349faed": {
+      "game": "onepiece",
+      "store": "カードラボ水戸店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "茨城県",
+      "found_at": "2026-11-07T16:08:48.147397+09:00",
+      "chain": "cardlabo"
+    },
+    "d5075c8fee91a340": {
+      "game": "onepiece",
+      "store": "TSUTAYA作新学院前店トレカ売場",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-07T16:08:48.147429+09:00",
+      "chain": "tsutaya"
+    },
+    "2ce0e60d2478bb23": {
+      "game": "onepiece",
+      "store": "TSUTAYA浜田山店トレカ",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-07T16:08:48.147447+09:00",
+      "chain": "tsutaya"
+    },
+    "b749ac3d08b0455c": {
+      "game": "onepiece",
+      "store": "バトロコsatellite札幌駅北口",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-07T16:08:48.147463+09:00",
+      "chain": "batoroco"
+    },
+    "cd13f7124106b25e": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card北千住",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-07T16:09:25.946679+09:00",
+      "chain": "tsutaya"
+    },
+    "0ac396f40ad3c6f4": {
+      "game": "pokemon",
+      "store": "古本市場深谷店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-07T16:09:25.946702+09:00",
+      "chain": "furuichi"
+    },
+    "082327c6f031a6c7": {
+      "game": "pokemon",
+      "store": "フルコンプ大阪日本橋店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-07T16:09:25.946721+09:00",
+      "chain": null
     }
   }
 }

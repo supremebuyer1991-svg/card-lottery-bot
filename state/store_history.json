@@ -3280,6 +3280,17 @@
         "mem": "account",
         "rq": []
       },
+      "cd13f7124106b25e": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "50f5b7ed57670470": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -6169,6 +6180,19 @@
           "レシート"
         ]
       },
+      "da27f58dee7fe998": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
       "e9960b44052d3241": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -7947,6 +7971,17 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      },
+      "b749ac3d08b0455c": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-18T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       },
       "a2ea1ba212a0c5fc": {
@@ -10226,6 +10261,17 @@
   "store/cardlabo-f3ed3/": {
     "name": "カードラボ水戸店",
     "items": {
+      "bcc34ced5349faed": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "d68d9a525dc6ef40": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -13820,6 +13866,17 @@
         "m": "Web",
         "id": false,
         "mem": "none",
+        "rq": []
+      },
+      "d5075c8fee91a340": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
         "rq": []
       }
     }
@@ -20093,6 +20150,17 @@
   "store/furuichi-7deba/": {
     "name": "古本市場深谷店",
     "items": {
+      "0ac396f40ad3c6f4": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "770b11f1142b6b58": {
         "p": "ヒロインズエディション",
         "g": "onepiece",
@@ -21282,6 +21350,17 @@
   "store/tsutaya-a3a4e/": {
     "name": "TSUTAYA流山店",
     "items": {
+      "a9a968c810929270": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-08T21:45",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "04aad75ae8ac1a18": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -22009,6 +22088,17 @@
   "store/tsutaya-0f29d/": {
     "name": "TSUTAYA浜田山店トレカ",
     "items": {
+      "2ce0e60d2478bb23": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-14T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "8db752f8dd818725": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -30111,6 +30201,17 @@
         "id": true,
         "mem": "account",
         "rq": []
+      },
+      "54ba106ebb4b85e7": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
       }
     }
   },
@@ -30158,6 +30259,40 @@
         "m": "SNS",
         "id": null,
         "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/toreka-2d47f/": {
+    "name": "トレカ買取王国小牧店",
+    "items": {
+      "b98ae870e1d7c16f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/furukonpu-2e78d/": {
+    "name": "フルコンプ大阪日本橋店",
+    "items": {
+      "082327c6f031a6c7": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
         "rq": []
       }
     }

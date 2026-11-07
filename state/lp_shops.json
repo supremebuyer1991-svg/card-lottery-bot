@@ -1,6 +1,6 @@
 {
   "events": {
-    "dof-w": "",
+    "dof-w": "https://livepocket.jp/p/jutro",
     "j2_s8": "?1",
     "05tt3": "?1",
     "z4uwb": "",
@@ -24,7 +24,7 @@
     "u6fu3": "",
     "chm06": "",
     "y2ltb": "",
-    "y3ccfn268p": "",
+    "y3ccfn268p": "https://livepocket.jp/p/iu_zh",
     "ebktx": "",
     "9m8au": "",
     "uf43t": "",
@@ -48,9 +48,9 @@
     "hrgpp": "",
     "88ahs": "",
     "0skwi": "",
-    "uk_yi": "",
+    "uk_yi": "https://livepocket.jp/p/i9q1i",
     "lv5m0": "",
-    "hehv6": "",
+    "hehv6": "https://livepocket.jp/p/cy--a",
     "ugp5c": "",
     "us7vg": "",
     "u-30b": "",
@@ -67,35 +67,35 @@
     "elopw": "",
     "bb5zr": "",
     "wqxhv": "",
-    "o11e8": "",
+    "o11e8": "https://livepocket.jp/p/xk335",
     "9lmsl": "",
     "capr-": "",
     "qhcau": "",
     "6zkg_": "",
     "ajcuf": "",
     "3u6ri": "",
-    "g32t1": "",
+    "g32t1": "https://livepocket.jp/p/wqn0o",
     "bf_9j": "",
     "z65d6": "",
     "25bhn": "",
     "b--sf": "",
     "36g4a": "",
     "l39fk": "",
-    "h_36i": "",
+    "h_36i": "https://livepocket.jp/p/k-xl2",
     "mr_dw": "",
     "b0pdj": "",
     "m6j4z": "",
-    "vsmod": "",
+    "vsmod": "https://livepocket.jp/p/1iug4",
     "sxuqx": "",
-    "ptliv": "",
-    "vv1wt": "",
+    "ptliv": "https://livepocket.jp/p/3t72t",
+    "vv1wt": "https://livepocket.jp/p/7av4u",
     "c7q8c": "",
     "gkrb4": "",
     "6jcb2": "",
     "kmh6u": "",
     "nn0xi": "",
     "gvco6": "",
-    "ra9fu": "",
+    "ra9fu": "https://livepocket.jp/p/4_e_e",
     "ky8qv": "",
     "u9xis": "",
     "pr4q5": "",
@@ -103,16 +103,16 @@
     "nyag6": "",
     "fz4f0": "",
     "hyejo": "",
-    "0-aj_": "",
+    "0-aj_": "https://livepocket.jp/p/51e0b",
     "cxg3t": "",
     "u8syz": "",
-    "926kc": "",
+    "926kc": "https://livepocket.jp/p/51e0b",
     "mhr4l": "",
-    "sage1": "",
-    "ghdew": "",
+    "sage1": "https://livepocket.jp/p/t844h",
+    "ghdew": "https://livepocket.jp/p/8krkq",
     "a35_-": "",
     "0hr74": "",
-    "ewhgu": "",
+    "ewhgu": "https://livepocket.jp/p/hey2v",
     "fj1p_": "",
     "v-it7": "",
     "e1sd5": "",
@@ -320,6 +320,97 @@
       "events": [
         "mf3gw",
         "0sh_w"
+      ]
+    },
+    "https://livepocket.jp/p/jutro": {
+      "name": "TSUTAYA平塚店",
+      "events": [
+        "dof-w"
+      ]
+    },
+    "https://livepocket.jp/p/iu_zh": {
+      "name": "イトーヨーカドー",
+      "events": [
+        "y3ccfn268p"
+      ]
+    },
+    "https://livepocket.jp/p/i9q1i": {
+      "name": "TSUTAYA 合川店",
+      "events": [
+        "uk_yi"
+      ]
+    },
+    "https://livepocket.jp/p/xk335": {
+      "name": "草叢BOOKS 新守山店",
+      "events": [
+        "o11e8"
+      ]
+    },
+    "https://livepocket.jp/p/cy--a": {
+      "name": "TSUTAYA AZ岡南店",
+      "events": [
+        "hehv6"
+      ]
+    },
+    "https://livepocket.jp/p/k-xl2": {
+      "name": "ジャンプショップ 東京駅店",
+      "events": [
+        "h_36i"
+      ]
+    },
+    "https://livepocket.jp/p/1iug4": {
+      "name": "TSUTAYA 中津店",
+      "events": [
+        "vsmod"
+      ]
+    },
+    "https://livepocket.jp/p/3t72t": {
+      "name": "TSUTAYA積文館書店シュロアモール店",
+      "events": [
+        "ptliv"
+      ]
+    },
+    "https://livepocket.jp/p/wqn0o": {
+      "name": "トレカステーション豊橋店",
+      "events": [
+        "g32t1"
+      ]
+    },
+    "https://livepocket.jp/p/7av4u": {
+      "name": "TSUTAYA柳川店",
+      "events": [
+        "vv1wt"
+      ]
+    },
+    "https://livepocket.jp/p/4_e_e": {
+      "name": "別府",
+      "events": [
+        "ra9fu"
+      ]
+    },
+    "https://livepocket.jp/p/51e0b": {
+      "name": "TSUTAYA Trading Card 松戸",
+      "events": [
+        "926kc",
+        "0-aj_"
+      ]
+    },
+    "https://livepocket.jp/p/t844h": {
+      "name": "フタバ図書TSUTAYA 可部センター店",
+      "events": [
+        "sage1"
+      ]
+    },
+    "https://livepocket.jp/p/8krkq": {
+      "name": "ブックエース坂東店",
+      "events": [
+        "ghdew"
+      ]
+    },
+    "https://livepocket.jp/p/hey2v": {
+      "name": "TSUTAYA入間仏子店",
+      "events": [
+        "ewhgu"
       ]
     }
   }

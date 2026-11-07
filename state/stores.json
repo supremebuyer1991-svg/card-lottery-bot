@@ -345,7 +345,7 @@
     "area": "大阪府"
   },
   "store/tsutaya-02cfc/": {
-    "name": "TSUTAYA Trading Card 北千住",
+    "name": "TSUTAYA Trading Card北千住",
     "last": "2026-11-07",
     "game": "pokemon",
     "area": "東京都"
@@ -559,7 +559,8 @@
     "name": "TSUTAYA AZ岡南店",
     "last": "2026-11-07",
     "game": "pokemon",
-    "area": "岡山県"
+    "area": "岡山県",
+    "address": "岡山県岡山県岡山市南区築港栄町5-12"
   },
   "store/makkusugemu-34a5b/": {
     "name": "マックスゲーム浜松町店",
@@ -577,7 +578,8 @@
     "name": "TSUTAYA積文館書店シュロアモール店",
     "last": "2026-11-07",
     "game": "pokemon",
-    "area": "福岡県"
+    "area": "福岡県",
+    "address": "福岡県筑紫野市原田836-6"
   },
   "store/tradingcardshopoto-02e0c/": {
     "name": "TRADING CARD SHOP OTO（オト）鳴門市",
@@ -1618,7 +1620,7 @@
   },
   "store/cardlabo-f3ed3/": {
     "name": "カードラボ水戸店",
-    "last": "2026-11-06",
+    "last": "2026-11-07",
     "game": "onepiece",
     "area": "茨城県"
   },
@@ -4505,9 +4507,10 @@
   },
   "store/furuichi-7deba/": {
     "name": "古本市場深谷店",
-    "last": "2026-11-01",
+    "last": "2026-11-07",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "埼玉県"
   },
   "store/furuichi-f237f/": {
     "name": "古本市場新琴似店",
@@ -4805,7 +4808,7 @@
   },
   "store/tsutaya-a3a4e/": {
     "name": "TSUTAYA流山店",
-    "last": "2026-11-03",
+    "last": "2026-11-07",
     "game": "pokemon",
     "area": "千葉県"
   },
@@ -4963,7 +4966,8 @@
     "name": "TSUTAYA 合川店",
     "last": "2026-11-07",
     "game": "pokemon",
-    "area": "福岡県"
+    "area": "福岡県",
+    "address": "福岡県久留米市合川2丁目8-18"
   },
   "store/furukonpu-530f9/": {
     "name": "フルコンプ福岡天神店",
@@ -5286,7 +5290,8 @@
     "name": "ジャンプショップ 東京駅店",
     "last": "2026-11-07",
     "game": "onepiece",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都文京区後楽1-3-61"
   },
   "store/jumpshop-f17c3/": {
     "name": "ジャンプショップ 東京スカイツリータウン・ソラマチ店",
@@ -5304,7 +5309,8 @@
     "name": "ジャンプショップ 池袋店",
     "last": "2026-11-07",
     "game": "onepiece",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都文京区後楽1-3-61"
   },
   "store/jumpshop-71a9b/": {
     "name": "ジャンプショップ 横浜店",
@@ -5884,7 +5890,8 @@
     "name": "TSUTAYA Trading Card 松戸",
     "last": "2026-11-07",
     "game": "onepiece",
-    "area": "千葉県"
+    "area": "千葉県",
+    "address": "千葉県松戸市八ヶ崎2ｰ8-1"
   },
   "store/toreka-9ae06/": {
     "name": "トレカ丸葉鹿店",
@@ -5908,7 +5915,8 @@
     "name": "ブックエース坂東店",
     "last": "2026-11-07",
     "game": "pokemon",
-    "area": "茨城県"
+    "area": "茨城県",
+    "address": "茨城県茨城県坂東市辺田1104-1"
   },
   "store/nexustradingcards-c54dd/": {
     "name": "Nexus Trading Cards",
@@ -7279,6 +7287,24 @@
     "game": "onepiece",
     "area": "栃木県"
   },
+  "store/bookoff-66040/": {
+    "name": "ブックオフ溝ノ口店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/toreka-2d47f/": {
+    "name": "トレカ買取王国小牧店",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/furukonpu-2e78d/": {
+    "name": "フルコンプ大阪日本橋店",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "last": "2026-10-27",
@@ -7367,12 +7393,6 @@
     "name": "ファミリーマート",
     "last": "2026-11-07",
     "game": "pokemon",
-    "keep": true
-  },
-  "store/bookoff-66040/": {
-    "name": "ブックオフ溝ノ口店",
-    "last": "2026-11-07",
-    "game": "onepiece",
     "keep": true
   }
 }
