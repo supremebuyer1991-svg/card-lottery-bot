@@ -35,6 +35,12 @@ jobs:
         with:
           path: ~/.npm
           key: npm-wrangler4-${{ runner.os }}
+      - name: keep the share-image cache between runs (saves build time)
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: ogcache-${{ github.run_id }}
+          restore-keys: ogcache-
       - name: run
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

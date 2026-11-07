@@ -724,13 +724,21 @@ def _og_photo(url):
         return _OG_PHOTO[url]
     im = None
     try:
+        import hashlib
         import io
         import requests
         from PIL import Image
-        u = re.sub(r"\?_ex=\d+x\d+", "", url) + "?_ex=500x500" if "thumbnail.image.rakuten" in url else url
-        r = requests.get(u, timeout=6, headers={"User-Agent": "tcg-chusen-bot/1.0 (+https://tcg-chusen.com)"})
-        if r.ok:
-            im = Image.open(io.BytesIO(r.content)).convert("RGB")
+        cdir = Path(".cache/ogphoto")  # 前回の実行で取った写真を使い回す（GitHub Actions の時間を減らす。11/7）
+        cf = cdir / (hashlib.md5(url.encode()).hexdigest() + ".jpg")
+        if cf.exists():
+            im = Image.open(cf).convert("RGB")
+        else:
+            u = re.sub(r"\?_ex=\d+x\d+", "", url) + "?_ex=500x500" if "thumbnail.image.rakuten" in url else url
+            r = requests.get(u, timeout=6, headers={"User-Agent": "tcg-chusen-bot/1.0 (+https://tcg-chusen.com)"})
+            if r.ok:
+                im = Image.open(io.BytesIO(r.content)).convert("RGB")
+                cdir.mkdir(parents=True, exist_ok=True)
+                im.save(cf, quality=88)
     except Exception:
         im = None
     _OG_PHOTO[url] = im
@@ -740,6 +748,14 @@ def _og_photo(url):
 def og_image(path, game_label, color, title, rows, sub="", photo=None):
     """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630。
     商品写真があれば右上に入れる（Googleの「おすすめ（Discover）」やXで目に止まりやすくする・11/7）"""
+    import hashlib
+    import shutil
+    ck = Path(".cache/og") / (hashlib.md5(repr(("v2", game_label, color, title, rows, sub, photo)).encode()).hexdigest() + ".png")
+    if ck.exists():  # 中身が前回と同じなら作り直さない（GitHub Actions の時間を減らす。11/7）
+        path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ck, path)
+        os.utime(ck)  # 使った印（古いものは消すため）
+        return
     from PIL import Image, ImageDraw, ImageFont
     fdir = Path(__file__).with_name("fonts")
     F = lambda w, n: ImageFont.truetype(str(fdir / f"ZenKakuGothicNew-{w}.ttf"), n)
@@ -783,6 +799,11 @@ def og_image(path, game_label, color, title, rows, sub="", photo=None):
     d.text((W - 60, H - 26), "tcg-chusen.com", font=F("Bold", 26), fill=color, anchor="rs")
     path.parent.mkdir(parents=True, exist_ok=True)
     im.save(path, optimize=True)
+    try:
+        ck.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, ck)
+    except Exception:
+        pass
 
 
 def today_image(path, td, dlabel):
@@ -1572,6 +1593,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         return txt
 
     upd_hm = f"{upd.month}/{upd.day} {upd:%H:%M}"
+    try:  # 共有画像の使い回し用の置き場から、10日使っていないものを消す
+        import time as _t
+        for _f in list(Path(".cache/og").glob("*.png")) + list(Path(".cache/ogphoto").glob("*.jpg")):
+            if _t.time() - _f.stat().st_mtime > 10 * 86400:
+                _f.unlink()
+    except Exception:
+        pass
     # チェーン＋ゲームのページができる組み合わせ（受付中がある・これまでに抽選があった）→ リンクをそこへ集める（11/7 Fable）
     CG_PAGES.clear()
     for i in items:

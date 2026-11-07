@@ -36,8 +36,24 @@ def _env_bool(name, default):
     return v.lower() in ("1", "true", "yes", "on")
 
 
+_SETTINGS_CACHE = {}
+
+
+def _yaml_load(text):
+    try:
+        return yaml.load(text, Loader=yaml.CSafeLoader)  # 速い読み込み（あれば）
+    except AttributeError:
+        return yaml.safe_load(text)
+
+
 def load_settings() -> dict:
-    s = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))
+    # 設定ファイルは一度だけ読んで使い回す（サイトを作る間に2,000回以上読み直していて、GitHub Actions の時間の大半を使っていた。11/7）
+    import copy
+    p = ROOT / "config" / "settings.yaml"
+    mt = p.stat().st_mtime
+    if _SETTINGS_CACHE.get("mt") != mt:
+        _SETTINGS_CACHE.update(mt=mt, v=_yaml_load(p.read_text(encoding="utf-8")))
+    s = copy.deepcopy(_SETTINGS_CACHE["v"])
     s["auto_approve"] = _env_bool("AUTO_APPROVE", s.get("auto_approve", False))
     s["dry_run"] = _env_bool("DRY_RUN", s.get("dry_run", False))
     s["site_url"] = os.environ.get("WP_URL") or s.get("site_url") or ""
