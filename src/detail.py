@@ -473,6 +473,8 @@ def mylist_page(site="", raff="", tag="", souba=None):
 .ml .off{grid-column:1/3;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff7e6;border:1px solid #f3d9a4;border-radius:10px;padding:10px;margin-top:6px;font-size:13px}
 .ml .off b{flex-basis:100%}.ml .off.win{background:#ecfdf3;border-color:#a6e3c0}.ml .off a{background:#bf0000;color:#fff;border-radius:8px;padding:6px 10px;text-decoration:none;font-weight:700;font-size:12.5px}
 .ml .off .pr{font-size:10px;background:#888;color:#fff;border-radius:3px;padding:0 4px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ml .off{background:#2a2214;border-color:#5a4520;color:var(--ink)}:root:not([data-theme="light"]) .ml .off.win{background:#122a1d;border-color:#2b5c40}}
+:root[data-theme="dark"] .ml .off{background:#2a2214;border-color:#5a4520;color:var(--ink)}:root[data-theme="dark"] .ml .off.win{background:#122a1d;border-color:#2b5c40}
 .ml [hidden]{display:none!important}.ml .follow-ml{font-size:13px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;margin:12px 0}.ml .follow-ml a{font-weight:700}"""
     return ('<!doctype html><html lang="ja"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
