@@ -13486,10 +13486,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c9d76401d878fb1c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-04T11:56:32.601304+09:00",
     "multi": false,
-    "cls": "520acb6d2fef"
+    "cls": "520acb6d2fef",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-07T20:48:36.858338+09:00"
   },
   "fbfb22958098a93a": {
     "store": "ブックオフ古淵駅前店",
@@ -22825,9 +22827,10 @@
     "announce": "11月19日(木)",
     "buy": "11/20(金)〜11/23(月)",
     "start": "2026-11-06T10:00:00+09:00",
-    "page_checked_at": "2026-11-07T11:06:12.196300+09:00",
+    "page_checked_at": "2026-11-07T20:48:36.911875+09:00",
     "multi": true,
-    "cls": "7f2f41c9390f"
+    "cls": "7f2f41c9390f",
+    "address_checked": true
   },
   "b3934d0b3808de81": {
     "store": "エディオン各店・エディオンネットショップ",
@@ -25667,7 +25670,7 @@
     "key": "bdfea1640e884638",
     "status": "approved",
     "found_at": "2026-11-06T16:23:21.696112+09:00",
-    "page_checked_at": "2026-11-07T12:58:20.812917+09:00",
+    "page_checked_at": "2026-11-07T20:48:39.679577+09:00",
     "page_err": "中身が空",
     "start": "2026-11-06T10:00:00+09:00"
   },
