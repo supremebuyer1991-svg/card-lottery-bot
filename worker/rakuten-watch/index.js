@@ -191,7 +191,14 @@ async function runAmazon(env, { dry = false } = {}) {
     const prev = st.items[asin], cur = amzState(it);
     it._price = cur.price;
     if (prev !== cur.s) changed = true;
-    if (st.init && prev !== undefined && RANK[cur.s] > RANK[prev] && !(st.posted[asin + cur.s] && Date.now() - st.posted[asin + cur.s] < COOLDOWN)) {
+    // 11/8 ユーザー指摘：ずっと招待受付中のニンジャスピナーを「受付開始」と流した（Amazonの検索結果が一瞬「買えない」になってすぐ戻っただけ）。
+    // その状態（招待・販売中）を3日以内に見ていたら、新しく始まったとはみなさない
+    st.seen = st.seen || {};
+    const seenAt = st.seen[asin + cur.s] || 0;
+    const recentlySeen = Date.now() - seenAt < 3 * 86400e3;
+    if (cur.s !== "none") { if (Date.now() - seenAt > 6 * 3600e3) changed = true; st.seen[asin + cur.s] = Date.now(); }
+    if (cur.s === "buy") st.seen[asin + "invite"] = Date.now();
+    if (st.init && prev !== undefined && RANK[cur.s] > RANK[prev] && !recentlySeen && !(st.posted[asin + cur.s] && Date.now() - st.posted[asin + cur.s] < COOLDOWN)) {
       const k = `${it.game}|${cur.s}`;
       (fresh[k] = fresh[k] || []).push(it);
     }
