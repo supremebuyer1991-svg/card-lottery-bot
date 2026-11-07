@@ -22977,6 +22977,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "268a6ce540358a7d": {
+        "p": "神の支配、世界最強の戦士",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -23209,7 +23220,7 @@
         "f": "2026-11-02",
         "c": "store",
         "m": "店頭",
-        "id": null,
+        "id": true,
         "mem": null,
         "rq": [],
         "a": "2026-11-08"
@@ -23226,7 +23237,7 @@
         "f": "2026-11-02",
         "c": "store",
         "m": "店頭",
-        "id": null,
+        "id": true,
         "mem": null,
         "rq": [],
         "a": "2026-11-08"
@@ -23413,7 +23424,7 @@
         "f": "2026-11-02",
         "c": "store",
         "m": "店頭",
-        "id": null,
+        "id": true,
         "mem": null,
         "rq": [],
         "a": "2026-11-08"
@@ -23430,7 +23441,7 @@
         "f": "2026-11-02",
         "c": "store",
         "m": "店頭",
-        "id": null,
+        "id": true,
         "mem": null,
         "rq": [],
         "a": "2026-11-08"
@@ -23447,7 +23458,7 @@
         "f": "2026-11-02",
         "c": "store",
         "m": "店頭",
-        "id": null,
+        "id": true,
         "mem": null,
         "rq": [],
         "a": "2026-11-08"
@@ -23482,6 +23493,17 @@
         "c": "store",
         "m": "Web",
         "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "89499dada12fb340": {
+        "p": "神の支配、Heroines Edition vol.2、世界最強の戦士",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
         "mem": null,
         "rq": []
       }
@@ -29129,8 +29151,8 @@
         "e": "2026-11-07T23:59",
         "f": "2026-11-06",
         "c": "store",
-        "m": "Web",
-        "id": null,
+        "m": "店頭",
+        "id": true,
         "mem": null,
         "rq": []
       }
@@ -30523,6 +30545,22 @@
         "c": "store",
         "m": "Web",
         "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/jumpshop-ad6df/": {
+    "name": "JUMP SHOP 大阪天王寺店",
+    "items": {
+      "3db0b61ee2d202e3": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
         "mem": null,
         "rq": []
       }
