@@ -351,6 +351,16 @@ def _soon(lst, n=20):
     return sorted(lst, key=lambda i: i.get("end") or "9999")[:n]
 
 
+def _pname(i):
+    """要約の文に入れる短い商品名（弾の名前。なければ商品名からゲーム名・カッコ書きを落として短く。11/7 ユーザー：長すぎて読みにくい）"""
+    if i.get("series"):
+        return i["series"]
+    p = re.sub(r"ポケモンカードゲーム|ONE PIECEカードゲーム|スカーレット[＆&]バイオレット|[（(][^）)]*[）)]", "", i.get("product") or "")
+    p = re.sub(r"[「」『』]", " ", p)
+    p = re.sub(r"\s+", " ", p).strip()
+    return p[:20] + ("…" if len(p) > 20 else "")
+
+
 def _recent60(past):
     """60日以内に抽選があったか（店舗ページを検索に残すかの判断。11/7 Fable）"""
     import datetime as _d
@@ -373,7 +383,7 @@ def _cg_desc(cname, sh, cig, hg, md, _cd, _cp):
         on = sum(1 for i in cig if i.get("channel") != "store")
         soon = min((i for i in cig if i.get("end")), key=lambda i: i["end"], default=None)
         return (f"【{md}更新】{cname}でいま受付中の{sh}抽選は{len(cig)}件（ネット{on}件・店頭{len(cig) - on}件）。"
-                + (f"締切が一番近いのは{soon['store']}「{soon.get('series') or soon.get('product')}」（{_fmt(soon['end'])}締切）。" if soon else "")
+                + (f"締切が一番近いのは{soon['store']}「{_pname(soon)}」（{_fmt(soon['end'])}締切）。" if soon else "")
                 + "各店の締切・応募方法（Web・アプリ・店頭）・本人確認や会員の有無を一覧にしています。")
     return (f"【{md}更新】{cname}の{sh}抽選の情報。いま受付中の抽選はありません。"
             + (f"前回は{_cd(hg[0][0])}締切の「{_cp(hg[0][0])}」でした。" if hg else "")
@@ -1545,7 +1555,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         soon = sorted([i for i in sub if parse_dt(i.get("end"))], key=lambda i: i["end"])
         if soon:
             i = soon[0]
-            txt += f"締切が一番近いのは{i['store']}の「{i.get('series') or i.get('product')}」（{_fmt(i['end'])}締切）。"
+            txt += f"締切が一番近いのは{i['store']}の「{_pname(i)}」（{_fmt(i['end'])}締切）。"
         cnt = {}
         for i in sub:
             if i.get("channel") == "store" and i.get("area"):
