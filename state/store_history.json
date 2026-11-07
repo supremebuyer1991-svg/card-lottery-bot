@@ -20017,6 +20017,28 @@
   "store/tsutaya-cf7c2/": {
     "name": "TSUTAYA函南店",
     "items": {
+      "66d14e044aaabafe": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "c758a8ec453db372": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "1ec5530e9045207e": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -21905,6 +21927,17 @@
         "g": "onepiece",
         "e": "2026-11-08",
         "f": "2026-11-05",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "65934f7ccc453489": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08",
+        "f": "2026-11-07",
         "c": "store",
         "m": "Web",
         "id": null,
@@ -28270,6 +28303,38 @@
       }
     }
   },
+  "store/furuichi-7be50/": {
+    "name": "ふるいちトップブックスひたちなか店",
+    "items": {
+      "9da8ae7701aa8c48": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/bukkuesu-1b72b/": {
+    "name": "ブックエース坂東",
+    "items": {
+      "467a5873d62d82f3": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
   "store/tsutaya-61cb8/": {
     "name": "TSUTAYA Trading Card",
     "items": {
@@ -28289,7 +28354,7 @@
   "store/tsutaya-3b93c/": {
     "name": "TSUTAYA Trading Card 伊勢丘",
     "items": {
-      "2a163e1f66ada73c": {
+      "027a50be3af00405": {
         "p": "メガブレイブ",
         "g": "pokemon",
         "e": "2026-11-08T23:00",
@@ -28313,38 +28378,6 @@
         "c": "store",
         "m": "Web",
         "id": true,
-        "mem": null,
-        "rq": []
-      }
-    }
-  },
-  "store/pokemoncardlounge-2d878/": {
-    "name": "ポケモンカードラウンジ渋谷",
-    "items": {
-      "523c4dff3f32ffd2": {
-        "p": "30th CELEBRATION",
-        "g": "pokemon",
-        "e": "2026-11-07T23:59",
-        "f": "2026-11-07",
-        "c": "store",
-        "m": "店頭",
-        "id": null,
-        "mem": null,
-        "rq": []
-      }
-    }
-  },
-  "store/jumpshop-f480e/": {
-    "name": "JUMP SHOP 東京ドームシティ",
-    "items": {
-      "02fc4e6bccd2283a": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-07T23:59",
-        "f": "2026-11-07",
-        "c": "store",
-        "m": "Web",
-        "id": null,
         "mem": null,
         "rq": []
       }

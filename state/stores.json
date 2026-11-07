@@ -4707,7 +4707,7 @@
   },
   "store/tsutaya-cf7c2/": {
     "name": "TSUTAYA函南店",
-    "last": "2026-11-03",
+    "last": "2026-11-07",
     "game": "pokemon",
     "area": "静岡県"
   },
@@ -7034,16 +7034,22 @@
     "game": "onepiece",
     "keep": true
   },
+  "store/furuichi-7be50/": {
+    "name": "ふるいちトップブックスひたちなか店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "茨城県"
+  },
+  "store/bukkuesu-1b72b/": {
+    "name": "ブックエース坂東",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "茨城県"
+  },
   "store/tsutaya-61cb8/": {
     "name": "TSUTAYA Trading Card",
     "last": "2026-11-07",
     "game": "pokemon"
-  },
-  "store/tsutaya-3b93c/": {
-    "name": "TSUTAYA Trading Card 伊勢丘",
-    "last": "2026-11-07",
-    "game": "pokemon",
-    "area": "広島県"
   },
   "store/nopao-186aa/": {
     "name": "竜星のPAO",
@@ -7140,16 +7146,10 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/pokemoncardlounge-2d878/": {
-    "name": "ポケモンカードラウンジ渋谷",
+  "store/tsutaya-3b93c/": {
+    "name": "TSUTAYA Trading Card 伊勢丘",
     "last": "2026-11-07",
     "game": "pokemon",
-    "keep": true
-  },
-  "store/jumpshop-f480e/": {
-    "name": "JUMP SHOP 東京ドームシティ",
-    "last": "2026-11-07",
-    "game": "onepiece",
     "keep": true
   }
 }
