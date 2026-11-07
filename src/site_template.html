@@ -490,6 +490,7 @@ input[type="search"] { flex: 1 1 160px; }
 .ctabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; margin: 4px 0 12px; padding: 4px; background: var(--navy-soft); border-radius: 999px; }
 .ctabs a { text-align: center; padding: 8px 4px; border-radius: 999px; font-weight: 800; font-size: 14px; color: var(--ink-2); text-decoration: none; }
 .ctabs a[aria-current="page"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / .12); }
+.ctabs a span { display: block; font-size: 11px; font-weight: 700; color: var(--ink-2); line-height: 1.2; }
 .sq[hidden] { display: none; }
 .sq { display: block; margin: 10px 0 4px; padding: 10px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; text-decoration: none; color: var(--ink); }
 .sq-h { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 800; }
@@ -733,6 +734,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   <div class="sortbar"><span id="list-n"></span><label class="sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label></div>
   <div class="list" id="list">__PRERENDER__</div>
   __SUPPLY_BOTTOM__
+  __FAQ__
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
   <section class="about" aria-label="このページについて">
@@ -741,11 +743,10 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     <p class="summary">__SUMMARY__</p>
   </section>
   <div class="foot-nav">__LINKS__</div>
-  __FAQ__
   <footer>
     <p>※本サイトはプロモーション（広告）を含みます。</p>
     <p>Amazonのアソシエイトとして、トレカ抽選ナビは適格販売により収入を得ています。</p>
-    <p>情報は自動で収集し1時間ごとに更新しています。応募条件・期間は変更される場合があるため、応募前に必ず各店舗の公式ページでご確認ください。</p>
+    <p>情報は自動で収集し1日6回更新しています。応募条件・期間は変更される場合があるため、応募前に必ず各店舗の公式ページでご確認ください。</p>
     <p>「応募済み」の印はこの端末のブラウザにだけ保存されます。</p>
     <p><a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/terms.html">利用規約</a></p>
     <p><a href="/en/" hreflang="en">English</a> ・ <a href="/zh-tw/" hreflang="zh-Hant">繁體中文</a> ・ <a href="/ko/" hreflang="ko">한국어</a></p>
@@ -799,6 +800,12 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     ["九州・沖縄", ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"]]];
   var REG = {}, PREF_ORDER = [];
   REGIONS.forEach(function (r) { r[1].forEach(function (p) { REG[p] = r[0]; PREF_ORDER.push(p); }); });
+  // 11/8：弾・ゲームのページでも、前に選んだ地域を覚えておく（その地域の店頭抽選があるときだけ）
+  (function () {
+    if (!LOCK.game || LOCK.area || LOCK.store || LOCK.chain || st.channel !== "store") return;
+    var lv = load("lot_view", {}), r = lv.area ? REG[lv.area] : lv.region;
+    if (r && items.some(function (i) { return i.channel === "store" && areasOf(i).some(function (p) { return REG[p] === r; }); })) { st.region = r; st.area = ""; }
+  })();
   if (st.area && REG[st.area]) st.region = REG[st.area];
   // 店頭抽選の対象の都道府県（1店舗なら area、複数店舗なら条件の「対象地域：〇〇・〇〇」から）
   function areasOf(i) {
@@ -835,7 +842,14 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   }
   function isToday(t) { if (t == null) return false; var a = new Date(t), b = new Date(); return a.toDateString() === b.toDateString(); }
   function needs(it, tag) { return (it.tags || []).indexOf(tag) >= 0; }
-  function isNew(it) { return it.found_at && Date.now() - Date.parse(it.found_at) < 24 * 3600e3; }
+  // 11/8 Fable：2回目以降の人には「前回見てから新しく見つかった抽選」を NEW に（30分以上あけて来たとき・14日以内）
+  var PREV_SEEN = (function () {
+    var v = +load("lot_last_seen", 0), now = Date.now(), prev = +load("lot_prev_seen", 0);
+    if (v && now - v > 30 * 60e3) { prev = v; save("lot_prev_seen", v); }  // 30分以上あいたら新しい訪問
+    save("lot_last_seen", now);
+    return prev && now - prev < 14 * 864e5 ? prev : 0;
+  })();
+  function isNew(it) { return it.found_at && (PREV_SEEN ? Date.parse(it.found_at) > PREV_SEEN : Date.now() - Date.parse(it.found_at) < 24 * 3600e3); }
 
   function inGame() { return items.filter(function (i) { return (st.game === "all" || i.game === st.game) && (!LOCK.store || i.spath === LOCK.store) && (!LOCK.chain || i.chain === LOCK.chain) && (i._end == null || i._end > Date.now()); }); }
 
@@ -1066,14 +1080,15 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var oneAmz = function (list) { var seen = false; return list.filter(function (i) { if (!isAmazon(i)) return true; if (seen) return false; seen = true; return true; }); };  // Amazonは1枚だけ（並ぶと見た目が悪い）
     var fresh = oneAmz(g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); })).slice(0, 12);
     var html = LOCK.area
-      ? hotBlock("soon", "⏰ " + LOCK.area + "で今日締切", "今日が締切の抽選", soon, false) + hotBlock("fresh", LOCK.area + "の新着", "24時間以内に見つかった抽選", fresh, true)
-      : hotBlock("fresh", "新着", "24時間以内に見つかった抽選", fresh, true) + hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
+      ? hotBlock("soon", "⏰ " + LOCK.area + "で今日締切", "今日が締切の抽選", soon, false) + hotBlock("fresh", LOCK.area + "の新着", (PREV_SEEN ? "前回見てから見つかった抽選" : "24時間以内に見つかった抽選"), fresh, true)
+      : hotBlock("fresh", "新着", (PREV_SEEN ? "前回見てから見つかった抽選" : "24時間以内に見つかった抽選"), fresh, true) + hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
     $("hot").hidden = !html;
     $("hot").innerHTML = html;
   }
 
   function render() {
     if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, region: st.region, area: st.area });
+    else if (!LOCK.area && !LOCK.store && !LOCK.chain && st.channel === "store") { var lv = load("lot_view", {}); lv.region = st.region; lv.area = st.area; save("lot_view", lv); }
     var g = inGame();
     var gs = st.series ? g.filter(function (i) { return inSer(i, st.series); }) : g;
     // ゲームタブ
@@ -1110,7 +1125,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var unapplied = gs.filter(function (i) { return !applied[i.key]; }).length;
     $("stats").innerHTML = '<div><b>' + gs.length + '</b><span>受付中</span></div>' +
       '<div class="hot"><b>' + today + '</b><span>今日締切</span></div>' +
-      '<div><b>' + unapplied + '</b><span>未応募</span></div>' +
+      (PREV_SEEN ? '<div class="hot"><b>' + fresh + '</b><span>前回から新着</span></div>' : '<div><b>' + unapplied + '</b><span>未応募</span></div>') +
       '<a class="ml-link" href="/mylist/">応募したリスト（' + Object.keys(applied).length + '件）→</a>';
     void fresh;
     // チャネル
