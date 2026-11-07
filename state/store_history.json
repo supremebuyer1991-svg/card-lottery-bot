@@ -807,6 +807,28 @@
   "store/tsutaya-2d349/": {
     "name": "TSUTAYA鳥栖店",
     "items": {
+      "8f67389e4cf8fa24": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "e6e6c93e8b5e2f45": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "c78be0a3a152cda5": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -26745,6 +26767,17 @@
         "rq": [],
         "a": "2026-11-09"
       },
+      "13320e96333fa380": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-07T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "dfb059ed2c757104": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -30016,6 +30049,17 @@
         "mem": null,
         "rq": []
       },
+      "8258ac25977babe2": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-08T20:20",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "44d9013deff86cb6": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -30395,6 +30439,70 @@
         "p": "30th CELEBRATION",
         "g": "pokemon",
         "e": "2026-11-08T21:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-ebc16/": {
+    "name": "古本市場",
+    "items": {
+      "2139d3dad613d1dd": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-24038/": {
+    "name": "フルコンプ（大阪日本橋ほか）",
+    "items": {
+      "840768fd45dcfe96": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-0f438/": {
+    "name": "TSUTAYA東仙台店（2階トレカコーナー）",
+    "items": {
+      "9863aa459c043827": {
+        "p": "ポケモンカードゲーム",
+        "g": "pokemon",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-65326/": {
+    "name": "TSUTAYA東仙台店（2階TSUTAYAレジ）",
+    "items": {
+      "62ca9ae80c2dc135": {
+        "p": "ワンピースカードゲーム",
+        "g": "onepiece",
+        "e": "",
         "f": "2026-11-07",
         "c": "store",
         "m": "Web",

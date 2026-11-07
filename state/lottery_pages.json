@@ -33674,6 +33674,7 @@
       "store": "古本市場 倉敷堀南店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（税込7,200円）",
       "series": "30th CELEBRATION",
+      "start": "2026-11-05T14:05:00+09:00",
       "end": "2026-11-07T22:00:00+09:00",
       "method": "オンライン",
       "conditions": "会員・本人確認",
@@ -39555,6 +39556,7 @@
       "store": "TSUTAYA田宮店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（再販抽選）",
       "series": "30th CELEBRATION",
+      "start": "2026-11-07T09:25:00+09:00",
       "end": "2026-11-08T23:00:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -41782,6 +41784,7 @@
       "product": "ワンピースカード「HEROINES PRECIOUS BOX」",
       "series": "HEROINES PRECIOUS",
       "end": "2026-11-09T23:59:00+09:00",
+      "conditions": "ワンピースカード「HEROINES PRECIOUS BOX」の抽選販売受付で、締切は11/9(月)23:59。会員登録・本人確認・購入上限・代理購入・価格などの条件は本文に書かれていない。",
       "url": "https://livepocket.jp/e/zzi1f",
       "channel": "store",
       "area": "栃木県",
@@ -41800,6 +41803,8 @@
       "product": "ワンピースカード「HEROINES PRECIOUS BOX」",
       "series": "HEROINES PRECIOUS",
       "end": "2026-11-09T23:59:00+09:00",
+      "method": "抽選販売受付（締切11/9(月)23:59）。具体的な応募方法は本文に記載なし",
+      "conditions": "ワンピースカード「HEROINES PRECIOUS BOX」の抽選販売受付で、締切は11/9(月)23:59。会員登録、本人確認書類、購入上限、代理購入、価格についての記載はない。",
       "url": "https://livepocket.jp/e/htnyy",
       "channel": "store",
       "area": "栃木県",
@@ -42172,6 +42177,118 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/shop-e1537/",
       "found_at": "2026-11-07T17:59:17.680050+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/8258ac2597/": {
+    "d": {
+      "key": "8258ac25977babe2",
+      "game": "pokemon",
+      "store": "TSUTAYA BOOKSTORE川崎駅前店",
+      "product": "ポケモンカードゲームMEGA拡張パック",
+      "start": "2026-11-07T09:00:00+09:00",
+      "end": "2026-11-08T20:20:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/0r314",
+      "channel": "store",
+      "area": "神奈川県",
+      "spath": "store/tsutaya-73a8f/",
+      "found_at": "2026-11-07T18:55:42.911162+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/13320e9633/": {
+    "d": {
+      "key": "13320e96333fa380",
+      "game": "pokemon",
+      "store": "ヤマシロヤ",
+      "product": "スペシャルデッキセットMEGA",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-07T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/dbf5m",
+      "channel": "store",
+      "area": "沖縄県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/yamashiroya-79c07/",
+      "found_at": "2026-11-07T18:55:42.911334+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/840768fd45/": {
+    "d": {
+      "key": "840768fd45dcfe96",
+      "game": "pokemon",
+      "store": "フルコンプ（大阪日本橋ほか）",
+      "product": "スペシャルデッキセットMEGA",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-08T23:59:00+09:00",
+      "method": "LivePocket",
+      "conditions": "LivePocketで1店のみ、プレイヤーズクラブID必須、購入期間11/13〜15、マイナ原本が必要",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/7r13g",
+      "channel": "store",
+      "area": "大阪府",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/furukonpu-24038/",
+      "found_at": "2026-11-07T18:55:42.911435+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/8f67389e4c/": {
+    "d": {
+      "key": "8f67389e4cf8fa24",
+      "game": "pokemon",
+      "store": "TSUTAYA鳥栖店",
+      "product": "ポケモンカードゲーム MEGA拡張パック 「30th CELEBRATION」",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-09T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/ek6xw",
+      "channel": "store",
+      "area": "佐賀県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/tsutaya-2d349/",
+      "found_at": "2026-11-07T18:55:42.911549+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/e6e6c93e8b/": {
+    "d": {
+      "key": "e6e6c93e8b5e2f45",
+      "game": "pokemon",
+      "store": "TSUTAYA鳥栖店",
+      "product": "ポケモンカードゲーム「スペシャルデッキセット MEGA」",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-09T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/yvpts",
+      "channel": "store",
+      "area": "佐賀県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/tsutaya-2d349/",
+      "found_at": "2026-11-07T18:55:42.911610+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/9863aa459c/": {
+    "d": {
+      "key": "9863aa459c043827",
+      "game": "pokemon",
+      "store": "TSUTAYA東仙台店（2階トレカコーナー）",
+      "product": "ポケモンカードゲーム",
+      "end": "2026-11-09T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/k_foq",
+      "channel": "store",
+      "area": "宮城県",
+      "spath": "store/tsutaya-0f438/",
+      "found_at": "2026-11-07T18:55:42.911642+09:00"
     },
     "last": "2026-11-07"
   }

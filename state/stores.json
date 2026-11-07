@@ -2357,9 +2357,10 @@
   },
   "store/tsutaya-2d349/": {
     "name": "TSUTAYA鳥栖店",
-    "last": "2026-10-26",
+    "last": "2026-11-07",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "佐賀県"
   },
   "store/furuichi-9e20d/": {
     "name": "古本市場戸田店",
@@ -6206,7 +6207,8 @@
   "store/yamashiroya-79c07/": {
     "name": "ヤマシロヤ",
     "last": "2026-11-07",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "沖縄県"
   },
   "store/tsutaya-6d7cd/": {
     "name": "フタバ図書TSUTAYA GIGA防府店",
@@ -7316,6 +7318,24 @@
     "game": "pokemon",
     "area": "静岡県"
   },
+  "store/furuichi-e05d3/": {
+    "name": "古本市場千里丘店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "keep": true
+  },
+  "store/furukonpu-24038/": {
+    "name": "フルコンプ（大阪日本橋ほか）",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/tsutaya-0f438/": {
+    "name": "TSUTAYA東仙台店（2階トレカコーナー）",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "宮城県"
+  },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "last": "2026-10-27",
@@ -7406,8 +7426,14 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/furuichi-e05d3/": {
-    "name": "古本市場千里丘店",
+  "store/furuichi-ebc16/": {
+    "name": "古本市場",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-65326/": {
+    "name": "TSUTAYA東仙台店（2階TSUTAYAレジ）",
     "last": "2026-11-07",
     "game": "onepiece",
     "keep": true
