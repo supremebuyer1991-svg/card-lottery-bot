@@ -7495,7 +7495,7 @@
       "store": "TSUTAYA（LINE抽選・全国の対象店舗）",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-02T13:46:11.287466+09:00",
       "chain": "tsutaya"
     },
@@ -15166,6 +15166,51 @@
       "area": "神奈川県",
       "found_at": "2026-11-07T22:00:07.947046+09:00",
       "chain": "tsutaya"
+    },
+    "8a948fee15d8e79a": {
+      "game": "pokemon",
+      "store": "キデイランドららぽーと富士見店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-08T07:51:17.334461+09:00",
+      "chain": "kiddyland"
+    },
+    "3814545a59963259": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 戸塚店",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-08T07:51:17.334485+09:00",
+      "chain": "tsutaya"
+    },
+    "1618e3be34f5563e": {
+      "game": "pokemon",
+      "store": "TSUTAYA横須賀粟田店",
+      "series": null,
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-08T07:51:17.334513+09:00",
+      "chain": "tsutaya"
+    },
+    "cf11649ad90c40d7": {
+      "game": "pokemon",
+      "store": "ふるいちトップブックス川島インター店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-08T07:51:17.334542+09:00",
+      "chain": "furuichi"
+    },
+    "e78333dac4cc6dde": {
+      "game": "pokemon",
+      "store": "古本市場与野本町店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-08T07:51:17.334562+09:00",
+      "chain": "furuichi"
     }
   }
 }

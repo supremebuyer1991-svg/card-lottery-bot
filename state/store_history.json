@@ -1016,6 +1016,17 @@
   "store/kiddyland-7879f/": {
     "name": "キデイランド ららぽーと富士見店",
     "items": {
+      "8a948fee15d8e79a": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "72408dc16984e6f2": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -28338,6 +28349,17 @@
         "id": false,
         "mem": "card",
         "rq": []
+      },
+      "1618e3be34f5563e": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T21:30",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -28659,6 +28681,17 @@
         "g": "pokemon",
         "e": "2026-11-08T22:00",
         "f": "2026-11-06",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "e78333dac4cc6dde": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-08",
         "c": "store",
         "m": "Web",
         "id": null,
@@ -30561,6 +30594,54 @@
         "c": "store",
         "m": "Web",
         "id": true,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-71b72/": {
+    "name": "TSUTAYA Trading Card 戸塚店",
+    "items": {
+      "3814545a59963259": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-69956/": {
+    "name": "ふるいちトップブックス川島インター店",
+    "items": {
+      "cf11649ad90c40d7": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-3a251/": {
+    "name": "函南店",
+    "items": {
+      "3e565e4b8cb8aa52": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
         "mem": null,
         "rq": []
       }
