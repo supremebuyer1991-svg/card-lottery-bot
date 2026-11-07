@@ -39931,6 +39931,7 @@
       "store": "TSUTAYA田宮店",
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
       "series": "神の支配",
+      "start": "2026-11-07T09:25:00+09:00",
       "end": "2026-11-08T23:00:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -41136,6 +41137,7 @@
       "store": "TSUTAYA宇都宮東簗瀬店",
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
       "series": "神の支配",
+      "start": "2026-11-07T07:00:00+09:00",
       "end": "2026-11-09T23:59:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -41187,6 +41189,7 @@
       "game": "pokemon",
       "store": "TSUTAYA Trading Card 北千住",
       "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー（お一人様1個まで）",
+      "start": "2026-11-07T10:00:00+09:00",
       "end": "2026-11-08T20:00:00+09:00",
       "method": "オンライン",
       "conditions": "会員・SNS応募・本人確認",
@@ -41392,6 +41395,7 @@
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」BOX（定価抽選販売・おひとり様1BOXまで）",
       "series": "30th CELEBRATION",
       "end": "2026-11-12T23:59:00+09:00",
+      "announce": "11月16日(月)頃",
       "method": "オンライン",
       "conditions": "アプリ・会員・レシート",
       "tags": [
@@ -42086,6 +42090,88 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
       "spath": "store/furukonpu-2e78d/",
       "found_at": "2026-11-07T16:09:25.946721+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/fd1daa8da6/": {
+    "d": {
+      "key": "fd1daa8da6eb5304",
+      "game": "pokemon",
+      "store": "Joshin",
+      "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "series": "スペシャルデッキセットMEGA",
+      "start": "2026-11-10T10:00:00+09:00",
+      "end": "2026-11-12T19:00:00+09:00",
+      "announce": "11月13日(金)〜 店頭掲示にて発表",
+      "buy": "11/13(金)〜11/15(日)10:00〜19:00",
+      "method": "店頭抽選受付（当選者には店頭販売）",
+      "tags": [
+        "アプリ"
+      ],
+      "url": "https://shop.joshin.co.jp/app/",
+      "channel": "store",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "spath": "store/joshin-b55ab/",
+      "found_at": "2026-11-07T17:58:49.870399+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/44235b3ac8/": {
+    "d": {
+      "key": "44235b3ac879c049",
+      "game": "pokemon",
+      "store": "TSUTAYA大安寺店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-15T21:59:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/fksqs",
+      "channel": "store",
+      "area": "岡山県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/tsutaya-9feaf/",
+      "found_at": "2026-11-07T17:59:17.679856+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/c8480f0363/": {
+    "d": {
+      "key": "c8480f036371cac8",
+      "game": "pokemon",
+      "store": "TSUTAYA大安寺店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T21:59:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/vqetd",
+      "channel": "store",
+      "area": "岡山県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-9feaf/",
+      "found_at": "2026-11-07T17:59:17.679918+09:00"
+    },
+    "last": "2026-11-07"
+  },
+  "l/5c89980ecd/": {
+    "d": {
+      "key": "5c89980ecd0133df",
+      "game": "pokemon",
+      "store": "谷島屋磐田店",
+      "product": "ポケモンカード 拡張パック30thCELEBRATION",
+      "series": "30th CELEBRATION",
+      "start": "2026-11-07T10:00:00+09:00",
+      "end": "2026-11-08T21:00:00+09:00",
+      "method": "Web",
+      "url": "https://livepocket.jp/e/s61fn",
+      "channel": "store",
+      "area": "静岡県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/shop-e1537/",
+      "found_at": "2026-11-07T17:59:17.680050+09:00"
     },
     "last": "2026-11-07"
   }

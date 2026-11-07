@@ -345,7 +345,7 @@
     "area": "大阪府"
   },
   "store/tsutaya-02cfc/": {
-    "name": "TSUTAYA Trading Card北千住",
+    "name": "TSUTAYA Trading Card 北千住",
     "last": "2026-11-07",
     "game": "pokemon",
     "area": "東京都"
@@ -3789,9 +3789,9 @@
   },
   "store/tsutaya-9feaf/": {
     "name": "TSUTAYA大安寺店",
-    "last": "2026-11-03",
+    "last": "2026-11-07",
     "game": "onepiece",
-    "area": "奈良県"
+    "area": "岡山県"
   },
   "store/otaichi-e3030/": {
     "name": "おたいち三重本店（お宝市番館三重本店）",
@@ -7305,6 +7305,17 @@
     "game": "pokemon",
     "area": "大阪府"
   },
+  "store/joshin-b55ab/": {
+    "name": "Joshin",
+    "last": "2026-11-07",
+    "game": "pokemon"
+  },
+  "store/shop-e1537/": {
+    "name": "谷島屋磐田店",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "静岡県"
+  },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "last": "2026-10-27",
@@ -7393,6 +7404,12 @@
     "name": "ファミリーマート",
     "last": "2026-11-07",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/furuichi-e05d3/": {
+    "name": "古本市場千里丘店",
+    "last": "2026-11-07",
+    "game": "onepiece",
     "keep": true
   }
 }
