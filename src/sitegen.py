@@ -1483,6 +1483,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 if isinstance(row.get(k_), str):
                     row[k_] = row[k_].replace("ワンピカード", "ワンピースカード")
             row["lpath"] = detail.lottery_path(i)  # 抽選ごとの個別ページ
+            # 絞り込み用：LIVE Pocketの抽選・SNS（X・インスタのフォロー/リポスト）で応募する抽選（11/7 ユーザー）
+            _src = " ".join(str(i.get(k) or "") for k in ("url", "apply_url", "method", "conditions"))
+            if re.search(r"livepocket|ライブポケット|LIVE ?POCKET", _src, re.I):
+                row["lp"] = 1
+            if "SNS応募" in (i.get("tags") or []) or re.search(r"SNS|Instagram|インスタ|X（旧Twitter）|Twitter|ツイッター|リポスト|リツイート|フォロー.{0,6}(応募|いいね)", str(i.get("method") or "") + str(i.get("conditions") or "")):
+                row["sns"] = 1
             row["image"] = row.get("image") or images.get(i.get("series") or "")
             row["url"] = own_amazon_url(row.get("url"), row.get("product") or row.get("series") or "", tag)
             if tag and re.search(r"amazon|アマゾン", row.get("store") or "", re.I) and "amazon." not in (row.get("url") or ""):

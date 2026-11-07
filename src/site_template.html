@@ -652,6 +652,18 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
 }
 :root[data-theme="dark"] .ad.lose { background: #2a2214; border-color: #5a4520; }
 :root[data-theme="dark"] .cguide { background: #2a2614; border-color: #4d4520; }
+
+/* 絞り込み：よく使う3つ＋「条件でしぼる」の中にまとめる（11/7 ユーザー：メニューが見にくい） */
+.more-f { flex: none; font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--ink); background: var(--card); color: var(--ink); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.more-f.on { background: var(--ink); color: var(--paper); }
+.fpanel { border: 1px solid var(--rule); background: var(--card); border-radius: 12px; padding: 10px 12px; display: grid; gap: 10px; }
+.fpanel[hidden] { display: none; }
+.fpanel .fg { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.fpanel .fg > b { flex-basis: 100%; font-size: 12px; color: var(--ink-2); }
+.fp-foot { display: flex; justify-content: space-between; gap: 8px; }
+.fp-foot button { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.fp-foot .fp-ok { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 700; }
+.filters .row.fwrap { flex-wrap: wrap; overflow: visible; gap: 6px; }
 </style>
 
 <header class="top">
@@ -692,15 +704,25 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
     <p class="ch-note">※店頭抽選には、ネットやアプリで応募して店頭で受け取る抽選も含みます</p>
-    <div class="row scroll">
-      <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
+    <div class="row fwrap">
       <label class="toggle"><input type="checkbox" id="f-today"> 今日締切</label>
       <label class="toggle"><input type="checkbox" id="f-noid"> 本人確認なし</label>
-      <label class="toggle"><input type="checkbox" id="f-nomember"> 会員不要</label>
-      <label class="toggle"><input type="checkbox" id="f-nocard"> 会員カード不要</label>
-      <label class="toggle"><input type="checkbox" id="f-noapp"> アプリ不要</label>
-      <label class="toggle"><input type="checkbox" id="f-noreceipt"> レシート不要</label>
-      <label class="toggle"><input type="checkbox" id="f-nohist"> 購入履歴不要</label>
+      <label class="toggle"><input type="checkbox" id="f-unapplied"> 未応募だけ</label>
+      <button type="button" class="more-f" id="more-f" aria-expanded="false" aria-controls="fpanel">条件でしぼる<span id="f-n"></span> ▾</button>
+    </div>
+    <div class="fpanel" id="fpanel" hidden>
+      <div class="fg"><b>応募のしかた</b>
+        <label class="toggle"><input type="checkbox" id="f-lp"> LIVE Pocketのみ</label>
+        <label class="toggle"><input type="checkbox" id="f-nosns"> SNS抽選を除く</label>
+        <label class="toggle"><input type="checkbox" id="f-noapp"> アプリ不要</label>
+      </div>
+      <div class="fg"><b>いらないもの</b>
+        <label class="toggle"><input type="checkbox" id="f-nomember"> 会員登録不要</label>
+        <label class="toggle"><input type="checkbox" id="f-nocard"> 会員カード不要</label>
+        <label class="toggle"><input type="checkbox" id="f-noreceipt"> レシート不要</label>
+        <label class="toggle"><input type="checkbox" id="f-nohist"> 購入履歴不要</label>
+      </div>
+      <div class="fp-foot"><button type="button" id="f-clear">条件をすべて外す</button><button type="button" id="f-close" class="fp-ok">閉じる</button></div>
     </div>
   </div>
 
@@ -892,6 +914,8 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
       if ($("f-noreceipt").checked && (needs(i, "レシート") || /レシート/.test(i.conditions || ""))) return false;
       if ($("f-nohist").checked && (needs(i, "購入履歴") || /購入(履歴|実績|歴)|利用実績/.test(i.conditions || ""))) return false;
       if ($("f-today").checked && !isToday(i._end)) return false;
+      if ($("f-lp").checked && !i.lp) return false;
+      if ($("f-nosns").checked && (i.sns || needs(i, "SNS応募"))) return false;
       if (q && (i.store + " " + i.product + " " + (i.series || "")).toLowerCase().indexOf(q) < 0) return false;
       return true;
     }).sort(function (a, b) {
@@ -1176,7 +1200,14 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var b = e.target.closest("button[data-s]"); if (!b) return; st.series = b.dataset.s; st.serOpen = false; render();
   });
   (LOCK.checks || []).forEach(function (id) { if ($(id)) $(id).checked = true; });  // 「本人確認なし」「今日締切」などのページは最初から絞り込む
-  ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-noreceipt", "f-nohist", "f-today"].forEach(function (id) { $(id).addEventListener("change", render); });
+  var FIDS = ["f-unapplied", "f-noid", "f-nomember", "f-nocard", "f-noapp", "f-noreceipt", "f-nohist", "f-today", "f-lp", "f-nosns"];
+  var MORE = ["f-lp", "f-nosns", "f-noapp", "f-nomember", "f-nocard", "f-noreceipt", "f-nohist"];
+  function fcount() { var n = MORE.filter(function (id) { return $(id).checked; }).length; $("f-n").textContent = n ? "（" + n + "）" : ""; $("more-f").classList.toggle("on", n > 0); }
+  FIDS.forEach(function (id) { $(id).addEventListener("change", function () { fcount(); render(); }); });
+  $("more-f").addEventListener("click", function () { var p = $("fpanel"), o = p.hidden; p.hidden = !o; this.setAttribute("aria-expanded", o ? "true" : "false"); });
+  $("f-close").addEventListener("click", function () { $("fpanel").hidden = true; $("more-f").setAttribute("aria-expanded", "false"); });
+  $("f-clear").addEventListener("click", function () { FIDS.forEach(function (id) { $(id).checked = false; }); fcount(); render(); });
+  if (MORE.some(function (id) { return $(id).checked; })) { fcount(); }
   $("f-sort").value = ["end", "rec", "new"].indexOf(load("lot_sort", "end")) >= 0 ? load("lot_sort", "end") : "end";
   $("f-sort").addEventListener("change", function () { save("lot_sort", $("f-sort").value); render(); });
   $("list").addEventListener("click", function (e) {
