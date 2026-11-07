@@ -1076,7 +1076,7 @@
   },
   "store/batoroco-2d3ae/": {
     "name": "バトロコsatellite札幌駅北口",
-    "last": "2026-10-28",
+    "last": "2026-11-07",
     "game": "onepiece",
     "area": "北海道"
   },
@@ -2014,7 +2014,7 @@
   },
   "store/biccamera-2f296/": {
     "name": "ビックカメラ藤沢店",
-    "last": "2026-11-01",
+    "last": "2026-11-07",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -2483,9 +2483,10 @@
   },
   "store/cardbox-5cf65/": {
     "name": "カードボックス松阪店（本の王国＆すまいるキング）",
-    "last": "2026-10-26",
+    "last": "2026-11-07",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "三重県"
   },
   "store/furuichi-c4ecc/": {
     "name": "ふるいちトップブックス港北ミナモ店",
@@ -2641,7 +2642,7 @@
   },
   "store/daiso-toreka-50f28/": {
     "name": "ダイソー楽器トレカ店（中津川）",
-    "last": "2026-11-01",
+    "last": "2026-11-07",
     "game": "onepiece",
     "keep": true,
     "area": "岐阜県"
@@ -4789,7 +4790,7 @@
   },
   "store/torekaesu-20304/": {
     "name": "トレカエース",
-    "last": "2026-11-03",
+    "last": "2026-11-07",
     "game": "pokemon",
     "address": "福島県いわき市平上荒川島田5"
   },
@@ -6942,7 +6943,8 @@
     "name": "古本市場 西神戸店",
     "last": "2026-11-07",
     "game": "dragonball",
-    "keep": true
+    "keep": true,
+    "area": "兵庫県"
   },
   "store/tsutaya-e0433/": {
     "name": "TSUTAYA TRADING CARD錦糸町店",
@@ -7146,7 +7148,8 @@
   "store/kadosutajiamu-96163/": {
     "name": "カードスタジアム那覇新都心店",
     "last": "2026-11-07",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "沖縄県"
   },
   "store/tsutaya-54261/": {
     "name": "TSUTAYA追浜店",
@@ -7189,7 +7192,7 @@
     "area": "大阪府"
   },
   "store/tsutaya-73a8f/": {
-    "name": "TSUTAYA BOOKSTORE 川崎駅前店",
+    "name": "TSUTAYA BOOKSTORE川崎駅前店",
     "last": "2026-11-07",
     "game": "onepiece",
     "area": "神奈川県"
@@ -7199,6 +7202,36 @@
     "last": "2026-11-07",
     "game": "pokemon",
     "area": "大阪府"
+  },
+  "store/toylo-910c1/": {
+    "name": "TOYLO",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-3bf2c/": {
+    "name": "札幌",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shigaru-8f9c7/": {
+    "name": "シーガル各店（仙台駅前店を除く）",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "宮城県"
+  },
+  "store/tsutaya-584ae/": {
+    "name": "TSUTAYA宇多津店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "香川県"
+  },
+  "store/bookoff-10c07/": {
+    "name": "ブックオフ伊豆の国大仁店・メディアポリス伊豆の国大仁店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "静岡県"
   },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
@@ -7290,14 +7323,8 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/toylo-910c1/": {
-    "name": "TOYLO",
-    "last": "2026-11-07",
-    "game": "pokemon",
-    "keep": true
-  },
-  "store/shop-3bf2c/": {
-    "name": "札幌",
+  "store/wondergoo-93091/": {
+    "name": "WonderGOO / 新星堂",
     "last": "2026-11-07",
     "game": "pokemon",
     "keep": true

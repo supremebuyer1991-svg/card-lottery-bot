@@ -14262,7 +14262,7 @@
       "game": "onepiece",
       "store": "ふるいちトップブックスひたちなか店",
       "series": "世界最強の戦士",
-      "channel": "online",
+      "channel": "store",
       "area": "茨城県",
       "found_at": "2026-11-07T11:04:32.684409+09:00",
       "chain": "furuichi"
@@ -14388,7 +14388,7 @@
       "game": "onepiece",
       "store": "カードスタジアム那覇新都心店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "沖縄県",
       "found_at": "2026-11-07T11:04:32.684839+09:00",
       "chain": null
@@ -14397,8 +14397,8 @@
       "game": "onepiece",
       "store": "古本市場 西神戸店",
       "series": "世界最強の戦士",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "兵庫県",
       "found_at": "2026-11-07T11:04:32.684869+09:00",
       "chain": "furuichi"
     },
@@ -14590,6 +14590,150 @@
       "area": "大阪府",
       "found_at": "2026-11-07T11:05:21.297967+09:00",
       "chain": "furuichi"
+    },
+    "b7f9f143fff1cf07": {
+      "game": "pokemon",
+      "store": "トレカエース",
+      "series": "スペシャルデッキセットMEGA",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-07T11:57:10.201638+09:00",
+      "chain": null
+    },
+    "44353afc3198982b": {
+      "game": "pokemon",
+      "store": "古本市場 東住吉店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-07T11:57:12.040947+09:00",
+      "chain": "furuichi"
+    },
+    "f928981b20a85664": {
+      "game": "pokemon",
+      "store": "シーガル各店（仙台駅前店を除く）",
+      "series": null,
+      "channel": "store",
+      "area": "宮城県",
+      "found_at": "2026-11-07T11:57:12.040990+09:00",
+      "chain": null
+    },
+    "a2ea1ba212a0c5fc": {
+      "game": "pokemon",
+      "store": "バトロコsatellite札幌駅北口",
+      "series": null,
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-07T11:57:12.041020+09:00",
+      "chain": "batoroco"
+    },
+    "ff58f78ff5f820df": {
+      "game": "pokemon",
+      "store": "バトロコsatellite札幌駅北口",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-07T11:57:12.041048+09:00",
+      "chain": "batoroco"
+    },
+    "44d9013deff86cb6": {
+      "game": "pokemon",
+      "store": "TSUTAYA BOOKSTORE川崎駅前店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-07T11:57:12.041074+09:00",
+      "chain": "tsutaya"
+    },
+    "fa2322e38612d20d": {
+      "game": "pokemon",
+      "store": "ダイソー楽器トレカ店（中津川）",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-07T11:57:12.041096+09:00",
+      "chain": null
+    },
+    "994cb5b46744ac1c": {
+      "game": "pokemon",
+      "store": "ビックカメラ藤沢店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-07T11:57:12.041120+09:00",
+      "chain": "biccamera"
+    },
+    "2fdc0336dce3651d": {
+      "game": "onepiece",
+      "store": "TSUTAYA BOOKSTORE川崎駅前店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-07T11:57:12.994511+09:00",
+      "chain": "tsutaya"
+    },
+    "3290bf6edc27eea1": {
+      "game": "onepiece",
+      "store": "TSUTAYA宇多津店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "香川県",
+      "found_at": "2026-11-07T11:57:12.994569+09:00",
+      "chain": "tsutaya"
+    },
+    "700b39b7e71b6b44": {
+      "game": "onepiece",
+      "store": "TSUTAYA宇多津店",
+      "series": null,
+      "channel": "store",
+      "area": "香川県",
+      "found_at": "2026-11-07T11:57:12.994597+09:00",
+      "chain": "tsutaya"
+    },
+    "34a17ce9de4d1af6": {
+      "game": "onepiece",
+      "store": "古本市場西淀川店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-07T11:57:12.994622+09:00",
+      "chain": "furuichi"
+    },
+    "53e6c438e53d4a44": {
+      "game": "onepiece",
+      "store": "カードボックス松阪店（本の王国＆すまいるキング）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "三重県",
+      "found_at": "2026-11-07T11:57:12.994645+09:00",
+      "chain": "cardbox"
+    },
+    "efb96b7c3982debd": {
+      "game": "onepiece",
+      "store": "うさぎやTSUTAYA栃木城内店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-07T11:57:12.994668+09:00",
+      "chain": "tsutaya"
+    },
+    "ad166a92ef1429f8": {
+      "game": "onepiece",
+      "store": "TSUTAYA宇都宮東簗瀬店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-07T11:57:12.994689+09:00",
+      "chain": "tsutaya"
+    },
+    "a6dc9d433b3adabf": {
+      "game": "onepiece",
+      "store": "ブックオフ伊豆の国大仁店・メディアポリス伊豆の国大仁店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-07T11:57:12.994711+09:00",
+      "chain": "bookoff"
     }
   }
 }
