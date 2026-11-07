@@ -2260,7 +2260,8 @@
   "store/furuichi-4e68d/": {
     "name": "古本市場・ふるいち 各店",
     "last": "2026-11-07",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "香川県"
   },
   "store/furuichi-667ae/": {
     "name": "古本市場・ふるいち（Web抽選・全国の店舗で受取）",
@@ -7248,6 +7249,36 @@
     "game": "pokemon",
     "area": "佐賀県"
   },
+  "store/furuichi-8f2d6/": {
+    "name": "ふるいち植田店",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/aeon-052eb/": {
+    "name": "ふるいちイオンモール高岡店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "富山県"
+  },
+  "store/batoroco-7654c/": {
+    "name": "バトロコ札幌狸小路",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "北海道"
+  },
+  "store/hobbyoff-3eea4/": {
+    "name": "ホビーオフ会津若松店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "福島県"
+  },
+  "store/tsutaya-55ed8/": {
+    "name": "TSUTAYA宇都宮テクノ店",
+    "last": "2026-11-07",
+    "game": "onepiece",
+    "area": "栃木県"
+  },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "last": "2026-10-27",
@@ -7336,6 +7367,12 @@
     "name": "ファミリーマート",
     "last": "2026-11-07",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/bookoff-66040/": {
+    "name": "ブックオフ溝ノ口店",
+    "last": "2026-11-07",
+    "game": "onepiece",
     "keep": true
   }
 }

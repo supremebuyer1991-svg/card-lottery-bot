@@ -7938,6 +7938,17 @@
         "mem": "account",
         "rq": []
       },
+      "c0bcd18bfd45248c": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-18T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "a2ea1ba212a0c5fc": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -15843,6 +15854,17 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
+        "rq": []
+      },
+      "967bf7e35a8bca18": {
+        "p": "HEROINES PRECIOUS",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
@@ -30025,6 +30047,117 @@
         "m": "店頭",
         "id": false,
         "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-8f2d6/": {
+    "name": "ふるいち植田店",
+    "items": {
+      "a3cdd6919993f518": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "b763f7cb7e1ca82b": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/aeon-052eb/": {
+    "name": "ふるいちイオンモール高岡店",
+    "items": {
+      "4bb9e41a5c914b15": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/batoroco-7654c/": {
+    "name": "バトロコ札幌狸小路",
+    "items": {
+      "f6fc13c84e771de4": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T22:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/hobbyoff-3eea4/": {
+    "name": "ホビーオフ会津若松店",
+    "items": {
+      "526c3b27631f4664": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-55ed8/": {
+    "name": "TSUTAYA宇都宮テクノ店",
+    "items": {
+      "5c2776f85b1d2c6b": {
+        "p": "HEROINES PRECIOUS",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/bookoff-66040/": {
+    "name": "ブックオフ溝ノ口店",
+    "items": {
+      "b0749e7383b02dd4": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-09T17:00",
+        "f": "2026-11-07",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
