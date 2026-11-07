@@ -66,9 +66,9 @@
   // ---- 見た目 ----
   var css = ".tnp-bar{position:fixed;left:10px;right:10px;bottom:10px;z-index:9999;max-width:520px;margin:0 auto;background:#1a1a1a;color:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 6px 24px rgba(0,0,0,.25);font-size:13.5px;line-height:1.5;display:flex;gap:10px;align-items:center;flex-wrap:wrap}" +
     ".tnp-bar b{flex:1 1 200px}.tnp-bar button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:8px 14px;cursor:pointer}.tnp-bar .y{background:#c8102e;color:#fff}.tnp-bar .n{background:transparent;color:#bbb;padding:8px 6px}" +
-    ".tnp-box{background:#fff;border:2px solid #c8102e;border-radius:12px;padding:12px 14px;margin:0 0 12px;font-size:13.5px;line-height:1.6}.tnp-box b{display:block;font-size:15px;margin-bottom:2px}" +
-    ".tnp-box button{display:block;width:100%;font:inherit;font-weight:700;font-size:15px;margin-top:8px;padding:11px;border:0;border-radius:10px;background:#c8102e;color:#fff;cursor:pointer}.tnp-box .ok{color:#067a3a;font-weight:700}.tnp-box small{color:#666;display:block;margin-top:6px}" +
-    ".tnp-ios{margin:8px 0 0;padding-left:1.3em}.tnp-ios li{margin:2px 0}";
+    ".tnp-box{background:var(--card,#fff);color:var(--ink,#111);border:2px solid #c8102e;border-radius:12px;padding:12px 14px;margin:0 0 12px;font-size:13.5px;line-height:1.6}.tnp-box b{display:block;font-size:15px;margin-bottom:2px}" +
+    ".tnp-box button{display:block;width:100%;font:inherit;font-weight:700;font-size:15px;margin-top:8px;padding:11px;border:0;border-radius:10px;background:#c8102e;color:#fff;cursor:pointer}.tnp-box .ok{color:var(--done,#067a3a);font-weight:700}.tnp-box small{color:var(--ink-2,#666);display:block;margin-top:6px}" +
+    ".tnp-box .tnp-ios{display:block;margin:8px 0 0;padding-left:1.3em;list-style:decimal}.tnp-box .tnp-ios li{display:list-item;margin:2px 0;padding:0;border:0;min-height:0;background:none;font-size:13.5px}.tnp-box .tnp-ios li b{display:inline;font-size:inherit;margin:0}";
   function addCss() { if (document.getElementById("tnp-css")) return; var st = document.createElement("style"); st.id = "tnp-css"; st.textContent = css; document.head.appendChild(st); }
   function bar(html, yes, onYes, key) {
     addCss(); var old = document.querySelector(".tnp-bar"); if (old) old.remove();
