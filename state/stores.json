@@ -44,7 +44,7 @@
   },
   "store/dmm-d0426/": {
     "name": "DMMマイカ",
-    "last": "2026-11-06",
+    "last": "2026-11-07",
     "game": "pokemon"
   },
   "store/sanyodo-4b261/": {
@@ -2334,7 +2334,7 @@
   },
   "store/aeon-85100/": {
     "name": "ふるいちイオンモール神戸北店",
-    "last": "2026-11-02",
+    "last": "2026-11-07",
     "game": "pokemon",
     "keep": true,
     "area": "兵庫県"
@@ -4343,8 +4343,8 @@
     "area": "福岡県"
   },
   "store/furuichi-b4316/": {
-    "name": "古本市場 三田店",
-    "last": "2026-11-01",
+    "name": "古本市場三田店",
+    "last": "2026-11-07",
     "game": "pokemon",
     "keep": true,
     "area": "兵庫県"
@@ -4447,10 +4447,11 @@
     "area": "大阪府"
   },
   "store/cardlabo-a13ac/": {
-    "name": "カードラボ 高崎店",
-    "last": "2026-10-31",
+    "name": "カードラボ高崎店",
+    "last": "2026-11-07",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "群馬県"
   },
   "store/cardlabo-e5d4c/": {
     "name": "カードラボ仙台店",
@@ -4874,7 +4875,7 @@
   },
   "store/torekashoppunakayoshi-8da85/": {
     "name": "トレカショップなかよし 久米川駅前",
-    "last": "2026-11-04",
+    "last": "2026-11-07",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -5745,9 +5746,9 @@
   },
   "store/toreka-a1ff5/": {
     "name": "文真堂トレカ丸葉鹿店",
-    "last": "2026-11-05",
+    "last": "2026-11-07",
     "game": "pokemon",
-    "area": "栃木県"
+    "area": "群馬県"
   },
   "store/tsutaya-e30b1/": {
     "name": "TSUTAYA光吉店トレカコーナー",
@@ -7154,12 +7155,14 @@
   "store/tsutaya-54261/": {
     "name": "TSUTAYA追浜店",
     "last": "2026-11-07",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "神奈川県"
   },
   "store/toreka-d3ee0/": {
     "name": "文真堂トレカ丸倉賀野店",
     "last": "2026-11-07",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "群馬県"
   },
   "store/sanyodo-3278e/": {
     "name": "三洋堂トレカ館 中津川店",
@@ -7232,6 +7235,18 @@
     "last": "2026-11-07",
     "game": "onepiece",
     "area": "静岡県"
+  },
+  "store/wondergoo-93091/": {
+    "name": "WonderGOO / 新星堂",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/tsutaya-9d186/": {
+    "name": "TSUTAYA鳥栖店 トレカコーナー",
+    "last": "2026-11-07",
+    "game": "pokemon",
+    "area": "佐賀県"
   },
   "store/arupuraza-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
@@ -7319,12 +7334,6 @@
   },
   "store/famirimato-9f293/": {
     "name": "ファミリーマート",
-    "last": "2026-11-07",
-    "game": "pokemon",
-    "keep": true
-  },
-  "store/wondergoo-93091/": {
-    "name": "WonderGOO / 新星堂",
     "last": "2026-11-07",
     "game": "pokemon",
     "keep": true

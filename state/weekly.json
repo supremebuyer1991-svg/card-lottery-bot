@@ -14415,7 +14415,7 @@
       "game": "onepiece",
       "store": "カードラボなんば店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "found_at": "2026-11-07T11:04:32.684927+09:00",
       "chain": "cardlabo"
@@ -14434,7 +14434,7 @@
       "store": "TSUTAYA追浜店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "神奈川県",
       "found_at": "2026-11-07T11:04:32.684989+09:00",
       "chain": "tsutaya"
     },
@@ -14461,7 +14461,7 @@
       "store": "文真堂トレカ丸倉賀野店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "群馬県",
       "found_at": "2026-11-07T11:04:32.685074+09:00",
       "chain": null
     },
@@ -14734,6 +14734,168 @@
       "area": "静岡県",
       "found_at": "2026-11-07T11:57:12.994711+09:00",
       "chain": "bookoff"
+    },
+    "d38cbf5b3e539f6b": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 北千住",
+      "series": null,
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-07T12:57:39.509341+09:00",
+      "chain": "tsutaya"
+    },
+    "29c4023363039596": {
+      "game": "pokemon",
+      "store": "トレカエース新取手店",
+      "series": null,
+      "channel": "store",
+      "area": "茨城県",
+      "found_at": "2026-11-07T12:57:39.509369+09:00",
+      "chain": null
+    },
+    "07505ba618e90739": {
+      "game": "pokemon",
+      "store": "古本市場三田店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:39.509389+09:00",
+      "chain": "furuichi"
+    },
+    "5228d585f3c6205c": {
+      "game": "pokemon",
+      "store": "古本市場三田店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:39.509405+09:00",
+      "chain": "furuichi"
+    },
+    "1530f4df06f9d28d": {
+      "game": "pokemon",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "ニンジャスピナー",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:39.509419+09:00",
+      "chain": "aeon"
+    },
+    "a6e92f975344a8df": {
+      "game": "pokemon",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:39.509435+09:00",
+      "chain": "aeon"
+    },
+    "cd02bf50cb87f7d8": {
+      "game": "pokemon",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "ムニキスゼロ",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:39.509449+09:00",
+      "chain": "aeon"
+    },
+    "cc1951b69be0575e": {
+      "game": "pokemon",
+      "store": "トレカショップなかよし 久米川駅前",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-07T12:57:39.509462+09:00",
+      "chain": null
+    },
+    "ac22b14a142ce7b2": {
+      "game": "pokemon",
+      "store": "DMMマイカ",
+      "series": "30th CELEBRATION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-07T12:57:39.509475+09:00",
+      "chain": "dmm"
+    },
+    "4e0e528a1ab2777e": {
+      "game": "pokemon",
+      "store": "TSUTAYA鳥栖店 トレカコーナー",
+      "series": null,
+      "channel": "store",
+      "area": "佐賀県",
+      "found_at": "2026-11-07T12:57:39.509488+09:00",
+      "chain": "tsutaya"
+    },
+    "7c4d2ef124ecf7eb": {
+      "game": "pokemon",
+      "store": "TSUTAYA鳥栖店 トレカコーナー",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "佐賀県",
+      "found_at": "2026-11-07T12:57:39.509501+09:00",
+      "chain": "tsutaya"
+    },
+    "f52447cdb3a938b0": {
+      "game": "onepiece",
+      "store": "古本市場三田店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:40.081792+09:00",
+      "chain": "furuichi"
+    },
+    "35c7666f6ca4c8ef": {
+      "game": "onepiece",
+      "store": "古本市場三田店",
+      "series": null,
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:40.081819+09:00",
+      "chain": "furuichi"
+    },
+    "e9b1825629f29ad4": {
+      "game": "onepiece",
+      "store": "古本市場三田店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:40.081835+09:00",
+      "chain": "furuichi"
+    },
+    "b6938099e6ef5918": {
+      "game": "onepiece",
+      "store": "カードラボ高崎店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "群馬県",
+      "found_at": "2026-11-07T12:57:40.081848+09:00",
+      "chain": "cardlabo"
+    },
+    "599aacaa7c1181e4": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-07T12:57:40.081860+09:00",
+      "chain": "aeon"
+    },
+    "c706abf73bfd20b8": {
+      "game": "onepiece",
+      "store": "TSUTAYA宇都宮テクノ店トレカ売場",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-07T12:57:40.081873+09:00",
+      "chain": "tsutaya"
+    },
+    "5d74655f8071b20f": {
+      "game": "onepiece",
+      "store": "文真堂トレカ丸葉鹿店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "群馬県",
+      "found_at": "2026-11-07T12:57:40.081886+09:00",
+      "chain": null
     }
   }
 }
