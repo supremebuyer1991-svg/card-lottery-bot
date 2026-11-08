@@ -56,7 +56,7 @@ def store_top(store):
 def _tokens(s):
     s = unicodedata.normalize("NFKC", s or "").lower()
     s = re.sub(r"[（(][^）)]*[）)]|【[^】]*】|＜[^＞]*＞|<[^>]*>", " ", s)
-    return {t for t in re.split(r"[\s・:：/／\-ー～〜!！?？「」『』、,]+", s) if len(t) >= 2}
+    return {t for t in re.split(r"[\s・:：/／\-～〜!！?？「」『』、,]+", s) if len(t) >= 2}
 
 
 def _score(product, title):
