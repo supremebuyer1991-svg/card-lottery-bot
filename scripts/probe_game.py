@@ -26,6 +26,7 @@ for u in urls:
         t = html_to_text(r.text, u) if "<rss" not in r.text[:500] else r.text
         title = re.search(r"<title[^>]*>(.*?)</title>", r.text, re.S)
         pb = sorted(set(re.findall(r"https?://p-bandai\.jp/item/[^\s\"'<>\]]+", r.text)))[:5]
+        print(f"YEN {t.count('円')}")
         print(f"=== {u}\n  status={r.status_code} html={len(r.text)} text={len(t)} title={(title.group(1).strip()[:60] if title else '')}")
         print("  head:", re.sub(r"\s+", " ", t[:int(os.environ.get("HEAD", "400"))]))
         if pb:
