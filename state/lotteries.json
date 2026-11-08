@@ -17836,10 +17836,10 @@
     "status": "approved",
     "found_at": "2026-11-06T10:15:09.696632+09:00",
     "start": "2026-11-06T12:00:00+09:00",
-    "page_checked_at": "2026-11-08T10:46:18.897739+09:00",
+    "page_checked_at": "2026-11-08T16:46:52.768546+09:00",
     "multi": false,
     "cls": "77f1e8e5872f",
-    "page_err": "中身が空"
+    "address_checked": true
   },
   "34267cd21b9f2faa": {
     "store": "トレカ専門店GIRAFULL京都店（ジラフル京都店）",
@@ -17866,10 +17866,11 @@
     "status": "approved",
     "found_at": "2026-11-06T10:15:09.696666+09:00",
     "start": "2026-11-06T12:00:00+09:00",
-    "page_checked_at": "2026-11-08T10:46:20.949731+09:00",
+    "page_checked_at": "2026-11-08T16:46:55.738481+09:00",
     "multi": false,
     "cls": "322d10f71e81",
-    "page_err": "中身が空"
+    "address": "京都府京都市下京区真苧屋町195",
+    "address_checked": true
   },
   "9c6f584fdab5b42d": {
     "store": "GIRAFULLオタロード店（ジラフルオタロード店）",
@@ -17895,11 +17896,12 @@
     "key": "9c6f584fdab5b42d",
     "status": "approved",
     "found_at": "2026-11-06T10:15:09.696696+09:00",
-    "page_checked_at": "2026-11-08T10:46:23.001376+09:00",
+    "page_checked_at": "2026-11-08T16:46:58.607108+09:00",
     "multi": false,
     "cls": "e18cee302b62",
-    "page_err": "中身が空",
-    "start": "2026-11-06T12:00:00+09:00"
+    "start": "2026-11-06T12:00:00+09:00",
+    "address": "大阪府大阪市浪速区日本橋3-8-16",
+    "address_checked": true
   },
   "47468c4419938325": {
     "store": "TSUTAYA秩父店",
@@ -18897,11 +18899,11 @@
     "announce": "11月12日(木)18時頃までに",
     "buy": "11/13(金)〜11/15(日)",
     "start": "2026-11-06T10:00:00+09:00",
-    "page_checked_at": "2026-11-08T10:46:50.720009+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-08T16:47:01.345533+09:00",
     "apply_url": "https://livepocket.jp/e/tgk3o",
     "multi": false,
-    "cls": "cba796283a95"
+    "cls": "cba796283a95",
+    "address_checked": true
   },
   "ca138d97be37733e": {
     "store": "ヤマト屋書店TSUTAYA中里店",

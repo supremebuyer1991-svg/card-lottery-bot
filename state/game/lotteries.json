@@ -543,7 +543,7 @@
     "source": "Googleニュース「フィギュア 抽選販売」",
     "source_url": "https://mantan-web.jp/article/20261105dog00m200000000a.html",
     "key": "da183b50b1144269",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:50:53.105714+09:00",
     "deadline_checked_at": "2026-11-08T15:51:20.756261+09:00",
     "deadline_v": 5,
@@ -551,7 +551,8 @@
     "page_checked_at": "2026-11-08T15:51:53.520194+09:00",
     "details_checked": true,
     "cls": "ceea48aa8e7d",
-    "official_checked": true
+    "official_checked": true,
+    "dup_of": "ed0eb35fa98d34a1"
   },
   "3becbdd08dffc0dc": {
     "store": "プレミアムバンダイ",
