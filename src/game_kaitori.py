@@ -81,7 +81,7 @@ def update(settings, fetch=None, ai=None):
     for s in todo[:int(settings.get("kaitori_stores_per_run", 2))]:
         items = []
         try:
-            pages = [html_to_text(fetch(u), u) for u in s["urls"][:3]]
+            pages = [html_to_text(fetch(u), u) for u in s["urls"][:10 if s.get("parser") else 3]]
             if s.get("parser") == "rudeya":   # 買取ルデヤは決まった形なのでAIを使わずに読む
                 import game_souba
                 items += [list(x) for p in pages for x in game_souba.parse_rudeya(p)]

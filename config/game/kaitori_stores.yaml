@@ -1,15 +1,15 @@
 # 買取店の「ゲームの新品の買取価格」の一覧ページ（kaitori-search.app に載っている店のうち、中継経由で価格まで読めた店。11/8 確認）
-# urls は最大3つ（1回のAIにまとめて渡す）。読めなくなった店は enabled: false に
+# urls はAIで読む店は最大3つ（1回のAIにまとめて渡す）、parser: rudeya の店は最大10。読めなくなった店は enabled: false に
 # 読めなかった店（11/8）：森森買取（523）・買取wiki（ファイアウォール）・ドラゴンモバイル/ベストワン（価格が本文に無い）・
 #   買取ホムラ/エノキング/TOJO（後から読み込む作り）・モバイル一番（ゲームの一覧ページのURLが未特定）ほか
 stores:
   - name: 買取ルデヤ
     parser: rudeya
-    urls: ["https://kaitori-rudeya.com/category/detail/214", "https://kaitori-rudeya.com/category/detail/2", "https://kaitori-rudeya.com/category/detail/1"]
+    urls: ["https://kaitori-rudeya.com/category/detail/214", "https://kaitori-rudeya.com/category/detail/2", "https://kaitori-rudeya.com/category/detail/1", "https://kaitori-rudeya.com/search/index/%E3%81%9F%E3%81%BE%E3%81%94%E3%81%A3%E3%81%A1", "https://kaitori-rudeya.com/search/index/Pokemon%20GO%20Plus", "https://kaitori-rudeya.com/search/index/%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC", "https://kaitori-rudeya.com/search/index/%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F", "https://kaitori-rudeya.com/search/index/amiibo"]
   - name: 買取商店
     urls: ["https://www.kaitorishouten-co.jp/category/2/703", "https://www.kaitorishouten-co.jp/category/2/280", "https://www.kaitorishouten-co.jp/category/2/637"]
   - name: PANDA買取
-    urls: ["https://panda-kaitori.co.jp/?cpro=nintendo", "https://panda-kaitori.co.jp/?cpro=playstation"]
+    urls: ["https://panda-kaitori.co.jp/?cpro=nintendo", "https://panda-kaitori.co.jp/?cpro=playstation", "https://panda-kaitori.co.jp/?cpro=game-others"]
   - name: 家電市場
     urls: ["https://www.kaden-ichiba.com/item/node/2050/", "https://www.kaden-ichiba.com/item/node/4310/"]
   - name: 買取当番

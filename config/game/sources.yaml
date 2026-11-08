@@ -110,6 +110,20 @@ sources:
     every_hours: 8
     url: https://news.google.com/rss/search?q=%E3%83%99%E3%82%A2%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
+  - id: gnews_tamagotchi
+    game: digital_toys
+    name: Googleニュース「たまごっち 予約 再販」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%81%9F%E3%81%BE%E3%81%94%E3%81%A3%E3%81%A1+%E4%BA%88%E7%B4%84+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_goplus
+    game: digital_toys
+    name: Googleニュース「Pokemon GO Plus+ 再販 在庫」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=Pokemon+GO+Plus%2B+%E5%86%8D%E8%B2%A9+%E5%9C%A8%E5%BA%AB+when:3d&hl=ja&gl=JP&ceid=JP:ja
+
   # --- 入荷Now（ゲーム機の抽選・入荷のまとめ記事。表はAIを使わず読む）。文章は転載しない・記事URLは載せない ---
   - id: nyuka_now_game
     game: auto
@@ -117,7 +131,7 @@ sources:
     type: html_index
     every_hours: 4
     url: https://nyuka-now.com/archives/category/restock
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "RTX", "GeForce", "Radeon", "Ryzen"]
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen"]
     max_articles: 10
     parser: nyukanow
     quote: false

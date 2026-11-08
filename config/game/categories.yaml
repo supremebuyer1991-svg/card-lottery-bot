@@ -229,3 +229,16 @@ categories:
     color: "#6c757d"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+
+  - id: digital_toys
+    group: hobby
+    name: たまごっち・Pokémon GO Plus+ など電子おもちゃの抽選・再販
+    short: たまごっち・電子玩具
+    slug: digital-toys
+    hashtags: "#たまごっち #ポケモンGO"
+    hints: "たまごっち|Tamagotchi|Pokemon GO Plus|Pokémon GO Plus|ポケモン GO Plus|ポケモンGOプラス|ポケットピカチュウ|Pokémon Sleep"
+    strip_words: "たまごっち|Tamagotchi|本体|カラー"
+    aff_keywords: ["たまごっち", "Pokemon GO Plus +"]
+    color: "#ff7ab3"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
