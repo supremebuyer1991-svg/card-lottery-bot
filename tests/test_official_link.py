@@ -27,4 +27,9 @@ assert lots["c"]["url"] == "https://p-bandai.jp/"                               
 assert lots["d"]["status"] == "duplicate" and lots["a"]["status"] == "listed"              # 同じ公式ページ → 締切が分かる方を残す
 assert lots["e"]["url"] == "https://p-bandai.jp/item/item-1000999999/" and "source_url" not in lots["e"]
 assert ol.resolve({}, lots, lambda u: 1 / 0) == 0                                          # 2回目は何も開かない
+lots2 = {"x": it("ROBOT魂 ＜SIDE MS＞ クィン・マンサ（40周年記念）", "https://p-bandai.jp/item/item-1000258661/", kind="lottery"),
+         "y": it("ROBOT魂 ＜SIDE MS＞クィン・マンサ ～マーキングプラス～", "https://p-bandai.jp/", kind="lottery", official_checked=True),
+         "z": it("METAL ROBOT魂 フルアーマーZZ", "https://p-bandai.jp/", kind="lottery", official_checked=True)}
+ol.resolve({}, lots2, fetch)
+assert lots2["y"]["status"] == "duplicate" and lots2["z"]["status"] == "listed", lots2
 print("OFFICIAL OK")

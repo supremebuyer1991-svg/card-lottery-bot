@@ -27,7 +27,7 @@ ITEM_PAGE = re.compile(r"p-bandai\.jp/item/item-\d+|pokemoncenter-online\.com/\d
                        r"bandai-hobby\.net/item/\d+|amazon\.co\.jp/dp/|books\.rakuten\.co\.jp/rb/", re.I)
 # お店ごとの公式トップ（記事に公式リンクが無かったときの応募先）
 STORE_TOP = [
-    (r"プレバン|プレミアムバンダイ|p-bandai", "https://p-bandai.jp/"),
+    (r"プレバン|プレミアムバンダイ|p-bandai|BANDAI SPIRITS|バンダイスピリッツ", "https://p-bandai.jp/"),
     (r"魂ウェブ", "https://p-bandai.jp/tamashiiweb/"),
     (r"ガンダムベース|GUNDAM BASE", "https://www.gundam-base.net/"),
     (r"ポケモンセンター|ポケセン", "https://www.pokemoncenter-online.com/"),
@@ -147,5 +147,16 @@ def resolve(settings, lots, fetch):
                 log(f"同じ公式ページなのでまとめる：{(it.get('product') or '')[:30]}")
             else:
                 seen[u] = key
+    # 公式の商品ページが分かった抽選と、商品名がほぼ同じ抽選（応募先がお店のトップ・ニュースのまま）もまとめる
+    items = [(k, i) for k, i in lots.items() if i.get("status") in ("approved", "listed", "posted")]
+    for k, i in items:
+        if ITEM_PAGE.search(i.get("url") or "") or i.get("kind") == "release":
+            continue
+        for k2, j in items:
+            if k2 != k and j.get("status") != "duplicate" and ITEM_PAGE.search(j.get("url") or "") \
+                    and j.get("kind") == i.get("kind") and min(_score(i.get("product"), j.get("product")), _score(j.get("product"), i.get("product"))) >= 0.6:
+                i["status"], i["dup_of"] = "duplicate", k2
+                log(f"商品名が同じなのでまとめる：{(i.get('product') or '')[:30]}")
+                break
     save_json(CACHE, cache)
     return changed
