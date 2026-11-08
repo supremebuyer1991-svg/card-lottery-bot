@@ -1839,7 +1839,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             meta["crumbs"], bl = crumbs(trail)
             ld.insert(0, bl)
         org = {"@type": "Organization", "@id": f"{site}/#organization", "name": "トレカ抽選ナビ", "url": f"{site}/",
-               "logo": {"@type": "ImageObject", "url": f"{site}/apple-touch-icon.png"}}
+               "logo": {"@type": "ImageObject", "url": f"{site}/apple-touch-icon.png"},
+               "sameAs": [f"https://x.com/{(s.get('x_account') or 'pokepi_tcg').lstrip('@')}"]}  # 11/8 Fable技術：公式Xとの結びつき
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
                           "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
