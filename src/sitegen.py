@@ -1983,7 +1983,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     rows.append(("Amazon", ("予約・招待リクエストが急に始まることがあります" if pre_mode else "Amazon.co.jp 本体の販売・招待リクエストが急に始まることがあります"), _amz(q, tag), "Amazonで見る", "amz"))
             li = "".join(f'<li><div><b>{escape(t)}</b><small>{escape(sub)}</small></div><a class="b-{c}" href="{escape(u)}" {_REL} data-pl="saihan">{escape(btn)}</a></li>'
                          for t, sub, u, btn, c in rows)
-            box_t = ("定価で予約・購入できるところ" if pre_mode else "いま定価で買えるところ" if stock else "定価の在庫が戻ったら買えるところ")
+            can_buy = any(src == "rakuten" or a_ == "buy" for src, a_, _, _ in stock)
+            box_t = ("定価で予約・購入できるところ" if pre_mode else "いま定価で買えるところ" if can_buy
+                     else "定価で申し込めるところ（招待制）" if stock else "定価の在庫が戻ったら買えるところ")
             buy = (f'<aside class="ad lose"><div class="ad-top"><span>{box_t}</span>{PR_B}</div>'
                    f'{head_}<ul class="lose-l">{li}</ul><p class="ad-note">楽天・Amazonへのリンクは広告です。在庫・価格はリンク先で確認してください。</p></aside>')
             # 2) 数字（事実だけ）
