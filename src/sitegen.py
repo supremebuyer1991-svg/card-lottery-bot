@@ -3640,6 +3640,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             for (g_, x_), n_ in _C((i["game"], i["series"]) for i in items if i.get("series") and i["game"] in GAME_SLUG).most_common(12):
                 if (out / series_path(g_, x_).strip("/") / "index.html").exists():
                     L.append(f"- [{GAME_SHORT[g_]}「{x_}」の抽選（受付中{n_}件）]({site}/{series_path(g_, x_)})")
+            # 11/8：弾ごとの「予約・再販・在庫」と、チェーン×弾のページ
+            sh_ = sorted(str(q.relative_to(out).parent) for q in out.glob("*/*/saihan/index.html"))
+            if sh_:
+                L += ["", "## 弾ごとの予約・再販・在庫（楽天ブックス・Amazon本体の在庫を1〜2分おきに確認）"]
+                L += [f"- {site}/{q}/" for q in sh_]
+            cs_ = sorted(CS_PAGES.items(), key=lambda kv: -sum(1 for i in items if i.get("chain") == kv[0][0] and kv[0][2] in (i.get("sers") or [i.get("series")])))[:20]
+            if cs_:
+                L += ["", "## お店×弾の抽選（例：TSUTAYAのハドウシーカー）"]
+                L += [f"- [{CHAIN[c_][1]}の「{x_}」の抽選]({site}/{p_})" for (c_, g_, x_), p_ in cs_]
             L += ["", "## お店（チェーン）ごとの抽選"]
             for slug_, cname_, big_, n_ in sorted(chain_links, key=lambda t: -t[3])[:25]:
                 L.append(f"- [{cname_}の抽選（受付中{n_}件）]({site}/chain/{slug_}/)")
