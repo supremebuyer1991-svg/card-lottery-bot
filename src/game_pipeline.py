@@ -111,6 +111,13 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 game_xpost.post_speed(s)
             except Exception as e:
                 log(f"X速報: スキップ {e}")
+            try:  # Xの予約投稿の計画（明日の分）→ site_game/x-plan.json
+                import game_xplan
+                from common import ROOT
+                site = (s.get("site_public_url") or "https://game-nyuka.com").rstrip("/")
+                game_xplan.write(ROOT / "site_game", s, site)
+            except Exception as e:
+                log(f"予約投稿の計画: スキップ {e}")
     log("完了")
 
 

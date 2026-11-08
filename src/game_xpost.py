@@ -95,6 +95,24 @@ def _norm(s):
     return re.sub(r"[\s・:：/／\-ー（）()【】「」]|プレバン|プレミアムバンダイ|最新フォーマットのガンプラ|機動新世紀ガンダムx", "", s)
 
 
+def is_game(it):
+    """ゲーム系（ゲーム機・ゲーム関連の限定品）か。このアカウントはゲームが本業なので、ゲームを優先する"""
+    import gamecats
+    return (gamecats.by_id(False).get(it.get("game")) or {}).get("group") in ("console", "game_goods")
+
+
+def is_urgent(it, t, settings):
+    """すぐ知らせないと間に合わないもの（速報＝Xのツールで今すぐ投稿）。それ以外は予約投稿（リンク付き）に回す"""
+    if it.get("kind") in ("restock", "first_come"):
+        return True
+    en, st = parse_dt(it.get("end")), parse_dt(it.get("start"))
+    if en and (en - t).total_seconds() <= float(settings.get("x_urgent_end_hours", 24)) * 3600:
+        return True
+    if st and -3 * 3600 <= (st - t).total_seconds() <= float(settings.get("x_urgent_start_hours", 3)) * 3600:
+        return True
+    return False
+
+
 def candidates(lots, seen, t):
     out, names = [], set()
     for key, it in sorted(lots.items(), key=lambda kv: kv[1].get("end") or "9999"):
@@ -170,6 +188,22 @@ def post_speed(settings, send=None, image=None):
         return
     seen = set(st["seen"])
     cands = candidates(lots, seen, t)
+    later = [(k, i) for k, i in cands if not is_urgent(i, t, settings)]
+    if later:   # 急がないもの → 予約投稿（リンク付き・無料）に回す
+        q = st.setdefault("queue", {})
+        for k, _ in later:
+            q.setdefault(k, t.isoformat())
+        seen |= {k for k, _ in later}
+        st["seen"] = sorted(seen)
+        save_json(STATE, st)
+        log(f"X：急がない{len(later)}件は予約投稿に回します")
+    cands = [(k, i) for k, i in cands if is_urgent(i, t, settings)]
+    if not cands:
+        return
+    hobby_today = sum(1 for p in st.get("posts", []) if parse_dt(p["at"]) and parse_dt(p["at"]).date() == t.date() and not p.get("game", True))
+    if hobby_today >= int(settings.get("x_speed_hobby_per_day", 2)):
+        cands = [(k, i) for k, i in cands if is_game(i)]
+    cands.sort(key=lambda kv: not is_game(kv[1]))   # ゲームを先に
     if not cands:
         return
     posts = [p for p in st.get("posts", []) if parse_dt(p["at"]) and (t - parse_dt(p["at"])).total_seconds() < 3 * 86400]
@@ -215,6 +249,6 @@ def post_speed(settings, send=None, image=None):
         log(f"X速報：投稿失敗 {e}")
         return
     st["seen"] = sorted(seen | {k for k, _ in cands})
-    st["posts"] = posts + [{"at": t.isoformat(), "id": tid, "keys": [k for k, _ in cands]}]
+    st["posts"] = posts + [{"at": t.isoformat(), "id": tid, "keys": [k for k, _ in cands], "game": any(is_game(i) for i in items)}]
     save_json(STATE, st)
     log(f"X速報：{len(items)}件を投稿しました（今日{len(today) + 1}本目）")
