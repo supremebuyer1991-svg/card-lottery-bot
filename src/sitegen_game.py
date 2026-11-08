@@ -353,6 +353,7 @@ def build(settings=None, out_dir=None, force=False):
     site = (s.get("site_public_url") or os.environ.get("SITE_URL_GAME") or "").rstrip("/")
     tag = game_affi.amazon_tag(s)   # AMAZON_TAG_GAME → settings の amazon_tag → トレカと同じ AMAZON_TAG
     out = Path(out_dir or ROOT / "site_game")
+    souba_st = load_json("souba.json", {})
     t = now()
     verify = s.get("google_site_verification") or ""
 
@@ -374,6 +375,13 @@ def build(settings=None, out_dir=None, force=False):
         row = {k: i.get(k) for k in FIELDS}
         row["kind"] = row.get("kind") or "lottery"
         row["lpath"] = detail.lottery_path(i)
+        try:
+            import game_souba
+            sb = game_souba.for_item(dict(i, series=canon_series(i["game"], i["series"]) if i.get("series") else None), souba_st)
+            if sb:
+                row["sb"] = sb["text"] + (f"・{sb['hint']}" if sb["hint"] else "")
+        except Exception:
+            pass
         if row.get("series"):
             row["series"] = canon_series(i["game"], row["series"])
             row["spath"] = f"{cat_by[i['game']]['slug']}/{series_slug(i['game'], row['series'])}/"
@@ -522,7 +530,7 @@ def build(settings=None, out_dir=None, force=False):
 
     # --- トップ ---
     n_open = sum(1 for i in live if i["ph"] == "open")
-    top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、定価で買える「抽選・招待・予約・再入荷・先着・福袋」の受付情報を自動で集めて1日6回更新しているサイトです。フリマ・転売の価格は載せません。"),
+    top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、定価で買える「抽選・招待・予約・再入荷・先着・福袋」の受付情報を自動で集めて1日6回更新しているサイトです。フリマ・転売の出品価格は載せません（ゲーム機など一部の商品だけ、スニダンの取引の相場を目安として載せています）。"),
                ("受付状況はいつの時点のものですか？", "ページを開いた時刻でブラウザが計算しています。受付中・予告・終了と残り時間は、開くたびに今の時刻で表示されます。"),
                ("どんな条件があるか分かりますか？", "会員・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台などの条件を、告知から読み取ってタグで表示しています。必ず応募ページの原文でご確認ください。")]
     write("", {"title": f"ゲーム機・ホビーの抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
@@ -711,7 +719,7 @@ def build(settings=None, out_dir=None, force=False):
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                          + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in dict(urls).items()) + "</urlset>\n", encoding="utf-8")
         (out / "robots.txt").write_text("".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /x-plan.html\nDisallow: /x-plan.json\n\n" for b in ("Googlebot", "Bingbot", "*")) + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
-        L = [f"# {brand['name']}", "", f"> {s.get('site_tagline') or ''}。PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーの抽選・招待・予約・再入荷・先着の受付情報を自動で集めて1日6回更新。いま受付中{n_open}件。フリマ・転売の価格は載せません。",
+        L = [f"# {brand['name']}", "", f"> {s.get('site_tagline') or ''}。PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーの抽選・招待・予約・再入荷・先着の受付情報を自動で集めて1日6回更新。いま受付中{n_open}件。フリマ・転売の出品価格は載せません（ゲーム機など一部の商品だけ、スニダンの取引の相場を目安として載せています）。",
              "", "## 主なページ", f"- [トップ]({site}/)", f"- [いま一覧（お店×商品）]({site}/now/)", f"- [今日締切・開始]({site}/today/)", f"- [カレンダー]({site}/calendar/)", f"- [見方・使い方]({site}/guide/)", ""]
         L += [f"- [{c['short']}]({site}/{c['slug']}/)" for c in cats]
         (out / "llms.txt").write_text("\n".join(L) + "\n", encoding="utf-8")

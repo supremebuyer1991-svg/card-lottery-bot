@@ -46,6 +46,16 @@ series_slugs:
     夢のお年玉箱 2027: yodobashi-otoshidama-2027
 
 series_info: {}
+
+# スニダンの相場（サイトに「スニダン相場 ○円（定価比 +○%）」を出す）。snkr＝スニダンの商品番号（https://snkrdunk.com/apparels/○○ の数字）、
+# teika＝定価（税込・円。公式発表で確かめたもの）。11/8：PS5は4/2の価格改定後、Switch 2は5/25の価格改定後の値段
+series_souba:
+  ps5:
+    PS5 Pro: {snkr: 857663, teika: 137980}
+    PS5 デジタル・エディション: {snkr: 726560, teika: 55000}
+  switch2:
+    Switch 2 本体: {snkr: 558579, teika: 59980}
+    Switch 2 マリオカート ワールド セット: {snkr: 558580}
 #  ps5:
 #    PS5 Pro: {release: "", type: 本体, price: ""}   # TODO: オーナーが公式で確認して入れる（税込の定価）
 
