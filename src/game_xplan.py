@@ -119,7 +119,7 @@ def build(lots, settings, site, t=None, st=None):
             lines.append(f"▶発売日 {_md(en, False)}")
         if it.get("price"):
             lines.append(f"▶定価 {str(it['price']).replace('（税込）', '')}")
-        lines += ["", (f"{'Amazon' if 'amazon.' in u else '楽天'}の商品ページ（PR）👉 {u}" if aff else f"くわしくはこちら👉 {u}"), tag([it])]
+        lines += ["", (f"{'Amazon' if 'amazon.' in u else '楽天'}の商品ページ👉 {u}" if aff else f"くわしくはこちら👉 {u}"), tag([it])]
         plan.append({"at": at(h, m), "slot": "ピックアップ", "text": _fit(lines)})
 
     # 10:30・17:00 ピックアップ（ゲームを優先。ゲームが無ければホビーも）

@@ -5,7 +5,7 @@ Xの予約投稿で入れるので、ここでは速報だけ。
 決まりごと（11/8 Fable の調査より）：
 ・1日 x_speed_per_day 本まで、前の投稿から x_speed_gap_min 分以上あける（1回の実行で1本だけ。複数あれば1本にまとめる）
 ・リンクは、その商品のアフィリエイトのページがあるとき（1件だけの速報）だけ付ける（URL付きは1件約$0.20、なしは約$0.015）。
-  付けるときは「（PR）」と書く（ステマ規制）。Amazonがあれば Amazon（定価で買えるページ）、なければ楽天。ハッシュタグは2つまで
+  広告の表記はXのプロフィールに「PRを含む」と書いてあるので、本文には書かない（11/9 ユーザーの指示）。Amazonがあれば Amazon（定価で買えるページ）、なければ楽天。ハッシュタグは2つまで
 ・自動リプ・引用はしない。冒頭の言い回しは毎回変える（同じ文面のくり返しはスパム扱いされやすい）
 ・最初に動いたときは、それまでに載っていた分を「投稿済み」として記録するだけ（昔の分をまとめて流さない）
 鍵：X_API_KEY / X_API_SECRET（トレカと同じアプリ）＋ X_GAME_ACCESS_TOKEN / X_GAME_ACCESS_SECRET（@a9994aaa）
@@ -78,7 +78,7 @@ def compose(items, k=0, link=""):
         if len(items) > 4:
             lines.append(f"ほか{len(items) - 4}件")
     if link and len(items) == 1:
-        lines += ["", f"{'Amazon' if 'amazon.' in link else '楽天'}の商品ページ（PR）👉 {link}"]
+        lines += ["", f"{'Amazon' if 'amazon.' in link else '楽天'}の商品ページ👉 {link}"]
     else:
         lines += ["", CLOSE[k % len(CLOSE)]]
     if tags:

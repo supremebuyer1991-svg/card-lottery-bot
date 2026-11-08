@@ -43,7 +43,7 @@ gx.post_speed(dict(S, x_speed_post=False), send, img); assert len(sent) == 2
 long = [it("とても長い商品名" * 8, store="とても長いお店の名前") for _ in range(6)]
 assert gx.x_len(gx.compose(long)) <= 280 and gx.x_len(gx.compose(long[:1])) <= 280
 t1 = gx.compose([it("PS5 Pro")], link="https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22")
-assert "Amazonの商品ページ（PR）👉 https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22" in t1 and "プロフ" not in t1
+assert "Amazonの商品ページ👉 https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22" in t1 and "プロフ" not in t1
 t2 = gx.compose([it("A"), it("B")], link="https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22")
 assert "http" not in t2                                                       # まとめ投稿にはリンクを付けない
 # 急がないもの（締切が先）は予約投稿の待ち行列へ。ホビーの速報は1日の上限あり
