@@ -22,4 +22,10 @@ assert gs.for_item({"game": "ps5", "series": "ほか"}) is None
 gs.now = lambda: dt.datetime(2026, 12, 20, 7, 20, tzinfo=J)
 st = gs.update({}, sess=object(), sleep=lambda s: None, daily=daily)
 assert "ps5|PS5 Pro" not in st                                                             # 1か月より前の取引しかない → 出さない
+T2 = '「ゼルダ」検索結果 新品 Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション BEE-A-FSTDA JAN: 4902370554564 印有減額無し 買取価格 13,000 円 買取リクエスト 新品 Nintendo Switch 2 Proコントローラー JAN: 4902370000000 買取価格 7,000 円 中古 中古 Nintendo Switch 有機EL JAN: 4902370550481 買取価格 16,000 円'
+assert len(gs.parse_rudeya(T2)) == 2                                                              # 中古は入れない
+z = {"product": "Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション", "price": "12,980円", "game": "switch2"}
+c = gs.kaitori_update({}, [z], fetch=lambda u: "<p>" + T2 + "</p>", sleep=lambda s: None)
+assert gs.kaitori_for(z, c) == 13000 and gs.kaitori_label(z, 13000) == "買取 13,000円（定価比 +0%）・プレ値"
+assert gs.kaitori_for(dict(z, product="Nintendo Switch 2 Proコントローラー"), c) == 7000
 print("SOUBA OK")
