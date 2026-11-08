@@ -1393,6 +1393,17 @@
         "mem": "account",
         "rq": []
       },
+      "92ae214b7b98f59e": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-10T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "e6b25393282bb957": {
         "p": "REACH THE GOD",
         "g": "dragonball",
@@ -6305,6 +6316,17 @@
   "store/batoroco-9c3b4/": {
     "name": "TC バトロコ旭川駅前",
     "items": {
+      "0ad0af536ed3ed92": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-18T19:30",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "571e243fcba8e99d": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -13728,6 +13750,17 @@
   "store/torekaesu-84b8b/": {
     "name": "トレカエース春日部店",
     "items": {
+      "8cde7a3f487ea911": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "185138848bf8052a": {
         "p": "メガシンフォニア",
         "g": "pokemon",
@@ -20498,6 +20531,17 @@
       "796d45cc536ade47": {
         "p": "世界最強の戦士",
         "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "0fac54a4fa3eefc2": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
         "e": "2026-11-08T21:00",
         "f": "2026-11-08",
         "c": "store",
@@ -31072,6 +31116,22 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/cardlabo-a9d32/": {
+    "name": "カードラボ 新潟店",
+    "items": {
+      "9e1abde36c7fd74d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
         "rq": []
       }
     }

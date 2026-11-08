@@ -20,7 +20,8 @@
       "spath": "gunpla/gandamubesu-9967d/",
       "found_at": "2026-11-08T13:43:17.790598+09:00",
       "manual": true,
-      "kind": "lottery"
+      "kind": "lottery",
+      "shop": {}
     },
     "path": "l/gundam-base-shibuya-pre-entry-lottery/",
     "end": "2026-11-15T23:59+09:00",
@@ -42,7 +43,8 @@
       "found_at": "2026-11-08T13:43:17.790660+09:00",
       "manual": true,
       "kind": "release",
-      "price": "63,980円（税込）"
+      "price": "63,980円（税込）",
+      "shop": {}
     },
     "path": "l/switch2-eraberu-soft-set-1112/",
     "end": "2026-11-12T23:59+09:00",
@@ -63,7 +65,8 @@
       "found_at": "2026-11-08T13:43:17.790685+09:00",
       "manual": true,
       "kind": "release",
-      "price": "55,000円（税込）"
+      "price": "55,000円（税込）",
+      "shop": {}
     },
     "path": "l/ps5-midnight-black-release-1119/",
     "end": "2026-11-19T23:59+09:00",
@@ -83,7 +86,8 @@
       "found_at": "2026-11-08T13:43:17.790703+09:00",
       "manual": true,
       "kind": "release",
-      "price": "3,960円（税込）"
+      "price": "3,960円（税込）",
+      "shop": {}
     },
     "path": "l/gunpla-hg-gundam-ashtaron-1128/",
     "end": "2026-11-28T23:59+09:00",
@@ -104,7 +108,8 @@
       "found_at": "2026-11-08T13:43:17.790721+09:00",
       "manual": true,
       "kind": "release",
-      "price": "1回850円（税込）"
+      "price": "1回850円（税込）",
+      "shop": {}
     },
     "path": "l/ichibankuji-godzilla-1113/",
     "end": "2026-11-13T23:59+09:00",
@@ -125,7 +130,8 @@
       "found_at": "2026-11-08T13:43:17.790737+09:00",
       "manual": true,
       "kind": "release",
-      "price": "1回750円（税込）"
+      "price": "1回750円（税込）",
+      "shop": {}
     },
     "path": "l/ichibankuji-onepiece-animaru-1114/",
     "end": "2026-11-14T23:59+09:00",
@@ -163,7 +169,8 @@
       "channel": "online",
       "spath": "figure/metalrobot-f44e6/",
       "found_at": "2026-11-08T13:56:23.931324+09:00",
-      "kind": "lottery"
+      "kind": "lottery",
+      "shop": {}
     },
     "path": "l/a3c72413c6/",
     "end": "2026-11-08T23:59:00+09:00",
@@ -183,7 +190,8 @@
       "channel": "online",
       "spath": "figure/robot-fdd7f/",
       "found_at": "2026-11-08T13:56:23.931424+09:00",
-      "kind": "lottery"
+      "kind": "lottery",
+      "shop": {}
     },
     "path": "l/aa0e58d2ed/",
     "end": "2026-11-08T23:59:00+09:00",
@@ -203,7 +211,15 @@
       "channel": "online",
       "spath": "gunpla/gandamuvasago-dbd67/",
       "found_at": "2026-11-08T13:56:23.931519+09:00",
-      "kind": "lottery"
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4531/4580886844531.jpg?_ex=300x300",
+      "img_url": "https://item.rakuten.co.jp/book/18658194/",
+      "shop": {
+        "rk": {
+          "u": "https://item.rakuten.co.jp/book/18658194/",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4531/4580886844531.jpg?_ex=300x300"
+        }
+      }
     },
     "path": "l/b2999cce85/",
     "end": null,
@@ -222,7 +238,8 @@
       "channel": "online",
       "spath": "gunpla/gandamuvasago-dbd67/",
       "found_at": "2026-11-08T14:08:12.039822+09:00",
-      "kind": "lottery"
+      "kind": "lottery",
+      "shop": {}
     },
     "path": "l/63ca7aab52/",
     "end": null,
