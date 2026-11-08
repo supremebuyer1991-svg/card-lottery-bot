@@ -31323,11 +31323,27 @@
     }
   },
   "store/manasosu-ff95f/": {
-    "name": "マナソース 和歌山駅前店",
+    "name": "マナソース和歌山駅前店",
     "items": {
       "c9bb56ea354f2ac9": {
         "p": "神の支配",
         "g": "onepiece",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/reputonsanmoru-c3239/": {
+    "name": "レプトン サンモール店",
+    "items": {
+      "84447aed1d4b76f9": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
         "e": "2026-11-08T20:00",
         "f": "2026-11-08",
         "c": "store",
