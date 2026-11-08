@@ -1773,8 +1773,8 @@
         "f": "2026-11-09",
         "c": "store",
         "m": "Web",
-        "id": null,
-        "mem": null,
+        "id": true,
+        "mem": "account",
         "rq": [],
         "a": "2026-11-17"
       },
@@ -22774,9 +22774,10 @@
         "f": "2026-11-09",
         "c": "store",
         "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-18"
       },
       "6d33485813dfe8b2": {
         "p": "スペシャルデッキセットMEGA",
