@@ -88,6 +88,7 @@ def side_html(cats, cur_game=None, cur=None, counts=True):
     here = ' aria-current="page"'
     stat += f'<a href="/calendar/"{here if cur == "calendar" else ""}>カレンダー</a>'
     stat += f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
+    stat += f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
                  + (f'<span class="n" data-cn="{escape(c["id"])}"></span>' if counts else "") + "</a>" for c in cats)
     return ('<aside class="side" aria-label="メニュー">'
