@@ -74,17 +74,29 @@ def _books_info(jan, settings):
          "jan": jan, "format": "json", "formatVersion": 2}
     h = {"accessKey": p["accessKey"], "Referer": site + "/", "Origin": site, "User-Agent": "game-nyuka/1.0"}
     for url in ([_books_ok["url"]] if _books_ok.get("url") else BOOKS_GAME):
-        try:
-            r = requests.get(url, params=p, headers=h, timeout=15)
-        except Exception as e:
-            log(f"楽天ブックス（ゲーム）: {url.split('/')[2]} {e}")
+        r = None
+        for attempt in range(3):   # 楽天は1秒に1回まで。混んでいたら少し待ってやり直す
+            try:
+                r = requests.get(url, params=p, headers=h, timeout=15)
+            except Exception as e:
+                log(f"楽天ブックス（ゲーム）: {url.split('/')[2]} {e}")
+                r = None
+                break
+            if r.status_code != 429:
+                break
+            import time
+            time.sleep(2 + attempt * 2)
+        if r is None:
             continue
+        if r.status_code == 429:
+            return None
         if r.status_code == 200:
             _books_ok["url"] = url
             items = r.json().get("Items") or []
             if items:
                 i = items[0].get("Item", items[0])
-                return {"sales_date": i.get("salesDate") or "", "maker": i.get("label") or i.get("makerCode") or "",
+                return {"list_price": int(i.get("listPrice") or 0) or None,
+                        "sales_date": i.get("salesDate") or "", "maker": i.get("label") or i.get("makerCode") or "",
                         "hardware": i.get("hardware") or "", "caption": (i.get("itemCaption") or "")[:400], "title": i.get("title") or ""}
             return {}
         if not _books_ok.get("logged"):
@@ -124,6 +136,8 @@ def update(settings, fetch=None, sleep=None):
         left -= 1
         try:
             r = _lookup_teika(jan, settings, fetch)
+            if r and fetch is None:
+                sleep(1.2)
             info = _books_info(jan, settings) if (r and fetch is None) else None
             teika[jan] = dict(r or {}, **(info or {}), at=t.isoformat())
         except Exception as e:
@@ -157,7 +171,9 @@ def premium_list(settings=None):
     today = now().date()
     out = []
     for jan, x in g.items():
-        tk = teika.get(jan) or {}
+        tk = dict(teika.get(jan) or {})
+        if tk.get("list_price"):
+            tk["price"] = tk["list_price"]   # 楽天ブックスの「定価」があればそれ（販売価格より正確）
         if not tk.get("price"):
             continue
         r = x["max"] / tk["price"]
@@ -226,7 +242,7 @@ def info_rows(x):
         if m:
             model = m.group(0)
             break
-    rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), ("定価（税込）", f'{x["teika"]:,}円（楽天ブックスの販売価格）'),
+    rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), ("定価（税込）", f'{x["teika"]:,}円'),
             ("型番", model), ("対応機種", x.get("hardware")), ("JANコード", x["jan"])]
     out = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in rows if v)
     if x.get("caption"):
