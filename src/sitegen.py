@@ -1970,7 +1970,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             rows = _stock_rows(g, x, raff, "saihan")
             q = f"{name} {x}"
             if rows:
-                head_ = f'<p class="sh-ok">✅ いま定価で買える通販があります（{escape(when)}時点）</p>'
+                # 11/8：招待リクエストだけのときは「すぐ買える」ではないので言い分ける
+                buy_now = any(src == "rakuten" or a_ == "buy" for src, a_, _, _ in stock)
+                head_ = (f'<p class="sh-ok">✅ いま定価で買える通販があります（{escape(when)}時点）</p>' if buy_now else
+                         f'<p class="sh-ok">✅ Amazon.co.jp 本体（定価）の招待リクエストを受付中です（{escape(when)}時点）</p>'
+                         '<p class="sh-ng">リクエストして、招待メールが届いた人だけが定価で買えます（全員が買えるわけではありません）。</p>')
             else:
                 head_ = (f'<p class="sh-ng">いま楽天ブックス・Amazon.co.jp本体で在庫は確認できていません（{escape(when)}時点・1〜2分おきに確認）。'
                          '在庫が戻ったら、このページとXの速報でお知らせします。</p>' if when else "")
@@ -2033,7 +2037,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                             + (f"（直近は{_md_(post_x[0][0]['e'])}締切の{_sname(post_x[0][1])}）" if post_x else "")
                             + "。メーカーの再販の予定は、公式の発表をご確認ください。"))
                 faq.append((f"「{x}」は今どこで買えますか？",
-                            (f"{when}時点で、楽天ブックスかAmazon.co.jp本体で販売・招待リクエストを確認できています。" if stock else
+                            ((f"{when}時点で、楽天ブックスかAmazon.co.jp本体の販売を確認できています。" if any(src == "rakuten" or a_ == "buy" for src, a_, _, _ in stock)
+                              else f"{when}時点で、Amazon.co.jp本体の招待リクエスト（招待された人が定価で買える方式）を受付中です。") if stock else
                              (f"{when}時点で、楽天ブックス・Amazon.co.jp本体の在庫は確認できていません。" if when else ""))
                             + (f"いま受付中の抽選は{len(si)}件です。" if si else "")))
                 if sm:
