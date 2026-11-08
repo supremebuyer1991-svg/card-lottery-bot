@@ -1924,6 +1924,19 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         except Exception as e:
             print("OGP画像を作れませんでした", g, e)
             og_g = ""
+        def _upcoming(gs, k=8):
+            """11/8：トップ・ゲームのページから、これから発売の新弾ページへ（新しいページを早く見つけてもらう・順位を上げる）"""
+            td_ = now().date().isoformat()
+            rows_ = sorted(((v.get("release"), gg, xx, v) for gg in gs for xx, v in ((_ser_cfg()["info"].get(gg) or {}).items())
+                            if str(v.get("release") or "") > td_), key=lambda t: t[0])[:k]
+            if not rows_:
+                return ""
+            return ('<section class="sinfo snext" aria-label="これから発売の新弾"><h2>これから発売の新弾</h2><ul>'
+                    + "".join(f'<li><a href="/{series_path(gg, xx)}">{escape(GAME_SHORT[gg]) + " " if len(gs) > 1 else ""}{escape(xx)}</a>'
+                              + f'<span>{escape((re.search(r"【([A-Z]{2,4}-[0-9]{2})】", v.get("type") or "") or [None, ""])[1])}</span>'
+                              + f'<b>{escape(jdate(r_))}</b></li>' for r_, gg, xx, v in rows_)
+                    + '</ul><p class="more"><a href="/calendar/">発売日カレンダーをすべて見る ›</a></p></section>')
+
         meta = {"og_image": f"{site}/{og_g}" if og_g else None,
                 # 「ポケモンカード 抽選」のように正式名で探す人にも届くよう、略称と正式名の両方を入れる（11/3）
                 "title": (f"{name}（{short}）の" if name != short else f"【{short}】") + f"抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
@@ -1936,7 +1949,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "1日6回（朝7時〜夜22時）自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "supply_bottom": _supply_ad(short, name, tag, raff, prices, g),  # 11/8 Fable：一覧の後へ
+                "supply_bottom": _supply_ad(short, name, tag, raff, prices, g) + (_upcoming([g]) if g in ("pokemon", "onepiece") else ""),  # 11/8 Fable：一覧の後へ
                 "topsq": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
@@ -1947,7 +1960,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                        h1="トレカの抽選情報まとめ",
                        lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
-            top["supply_bottom"] = _supply_ad(short, name, tag, raff, prices, g)
+            top["supply_bottom"] = _supply_ad(short, name, tag, raff, prices, g) + _upcoming([gg for gg in ("pokemon", "onepiece") if gg in games])
             # トップ：ゲームごとの相場の枠を全部入れておき、上のタブで選んだゲームの枠だけ見せる
             strips = []
             for gg in games:
@@ -3637,6 +3650,30 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             lm_i = prev[1] if prev[:1] == [sig_] and len(prev) > 1 else today_iso
             pmod[pth] = [sig_, lm_i, prev[2] if len(prev) > 2 else today_iso]
             urls.append((u_, lm_i))
+        # 11/8：日本語の弾ページ ⇔ 海外の弾ページを hreflang でつなぐ（同じ弾の別の言語版だとGoogleに伝える。両方向に書く）
+        HL_ = [("en", "en"), ("zh-Hant", "zh-tw"), ("zh-TW", "zh-tw"), ("zh-HK", "zh-tw"), ("ko", "ko")]
+        n_hl = 0
+        for g_, m_ in (_ser_cfg()["info"] or {}).items():
+            if g_ not in GAME_SLUG:
+                continue
+            for x_ in m_:
+                ss_ = intl.set_slug(g_, x_)
+                jp_ = out / series_path(g_, x_) / "index.html"
+                if not jp_.exists() or not all((out / L_ / "sets" / ss_ / "index.html").exists() for _, L_ in HL_):
+                    continue
+                tags_ = [f'<link rel="alternate" hreflang="ja" href="{site}/{series_path(g_, x_)}">'] + [
+                    f'<link rel="alternate" hreflang="{h_}" href="{site}/{L_}/sets/{ss_}/">' for h_, L_ in HL_] + [
+                    f'<link rel="alternate" hreflang="x-default" href="{site}/en/sets/{ss_}/">']
+                t_ = jp_.read_text(encoding="utf-8")
+                if 'hreflang="ja"' not in t_:
+                    jp_.write_text(t_.replace("</head>", "".join(tags_) + "</head>", 1), encoding="utf-8")
+                for L_ in {L_ for _, L_ in HL_}:
+                    f_ = out / L_ / "sets" / ss_ / "index.html"
+                    t_ = f_.read_text(encoding="utf-8")
+                    if 'hreflang="ja"' not in t_:
+                        f_.write_text(t_.replace('<link rel="alternate" hreflang="en"', tags_[0] + '<link rel="alternate" hreflang="en"', 1), encoding="utf-8")
+                n_hl += 1
+        print(f"日本語⇔海外の弾ページを hreflang でつないだ: {n_hl}弾")
 
     if site:
         # 11/7 監査：サイトマップを種類ごとに分ける（Search Consoleで、どの種類が載っていないか分かる）。sitemap.xml は索引
