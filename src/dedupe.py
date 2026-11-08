@@ -25,7 +25,8 @@ def _extra_strip():
 STORE_ALIAS = {"電機": "デンキ", "ヤマダ電器": "ヤマダデンキ", "ビックカメラ": "ビックカメラ", "ヨドバシカメラ": "ヨドバシ",
                "トイザらス": "トイザラス", "ツタヤ": "TSUTAYA", "ふるいち": "古本市場",
                "JUMP SHOP": "ジャンプショップ", "JUMPSHOP": "ジャンプショップ", "Jump Shop": "ジャンプショップ", "ドラスタ": "ドラゴンスター",
-               "BOOKOFF": "ブックオフ", "Bookoff": "ブックオフ", "SUPER BAZAAR": "スーパーバザー"}
+               "BOOKOFF": "ブックオフ", "Bookoff": "ブックオフ", "SUPER BAZAAR": "スーパーバザー",
+               "プレミアムバンダイ": "プレバン", "PREMIUM BANDAI": "プレバン", "p-bandai": "プレバン", "ポケモンセンターオンライン": "ポケモンセンター"}
 
 
 def norm_store(s):
@@ -40,7 +41,8 @@ def norm_store(s):
 
 def norm_product(s):
     """商品名そのもの（カッコの中も見る。「御三家（フシギダネ）」と「御三家（チコリータ）」は別物）"""
-    return re.sub(r"[\s・「」]", "", unicodedata.normalize("NFKC", s or "")).lower()
+    s = re.sub(r"\b1/(144|100|60|48|550)\b", "", unicodedata.normalize("NFKC", s or ""))   # ガンプラの縮尺（「HG 1/144 〇〇」＝「HG 〇〇」）
+    return re.sub(r"[\s・「」]", "", s).lower()
 
 
 def norm_series(s, aliases):
