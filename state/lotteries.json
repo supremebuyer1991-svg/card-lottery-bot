@@ -20429,7 +20429,8 @@
     "cls": "fcc09a46d730",
     "page_checked_at": "2026-11-08T10:47:15.874745+09:00",
     "page_err": "中身が空",
-    "start": "2026-11-06T11:50:00+09:00"
+    "start": "2026-11-06T11:50:00+09:00",
+    "apply_url": "https://livepocket.jp/e/37m04"
   },
   "fd7296b91d5d2146": {
     "store": "竜星のPAO／PAO 各店（青梅・堀之内・八王子・立川・町田・中野・大宮・千葉中央・横浜・多摩境・池袋・秋葉原ロケット無線）",
@@ -24155,7 +24156,7 @@
     "source": "X「ワンピカード 抽選」",
     "source_url": "https://x.com/",
     "key": "3a8c9b3398b44a21",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-06T22:13:07.544477+09:00",
     "page_checked_at": "2026-11-08T11:15:43.843509+09:00",
     "page_err": "中身が空",
@@ -24163,7 +24164,8 @@
     "cls": "f28565523bc9",
     "issue": 523,
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "duplicate_of": "a1b9458694a0e518"
   },
   "17c2d9de3f6720ca": {
     "store": "カードラボ熊本店",
@@ -36500,7 +36502,7 @@
     "end": "2026-11-08T23:59:00+09:00",
     "announce": null,
     "method": "ネット応募",
-    "conditions": null,
+    "conditions": "会員登録・アプリ・本人確認書類・購入上限・代理購入・価格などの条件は書かれていない。本日締切でネット応募が可能。対象店舗は竜星のPAO(埼玉・千葉・東京・神奈川)。",
     "url": "https://livepocket.jp/e/tgk3o",
     "x_post": "https://x.com/kujibell/status/2119302147074298307",
     "game": "pokemon",
@@ -36513,7 +36515,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "ee5586d551986da4",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:26:47.185912+09:00",
     "apply_url": "https://livepocket.jp/e/37m04",
     "deadline_checked_at": "2026-11-08T15:26:54.308334+09:00",
@@ -36522,10 +36524,13 @@
     "end_from": "Xの告知（本日締切(投稿日=11/8、時刻なし)）",
     "page_checked_at": "2026-11-08T15:27:42.739515+09:00",
     "page_err": "中身が空",
-    "multi": false,
-    "cls": "f75bb65f492f",
+    "multi": true,
+    "cls": "eb7d19bcde4c",
     "issue": 574,
-    "tco_checked": true
+    "tco_checked": true,
+    "post_checked": true,
+    "details_checked": true,
+    "duplicate_of": "fd7296b91d5d2146"
   },
   "e97059d2b73d74fe": {
     "store": "竜星のPAO",
@@ -36535,7 +36540,7 @@
     "end": "2026-11-08T23:59:00+09:00",
     "announce": null,
     "method": "ネット応募",
-    "conditions": null,
+    "conditions": "本日が応募締切で、ネットからも応募できる。対象は埼玉・千葉・東京・神奈川の竜星のPAO。会員登録、アプリ、本人確認書類、購入上限、代理購入、価格については記載なし。",
     "url": "https://livepocket.jp/e/7cw9u",
     "x_post": "https://x.com/kujibell/status/2119302147074298307",
     "game": "pokemon",
@@ -36548,7 +36553,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "e97059d2b73d74fe",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:26:47.185926+09:00",
     "apply_url": "https://livepocket.jp/e/37m04",
     "deadline_checked_at": "2026-11-08T15:26:59.119102+09:00",
@@ -36557,10 +36562,13 @@
     "end_from": "Xの告知（⏰本日締切(時刻なし)）",
     "page_checked_at": "2026-11-08T15:27:44.820960+09:00",
     "page_err": "中身が空",
-    "multi": false,
-    "cls": "cce3fd5f9544",
+    "multi": true,
+    "cls": "b82b589c5ebc",
     "issue": 575,
-    "tco_checked": true
+    "tco_checked": true,
+    "post_checked": true,
+    "details_checked": true,
+    "duplicate_of": "60c9b854c61edc46"
   },
   "a1b9458694a0e518": {
     "store": "TSUTAYA TRADING CARD 錦糸町",
@@ -36569,8 +36577,8 @@
     "start": "2026-11-04T16:00:00+09:00",
     "end": "2026-11-08T21:00:00+09:00",
     "announce": null,
-    "method": null,
-    "conditions": null,
+    "method": "受付ページ(リンク)から応募。受付は2026年11月4日(水)16:00〜11月8日(日)21:00",
+    "conditions": "本文には応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)の記載がなく、受付期間と受付ページの案内のみ。",
     "url": "https://livepocket.jp/e/uyq6h",
     "x_post": "https://x.com/TCG_LP_Navi/status/2119299633264685514",
     "game": "onepiece",
@@ -36586,8 +36594,12 @@
     "status": "pending",
     "found_at": "2026-11-08T15:26:47.185939+09:00",
     "multi": false,
-    "cls": "3c63a0835c7d",
+    "cls": "6d2b635055bb",
     "issue": 576,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-08T15:36:57.999543+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   }
 }
