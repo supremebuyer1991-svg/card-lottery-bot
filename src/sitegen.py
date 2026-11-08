@@ -2089,6 +2089,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                    + _price_anchor(x, name, sm, tag, raff, info0.get("release"), g) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag))
             alias = (s.get("rakuten_aliases") or {}).get(x) or al_g.get(x)
             info = (_ser_cfg()["info"].get(g) or {}).get(x) or {}
+            rel_x0 = str(info.get("release") or "")[:10]
             on_ = sum(1 for i in si if i.get("channel") != "store")
             sts = stores_of(si)
             info_rows = [("商品名", f"{name} {info.get('type') or ''}「{x}」".replace("  ", " "))]
@@ -2099,6 +2100,25 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
+            # 11/8：新弾ページを強く。settings.yaml の series_info に about（説明）・points（ポイント）・faq を書いた弾は、その説明を出す
+            code_x = (re.search(r"【([A-Z]{2,4}-\d{2})】", info.get("type") or "") or [None, None])[1]
+            code_b = f"【{code_x}】" if code_x and code_x not in x else ""
+            about_html = ""
+            if info.get("about") or info.get("points"):
+                about_html = ('<section class="sinfo sabout" aria-label="どんな弾か"><h2>' + escape(x) + code_b + 'ってどんな弾？</h2>'
+                              + "".join(f"<p>{escape(t)}</p>" for t in (info.get("about") or []))
+                              + ("<ul>" + "".join(f"<li>{escape(t)}</li>" for t in info["points"]) + "</ul>" if info.get("points") else "")
+                              + "</section>")
+            # これから発売の同じゲームの弾（新弾どうしをつないで、まとめて読まれるように）
+            up_ = sorted(((v.get("release"), k) for k, v in ((_ser_cfg()["info"].get(g) or {}).items())
+                          if str(v.get("release") or "") > today_d and k != x), key=lambda t: t[0])[:6]
+            next_html = ""
+            if up_ and (not rel_x0 or rel_x0 > (now().date() - __import__("datetime").timedelta(days=60)).isoformat()):
+                next_html = ('<section class="sinfo snext" aria-label="これから発売の弾"><h2>これから発売の' + escape(short) + 'の新弾</h2><ul>'
+                             + "".join(f'<li><a href="/{series_path(g, k)}">{escape(k)}</a>'
+                                       + (f'<span>{escape(((re.search(r"【([A-Z]{2,4}-[0-9]{2})】", (_ser_cfg()["info"][g][k].get("type") or "")) or [None, ""])[1]))}</span>')
+                                       + f'<b>{escape(jdate(r_))}</b></li>' for r_, k in up_)
+                             + f'</ul><p class="more"><a href="/calendar/">発売日カレンダーをすべて見る ›</a></p></section>')
             # ページの一番上：発売日・定価・相場・受付中の抽選をひと目で（相場は下の相場の欄へ飛ぶ）
             q_ = []
             if info.get("release"):
@@ -2145,28 +2165,29 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             # 11/8 Fable：店頭が9割の弾でも「ネット抽選」から開いて数件しか見えなかったので、多いほうから開く
             write(series_path(g, x), {"game": g, "series": x, "channel": "store" if sum(1 for i in si if i.get("channel") == "store") * 2 > len(si) else "online"}, {
                 "og_image": f"{site}/{og_rel}" if og_rel else None,
-                "title": (f"【{short}】{x}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
+                "title": (f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
+                          f"【{short}】{x}{code_b}の予約・抽選情報まとめ｜{int(rel_x0[5:7])}月{int(rel_x0[8:10])}日発売・定価｜トレカ抽選ナビ" if rel_x0 > today_d else
                           (f"【{short}】{x}のBOX相場・高額カード" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"
                            if sm and str(info.get("release") or "") < cut90 else  # 古い弾は「抽選」より「相場」で探される（11/7）
                            f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ")),
                 "desc": (f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
                          f"の抽選販売・予約・再販情報を1日6回更新。" + ("・".join(sts) + "など" if sts else "") +
                          f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。") if si else
-                        (f"{name}「{x}」の抽選販売・予約情報をまとめるページです。" +
+                        (f"{name}「{x}」{code_b}の予約・抽選情報をまとめるページです。" + (info.get("hook") or ((info.get("about") or [""])[0].split("。")[0] + "。" if info.get("about") else "")) +
                          (f"発売日は{jdate(info['release'])}" + (f"、希望小売価格は{info['price']}" if info.get("price") else "") + "。" if info.get("release") else "") +
                          "抽選・予約が始まり次第、お店ごとの締切・応募方法をここに自動で載せます。"),
                 "summary": summary(si, f"「{x}」の抽選"),
-                "faq": ([(f"「{x}」のBOXの相場はいくらですか？",
+                "faq": [tuple(q) for q in (info.get("faq") or [])] + ([(f"「{x}」のBOXの相場はいくらですか？",
                           f"スニダンで{_md(sm['date'])}に成立した1個の取引の平均は{_yen(sm['price'])}です" +
                           (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
                           "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
-                "info_html": (info_html + stat_html + ser_hist_html(g, x, info.get("release"))) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
-                "h1": f"【{short}】{x}の抽選販売・予約の最新情報まとめ",
+                "info_html": (about_html + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
+                "h1": f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1日6回更新）。"),
-                "aff": quick_html + sh_link + _ser_areas(g, slug, x, si) + _ser_chains(g, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
+                "aff": quick_html + sh_link + ("" if si else about_html) + _ser_areas(g, slug, x, si) + _ser_chains(g, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
                                                      + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"), g)
-                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + info_html + stat_html + ser_hist_html(g, x, info.get("release"))),
+                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
