@@ -1086,9 +1086,10 @@ def _ser_areas(game, slug, series, si):
     if not cnt or game not in ("pokemon", "onepiece"):
         return ""
     order = list(PREF)
-    return ('<nav class="ser-areas" aria-label="店頭抽選がある都道府県"><b>「' + escape(series) + '」の店頭抽選がある都道府県</b>' +
+    # 11/8 Fable：一覧に着くまでが長いので閉じて始める（中のリンクはそのまま）
+    return (f'<details class="ser-areas"><summary>「{escape(series)}」の店頭抽選がある都道府県（{len(cnt)}）</summary><nav aria-label="店頭抽選がある都道府県">' +
             "".join(f'<a href="/{slug}/area/{PREF[a]}/">{escape(a)}<span>{n}</span></a>' for a, n in sorted(cnt.items(), key=lambda kv: order.index(kv[0]))) +
-            "</nav>")
+            "</nav></details>")
 
 
 def _ser_chains(game, series, si):
@@ -1098,9 +1099,9 @@ def _ser_chains(game, series, si):
     if not cnt or game not in ("pokemon", "onepiece"):
         return ""
     top = sorted(cnt, key=lambda c: (not CHAIN[c][3], -cnt[c]))[:10]
-    return ('<nav class="ser-areas" aria-label="抽選があるお店（チェーン）"><b>「' + escape(series) + '」の抽選があるお店</b>' +
+    return (f'<details class="ser-areas"><summary>「{escape(series)}」の抽選があるお店（{len(top)}）</summary><nav aria-label="抽選があるお店（チェーン）">' +
             "".join(f'<a href="{_cgp(c, game)}">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{cnt[c]}</span></a>' for c in top) +
-            "</nav>")
+            "</nav></details>")
 
 
 def _links(title, pairs):
@@ -1570,7 +1571,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                    "games": [{"id": g, "name": GAME_SHORT[g], "tab": GAME_TAB.get(g, GAME_SHORT[g])} for g in games],
                    "gameUrls": {"all": "/", **{g: f"/{GAME_SLUG[g]}/" for g in games}}, "items": items,
                    "gameNames": {g: s["game_names"][g] for g in games},
-                   "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "amazonInvites": amazon_invites(items, tag) if tag else {},
+                   "chains": {c[0]: [c[1], bool(c[3])] for c in CHAINS}, "amazonTag": tag or "", "rakAff": raff or "", "amazonInvites": amazon_invites(items, tag) if tag else {},
                    "souba": {k: [v.get("teika"), v["price"]] for k, v in souba_sm.items() if v.get("price")}}
     urls = []
     # 11/7 監査：中身が本当に変わった日を lastmod・dateModified にする（毎回「今日」だとGoogleがlastmodを信用しなくなる）
@@ -1787,7 +1788,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "1日6回（朝7時〜夜22時）自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "supply": _supply_ad(short, name, tag, raff, prices, g),
+                "supply_bottom": _supply_ad(short, name, tag, raff, prices, g),  # 11/8 Fable：一覧の後へ
                 "topsq": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
@@ -1798,7 +1799,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                        h1="トレカの抽選情報まとめ",
                        lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
-            top["supply"] = _supply_ad(short, name, tag, raff, prices, g)
+            top["supply_bottom"] = _supply_ad(short, name, tag, raff, prices, g)
             # トップ：ゲームごとの相場の枠を全部入れておき、上のタブで選んだゲームの枠だけ見せる
             strips = []
             for gg in games:
@@ -2572,9 +2573,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                   + (f"いま受付中の抽選は{n_}件あります。" if n_ else "抽選・予約の情報が見つかり次第、弾のページに載せます。")))
             up_items = [i for i in items if any(t[0] > today_c and t[1] == i["game"] and t[2] in (i.get("sers") or [i.get("series")]) for t in rows_c)]
             write("calendar/", {"game": games[0], "subset": True}, {
-                "title": f"ポケカ・ワンピースカード 発売日カレンダー【{now().year}年{now().month}月更新】新弾の発売日・定価・抽選情報｜トレカ抽選ナビ",
+                # 11/8 Fable：「ポケカ 発売日 2026」で探す人に、年の一覧だと伝わるタイトルに
+                "title": f"ポケカ・ワンピースカード 発売日一覧 {now().year}年〜{now().year + 1}年｜新弾スケジュールと定価・抽選【{now().month}月更新】｜トレカ抽選ナビ",
                 "desc": "ポケカ・ワンピースカードの新弾・新商品の発売日と希望小売価格を月ごとにまとめたカレンダー。発売前の弾の抽選・予約の受付状況も1日6回更新。",
-                "summary": "", "faq": faq_c or None, "h1": "ポケカ・ワンピースカード 発売日カレンダー",
+                "summary": "", "faq": faq_c or None, "h1": f"ポケカ・ワンピースカード 発売日一覧（{now().year}〜{now().year + 1}年）",
                 "lead": "新弾の発売日・定価・抽選の受付状況をまとめています。下には発売前の弾の受付中の抽選を載せています。",
                 "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"}, up_items,
                 [("トップ", ""), ("発売日カレンダー", "calendar/")])

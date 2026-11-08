@@ -59,19 +59,27 @@ export async function sendPush(env, sub, msg) {
   return r.status;
 }
 
-// 1件の抽選の、通知する時刻（ミリ秒）：前日20時（締切が翌日以降のとき）と3時間前
-function dues(end) {
-  const e = Date.parse(end);
-  if (!e) return [];
-  const out = [[e - 3 * 3600e3, "3h"]];
-  const d = new Date(e + JST); // JSTの日付
-  const eve = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - 1, 20) - JST;
-  if (eve < e - 6 * 3600e3) out.push([eve, "d"]);
+// 1件の抽選の、通知する時刻（ミリ秒）：前日20時（締切が翌日以降のとき）・3時間前・結果発表の日
+// 11/8 Fable：「応募した」の人に本当に要るのは結果の確認。発表日がわかればその日の朝10時、わからなければ締切の翌日の夜に「結果を確認」
+function dues(end, ann) {
+  const e = Date.parse(end), out = [];
+  if (e) {
+    out.push([e - 3 * 3600e3, "3h"]);
+    const d = new Date(e + JST); // JSTの日付
+    const eve = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - 1, 20) - JST;
+    if (eve < e - 6 * 3600e3) out.push([eve, "d"]);
+  }
+  const a = ann ? Date.parse(ann + "T10:00:00+09:00") : 0;
+  if (a) out.push([a, "r"]);
+  else if (e) {
+    const d = new Date(e + JST);
+    out.push([Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1, 20) - JST, "c"]);
+  }
   return out;
 }
 function nextDue(rec, now) {
   let n = Infinity;
-  for (const it of rec.it) for (const [t, kind] of dues(it.e)) if (t > now - 2 * 3600e3 && !rec.sent[it.k + kind]) n = Math.min(n, t);
+  for (const it of rec.it) for (const [t, kind] of dues(it.e, it.a)) if (t > now - 2 * 3600e3 && !rec.sent[it.k + kind]) n = Math.min(n, t);
   return n;
 }
 async function saveRec(env, id, rec, now) {
@@ -99,13 +107,14 @@ export async function pushApi(req, env, path, hdr) {
   const it = (Array.isArray(b.items) ? b.items : []).slice(0, 60).map((x) => ({
     k: String(x.k || "").replace(/[^\w-]/g, "").slice(0, 40), e: String(x.e || "").slice(0, 40),
     t: String(x.t || "").slice(0, 80), u: String(x.u || "").replace(/[^\w\-/.%]/g, "").slice(0, 120),
-  })).filter((x) => x.k && Date.parse(x.e) > now);
+    a: /^\d{4}-\d{2}-\d{2}$/.test(String(x.a || "")) ? String(x.a) : "",
+  })).filter((x) => x.k && (Date.parse(x.e) > now || (x.a && Date.parse(x.a + "T23:59:00+09:00") > now) || Date.parse(x.e) > now - 2 * 86400e3));
   const old = (await env.STATE.get("ps:" + id, "json")) || { sent: {} };
   const rec = { s: { endpoint: sub.endpoint, keys: { p256dh: sub.keys.p256dh, auth: sub.keys.auth } }, it, sent: {}, at: new Date(now).toISOString() };
-  for (const x of it) for (const kind of ["3h", "d"]) if (old.sent?.[x.k + kind]) rec.sent[x.k + kind] = 1;
+  for (const x of it) for (const kind of ["3h", "d", "r", "c"]) if (old.sent?.[x.k + kind]) rec.sent[x.k + kind] = 1;
   await saveRec(env, id, rec, now);
   let st = 0;
-  if (b.hello) st = await sendPush(env, rec.s, { title: "🔔 締切の通知をオンにしました", body: it.length ? `応募したリストの${it.length}件の抽選の、締切の前日夜と3時間前にお知らせします。` : "「☐ 応募した」を押した抽選の、締切の前日夜と3時間前にお知らせします。", url: "/mylist/", tag: "hello" });
+  if (b.hello) st = await sendPush(env, rec.s, { title: "🔔 締切の通知をオンにしました", body: it.length ? `応募したリストの${it.length}件の抽選の、締切前と結果発表の日にお知らせします。` : "「☐ 応募した」を押した抽選の、締切前と結果発表の日にお知らせします。", url: "/mylist/", tag: "hello" });
   return Response.json({ ok: true, n: it.length, hello: st }, { headers: hdr });
 }
 
@@ -121,14 +130,16 @@ export async function runPush(env) {
       const rec = await env.STATE.get(key.name, "json");
       if (!rec) continue;
       const due = [];
-      for (const it of rec.it) for (const [t, kind] of dues(it.e)) if (t <= now && t > now - 2 * 3600e3 && !rec.sent[it.k + kind]) due.push([it, kind]);
+      for (const it of rec.it) for (const [t, kind] of dues(it.e, it.a)) if (t <= now && t > now - 2 * 3600e3 && !rec.sent[it.k + kind]) due.push([it, kind]);
       let gone = false;
       for (const [it, kind] of due) {
         const e = new Date(Date.parse(it.e) + JST);
         const hm = `${e.getUTCMonth() + 1}/${e.getUTCDate()} ${e.getUTCHours()}:${String(e.getUTCMinutes()).padStart(2, "0")}`;
-        const msg = kind === "3h"
-          ? { title: "⏰ 締切まであと3時間", body: `${it.t}\n締切 ${hm}。応募がまだなら今のうちに！`, url: "/" + it.u.replace(/^\//, ""), tag: it.k }
-          : { title: "📅 明日が締切の抽選があります", body: `${it.t}\n締切 ${hm}`, url: "/" + it.u.replace(/^\//, ""), tag: it.k };
+        const u = "/" + it.u.replace(/^\//, "");
+        const msg = kind === "3h" ? { title: "⏰ 締切まであと3時間", body: `${it.t}\n締切 ${hm}。応募が済んでいなければ今のうちに`, url: u, tag: it.k }
+          : kind === "d" ? { title: "📅 明日が締切の抽選があります", body: `${it.t}\n締切 ${hm}`, url: u, tag: it.k }
+          : kind === "r" ? { title: "📣 今日は結果発表の日です", body: `${it.t}\nお店のメール・アプリ・告知で当落を確認しましょう`, url: "/mylist/", tag: it.k + "r" }
+          : { title: "📣 抽選の結果、出ていませんか？", body: `${it.t}\n${hm}に締切でした。当選メールやお店の告知を確認しましょう`, url: "/mylist/", tag: it.k + "c" };
         let st = 0;
         try { st = await sendPush(env, rec.s, msg); } catch { st = 0; }
         if (st === 404 || st === 410) { gone = true; break; }

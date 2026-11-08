@@ -12,13 +12,23 @@
   var reg = null;
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").then(function (r) { reg = r; afterReg(); }).catch(function () { box(); });
 
+  // 「11/4(水)23時頃」のような発表日も日付（YYYY-MM-DD）にする（11/8：結果発表の日に通知）
+  function annOf(o) {
+    var a = o.announce; if (!a) return "";
+    if (/^\d{4}-\d{2}-\d{2}/.test(a)) return a.slice(0, 10);
+    var m = String(a).match(/(\d{1,2})\s*[\/月]\s*(\d{1,2})/); if (!m) return "";
+    var e = o.end ? new Date(o.end) : new Date(), y = e.getFullYear(), r = new Date(y, +m[1] - 1, +m[2]);
+    if (r < new Date(e.getFullYear(), e.getMonth(), e.getDate() - 1)) r = new Date(y + 1, +m[1] - 1, +m[2]);
+    return r.getFullYear() + "-" + ("0" + (r.getMonth() + 1)).slice(-2) + "-" + ("0" + r.getDate()).slice(-2);
+  }
   function items() {
     var a = {}; try { a = JSON.parse(g(K) || "{}") || {}; } catch (e) {}
     var now = Date.now(), out = [];
     Object.keys(a).forEach(function (k) {
       var o = a[k]; if (!o || typeof o !== "object" || !o.end) return;
-      if (Date.parse(o.end) <= now) return;
-      out.push({ k: k, e: o.end, t: (o.store || "抽選") + "「" + (o.series || o.product || "") + "」", u: o.lpath || "mylist/" });
+      var an = annOf(o), en = Date.parse(o.end);
+      if (en <= now - 2 * 864e5 && !(an && Date.parse(an + "T23:59:00+09:00") > now)) return;  // 締切も発表日も過ぎたものは送らない
+      out.push({ k: k, e: o.end, a: an, t: (o.store || "抽選") + "「" + (o.series || o.product || "") + "」", u: o.lpath || "mylist/" });
     });
     return out;
   }
@@ -85,7 +95,7 @@
   function nudge() {
     if (recent("tnp_nudge", 14) || location.pathname.indexOf("/mylist") === 0) return;
     state().then(function (st) {
-      if (st === "off") bar("🔔 締切の前日夜と3時間前に通知しましょうか？（応募のし忘れ防止）", "通知を受け取る", function () { enable().then(function (r) { if (r === "on") bar("🔔 通知をオンにしました。応募したリストの締切前にお知らせします。"); }); }, "tnp_nudge");
+      if (st === "off") bar("🔔 締切前と結果発表の日に通知しましょうか？（当選メールの見逃し防止）", "通知を受け取る", function () { enable().then(function (r) { if (r === "on") bar("🔔 通知をオンにしました。応募したリストの締切前にお知らせします。"); }); }, "tnp_nudge");
       else if (st === "ios") bar("🔔 iPhoneはホーム画面に追加すると、締切前の通知を受け取れます", "やり方を見る", function () { location.href = "/mylist/#push"; }, "tnp_nudge");
       if (st === "off" || st === "ios") s("tnp_nudge", String(Date.now()));
     });
@@ -110,11 +120,11 @@
     var el = document.getElementById("pushbox"); if (!el) return;
     addCss(); el.className = "tnp-box"; el.id = "push";
     state().then(function (st) {
-      if (st === "on") { el.innerHTML = '<span class="ok">🔔 締切の通知はオンです</span>　リストに入れた抽選の、締切の前日夜（20時）と3時間前にお知らせします。<small>止めたいときは、ブラウザの設定でこのサイトの通知をオフにしてください。</small>'; sync(); return; }
+      if (st === "on") { el.innerHTML = '<span class="ok">🔔 締切の通知はオンです</span>　リストに入れた抽選の、締切の前日夜（20時）と3時間前、結果発表の日にお知らせします。<small>止めたいときは、ブラウザの設定でこのサイトの通知をオフにしてください。</small>'; sync(); return; }
       if (st === "denied") { el.innerHTML = "<b>🔕 通知がブロックされています</b>ブラウザの設定で、このサイト（tcg-chusen.com）の通知を「許可」にすると、締切前にお知らせできます。"; return; }
       if (st === "ios") { el.innerHTML = "<b>🔔 締切前に通知を受け取る（iPhone）</b>iPhoneは、このサイトを<b style=\"display:inline\">ホーム画面に追加</b>すると通知を受け取れます（iOS 16.4以降）。" + IOS_HOW; return; }
       if (st === "unsupported") { el.innerHTML = "<b>🔔 締切前の通知</b>このブラウザは通知に対応していません。Chrome・Safari（ホーム画面に追加）・Edgeなどで開いてください。下の「カレンダーに入れる」でも締切前に通知できます。"; return; }
-      el.innerHTML = "<b>🔔 応募のし忘れ・締切を通知でお知らせ</b>リストに入れた抽選の、<b style=\"display:inline\">締切の前日夜（20時）と3時間前</b>にスマホ・パソコンに通知が届きます。会員登録はいりません。" +
+      el.innerHTML = "<b>🔔 応募のし忘れ・締切を通知でお知らせ</b>リストに入れた抽選の、<b style=\"display:inline\">締切の前日夜（20時）と3時間前、結果発表の日</b>にスマホ・パソコンに通知が届きます。会員登録はいりません。" +
         '<button type="button">通知を受け取る</button><small>名前やメールアドレスは送りません。いつでもブラウザの設定で止められます。</small>';
       el.querySelector("button").onclick = function () { this.disabled = true; this.textContent = "設定中…"; enable().then(function () { box(); }); };
     });

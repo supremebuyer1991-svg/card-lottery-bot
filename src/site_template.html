@@ -153,7 +153,7 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 .news { margin-top: 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
 .news-h { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font-size: 12px; border-bottom: 1px solid var(--rule); background: var(--navy-soft); }
 .news-h b { font-size: 12px; } .news-h span { color: var(--ink-2); font-size: 11px; }
-.news-win { --row: 30px; height: calc(var(--row) * 5); overflow: hidden; }
+.news-win { --row: 30px; height: calc(var(--row) * 3); overflow: hidden; }
 .news.still .news-win { height: auto; }
 #news-list { list-style: none; margin: 0; padding: 0; will-change: transform; }
 #news-list li { height: var(--row); border-bottom: 1px dashed var(--rule); }
@@ -165,9 +165,9 @@ nav.games .n { font-family: var(--font-num); font-size: 12px; margin-left: 4px; 
 #news-list em { font-style: normal; color: var(--red); font-weight: 700; }
 
 /* 締切間近・新着（横スワイプ） */
-.hot { margin-top: 14px; }
+section.hot { margin-top: 14px; }
 .hot-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
-.hot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+section.hot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 .hot-b { min-width: 0; }
 .hot-b h2 { margin: 0; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
 .hot-b h2 span { font-family: var(--font-num); font-size: 11px; font-weight: 600; color: var(--card); background: var(--ink-2); border-radius: 999px; padding: 1px 7px; }
@@ -422,7 +422,9 @@ input[type="search"] { flex: 1 1 160px; }
 .calsub .btn { display: inline-block; margin: 6px 6px 0 0; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 800; text-decoration: none; background: var(--red); color: #fff; }
 .calsub .btn[data-k="g"] { background: #1a73e8; } .calsub select { font-size: 14px; padding: 4px; max-width: 100%; }
 .ml-link { grid-column: 1 / -1; display: block; background: var(--card); text-align: center; font-size: 13px; font-weight: 700; padding: 8px; color: var(--red); text-decoration: none; border-top: 1px solid var(--rule); }
-.ser-areas { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 10px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
+.ser-areas { margin: 0 0 10px; padding: 10px 12px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; }
+.ser-areas summary { font-weight: 700; font-size: 13px; cursor: pointer; }
+.ser-areas nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .ser-areas b { flex-basis: 100%; font-size: 13px; } .ser-areas a { font-size: 13px; text-decoration: none; color: var(--ink); background: var(--navy-soft); border-radius: 999px; padding: 3px 10px; }
 .ser-areas a span { margin-left: 4px; font-family: var(--font-num); font-weight: 700; color: var(--red); }
 .none-area { margin: 0 0 10px; padding: 12px 14px; background: var(--card); border: 1px dashed var(--rule); border-radius: 12px; font-size: 14px; color: var(--ink-2); }
@@ -486,6 +488,8 @@ input[type="search"] { flex: 1 1 160px; }
 .sns a { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 8px; border-radius: 10px; font-size: 12.5px; font-weight: 800; text-decoration: none; white-space: nowrap; overflow: hidden; }
 .sns a b { font-size: 13px; } .sns a small { font-size: 10.5px; font-weight: 600; opacity: .8; }
 .sns-x { background: #000; color: #fff; } .sns-line { background: #04883c; color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sns-x { background: #fff; color: #000; } }
+:root[data-theme="dark"] .sns-x { background: #fff; color: #000; }
 @media (max-width: 420px) { .sns-x small, .sns-line small { display: none; } .sns a { font-size: 12px; letter-spacing: -0.02em; } }
 .ctabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; margin: 4px 0 12px; padding: 4px; background: var(--navy-soft); border-radius: 999px; }
 .ctabs a { text-align: center; padding: 8px 4px; border-radius: 999px; font-weight: 800; font-size: 14px; color: var(--ink-2); text-decoration: none; }
@@ -524,6 +528,16 @@ input[type="search"] { flex: 1 1 160px; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq details p { margin: 0; padding: 0 14px 12px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
 .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--rule); border-radius: 10px; }
+.go.rakb { background: #bf0000; color: #fff; }
+/* 11/8 Fable：押しやすい大きさ（31px→40px） */
+.toggle { min-height: 40px; padding: 6px 14px; font-size: 14px; }
+.toggle input { width: 18px; height: 18px; }
+.more-f { min-height: 40px; padding: 6px 14px; }
+.empty.next { text-align: left; padding: 16px; font-size: 13.5px; }
+.empty.next b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 4px; }
+.empty-acts { display: grid; gap: 8px; margin-top: 12px; }
+.empty-acts a { display: block; text-align: center; text-decoration: none; font-weight: 700; border-radius: 10px; padding: 12px; border: 1px solid var(--rule); color: var(--ink); background: var(--card); }
+.empty-acts a.go { background: var(--red); color: #fff; border-color: var(--red); }
 
 /* メニュー（ページ下部と、ヘッダーのボタンで開くシート） */
 .foot-nav { padding-block: 8px 20px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; color: var(--ink); font-size: 14px; }
@@ -683,7 +697,6 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
 
 <main class="wrap">
   <section class="news" id="news" aria-label="更新情報" hidden><div class="news-h"><b>更新情報</b><span id="news-n"></span></div><div class="news-win"><ul id="news-list"></ul></div></section>
-  __TOPSQ__
   <section class="lead">
     __CRUMBS__
     <h1>__H1__</h1>
@@ -699,8 +712,8 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   <div class="filters">
     <div class="row">
       <div class="seg" id="channel">
-        <button type="button" data-v="online" aria-pressed="true" title="当選したら自宅に発送">ネット抽選<small>発送</small></button>
-        <button type="button" data-v="store" aria-pressed="false" title="受け取りは店頭（応募はWeb・アプリ・店頭など）">店頭抽選<small>店頭受取</small></button>
+        <button type="button" data-v="online" aria-pressed="true" title="当選したら自宅に発送">ネット抽選<small id="n-on">発送</small></button>
+        <button type="button" data-v="store" aria-pressed="false" title="受け取りは店頭（応募はWeb・アプリ・店頭など）">店頭抽選<small id="n-st">店頭受取</small></button>
       </div>
       <input type="search" id="q" placeholder="店舗・商品で検索" aria-label="店舗・商品で検索">
     </div>
@@ -734,6 +747,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   <div class="sortbar"><span id="list-n"></span><label class="sort"><span>並び順</span><select id="f-sort" aria-label="並び順"><option value="end">締切が近い順</option><option value="rec">おすすめ順</option><option value="new">新しい順</option></select></label></div>
   <div class="list" id="list">__PRERENDER__</div>
   __SUPPLY_BOTTOM__
+  __TOPSQ__
   __FAQ__
 
   <dialog class="sheet" id="menu-sheet" aria-label="抽選をさがす"><div class="sheet-h"><b>抽選をさがす</b><button type="button" id="menu-close">閉じる</button></div><div class="sheet-b" id="menu-body"></div></dialog>
@@ -783,7 +797,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
 
   var applied = load("lot_applied", {});
   var LOCK = DATA.lock || {};
-  var st = Object.assign({ game: DATA.defaultGame || GAMES[0].id, channel: "online", region: "", area: "", q: "", series: "" },
+  var st = Object.assign({ game: DATA.defaultGame || GAMES[0].id, channel: "", region: "", area: "", q: "", series: "" },
     LOCK.game ? {} : (function (v) { if (DATA.defaultGame) delete v.game; return v; })(load("lot_view", {})), LOCK);  // トップは毎回「すべて」で開く
   if (!LOCK.game && location.hash && GAMES.some(function (g) { return "#" + g.id === location.hash; })) st.game = location.hash.slice(1);
   // このページに入っていないゲームが選ばれていたら、入っているゲームに戻す（ほかのゲームはタブでそのページへ）
@@ -800,12 +814,25 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     ["九州・沖縄", ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"]]];
   var REG = {}, PREF_ORDER = [];
   REGIONS.forEach(function (r) { r[1].forEach(function (p) { REG[p] = r[0]; PREF_ORDER.push(p); }); });
-  // 11/8：弾・ゲームのページでも、前に選んだ地域を覚えておく（その地域の店頭抽選があるときだけ）
+  // 11/8 Fable：受け取り方が決まっていないページ（/pokeka/ /onepiece/ /today/ など）は、前回選んだ方 → なければ件数が多い方で開く
+  //   （/onepiece/ が「ネット10件」で開いて店頭の181件が隠れていた）。前回の地域も、その地域の店頭抽選があれば使う
   (function () {
-    if (!LOCK.game || LOCK.area || LOCK.store || LOCK.chain || st.channel !== "store") return;
-    var lv = load("lot_view", {}), r = lv.area ? REG[lv.area] : lv.region;
-    if (r && items.some(function (i) { return i.channel === "store" && areasOf(i).some(function (p) { return REG[p] === r; }); })) { st.region = r; st.area = ""; }
+    var lv = load("lot_view", {});
+    var mh = /(?:^|[#&])area=([^&]+)/.exec(decodeURIComponent(location.hash || ""));  // 弾ページの都道府県チップ（#area=東京都）
+    if (mh && REG[mh[1]] && !LOCK.area && !LOCK.store) { st.channel = "store"; st.area = mh[1]; st.region = REG[mh[1]]; return; }
+    if (!st.channel) {
+      var now = Date.now(), live = items.filter(function (i) { return !i.end || Date.parse(i.end) > now; });
+      var nSt = live.filter(function (i) { return i.channel === "store"; }).length;
+      st.channel = lv.channel || (nSt * 2 > live.length ? "store" : "online");
+    }
+    if (st.channel !== "store" || LOCK.area || LOCK.store || LOCK.chain || st.area || st.region) return;
+    var r = lv.area ? REG[lv.area] : lv.region;
+    if (r && items.some(function (i) { return i.channel === "store" && areasOf(i).some(function (p) { return REG[p] === r; }); })) {
+      st.region = r;
+      st.area = (lv.area && items.some(function (i) { return areasOf(i).indexOf(lv.area) >= 0; })) ? lv.area : "";
+    }
   })();
+  window.addEventListener("hashchange", function () { if (/area=/.test(location.hash)) location.reload(); });
   if (st.area && REG[st.area]) st.region = REG[st.area];
   // 店頭抽選の対象の都道府県（1店舗なら area、複数店舗なら条件の「対象地域：〇〇・〇〇」から）
   function areasOf(i) {
@@ -885,19 +912,24 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   // 抽選5件ごとに1つ、Amazonの紹介（直前5件で一番多い弾）
   var AD_EVERY = 8;  // 11/7：5件ごとだと多すぎて見られなくなる（広告の見慣れ）
   function feedAd(chunk) {
-    if (!DATA.amazonTag) return "";
-    var c = {}, best = "", g = (DATA.gameNames || {})[st.game] || "";
+    // 11/8 Fable：ただの「Amazonでさがす」をやめて、定価・相場つきの「外れたときの買い方」に（定価がわかる弾だけ）
+    if (!DATA.amazonTag && !DATA.rakAff) return "";
+    var c = {}, best = "";
     chunk.forEach(function (i) { if (i.series) { c[i.series] = (c[i.series] || 0) + 1; if (!best || c[i.series] > c[best]) best = i.series; } });
-    var q = best ? g + " " + best : g + " BOX";
-    var url = "https://www.amazon.co.jp/s?k=" + encodeURIComponent(q) + "&tag=" + encodeURIComponent(DATA.amazonTag);
-    var g2 = { pokemon: "ポケモンカードゲーム", onepiece: "ONE PIECEカードゲーム", dragonball: "ドラゴンボールスーパーカードゲーム フュージョンワールド" }[st.game] || g;
-    return '<article class="ticket feed">' +
+    var gm = (chunk[0] && chunk[0].game) || st.game, m = best ? (DATA.souba || {})[gm + "|" + best] : null;  // [定価, 相場]
+    if (!m || !m[0]) return "";
+    var full = { pokemon: "ポケモンカードゲーム", onepiece: "ONE PIECEカードゲーム", dragonball: "ドラゴンボールスーパーカードゲーム フュージョンワールド" }[gm] || "";
+    var q = full + " " + best, rkb = "https://books.rakuten.co.jp/search?sitem=" + encodeURIComponent(q);
+    if (DATA.rakAff) rkb = "https://hb.afl.rakuten.co.jp/hgc/" + DATA.rakAff + "/?pc=" + encodeURIComponent(rkb) + "&m=" + encodeURIComponent(rkb);
+    var amz = DATA.amazonTag ? "https://www.amazon.co.jp/s?k=" + encodeURIComponent(q) + "&tag=" + encodeURIComponent(DATA.amazonTag) : "";
+    return '<article class="ticket feed" data-pl="feed">' +
       '<div class="stub"><span class="cd">PR</span></div>' +
-      '<div class="body"><div class="info"><div class="store">Amazon</div>' +
-      '<div class="product">' + esc(g2) + '「' + esc(best || "最新弾") + '」をAmazonでさがす（抽選に外れたとき用）</div>' +
-      '<div class="flow"><span>Web購入</span><i aria-hidden="true">→</i><span class="sh">発送</span></div>' +
+      '<div class="body"><div class="info"><div class="store">抽選に外れたときの買い方</div>' +
+      '<div class="product">「' + esc(best) + '」定価 ¥' + Number(m[0]).toLocaleString() + (m[1] ? '／いまの相場 ¥' + Number(m[1]).toLocaleString() : '') + '</div>' +
+      '<div class="flow"><span>定価の店は売り切れでも、キャンセル分で在庫が戻ることがあります</span></div>' +
       '</div></div>' +
-      '<div class="acts"><a class="go amz" href="' + esc(url) + '" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a></div>' +
+      '<div class="acts"><a class="go rakb" href="' + esc(rkb) + '" target="_blank" rel="nofollow sponsored noopener">楽天ブックスで在庫を見る</a>' +
+      (amz ? '<a class="go amz" href="' + esc(amz) + '" target="_blank" rel="nofollow sponsored noopener">Amazon</a>' : '') + '</div>' +
     '</article>';
   }
   function withAds(arr, counter) {
@@ -1030,7 +1062,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
       '</div></div>' + condCells(it) +
       (condText(it) ? '<div class="cond tb-cond">' + esc(condText(it)) + '</div>' : "") +
       '<div class="acts tb-acts">' + (it.url ? '<a class="go tk" href="' + esc(it.url) + '" target="_blank" rel="noopener">応募する<i aria-hidden="true">→</i></a>' : '<span class="hint">応募先は店舗告知で確認</span>') +
-        '<button type="button" class="ap" title="応募済みの印をつける" aria-pressed="' + done + '">' + (done ? "✓ 応募した" : "☐ 応募した") + '</button>' +
+        '<button type="button" class="ap" title="応募済みの印をつけて、締切と結果発表日をリストで管理" aria-pressed="' + done + '">' + (done ? "✓ 応募済み" : "☐ 応募した") + '</button>' +
         (it.lpath ? '<a class="mi" href="/' + esc(it.lpath) + '">詳しく</a>' : "") +
         (cal ? '<a class="mi" href="' + cal + '" target="_blank" rel="noopener">カレンダー</a>' : "") + '</div>' +
     '</article>';
@@ -1076,19 +1108,25 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
         && (!LOCK.channel || (LOCK.channel === "store" ? i.channel === "store" : i.channel !== "store"));
     });
     var soon = g.filter(function (i) { return i._end && i._end > now && (LOCK.area ? isToday(i._end) : i._end - now < 48 * 3600e3); })
-      .sort(function (a, b) { return a._end - b._end; }).slice(0, 12);
+      .sort(function (a, b) { return a._end - b._end; }).slice(0, 8);
     var oneAmz = function (list) { var seen = false; return list.filter(function (i) { if (!isAmazon(i)) return true; if (seen) return false; seen = true; return true; }); };  // Amazonは1枚だけ（並ぶと見た目が悪い）
-    var fresh = oneAmz(g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); })).slice(0, 12);
+    var fresh = oneAmz(g.filter(isNew).sort(function (a, b) { return Date.parse(b.found_at) - Date.parse(a.found_at); })).slice(0, 8);
     var html = LOCK.area
       ? hotBlock("soon", "⏰ " + LOCK.area + "で今日締切", "今日が締切の抽選", soon, false) + hotBlock("fresh", LOCK.area + "の新着", (PREV_SEEN ? "前回見てから見つかった抽選" : "24時間以内に見つかった抽選"), fresh, true)
-      : hotBlock("fresh", "新着", (PREV_SEEN ? "前回見てから見つかった抽選" : "24時間以内に見つかった抽選"), fresh, true) + hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
+      : (PREV_SEEN && fresh.length) || !soon.length ? hotBlock("fresh", "新着", (PREV_SEEN ? "前回見てから見つかった抽選" : "24時間以内に見つかった抽選"), fresh, true)
+        : hotBlock("soon", "⏰ 締切間近", "48時間以内に締切", soon, false);
     $("hot").hidden = !html;
     $("hot").innerHTML = html;
   }
 
   function render() {
-    if (!LOCK.game) save("lot_view", { game: st.game, channel: st.channel, region: st.region, area: st.area });
-    else if (!LOCK.area && !LOCK.store && !LOCK.chain && st.channel === "store") { var lv = load("lot_view", {}); lv.region = st.region; lv.area = st.area; save("lot_view", lv); }
+    (function () {  // どのページでも、選んだ受け取り方と地域を覚える（お店・県が決まっているページの地域は除く）
+      var lv = load("lot_view", {});
+      if (!LOCK.game) lv.game = st.game;
+      if (!LOCK.channel) lv.channel = st.channel;
+      if (!LOCK.area && !LOCK.store && !LOCK.chain) { lv.region = st.region; lv.area = st.area; }
+      save("lot_view", lv);
+    })();
     var g = inGame();
     var gs = st.series ? g.filter(function (i) { return inSer(i, st.series); }) : g;
     // ゲームタブ
@@ -1116,6 +1154,10 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
         : ((DATA.gameCounts || {})[x.id] || 0);
       return '<button role="tab" type="button" data-g="' + x.id + '" aria-selected="' + (x.id === st.game) + '">' + esc(x.tab || x.name) + '<span class="n">' + n + '</span></button>';
     }).join("");
+    // 11/8 Fable：ネット/店頭のボタンに件数。サマリーも「いま表示している受け取り方」の数に（190件なのに10件、のずれをなくす）
+    var nOn = gs.filter(function (i) { return i.channel !== "store"; }).length;
+    if ($("n-on")) { $("n-on").textContent = "発送・" + nOn + "件"; $("n-st").textContent = "店頭受取・" + (gs.length - nOn) + "件"; }
+    gs = gs.filter(function (i) { return (i.channel === "store") === (st.channel === "store"); });
     // サマリー（地域をしぼっている時は、その地域の店頭抽選の数）
     if (st.channel === "store" && (st.area || st.region)) gs = gs.filter(function (i) {
       return i.channel === "store" && (st.area ? areasOf(i).indexOf(st.area) >= 0 : areasOf(i).some(function (p) { return REG[p] === st.region; }));
@@ -1157,7 +1199,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
         names.map(function (s) { return '<button type="button" data-s="' + esc(s) + '" aria-pressed="' + (s === st.series) + '">' + esc(s) + '<span class="c">' + ser[s] + '</span></button>'; }).join("") + '</div>' : "") : "";
     // ショップ別で探す：⭐おすすめ・大手を上に、そのほかのお店は件数が多い順
     var sh = {};
-    g.forEach(function (i) { if ((i.channel === "store" ? "store" : "online") === st.channel) { var k = shopKey(i); sh[k] = (sh[k] || 0) + 1; } });
+    g.forEach(function (i) { if ((i.channel === "store" ? "store" : "online") === st.channel && (st.channel !== "store" || (!st.area && !st.region) || (st.area ? areasOf(i).indexOf(st.area) >= 0 : areasOf(i).some(function (p) { return REG[p] === st.region; })))) { var k = shopKey(i); sh[k] = (sh[k] || 0) + 1; } });
     var shk = Object.keys(sh), big = shk.filter(shopBig).sort(function (a, b) { return sh[b] - sh[a]; }),
         rest = shk.filter(function (k) { return !shopBig(k); }).sort(function (a, b) { return sh[b] - sh[a]; });
     if (st.shop && !sh[st.shop]) st.shop = "";
@@ -1171,7 +1213,18 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     var list = filtered(), html = "";
     $("list-n").innerHTML = "<b>" + list.length + "</b>件";
     if (!list.length) {
-      html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
+      if (!inGame().length && (LOCK.chain || LOCK.store)) {  // 11/8 Fable：そのお店の抽選がいま無い（検索から来る人が多い）→ 次の一手を出す
+        var gid = st.game === "all" ? "pokemon" : st.game, gname = (DATA.gameNames || {})[gid] || "トレカ";
+        var gc = (DATA.gameCounts || {})[gid], xu = (document.querySelector(".sns-x") || {}).href;
+        html = '<div class="empty next"><b>いまは受付中の抽選がありません</b>新しい抽選が見つかり次第、ここに自動で追加されます（1日6回更新）。下の「これまでの抽選」が過去の傾向です。' +
+          '<div class="empty-acts">' +
+          (DATA.gameUrls && DATA.gameUrls[gid] ? '<a class="go" href="' + DATA.gameUrls[gid] + '">ほかのお店の' + esc(gname) + 'の抽選' + (gc ? " " + gc + "件" : "") + 'を見る →</a>' : '') +
+          (xu ? '<a href="' + esc(xu) + '" target="_blank" rel="noopener">𝕏 次の抽選が始まったら受け取る（フォロー）</a>' : '') +
+          '<a href="/mylist/">応募したリスト・結果発表日を見る</a></div></div>';
+        var pn = document.querySelector(".panel"); if (pn) pn.hidden = true;  // 0件のときに 0/0/0 の統計や絞り込みを出さない
+      } else {
+        html = '<div class="empty">条件に合う抽選はありません。<br>絞り込みを外すか、別の弾・地域を選んでください。</div>';
+      }
     } else if (st.channel === "store" && !st.area) {
       var by = {};
       // 都道府県が1つに決まらない抽選（全国チェーン・複数店舗など）は「複数地域」として一番上に
@@ -1245,7 +1298,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   }, true);
 
   // 更新情報（5行の枠で下から上に流れる）：新しく追加された抽選・まもなく受付終了の抽選
-  var NEWS_ROWS = 5, newsKey = "";
+  var NEWS_ROWS = 3, newsKey = "";
   function leftText(ms) {
     var m = Math.max(1, Math.round(ms / 60e3));
     return m < 60 ? m + "分" : Math.floor(m / 60) + "時間" + (m % 60 ? (m % 60) + "分" : "");
@@ -1272,7 +1325,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     $("news").hidden = !rows.length || !DATA.defaultGame;  // 更新情報はトップ（総合）だけに出す
     $("news-n").textContent = rows.length ? "終了間近 " + ending.length + "件・新着 " + added.length + "件" : "";
     var html = rows.map(function (r) {
-      return '<li class="' + r.cls + '"><a href="' + esc(r.i.url) + '" target="_blank" rel="noopener"><i>' + esc(r.tag) + '</i><span>' + r.t + '</span></a></li>';
+      return '<li class="' + r.cls + '"><a href="' + (r.i.lpath ? '/' + esc(r.i.lpath) : esc(r.i.url)) + '"' + (r.i.lpath ? '' : ' target="_blank" rel="noopener"') + '><i>' + esc(r.tag) + '</i><span>' + r.t + '</span></a></li>';
     }).join("");
     if (key !== newsKey) { newsKey = key; $("news-list").innerHTML = html; $("news").classList.toggle("still", rows.length <= NEWS_ROWS); }
     else {  // 並びはそのまま、残り時間の文字だけ更新
