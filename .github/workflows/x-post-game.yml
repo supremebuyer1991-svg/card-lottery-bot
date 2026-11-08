@@ -38,6 +38,8 @@ jobs:
           admin = hashlib.sha256((os.environ["X_API_KEY"].strip() + "game-watch").encode()).hexdigest()[:24]
           base = "https://game-watch.supreme-buyer-1991.workers.dev"
           mid, mw = os.environ.get("MARK_ID", "").strip(), os.environ.get("MARK_W", "az")
+          if os.environ["TEXT"].strip() == "-":   # 文面が「-」なら、印を付けるだけ（先に印を付けて、見張りの速報を止めておく）
+              print(requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre"}, timeout=15).text); raise SystemExit(0)
           if mid:
               r = requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre", "check": "1"}, timeout=15).json()
               if time.time() * 1000 - (r.get("postedAt") or 0) < 3600e3:
