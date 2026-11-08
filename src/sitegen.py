@@ -1013,6 +1013,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
               else '<meta name="robots" content="index,follow,max-image-preview:large">')]
     if meta.get("verify"):
         head.append(f'<meta name="google-site-verification" content="{escape(meta["verify"])}">')
+    head += meta.get("head_extra") or []  # 11/8：トップの hreflang など、ページ固有の <head> タグ
     for ld in meta.get("ld") or []:
         head.append('<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>")
     body = TEMPLATE.read_text(encoding="utf-8")
@@ -1844,6 +1845,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
                           "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
+            if site:  # 11/8：海外ページ（/en/ /zh-tw/ /ko/）からの hreflang に日本語トップが返す（双方向でないと Google が無視する）。中国語の言語コードは intl.py と同じ3つ
+                meta["head_extra"] = [f'<link rel="alternate" hreflang="{hl}" href="{site}/{sub}">' for hl, sub in
+                                      (("ja", ""), ("en", "en/"), ("zh-Hant", "zh-tw/"), ("zh-TW", "zh-tw/"), ("zh-HK", "zh-tw/"),
+                                       ("ko", "ko/"), ("x-default", "en/"))]  # 海外ページ側と同じ（/en/）にそろえる
         _nz = lambda t: re.sub(r"¥[\d,]+|\d{1,2}/\d{1,2}|\d{1,2}:\d{2}|\d+件", "", str(t or ""))  # 11/8 Fable：日付・値段・件数だけの違いは「更新」にしない
         sig = sha(json.dumps([re.sub(r"【[^】]*更新】", "", meta["title"]), meta.get("h1"), meta.get("lead"),
                               _nz(meta.get("info_html")), _nz(meta.get("aff")),
