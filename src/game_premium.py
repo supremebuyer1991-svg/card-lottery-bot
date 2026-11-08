@@ -126,7 +126,9 @@ def update(settings, fetch=None, sleep=None):
     if fetch is None and not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
         return g
     left = int(settings.get("premium_teika_per_run", 8))
-    order = sorted(g, key=lambda j: -g[j]["max"])   # 買取価格の高い商品から先に定価を調べる
+    # 定価を調べる順：プレ値になりやすい種類（限定・コラボ・たまごっち・GO Plus+ など）を先に、その中は買取価格の高い順
+    hot = re.compile(settings.get("premium_hot_words") or r"たまごっち|Tamagotchi|GO ?Plus|amiibo|限定|リミテッド|エディション|Edition|コラボ|セット|パック|Pro|ゼルダ|ポケモン|Xbox|Ally", re.I)
+    order = sorted(g, key=lambda j: (not any(hot.search(n) for n in g[j]["names"]), -g[j]["max"]))
     for jan in order:
         c = teika.get(jan)
         if c and parse_dt(c.get("at")) and (t - parse_dt(c["at"])).total_seconds() < 7 * 86400:
