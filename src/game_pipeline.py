@@ -97,6 +97,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             log(f"楽天の商品写真: スキップ {e}")
         import sitegen_game
         sitegen_game.build(s, out_dir=out_dir)
+        if out_dir is None:   # テストでサイトだけ作るときは投稿しない
+            try:  # Xの速報（@a9994aaa。鍵が無ければ文面を記録に出すだけ）
+                import game_xpost
+                game_xpost.post_speed(s)
+            except Exception as e:
+                log(f"X速報: スキップ {e}")
     log("完了")
 
 
