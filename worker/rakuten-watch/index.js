@@ -280,8 +280,8 @@ export default {
     if (new Date(event.scheduledTime).getUTCMinutes() % 2 === 0) ctx.waitUntil(runAmazon(env));
     // 締切の通知は10分おき（11/7）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 3) ctx.waitUntil(runPush(env));
-    // 大手の抽選の予告・受付開始ポスト：毎分（11/9）
-    ctx.waitUntil(runXQueue(env, tweet));
+    // 大手の抽選の予告・受付開始ポスト（11/9）：ユーザーの指示で「Xの予約投稿」で出すことにしたので、ここからは出さない（予約は Claude の予定の作業がブラウザで入れる）
+    // ctx.waitUntil(runXQueue(env, tweet));
     // 新弾の発表の見張り：10分おき（11/8）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 6) ctx.waitUntil(runNewsets(env, tweet));
   },
