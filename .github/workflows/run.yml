@@ -96,6 +96,8 @@ jobs:
           X_API_SECRET: ${{ secrets.X_API_SECRET }}
           X_GAME_ACCESS_TOKEN: ${{ secrets.X_GAME_ACCESS_TOKEN }}
           X_GAME_ACCESS_SECRET: ${{ secrets.X_GAME_ACCESS_SECRET }}
+          # 日本の買取店を読む中継（Cloudflare Worker jp-fetch）の鍵の元
+          JPFETCH_SEED: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           DRY_RUN: ${{ vars.DRY_RUN }}
         run: |
           timeout 300 python src/main.py all || echo "ゲームサイト 失敗または時間切れ（トレカ側には影響なし）"
