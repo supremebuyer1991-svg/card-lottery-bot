@@ -1976,14 +1976,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                          f'<p class="sh-ok">✅ Amazon.co.jp 本体（定価）の招待リクエストを受付中です（{escape(when)}時点）</p>'
                          '<p class="sh-ng">リクエストして、招待メールが届いた人だけが定価で買えます（全員が買えるわけではありません）。</p>')
             else:
-                head_ = (f'<p class="sh-ng">いま楽天ブックス・Amazon.co.jp本体で在庫は確認できていません（{escape(when)}時点・1〜2分おきに確認）。'
-                         '在庫が戻ったら、このページとXの速報でお知らせします。</p>' if when else "")
+                head_ = (f'<p class="sh-ng">いま楽天ブックス・Amazon.co.jp本体で定価の在庫は確認できていません（{escape(when)}時点）。'
+                         '在庫が戻ったら、Xの速報ですぐお知らせします（見張りは1〜2分おき。このページは1日6回更新）。</p>' if when else "")
                 rows = [("楽天ブックス", ("予約・発売日の在庫をチェック" if pre_mode else "売り切れでも、キャンセル分などで在庫が戻ることがあります"), _rakb(q, raff), "楽天ブックスで見る", "rakb")]
                 if tag:
                     rows.append(("Amazon", ("予約・招待リクエストが急に始まることがあります" if pre_mode else "Amazon.co.jp 本体の販売・招待リクエストが急に始まることがあります"), _amz(q, tag), "Amazonで見る", "amz"))
             li = "".join(f'<li><div><b>{escape(t)}</b><small>{escape(sub)}</small></div><a class="b-{c}" href="{escape(u)}" {_REL} data-pl="saihan">{escape(btn)}</a></li>'
                          for t, sub, u, btn, c in rows)
-            buy = (f'<aside class="ad lose"><div class="ad-top"><span>{"定価で予約・購入できるところ" if pre_mode else "いま定価で買えるところ"}</span>{PR_B}</div>'
+            box_t = ("定価で予約・購入できるところ" if pre_mode else "いま定価で買えるところ" if stock else "定価の在庫が戻ったら買えるところ")
+            buy = (f'<aside class="ad lose"><div class="ad-top"><span>{box_t}</span>{PR_B}</div>'
                    f'{head_}<ul class="lose-l">{li}</ul><p class="ad-note">楽天・Amazonへのリンクは広告です。在庫・価格はリンク先で確認してください。</p></aside>')
             # 2) 数字（事実だけ）
             facts = []
