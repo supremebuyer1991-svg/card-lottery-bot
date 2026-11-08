@@ -84,7 +84,7 @@ jobs:
           GA_ID_GAME: ${{ vars.GA_ID_GAME }}
           DRY_RUN: ${{ vars.DRY_RUN }}
         run: |
-          timeout 240 python src/main.py all || echo "ゲームサイト 失敗または時間切れ（トレカ側には影響なし）"
+          timeout 300 python src/main.py all || echo "ゲームサイト 失敗または時間切れ（トレカ側には影響なし）"
       - name: deploy site (Cloudflare Pages)
         if: env.HAS_CF == 'true' && hashFiles('site/index.html') != '' && (hashFiles('site/.changed') != '' || github.event_name == 'workflow_dispatch')
         env:

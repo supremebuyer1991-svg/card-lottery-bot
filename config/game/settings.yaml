@@ -9,6 +9,7 @@ max_posts_per_run: 0      # Xの自動投稿は使わない（下書きページ
 big_post: false
 remind_hours_before: 24
 run_hours: [7, 10, 13, 17, 19, 22]   # 自動の実行の時刻（run.yml の cron と同じ・1日6回）
+collect_time_budget: 150            # 情報集めは150秒まで。超えたら読んだ所までを保存して、残りは次の回に（サイト作りの時間を残すため）
 page_checks_per_run: 20     # 応募ページ（通販・フォーム）を見に行く数（1件につき1日1回）
 deadline_checks_per_run: 30
 no_end_post_days: 10

@@ -184,7 +184,13 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             return val
         return fetcher(url)
 
+    # 情報集めの時間の上限（秒）。設定に collect_time_budget がある時だけ効く（トレカ側は設定なし＝今まで通り）
+    budget = settings.get("collect_time_budget")
+    t_start = now()
     for src in sources:
+        if budget and (now() - t_start).total_seconds() > budget:
+            log(f"情報集めの時間の上限（{budget}秒）に達したので、残りの情報元は次の回に回します")
+            break
         if src.get("enabled") is False:
             continue
         if src["type"] != "x":  # 続けて読めなかった情報元は、しばらくお休み（タイムアウト待ちで実行時間がのびないように）
