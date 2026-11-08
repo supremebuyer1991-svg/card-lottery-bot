@@ -512,5 +512,30 @@
     "end": null,
     "seen": "2026-11-08",
     "ended": false
+  },
+  "8221b237e866e430": {
+    "snap": {
+      "key": "8221b237e866e430",
+      "game": "pc_parts",
+      "store": "ドスパラ秋葉原本店",
+      "product": "GeForce RTX 5090 32G VENTUS 3X OC（MSI）",
+      "series": "RTX 5090",
+      "method": "店頭",
+      "conditions": "1グループ1枚までの購入制限あり",
+      "tags": [
+        "1人1台"
+      ],
+      "url": "https://www.itmedia.co.jp/pcuser/articles/2611/07/news011.html",
+      "channel": "store",
+      "area": "東京都",
+      "spath": "pc-parts/rtx-5090/",
+      "found_at": "2026-11-08T17:26:22.747149+09:00",
+      "kind": "restock",
+      "shop": {}
+    },
+    "path": "l/8221b237e8/",
+    "end": null,
+    "seen": "2026-11-08",
+    "ended": false
   }
 }

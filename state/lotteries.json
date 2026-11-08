@@ -1613,12 +1613,14 @@
     "source": "Googleニュース「ポケカ 抽選」",
     "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE4zTFlxYlA2c3dlUkdGVEZQV1ptdmp2TUhwRFNDbU1Rb0RiVTloQ3oxRm1aYlN3OGxObUJTdXVsQlQ0a0pUblBjYk52aTRwektSamhRWWFVNHpvY0pPTlh0RkJRRFBmekdSQU82VHdHbHF1QkIzZXEw?oc=5",
     "key": "0b369c1998761b80",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T17:20:28.475344+09:00",
     "page_checked_at": "2026-11-08T07:52:42.695772+09:00",
     "cls": "1a8bb387ee66",
     "issue": 219,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-08T17:25:21.730886+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "67012dbfaa679db6": {
     "store": "TSUTAYA自治医大店",
