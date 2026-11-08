@@ -24,6 +24,8 @@ jobs:
       HAS_CF: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
     timeout-minutes: 15
     steps:
+      - name: remember the start time (keeps each run under 5 billed minutes)
+        run: echo "JOB_T0=$(date +%s)" >> "$GITHUB_ENV"
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:

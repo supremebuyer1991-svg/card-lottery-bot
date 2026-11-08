@@ -1,4 +1,6 @@
 """収集：各ソースを見て、新しい抽選を state/lotteries.json に追加する"""
+import os
+import time
 from datetime import timedelta
 from common import (load_json, save_json, sha, lottery_key, parse_dt, now, log, normalize)
 from fetch import get, html_to_text, parse_rss, article_links, cards, cardchusen_items
@@ -188,6 +190,13 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
 
     # 情報集めの時間の上限（秒）。設定に collect_time_budget がある時だけ効く（トレカ側は設定なし＝今まで通り）
     budget = settings.get("collect_time_budget")
+    t0 = os.environ.get("JOB_T0", "")
+    if budget and t0.isdigit():
+        # GitHubの使用時間は1回ごとに分単位で切り上げ。実行全体が job_target_sec（既定 4分40秒）に収まるよう、
+        # トレカ側で使った分を引いて、ゲーム側の情報集めの時間を決める（後ろのサイト作り・公開の分を残す）
+        left = int(settings.get("job_target_sec", 280)) - (time.time() - int(t0)) - int(settings.get("job_tail_sec", 60))
+        budget = max(20, min(budget, int(left)))
+        log(f"情報集めの時間：{budget}秒まで（実行全体を5分以内に収めるため）")
     t_start = now()
     # RSSの記事を開いて本文まで読む（ゲーム側だけ。設定 rss_read_article）。Googleニュースのリンクは元の記事に直す。
     # タイトルだけだと締切・応募先（プレバンの商品ページなど）が分からないため。1回に読む記事の数には上限
