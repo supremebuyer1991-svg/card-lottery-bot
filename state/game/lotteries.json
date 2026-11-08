@@ -433,7 +433,7 @@
     "conditions": "2次発送分の抽選販売で、申込は11月8日23時で締切。価格は35,200円で、発送は2027年4月の予定。",
     "price": "35,200円",
     "round": null,
-    "url": "https://news.yahoo.co.jp/articles/3271a0e5b6fd18e13bda6e6432a7a73c67bdc0f0",
+    "url": "https://p-bandai.jp/",
     "x_post": null,
     "game": "figure",
     "channel": "online",
@@ -445,11 +445,13 @@
     "source": "Googleニュース「フィギュア 抽選販売」",
     "source_url": "https://news.yahoo.co.jp/articles/3271a0e5b6fd18e13bda6e6432a7a73c67bdc0f0",
     "key": "2cf74c935098d292",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:50:53.105638+09:00",
     "page_checked_at": "2026-11-08T15:51:35.668227+09:00",
     "details_checked": true,
-    "cls": "572bb628718c"
+    "cls": "572bb628718c",
+    "official_checked": true,
+    "dup_of": "6475988fc780fb56"
   },
   "57acd094bc9e1a89": {
     "store": "プレミアムバンダイ",
@@ -475,11 +477,12 @@
     "source": "Googleニュース「フィギュア 抽選販売」",
     "source_url": "https://mantan-web.jp/article/20261105dog00m200008000a.html",
     "key": "57acd094bc9e1a89",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:50:53.105662+09:00",
     "page_checked_at": "2026-11-08T15:51:41.015999+09:00",
     "cls": "11f0e958a095",
-    "official_checked": true
+    "official_checked": true,
+    "dup_of": "6475988fc780fb56"
   },
   "b0179431fd925d0d": {
     "store": "プレミアムバンダイ",
@@ -528,7 +531,7 @@
     "conditions": null,
     "price": null,
     "round": null,
-    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE54S09SeF9LZ016ZW9ROHJCbm1vcGI0YzFrTVJKV0xBeTA1MC1SelVZREJtSDJwMW1UWWx2eDIzaURWWmNKSkE1MVlmQ1lIVC12WG5rQXFoWVMwODhUQUVRODNzWlVPbzFXQTJz?oc=5",
+    "url": "https://p-bandai.jp/",
     "x_post": null,
     "game": "gunpla",
     "channel": "online",
@@ -538,7 +541,7 @@
     "tags": [],
     "confidence": 0.4,
     "source": "Googleニュース「フィギュア 抽選販売」",
-    "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE54S09SeF9LZ016ZW9ROHJCbm1vcGI0YzFrTVJKV0xBeTA1MC1SelVZREJtSDJwMW1UWWx2eDIzaURWWmNKSkE1MVlmQ1lIVC12WG5rQXFoWVMwODhUQUVRODNzWlVPbzFXQTJz?oc=5",
+    "source_url": "https://mantan-web.jp/article/20261105dog00m200000000a.html",
     "key": "da183b50b1144269",
     "status": "listed",
     "found_at": "2026-11-08T15:50:53.105714+09:00",
@@ -547,7 +550,8 @@
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-08T15:51:53.520194+09:00",
     "details_checked": true,
-    "cls": "ceea48aa8e7d"
+    "cls": "ceea48aa8e7d",
+    "official_checked": true
   },
   "3becbdd08dffc0dc": {
     "store": "プレミアムバンダイ",
