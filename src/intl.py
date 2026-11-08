@@ -1016,10 +1016,15 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                    "inLanguage": meta["html"], "dateModified": tdy, "isPartOf": {"@type": "WebSite", "name": t["site"], "url": f"{site}/{L}/"}}]
             if key in ("box", "releases"):
                 lst = [r for r in rows] if key == "box" else [{"g": g, "x": x} for _, g, x, _ in rels]
-                ld.append({"@context": "https://schema.org", "@type": "ItemList",
-                           "itemListElement": [{"@type": "ListItem", "position": i + 1,
-                                                "name": f'{set_name(r["g"], r["x"])} {set_info(r["g"], r["x"])[0]}'.strip()}
-                                               for i, r in enumerate(lst[:50])]})
+                items = []
+                for i, r in enumerate(lst[:50]):
+                    it = {"@type": "ListItem", "position": i + 1,
+                          "name": f'{set_name(r["g"], r["x"])} {set_info(r["g"], r["x"])[0]}'.strip()}
+                    # 弾のページが存在するものだけ url を付ける（相場あり or 発売前ページ）
+                    if (r["g"], r["x"]) in row_of or any(p_[1] == r["g"] and p_[2] == r["x"] for p_ in pre_sets):
+                        it["url"] = f'{site}/{L}/sets/{set_slug(r["g"], r["x"])}/'
+                    items.append(it)
+                ld.append({"@context": "https://schema.org", "@type": "ItemList", "itemListElement": items})
             ld_html = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
             og_img = f"{site}/og-{L}.png"
             ogalt = '<meta property="og:locale:alternate" content="zh_HK">' if L == "zh-tw" else ""

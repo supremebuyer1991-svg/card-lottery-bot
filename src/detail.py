@@ -108,6 +108,7 @@ footer{color:var(--ink-2);font-size:12px;padding:8px 0 40px}
 .ad-sup p{font-size:12px;color:var(--ink-2);margin:10px 0 6px}.ad-sup strong{font-family:var(--font-num)}.ad-note{font-size:11px;color:var(--ink-2)}
 .ad-amz{margin-top:8px;align-items:center;font-size:12px}.ph{display:inline-flex;width:84px;height:84px;align-items:center;justify-content:center;color:var(--ink-2)}
 .ad-flow,.rec-note{display:none}
+.rel-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.rel-chips a{font-size:12.5px;font-weight:700;text-decoration:none;color:var(--ink);background:var(--navy-soft);border-radius:999px;padding:6px 10px}
 """
 
 JS = """
@@ -302,6 +303,17 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
     # 新着・締切間近のカードから来た人がすぐ応募できるよう、見出しのすぐ下にも応募ボタン
     top_go = (f'<a class="go go-top" href="{escape(i["url"])}" target="_blank" rel="{go_rel}">応募ページを開く →</a>'
               if i.get("url") and not is_end else "")
+    # Xから来た人が「同じ都道府県／同じ弾／同じ店」の一覧へワンタップで飛べるよう、見出し直下に関連リンクの短縮チップ（最大3つ）
+    rel_chips = ""
+    if related and not is_end:
+        def _short(t):
+            for suf in ("の抽選をすべて見る", "をすべて見る", "を見る", "の抽選一覧"):
+                if t.endswith(suf):
+                    return t[:-len(suf)]
+            return t
+        rel_chips = ('<nav class="rel-chips" aria-label="関連の一覧">'
+                     + "".join(f'<a href="{escape(h)}">{escape(_short(t))}</a>' for t, h in list(related)[:3])
+                     + "</nav>")
     snap = {"store": store, "product": name, "series": i.get("series"), "end": i.get("end"), "announce": i.get("announce"),
             "url": i.get("url"), "lpath": path, "game": g}
     ap_btn = (f'<button type="button" id="ap" class="apb" data-key="{escape(i.get("key") or "")}" '
@@ -366,7 +378,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             f'</head><body><header><div class="wrap"><p style="margin:0;padding-top:4px;font-size:12px;line-height:1.4;color:var(--ink);text-align:right">本ページはプロモーションを含みます</p><a href="/" class="logo" aria-label="{escape(brand_name)} トップへ">'
             f'{b["logo"]}</a></div></header>'
             f'<main class="wrap">{crumbs}{ended_note}{aff if is_end else ""}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
-            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}</div>'
+            f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}{rel_chips}</div>'
             f'<dl>{"".join(rows)}</dl>{acts}</article>{"" if is_end else aff}{rel_html}'  # 11/8 Fable：終了ページは「まだ買える方法」を先に
             f'<footer>{escape(foot)}　{b["footer"]}　<a href="/privacy.html">プライバシーポリシー</a></footer></main>'
             f'<script>{JS if b.get("mylist", True) else JS.split("(function(){var b=document.getElementById(\"ap\")")[0]}</script></body></html>')

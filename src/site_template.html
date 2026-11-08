@@ -1281,7 +1281,12 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     else if (b.hasAttribute("data-p")) { st.area = b.dataset.p; }
     render();
   });
-  $("q").addEventListener("input", function () { st.q = this.value; render(); });
+  var qTimer = null;
+  $("q").addEventListener("input", function () {
+    var v = this.value;
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function () { st.q = v; render(); }, 200);
+  });
   $("shops").addEventListener("click", function (e) {
     if (e.target.closest("button[data-shoptoggle]")) { st.shopOpen = !st.shopOpen; render(); return; }
     var b = e.target.closest("button[data-shop]"); if (!b) return; st.shop = b.dataset.shop; st.shopOpen = false; render();
@@ -1372,9 +1377,21 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   }, 3500);
   setInterval(renderNews, 30000);
 
-  // カウントダウンを1秒ごとに更新
+  // カウントダウンを1秒ごとに更新（画面に見えているものだけ更新）
+  var cdVisible = new Set(), cdObserved = (typeof WeakSet === "function") ? new WeakSet() : null;
+  var cdIO = (typeof IntersectionObserver === "function" && cdObserved) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) cdVisible.add(en.target); else cdVisible.delete(en.target); });
+  }, { rootMargin: "100px" }) : null;
   setInterval(function () {
-    document.querySelectorAll(".cd[data-end]").forEach(function (el) {
+    var all = document.querySelectorAll(".cd[data-end]"), targets;
+    if (cdIO) {
+      all.forEach(function (el) { if (!cdObserved.has(el)) { cdObserved.add(el); cdIO.observe(el); } });
+      targets = [];
+      cdVisible.forEach(function (el) { if (el.isConnected) targets.push(el); else { cdVisible.delete(el); cdIO.unobserve(el); } });
+    } else {
+      targets = all;
+    }
+    targets.forEach(function (el) {
       var t = Number(el.dataset.end); if (!t) return;
       var c = countdown(t); el.textContent = c.text; if (!el.closest(".band")) el.parentNode.className = "stub " + c.cls;
     });
