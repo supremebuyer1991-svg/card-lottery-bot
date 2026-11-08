@@ -45,4 +45,5 @@ ip = [f for f in (out2 / "item").rglob("index.html")]
 assert len(ip) == 1, ip
 t = ip[0].read_text(encoding="utf-8")
 assert "予測不能（発売前）" in t and "定期的にチェック" in t and "intent/follow?screen_name=a9994aaa" in t and "55,000円" in t
+assert "この商品をメルカリで見る" in t and "status=sold_out" in t and "この商品をメルカリで見る" in p
 print("ITEM PAGES OK")
