@@ -1508,10 +1508,12 @@
     "source_url": "https://x.com/",
     "no_quote": true,
     "key": "ede1abc30036f1db",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-30T07:27:49.230903+09:00",
     "cls": "641cf6432f89",
-    "issue": 239
+    "issue": 239,
+    "closed_at": "2026-11-09T07:42:17.730672+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "55bfb5f2d783dd9d": {
     "store": "ブックオフ秋葉原駅前店",
@@ -18921,7 +18923,7 @@
     "key": "f010d51e40166689",
     "status": "approved",
     "found_at": "2026-11-06T12:59:04.994269+09:00",
-    "page_checked_at": "2026-11-08T11:15:16.573368+09:00",
+    "page_checked_at": "2026-11-09T07:40:23.165609+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/790",
     "cls": "23b5f671f273"
   },
@@ -18952,7 +18954,7 @@
     "status": "approved",
     "found_at": "2026-11-06T12:59:04.994282+09:00",
     "start": "2026-11-09T11:00:00+09:00",
-    "page_checked_at": "2026-11-08T11:15:16.640259+09:00",
+    "page_checked_at": "2026-11-09T07:40:23.220615+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
     "cls": "37a489c48db6"
   },
@@ -24316,7 +24318,7 @@
     "cls": "65609c57fcbb",
     "announce": "11月12日(木)（当選者のみメール）",
     "start": "2026-11-06T19:00:00+09:00",
-    "page_checked_at": "2026-11-08T11:16:11.826480+09:00"
+    "page_checked_at": "2026-11-09T07:40:23.255567+09:00"
   },
   "073f7646d42f8269": {
     "store": "ときわ書房 本八幡スクエア店",
@@ -24400,7 +24402,7 @@
     "found_at": "2026-11-07T11:04:31.607703+09:00",
     "multi": false,
     "cls": "45f9c5fb838a",
-    "page_checked_at": "2026-11-08T11:16:14.140118+09:00",
+    "page_checked_at": "2026-11-09T07:40:25.550649+09:00",
     "address_checked": true
   },
   "a0c281b37be279cf": {
@@ -28860,7 +28862,7 @@
     "multi": false,
     "cls": "d3e036486f8a",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T19:57:25.482705+09:00",
+    "page_checked_at": "2026-11-09T07:40:27.994939+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -28892,7 +28894,7 @@
     "multi": false,
     "cls": "f200441f828a",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T19:57:27.660074+09:00",
+    "page_checked_at": "2026-11-09T07:40:30.062687+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -29487,7 +29489,7 @@
     "key": "89499dada12fb340",
     "status": "pending",
     "found_at": "2026-11-07T23:52:47.021138+09:00",
-    "page_checked_at": "2026-11-08T19:57:31.874392+09:00",
+    "page_checked_at": "2026-11-09T07:40:32.128569+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "95150d88df34",
@@ -29665,7 +29667,7 @@
     "deadline_checked_at": "2026-11-08T07:51:48.535622+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・本文に締切の記載なし",
-    "page_checked_at": "2026-11-08T19:57:33.942197+09:00",
+    "page_checked_at": "2026-11-09T07:40:34.194822+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -29961,7 +29963,7 @@
     "found_at": "2026-11-08T07:51:17.334485+09:00",
     "multi": false,
     "cls": "6adbde44076d",
-    "page_checked_at": "2026-11-08T19:57:36.124144+09:00",
+    "page_checked_at": "2026-11-09T07:40:36.264321+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30139,7 +30141,7 @@
     "multi": false,
     "cls": "b1babe976692",
     "issue": 553,
-    "page_checked_at": "2026-11-08T19:57:40.413722+09:00",
+    "page_checked_at": "2026-11-09T07:40:38.381370+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30641,7 +30643,7 @@
     "found_at": "2026-11-08T10:44:57.383381+09:00",
     "multi": false,
     "cls": "b496a71ddff2",
-    "page_checked_at": "2026-11-08T23:00:14.204872+09:00",
+    "page_checked_at": "2026-11-09T07:40:40.442272+09:00",
     "page_err": "中身が空",
     "announce": "2026-11-12"
   },
@@ -30672,7 +30674,7 @@
     "found_at": "2026-11-08T10:44:57.383400+09:00",
     "multi": false,
     "cls": "652a5384436e",
-    "page_checked_at": "2026-11-08T23:00:16.242387+09:00",
+    "page_checked_at": "2026-11-09T07:40:42.492308+09:00",
     "page_err": "中身が空",
     "apply_url": "https://livepocket.jp/e/k_foq",
     "announce": "2026-11-10"
@@ -30704,7 +30706,7 @@
     "found_at": "2026-11-08T10:44:57.383416+09:00",
     "multi": false,
     "cls": "5f2b8c20082c",
-    "page_checked_at": "2026-11-08T23:00:18.384106+09:00",
+    "page_checked_at": "2026-11-09T07:40:42.492323+09:00",
     "page_err": "中身が空"
   },
   "248517d7cbfbcd50": {
@@ -30763,7 +30765,7 @@
     "found_at": "2026-11-08T10:44:57.383453+09:00",
     "multi": false,
     "cls": "2266bdd0af04",
-    "page_checked_at": "2026-11-08T23:00:18.384121+09:00",
+    "page_checked_at": "2026-11-09T07:40:42.492327+09:00",
     "page_err": "中身が空"
   },
   "56ea3f21d5c6a355": {
@@ -30794,7 +30796,7 @@
     "multi": false,
     "cls": "2eb8a8ad75f0",
     "start": "2026-11-07T10:00:00+09:00",
-    "page_checked_at": "2026-11-08T23:00:20.493564+09:00",
+    "page_checked_at": "2026-11-09T07:40:44.557471+09:00",
     "page_err": "中身が空"
   },
   "d13665ae2bd11ba1": {
@@ -30910,7 +30912,7 @@
     "found_at": "2026-11-08T10:44:57.383546+09:00",
     "multi": false,
     "cls": "c09cd4c9f318",
-    "page_checked_at": "2026-11-08T23:00:22.633584+09:00",
+    "page_checked_at": "2026-11-09T07:40:46.611734+09:00",
     "page_err": "中身が空",
     "apply_url": "https://livepocket.jp/e/k_foq"
   },
@@ -31016,7 +31018,7 @@
     "cls": "84b12f35852a",
     "start": "2026-11-09T09:00:00+09:00",
     "issue": 555,
-    "page_checked_at": "2026-11-08T23:00:24.671177+09:00",
+    "page_checked_at": "2026-11-09T07:40:46.611750+09:00",
     "page_err": "中身が空"
   },
   "111842b9ae5727b6": {
@@ -31382,7 +31384,7 @@
     "found_at": "2026-11-08T10:44:58.213970+09:00",
     "multi": false,
     "cls": "9ef2db25f48e",
-    "page_checked_at": "2026-11-08T23:00:26.719056+09:00",
+    "page_checked_at": "2026-11-09T07:40:48.666730+09:00",
     "page_err": "中身が空"
   },
   "36c305dfdc4f6b97": {
@@ -31412,7 +31414,7 @@
     "found_at": "2026-11-08T10:44:58.213989+09:00",
     "multi": false,
     "cls": "d433eba4b4d5",
-    "page_checked_at": "2026-11-08T23:00:28.871516+09:00",
+    "page_checked_at": "2026-11-09T07:40:50.726183+09:00",
     "page_err": "中身が空"
   },
   "fd39e4231c0c9cad": {
@@ -31442,7 +31444,7 @@
     "found_at": "2026-11-08T10:44:58.214029+09:00",
     "multi": false,
     "cls": "75e3514736fe",
-    "page_checked_at": "2026-11-08T23:00:28.871531+09:00",
+    "page_checked_at": "2026-11-09T07:40:50.726198+09:00",
     "page_err": "中身が空"
   },
   "0a17035f5590d71f": {
@@ -31473,7 +31475,7 @@
     "start": "2026-11-07T19:37:00+09:00",
     "multi": false,
     "cls": "fa0601c6e51c",
-    "page_checked_at": "2026-11-08T23:00:30.947513+09:00",
+    "page_checked_at": "2026-11-09T07:40:52.860118+09:00",
     "page_err": "中身が空"
   },
   "e247aae3bf71f847": {
@@ -31503,7 +31505,7 @@
     "found_at": "2026-11-08T10:44:58.214064+09:00",
     "multi": false,
     "cls": "388c25eb4504",
-    "page_checked_at": "2026-11-08T23:00:33.088769+09:00",
+    "page_checked_at": "2026-11-09T07:40:54.911195+09:00",
     "page_err": "中身が空"
   },
   "6d60889ffeab29d2": {
@@ -31755,7 +31757,7 @@
     "found_at": "2026-11-08T10:44:58.214243+09:00",
     "multi": false,
     "cls": "a89f0feaf39c",
-    "page_checked_at": "2026-11-08T23:00:35.214373+09:00",
+    "page_checked_at": "2026-11-09T07:40:56.970238+09:00",
     "page_err": "中身が空"
   },
   "b72324522e67de0b": {
@@ -31785,7 +31787,7 @@
     "found_at": "2026-11-08T10:44:58.214260+09:00",
     "multi": false,
     "cls": "5b6e9198db2f",
-    "page_checked_at": "2026-11-08T23:00:37.389271+09:00",
+    "page_checked_at": "2026-11-09T07:40:59.022477+09:00",
     "page_err": "中身が空"
   },
   "7a539f31c232cf36": {
@@ -31943,7 +31945,7 @@
     "issue": 556,
     "multi": false,
     "cls": "1d5b8d834b54",
-    "page_checked_at": "2026-11-08T23:00:39.431097+09:00",
+    "page_checked_at": "2026-11-09T07:41:01.088765+09:00",
     "page_err": "中身が空"
   },
   "ec31b24276d802c5": {
@@ -31998,7 +32000,7 @@
     "found_at": "2026-11-08T10:44:58.294759+09:00",
     "multi": false,
     "cls": "213deab3a67d",
-    "page_checked_at": "2026-11-08T23:00:41.497186+09:00",
+    "page_checked_at": "2026-11-09T07:41:03.144636+09:00",
     "page_err": "中身が空"
   },
   "85302f23b9d65d61": {
@@ -33288,7 +33290,7 @@
     "issue": 569,
     "multi": true,
     "cls": "2d92903ce181",
-    "page_checked_at": "2026-11-08T23:00:43.637815+09:00",
+    "page_checked_at": "2026-11-09T07:41:05.203605+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -33353,7 +33355,7 @@
     "multi": false,
     "cls": "b189ddb88a39",
     "apply_url": "https://livepocket.jp/e/dkvtj",
-    "page_checked_at": "2026-11-08T23:00:45.677698+09:00",
+    "page_checked_at": "2026-11-09T07:41:07.264061+09:00",
     "page_err": "中身が空",
     "start": "2026-11-08T12:00:00+09:00"
   },
@@ -33384,7 +33386,7 @@
     "found_at": "2026-11-08T13:50:18.227469+09:00",
     "multi": false,
     "cls": "07dcd17f9cc9",
-    "page_checked_at": "2026-11-08T23:00:47.719260+09:00",
+    "page_checked_at": "2026-11-09T07:41:09.316875+09:00",
     "page_err": "中身が空",
     "announce": "2026-11-10"
   },
@@ -33445,7 +33447,7 @@
     "found_at": "2026-11-08T13:50:18.227540+09:00",
     "multi": false,
     "cls": "917f86464e7f",
-    "page_checked_at": "2026-11-08T23:00:49.755482+09:00",
+    "page_checked_at": "2026-11-09T07:41:11.368305+09:00",
     "page_err": "中身が空"
   },
   "c5287d23ec3f66cf": {
@@ -33476,7 +33478,7 @@
     "found_at": "2026-11-08T13:50:18.227569+09:00",
     "multi": false,
     "cls": "ca8f4539b436",
-    "page_checked_at": "2026-11-08T14:05:43.916940+09:00",
+    "page_checked_at": "2026-11-09T07:41:13.435877+09:00",
     "page_err": "中身が空"
   },
   "24dd93cd0bdbe378": {
@@ -33799,7 +33801,7 @@
     "key": "92ae214b7b98f59e",
     "status": "approved",
     "found_at": "2026-11-08T14:46:18.702452+09:00",
-    "page_checked_at": "2026-11-08T14:46:23.045685+09:00",
+    "page_checked_at": "2026-11-09T07:41:15.486781+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "e45e36af1576"
@@ -35095,7 +35097,9 @@
     "status": "approved",
     "found_at": "2026-11-08T22:59:20.284398+09:00",
     "multi": false,
-    "cls": "43765479641f"
+    "cls": "43765479641f",
+    "page_checked_at": "2026-11-09T07:41:17.535886+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "f2a64a2b975be18a": {
     "store": "TSUTAYA中津店",
@@ -35105,7 +35109,7 @@
     "end": "2026-11-15T23:59:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文には応募・購入の条件が書かれておらず、応募の締切が11/15(日)23:59だと分かるだけです。会員登録、本人確認書類、購入数の上限、代理購入、価格については記載がありません。",
     "url": "https://livepocket.jp/e/em1ll",
     "x_post": "https://x.com/OnchainOutlaw/status/2119414753957417283",
     "game": "onepiece",
@@ -35121,7 +35125,11 @@
     "status": "approved",
     "found_at": "2026-11-08T22:59:53.775332+09:00",
     "multi": false,
-    "cls": "1d1913878fab"
+    "cls": "118b522ee2de",
+    "page_checked_at": "2026-11-09T07:41:17.596969+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "41a37627f6bd1aeb": {
     "store": "TSUTAYA中津店",
@@ -35131,7 +35139,7 @@
     "end": "2026-11-15T23:59:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "TSUTAYA中津店のメガシンフォニアは補充抽選で、応募の締切は11/15(日)23:59。会員登録、本人確認書類、購入数の上限、代理購入、価格については、本文に記載がありません。",
     "url": "https://livepocket.jp/e/tltnw",
     "x_post": "https://x.com/OnchainOutlaw/status/2119414753957417283",
     "game": "pokemon",
@@ -35147,7 +35155,11 @@
     "status": "approved",
     "found_at": "2026-11-08T22:59:53.775376+09:00",
     "multi": false,
-    "cls": "219d7e067f82"
+    "cls": "53006bdd4edc",
+    "page_checked_at": "2026-11-09T07:41:19.647043+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "e0184b7349836e73": {
     "store": "TSUTAYA中津店",
@@ -35156,8 +35168,8 @@
     "start": null,
     "end": "2026-11-15T23:59:00+09:00",
     "announce": null,
-    "method": null,
-    "conditions": null,
+    "method": "補充抽選。案内のリンクから応募(11/15(日)23:59〆)",
+    "conditions": "ページ本文には応募・購入の条件(会員登録、アプリ、本人確認書類、購入個数、代理購入、価格)の記載がない。メガブレイブの補充抽選で、締切が11/15(日)23:59とあるのみ。",
     "url": "https://livepocket.jp/e/c1b0a",
     "x_post": "https://x.com/OnchainOutlaw/status/2119414753957417283",
     "game": "pokemon",
@@ -35173,7 +35185,11 @@
     "status": "approved",
     "found_at": "2026-11-08T22:59:53.775399+09:00",
     "multi": false,
-    "cls": "b49164c01fde"
+    "cls": "f0b7c0f828e0",
+    "page_checked_at": "2026-11-09T07:41:21.712888+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "a5185be1e0b5bed7": {
     "store": "フタバ図書TSUTAYA 広店",
@@ -35182,8 +35198,8 @@
     "start": null,
     "end": "2026-11-09T22:00:00+09:00",
     "announce": null,
-    "method": null,
-    "conditions": null,
+    "method": "抽選販売（応募締切は11/9(月)22:00。具体的な応募手順は本文に記載なし）",
+    "conditions": "本文から分かる条件は、応募の締切が11/9(月)22:00であることだけです。会員登録、アプリ、本人確認書類、購入上限、代理購入、価格については書かれていません。",
     "url": "https://livepocket.jp/e/uxxkg",
     "x_post": "https://x.com/OnchainOutlaw/status/2119412127576555649",
     "game": "pokemon",
@@ -35199,7 +35215,11 @@
     "status": "approved",
     "found_at": "2026-11-08T22:59:53.775420+09:00",
     "multi": false,
-    "cls": "60e26d6b923d"
+    "cls": "4d42cb1f41bc",
+    "page_checked_at": "2026-11-09T07:41:23.762737+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "ec498a9eb36fade2": {
     "store": "フルコンプ",
@@ -35294,7 +35314,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "「所沢(埼玉)」の「神の支配【OP-18】」の抽選にはリンクが案内されているだけで、応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)は本文にも画像にも書かれていない。",
     "url": "https://livepocket.jp/e/mjfbt",
     "x_post": "https://x.com/AkiPokemonLife/status/2119535438084166034",
     "game": "onepiece",
@@ -35314,8 +35334,12 @@
     "deadline_v": 5,
     "deadline_note": "画像2/2枚読込・締切日時の記載なし(本日締切多数のみ)",
     "multi": false,
-    "cls": "4200402e675b",
-    "hold_reason": "店名があいまい"
+    "cls": "54ce0103e711",
+    "hold_reason": "店名があいまい",
+    "page_checked_at": "2026-11-09T07:41:25.826905+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "1486ae85892e64aa": {
     "store": "宇都宮",
@@ -35356,7 +35380,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "書かれていません。東簗瀬の「神の支配」については、告知にリンクが載っているだけです。会員登録・アプリ・本人確認書類・購入個数の上限・代理購入・価格などの条件は、本文にも画像にも記載がありません。",
     "url": "https://livepocket.jp/e/rw4tq",
     "x_post": "https://x.com/AkiPokemonLife/status/2119535438084166034",
     "game": "onepiece",
@@ -35376,8 +35400,12 @@
     "deadline_v": 5,
     "deadline_note": "画像2/2枚読込・締切日時の記載なし(本日締切多数のみ)",
     "multi": false,
-    "cls": "2f9c4c0118ea",
-    "issue": 594
+    "cls": "26c91a996637",
+    "issue": 594,
+    "page_checked_at": "2026-11-09T07:41:27.877461+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "440a45a3d1dc954b": {
     "store": "唐津",
@@ -35937,7 +35965,7 @@
     "end": "2026-11-09T23:59:00+09:00",
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "会員登録・アプリ・本人確認書類・購入上限・代理購入・価格についての記載は本文にありません。分かるのは、ワンピースカード「神の支配【OP-18】」の抽選販売受付で、締切が11月9日(月)23:59ということだけです。",
     "url": "https://livepocket.jp/e/854lu",
     "x_post": "https://x.com/PKVN_TCG/status/2119432417828282822",
     "game": "onepiece",
@@ -35953,7 +35981,11 @@
     "status": "approved",
     "found_at": "2026-11-09T06:02:59.671862+09:00",
     "multi": false,
-    "cls": "cf57ba0fb5a0"
+    "cls": "c4ea36f85429",
+    "page_checked_at": "2026-11-09T07:41:27.877476+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "aece8f03748bb44f": {
     "store": "ドラゴンスター",
