@@ -605,6 +605,17 @@
         "mem": null,
         "rq": []
       },
+      "a1b9458694a0e518": {
+        "p": "ワンピースカードゲーム エクストラブースター",
+        "g": "onepiece",
+        "e": "2026-11-08T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9162c27a19f00831": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -8565,6 +8576,17 @@
   "store/tsutaya-cb3b7/": {
     "name": "TSUTAYA神明店",
     "items": {
+      "299494ab5e5eb3b0": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "e6814261cd06e4bd": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -10633,6 +10655,17 @@
   "store/shop-4969f/": {
     "name": "八文字屋北店（Cardbox）",
     "items": {
+      "3d500ca06e0298a2": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T20:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "6f4d018c6b09f8de": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -12699,6 +12732,17 @@
   "store/shop-1feb7/": {
     "name": "勝木書店 大野店",
     "items": {
+      "e989966077b40bd5": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "6f248b28008e4cb9": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -12966,6 +13010,17 @@
   "store/torekano-266d0/": {
     "name": "トレカノ奥州水沢店",
     "items": {
+      "8a38a516eef4bc6f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-14T20:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "8f8ef763dedfda86": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -19453,6 +19508,28 @@
         "mem": null,
         "rq": []
       },
+      "ee5586d551986da4": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "e97059d2b73d74fe": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "2a36c295b969f858": {
         "p": "神の支配",
         "g": "onepiece",
@@ -21142,6 +21219,17 @@
   "store/bookoff-87410/": {
     "name": "ブックオフ古淵駅前店",
     "items": {
+      "c662bb7e2eb3da79": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "fbfb22958098a93a": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -22507,6 +22595,17 @@
   "store/bookoff-4fd0b/": {
     "name": "ブックオフ高槻栄店",
     "items": {
+      "819a037ed406cc00": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "0a4683e28782808a": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -25355,6 +25454,17 @@
   "store/bookoff-c8e81/": {
     "name": "ブックオフ 札幌宮の沢店",
     "items": {
+      "f32966aab42fdf84": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-14T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "c3afc0eaffc941dd": {
         "p": "神の支配",
         "g": "onepiece",
@@ -31132,6 +31242,22 @@
         "m": "SNS",
         "id": false,
         "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/batoroco-95a6e/": {
+    "name": "TCバトロコ札幌狸小路",
+    "items": {
+      "afd4856fb168db4f": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
