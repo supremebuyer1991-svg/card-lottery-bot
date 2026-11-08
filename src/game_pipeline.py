@@ -87,6 +87,14 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             log(f"重複: スキップ {e}")
         from approve import approve
         approve(s)
+        try:  # 応募先がニュース記事のものは、記事の中の公式ページ（プレバンの商品ページなど）に差し替える
+            import official_link
+            from fetch import get as _get
+            lots = load_json("lotteries.json", {})
+            if official_link.resolve(s, lots, fetcher or _get):
+                save_json("lotteries.json", lots)
+        except Exception as e:
+            log(f"公式リンク探し: スキップ {e}")
         try:  # 楽天ブックスの商品ページ・写真（鍵が無ければ何もしない。1回15回まで・同じ商品は24時間に1回）
             import game_affi
             lots = load_json("lotteries.json", {})
