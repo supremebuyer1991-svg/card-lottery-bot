@@ -5047,6 +5047,17 @@
   "store/tsutaya-bb89d/": {
     "name": "TSUTAYA山陽店",
     "items": {
+      "c5287d23ec3f66cf": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "6dd8f28d06413df4": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -10765,6 +10776,28 @@
         "mem": "card",
         "rq": []
       },
+      "24dd93cd0bdbe378": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-10T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "5a77247c002c4892": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-10T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "4f61c3f2ab693dfa": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -10940,6 +10973,17 @@
   "store/cardwings-89791/": {
     "name": "CARD WINGS秋葉原駅前店",
     "items": {
+      "90e16b7e726db353": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-09T18:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "c2f831b8ef00f89d": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -11967,6 +12011,17 @@
         "g": "onepiece",
         "e": "2026-11-13T23:59",
         "f": "2026-11-03",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "c6b5c2d433c04e6c": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-08",
         "c": "store",
         "m": "Web",
         "id": true,
@@ -31256,8 +31311,9 @@
         "c": "store",
         "m": "Web",
         "id": null,
-        "mem": null,
-        "rq": []
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-10"
       }
     }
   },
@@ -31383,6 +31439,17 @@
         "id": true,
         "mem": "account",
         "rq": []
+      },
+      "b1fd28c435763bf1": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T21:45",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
       }
     }
   },
@@ -31472,6 +31539,17 @@
       "2b076ad137bdd7bc": {
         "p": "世界最強の戦士",
         "g": "onepiece",
+        "e": "2026-11-08T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "92da0a9c28e5340f": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
         "e": "2026-11-08T22:00",
         "f": "2026-11-08",
         "c": "store",
@@ -31578,8 +31656,8 @@
         "f": "2026-11-08",
         "c": "store",
         "m": "Web",
-        "id": null,
-        "mem": null,
+        "id": true,
+        "mem": "none",
         "rq": []
       }
     }
@@ -31628,6 +31706,22 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-6d2ab/": {
+    "name": "ふるいちトップブックス新発田店",
+    "items": {
+      "98f60283582a6de1": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       }
     }

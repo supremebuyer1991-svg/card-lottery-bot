@@ -612,7 +612,7 @@
   },
   "store/tsutaya-bb89d/": {
     "name": "TSUTAYA山陽店",
-    "last": "2026-11-03",
+    "last": "2026-11-08",
     "game": "pokemon",
     "area": "岡山県"
   },
@@ -1672,7 +1672,7 @@
   },
   "store/cardwings-89791/": {
     "name": "CARD WINGS秋葉原駅前店",
-    "last": "2026-11-06",
+    "last": "2026-11-08",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -7476,7 +7476,8 @@
     "name": "TSUTAYA松戸",
     "last": "2026-11-08",
     "game": "onepiece",
-    "area": "千葉県"
+    "area": "千葉県",
+    "address": "千葉県松戸市八ヶ崎2ｰ8-1"
   },
   "store/shop-18963/": {
     "name": "松戸",
@@ -7519,5 +7520,11 @@
     "last": "2026-11-08",
     "game": "pokemon",
     "keep": true
+  },
+  "store/furuichi-6d2ab/": {
+    "name": "ふるいちトップブックス新発田店",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "area": "新潟県"
   }
 }

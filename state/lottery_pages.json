@@ -42401,6 +42401,8 @@
       "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "series": "スペシャルデッキセットMEGA",
       "end": "2026-11-09T21:00:00+09:00",
+      "method": "抽選販売（応募締切 11/9(月)21:00。応募方法の詳細は本文に記載なし）",
+      "conditions": "本文には会員登録・アプリ・本人確認書類・購入上限・代理購入・価格についての記載がありません。分かるのは抽選販売であること、応募締切が11/9(月)21:00であること、発売日が11月13日であることだけです。",
       "url": "https://livepocket.jp/e/mc956",
       "channel": "store",
       "area": "神奈川県",
@@ -42418,6 +42420,8 @@
       "store": "TSUTAYA横須賀粟田店",
       "product": "SPデッキセット MEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "end": "2026-11-08T21:30:00+09:00",
+      "method": "抽選販売の受付（応募〆切 11/8(日)21:30。応募方法の詳細はリンク先のため本文からは不明）",
+      "conditions": "本文には会員登録、アプリ、本人確認書類、購入数の上限、代理購入、価格などの条件が書かれていません。分かるのは抽選販売の受付であることと、応募の締切が11/8(日)21:30であることだけです。",
       "url": "https://livepocket.jp/e/dqtqd",
       "channel": "store",
       "area": "神奈川県",
@@ -42781,6 +42785,7 @@
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSeSsWWYKyqzt5VVWLtzxpAiaR7v6p_YOm_nOR42hX5EScrzaA/viewform",
       "channel": "store",
       "area": "滋賀県",
+      "address": "滋賀県大津市今堅田2丁目40-25",
       "id_check": true,
       "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
@@ -44071,10 +44076,19 @@
       "store": "TSUTAYA松戸",
       "product": "ポケモンカード スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
       "series": "スペシャルデッキセットMEGA",
+      "start": "2026-11-13",
       "end": "2026-11-08T20:00:00+09:00",
+      "method": "Web",
+      "conditions": "このページには会員登録・アプリ・本人確認書類・購入個数・代理購入・価格などの条件の記載がありません。分かるのは、対象がポケモンカード MEGAスペシャルデッキセットであることと、応募の締切が11/8(日)20:00であることだけです。",
+      "tags": [
+        "本人確認"
+      ],
       "url": "https://livepocket.jp/e/926kc",
       "channel": "store",
       "area": "千葉県",
+      "address": "千葉県松戸市八ヶ崎2ｰ8-1",
+      "id_check": true,
+      "member": "none",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
       "spath": "store/tsutaya-7ce33/",
@@ -44098,6 +44112,209 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F",
       "spath": "store/torekapoto-7e90a/",
       "found_at": "2026-11-08T13:38:30.919749+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/92da0a9c28/": {
+    "d": {
+      "key": "92da0a9c28e5340f",
+      "game": "pokemon",
+      "store": "ふるいち高野店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX",
+      "series": "ストームエメラルダ",
+      "end": "2026-11-08T22:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/z-8_2",
+      "channel": "store",
+      "area": "京都府",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/furuichi-8aeee/",
+      "found_at": "2026-11-08T13:50:18.227350+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/90e16b7e72/": {
+    "d": {
+      "key": "90e16b7e726db353",
+      "game": "pokemon",
+      "store": "CARD WINGS秋葉原駅前店",
+      "product": "ポケモンカードゲーム MEGA「スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー」",
+      "end": "2026-11-09T18:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/dkvtj",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "account",
+      "spath": "store/cardwings-89791/",
+      "found_at": "2026-11-08T13:50:18.227404+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/98f6028358/": {
+    "d": {
+      "key": "98f60283582a6de1",
+      "game": "pokemon",
+      "store": "ふるいちトップブックス新発田店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-09T22:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/h-n75",
+      "channel": "store",
+      "area": "新潟県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/furuichi-6d2ab/",
+      "found_at": "2026-11-08T13:50:18.227469+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/c6b5c2d433/": {
+    "d": {
+      "key": "c6b5c2d433c04e6c",
+      "game": "pokemon",
+      "store": "TSUTAYA八戸ニュータウン店",
+      "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "end": "2026-11-10T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScXf1D2rs9YXze6R3g06PlHxWVGqf983jF_V05jZAPcyA7ktw/viewform",
+      "channel": "store",
+      "area": "青森県",
+      "id_check": true,
+      "member": "account",
+      "spath": "store/tsutaya-4b64f/",
+      "found_at": "2026-11-08T13:50:18.227509+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/b1fd28c435/": {
+    "d": {
+      "key": "b1fd28c435763bf1",
+      "game": "pokemon",
+      "store": "TSUTAYA鎌ケ谷店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T21:45:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/dz3vb",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-a6f33/",
+      "found_at": "2026-11-08T13:50:18.227540+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/c5287d23ec/": {
+    "d": {
+      "key": "c5287d23ec3f66cf",
+      "game": "pokemon",
+      "store": "TSUTAYA山陽店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T22:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・SNS応募・本人確認",
+      "tags": [
+        "会員",
+        "SNS応募",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/luqc8",
+      "channel": "store",
+      "area": "岡山県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-bb89d/",
+      "found_at": "2026-11-08T13:50:18.227569+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/24dd93cd0b/": {
+    "d": {
+      "key": "24dd93cd0bdbe378",
+      "game": "pokemon",
+      "store": "ふるいちイオンモール熱田店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-10T21:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/furu1_AMatsuta/status/2119272537234473227",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/aeon-2f753/",
+      "found_at": "2026-11-08T13:50:18.227622+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/5a77247c00/": {
+    "d": {
+      "key": "5a77247c002c4892",
+      "game": "pokemon",
+      "store": "ふるいちイオンモール熱田店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」",
+      "series": "ストームエメラルダ",
+      "end": "2026-11-10T21:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/furu1_AMatsuta/status/2119272537234473227",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/aeon-2f753/",
+      "found_at": "2026-11-08T13:50:18.227655+09:00"
     },
     "last": "2026-11-08"
   }
