@@ -3516,7 +3516,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         '<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:32px 16px;line-height:1.7;color:#222}a{color:#c8102e}</style></head>'
         '<body><h1>ページが見つかりません</h1><p>抽選の受付が終わり、ページを削除した可能性があります。</p>'
         '<p><a href="/">受付中の抽選一覧</a> ・ <a href="/pokeka/">ポケカ</a> ・ <a href="/onepiece/">ワンピースカード</a> ・ '
-        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a></p></body></html>', encoding="utf-8")
+        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a></p>'
+        '<p id="nf-go" hidden>近いページへ移動しています… <a id="nf-a" href="/">こちら</a></p>'
+        # 手打ちやAIが作った「ありそうなURL」用：親のページを順にさがして、近いページへ自動で移る（11/8）
+        '<script>(function(){var p=location.pathname;if(/^\\/chain\\/?$/.test(p)){location.replace("/store/");return}'
+        'var s=p.replace(/\\/+$/,"").split("/").filter(Boolean);if(!s.length)return;'
+        'function go(u){document.getElementById("nf-go").hidden=false;document.getElementById("nf-a").href=u;location.replace(u)}'
+        'function up(i,miss){if(i<0){go("/");return}var u="/"+s.slice(0,i).join("/")+(i?"/":"");'
+        'fetch(u,{credentials:"omit"}).then(function(r){if(!r.ok||r.url.indexOf("404")>-1)return up(i-1,s[i-1]);'
+        'return r.text().then(function(h){if(miss&&miss.length>3){var re=/href="(\\/[^"#?]+)"/g,m,best=null;'
+        'while((m=re.exec(h))){var l=m[1],t=l.replace(/\\/+$/,"").split("/").pop();'
+        'if(l.indexOf(u)===0&&t.length>3&&(t.indexOf(miss)>-1||miss.indexOf(t)>-1)){best=l;break}}if(best)return go(best)}go(u)})})'
+        '.catch(function(){go("/")})}up(s.length-1,s[s.length-1])})();</script></body></html>', encoding="utf-8")
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
     import shutil
@@ -3574,6 +3585,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         save_json("store_moves.json", mv)
         olds.update(mv)
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
+        if not (out / "chain" / "index.html").exists():
+            olds["/chain/"] = "/store/"  # チェーン一覧は店舗一覧にある（11/8：手打ちのアクセスが404だった）
         # 転送先のページが無い行は書かない（11/8：ワンピの弾がポケカ側の別名に入っていた3行など）
         olds = {o: n for o, n in olds.items() if n == "/" or (out / n.strip("/") / "index.html").exists()}
         if len(olds) > 1900:
