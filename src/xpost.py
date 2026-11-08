@@ -372,6 +372,27 @@ def post_big(settings, client=None):
     save_json("x_meta.json", meta)
 
 
+def compose_big_multi(name, game, sers, items, settings, slug, kind):
+    """予告（kind=pre）・受付開始（kind=start）の文。弾が1つなら今までの文、2つ以上なら1つのポストにまとめる（11/9）"""
+    if len(sers) == 1:
+        return compose_big(name, game, sers[0], items, settings, slug=slug, pre=(kind == "pre"), started=(kind == "start"))
+    from detail import lottery_path
+    from sitegen import GAME_SLUG
+    own = public_site(settings)
+    st_ = min(i["start"] for i in items if i.get("start"))
+    head = f"🗓抽選予告｜{GAME_HEAD[game]}" if kind == "pre" else f"🔔受付開始｜{GAME_HEAD[game]}"
+    lines = [head, "", f"{name}で{len(sers)}商品の抽選" + (f"が\n📅{fmt_dt(st_)}から始まります" if kind == "pre" else "が始まりました"), ""]
+    for x in sers:
+        it = sorted((i for i in items if (i.get("series") or short_product(i)) == x), key=lambda i: i.get("end") or "9")[0]
+        how = "通販・発送" if it.get("channel") != "store" else "店頭受け取り"
+        lines.append(f"・{x}（{how}）〜{fmt_dt(it.get('end'))}")
+    link = f"{own}/chain/{slug}/{GAME_SLUG[game]}/" if own else ""
+    if own and len({i.get("store") for i in items}) == 1:
+        link = f"{own}/{lottery_path(items[0])}"
+    lines += ["", "応募条件・方法はこちら👇", link, "", FOLLOW, "", TAGS[game]]
+    return "\n".join(lines)
+
+
 def plan_big_queue(settings):
     """11/9 ユーザーの指示：大手の抽選は、告知（受付開始前）を見つけたらすぐ「〇日〇時から抽選」の予告ポスト（1分後）、
     受付開始の時刻ちょうどに「受付開始」ポスト。実際の投稿は Worker（1分おき）が サイトの /x-queue.json を見て、時刻が来たものを出す。
@@ -396,19 +417,25 @@ def plan_big_queue(settings):
             continue
         bc = big_chain(i.get("store"))
         if bc:
-            groups.setdefault((bc[0], bc[1], i["game"], i.get("series") or short_product(i)), []).append(i)
-    for (slug, name, game, series), items in groups.items():
-        base = f"{slug}|{game}|{series}"
+            # 11/9 ユーザー：同じお店で同じ時刻に始まる抽選は、商品が違っても1つのポストにまとめる
+            groups.setdefault((bc[0], bc[1], i["game"], st.strftime("%Y%m%d%H%M")), []).append(i)
+    for (slug, name, game, stk), items in groups.items():
+        sers = list(dict.fromkeys(i.get("series") or short_product(i) for i in items))
         st = min(parse_dt(i["start"]) for i in items)
-        if base + "|pre" not in q and base not in done:
+        base = f"{slug}|{game}|{stk}"
+        old = [f"{slug}|{game}|{x}" for x in sers]  # 前の形（弾ごと）のキー。もう入れた弾は入れ直さない
+        if base + "|pre" not in q and not all(k + "|pre" in q or k in done for k in old):
             q[base + "|pre"] = {"at": (t + timedelta(minutes=1)).isoformat(),
-                                "text": compose_big(name, game, series, items, settings, slug=slug, pre=True)}
-            done[base] = t.isoformat()  # 「見つけたばかり」の速報（post_big）は出さない＝予告がその代わり
-            log(f"大手の予告: {base}（受付開始 {st:%m/%d %H:%M}）")
-        if base + "|start" not in q and base + "|start" not in done:
+                                "text": compose_big_multi(name, game, sers, items, settings, slug, "pre")}
+            for k in old:
+                done[k] = t.isoformat()  # 「見つけたばかり」の速報（post_big）は出さない＝予告がその代わり
+            log(f"大手の予告: {base}（{'・'.join(sers)}／受付開始 {st:%m/%d %H:%M}）")
+        if base + "|start" not in q and not all(k + "|start" in q or k + "|start" in done for k in old):
             q[base + "|start"] = {"at": st.isoformat(),
-                                  "text": compose_big(name, game, series, items, settings, started=True, slug=slug)}
-            log(f"大手の受付開始ポストを予約: {base} {st:%m/%d %H:%M}")
+                                  "text": compose_big_multi(name, game, sers, items, settings, slug, "start")}
+            for k in old:
+                done[k + "|start"] = st.isoformat()
+            log(f"大手の受付開始ポストを予約: {base}（{'・'.join(sers)}）{st:%m/%d %H:%M}")
     save_json("x_meta.json", meta)
 
 
