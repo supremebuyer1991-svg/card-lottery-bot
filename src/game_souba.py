@@ -48,9 +48,12 @@ def update(settings, sess=None, sleep=time.sleep, daily=None):
                     save_json(STATE, st)
                     return st
                 continue
-            days = sorted(d)
+            from datetime import timedelta
+            cut = (t.date() - timedelta(days=int(settings.get("souba_max_age_days", 30)))).isoformat()
+            days = [k for k in sorted(d) if k >= cut]   # 古い取引（1か月より前）しかないものは出さない
+            st.pop(f"{game}|{name}", None)
             if days:
-                last7 = [d[k] for k in days[-7:]]
+                last7 = [d[k] for k in days if k >= (t.date() - timedelta(days=7)).isoformat()] or [d[k] for k in days[-3:]]
                 st[f"{game}|{name}"] = {"price": d[days[-1]], "date": days[-1], "avg7": round(sum(last7) / len(last7)),
                                         "teika": v.get("teika"), "snkr": v["snkr"]}
                 n += 1
