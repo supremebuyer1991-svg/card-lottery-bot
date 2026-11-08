@@ -332,7 +332,15 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
 
     rel = "".join(f'<a href="{escape(h)}">{escape(t)}</a>' for t, h in related)
     rel_html = f'<nav class="more" aria-label="関連ページ"><h2>ほかの抽選もチェック</h2>{rel}</nav>' if rel else ""
-    trail = [("トップ", ""), (f"{gshort}の抽選" if not b.get("kinds") else f"{gshort}", f"{gslug_map.get(g, '')}/"), (f"{store}「{name}」", path)]
+    mid = (f"{gshort}の抽選" if not b.get("kinds") else f"{gshort}", f"{gslug_map.get(g, '')}/")
+    if i.get("channel") == "store" and i.get("area") and gslug_map.get(g, "") in ("pokeka", "onepiece"):
+        try:
+            from sitegen import PREF
+            if i["area"] in PREF:
+                mid = (f"{i['area']}の{gshort}店頭抽選", f"{gslug_map.get(g, '')}/area/{PREF[i['area']]}/")
+        except ImportError:
+            pass
+    trail = [("トップ", ""), mid, (f"{store}「{name}」", path)]
     crumbs = '<nav class="crumbs" aria-label="パンくず">' + " › ".join(
         (f'<a href="/{escape(p)}">{escape(n)}</a>' if k < len(trail) - 1 else f"<span>{escape(n)}</span>")
         for k, (n, p) in enumerate(trail)) + "</nav>"
