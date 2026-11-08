@@ -104,6 +104,8 @@ def _theme_detail(html, side):
     """個別ページ（detail.render の出力。トレカと共通の部品）を、このサイトの見た目にそろえる。
     detail.py 自体は変えない（トレカ抽選ナビのページは今までどおり）"""
     css = SHELL_CSS.read_text(encoding="utf-8") + DETAIL_CSS
+    # トレカ側の文字（IBM Plex）の読み込みは外す。読み込み方が「preload＋noscript」でも「stylesheet」でも外れるように
+    html = re.sub(r'<link rel="preload" as="style" href="https://fonts\.googleapis\.com/css2\?family=Zen\+Kaku[^"]*"[^>]*>(<noscript>.*?</noscript>)?', lambda m: "", html, count=1, flags=re.S)
     html = re.sub(r'<link rel="stylesheet" href="https://fonts\.googleapis\.com/css2\?family=Zen\+Kaku[^"]*">', lambda m: "", html, count=1)
     html = html.replace('<link rel="preconnect" href="https://fonts.googleapis.com">', FONTS, 1)
     html = html.replace("</head>", f"<style>{css}</style></head>", 1)
