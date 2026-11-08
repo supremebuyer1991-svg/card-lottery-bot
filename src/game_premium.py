@@ -124,6 +124,11 @@ def premium_list(settings=None):
         h = hist.get(jan, {})
         name = re.sub(r"\s+", " ", (tk.get("title") or x["names"][0]))
         name = re.sub(r"【.*?】", "", name).strip()[:70]
+        model = re.compile(r"[A-Z]{2,}-?[A-Z0-9]{3,}")
+        if not model.search(name):   # 楽天の名前に型番が無ければ、型番のある買取店の名前を使う（同じ名前の別モデルを見分けるため）
+            withm = [n for n in x["names"] if model.search(n)]
+            if withm:
+                name = re.sub(r"\s+", " ", withm[0]).strip()[:70]
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": tk["price"], "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r, "itemUrl": tk.get("itemUrl", ""),
                     "img": tk.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today)})
