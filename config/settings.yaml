@@ -333,6 +333,9 @@ series_slugs:
     ヒロインズエディション: eb03-heroines-edition
     HEROINES PRECIOUS BOX: heroines-precious-box
     スタートデッキEX ルフィ&エース: st30-luffy-ace
+    応答せよ、世界: op19-outou-seyo-sekai
+    EAST BLUE: eb06-east-blue
+    夢の一枚: peb01-yume-no-ichimai
 
 # 弾の基本情報（弾ページに表示）
 series_info:   # 発売日・希望小売価格は公式サイトの商品情報より（BOXの価格は1パックの価格×BOXのパック数）。ハドウシーカーは公式の商品ページ公開前
@@ -354,6 +357,9 @@ series_info:   # 発売日・希望小売価格は公式サイトの商品情報
     テラスタルフェスex: {release: "2024-12-06", type: ハイクラスパック, price: "1パック550円（税込）／1BOX（10パック）5,500円"}
     ポケモンカード151: {release: "2023-06-16", type: 強化拡張パック, price: "1パック290円（税込）／1BOX（20パック）5,800円"}
   onepiece:
+    夢の一枚: {release: "2027-04-24", type: "プレミアムエクストラブースター【PEB-01】", price: "1パック440円（税込）・8枚入り（全部キラカード）"}
+    応答せよ、世界: {release: "2027-02-27", type: "ブースターパック【OP-19】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}
+    EAST BLUE: {release: "2027-01-30", type: "エクストラブースター【EB-06】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}
     神の支配: {release: "2026-11-21", type: "ブースターパック【OP-18】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}
     ヒロインズエディション vol.2: {release: "2026-10-31", type: "エクストラブースター【EB-05】", price: "1パック240円（税込）／1BOX（24パック）5,760円"}
     HEROINES PRECIOUS BOX: {release: "2026-10-31", type: "公認店限定", price: "8,470円（税込）"}

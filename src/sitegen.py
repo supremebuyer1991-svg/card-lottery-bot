@@ -3585,6 +3585,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         save_json("store_moves.json", mv)
         olds.update(mv)
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
+        # 自動で見つけた弾の仮アドレス（/onepiece/op19/ など）→ あとで決めた読めるアドレス（11/8）
+        for g_, m_ in ((load_json("newsets.json", {}) or {}).get("series") or {}).items():
+            if g_ not in GAME_SLUG:
+                continue
+            for x_, v_ in (m_ or {}).items():
+                if v_.get("slug") and series_path(g_, x_) != f"{GAME_SLUG[g_]}/{v_['slug']}/":
+                    olds[f"/{GAME_SLUG[g_]}/{v_['slug']}/"] = "/" + series_path(g_, x_)
         if not (out / "chain" / "index.html").exists():
             olds["/chain/"] = "/store/"  # チェーン一覧は店舗一覧にある（11/8：手打ちのアクセスが404だった）
         # 転送先のページが無い行は書かない（11/8：ワンピの弾がポケカ側の別名に入っていた3行など）
