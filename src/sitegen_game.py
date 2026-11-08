@@ -354,6 +354,7 @@ def build(settings=None, out_dir=None, force=False):
     tag = game_affi.amazon_tag(s)   # AMAZON_TAG_GAME → settings の amazon_tag → トレカと同じ AMAZON_TAG
     out = Path(out_dir or ROOT / "site_game")
     souba_st = load_json("souba.json", {})
+    kaitori_st = load_json("kaitori.json", {})
     t = now()
     verify = s.get("google_site_verification") or ""
 
@@ -380,6 +381,10 @@ def build(settings=None, out_dir=None, force=False):
             sb = game_souba.for_item(dict(i, series=canon_series(i["game"], i["series"]) if i.get("series") else None), souba_st)
             if sb:
                 row["sb"] = sb["text"] + (f"・{sb['hint']}" if sb["hint"] else "")
+            else:   # スニダンに無い商品は、買取ルデヤの新品の買取価格
+                kp = game_souba.kaitori_for(i, kaitori_st)
+                if kp:
+                    row["sb"] = game_souba.kaitori_label(i, kp)
         except Exception:
             pass
         if row.get("series"):

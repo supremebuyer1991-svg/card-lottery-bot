@@ -107,6 +107,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             try:  # スニダンの相場（1日1回・models.yaml の series_souba に書いたモデルだけ）
                 import game_souba
                 game_souba.update(s)
+                lots = load_json("lotteries.json", {})
+                t = now()
+                game_souba.kaitori_update(s, [i for i in lots.values() if i.get("status") in ("approved", "listed", "posted")
+                                              and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t)])
             except Exception as e:
                 log(f"相場（ゲーム）: スキップ {e}")
         import sitegen_game
