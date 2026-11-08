@@ -36,6 +36,7 @@ STORE_TOP = [
     (r"ちいかわ", "https://chiikawamarket.jp/"),
     (r"マイニンテンドー|Nintendo Store|任天堂", "https://store-jp.nintendo.com/"),
     (r"ソニーストア", "https://store.sony.jp/"),
+    (r"ソニー・インタラクティブ|SIE|PlayStation", "https://www.playstation.com/ja-jp/"),
     (r"ヨドバシ", "https://limited.yodobashi.com/"),
     (r"ビックカメラ", "https://www.biccamera.com/"),
 ]
@@ -114,7 +115,7 @@ def resolve(settings, lots, fetch):
         if it.get("status") not in ("new", "approved", "listed", "posted"):
             continue
         u = it.get("url") or ""
-        if not u or is_official(u) or it.get("source_url"):   # source_url があるもの＝もう差し替え済み
+        if not u or is_official(u) or it.get("official_checked"):   # もう差し替え済み
             continue
         en = parse_dt(it.get("end"))
         if en and en < t:
@@ -130,7 +131,8 @@ def resolve(settings, lots, fetch):
         art = cache[u].get("article") or u
         new = off or store_top(it.get("store")) or ""
         if new:
-            it.setdefault("source_url", art)
+            it["source_url"] = art
+            it["official_checked"] = True
             it["url"] = new
             changed += 1
             log(f"応募先を公式に：{(it.get('product') or '')[:30]} → {new}")
