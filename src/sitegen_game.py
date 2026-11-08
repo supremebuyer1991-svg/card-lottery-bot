@@ -161,6 +161,25 @@ def shop_buttons(rk, az, name="", yh="", mc=""):
             + (f'<a class="btn btn-mc" href="{escape(mc)}" target="_blank" rel="nofollow noopener">メルカリで探す{who}</a>' if mc else ""))
 
 
+def _release_detail(html, snap):
+    """発売日の情報（kind=release）は抽選ではないので、「締切」「応募」の言葉を「発売」に直す（detail.py はトレカと共通なので変えない）"""
+    if snap.get("kind") != "release":
+        return html
+    for a, b in (('big="締切まであと"', 'big="発売まであと"'), ('"本日締切"', '"本日発売"'), ('"まもなく締切"', '"まもなく発売"'),
+                 ('lab=same(E,N)?"本日発売":soon?"まもなく発売":"受付中"', 'lab=same(E,N)?"本日発売":soon?"まもなく発売":"発売前"'),
+                 ("<dt>応募締切</dt>", "<dt>発売日</dt>"), ("<dt>応募期間</dt>", "<dt>発売日</dt>"),
+                 ("<b>受付中</b>", "<b>発売前</b>"), ("この抽選の受付は終了しました", "発売されました"), ("受付は終了しました", "発売されました"),
+                 ("応募ページを開く →", "公式の発表を見る →"), ("<b>締切をカレンダーに入れる</b>", "<b>発売日をカレンダーに入れる</b>"), ("応募先は店舗の告知でご確認ください", "発売の情報は公式の発表で確認してください")):
+        html = html.replace(a, b)
+    html = re.sub(r"締切 (\d{1,2}/\d{1,2}\([^)]\))(?: \d{1,2}:\d{2})?", r"発売日 \1", html)          # 説明文
+    html = re.sub(r"(\d{1,2}/\d{1,2}\([^)]\))(?: \d{1,2}:\d{2})?締切", r"\1発売", html)          # タイトル
+    html = html.replace("受付方法・条件・対象商品をまとめています", "発売日・定価・販売店をまとめています")
+    html = re.sub(r'<div><dt>必要なもの</dt><dd>[^<]*</dd></div>', "", html)
+    html = re.sub(r'<div><dt>受け取り</dt><dd>[^<]*</dd></div>', "", html)
+    html = re.sub(r"(<dt>発売日</dt><dd>[^<]*?)\s*\d{1,2}:\d{2}(まで)?(</dd>)", r"\1\3", html)   # 発売日に時刻は出さない
+    return html
+
+
 def _shop_detail(html, snap):
     """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
     sh = snap.get("shop") or {}
@@ -676,7 +695,7 @@ def build(settings=None, out_dir=None, force=False):
         nxt = (f"いま受付中の{cat_by[g]['short']}を見る", f"/{cat_by[g]['slug']}/") if ended else None
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
                              next_link=nxt, brand=dbrand, games=games_map)
-        html = _theme_detail(_shop_detail(html, snap), side_html(cats, g, counts=False))
+        html = _theme_detail(_shop_detail(_release_detail(html, snap), snap), side_html(cats, g, counts=False))
         p = out / rec["path"] / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html, encoding="utf-8")
