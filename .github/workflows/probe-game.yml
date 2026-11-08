@@ -1,0 +1,24 @@
+# ゲームサイトの情報元が、本番と同じ環境（GitHub Actions）で読めるか確かめる（手動で動かす・何も書き換えない）
+name: probe-game
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "確かめるURL（空白区切り）。空なら Googleニュースのリンクを元記事に直せるかを試す"
+        required: false
+        default: ""
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - env:
+          URLS: ${{ inputs.urls }}
+        run: python scripts/probe_game.py
