@@ -7,6 +7,7 @@ dry_run: false
 x_speed_post: true         # 新しい抽選・予約・再入荷をXで速報（@a9994aaa。リンクなし＋商品写真、1件 約$0.015）
 x_speed_per_day: 5         # 速報の1日の上限（毎日の決まった投稿はXの予約投稿で別に入れる）
 x_speed_gap_min: 20        # 前の速報から何分あけるか
+x_speed_link: true         # 1件だけの速報で、その商品のAmazon・楽天（アフィリエイト）のページがあればリンクを付ける（PR表記つき・1件 約$0.20）
 min_confidence: 0.7       # AI抽出の自信度がこれ未満は承認待ち（GitHubのIssue）
 max_posts_per_run: 0      # Xの自動投稿は使わない（下書きページ /x-draft.html からコピペで手動投稿）
 big_post: false
