@@ -91,6 +91,7 @@ def parse_rudeya(text):
     """買取ルデヤの検索結果（本文テキスト）→ [(商品名, JAN, 買取価格)]（新品だけ）"""
     import re
     out = []
+    text = re.sub(r"\s+", " ", text or "")   # 改行をならす（ページの本文は行ごとに分かれている）
     for m in re.finditer(r"(?:^|\s)新品 (.+?) JAN: ?(\d{8,13}).*?買取価格 ([\d,]+) 円", text):
         out.append((m.group(1).strip(), m.group(2), int(m.group(3).replace(",", ""))))
     return out
