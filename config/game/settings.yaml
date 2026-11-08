@@ -15,7 +15,8 @@ remind_hours_before: 24
 run_hours: [7, 10, 13, 17, 19, 22]   # 自動の実行の時刻（run.yml の cron と同じ・1日6回）
 collect_time_budget: 150   # 情報集めは150秒まで。超えたら読んだ所までを保存して、残りは次の回に（サイト作りの時間を残すため）
 rss_read_article: true       # ニュースのRSSは記事を開いて本文まで読む（締切・プレバンの商品ページなどの応募先を拾うため）
-rss_article_max_per_run: 12  # 1回に開く記事の数の上限（時間と費用の上限）
+rss_article_max_per_run: 24  # 1回に開く記事の数の上限（時間と費用の上限。時間は collect_time_budget でも止まる）
+rss_article_per_source: 3    # 1つの情報元で開く記事の数の上限（最初の情報元で使い切らないように）
 page_checks_per_run: 20     # 応募ページ（通販・フォーム）を見に行く数（1件につき1日1回）
 deadline_checks_per_run: 30
 no_end_post_days: 10

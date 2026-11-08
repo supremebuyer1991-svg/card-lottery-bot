@@ -193,11 +193,16 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     # タイトルだけだと締切・応募先（プレバンの商品ページなど）が分からないため。1回に読む記事の数には上限
     art_left = int(settings.get("rss_article_max_per_run", 0)) if settings.get("rss_read_article") else 0
 
-    def read_article(it):
+    art_per_src = {}
+
+    def read_article(it, sid):
         nonlocal art_left
         link = it["link"]
         if art_left <= 0 or (budget and (now() - t_start).total_seconds() > budget - 20):
             return None
+        if art_per_src.get(sid, 0) >= int(settings.get("rss_article_per_source", 3)):   # 1つの情報元で使い切らない
+            return None
+        art_per_src[sid] = art_per_src.get(sid, 0) + 1
         art_left -= 1
         try:
             import gnews
@@ -279,7 +284,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if it["guid"] in done:
                     continue
                 done.add(it["guid"])
-                art = read_article(it) if art_left > 0 else None
+                art = read_article(it, sid) if art_left > 0 else None
                 if art:
                     texts.append((f"{it['title']}\n{it['date']}\n記事URL: {art[0]}\n\n{art[1]}", art[0]))
                     continue
