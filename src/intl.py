@@ -474,7 +474,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
     def ebay_url(q):
         u = f"https://www.ebay.com/sch/i.html?_nkw={quote(q)}"
         if ebay:
-            u += f"&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid={quote(ebay)}&toolid=10001&mkevt=1"
+            u += f"&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid={quote(ebay)}&customid=tcgchusen&toolid=10001&mkevt=1"
         return u
 
     jp_tag = (s.get("amazon_tag") or "").strip()
