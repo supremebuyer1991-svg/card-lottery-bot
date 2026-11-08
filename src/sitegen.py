@@ -3101,7 +3101,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "info_html": addr_html + trend_html + hist_html if si else "",  # 受付中があれば一覧の下に、なければ上に
             "faq": faq_s or None,
             "links": links, "root": "/",
-            "noindex": not si and len(past) < 3 and not _recent60(past)}, si,  # 受付中なし・過去2件以下・60日以上抽選なしのお店だけ検索に出さない（11/7。平和堂などを巻き添えにしない）
+            # 11/8 Fable技術：地名だけの店名（「岡南」「西大寺」など。チェーン名が読み取れなかった）は中身が薄いので検索に出さない
+            "noindex": (not si and len(past) < 3 and not _recent60(past)) or bool(re.fullmatch(r"[一-龯]{1,4}店?", re.sub(r"[（(].*?[）)]", "", r.get("name") or "").strip())) and not c},
+            si,  # 受付中なし・過去2件以下・60日以上抽選なしのお店だけ検索に出さない（11/7。平和堂などを巻き添えにしない）
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
     def _cs_chips(slug, g, cig):
