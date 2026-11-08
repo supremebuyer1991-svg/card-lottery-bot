@@ -17438,7 +17438,7 @@
     "key": "239b6714e8111df8",
     "status": "pending",
     "found_at": "2026-11-06T10:15:07.686822+09:00",
-    "deadline_checked_at": "2026-11-07T11:05:32.714443+09:00",
+    "deadline_checked_at": "2026-11-08T11:14:56.572899+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "cls": "095d6bd5b4f3",
@@ -18884,9 +18884,10 @@
     "announce": "11月19日(木)",
     "buy": "11/20(金)〜11/23(月)",
     "start": "2026-11-06T10:00:00+09:00",
-    "page_checked_at": "2026-11-08T10:46:43.157275+09:00",
+    "page_checked_at": "2026-11-08T11:15:08.986209+09:00",
     "multi": true,
-    "cls": "2e2f3ae1390b"
+    "cls": "2e2f3ae1390b",
+    "address_checked": true
   },
   "dfc960bac7cfae80": {
     "store": "岡書おとふけ木野店",
@@ -18912,9 +18913,10 @@
     "key": "dfc960bac7cfae80",
     "status": "approved",
     "found_at": "2026-11-06T11:21:39.169199+09:00",
-    "page_checked_at": "2026-11-08T10:46:45.775997+09:00",
+    "page_checked_at": "2026-11-08T11:15:11.873480+09:00",
     "multi": false,
-    "cls": "2bc934001f5c"
+    "cls": "2bc934001f5c",
+    "address_checked": true
   },
   "52429fb89409176b": {
     "store": "BOOKSあんとく（みづま店・あらお店・やまが店）",
@@ -18940,9 +18942,10 @@
     "key": "52429fb89409176b",
     "status": "approved",
     "found_at": "2026-11-06T11:21:39.169213+09:00",
-    "page_checked_at": "2026-11-08T10:46:48.318192+09:00",
+    "page_checked_at": "2026-11-08T11:15:14.161372+09:00",
     "multi": true,
-    "cls": "946292093e9f"
+    "cls": "946292093e9f",
+    "address_checked": true
   },
   "10a3053c65ee8672": {
     "store": "BOOKSあんとく（みづま店・あらお店・やまが店）",
@@ -20700,7 +20703,7 @@
     "announce": "11月26日(木)12時以降順次",
     "buy": "11/27(金)〜12/2(水)",
     "start": "2026-11-06T11:00:00+09:00",
-    "page_checked_at": "2026-11-07T18:00:53.171296+09:00",
+    "page_checked_at": "2026-11-08T11:15:16.485811+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.kidsrepublic.jp/campaign/campaign_detail/20261127pokemoncardgame"
   },
   "347423608a9a50c2": {
@@ -20759,7 +20762,7 @@
     "key": "f010d51e40166689",
     "status": "approved",
     "found_at": "2026-11-06T12:59:04.994269+09:00",
-    "page_checked_at": "2026-11-07T11:06:53.521351+09:00",
+    "page_checked_at": "2026-11-08T11:15:16.573368+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/790"
   },
   "03a0e76010fe2b80": {
@@ -20789,8 +20792,8 @@
     "status": "approved",
     "found_at": "2026-11-06T12:59:04.994282+09:00",
     "start": "2026-11-09T11:00:00+09:00",
-    "page_checked_at": "2026-11-07T11:06:53.557256+09:00",
-    "page_err": "中身が空"
+    "page_checked_at": "2026-11-08T11:15:16.640259+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789"
   },
   "bcc90ec372fd0306": {
     "store": "TSUTAYA400号西那須野店",
@@ -20817,7 +20820,7 @@
     "key": "bcc90ec372fd0306",
     "status": "approved",
     "found_at": "2026-11-06T12:59:04.994296+09:00",
-    "page_checked_at": "2026-11-07T18:00:53.381485+09:00",
+    "page_checked_at": "2026-11-08T11:15:16.689957+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "f32bb036a00b"
@@ -20931,7 +20934,7 @@
     "key": "16df4f306957030d",
     "status": "approved",
     "found_at": "2026-11-06T12:59:05.519331+09:00",
-    "page_checked_at": "2026-11-07T18:00:55.430747+09:00",
+    "page_checked_at": "2026-11-08T11:15:18.785119+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "421bc965fff3",
@@ -21074,7 +21077,7 @@
     "status": "approved",
     "found_at": "2026-11-06T12:59:05.519419+09:00",
     "start": "2026-11-09T10:00:00+09:00",
-    "page_checked_at": "2026-11-07T18:56:02.588686+09:00",
+    "page_checked_at": "2026-11-08T11:15:20.872614+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "5e46037cae99"
@@ -21105,7 +21108,7 @@
     "status": "approved",
     "found_at": "2026-11-06T12:59:05.519432+09:00",
     "start": "2026-11-09T10:00:00+09:00",
-    "page_checked_at": "2026-11-07T18:56:04.659552+09:00",
+    "page_checked_at": "2026-11-08T11:15:22.953546+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "e5ecbc2665df"
@@ -21214,7 +21217,7 @@
     "key": "1e4b08257ffb3c07",
     "status": "approved",
     "found_at": "2026-11-06T14:03:48.855800+09:00",
-    "page_checked_at": "2026-11-07T19:44:49.154044+09:00",
+    "page_checked_at": "2026-11-08T11:15:25.041625+09:00",
     "page_err": "中身が空"
   },
   "415e8c9a02ce1ed6": {
@@ -21674,7 +21677,7 @@
     "key": "bdfea1640e884638",
     "status": "approved",
     "found_at": "2026-11-06T16:23:21.696112+09:00",
-    "page_checked_at": "2026-11-07T20:48:39.679577+09:00",
+    "page_checked_at": "2026-11-08T11:15:27.123081+09:00",
     "page_err": "中身が空",
     "start": "2026-11-06T10:00:00+09:00"
   },
@@ -21703,7 +21706,7 @@
     "key": "3ca65c92da3c6f05",
     "status": "approved",
     "found_at": "2026-11-06T16:23:21.696167+09:00",
-    "page_checked_at": "2026-11-07T19:44:49.154057+09:00",
+    "page_checked_at": "2026-11-08T11:15:29.186523+09:00",
     "page_err": "中身が空",
     "multi": true,
     "cls": "e9cbf21df73f",
@@ -21962,7 +21965,7 @@
     "key": "81f3597f9446f8ce",
     "status": "approved",
     "found_at": "2026-11-06T16:24:11.899203+09:00",
-    "page_checked_at": "2026-11-07T19:44:51.238861+09:00",
+    "page_checked_at": "2026-11-08T11:15:31.275910+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -22183,7 +22186,7 @@
     "deadline_checked_at": "2026-11-07T17:59:27.902627+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・画像は番組告知のみで締切の記載なし",
-    "page_checked_at": "2026-11-07T19:44:53.388837+09:00",
+    "page_checked_at": "2026-11-08T11:15:33.337716+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -22218,7 +22221,7 @@
     "deadline_checked_at": "2026-11-07T17:59:32.248769+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・締切の日時記載なし",
-    "page_checked_at": "2026-11-07T19:44:53.388852+09:00",
+    "page_checked_at": "2026-11-08T11:15:33.337730+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "2b66fdb521ca",
@@ -22253,7 +22256,7 @@
     "deadline_checked_at": "2026-11-07T17:59:37.216895+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・締切の日時の記載なし",
-    "page_checked_at": "2026-11-07T19:44:53.388856+09:00",
+    "page_checked_at": "2026-11-08T11:15:33.337733+09:00",
     "page_err": "中身が空",
     "multi": true,
     "cls": "38f728326399",
@@ -22288,7 +22291,7 @@
     "deadline_checked_at": "2026-11-07T17:59:42.198386+09:00",
     "deadline_v": 5,
     "deadline_note": "画像1/1枚読込・画像・本文に締切日時の記載なし",
-    "page_checked_at": "2026-11-07T19:44:53.388858+09:00",
+    "page_checked_at": "2026-11-08T11:15:33.337736+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "45a02009e1fc",
@@ -22347,7 +22350,7 @@
     "key": "501a53b80d7a3b31",
     "status": "approved",
     "found_at": "2026-11-06T16:24:11.899604+09:00",
-    "page_checked_at": "2026-11-07T19:44:53.388860+09:00",
+    "page_checked_at": "2026-11-08T11:15:33.337738+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "f83a8e063ec7",
@@ -23068,7 +23071,7 @@
     "multi": false,
     "cls": "691babd31493",
     "tco_checked": true,
-    "page_checked_at": "2026-11-07T18:56:27.874915+09:00",
+    "page_checked_at": "2026-11-08T11:15:35.401074+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -23471,7 +23474,7 @@
     "multi": false,
     "cls": "3e69ca719f10",
     "hold_reason": "店名があいまい",
-    "page_checked_at": "2026-11-07T18:56:31.996992+09:00",
+    "page_checked_at": "2026-11-08T11:15:37.482030+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -23556,7 +23559,7 @@
     "multi": false,
     "cls": "4990780515c2",
     "issue": 520,
-    "page_checked_at": "2026-11-07T18:56:34.046652+09:00",
+    "page_checked_at": "2026-11-08T11:15:39.627596+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -24057,7 +24060,7 @@
     "key": "0bdff3c162492123",
     "status": "pending",
     "found_at": "2026-11-06T22:12:25.094164+09:00",
-    "page_checked_at": "2026-11-07T18:56:38.746324+09:00",
+    "page_checked_at": "2026-11-08T11:15:41.756652+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "b4ce088db6fe",
@@ -24349,7 +24352,7 @@
     "key": "3a8c9b3398b44a21",
     "status": "pending",
     "found_at": "2026-11-06T22:13:07.544477+09:00",
-    "page_checked_at": "2026-11-07T18:56:44.316444+09:00",
+    "page_checked_at": "2026-11-08T11:15:43.843509+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "f28565523bc9",
@@ -25165,7 +25168,7 @@
     "cls": "429a9075645a",
     "issue": 530,
     "tco_checked": true,
-    "page_checked_at": "2026-11-07T11:07:20.542557+09:00",
+    "page_checked_at": "2026-11-08T11:15:45.922436+09:00",
     "address_checked": true,
     "details_checked": true
   },
@@ -25177,7 +25180,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "この告知には応募・購入の条件(会員登録、アプリ、本人確認書類、購入上限、代理購入、価格など)の記載がなく、リンク先URLと「応募可能」の旨があるだけ。",
     "url": "https://twitter.com/Chura_bo/status/2118840853896814780/photo/1",
     "x_post": "https://x.com/Chura_bo/status/2118840853896814780",
     "game": "pokemon",
@@ -25199,7 +25202,11 @@
     "cls": "1cf222094470",
     "issue": 531,
     "tco_checked": true,
-    "apply_url": "https://livepocket.jp/e/vulam"
+    "apply_url": "https://livepocket.jp/e/vulam",
+    "page_checked_at": "2026-11-08T11:15:48.335166+09:00",
+    "page_err": "中身が空",
+    "post_checked": true,
+    "details_checked": true
   },
   "fb0f383dd02dfc3a": {
     "store": "古本市場野口店",
@@ -25255,7 +25262,7 @@
     "cls": "50e0c3f2483d",
     "tco_checked": true,
     "apply_url": "https://livepocket.jp/e/2nyas",
-    "page_checked_at": "2026-11-07T18:56:46.379544+09:00",
+    "page_checked_at": "2026-11-08T11:15:50.421670+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -25314,7 +25321,7 @@
     "multi": false,
     "cls": "9f483e4109d9",
     "tco_checked": true,
-    "page_checked_at": "2026-11-07T18:56:48.441013+09:00",
+    "page_checked_at": "2026-11-08T11:15:52.495481+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -25628,7 +25635,7 @@
     "multi": false,
     "cls": "37f58b92fd86",
     "tco_checked": true,
-    "page_checked_at": "2026-11-07T18:56:50.559364+09:00",
+    "page_checked_at": "2026-11-08T11:15:54.743433+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -25921,7 +25928,7 @@
     "found_at": "2026-11-07T11:04:31.606695+09:00",
     "multi": false,
     "cls": "715ede011bf6",
-    "page_checked_at": "2026-11-07T11:57:24.853290+09:00",
+    "page_checked_at": "2026-11-08T11:15:56.806815+09:00",
     "address_checked": true
   },
   "410f2ba20f4a37d5": {
@@ -25979,7 +25986,7 @@
     "found_at": "2026-11-07T11:04:31.606779+09:00",
     "multi": false,
     "cls": "22889386cda2",
-    "page_checked_at": "2026-11-07T18:56:54.725019+09:00",
+    "page_checked_at": "2026-11-08T11:15:59.210128+09:00",
     "page_err": "中身が空"
   },
   "08b7fcf852132190": {
@@ -26149,7 +26156,7 @@
     "found_at": "2026-11-07T11:04:31.606966+09:00",
     "multi": false,
     "cls": "b92a351e84c2",
-    "page_checked_at": "2026-11-07T11:57:29.264163+09:00",
+    "page_checked_at": "2026-11-08T11:16:01.276811+09:00",
     "address_checked": true
   },
   "b7e0e8a88f2d3850": {
@@ -26179,7 +26186,7 @@
     "found_at": "2026-11-07T11:04:31.606996+09:00",
     "multi": false,
     "cls": "af2d10bc52c0",
-    "page_checked_at": "2026-11-07T18:56:56.774417+09:00",
+    "page_checked_at": "2026-11-08T11:16:03.759645+09:00",
     "page_err": "中身が空"
   },
   "277ae8cec513455d": {
@@ -26209,7 +26216,7 @@
     "cls": "5b68990df892",
     "announce": "11月14日(土)",
     "start": "2026-11-06T21:30:00+09:00",
-    "page_checked_at": "2026-11-07T11:57:33.736728+09:00"
+    "page_checked_at": "2026-11-08T11:16:05.823010+09:00"
   },
   "fef1e3a48d3f3ed8": {
     "store": "ブックエース小名浜住吉店（トレカエース）",
@@ -26238,7 +26245,7 @@
     "found_at": "2026-11-07T11:04:31.607057+09:00",
     "multi": false,
     "cls": "d441638664e6",
-    "page_checked_at": "2026-11-07T18:56:58.890433+09:00",
+    "page_checked_at": "2026-11-08T11:16:05.823189+09:00",
     "page_err": "中身が空"
   },
   "ce4b97c7ef402170": {
@@ -26574,7 +26581,7 @@
     "found_at": "2026-11-07T11:04:31.607408+09:00",
     "multi": false,
     "cls": "8c12d4fb0caf",
-    "page_checked_at": "2026-11-07T11:57:38.331869+09:00",
+    "page_checked_at": "2026-11-08T11:16:07.892071+09:00",
     "address_checked": true
   },
   "9742c676a50d65e0": {
@@ -26741,7 +26748,7 @@
     "cls": "65609c57fcbb",
     "announce": "11月12日(木)（当選者のみメール）",
     "start": "2026-11-06T19:00:00+09:00",
-    "page_checked_at": "2026-11-07T11:57:42.509673+09:00"
+    "page_checked_at": "2026-11-08T11:16:11.826480+09:00"
   },
   "073f7646d42f8269": {
     "store": "ときわ書房 本八幡スクエア店",
@@ -26825,7 +26832,7 @@
     "found_at": "2026-11-07T11:04:31.607703+09:00",
     "multi": false,
     "cls": "45f9c5fb838a",
-    "page_checked_at": "2026-11-07T11:57:44.945657+09:00",
+    "page_checked_at": "2026-11-08T11:16:14.140118+09:00",
     "address_checked": true
   },
   "a0c281b37be279cf": {
@@ -27294,7 +27301,7 @@
     "key": "abf74321c540c1de",
     "status": "approved",
     "found_at": "2026-11-07T11:04:32.684315+09:00",
-    "page_checked_at": "2026-11-07T18:57:00.951052+09:00",
+    "page_checked_at": "2026-11-08T11:16:16.609075+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "dd42873014fc"
@@ -27381,7 +27388,7 @@
     "key": "d3c74f691b0f9071",
     "status": "approved",
     "found_at": "2026-11-07T11:04:32.684409+09:00",
-    "page_checked_at": "2026-11-07T18:57:03.160684+09:00",
+    "page_checked_at": "2026-11-08T11:16:18.670844+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "017778459ea2"
@@ -28441,7 +28448,7 @@
     "product": "ハドウシーカー",
     "series": "ハドウシーカー",
     "start": null,
-    "end": null,
+    "end": "2026-11-10T16:59:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -28459,13 +28466,15 @@
     "key": "a2021cb6a1525259",
     "status": "pending",
     "found_at": "2026-11-07T11:05:21.297786+09:00",
-    "deadline_checked_at": "2026-11-07T11:05:47.446683+09:00",
+    "deadline_checked_at": "2026-11-08T11:15:00.243703+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし（リンクのみ）",
+    "deadline_note": "画像2/2枚読込・11月10日(火)16時59分まで抽選応募受付中",
     "multi": false,
     "cls": "397574181a53",
     "hold_reason": "店名があいまい",
-    "tco_checked": true
+    "tco_checked": true,
+    "apply_url": "https://livepocket.jp/e/luo8lp88-d",
+    "end_from": "Xの告知（11月10日(火)16時59分まで抽選応）"
   },
   "e130a2a7edb762dc": {
     "store": "上野（東京）",
@@ -28642,9 +28651,9 @@
     "status": "pending",
     "found_at": "2026-11-07T11:05:21.297889+09:00",
     "apply_url": "https://livepocket.jp/e/dbf5m",
-    "deadline_checked_at": "2026-11-07T11:06:07.280910+09:00",
+    "deadline_checked_at": "2026-11-08T11:15:05.295209+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "deadline_note": "画像0/0枚読込・対象商品の行が途切れ締切記載なし",
     "multi": false,
     "cls": "3b08dc0555af",
     "issue": 539,
@@ -33607,7 +33616,9 @@
     "no_quote": true,
     "key": "36c305dfdc4f6b97",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.213989+09:00"
+    "found_at": "2026-11-08T10:44:58.213989+09:00",
+    "multi": false,
+    "cls": "d433eba4b4d5"
   },
   "fd39e4231c0c9cad": {
     "store": "キデイランド ららぽーと富士見店",
@@ -33616,7 +33627,7 @@
     "end": "2026-11-09T23:59:00+09:00",
     "url": "https://livepocket.jp/e/jogp8",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "埼玉県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -33633,7 +33644,9 @@
     "no_quote": true,
     "key": "fd39e4231c0c9cad",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214029+09:00"
+    "found_at": "2026-11-08T10:44:58.214029+09:00",
+    "multi": false,
+    "cls": "75e3514736fe"
   },
   "0a17035f5590d71f": {
     "store": "カードスタジアム首里店（TSUTAYA首里店内）",
@@ -33660,7 +33673,9 @@
     "key": "0a17035f5590d71f",
     "status": "approved",
     "found_at": "2026-11-08T10:44:58.214045+09:00",
-    "start": "2026-11-07T19:37:00+09:00"
+    "start": "2026-11-07T19:37:00+09:00",
+    "multi": false,
+    "cls": "fa0601c6e51c"
   },
   "e247aae3bf71f847": {
     "store": "TSUTAYA 涌谷店",
@@ -33670,7 +33685,7 @@
     "url": "https://livepocket.jp/e/2q34tryqw98dvhasjkl-jgh12u89yru",
     "x_post": null,
     "channel": "store",
-    "area": null,
+    "area": "宮城県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -33686,7 +33701,9 @@
     "no_quote": true,
     "key": "e247aae3bf71f847",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214064+09:00"
+    "found_at": "2026-11-08T10:44:58.214064+09:00",
+    "multi": false,
+    "cls": "388c25eb4504"
   },
   "6d60889ffeab29d2": {
     "store": "ゲームプラザ元気302",
@@ -33711,7 +33728,9 @@
     "no_quote": true,
     "key": "6d60889ffeab29d2",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214080+09:00"
+    "found_at": "2026-11-08T10:44:58.214080+09:00",
+    "multi": false,
+    "cls": "64cf95e48545"
   },
   "d2556f84d2c0ef49": {
     "store": "文真堂トレカ丸渋川中央店",
@@ -33721,7 +33740,7 @@
     "url": "https://x.com/buntcshibu_jp/status/2118933070715957346",
     "x_post": "https://x.com/buntcshibu_jp/status/2118933070715957346",
     "channel": "store",
-    "area": null,
+    "area": "群馬県",
     "method": "店頭",
     "conditions": "本人確認",
     "tags": [
@@ -33736,7 +33755,9 @@
     "no_quote": true,
     "key": "d2556f84d2c0ef49",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214099+09:00"
+    "found_at": "2026-11-08T10:44:58.214099+09:00",
+    "multi": false,
+    "cls": "a48a0fa18018"
   },
   "2bc8d7c73976edb0": {
     "store": "イエローサブマリン各店",
@@ -33763,7 +33784,9 @@
     "no_quote": true,
     "key": "2bc8d7c73976edb0",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214116+09:00"
+    "found_at": "2026-11-08T10:44:58.214116+09:00",
+    "multi": true,
+    "cls": "a8f1d459108b"
   },
   "1be12ad9d50324fb": {
     "store": "文真堂トレカ丸幸手店",
@@ -33773,7 +33796,7 @@
     "url": "https://x.com/buntcsatte_jp/status/2118942554997870638",
     "x_post": "https://x.com/buntcsatte_jp/status/2118942554997870638",
     "channel": "store",
-    "area": null,
+    "area": "埼玉県",
     "method": "店頭",
     "conditions": "本人確認",
     "tags": [
@@ -33788,7 +33811,9 @@
     "no_quote": true,
     "key": "1be12ad9d50324fb",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214133+09:00"
+    "found_at": "2026-11-08T10:44:58.214133+09:00",
+    "multi": false,
+    "cls": "b41378a6e91f"
   },
   "04f91127fdddf041": {
     "store": "ゼスト相模原店 トレカ館",
@@ -33813,7 +33838,9 @@
     "no_quote": true,
     "key": "04f91127fdddf041",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214162+09:00"
+    "found_at": "2026-11-08T10:44:58.214162+09:00",
+    "multi": false,
+    "cls": "9d3481d1eecf"
   },
   "c4c790f816901c83": {
     "store": "TSUTAYA森町店トレカコーナー",
@@ -33949,7 +33976,9 @@
     "no_quote": true,
     "key": "b72324522e67de0b",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214260+09:00"
+    "found_at": "2026-11-08T10:44:58.214260+09:00",
+    "multi": false,
+    "cls": "5b6e9198db2f"
   },
   "7a539f31c232cf36": {
     "store": "三洋堂トレカ館 城山店",
@@ -33975,7 +34004,9 @@
     "no_quote": true,
     "key": "7a539f31c232cf36",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214279+09:00"
+    "found_at": "2026-11-08T10:44:58.214279+09:00",
+    "multi": false,
+    "cls": "07ee2b0fb748"
   },
   "c80b7365d1c01e9e": {
     "store": "カードショップ＠ほ～む。宮崎店",
@@ -34000,7 +34031,9 @@
     "no_quote": true,
     "key": "c80b7365d1c01e9e",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214297+09:00"
+    "found_at": "2026-11-08T10:44:58.214297+09:00",
+    "multi": false,
+    "cls": "d16224aea4b0"
   },
   "aa7bf01af5ae3666": {
     "store": "八文字屋本店（トレカ）",
@@ -34026,7 +34059,9 @@
     "no_quote": true,
     "key": "aa7bf01af5ae3666",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214313+09:00"
+    "found_at": "2026-11-08T10:44:58.214313+09:00",
+    "multi": false,
+    "cls": "05989da7e639"
   },
   "b2b956b298ab18f6": {
     "store": "バトロコ沼津駅前",
@@ -34035,7 +34070,7 @@
     "end": "2026-11-19T23:59:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSe-ahXMo2LvalGyZ43uZTrbsCDauBs5psMSbdn_qJNw4xIyHg/viewform",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "静岡県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -34052,7 +34087,9 @@
     "no_quote": true,
     "key": "b2b956b298ab18f6",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214331+09:00"
+    "found_at": "2026-11-08T10:44:58.214331+09:00",
+    "multi": false,
+    "cls": "e0b02e67dce2"
   },
   "6b4f55224a52718c": {
     "store": "TSUTAYA 合川店",
@@ -34093,7 +34130,9 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし(開始のみ)",
     "start": "2026-11-09T09:00:00+09:00",
-    "issue": 556
+    "issue": 556,
+    "multi": false,
+    "cls": "1d5b8d834b54"
   },
   "ec31b24276d802c5": {
     "store": "［トレカ・ゲーム］GIGA防府店（フタバ図書TSUTAYA）",
@@ -34116,7 +34155,9 @@
     "no_quote": true,
     "key": "ec31b24276d802c5",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.214366+09:00"
+    "found_at": "2026-11-08T10:44:58.214366+09:00",
+    "multi": false,
+    "cls": "62656cfc674e"
   },
   "31a6b9ad30808987": {
     "store": "キデイランド ららぽーと富士見店",
@@ -34125,7 +34166,7 @@
     "end": "2026-11-09T23:59:00+09:00",
     "url": "https://livepocket.jp/e/gpnjs",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "埼玉県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -34142,7 +34183,9 @@
     "no_quote": true,
     "key": "31a6b9ad30808987",
     "status": "approved",
-    "found_at": "2026-11-08T10:44:58.294759+09:00"
+    "found_at": "2026-11-08T10:44:58.294759+09:00",
+    "multi": false,
+    "cls": "213deab3a67d"
   },
   "85302f23b9d65d61": {
     "store": "WonderGOO",
@@ -34156,7 +34199,7 @@
     "url": "https://customform.jp/form/input/258",
     "x_post": "https://x.com/chusen_toreka/status/2119243569991172406",
     "game": "onepiece",
-    "channel": "store",
+    "channel": "online",
     "area": null,
     "id_check": null,
     "member": null,
@@ -34167,7 +34210,8 @@
     "key": "85302f23b9d65d61",
     "status": "pending",
     "found_at": "2026-11-08T10:45:45.638737+09:00",
-    "issue": 557
+    "issue": 557,
+    "cls": "675ecf778215"
   },
   "e5d3b92ed0b4869c": {
     "store": "新星堂",
@@ -34241,7 +34285,9 @@
     "source_url": "https://x.com/",
     "key": "2bc0362c54753817",
     "status": "approved",
-    "found_at": "2026-11-08T10:45:45.638819+09:00"
+    "found_at": "2026-11-08T10:45:45.638819+09:00",
+    "multi": false,
+    "cls": "16d5bd2c0d53"
   },
   "a939dad94d9436bd": {
     "store": "オレタン",
@@ -34269,7 +34315,8 @@
     "status": "approved",
     "found_at": "2026-11-08T10:45:45.638840+09:00",
     "tco_checked": true,
-    "info_post": "https://twitter.com/chang_tingyao/status/2119240996324016626/photo/1"
+    "info_post": "https://twitter.com/chang_tingyao/status/2119240996324016626/photo/1",
+    "cls": "da1c61a5a53d"
   },
   "c2241d200313efe0": {
     "store": "カードスタジアム首里店",
@@ -34344,7 +34391,9 @@
     "key": "83bc76c0b10f91ae",
     "status": "pending",
     "found_at": "2026-11-08T10:45:45.638892+09:00",
-    "issue": 558
+    "issue": 558,
+    "multi": false,
+    "cls": "b7d124f95d56"
   },
   "fd1e36ce4c397b7b": {
     "store": "しまむらパーク",
@@ -34372,6 +34421,7 @@
     "issue": 559,
     "tco_checked": true,
     "blog_url": "https://mikeco-room.com/resale-30thcel",
-    "blog_checked": "2026-11-08"
+    "blog_checked": "2026-11-08",
+    "cls": "56068fbccf64"
   }
 }
