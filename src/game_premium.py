@@ -59,6 +59,40 @@ def _lookup_teika(jan, settings, fetch=None):
     return None
 
 
+BOOKS_GAME = ["https://openapi.rakuten.co.jp/services/api/BooksGame/Search/20170404",
+              "https://openapi.rakuten.co.jp/booksms/api/BooksGame/Search/20170404",
+              "https://app.rakuten.co.jp/services/api/BooksGame/Search/20170404"]
+_books_ok = {}
+
+
+def _books_info(jan, settings):
+    """楽天ブックスのゲームの情報（発売日・メーカー・対応機種・説明）。新しいAPIの場所が分からないので、候補を順に試す"""
+    import os
+    import requests
+    site = (os.environ.get("RAKUTEN_REFERER") or os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
+    p = {"applicationId": os.environ.get("RAKUTEN_APP_ID", "").strip(), "accessKey": os.environ.get("RAKUTEN_ACCESS_KEY", "").strip(),
+         "jan": jan, "format": "json", "formatVersion": 2}
+    h = {"accessKey": p["accessKey"], "Referer": site + "/", "Origin": site, "User-Agent": "game-nyuka/1.0"}
+    for url in ([_books_ok["url"]] if _books_ok.get("url") else BOOKS_GAME):
+        try:
+            r = requests.get(url, params=p, headers=h, timeout=15)
+        except Exception as e:
+            log(f"楽天ブックス（ゲーム）: {url.split('/')[2]} {e}")
+            continue
+        if r.status_code == 200:
+            _books_ok["url"] = url
+            items = r.json().get("Items") or []
+            if items:
+                i = items[0].get("Item", items[0])
+                return {"sales_date": i.get("salesDate") or "", "maker": i.get("label") or i.get("makerCode") or "",
+                        "hardware": i.get("hardware") or "", "caption": (i.get("itemCaption") or "")[:400], "title": i.get("title") or ""}
+            return {}
+        if not _books_ok.get("logged"):
+            log(f"楽天ブックス（ゲーム）: {url} → {r.status_code} {r.text[:120]}")
+    _books_ok["logged"] = True
+    return None
+
+
 def update(settings, fetch=None, sleep=None):
     import time
     sleep = sleep or time.sleep
@@ -90,12 +124,20 @@ def update(settings, fetch=None, sleep=None):
         left -= 1
         try:
             r = _lookup_teika(jan, settings, fetch)
-            teika[jan] = dict(r or {}, at=t.isoformat())
+            info = _books_info(jan, settings) if (r and fetch is None) else None
+            teika[jan] = dict(r or {}, **(info or {}), at=t.isoformat())
         except Exception as e:
             log(f"プレ値：{jan} 定価の取得失敗 {e}")
             if "429" not in str(e):
                 teika[jan] = {"at": t.isoformat()}
         sleep(1.2)
+    if fetch is None:   # 定価が分かっていて、商品情報（発売日など）がまだのものを少しずつ埋める
+        for jan in [j for j in order if (teika.get(j) or {}).get("price") and "sales_date" not in teika[j]][:int(settings.get("premium_info_per_run", 6))]:
+            info = _books_info(jan, settings)
+            if info is None:
+                break
+            teika[jan].update(info or {"sales_date": ""})
+            sleep(1.2)
     save_json(TEIKA, teika)
     return g
 
@@ -131,7 +173,8 @@ def premium_list(settings=None):
                 name = re.sub(r"\s+", " ", withm[0]).strip()[:70]
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": tk["price"], "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r, "itemUrl": tk.get("itemUrl", ""),
-                    "img": tk.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today)})
+                    "img": tk.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
+                    "sales_date": tk.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
     out.sort(key=lambda x: -x["ratio"])
     return out
 
@@ -173,6 +216,22 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".pm-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.pm-row img{border-radius:10px;background:#fff}"
        ".shopb{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.shopb .btn{padding:10px 14px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".btn-rk{background:#bf0000;color:#fff}.btn-yh{background:#ff0033;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-az{background:#ff9900;color:#0b0d12}")
+
+
+def info_rows(x):
+    """商品情報の表：商品名・メーカー・発売日・定価・型番・対応機種・JAN（分かるものだけ）"""
+    model = ""
+    for n in [x["name"]] + x.get("names", []):
+        m = re.search(r"[A-Z]{2,}-?[A-Z0-9]{3,}[A-Z0-9-]*", n)
+        if m:
+            model = m.group(0)
+            break
+    rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), ("定価（税込）", f'{x["teika"]:,}円（楽天ブックスの販売価格）'),
+            ("型番", model), ("対応機種", x.get("hardware")), ("JANコード", x["jan"])]
+    out = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in rows if v)
+    if x.get("caption"):
+        out += f'<tr><th>説明</th><td>{escape(x["caption"][:200])}…</td></tr>'
+    return out
 
 
 def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id=""):
@@ -220,8 +279,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<p><a href="/premium/">定価以上で売れるゲーム・ホビー</a></p><h1>{escape(x["name"])}</h1>'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・定価 {x["teika"]:,}円（<span class="up">+{round((x["ratio"] - 1) * 100)}%</span>）</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>'
+             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"])}'
              f'<h2>定価で買えるところ</h2><div class="shopb">{shops}</div>{rel_html}'
-             f'<h2>買取店ごとの買取価格（新品・上位5店）</h2><table class="pm-t">{top}</table><p>JAN：{x["jan"]}</p>{note}', f"premium/{x['jan']}/")
+             f'<h2>買取店ごとの買取価格（新品・上位5店）</h2><table class="pm-t">{top}</table>{note}', f"premium/{x['jan']}/")
     log(f"プレ値商品：{len(items)}件のページ")
     return paths, items
