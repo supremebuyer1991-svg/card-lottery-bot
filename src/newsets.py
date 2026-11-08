@@ -149,7 +149,7 @@ def quick_check(settings, sess=None):
             name, v = hit
             data["pk_ex_next"] = n + 1
             if normalize(name) not in known["pokemon"]:
-                ser.setdefault("pokemon", {})[name] = {"first_seen": today, "announce": "pending", **v}
+                ser.setdefault("pokemon", {})[name] = {"first_seen": today, "announce": "worker", **v}
                 found.append(("pokemon", name))
     except Exception as e:
         log(f"新弾チェック: ポケカ 失敗 {e}")
@@ -162,7 +162,7 @@ def quick_check(settings, sess=None):
                 continue
             if str(v.get("release") or "") < today:
                 continue  # 発売済みのものは新弾の告知にしない
-            ser.setdefault("onepiece", {})[name] = {"first_seen": today, "announce": "skip" if first else "pending", **v}
+            ser.setdefault("onepiece", {})[name] = {"first_seen": today, "announce": "worker", **v}
             if not first:
                 found.append(("onepiece", name))
         data["qc_ready"] = True
