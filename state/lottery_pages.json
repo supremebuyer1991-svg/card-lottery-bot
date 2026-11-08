@@ -44618,5 +44618,53 @@
       "found_at": "2026-11-08T15:25:48.390852+09:00"
     },
     "last": "2026-11-08"
+  },
+  "l/d1cd0b6c72/": {
+    "d": {
+      "key": "d1cd0b6c724e4d2e",
+      "game": "pokemon",
+      "store": "バトロコミニ苫小牧バイパス店",
+      "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー 1BOX",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSdwhYocYF9KdTw9SpeLy5haQPrbLyk4yD_DEwT0cSuArzh5Xg/viewform",
+      "channel": "store",
+      "area": "北海道",
+      "id_check": true,
+      "member": "account",
+      "spath": "store/batoroco-5ebb1/",
+      "found_at": "2026-11-08T16:34:08.917084+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/856454ca0b/": {
+    "d": {
+      "key": "856454ca0bd70b32",
+      "game": "dragonball",
+      "store": "TSUTAYA白河店（みどり書房白河店）",
+      "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「REACH THE GOD」【FB12】1BOX（税込5,760円・お一人様1BOXまで）",
+      "series": "REACH THE GOD",
+      "end": "2026-12-06T21:00:00+09:00",
+      "method": "店頭",
+      "conditions": "本人確認",
+      "tags": [
+        "本人確認"
+      ],
+      "url": "https://x.com/Midori_SiraKawa/status/2119322523443818945",
+      "channel": "store",
+      "area": "福島県",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/limit-shop/cabinet/07444166/4582770078718.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flimit-shop%2Fnygao_4582770078718%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flimit-shop%2Fnygao_4582770078718%2F",
+      "spath": "store/tsutaya-0958c/",
+      "found_at": "2026-11-08T16:34:09.696308+09:00"
+    },
+    "last": "2026-11-08"
   }
 }

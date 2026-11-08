@@ -1528,12 +1528,14 @@
     "source": "Googleニュース「ポケカ 抽選」",
     "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9jZ2dpRzJoRU5lZ29mOWYxT2hLM01HZHZGZHRyUXpOalJiaTdQNmh1YTVmOW44Z2JyZGVFWlh1Y2pmaDlOR1U2VU1pM3RSaVJRUzFPWEItTmZkbGcyOTU3SnFJanRtemEzRnRoTDJib2xaSk5aaWlkMGNSZkRRWEU?oc=5",
     "key": "7daffccefd6e2592",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T16:29:53.356166+09:00",
     "page_checked_at": "2026-11-08T07:52:38.305681+09:00",
     "cls": "b6c9891f99ee",
     "issue": 217,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-08T16:34:33.294567+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "d49e3cfbccb7e526": {
     "store": "Amazon",
@@ -1556,12 +1558,14 @@
     "source": "Googleニュース「ポケカ 抽選」",
     "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFAxZzZqUC1hM09abFdOV3h5LU1oTHh2RHBDWEFWSUU4Z3MwYnM0LS13VU90bFZtNlFYbjF6MW5kTEdNbGdkTWZhZDEtX3JwTXRiUEJZci1MZThaWHljeDVGUk0xOVFudzRXUEktbHM3NVFXQk03RDdV?oc=5",
     "key": "d49e3cfbccb7e526",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-10-29T16:29:53.356215+09:00",
     "page_checked_at": "2026-11-08T07:52:40.513423+09:00",
     "cls": "1229a95c9525",
     "issue": 218,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-08T16:34:33.294591+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "49dd8ffde3ed318d": {
     "store": "うさぎやTSUTAYA大利根店",
@@ -11930,7 +11934,7 @@
     "source": "X LivePocket抽選",
     "source_url": "https://x.com/",
     "key": "ab6b4fb4fdd21320",
-    "status": "pending",
+    "status": "duplicate",
     "found_at": "2026-11-04T21:01:19.246355+09:00",
     "deadline_checked_at": "2026-11-04T21:01:24.201457+09:00",
     "deadline_v": 5,
@@ -11938,7 +11942,8 @@
     "end_from": "応募ページ（ポケモンセンター 〆11/10(火) 1）",
     "cls": "8f3802da80de",
     "issue": 451,
-    "tco_checked": true
+    "tco_checked": true,
+    "duplicate_of": "b70d4af3d525a932"
   },
   "362362083477c9da": {
     "store": "フルコンプ横浜店",
@@ -17333,37 +17338,6 @@
     "multi": false,
     "cls": "04b051778ab4",
     "duplicate_of": "e8f0e874c4c4b203"
-  },
-  "239b6714e8111df8": {
-    "store": "プレバン",
-    "product": "『ワンピース カードゲーム』4周年パック第2弾「神の支配」",
-    "series": "神の支配",
-    "start": null,
-    "end": null,
-    "announce": null,
-    "method": null,
-    "conditions": "ページ本文に「神の支配」の応募・購入条件の記載はありません。",
-    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9jbDAwOFJmN2x2eGt4eTVwX3gzbzFvUWNwOHpabXpCeUV5cTNFRU10cDdldk9xdTJjSm1FQVR4dHU3X09RYVlMUVhCRVVEODRnZ2QzNHVBd3hXRndXZ09WWnJMYUxJRGppbnlWLTBXQS1tZ01vNDVv?oc=5",
-    "x_post": null,
-    "game": "onepiece",
-    "channel": "online",
-    "area": null,
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.55,
-    "source": "Googleニュース「ワンピカード 抽選」",
-    "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9jbDAwOFJmN2x2eGt4eTVwX3gzbzFvUWNwOHpabXpCeUV5cTNFRU10cDdldk9xdTJjSm1FQVR4dHU3X09RYVlMUVhCRVVEODRnZ2QzNHVBd3hXRndXZ09WWnJMYUxJRGppbnlWLTBXQS1tZ01vNDVv?oc=5",
-    "key": "239b6714e8111df8",
-    "status": "pending",
-    "found_at": "2026-11-06T10:15:07.686822+09:00",
-    "deadline_checked_at": "2026-11-08T11:14:56.572899+09:00",
-    "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし",
-    "cls": "095d6bd5b4f3",
-    "issue": 506,
-    "page_checked_at": "2026-11-08T09:00:54.914043+09:00",
-    "details_checked": true
   },
   "c40b9c3a3525b4ba": {
     "store": "野田ホビー ノア店",
@@ -36601,5 +36575,61 @@
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
+  },
+  "d1cd0b6c724e4d2e": {
+    "store": "バトロコミニ苫小牧バイパス店",
+    "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー 1BOX",
+    "series": null,
+    "end": "2026-11-11T23:59:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSdwhYocYF9KdTw9SpeLy5haQPrbLyk4yD_DEwT0cSuArzh5Xg/viewform",
+    "x_post": null,
+    "channel": "store",
+    "area": "北海道",
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "d1cd0b6c724e4d2e",
+    "status": "approved",
+    "found_at": "2026-11-08T16:34:08.917084+09:00",
+    "page_checked_at": "2026-11-08T16:34:09.734437+09:00",
+    "multi": false,
+    "cls": "22780fc57915"
+  },
+  "856454ca0bd70b32": {
+    "store": "TSUTAYA白河店（みどり書房白河店）",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「REACH THE GOD」【FB12】1BOX（税込5,760円・お一人様1BOXまで）",
+    "series": "REACH THE GOD",
+    "end": "2026-12-06T21:00:00+09:00",
+    "url": "https://x.com/Midori_SiraKawa/status/2119322523443818945",
+    "x_post": "https://x.com/Midori_SiraKawa/status/2119322523443818945",
+    "channel": "store",
+    "area": "福島県",
+    "method": "店頭",
+    "conditions": "本人確認",
+    "tags": [
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "856454ca0bd70b32",
+    "status": "approved",
+    "found_at": "2026-11-08T16:34:09.696308+09:00",
+    "multi": false,
+    "cls": "463675840da0"
   }
 }
