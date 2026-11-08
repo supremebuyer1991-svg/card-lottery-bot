@@ -143,10 +143,20 @@ def _ymall_box(s):
             f'<img src="https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?{q}" height="1" width="1" alt="" style="border:0;position:absolute"></aside>')
 
 
+import functools as _ft
+_CHAIN_RE = None
+
+
+@_ft.lru_cache(maxsize=None)
 def chain_of(store):
-    import re
-    for slug, name, pat, big in CHAINS:
-        if re.search(pat, store or "", re.I):
+    """お店の名前からチェーンを決める。11/8 Fable：かっこ書きは見ない（「オリオンベース（旧TSUTAYA…）」がTSUTAYA扱いになっていた）
+    同じ名前を何万回も調べるので結果を覚えておく（ビルドが約7秒短くなる）"""
+    global _CHAIN_RE
+    if _CHAIN_RE is None:
+        _CHAIN_RE = [(slug, re.compile(pat, re.I)) for slug, name, pat, big in CHAINS]
+    st_ = re.sub(r"[（(【［\[][^）)】］\]]*[）)】］\]]", "", store or "")
+    for slug, rx in _CHAIN_RE:
+        if rx.search(st_):
             return slug
     return None
 
@@ -188,8 +198,50 @@ def romaji(text):
     return re.sub(r"-+", "-", "".join(out)).strip("-")
 
 
+_SMALL_KANA = str.maketrans("ァィゥェォヵヶッャュョヮ", "アイウエオカケツヤユヨワ")
+_STORE_ALIAS = {}
+
+
+def store_key(name):
+    """同じお店かどうかを決めるための名前（11/8 Fable：「店」の有無・かっこ書き・小さいカナの違いで別ページになっていた）"""
+    k = normalize(name or "")
+    k = re.sub(r"[（(【［\[][^）)】］\]]*[）)】］\]]", "", k)
+    k = re.sub(r"[\s　・/／,、。\-–—~〜!！?？]", "", k).translate(_SMALL_KANA)
+    k = re.sub(r"(各店|全店|店舗|店)$", "", k)
+    return k
+
+
+def _alias_of(store):
+    """表記ゆれのお店の名前 → 代表の名前（state/store_alias.json。ビルドの最初に作る）"""
+    if "m" not in _STORE_ALIAS:
+        _STORE_ALIAS["m"] = load_json("store_alias.json", {})
+    k = store_key(store)
+    return _STORE_ALIAS["m"].get(k) or store
+
+
+def update_store_alias(names_count):
+    """表記ゆれをまとめる代表の名前を決める（一度決めた代表は変えない：アドレスが行ったり来たりしないように）
+    names_count: {表記: 抽選の件数}"""
+    al = load_json("store_alias.json", {})
+    groups = {}
+    for nm, n in names_count.items():
+        k = store_key(nm)
+        if len(k) < 2:
+            continue
+        groups.setdefault(k, []).append((nm, n))
+    for k, lst in groups.items():
+        if k in al or len({x for x, _ in lst}) < 2:
+            continue
+        lst.sort(key=lambda t: (-t[1], bool(re.search(r"[（(【［\[]", t[0])), len(t[0])))
+        al[k] = lst[0][0]
+    save_json("store_alias.json", al)
+    _STORE_ALIAS["m"] = al
+    return al
+
+
 def store_path(store):
     """お店ごとのページ。店名（チェーン名）＋短い記号で読めるアドレスに（同じ店は同じページ）"""
+    store = _alias_of(store)
     key = normalize(store or "").replace(" ", "")
     c = chain_of(store)
     base = c or romaji(re.sub(r"[（(【［\[].*?[）)】］\]]", "", store or ""))[:30].strip("-") or "shop"
@@ -603,8 +655,17 @@ def line_box(area):
             f'参加後、サブトークルームから【{escape(r)}】のルームを選んでください</small></span></a>')
 
 
+_SNS_CACHE = {}
+
+
 def _sns_bar():
-    """サイト上部：Xのフォローと、LINEオープンチャット（テスト中）の案内"""
+    """サイト上部：Xのフォローと、LINEオープンチャット（テスト中）の案内（毎ページ同じなので1回だけ作る。11/8）"""
+    if "v" not in _SNS_CACHE:
+        _SNS_CACHE["v"] = _sns_bar_make()
+    return _SNS_CACHE["v"]
+
+
+def _sns_bar_make():
     st = load_settings()
     xa, ln = (st.get("x_account") or "").strip().lstrip("@"), (st.get("line_openchat_url") or "").strip()
     b = []
@@ -1478,6 +1539,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     raff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or s.get("rakuten_affiliate_id") or "").strip()
     out = Path(out_dir or ROOT / "site")
     games = [g for g in s["game_names"]]
+    if sample is None:  # 11/8 Fable：お店の表記ゆれ（「店」の有無・かっこ書き）を1つのページにまとめる代表の名前を先に決める
+        _cnt = {}
+        for h_ in load_json("store_history.json", {}).values():
+            if h_.get("name"):
+                _cnt[h_["name"]] = _cnt.get(h_["name"], 0) + len(h_.get("items") or {})
+        for r_ in load_json("stores.json", {}).values():
+            if r_.get("name"):
+                _cnt.setdefault(r_["name"], 0)
+        update_store_alias(_cnt)
 
     prices = load_json("rakuten_prices.json", {}) if sample is None else {}  # サプライの楽天最安値
     import souba as souba_mod
@@ -1702,8 +1772,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
                           "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
+        _nz = lambda t: re.sub(r"¥[\d,]+|\d{1,2}/\d{1,2}|\d{1,2}:\d{2}|\d+件", "", str(t or ""))  # 11/8 Fable：日付・値段・件数だけの違いは「更新」にしない
         sig = sha(json.dumps([re.sub(r"【[^】]*更新】", "", meta["title"]), meta.get("h1"), meta.get("lead"),
-                              re.sub(r"\d{1,2}:\d{2}", "", str(meta.get("info_html") or "")), str(meta.get("aff") or ""),
+                              _nz(meta.get("info_html")), _nz(meta.get("aff")),
                               sorted((i.get("key") or "", i.get("end") or "", str(i.get("conditions") or "")) for i in subset)],
                              ensure_ascii=False, default=str))
         prev = pmod.get(path) or []
@@ -1936,7 +2007,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "topsq": line_box(a),
                 "info_html": area_html + (near_html if ai else ""),
                 "title": f"{short} 抽選 {a}｜{a}の店頭抽選" + (f" 受付中{len(ai)}件" if ai else "") + f"【{md}更新】｜トレカ抽選ナビ",
-                "desc": f"【{md}更新】{short}（{name}）の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
+                "desc": f"【{md}更新】{short}{f'（{name}）' if short != name else ''}の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
                         (f"{len(ai)}件（今日締切{today_a}件・新着{new_a}件）を締切が近い順にまとめています。" if ai else
                          "をまとめています。いま受付中のものがない時は、近くの県の抽選を案内します。") + "1日6回自動更新。",
                 "summary": summary(ai, f"{a}の{short}店頭抽選") if ai else "",
@@ -2627,7 +2698,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if not i.get("spath"):
             continue
         r = reg.setdefault(i["spath"], {})
-        r.update(name=i["store"], last=today_s, game=r.get("game") or i["game"])
+        r.update(name=_alias_of(i["store"]), last=today_s, game=r.get("game") or i["game"])
         if i.get("channel") == "store" and i.get("area"):
             r["area"] = i["area"]
     # お店ごとの抽選の履歴（終わった抽選も1年分残す。「〇〇店 抽選」で探す人に、前回いつ・何の抽選だったかを見せる）
@@ -3186,8 +3257,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 old, new = old_series_path(g_, part), series_path(g_, part)
                 if old != new:
                     olds["/" + old] = "/" + new
-        for r in reg.values():  # お店の前のアドレス（記号8けた）→ 読めるアドレス
-            o, n = old_store_path(r.get("name") or ""), store_path(r.get("name") or "")
+        # お店の前のアドレス（記号8けた）→ 読めるアドレス。11/8 Fable：前のアドレスは10/30の切り替えまでしか公開していないので、
+        # それより前に見つかったお店だけ（全部書くと転送の上限2,000行に約10日で届く）
+        first_seen = {}
+        for h_ in hist.values():
+            fs = min((v.get("f") or "9999") for v in (h_.get("items") or {}).values()) if h_.get("items") else "9999"
+            nm_ = h_.get("name") or ""
+            first_seen[nm_] = min(first_seen.get(nm_, "9999"), fs)
+        for r in reg.values():
+            nm_ = r.get("name") or ""
+            if first_seen.get(nm_, "9999") >= "2026-10-30":
+                continue
+            o, n = old_store_path(nm_), store_path(nm_)
             if o != n:
                 olds["/" + o] = "/" + n
         # お店のアドレスが変わった分（チェーン追加などで。11/8）。一度見つけた分は覚えておいて転送し続ける
@@ -3203,13 +3284,28 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         save_json("store_moves.json", mv)
         olds.update(mv)
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
-        both = len(olds) * 2 <= 1900  # Cloudflare Pages の転送は2000行まで。多いときは「/」付きだけにする
-        (out / "_redirects").write_text("".join(f"{o} {n} 301\n" + (f"{o.rstrip('/')} {n} 301\n" if both else "") for o, n in sorted(olds.items())),
-                                        encoding="utf-8")
+        # 転送先のページが無い行は書かない（11/8：ワンピの弾がポケカ側の別名に入っていた3行など）
+        olds = {o: n for o, n in olds.items() if n == "/" or (out / n.strip("/") / "index.html").exists()}
+        if len(olds) > 1900:
+            print(f"注意：転送（_redirects）が{len(olds)}行。Cloudflare Pages の上限2,000行に近い")
+        # 「/」なしの版は書かない（前のアドレスはいつも「/」付きで公開していた）
+        (out / "_redirects").write_text("".join(f"{o} {n} 301\n" for o, n in sorted(olds.items())), encoding="utf-8")
 
     if sample is None and site:  # 海外向けページ（英語・繁体字・韓国語）11/7
         import intl
-        urls += intl.build_intl(out, s, souba_raw, card_raw, _ser_cfg()["info"], site, now().date())
+        for u_, lm0 in intl.build_intl(out, s, souba_raw, card_raw, _ser_cfg()["info"], site, now().date()):
+            # 11/8 Fable：海外ページも「中身が変わった日」を更新日に（毎日全部「今日」だとGoogleが更新日を信用しなくなる）
+            pth = u_[len(site):].lstrip("/")
+            try:
+                body_ = (out / pth / "index.html").read_text(encoding="utf-8")
+                body_ = re.sub(r"<script[^>]*>.*?</script>|<time[^>]*>.*?</time>|¥[\d,]+|[\d,.]+\s*(?:만원|원)|(?:NT|HK)?\$[\d,.]+|[+-]?\d+%|Updated[^<]*|更新[^<]*|업데이트[^<]*", "", body_, flags=re.S)
+                sig_ = sha(body_)
+            except OSError:
+                sig_ = ""
+            prev = pmod.get(pth) or []
+            lm_i = prev[1] if prev[:1] == [sig_] and len(prev) > 1 else today_iso
+            pmod[pth] = [sig_, lm_i, prev[2] if len(prev) > 2 else today_iso]
+            urls.append((u_, lm_i))
 
     if site:
         # 11/7 監査：サイトマップを種類ごとに分ける（Search Consoleで、どの種類が載っていないか分かる）。sitemap.xml は索引

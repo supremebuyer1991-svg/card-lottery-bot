@@ -4,7 +4,7 @@
 __HEADMETA__
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap"></noscript>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93">
 <style>
 /* Layout: 抽選券の半券を縦に積んだリスト。左端に締切カウント、右端に応募ボタン。上部に絞り込みを固定 */
@@ -529,6 +529,13 @@ input[type="search"] { flex: 1 1 160px; }
 .faq details p { margin: 0; padding: 0 14px 12px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
 .empty { text-align: center; color: var(--ink-2); padding: 40px 16px; background: var(--card); border: 1px dashed var(--rule); border-radius: 10px; }
 .go.rakb { background: #bf0000; color: #fff; }
+/* 11/8 Fable（技術）：画面の外の券は描かない（店頭タブの切り替えが遅いスマホで3秒→0.5秒）。
+   後から中身が入る枠は先に高さをとっておく（読み込み中に一覧がガクッと下がる「表示ズレ」を減らす） */
+.ticket { content-visibility: auto; contain-intrinsic-size: auto 200px; }
+.pre li { content-visibility: auto; contain-intrinsic-size: auto 60px; }
+#games:empty { min-height: 51px; }
+#stats:empty { min-height: 126px; }
+#hot:empty { min-height: 300px; }
 /* 11/8 Fable：押しやすい大きさ（31px→40px） */
 .toggle { min-height: 40px; padding: 6px 14px; font-size: 14px; }
 .toggle input { width: 18px; height: 18px; }
@@ -704,7 +711,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     <p class="lead-sum">__SUMSHORT__</p>
     __AFF__
   </section>
-  <section class="hot" id="hot" aria-label="締切間近・新着の抽選" hidden></section>
+  <section class="hot" id="hot" aria-label="締切間近・新着の抽選"></section>
   <div class="supply-slot">__SUPPLY__</div>
   <section class="panel" aria-label="絞り込み">
   <div class="stats" id="stats"></div>
