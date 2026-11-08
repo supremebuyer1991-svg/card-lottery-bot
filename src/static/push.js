@@ -108,12 +108,22 @@
   var visits = (+g("tnp_v") || 0) + 1; s("tnp_v", String(visits));
   function installNudge() {
     if (SA || visits < 2 || recent("tnp_inst", 30) || document.querySelector(".tnp-bar")) return;
-    if (dp) bar("📲 ホーム画面に追加すると、アプリみたいにすぐ開けます", "追加する", function () { dp.prompt(); dp.userChoice.then(function (c) { ga("pwa_prompt", { outcome: c.outcome }); }); dp = null; }, "tnp_inst");
-    else if (IOS && /Safari/.test(ua) && !/CriOS|FxiOS|Line\//.test(ua)) bar("📲 ホーム画面に追加すると、アプリみたいにすぐ開けて締切の通知も届きます", "やり方を見る", function () { location.href = "/mylist/#push"; }, "tnp_inst");
+    if (dp) bar("📲 ホーム画面に追加すると、次からあなたの地域の抽選がすぐ開けます", "追加する", function () { dp.prompt(); dp.userChoice.then(function (c) { ga("pwa_prompt", { outcome: c.outcome }); }); dp = null; }, "tnp_inst");
+    else if (IOS && /Safari/.test(ua) && !/CriOS|FxiOS|Line\//.test(ua)) bar("📲 ホーム画面に追加すると、すぐ開けて締切の通知も届きます", "やり方を見る", function () { location.href = "/mylist/#push"; }, "tnp_inst");
     else return;
     s("tnp_inst", String(Date.now()));
   }
   if (location.pathname === "/" ) setTimeout(installNudge, 4000);
+  // 一覧ページ（/pokeka/ や店舗ページなど）：応募ボタンを押した後、または3回目以降の訪問で出す
+  if (document.getElementById("list")) {
+    var nudgedByGo = false;
+    document.addEventListener("click", function (e) {
+      if (nudgedByGo) return;
+      var t = e.target;
+      if (t && t.closest && t.closest("a.go")) { nudgedByGo = true; setTimeout(installNudge, 1500); }
+    }, true);
+    if (visits >= 3) setTimeout(installNudge, 6000);
+  }
 
   // 応募したリストのページ：通知の欄
   function box() {
