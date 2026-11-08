@@ -26,6 +26,14 @@ import gamecats
 import sitegen as sg
 
 TEMPLATE = Path(__file__).with_name("game_template.html")
+SHELL_CSS = Path(__file__).with_name("game_shell.css")  # 全ページ共通（色・文字・左のメニュー）
+BG = "#0b0d12"  # 画面の地の色（ブラウザの上のバーの色にも使う）
+FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Chakra+Petch:wght@600;700&display=swap">')
+# 左のメニューの「受付状況」（一覧のあるページでは押すとその場で切り替わる）
+STAT_NAV = (("open", "受付中"), ("upcoming", "予告"), ("waiting", "結果待ち"), ("restock", "再入荷・先着"), ("announced", "発売・再販"))
+BELL_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+            '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>')
 ACTIVE = ("approved", "posted", "listed")
 # 終了したものも「終了」タブと結果待ちのために少しのあいだ残す
 KEEP_ENDED_DAYS = 7
@@ -71,6 +79,62 @@ def chain_of(store):
 
 CHAIN = {c[0]: c for c in GAME_CHAINS}
 WEEK = "月火水木金土日"
+
+
+def side_html(cats, cur_game=None, cur=None, counts=True):
+    """左のメニュー（ロゴ・受付状況・カテゴリ・通知をオン）。スマホでは本文の上に横並びで出る"""
+    stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
+    here = ' aria-current="page"'
+    stat += f'<a href="/calendar/"{here if cur == "calendar" else ""}>カレンダー</a>'
+    cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
+                 + (f'<span class="n" data-cn="{escape(c["id"])}"></span>' if counts else "") + "</a>" for c in cats)
+    return ('<aside class="side" aria-label="メニュー">'
+            '<a class="brand" href="/"><img src="/rinrin.png" alt="" width="36" height="36"><span>ゲーム・ホビー<br><em>入荷速報</em></span></a>'
+            f'<nav class="stat" aria-label="受付状況">{stat}</nav>'
+            f'<nav class="cats" aria-label="カテゴリ"><p class="cats-h">カテゴリ</p>{cl}</nav>'
+            f'<a class="notify" href="/calendar/#sub"><span>{BELL_SVG}通知をオン</span><small>締切をカレンダーでお知らせ</small></a>'
+            '</aside>')
+
+
+_EMOJI = re.compile("[\U0001F300-\U0001FAFF\u2600-\u27BF\u2B50\u2B06]\uFE0F?[ ]?")  # 絵文字のアイコンは使わない
+
+
+def _theme_detail(html, side):
+    """個別ページ（detail.render の出力。トレカと共通の部品）を、このサイトの見た目にそろえる。
+    detail.py 自体は変えない（トレカ抽選ナビのページは今までどおり）"""
+    css = SHELL_CSS.read_text(encoding="utf-8") + DETAIL_CSS
+    html = re.sub(r'<link rel="stylesheet" href="https://fonts\.googleapis\.com/css2\?family=Zen\+Kaku[^"]*">', lambda m: "", html, count=1)
+    html = html.replace('<link rel="preconnect" href="https://fonts.googleapis.com">', FONTS, 1)
+    html = html.replace("</head>", f"<style>{css}</style></head>", 1)
+    html = re.sub(r"<body><header>.*?</header><main class=\"wrap\">",
+                  lambda m: f'<body><div class="shell">{side}<div class="main"><p class="promo">本ページはプロモーションを含みます</p><main class="wrap">', html, count=1, flags=re.S)
+    html = html.replace("</main><script>", "</main></div></div><script>", 1)
+    head, body = html.split("<body>", 1)
+    return head + "<body>" + _EMOJI.sub("", body)
+
+
+# 個別ページ用：detail.CSS の色を暗い色に置きかえる（:root:not(#_) で detail のダークモード指定より強くする）
+DETAIL_CSS = """
+:root:not(#_){--paper:#0b0d12;--card:#141823;--ink:#e9edf5;--ink-2:#a3abbd;--rule:#262c3a;--red:#ffd23f;--red-soft:#1d1b10;
+ --amber:#ff8a95;--amber-soft:#2a1519;--done:#5ee0ff;--done-soft:#0f2630;--navy-soft:#1c2130;
+ --font-body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+ --font-num:"Chakra Petch","Zen Kaku Gothic New",ui-monospace,monospace;color-scheme:dark}
+.main>.wrap{max-width:760px;margin:0}
+.crumbs a{color:var(--ink-2)}
+.tk,.more{border-radius:16px}
+h1{font-weight:900}
+.chip{background:#1c2130;color:var(--ink-2)}
+.chip.st{background:var(--y);color:var(--y-ink)}.chip.st.soon{background:var(--pink);color:var(--y-ink)}
+.chip.st.pre{background:var(--cyan);color:var(--y-ink)}.chip.st.end{background:#262c3a;color:var(--ink-2)}
+.cd b{font-family:var(--num);font-weight:700;color:var(--y)}.cd.soon b{color:var(--pink)}.cd.pre b{color:var(--cyan)}
+.go,.nextgo{background:var(--y);color:var(--y-ink);font-weight:900}.go:hover,.nextgo:hover{background:var(--y-2);color:var(--y-ink)}
+.go.off{background:#262c3a;color:var(--ink-2)}
+.more a,.sub-acts a,.calbtns a{color:var(--ink)}.more a:hover{color:var(--y)}
+.calbox .calsub-l{color:var(--y)}
+.ad.lose{background:#1a1710;border-color:#4a3d1c}.lose-l li{border-top-color:#3a3020}
+.followbox{background:#1c2130}
+footer a{color:var(--ink-2)}
+"""
 
 
 def _fmt(s):
@@ -186,6 +250,16 @@ def _privacy(s):
             '<p><a href="/">トップへ戻る</a></p></body></html>')
 
 
+def _simple_page(cats, html):
+    """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
+    css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
+    html = re.sub(r"<style>.*?</style>", "", html, count=1, flags=re.S)
+    html = html.replace("</head>", f'<meta name="theme-color" content="{BG}">{FONTS}<style>{css}</style></head>', 1)
+    head, body = html.split("<body>", 1)
+    body = body.replace("</body></html>", "")
+    return f'{head}<body><div class="shell">{side_html(cats, counts=False)}<main class="main doc">{body}</main></div></body></html>'
+
+
 def _favicon_svg(color, accent):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="{color}"/>'
             f'<rect x="12" y="22" width="40" height="22" rx="6" fill="#fff"/><circle cx="24" cy="33" r="5" fill="{color}"/>'
@@ -297,7 +371,12 @@ def build(settings=None, out_dir=None, force=False):
     today_iso = t.date().isoformat()
 
     cats_js = {c["id"]: {"short": c["short"], "slug": c["slug"], "color": c.get("color") or "#1b3a5c", "group": c["group"]} for c in cats}
-    common_data = {"updated": updated, "kinds": kinds, "cats": cats_js, "groups": groups}
+    # 左のメニューのカテゴリ別の件数用（受付状況はブラウザで今の時刻から数える）：[カテゴリ, 開始, 締切, 種類, 発表日]（日時は1970年からの分）
+    _mins = lambda x: int(x.timestamp() // 60) if x else 0
+    cc = [[i["game"], _mins(parse_dt(i.get("start"))), _mins(parse_dt(i.get("end"))), i["kind"],
+           _mins(parse_dt(i.get("announce")) if re.match(r"\d{4}-", str(i.get("announce") or "")) else None)] for i in live]
+    common_data = {"updated": updated, "kinds": kinds, "cats": cats_js, "groups": groups, "cc": cc}
+    shell_css = SHELL_CSS.read_text(encoding="utf-8")
 
     def pin_html():
         inv = s.get("amazon_invite") or {}
@@ -352,7 +431,7 @@ def build(settings=None, out_dir=None, force=False):
     def links_html(pairs):
         return "".join(f'<a href="/{escape(p)}">{escape(n)}</a>' for n, p in pairs)
 
-    def write(path, meta, sub, trail=None, data_extra=None, body_top="", body_bottom="", noindex=False, list_mode=True, ld_extra=()):
+    def write(path, meta, sub, trail=None, data_extra=None, body_top="", body_bottom="", noindex=False, list_mode=True, ld_extra=(), cur=None):
         p = out / path / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         canon = f"{site}/{path}" if site else ""
@@ -375,7 +454,7 @@ def build(settings=None, out_dir=None, force=False):
         head += [f'<meta property="og:title" content="{escape(meta["title"])}">', f'<meta property="og:description" content="{escape(meta["desc"])}">',
                  '<meta property="og:type" content="website">', f'<meta property="og:site_name" content="{escape(brand["name"])}">', '<meta property="og:locale" content="ja_JP">',
                  f'<meta property="og:image" content="{escape(og)}">', '<meta name="twitter:card" content="summary_large_image">', f'<meta name="twitter:image" content="{escape(og)}">',
-                 f'<meta name="theme-color" content="{brand["color"]}">', '<link rel="icon" href="/favicon.svg" type="image/svg+xml">', '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+                 f'<meta name="theme-color" content="{BG}">', '<link rel="icon" href="/favicon.svg" type="image/svg+xml">', '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
                  '<meta name="robots" content="noindex,follow">' if noindex else '<meta name="robots" content="index,follow,max-image-preview:large">']
         if verify:
             head.append(f'<meta name="google-site-verification" content="{escape(verify)}">')
@@ -387,10 +466,11 @@ def build(settings=None, out_dir=None, force=False):
         for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]), "__HEADMETA__": "\n".join(head), "__CRUMBS__": cr,
                      "__H1__": escape(meta["h1"]), "__UPDATED__": escape(f"更新 {_fmt(updated)}"), "__SUMSHORT__": escape(meta.get("sumshort") or ""),
                      "__PIN__": meta.get("pin", ""), "__BODY_TOP__": body_top, "__PRERENDER__": prerender(sub) if list_mode else "", "__BODY_BOTTOM__": body_bottom,
-                     "__FAQ__": fh, "__LEAD__": escape(meta.get("lead") or ""), "__SUMMARY__": meta.get("summary") or "", "__LINKS__": meta.get("links", "")}.items():
+                     "__FAQ__": fh, "__LEAD__": escape(meta.get("lead") or ""), "__SUMMARY__": meta.get("summary") or "", "__LINKS__": meta.get("links", ""),
+                     "__SHELL_CSS__": shell_css, "__SIDEBAR__": side_html(cats, (data_extra or {}).get("game"), cur)}.items():
             body = body.replace(k, v)
         body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
-        cut = body.index("<header")
+        cut = body.index('<div class="shell">')
         html = ('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
                 f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
         p.write_text(html, encoding="utf-8")
@@ -420,7 +500,7 @@ def build(settings=None, out_dir=None, force=False):
     write("now/", {"title": f"いま買える？お店×商品の受付状況一覧【{md}更新】｜{brand['name']}",
                    "desc": "PS5・Switch 2・ガンプラなどを、お店ごと・商品ごとに「受付中・予告・結果待ち・再入荷」で一覧にした表。どこで何が動いているかが一目で分かります。",
                    "h1": "いま、どのお店で何が動いているか", "sumshort": "お店×商品の表。色が付いているところが、いま受付中・予告のものです。",
-                   "lead": "受付中（緑）・まもなく締切（橙）・予告（灰）・結果待ち（青緑）。表はページを開いた時刻で作っています。", "summary": summary(live, "受付"), "links": lk},
+                   "lead": "受付中（緑）・まもなく締切（赤）・予告と発売日（水色）・結果待ち（灰）。表はページを開いた時刻で作っています。", "summary": summary(live, "受付"), "links": lk},
           live, trail=[("トップ", ""), ("いま一覧", "now/")], body_top='<div id="matrix" class="sec"></div>', list_mode=False, data_extra={"list": False})
 
     # --- /today/ ---
@@ -454,7 +534,7 @@ def build(settings=None, out_dir=None, force=False):
                         "desc": "PS5・Switch 2・ガンプラ・フィギュア・一番くじなどの予約開始日、発売日、再販日を日付順に。メーカー発表と各店の受付開始をまとめています。",
                         "h1": "予約開始・発売日・再販日カレンダー", "sumshort": f"これからの予定 {len(ev)}件。", "lead": "日付はメーカー・各店の発表から読み取ったものです。変わることがあります。",
                         "summary": "予約開始・発売日・再販日を日付順に並べています。" if ev else "予定はまだありません。", "links": lk},
-          [], trail=[("トップ", ""), ("カレンダー", "calendar/")], body_top=cal_html, list_mode=False, data_extra={"list": False})
+          [], trail=[("トップ", ""), ("カレンダー", "calendar/")], body_top=cal_html, list_mode=False, data_extra={"list": False}, cur="calendar")
 
     # --- カテゴリページ・モデルページ・お店×カテゴリ ---
     for c in cats:
@@ -507,6 +587,7 @@ def build(settings=None, out_dir=None, force=False):
     # --- 個別ページ /l/<id>/（終了しても KEEP 日はページを残す）---
     pages = load_json("lottery_pages.json", {})
     games_map = {c["id"]: (c["short"], c["slug"]) for c in cats}
+    dbrand = dict(brand, color=BG)  # 個別ページの上のバーの色（ボタンの色は _theme_detail で付け直す）
     for i in items:
         snap = detail.snapshot(i)
         snap["kind"] = i.get("kind") or "lottery"
@@ -530,7 +611,8 @@ def build(settings=None, out_dir=None, force=False):
             rel.insert(0, (f"「{snap.get('series')}」の一覧", f"/{snap['spath']}"))
         nxt = (f"いま受付中の{cat_by[g]['short']}を見る", f"/{cat_by[g]['slug']}/") if ended else None
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
-                             next_link=nxt, brand=brand, games=games_map)
+                             next_link=nxt, brand=dbrand, games=games_map)
+        html = _theme_detail(html, side_html(cats, g, counts=False))
         p = out / rec["path"] / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html, encoding="utf-8")
@@ -566,11 +648,12 @@ def build(settings=None, out_dir=None, force=False):
               sub, trail=[("トップ", ""), ("見方・使い方", "guide/"), (gd["name"], f"guide/{gd['slug']}/")], body_top=body, list_mode=bool(sub))
 
     # --- そのほか ---
-    (out / "privacy.html").write_text(_privacy(s), encoding="utf-8")
-    (out / "404.html").write_text(
+    (out / "privacy.html").write_text(_simple_page(cats, _privacy(s)), encoding="utf-8")
+    (out / "404.html").write_text(_simple_page(cats, (
         f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">'
-        f'<title>ページが見つかりません｜{escape(brand["name"])}</title><style>body{{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:32px 16px;line-height:1.7;color:#222}}a{{color:{brand["color"]}}}</style></head>'
-        f'<body><h1>ページが見つかりません</h1><p>受付が終わってページを削除した可能性があります。</p><p><a href="/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>', encoding="utf-8")
+        f'<title>ページが見つかりません｜{escape(brand["name"])}</title></head>'
+        '<body><img src="/rinrin.png" alt="" width="96" height="96"><h1>ページが見つかりません</h1><p>受付が終わってページを削除した可能性があります。</p>'
+        '<p><a href="/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
     _x_draft(out, live, s, site, updated, cats)
     (out / "favicon.svg").write_text(_favicon_svg(brand["color"], s.get("accent_color") or "#0f8b8d"), encoding="utf-8")
     _icon_png(out / "apple-touch-icon.png", brand["color"], 180)

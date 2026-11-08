@@ -77,7 +77,15 @@ else:
     assert 'class="pin"' in top and "tag=g-22" in top and "Amazon 招待リクエスト（PS5）" in top         # 先頭の固定の招待
     assert "ソニーストア" in top and "終了店" not in top and "一番くじONLINE" not in top                  # 終了して20日・承認待ちは載せない
     assert "119,980円" in top and "PSN必須" in top
-    assert 'content="#1b3a5c"' in head                                                                 # 別ブランドの色（トレカの赤ではない）
+    assert 'name="theme-color" content="#0b0d12"' in head                                              # 暗い見た目のブランドの色（トレカの赤ではない）
+    # 見た目（11/8 承認のデザイン）：左のメニュー・リンリンのお知らせ・絞り込み・今週の発売・フォント
+    assert 'class="side"' in top and 'data-cn="ps5"' in top and 'href="/calendar/#sub"' in top and "通知をオン" in top
+    assert 'id="rin"' in top and 'src="/rinrin.png"' in top and 'id="bubble"' in top and 'id="week"' in top
+    for f_ in ("f-nomember", "f-online", "f-nohist"):
+        assert f'id="{f_}"' in top, f_
+    assert "Zen+Kaku+Gothic+New" in head and "Chakra+Petch" in head and "display=swap" in head
+    assert '"cc":[' in top
+    assert "<header" not in top                                                                         # 上のバーではなく左のメニュー
     assert "#c8102e" not in top
     # トレカの言葉がまぎれこんでいない
     for bad in ("トレカ抽選ナビ", "ポケカ", "ワンピース", "tcg-chusen", "pokepi_tcg", "フュージョンワールド"):
@@ -96,7 +104,12 @@ else:
     d1 = (out / "l/a1/index.html").read_text(encoding="utf-8")
     assert "<title>ソニーストアのPS5抽選「PS5 Pro」" in d1 and "｜ゲーム・ホビー入荷速報</title>" in d1
     assert "定価" in d1 and "119,980円" in d1 and "トレカ抽選ナビ" not in d1 and "応募した" not in d1 and "記載の社名・製品名は各社の商標です" in d1
-    assert 'content="#1b3a5c"' in d1
+    assert 'name="theme-color" content="#0b0d12"' in d1 and 'class="side"' in d1 and "Chakra+Petch" in d1 and "IBM+Plex" not in d1
+    assert not re.search("[\U0001F300-\U0001FAFF]", d1)                                               # 絵文字のアイコンは出さない
+    assert 'class="shell"' in d1 and d1.count("<main") == 1 and "本ページはプロモーションを含みます" in d1
+    e404 = (out / "404.html").read_text(encoding="utf-8")
+    assert 'name="robots" content="noindex"' in e404 and 'class="side"' in e404
+    assert 'class="side"' in (out / "privacy.html").read_text(encoding="utf-8")
     # カレンダー：発売日（release）と予約開始が載る
     cal = (out / "calendar/index.html").read_text(encoding="utf-8")
     assert "HG 1/144 νガンダム 再販" in cal and "発売・再販" in cal and "ミッドナイト ブラック" in cal
