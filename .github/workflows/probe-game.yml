@@ -7,6 +7,10 @@ on:
         description: "確かめるURL（空白区切り）。空なら Googleニュースのリンクを元記事に直せるかを試す"
         required: false
         default: ""
+      links:
+        description: "ページの中のリンクを探す正規表現（空なら出さない）"
+        required: false
+        default: ""
       mode:
         description: "page（ページが読めるか）／ snkr（スニダンで探す。urls に「|」区切りの言葉）"
         required: false
@@ -26,4 +30,5 @@ jobs:
       - env:
           URLS: ${{ inputs.urls }}
           HEAD: "4000"
+          LINKS: ${{ inputs.links }}
         run: if [ "${{ inputs.mode }}" = "snkr" ]; then python scripts/probe_snkr.py; else python scripts/probe_game.py; fi

@@ -26,5 +26,14 @@ for u in urls:
         print("  head:", re.sub(r"\s+", " ", t[:int(os.environ.get("HEAD", "400"))]))
         if pb:
             print("  p-bandai:", pb)
+        if os.environ.get("LINKS"):
+            from bs4 import BeautifulSoup
+            seen = []
+            for a in BeautifulSoup(r.text, "html.parser").find_all("a", href=True):
+                h = requests.compat.urljoin(u, a["href"]); lab = a.get_text(" ", strip=True)[:40]
+                if re.search(os.environ["LINKS"], h + " " + lab) and h not in seen:
+                    seen.append(h); print("  link:", h, "|", lab)
+                if len(seen) >= 40:
+                    break
     except Exception as e:
         print(f"=== {u}\n  ERROR {e}")
