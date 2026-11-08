@@ -11,8 +11,10 @@ import re
 
 import requests
 
-from common import load_json, save_json, now, parse_dt, log, GENERIC_STORE_RE, site_name
+from common import load_json, save_json, now, parse_dt, log, GENERIC_STORE_RE, site_name, SITE
 from extract import API_URL, MODEL
+
+DOMAIN_WORD = "トレカ" if SITE != "game" else "ゲーム機・ホビー"  # 指示文の冒頭（どの分野の告知か）
 from fetch import get, html_to_text
 from address import find_address
 
@@ -23,7 +25,7 @@ END_WORDS = re.compile(
     r"お取り扱いできません|販売を終了|抽選受付は終了|エントリー受付は終了", re.I)
 SKIP_HOSTS = ("x.com", "twitter.com", "t.co", "amazon.co.jp", "amzn.to", "link.amazon", "lin.ee")
 
-PROMPT = """トレカの抽選販売・予約販売の応募ページの本文です。
+PROMPT = """{domain}の抽選販売・予約販売の応募ページの本文です。
 このページの「{product}」の抽選・販売の受付は、今も受付中ですか？ 終わっていますか？
 
 - ページのメニューや一覧にある「販売終了品」「在庫切れ商品を表示」などの言葉は関係ない。この商品・この抽選の状態だけを見る
@@ -40,7 +42,7 @@ PROMPT = """トレカの抽選販売・予約販売の応募ページの本文�
 def _ask(text, it):
     r = requests.post(API_URL, timeout=60, headers={
         "x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01", "content-type": "application/json",
-    }, json={"model": MODEL, "max_tokens": 200, "messages": [{"role": "user", "content": PROMPT.format(
+    }, json={"model": MODEL, "max_tokens": 200, "messages": [{"role": "user", "content": PROMPT.format(domain=DOMAIN_WORD,
         product=(it.get("series") or it.get("product") or "")[:60], text=text[:5000])}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API エラー {r.status_code}")
@@ -49,7 +51,7 @@ def _ask(text, it):
     return json.loads(m.group(0)) if m else {}
 
 
-DETAIL_PROMPT = """トレカの抽選販売の応募ページの本文です。「{store}」の「{product}」の抽選について、書かれていることだけを読み取ってください。
+DETAIL_PROMPT = """{domain}の抽選販売の応募ページの本文です。「{store}」の「{product}」の抽選について、書かれていることだけを読み取ってください。
 
 - conditions: 応募・購入の条件を、ページの文をそのまま写さず自分の言葉で120字以内に（会員登録・アプリ・本人確認書類・1人いくつまで・代理購入・価格など）
 - announce: 当選発表の日（例「11/3(火)〜11/4(水)」）。書かれていなければ null
@@ -69,7 +71,7 @@ DETAIL_PROMPT = """トレカの抽選販売の応募ページの本文です。�
 def _ask_details(text, it):
     r = requests.post(API_URL, timeout=60, headers={
         "x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01", "content-type": "application/json",
-    }, json={"model": MODEL, "max_tokens": 600, "messages": [{"role": "user", "content": DETAIL_PROMPT.format(
+    }, json={"model": MODEL, "max_tokens": 600, "messages": [{"role": "user", "content": DETAIL_PROMPT.format(domain=DOMAIN_WORD,
         store=it.get("store") or "", product=(it.get("series") or it.get("product") or "")[:60], text=text[:6000])}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API エラー {r.status_code}")
@@ -125,7 +127,7 @@ def _ask_post(text, images, it):
     content = [_image_block(u) for u in images[:4]]
     for c in content:
         c.pop("_ok", None)
-    content.append({"type": "text", "text": DETAIL_PROMPT.format(
+    content.append({"type": "text", "text": DETAIL_PROMPT.format(domain=DOMAIN_WORD,
         store=it.get("store") or "", product=(it.get("series") or it.get("product") or "")[:60],
         text="（お店のXの告知。画像の文字もよく読むこと）\n" + text[:3000])})
     for model in (VISION_MODEL, MODEL):

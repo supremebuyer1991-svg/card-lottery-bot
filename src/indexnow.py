@@ -10,11 +10,16 @@ import requests
 from common import ROOT, load_settings, log
 
 
-def main():
+def main(site_dir=None):
+    """site_dir … サイトの出力フォルダ（省略＝site/。姉妹サイトは --dir site_game で指定）"""
+    import sys
+    if site_dir is None and "--dir" in sys.argv:
+        site_dir = sys.argv[sys.argv.index("--dir") + 1]
     s = load_settings()
     key = s.get("indexnow_key")
     site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
-    sms = sorted((ROOT / "site").glob("sitemap-*.xml")) or [ROOT / "site" / "sitemap.xml"]
+    sdir = ROOT / (site_dir or "site")
+    sms = sorted(sdir.glob("sitemap-*.xml")) or [sdir / "sitemap.xml"]
     if not key or not site or not sms[0].exists():
         return
     # 11/7：今日中身が変わったページだけ送る（毎回全部送ると「送りすぎ」になる）

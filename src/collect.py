@@ -8,7 +8,8 @@ from fetch_x import search as x_search
 
 SEEN_VERSION = 5
 MANUAL_FIELDS = ("game", "store", "product", "series", "products", "channel", "area", "method", "start", "end",
-                 "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image", "address")
+                 "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image", "address",
+                 "kind", "price", "round")  # kind・price・round はゲーム・ホビー版で使う
 
 
 def _iso(v):
@@ -25,8 +26,8 @@ def _iso(v):
 def load_manual():
     """config/manual.yaml（自分で追加した抽選）"""
     import yaml
-    from common import ROOT
-    p = ROOT / "config" / "manual.yaml"
+    from common import CONFIG_DIR
+    p = CONFIG_DIR / "manual.yaml"
     if not p.exists():
         return []
     rows = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("lotteries") or []
@@ -45,6 +46,8 @@ def load_manual():
         it.setdefault("channel", "online")
         if r.get("slug"):
             it["slug"] = str(r["slug"])
+        if "price" in it:
+            it["price"] = str(it["price"])
         out.append(it)
     return out
 

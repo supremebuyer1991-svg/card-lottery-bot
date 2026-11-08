@@ -12,8 +12,10 @@ import re
 
 import requests
 
-from common import load_json, save_json, now, parse_dt, log
+from common import load_json, save_json, now, parse_dt, log, SITE
 from extract import API_URL, MODEL
+
+DOMAIN_WORD = "トレカ" if SITE != "game" else "ゲーム機・ホビー"  # 指示文の冒頭（どの分野の告知か）
 
 # 画像の文字（告知ポスター）を読むので、ふだんより強いモデルを使う（1つの告知につき1回だけ）
 VISION_MODEL = os.environ.get("DEADLINE_MODEL", "claude-sonnet-5-5")
@@ -22,7 +24,7 @@ from fetch import get, html_to_text
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
 PAGE_HOSTS = ("livepocket.jp", "docs.google.com", "forms.gle", "customform.jp", "e-starbox.com", "membercard.jp")
 
-PROMPT = """トレカの抽選販売の告知です。この抽選の「応募の受付締切」の日時を読み取ってください。
+PROMPT = """{domain}の抽選販売の告知です。この抽選の「応募の受付締切」の日時を読み取ってください。
 画像（告知画像）にだけ書かれていることが多いので、画像の文字を隅々まで読んでください。
 「受付期間」「応募期間」「抽選期間」「申込期間」「〇/〇(〇)〜〇/〇(〇)」「〇日〇時まで」などの書き方があります。期間が「A〜B」なら B が締切です。
 
@@ -60,7 +62,7 @@ def _ask(text, images, it, posted):
     key = os.environ.get("ANTHROPIC_API_KEY")
     content = [_image_block(u) for u in images[:4]]
     got = sum(1 for c in content if c.pop("_ok", False))
-    content.append({"type": "text", "text": PROMPT.format(
+    content.append({"type": "text", "text": PROMPT.format(domain=DOMAIN_WORD,
         posted=posted or now().date().isoformat(), today=now().date().isoformat(),
         store=it.get("store"), product=it.get("product"), text=text[:6000])})
     r = requests.post(API_URL, timeout=90, headers={

@@ -6,9 +6,21 @@ import os
 
 import requests
 
-from common import load_json, save_json, parse_dt, now, log
+from common import load_json, save_json, parse_dt, now, log, SITE
 
 GH = "https://api.github.com"
+# ゲーム・ホビー版：締切という考えのない種類（再入荷・先着・発売日）
+NO_DEADLINE_KINDS = ("restock", "first_come", "release")
+ISSUE_PREFIX = "[抽選候補]" if SITE != "game" else "【ゲーム】[候補]"
+
+
+def _own_re(settings):
+    """自分のXアカウントのポスト（お店の告知ではない）を見分ける"""
+    import re
+    acct = (settings.get("x_account") or "").strip().lstrip("@") or ("pokepi_tcg" if SITE == "tcg" else "")
+    if not acct:
+        return re.compile(r"(?!x)x")  # 何にも当たらない
+    return re.compile(rf"(x|twitter)\.com/{re.escape(acct)}/", re.I)
 
 
 
@@ -90,7 +102,10 @@ def approve(settings):
             it.pop("hold_reason", None)
         if it["status"] != "new":
             continue
-        ok = float(it.get("confidence") or 0) >= minc and it.get("end")
+        # ゲーム・ホビー版：再入荷・先着・発売日は締切が無くてよい。予約・招待も開始日が分かっていれば（または招待なら）載せる
+        no_end_ok = SITE == "game" and (it.get("kind") in NO_DEADLINE_KINDS or it.get("kind") == "invite"
+                                        or (it.get("kind") == "preorder" and it.get("start")))
+        ok = float(it.get("confidence") or 0) >= minc and (it.get("end") or no_end_ok)
         if settings["auto_approve"] and ok:
             it["status"] = "approved"
             continue
@@ -98,7 +113,7 @@ def approve(settings):
         it["status"] = "pending"
         try:
             res = _gh("POST", "/issues", json={
-                "title": f"[抽選候補] {it['store']} / {it['product']}",
+                "title": f"{ISSUE_PREFIX} {it['store']} / {it['product']}",
                 "body": _issue_body(it), "labels": ["candidate", it["game"]]})
             if res:
                 it["issue"] = res["number"]
@@ -135,7 +150,7 @@ def approve(settings):
         index_urls = {s_["url"].rstrip("/") for s_ in load_sources() if s_.get("url") and s_.get("type") != "rss"}
     except Exception:
         index_urls = set()
-    own = re.compile(r"(x|twitter)\.com/pokepi_tcg/", re.I)  # 自分のアカウント
+    own = _own_re(settings)  # 自分のアカウント
     # ほかのまとめ・情報アカウント（お店ではない）。そのポストへのリンクは応募先として出さない
     try:
         info_h = {a.lower() for s_ in load_sources() if s_.get("id") == "x_info_accounts" for a in (s_.get("accounts") or [])}
@@ -171,6 +186,9 @@ def approve(settings):
                 rel_past, rel_future = False, False
         # 発売前の弾で締切が書かれていない店頭の抽選（「店頭のQRから応募」など）は発売日近くまで受付が続くので、日数では終わりにしない
         too_old = not end and not rel_future and found and (now() - found).days >= no_end_days
+        if SITE == "game" and not end and it.get("kind") in ("restock", "first_come") and found:
+            # 再入荷・先着は、その日のうちに動くもの。数日たったら一覧から外す（settings の no_deadline_kind_days）
+            too_old = (now() - found).days >= settings.get("no_deadline_kind_days", 3)
         # Xの告知は投稿日が分かる。情報元が古い告知を載せたままでも、投稿から post_days 日で締切不明なら終了扱い
         posted = _post_date(it.get("url"))
         old_post = not end and not rel_future and posted and (now() - posted).days >= post_days

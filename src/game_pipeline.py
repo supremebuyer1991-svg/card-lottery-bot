@@ -1,0 +1,96 @@
+"""ゲーム・ホビー入荷速報（SITE=game）の1回分の実行
+
+収集 → 締切の調査 → 応募ページの確認 → 振り分け → 重複まとめ → 承認 → サイト書き出し（site_game/）
+トレカ抽選ナビにある相場・Threads・海外向けページ・WordPress・新弾・BOXランキングはこのサイトでは使わない。
+Xへの自動投稿も無し（/x-draft.html の下書きをコピペして手で投稿する）。
+"""
+import sys
+
+from common import load_settings, load_sources, load_json, save_json, log, now, parse_dt
+
+
+def _end_releases(lots):
+    """発売日・再販日（kind=release）は、その日が過ぎたら自動で終了（お店の受付ではないので承認の仕組みを通さずここで）"""
+    n = 0
+    for it in lots.values():
+        if it.get("kind") == "release" and it.get("status") in ("new", "approved", "listed", "posted"):
+            e = parse_dt(it.get("end"))
+            if e and e.date() < now().date():
+                it["status"] = "closed"
+                it["closed_at"] = now().isoformat()
+                it["closed_reason"] = "発売日・再販日を過ぎた"
+                n += 1
+    return n
+
+
+def _fill_kind(lots):
+    """kind が無いデータ（表から直接読んだ入荷Nowなど）に kind を付ける"""
+    import re
+    for it in lots.values():
+        if it.get("kind"):
+            continue
+        txt = " ".join(str(it.get(k) or "") for k in ("product", "method", "conditions", "store"))
+        if re.search(r"amazon|アマゾン", it.get("store") or "", re.I) and re.search(r"招待", txt):
+            it["kind"] = "invite"
+        elif re.search(r"福袋|お年玉箱", txt):
+            it["kind"] = "fukubukuro"
+        elif re.search(r"再入荷|在庫復活|入荷", txt) and not re.search(r"抽選", txt):
+            it["kind"] = "restock"
+        elif re.search(r"先着", txt) and not re.search(r"抽選", txt):
+            it["kind"] = "first_come"
+        elif re.search(r"予約", txt) and not re.search(r"抽選", txt):
+            it["kind"] = "preorder"
+        else:
+            it["kind"] = "lottery"
+
+
+def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
+    s = load_settings()
+    log(f"開始（ゲーム・ホビー入荷速報） auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
+    from collect import collect, sync_manual
+    sync_manual()  # 自分で追加した抽選（config/game/manual.yaml）
+    if step in ("all", "collect"):
+        srcs = sources if sources is not None else load_sources()
+        kw = {}
+        if extractor is not None:
+            kw["extractor"] = extractor
+        if fetcher is not None:
+            kw["fetcher"] = fetcher
+        new = collect(srcs, s, **kw)
+        log(f"新着 {len(new)} 件")
+    if step in ("all", "publish"):
+        lots = load_json("lotteries.json", {})
+        _fill_kind(lots)
+        n = _end_releases(lots)
+        save_json("lotteries.json", lots)
+        if n:
+            log(f"発売日を過ぎた予定 {n}件を終了に")
+        try:
+            from deadline import fill_deadlines
+            fill_deadlines(s)  # 締切が分からないものは応募ページから読み取る（AIの鍵が無ければ何もしない）
+        except Exception as e:
+            log(f"締切の調査: スキップ {e}")
+        try:
+            from pagecheck import check_pages
+            check_pages(s)
+        except Exception as e:
+            log(f"応募ページの確認: スキップ {e}")
+        try:
+            from classify import classify
+            classify(s)
+        except Exception as e:
+            log(f"振り分け: スキップ {e}")
+        try:
+            from dedupe import dedupe
+            dedupe(s)
+        except Exception as e:
+            log(f"重複: スキップ {e}")
+        from approve import approve
+        approve(s)
+        import sitegen_game
+        sitegen_game.build(s, out_dir=out_dir)
+    log("完了")
+
+
+if __name__ == "__main__":
+    run(sys.argv[1] if len(sys.argv) > 1 else "all")

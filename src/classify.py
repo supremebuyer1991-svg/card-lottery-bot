@@ -13,7 +13,7 @@ import re
 
 import requests
 
-from common import load_json, save_json, sha, log
+from common import load_json, save_json, sha, log, SITE, CONFIG_DIR
 from extract import API_URL, MODEL
 
 PREFS = ("北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 "
@@ -22,7 +22,8 @@ PREFS = ("北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
 VERSION = 3  # 判定ルールを変えたら上げる（全件を判定し直す）
 
-PROMPT = """トレカ抽選情報サイトの振り分け係です。各抽選について次の2つを判定してください。
+DOMAIN_WORD = "トレカ抽選情報サイト" if SITE != "game" else "ゲーム機・ホビーの抽選・予約・再入荷の情報サイト"
+PROMPT = """{domain}の振り分け係です。各抽選について次の2つを判定してください。
 
 1. channel
   - "online": 当選した商品が自宅に発送される（通販サイト・ECショップ・オンラインストアの抽選。Amazon、楽天、ヨドバシ.com、ポケモンセンターオンライン、〇〇通販、BASE店 など）
@@ -53,7 +54,7 @@ def _ask(rows):
     key = os.environ.get("ANTHROPIC_API_KEY")
     r = requests.post(API_URL, timeout=120, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json",
-    }, json={"model": MODEL, "max_tokens": 4000, "messages": [{"role": "user", "content": PROMPT.format(rows=rows)}]})
+    }, json={"model": MODEL, "max_tokens": 4000, "messages": [{"role": "user", "content": PROMPT.format(rows=rows, domain=DOMAIN_WORD)}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API エラー {r.status_code}: {r.text[:200]}")
     raw = "".join(b.get("text", "") for b in r.json().get("content", []))
@@ -78,8 +79,7 @@ def _ask(rows):
 def load_overrides():
     """config/channel_overrides.yaml：人が確認した決まり（店名 → online / store）"""
     import yaml
-    from common import ROOT
-    p = ROOT / "config" / "channel_overrides.yaml"
+    p = CONFIG_DIR / "channel_overrides.yaml"
     if not p.exists():
         return {}
     y = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
@@ -93,8 +93,7 @@ def load_overrides():
 def load_area_overrides():
     """config/area_overrides.yaml：店名 → 都道府県"""
     import yaml
-    from common import ROOT
-    p = ROOT / "config" / "area_overrides.yaml"
+    p = CONFIG_DIR / "area_overrides.yaml"
     return {str(k).strip(): v for k, v in ((yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}).items() if v in PREFS}
 
 
