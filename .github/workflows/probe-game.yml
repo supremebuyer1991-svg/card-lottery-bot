@@ -25,4 +25,5 @@ jobs:
       - run: pip install -r requirements.txt
       - env:
           URLS: ${{ inputs.urls }}
+          HEAD: "4000"
         run: if [ "${{ inputs.mode }}" = "snkr" ]; then python scripts/probe_snkr.py; else python scripts/probe_game.py; fi

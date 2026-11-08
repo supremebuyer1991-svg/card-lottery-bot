@@ -23,7 +23,7 @@ for u in urls:
         title = re.search(r"<title[^>]*>(.*?)</title>", r.text, re.S)
         pb = sorted(set(re.findall(r"https?://p-bandai\.jp/item/[^\s\"'<>\]]+", r.text)))[:5]
         print(f"=== {u}\n  status={r.status_code} html={len(r.text)} text={len(t)} title={(title.group(1).strip()[:60] if title else '')}")
-        print("  head:", re.sub(r"\s+", " ", t[:400]))
+        print("  head:", re.sub(r"\s+", " ", t[:int(os.environ.get("HEAD", "400"))]))
         if pb:
             print("  p-bandai:", pb)
     except Exception as e:
