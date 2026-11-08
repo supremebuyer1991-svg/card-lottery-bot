@@ -30,4 +30,9 @@ assert st["planned"] == {"b": "2026-11-15", "a": "2026-11-15", "c": "2026-11-15"
 plan2 = xp.build(lots, {}, "https://game-nyuka.com", T, st)                           # 作り直しても同じ
 assert [p["text"] for p in plan2] == [p["text"] for p in plan]
 for p in plan: print(p["at"][11:16], p["slot"]); print(p["text"]); print("-")
+st2 = {"seen": [], "queue": {}}
+plan3 = xp.build(lots, {}, "https://game-nyuka.com", T, st2)
+pk3 = [p["text"] for p in plan3 if p["slot"] == "ピックアップ"]
+assert len(pk3) == 2 and all("HG" not in x for x in pk3), pk3                      # 新着が無くても、ゲームの受付中・発売で埋める
+assert xp.build(lots, {}, "https://game-nyuka.com", T, st2) and [p["text"] for p in xp.build(lots, {}, "https://game-nyuka.com", T, st2)] == [p["text"] for p in plan3]
 print("XPLAN OK")

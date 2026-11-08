@@ -81,6 +81,18 @@ def build(lots, settings, site, t=None, st=None):
         planned[k] = dkey
         mine.append(k)
     picks = sorted([(k, live[k]) for k in mine], key=gfirst)
+    # 新着が少ない日は、受付中・まもなく発売のゲームから選んで埋める（同じものは3日あけて）
+    feat = st.setdefault("featured", {})
+    if len([kv for kv in picks if gx.is_game(kv[1])]) < 2:
+        def soon(i):
+            e = parse_dt(i.get("end"))
+            return e and day <= e.date() <= day + timedelta(days=10)
+        pool = sorted([(k, i) for k, i in live.items() if gx.is_game(i) and k not in mine and soon(i)
+                       and (feat.get(k, "") < (day - timedelta(days=3)).isoformat() or feat.get(k) == dkey)],
+                      key=lambda kv: (feat.get(kv[0]) != dkey, kv[1].get("kind") == "release", kv[1].get("end") or "9999"))
+        for k, i in pool[:2 - len([kv for kv in picks if gx.is_game(kv[1])])]:
+            feat[k] = dkey
+            picks.insert(0, (k, i))
     game_picks = [kv for kv in picks if gx.is_game(kv[1])]
     plan = []
 
