@@ -10445,7 +10445,7 @@
       }
     }
   },
-  "store/arupuraza-31b01/": {
+  "store/heiwado-31b01/": {
     "name": "アルプラザ 平和堂（数店舗・店舗名未記載）",
     "items": {
       "fef3d2a1af2ea9a2": {
@@ -11700,7 +11700,7 @@
       }
     }
   },
-  "store/shop-b4c48/": {
+  "store/heiwado-b4c48/": {
     "name": "平和堂",
     "items": {
       "4d25cc475c2223eb": {
@@ -14014,7 +14014,7 @@
       }
     }
   },
-  "store/dorasuta-ccf02/": {
+  "store/dragonstar-ccf02/": {
     "name": "ドラスタ通販",
     "items": {
       "90453fe04d6660a9": {
@@ -15225,7 +15225,8 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-10"
       },
       "ea9ee0b4af94926c": {
         "p": "MEGAドリーム",
@@ -16177,7 +16178,7 @@
       }
     }
   },
-  "store/hmv-a2631/": {
+  "store/lawson-a2631/": {
     "name": "HMV（各店）",
     "items": {
       "59d76af70853e9b4": {
@@ -16248,7 +16249,7 @@
       }
     }
   },
-  "store/hmvtorekashoppu-b4c3c/": {
+  "store/lawson-b4c3c/": {
     "name": "HMVトレカショップ",
     "items": {
       "a8098e1d826e4809": {
@@ -16871,7 +16872,7 @@
       }
     }
   },
-  "store/itoyokado-ario-789b7/": {
+  "store/itoyokado-789b7/": {
     "name": "イトーヨーカドー／アリオ",
     "items": {
       "7357afb1f53c68d6": {
@@ -16930,7 +16931,7 @@
       }
     }
   },
-  "store/hmvtorekashoppu-hmvtoreka-3eef2/": {
+  "store/lawson-3eef2/": {
     "name": "HMVトレカショップ・HMVトレカ取扱店舗（全国18店舗）",
     "items": {
       "f9f059ce3c99db86": {
@@ -17186,7 +17187,7 @@
       }
     }
   },
-  "store/hmv-c61b3/": {
+  "store/lawson-c61b3/": {
     "name": "HMV各店",
     "items": {
       "ad826d474eb4f146": {
@@ -17656,7 +17657,7 @@
       }
     }
   },
-  "store/itoyokado-ario-toiropakunado-73995/": {
+  "store/itoyokado-73995/": {
     "name": "イトーヨーカドー・アリオ・トイロパークなど（対象店舗は複数・店舗名は未特定）",
     "items": {
       "2eeadb13f2d7ec1d": {
@@ -18551,7 +18552,7 @@
       }
     }
   },
-  "store/pokemonkadoraunji-f3aa4/": {
+  "store/pokemoncardlounge-f3aa4/": {
     "name": "ポケモンカードラウンジ",
     "items": {
       "466eadd80fa12f9a": {
@@ -19597,7 +19598,7 @@
       }
     }
   },
-  "store/itoyokadoario-6b6cf/": {
+  "store/itoyokado-6b6cf/": {
     "name": "イトーヨーカドー アリオ",
     "items": {
       "772c9d159ff6de3e": {
@@ -23002,7 +23003,7 @@
       }
     }
   },
-  "store/jumpshop-domushiti-07b64/": {
+  "store/jumpshop-07b64/": {
     "name": "JUMP SHOP東京ドームシティ店",
     "items": {
       "affea323e8599e3b": {
@@ -23652,22 +23653,6 @@
         "e": "",
         "f": "2026-11-03",
         "c": "store",
-        "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
-      }
-    }
-  },
-  "store/dragonstar-ccf02/": {
-    "name": "ドラスタ通販",
-    "items": {
-      "90453fe04d6660a9": {
-        "p": "ヒロインズエディション vol.2",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-10-29",
-        "c": "online",
         "m": "Web",
         "id": null,
         "mem": null,
@@ -26067,7 +26052,7 @@
       }
     }
   },
-  "store/famimaonrain-9d27d/": {
+  "store/famima-9d27d/": {
     "name": "ファミマオンライン",
     "items": {
       "f3207e108b1ea696": {
@@ -26650,7 +26635,7 @@
       }
     }
   },
-  "store/itoyokado-ario-ecaff/": {
+  "store/itoyokado-ecaff/": {
     "name": "イトーヨーカドー／アリオ（一部店舗）",
     "items": {
       "5128019381909eac": {
@@ -27806,7 +27791,7 @@
       }
     }
   },
-  "store/famirimato-9f293/": {
+  "store/famima-9f293/": {
     "name": "ファミリーマート",
     "items": {
       "1bea74c32bdb475c": {
@@ -29466,55 +29451,6 @@
       }
     }
   },
-  "store/famima-9d27d/": {
-    "name": "ファミマオンライン",
-    "items": {
-      "f3207e108b1ea696": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-09T23:59",
-        "f": "2026-11-04",
-        "c": "online",
-        "m": "Web",
-        "id": false,
-        "mem": "account",
-        "rq": [],
-        "a": "2026-11-11"
-      }
-    }
-  },
-  "store/itoyokado-ecaff/": {
-    "name": "イトーヨーカドー／アリオ（一部店舗）",
-    "items": {
-      "5128019381909eac": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-08T23:59",
-        "f": "2026-11-04",
-        "c": "store",
-        "m": "店頭",
-        "id": true,
-        "mem": "card",
-        "rq": []
-      }
-    }
-  },
-  "store/famima-9f293/": {
-    "name": "ファミリーマート",
-    "items": {
-      "1bea74c32bdb475c": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-09T23:59",
-        "f": "2026-11-05",
-        "c": "store",
-        "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
-      }
-    }
-  },
   "store/shop-c2638/": {
     "name": "富士八幡町",
     "items": {
@@ -30638,6 +30574,38 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/kadosutajiamu-63b57/": {
+    "name": "カードスタジアム首里店",
+    "items": {
+      "e727225866422d54": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/oretan-93b7e/": {
+    "name": "オレタン（各店）",
+    "items": {
+      "ccc17744093d26bc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-08T23:59",
         "f": "2026-11-08",
         "c": "store",
         "m": "Web",

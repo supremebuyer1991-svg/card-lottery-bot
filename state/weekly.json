@@ -7495,7 +7495,7 @@
       "store": "TSUTAYA（LINE抽選・全国の対象店舗）",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": "東京都",
+      "area": null,
       "found_at": "2026-11-02T13:46:11.287466+09:00",
       "chain": "tsutaya"
     },
@@ -15211,6 +15211,15 @@
       "area": "埼玉県",
       "found_at": "2026-11-08T07:51:17.334562+09:00",
       "chain": "furuichi"
+    },
+    "e727225866422d54": {
+      "game": "onepiece",
+      "store": "カードスタジアム首里店",
+      "series": "HEROINES PRECIOUS BOX",
+      "channel": "store",
+      "area": "沖縄県",
+      "found_at": "2026-11-08T08:59:30.780546+09:00",
+      "chain": null
     }
   }
 }

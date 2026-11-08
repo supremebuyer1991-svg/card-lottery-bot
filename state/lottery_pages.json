@@ -21665,7 +21665,6 @@
       ],
       "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=48qx85q2Tk-KYHuicU_sTzbQWbTPmHhLhsOatLVe3WZUNDhESzJEOEwyWDVRT0s1WlQxR1dTQlJKMy4u",
       "channel": "store",
-      "area": "東京都",
       "id_check": true,
       "member": "card",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
@@ -26635,7 +26634,9 @@
       "store": "トレカエース常陸太田店",
       "product": "ポケモンカードゲーム ハイクラスパック「MEGAドリームex」",
       "series": "MEGAドリームex",
+      "start": "2026-11-03T09:00:00+09:00",
       "end": "2026-11-08T23:59:00+09:00",
+      "announce": "2026-11-10",
       "method": "店頭",
       "conditions": "会員・本人確認",
       "tags": [
@@ -35351,6 +35352,7 @@
       "store": "TSUTAYA武雄店",
       "product": "ONE PIECEカードゲーム ブースターパック「神の支配」1BOX（24パック入・当選者のみ購入可）",
       "series": "神の支配",
+      "start": "2026-11-06T09:00:00+09:00",
       "end": "2026-11-08T22:00:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -42440,6 +42442,26 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "spath": "store/furuichi-f8671/",
       "found_at": "2026-11-08T07:51:17.334562+09:00"
+    },
+    "last": "2026-11-08"
+  },
+  "l/e727225866/": {
+    "d": {
+      "key": "e727225866422d54",
+      "game": "onepiece",
+      "store": "カードスタジアム首里店",
+      "product": "ワンピースカードゲーム『ONE PIECE HEROINES PRECIOUS BOX』",
+      "series": "HEROINES PRECIOUS BOX",
+      "start": "2026-11-07T19:37:00+09:00",
+      "end": "2026-11-09T23:59:00+09:00",
+      "method": "LivePocket",
+      "url": "https://livepocket.jp/e/3-ayh",
+      "channel": "store",
+      "area": "沖縄県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jugem2020/cabinet/13772022/imgrc0145485004.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10101524%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fjugem2020%2F10101524%2F",
+      "spath": "store/kadosutajiamu-63b57/",
+      "found_at": "2026-11-08T08:59:30.780546+09:00"
     },
     "last": "2026-11-08"
   }
