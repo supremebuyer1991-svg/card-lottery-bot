@@ -1,8 +1,8 @@
 {
   "last_x_run": null,
   "src_last": {
-    "nyuka_now_game": "2026-11-08T13:55:24.253713+09:00",
-    "yodobashi_lottery_game": "2026-11-08T13:55:41.157149+09:00",
+    "nyuka_now_game": "2026-11-08T18:03:07.196066+09:00",
+    "yodobashi_lottery_game": "2026-11-08T18:03:36.459957+09:00",
     "gnews_ps5pro_lottery": "2026-11-08T15:41:23.236266+09:00",
     "gnews_ps5_preorder": "2026-11-08T15:41:37.965889+09:00",
     "gnews_ps5_restock": "2026-11-08T15:42:44.721855+09:00",
@@ -32,7 +32,8 @@
   },
   "src_fail": {
     "yodobashi_lottery_game": {
-      "n": 1
+      "n": 2,
+      "until": "2026-11-08T21:03:36.459987+09:00"
     }
   }
 }

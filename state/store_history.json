@@ -7021,6 +7021,17 @@
   "store/tsutaya-2f1c5/": {
     "name": "TSUTAYA宇和店",
     "items": {
+      "245866d0563fb556": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "277c925230bcef8d": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -7322,6 +7333,17 @@
   "store/kabos-geo-cdc41/": {
     "name": "KaBoS＋GEO藤沢店",
     "items": {
+      "08dcef7adfbe8cd1": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-16T23:59",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "f4b872085de25fdb": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -31275,6 +31297,38 @@
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
         "e": "2026-11-08T22:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-74dab/": {
+    "name": "TSUTAYA大泉店",
+    "items": {
+      "b09a6aabb66f4af0": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T21:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/manasosu-ff95f/": {
+    "name": "マナソース 和歌山駅前店",
+    "items": {
+      "c9bb56ea354f2ac9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-08T20:00",
         "f": "2026-11-08",
         "c": "store",
         "m": "Web",
