@@ -15,8 +15,12 @@ if not urls:
         print("GNEWS", it["title"][:50], "->", real)
         if real:
             urls.append(real)
+import jpfetch
 for u in urls:
     try:
+        if os.environ.get("VIA") == "jp":
+            u0 = u
+            u = jpfetch.url(u)
         r = requests.get(u, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36", "Accept-Language": "ja"}, timeout=(6, 15))
         r.encoding = r.apparent_encoding or r.encoding
         t = html_to_text(r.text, u) if "<rss" not in r.text[:500] else r.text

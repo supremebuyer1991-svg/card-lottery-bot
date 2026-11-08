@@ -11,6 +11,10 @@ on:
         description: "ページの中のリンクを探す正規表現（空なら出さない）"
         required: false
         default: ""
+      via:
+        description: "jp にすると日本の中継（Cloudflare）経由で読む"
+        required: false
+        default: ""
       mode:
         description: "page（ページが読めるか）／ snkr（スニダンで探す。urls に「|」区切りの言葉）"
         required: false
@@ -31,4 +35,6 @@ jobs:
           URLS: ${{ inputs.urls }}
           HEAD: "4000"
           LINKS: ${{ inputs.links }}
+          VIA: ${{ inputs.via }}
+          JPFETCH_SEED: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: if [ "${{ inputs.mode }}" = "snkr" ]; then python scripts/probe_snkr.py; else python scripts/probe_game.py; fi
