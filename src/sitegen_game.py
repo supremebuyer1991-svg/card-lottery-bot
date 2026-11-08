@@ -87,6 +87,7 @@ def side_html(cats, cur_game=None, cur=None, counts=True):
     stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
     here = ' aria-current="page"'
     stat += f'<a href="/calendar/"{here if cur == "calendar" else ""}>カレンダー</a>'
+    stat += f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
                  + (f'<span class="n" data-cn="{escape(c["id"])}"></span>' if counts else "") + "</a>" for c in cats)
     return ('<aside class="side" aria-label="メニュー">'
@@ -717,6 +718,14 @@ def build(settings=None, out_dir=None, force=False):
         '<body><img src="/rinrin.png" alt="" width="96" height="96"><h1>ページが見つかりません</h1><p>受付が終わってページを削除した可能性があります。</p>'
         '<p><a href="/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
     _x_draft(out, live, s, site, updated, cats)
+    try:   # 定価以上で売れる商品（買取店の新品の買取価格×楽天の定価）：/premium/ と /premium/<JAN>/
+        import game_premium
+        import game_affi as _ga
+        pm_paths, _ = game_premium.write_pages(out, cats, site, brand, live, s, _simple_page, _ga.affiliate_id(s))
+        for pth in pm_paths:
+            urls.append((f"{site}/{pth}", str(updated)[:10]))
+    except Exception as e:
+        log(f"プレ値商品のページ: スキップ {e}")
     (out / "favicon.svg").write_text(_favicon_svg(brand["color"], s.get("accent_color") or "#0f8b8d"), encoding="utf-8")
     _icon_png(out / "apple-touch-icon.png", brand["color"], 180)
     _icon_png(out / "icon-192.png", brand["color"], 192)
