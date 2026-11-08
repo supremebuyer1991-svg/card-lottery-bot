@@ -99,6 +99,7 @@ SETS = {
         "20th Anniversary": ("CP6", "20th Anniversary", "", "", ""),
     },
     "onepiece": {
+        "夢の一枚": ("PEB-01", "Premium Extra Booster", "", "", ""),  # 11/8 新シリーズ「プレミアムエクストラブースター」第1弾（英語名は未発表）
         "応答せよ、世界": ("OP-19", "OP-19", "", "", ""),
         "EAST BLUE": ("EB-06", "EAST BLUE", "", "", ""),
         "神の支配": ("OP-18", "The Dominance of God", "The Dominance of God", "", ""),
@@ -321,6 +322,241 @@ TYPE_T = {  # 商品の種類
     "公認店限定": {"en": "Official store exclusive", "zh-tw": "公認店限定", "ko": "공인점 한정"},
     "ブースターパック": {"en": "Booster pack", "zh-tw": "補充包", "ko": "부스터 팩"},
     "エクストラブースター": {"en": "Extra booster", "zh-tw": "額外補充包", "ko": "엑스트라 부스터"},
+    "プレミアムエクストラブースター": {"en": "Premium Extra Booster", "zh-tw": "Premium Extra Booster（高級額外補充包）", "ko": "프리미엄 엑스트라 부스터"},
+}
+
+# ===== 2026/11/6 の公式特別番組で発表されたワンピースの4弾（11/8）=====
+# 海外からの「OP-19 release date」「PEB-01」「EB-06 East Blue Japanese」などの検索が増える時期なので、弾ページを厚くする。
+# 書いてよい事実は公式発表のものだけ（収録カード・BOXのパック数・値段は、発表されたものだけ書く）。
+# 1BOXのパック数と値段が公式に出ているのは OP-18 だけ。PEB-01 は未発表。
+OP_NEW_ORDER = ["神の支配", "EAST BLUE", "応答せよ、世界", "夢の一枚"]
+OP_NEW = {
+    "神の支配": {"code": "OP-18", "rel": "2026-11-21", "pack": 240, "box": (24, 5760), "per_pack": None, "jp_slug": "op18-kami-no-shihai"},
+    "EAST BLUE": {"code": "EB-06", "rel": "2027-01-30", "pack": 240, "box": None, "per_pack": None, "jp_slug": "eb06-east-blue"},
+    "応答せよ、世界": {"code": "OP-19", "rel": "2027-02-27", "pack": 240, "box": None, "per_pack": None, "jp_slug": "op19-outou-seyo-sekai"},
+    "夢の一枚": {"code": "PEB-01", "rel": "2027-04-24", "pack": 440, "box": None, "per_pack": 8, "jp_slug": "peb01-yume-no-ichimai"},
+}
+# 表のラベルと共通の文言
+OP_NEW_LBL = {
+    "en": {"h_about": "About this set", "h_facts": "Key facts", "h_faq": "FAQ", "h_links": "Upcoming Japanese ONE PIECE Card Game sets (announced Nov 6, 2026)",
+           "rel": "Japanese release date", "type": "Product type", "price": "Price in Japan (MSRP)", "box": "Box", "per_pack": "Cards per pack", "theme": "Theme",
+           "ann": "Announced", "ann_v": "November 6, 2026, official ONE PIECE Card Game special broadcast", "en": "English edition", "tba": "Not yet announced",
+           "jp": "Japanese page", "jp_link": "Japanese page of this set (pre-order & lottery info in Japan) →", "per_pack_v": "{n} cards, all foil",
+           "pack_v": "¥{pack} per pack ({packl})", "box_v": "{n} packs · ¥{box} ({boxl})", "list": "Set list", "tbd_en": "Not yet announced",
+           "kind": {"OP-18": "Booster pack (18th)", "EB-06": "Extra Booster (6th)", "OP-19": "Booster pack (19th)", "PEB-01": "Premium Extra Booster (new series, 1st)"},
+           "theme_v": {"EB-06": "East Blue", "OP-19": "Egghead"}, "pack_short": "¥{pack}/pack"},
+    "zh-tw": {"h_about": "關於這個系列", "h_facts": "重點整理", "h_faq": "常見問題", "h_links": "即將發售的日版航海王卡牌新彈（2026/11/6 官方發表）",
+              "rel": "日版發售日", "type": "商品類型", "price": "日本定價（建議售價）", "box": "整盒", "per_pack": "每包張數", "theme": "主題",
+              "ann": "發表", "ann_v": "2026年11月6日 航海王卡牌官方特別節目", "en": "英文版", "tba": "尚未公布",
+              "jp": "日文版頁面", "jp_link": "這個系列的日文版頁面（日本的預購、抽選資訊）→", "per_pack_v": "{n}張，全部閃卡",
+              "pack_v": "每包{pack}日圓（{packl}）", "box_v": "{n}包／{box}日圓（{boxl}）", "list": "系列一覽", "tbd_en": "尚未公布",
+              "kind": {"OP-18": "補充包（第18彈）", "EB-06": "額外補充包（第6彈）", "OP-19": "補充包（第19彈）", "PEB-01": "Premium Extra Booster（新系列第1彈）"},
+              "theme_v": {"EB-06": "東海（East Blue）", "OP-19": "蛋頭島（Egghead）"}, "pack_short": "每包{pack}日圓"},
+    "ko": {"h_about": "세트 소개", "h_facts": "핵심 정보", "h_faq": "자주 묻는 질문", "h_links": "곧 발매되는 일판 원피스 카드 신규 세트 (2026.11.6 공식 발표)",
+           "rel": "일본 발매일", "type": "상품 종류", "price": "일본 정가", "box": "박스", "per_pack": "팩당 카드 수", "theme": "테마",
+           "ann": "발표", "ann_v": "2026년 11월 6일 원피스 카드 게임 공식 특별 방송", "en": "영문판", "tba": "미정(미발표)",
+           "jp": "일본어 페이지", "jp_link": "이 세트의 일본어 페이지 (일본 예약·추첨 정보) →", "per_pack_v": "{n}장, 전부 홀로 카드",
+           "pack_v": "1팩 {pack}엔 ({packl})", "box_v": "{n}팩 · {box}엔 ({boxl})", "list": "세트 목록", "tbd_en": "미발표",
+           "kind": {"OP-18": "부스터 팩 (18탄)", "EB-06": "엑스트라 부스터 (6탄)", "OP-19": "부스터 팩 (19탄)", "PEB-01": "프리미엄 엑스트라 부스터 (신규 시리즈 1탄)"},
+           "theme_v": {"EB-06": "이스트 블루", "OP-19": "에그헤드"}, "pack_short": "1팩 {pack}엔"},
+}
+# 弾ごとの文章。{rel}=日本の発売日、{pack}/{packl}=1パックの値段（円／現地通貨）、{box}/{boxl}=1BOX、{enrel}=英語版の発売日、{en_line}=英語版の一文
+OP_NEW_T = {
+    "en": {
+        "神の支配": {
+            "title": "OP-18 The Dominance of God Japanese Release Date (Nov 21, 2026), Price & Pre-order | ONE PIECE Card Game",
+            "h1": "OP-18 The Dominance of God (Japanese) — release date, price & pre-order",
+            "desc": "The Japanese ONE PIECE Card Game booster OP-18 \"The Dominance of God\" (神の支配) releases in Japan on Saturday, November 21, 2026 at ¥240 per pack (24-pack box ¥5,760). Revealed cards, key facts, FAQ and where to buy the Japanese box.",
+            "about": [
+                "The Dominance of God (OP-18, Japanese title 神の支配) is the 18th booster pack of the Japanese ONE PIECE Card Game. It releases in Japan on {rel} at ¥{pack} per pack ({packl}); a sealed box holds 24 packs for ¥{box} ({boxl}).",
+                "In the official special broadcast on November 6, 2026, Bandai showed parallel-art versions of the leader cards Carue, Miss All Sunday, Monkey D. Luffy and Spandam, as well as Saint Shamrock and Loki cards illustrated by Yoshitaka Amano.",
+                "{en_line}Once the set is on sale, this page shows what a sealed Japanese box actually sells for in Japan, updated daily.",
+            ],
+            "faq": [
+                ("When does OP-18 The Dominance of God come out in Japan?", "{rel}. Japanese ONE PIECE Card Game boosters are released on Saturdays."),
+                ("How much is a pack and a box of OP-18 in Japan?", "The Japanese MSRP is ¥{pack} per pack ({packl}) and ¥{box} for a 24-pack box ({boxl}). Popular sets often trade above MSRP after release; the current Japanese market price appears on this page once sales begin."),
+                ("Which OP-18 cards have been revealed?", "Parallel-art leader cards of Carue, Miss All Sunday, Monkey D. Luffy and Spandam, and Saint Shamrock and Loki cards drawn by Yoshitaka Amano were shown in the November 6, 2026 special broadcast. The full card list is published on the official Japanese site."),
+            ],
+        },
+        "EAST BLUE": {
+            "title": "EB-06 EAST BLUE Japanese Release Date (Jan 30, 2027), Price & Pre-order | ONE PIECE Card Game Extra Booster",
+            "h1": "EB-06 EAST BLUE (Japanese Extra Booster) — release date, price & pre-order",
+            "desc": "ONE PIECE Card Game Extra Booster EB-06 \"EAST BLUE\" (Japanese edition) releases in Japan on Saturday, January 30, 2027 at ¥240 per pack, themed on the East Blue. Key facts, revealed artwork, FAQ and where to buy the Japanese version.",
+            "about": [
+                "EAST BLUE (EB-06) is the sixth Extra Booster of the Japanese ONE PIECE Card Game, themed on the East Blue, the sea where the story begins. It releases in Japan on {rel} at ¥{pack} per pack ({packl}).",
+                "It was announced in the official special broadcast on November 6, 2026 together with OP-18, OP-19 and PEB-01. The package design and two new illustrations have been revealed; the card list, box configuration and an English release have not been announced yet.",
+                "Pre-orders at Japanese retailers usually open one to two months before release. Japanese box prices will appear on this page automatically once the set is on sale.",
+            ],
+            "faq": [
+                ("When does EB-06 EAST BLUE come out in Japan?", "{rel}."),
+                ("What is the theme of EB-06?", "The East Blue — the starting point of the story. Two new illustrations and the package were shown in the November 6, 2026 special broadcast; the card list is not out yet."),
+                ("How much is EB-06 in Japan?", "¥{pack} per pack ({packl}) at Japanese MSRP. The box configuration has not been announced yet."),
+                ("Will EB-06 EAST BLUE get an English release?", "Not announced yet. Every previous Extra Booster (EB-01 to EB-05) received an English edition, so one is likely, but check the official ONE PIECE Card Game site for confirmation."),
+            ],
+        },
+        "応答せよ、世界": {
+            "title": "OP-19 Japanese Release Date (Feb 27, 2027), Price & Pre-order | ONE PIECE Card Game Booster 応答せよ、世界",
+            "h1": "OP-19 応答せよ、世界 (Japanese) — release date, price & pre-order",
+            "desc": "ONE PIECE Card Game booster OP-19 \"応答せよ、世界\" (Japanese edition; the English title is not yet announced) releases in Japan on Saturday, February 27, 2027 at ¥240 per pack, themed on Egghead. Key facts, FAQ and where to buy the Japanese version.",
+            "about": [
+                "OP-19 is the 19th booster pack of the Japanese ONE PIECE Card Game. Its Japanese title is 応答せよ、世界, roughly \"Respond, World\" (unofficial translation; the official English title has not been announced). It releases in Japan on {rel} at ¥{pack} per pack ({packl}).",
+                "The theme is Egghead. The set was announced in the official special broadcast on November 6, 2026, where the package design and two new illustrations were revealed. The card list and box configuration have not been announced yet.",
+                "Recent Japanese OP boosters and their English editions have launched within days of each other (OP-18, for example, is November 21 in Japan and November 20 in English), but no English release date for OP-19 has been announced. Japanese box prices will appear here once the set is on sale.",
+            ],
+            "faq": [
+                ("When does OP-19 come out in Japan?", "{rel}."),
+                ("What is the English name of OP-19?", "Not announced yet. The Japanese title is 応答せよ、世界 (roughly \"Respond, World\"). Until Bandai announces the English title, search by the set code OP-19."),
+                ("What is the theme of OP-19?", "Egghead, according to the November 6, 2026 special broadcast. Two new illustrations and the package have been revealed."),
+                ("How much is OP-19 in Japan?", "¥{pack} per pack ({packl}) at Japanese MSRP. The box configuration has not been announced yet."),
+            ],
+        },
+        "夢の一枚": {
+            "title": "PEB-01 Premium Extra Booster 夢の一枚 Japanese Release Date (Apr 24, 2027), Price & What's Inside | ONE PIECE Card Game",
+            "h1": "PEB-01 Premium Extra Booster 夢の一枚 (Japanese) — release date, price & contents",
+            "desc": "ONE PIECE Card Game PEB-01 \"夢の一枚\" (The Card of Dreams, unofficial translation) is the first Premium Extra Booster: 8 cards per pack, every card foil, ¥440 per pack, releasing in Japan on Saturday, April 24, 2027. Key facts, FAQ and where to buy.",
+            "about": [
+                "夢の一枚 (PEB-01, roughly \"The Card of Dreams\", unofficial translation) is the first set of Premium Extra Booster, a brand-new product line of the Japanese ONE PIECE Card Game. It releases in Japan on {rel}.",
+                "Each pack costs ¥{pack} ({packl}), more than a regular ¥240 booster, and contains {per_pack} cards, all of them foil (holo). The number of packs per box and the card list have not been announced yet.",
+                "It was announced in the official special broadcast on November 6, 2026 together with OP-18, EB-06 and OP-19. This page is updated as soon as the box configuration, card list and Japanese market prices are available.",
+            ],
+            "faq": [
+                ("What is PEB-01 / Premium Extra Booster?", "A new ONE PIECE Card Game product line announced on November 6, 2026. PEB-01 夢の一枚 is its first set: a premium pack in which every card is foil."),
+                ("How many cards are in a PEB-01 pack, and are they all foil?", "{per_pack} cards per pack, and yes, every card is foil (holo), according to the official announcement."),
+                ("How much does PEB-01 cost and how many packs are in a box?", "¥{pack} per pack ({packl}) at Japanese MSRP. The number of packs per box has not been announced yet."),
+                ("When does PEB-01 come out in Japan?", "{rel}. An English edition has not been announced."),
+            ],
+        },
+    },
+    "zh-tw": {
+        "神の支配": {
+            "title": "OP-18 神の支配 日版發售日（2026/11/21）、定價與預購｜航海王卡牌",
+            "h1": "OP-18「神の支配」日版 發售日、定價與預購",
+            "desc": "日版航海王卡牌補充包 OP-18「神の支配」（暫譯：神之支配）2026年11月21日（六）在日本發售，每包240日圓、一盒24包5,760日圓。已公開卡片、重點整理、常見問題與日版購買方式。",
+            "about": [
+                "「神の支配」（OP-18，暫譯「神之支配」，英文版名 The Dominance of God）是日版航海王卡牌（ONE PIECE CARD GAME）的第18彈補充包，{rel}在日本發售，每包{pack}日圓（{packl}），一盒24包{box}日圓（{boxl}）。",
+                "在2026年11月6日的官方特別節目中，公開了領航員卡「卡魯（Carue）」「Miss All Sunday」「蒙其·D·魯夫」「斯潘達姆（Spandam）」的異圖版本，以及由天野喜孝繪製的「Saint Shamrock（シャムロック聖）」與「洛基（Loki）」實體卡。",
+                "{en_line}開賣之後，這一頁會每天更新日版未拆封卡盒在日本的實際成交價。",
+            ],
+            "faq": [
+                ("OP-18「神の支配」日版什麼時候發售？", "{rel}在日本發售。日版航海王卡牌的補充包通常在星期六發售。"),
+                ("OP-18 日版一包、一盒多少錢？", "日本建議售價每包{pack}日圓（{packl}），一盒24包{box}日圓（{boxl}）。熱門系列開賣後市價常高於定價，開賣後這一頁會顯示日本的實際成交價。"),
+                ("OP-18 已經公開了哪些卡？", "2026年11月6日的官方特別節目公開了卡魯、Miss All Sunday、蒙其·D·魯夫、斯潘達姆的異圖領航員卡，以及天野喜孝繪製的 Saint Shamrock 與洛基。完整卡表請見日本官方網站。"),
+            ],
+        },
+        "EAST BLUE": {
+            "title": "EB-06 EAST BLUE 日版發售日（2027/1/30）、定價與預購｜航海王卡牌額外補充包",
+            "h1": "EB-06「EAST BLUE」日版額外補充包 發售日、定價與預購",
+            "desc": "日版航海王卡牌額外補充包 EB-06「EAST BLUE」2027年1月30日（六）在日本發售，每包240日圓，主題是東海（East Blue）。重點整理、已公開插畫、常見問題與日版購買方式。",
+            "about": [
+                "「EAST BLUE」（EB-06）是日版航海王卡牌的第6彈額外補充包（Extra Booster），主題是故事起點的東海（East Blue），{rel}在日本發售，每包{pack}日圓（{packl}）。",
+                "本彈在2026年11月6日的官方特別節目中與 OP-18、OP-19、PEB-01 一起發表，目前公開了包裝與2張新插畫；卡表、整盒的包數與英文版發售日都還沒有公布。",
+                "日本的網購預購通常在發售前1～2個月開放。開賣後，這一頁會自動顯示日本的卡盒成交價。",
+            ],
+            "faq": [
+                ("EB-06「EAST BLUE」日版什麼時候發售？", "{rel}在日本發售。"),
+                ("EB-06 的主題是什麼？", "東海（East Blue），也就是故事的起點。2026年11月6日的官方特別節目公開了包裝與2張新插畫，卡表尚未公布。"),
+                ("EB-06 日版一包多少錢？", "日本建議售價每包{pack}日圓（{packl}）。整盒的包數尚未公布。"),
+                ("EB-06 會出英文版嗎？", "尚未公布。之前的額外補充包 EB-01～EB-05 都有英文版，所以很有機會，請以航海王卡牌官方網站的公告為準。"),
+            ],
+        },
+        "応答せよ、世界": {
+            "title": "OP-19 応答せよ、世界 日版發售日（2027/2/27）、定價與預購｜航海王卡牌",
+            "h1": "OP-19「応答せよ、世界」日版 發售日、定價與預購",
+            "desc": "日版航海王卡牌補充包 OP-19「応答せよ、世界」（暫譯：回應吧，世界；英文版名稱尚未公布）2027年2月27日（六）在日本發售，每包240日圓，主題是蛋頭島（Egghead）。重點整理、常見問題與日版購買方式。",
+            "about": [
+                "OP-19 是日版航海王卡牌的第19彈補充包，日文名稱「応答せよ、世界」（暫譯「回應吧，世界」，英文版名稱尚未公布），{rel}在日本發售，每包{pack}日圓（{packl}）。",
+                "主題是蛋頭島（Egghead）。本彈在2026年11月6日的官方特別節目中發表，公開了包裝與2張新插畫；卡表與整盒的包數尚未公布。",
+                "近期日版 OP 補充包與英文版幾乎同步發售（例如 OP-18 日版是11月21日、英文版是11月20日），但 OP-19 的英文版發售日還沒有公布。開賣後，這一頁會顯示日本的卡盒成交價。",
+            ],
+            "faq": [
+                ("OP-19 日版什麼時候發售？", "{rel}在日本發售。"),
+                ("OP-19 的英文版名稱是什麼？", "尚未公布。日文名稱是「応答せよ、世界」（暫譯「回應吧，世界」）。在官方公布之前，請用系列代碼 OP-19 搜尋。"),
+                ("OP-19 的主題是什麼？", "根據2026年11月6日的官方特別節目，主題是蛋頭島（Egghead），已公開包裝與2張新插畫。"),
+                ("OP-19 日版一包多少錢？", "日本建議售價每包{pack}日圓（{packl}）。整盒的包數尚未公布。"),
+            ],
+        },
+        "夢の一枚": {
+            "title": "PEB-01 夢の一枚 日版發售日（2027/4/24）、定價與內容｜航海王卡牌 Premium Extra Booster",
+            "h1": "PEB-01「夢の一枚」Premium Extra Booster 日版 發售日、定價與內容",
+            "desc": "日版航海王卡牌 PEB-01「夢の一枚」（暫譯：夢想的一張）是新系列 Premium Extra Booster 的第1彈：每包8張、全部閃卡、每包440日圓，2027年4月24日（六）在日本發售。重點整理、常見問題與購買方式。",
+            "about": [
+                "「夢の一枚」（PEB-01，暫譯「夢想的一張」）是日版航海王卡牌全新產品線 Premium Extra Booster（高級額外補充包）的第1彈，{rel}在日本發售。",
+                "每包{pack}日圓（{packl}），比一般的240日圓補充包貴，每包{per_pack}張、而且全部都是閃卡。整盒的包數與卡表尚未公布。",
+                "本彈在2026年11月6日的官方特別節目中與 OP-18、EB-06、OP-19 一起發表。整盒規格、卡表與日本市價一公布，這一頁就會更新。",
+            ],
+            "faq": [
+                ("PEB-01／Premium Extra Booster 是什麼？", "2026年11月6日發表的航海王卡牌全新產品線。PEB-01「夢の一枚」是第1彈，是每一張卡都是閃卡的高級補充包。"),
+                ("PEB-01 一包幾張？全部都是閃卡嗎？", "根據官方發表，每包{per_pack}張，而且全部都是閃卡。"),
+                ("PEB-01 多少錢？一盒幾包？", "日本建議售價每包{pack}日圓（{packl}）。一盒的包數尚未公布。"),
+                ("PEB-01 日版什麼時候發售？", "{rel}在日本發售。英文版尚未公布。"),
+            ],
+        },
+    },
+    "ko": {
+        "神の支配": {
+            "title": "OP-18 신의 지배 일판 발매일(2026.11.21)·정가·예약 | 원피스 카드",
+            "h1": "OP-18 '신의 지배' 일판 발매일·정가·예약",
+            "desc": "일판 원피스 카드 게임 부스터 OP-18 '신의 지배'(神の支配, 비공식 번역)는 2026년 11월 21일(토) 일본 발매, 1팩 240엔·1박스(24팩) 5,760엔. 공개 카드, 핵심 정보, FAQ, 일판 구매 방법.",
+            "about": [
+                "'신의 지배'(OP-18, 일본어 원제 神の支配·비공식 번역, 영문판명 The Dominance of God)는 일판 원피스 카드 게임의 18번째 부스터 팩으로, {rel} 일본에서 발매됩니다. 정가는 1팩 {pack}엔({packl}), 1박스 24팩 {box}엔({boxl})입니다.",
+                "2026년 11월 6일 공식 특별 방송에서는 리더 카드 '카루', '미스 올 선데이', '몽키 D. 루피', '스팬덤'의 패러렐 일러스트 버전과, 아마노 요시타카가 그린 '샴록 성'(シャムロック聖)·'로키' 실물 카드가 공개되었습니다.",
+                "{en_line}발매 후에는 일판 미개봉 박스의 일본 실거래가를 이 페이지에서 매일 업데이트합니다.",
+            ],
+            "faq": [
+                ("OP-18 '신의 지배' 일판은 언제 발매되나요?", "{rel} 일본에서 발매됩니다. 일판 원피스 카드 부스터는 보통 토요일에 발매됩니다."),
+                ("OP-18 일판 1팩·1박스 가격은 얼마인가요?", "일본 정가는 1팩 {pack}엔({packl}), 1박스 24팩 {box}엔({boxl})입니다. 인기 세트는 발매 후 정가보다 비싸게 거래되는 경우가 많으며, 발매 후 일본 실거래가를 이 페이지에 표시합니다."),
+                ("OP-18에서 공개된 카드는 무엇인가요?", "2026년 11월 6일 공식 특별 방송에서 카루·미스 올 선데이·몽키 D. 루피·스팬덤의 패러렐 리더 카드와, 아마노 요시타카가 그린 샴록 성·로키 카드가 공개되었습니다. 전체 카드 리스트는 일본 공식 사이트를 확인하세요."),
+            ],
+        },
+        "EAST BLUE": {
+            "title": "EB-06 EAST BLUE 일판 발매일(2027.1.30)·정가·예약 | 원피스 카드 엑스트라 부스터",
+            "h1": "EB-06 'EAST BLUE' 일판 엑스트라 부스터 발매일·정가·예약",
+            "desc": "일판 원피스 카드 게임 엑스트라 부스터 EB-06 'EAST BLUE'는 2027년 1월 30일(토) 일본 발매, 1팩 240엔, 테마는 이스트 블루. 핵심 정보, 공개 일러스트, FAQ, 일판 구매 방법.",
+            "about": [
+                "'EAST BLUE'(EB-06)는 일판 원피스 카드 게임의 6번째 엑스트라 부스터로, 이야기가 시작되는 바다 '이스트 블루'가 테마입니다. {rel} 일본에서 발매되며 정가는 1팩 {pack}엔({packl})입니다.",
+                "2026년 11월 6일 공식 특별 방송에서 OP-18, OP-19, PEB-01과 함께 발표되었고, 패키지와 새 일러스트 2종이 공개되었습니다. 카드 리스트, 박스 구성, 영문판 발매일은 아직 발표되지 않았습니다.",
+                "일본 온라인 쇼핑몰의 예약은 보통 발매 1~2개월 전에 시작됩니다. 발매 후에는 일본 박스 실거래가가 이 페이지에 자동으로 표시됩니다.",
+            ],
+            "faq": [
+                ("EB-06 'EAST BLUE' 일판은 언제 발매되나요?", "{rel} 일본에서 발매됩니다."),
+                ("EB-06의 테마는 무엇인가요?", "이야기의 출발점인 이스트 블루입니다. 2026년 11월 6일 공식 특별 방송에서 패키지와 새 일러스트 2종이 공개되었고, 카드 리스트는 아직입니다."),
+                ("EB-06 일판 1팩 가격은 얼마인가요?", "일본 정가 1팩 {pack}엔({packl})입니다. 박스 구성은 아직 발표되지 않았습니다."),
+                ("EB-06 EAST BLUE 영문판도 나오나요?", "아직 발표되지 않았습니다. 이전 엑스트라 부스터 EB-01~EB-05는 모두 영문판이 나왔기 때문에 가능성은 높지만, 원피스 카드 게임 공식 사이트의 발표를 확인하세요."),
+            ],
+        },
+        "応答せよ、世界": {
+            "title": "OP-19 応答せよ、世界 일판 발매일(2027.2.27)·정가·예약 | 원피스 카드",
+            "h1": "OP-19 '応答せよ、世界' 일판 발매일·정가·예약",
+            "desc": "일판 원피스 카드 게임 부스터 OP-19 '応答せよ、世界'(응답하라, 세계·비공식 번역, 영문판명 미발표)는 2027년 2월 27일(토) 일본 발매, 1팩 240엔, 테마는 에그헤드. 핵심 정보, FAQ, 일판 구매 방법.",
+            "about": [
+                "OP-19는 일판 원피스 카드 게임의 19번째 부스터 팩입니다. 일본어 제목은 '応答せよ、世界'(대략 '응답하라, 세계'·비공식 번역)이며 영문판 제목은 아직 발표되지 않았습니다. {rel} 일본에서 발매되며 정가는 1팩 {pack}엔({packl})입니다.",
+                "테마는 에그헤드입니다. 2026년 11월 6일 공식 특별 방송에서 발표되었고 패키지와 새 일러스트 2종이 공개되었습니다. 카드 리스트와 박스 구성은 아직 발표되지 않았습니다.",
+                "최근 일판 OP 부스터와 영문판은 며칠 차이로 발매되고 있지만(예: OP-18은 일판 11월 21일, 영문판 11월 20일), OP-19의 영문판 발매일은 아직 발표되지 않았습니다. 발매 후에는 일본 박스 실거래가가 여기에 표시됩니다.",
+            ],
+            "faq": [
+                ("OP-19 일판은 언제 발매되나요?", "{rel} 일본에서 발매됩니다."),
+                ("OP-19의 영문판 이름은 무엇인가요?", "아직 발표되지 않았습니다. 일본어 제목은 '応答せよ、世界'(대략 '응답하라, 세계')입니다. 공식 발표 전까지는 세트 코드 OP-19로 검색하세요."),
+                ("OP-19의 테마는 무엇인가요?", "2026년 11월 6일 공식 특별 방송에 따르면 에그헤드입니다. 패키지와 새 일러스트 2종이 공개되었습니다."),
+                ("OP-19 일판 1팩 가격은 얼마인가요?", "일본 정가 1팩 {pack}엔({packl})입니다. 박스 구성은 아직 발표되지 않았습니다."),
+            ],
+        },
+        "夢の一枚": {
+            "title": "PEB-01 夢の一枚 일판 발매일(2027.4.24)·정가·구성 | 원피스 카드 프리미엄 엑스트라 부스터",
+            "h1": "PEB-01 '夢の一枚' 프리미엄 엑스트라 부스터 일판 발매일·정가·구성",
+            "desc": "일판 원피스 카드 게임 PEB-01 '夢の一枚'(꿈의 한 장·비공식 번역)는 신규 시리즈 '프리미엄 엑스트라 부스터' 1탄. 1팩 8장 전부 홀로 카드, 1팩 440엔, 2027년 4월 24일(토) 일본 발매. 핵심 정보, FAQ, 구매 방법.",
+            "about": [
+                "'夢の一枚'(PEB-01, 대략 '꿈의 한 장'·비공식 번역)는 일판 원피스 카드 게임의 새 상품 라인 '프리미엄 엑스트라 부스터(Premium Extra Booster)'의 첫 번째 세트로, {rel} 일본에서 발매됩니다.",
+                "1팩 {pack}엔({packl})으로 일반 부스터(240엔)보다 비싸고, 1팩에 {per_pack}장이 들어 있으며 모든 카드가 홀로(반짝이) 카드입니다. 1박스의 팩 수와 카드 리스트는 아직 발표되지 않았습니다.",
+                "2026년 11월 6일 공식 특별 방송에서 OP-18, EB-06, OP-19와 함께 발표되었습니다. 박스 구성, 카드 리스트, 일본 시세가 나오는 대로 이 페이지를 업데이트합니다.",
+            ],
+            "faq": [
+                ("PEB-01 / 프리미엄 엑스트라 부스터는 무엇인가요?", "2026년 11월 6일 발표된 원피스 카드 게임의 새 상품 라인입니다. PEB-01 '夢の一枚'가 첫 세트로, 모든 카드가 홀로 카드인 프리미엄 팩입니다."),
+                ("PEB-01은 1팩에 몇 장이고 전부 홀로 카드인가요?", "공식 발표 기준 1팩 {per_pack}장이며, 모든 카드가 홀로(반짝이) 카드입니다."),
+                ("PEB-01 가격과 1박스 팩 수는요?", "일본 정가 1팩 {pack}엔({packl})입니다. 1박스의 팩 수는 아직 발표되지 않았습니다."),
+                ("PEB-01 일판은 언제 발매되나요?", "{rel} 일본에서 발매됩니다. 영문판은 발표되지 않았습니다."),
+            ],
+        },
+    },
 }
 
 BUY = {  # 日本での買い方ガイド（固定の文章）。2026/11/1 からの免税制度の変更も反映
@@ -384,6 +620,7 @@ td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.jp{d
 .src{font-size:12px;color:var(--ink2)}.src p{margin:0 0 8px}
 footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:12px;color:var(--ink2)}
 .ym{font-size:14px;margin:14px 0 2px;color:var(--ink2)}.ym:first-child{margin-top:0}
+.faq h3{font-size:15px;margin:12px 0 4px}.faq h3:first-child{margin-top:0}.faq p{margin:0 0 8px}.kv th{width:36%;font-size:13px;color:var(--ink)}
 @media (max-width:600px){.hide-s{display:none}h1{font-size:22px}.rel{flex-direction:column;gap:2px}.rel time{min-width:0}}"""
 
 
@@ -653,7 +890,11 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             top, sub = names_html(L, g, x, t)
             if (g, x) in row_of or any(p_[1] == g and p_[2] == x for p_ in pre_sets):  # 11/8 弾のページへ
                 top = f'<a href="/{L}/sets/{set_slug(g, x)}/" style="color:inherit">{top}</a>'
-            extra = [e for e in (sub, ty, (f'{t["msrp"]} ¥{yen[-1]} ({money(L, int(yen[-1].replace(",", "")))})' if yen else "")) if e]
+            msrp_ = f'{t["msrp"]} ¥{yen[-1]} ({money(L, int(yen[-1].replace(",", "")))})' if yen else ""
+            if g == "onepiece" and x in OP_NEW:  # 11/8 新弾4つは「1パックの値段」と、公式に出ていれば1BOXも（PEB-01 は1BOXが未発表なので誤解がないように）
+                d_ = OP_NEW[x]
+                msrp_ = OP_NEW_LBL[L]["pack_short"].format(pack=f"{d_['pack']:,}") + (f' · {OP_NEW_LBL[L]["box_v"].format(n=d_["box"][0], box=f"{d_['box'][1]:,}", boxl=money(L, d_["box"][1]))}' if d_["box"] else "")
+            extra = [e for e in (sub, ty, msrp_) if e]
             h.append(f'<div class="rel"><time datetime="{r}">{fmt_date(L, r)}</time><div><span class="g">{"Pokémon" if g == "pokemon" else "ONE PIECE"}</span>'
                      f'{top}' + (f'<span class="soon">{t["unreleased"]}</span>' if r > tdy else "")
                      + f'<span class="jp">{escape(" · ".join(extra))}</span>{rel_line(L, g, x, t, r).replace(escape(t["jprel"] + " " + fmt_date(L, r) + SEP[L]), "").replace(escape(t["jprel"] + " " + fmt_date(L, r)), "")}</div></div>')
@@ -806,11 +1047,18 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         if tw_now:
             stats.append((t["ln_tw"], f'${tw_now:,.0f}', "eBay"))
         st_html = "".join(f'<div class="stat"><small>{escape(a)}</small><b>{b}</b><span>{escape(c)}</span></div>' for a, b, c in stats)
+        extra, ld = "", []
+        if g == "onepiece" and x in OP_NEW:  # 11/8 新弾4つは、相場が出たあとも説明・表・FAQを残す。発売前のうちは発売日の入った題名に
+            o = op_new_parts(L, t, x, full=True)
+            extra, ld = o["body"], o["ld"]
+            if r["rel"] and r["rel"] > tdy:
+                title, h1, desc = o["title"], o["h1"], o["desc"]
         body = (f'<p class="lead">{escape(set_text(L, t, r))}</p><div class="card">{top}<span class="jp">{escape(sub)}</span>{rel_line(L, g, x, t, r["rel"])}{buy_btns(g, x, t, L)}</div>'
                 f'<div class="stats">{st_html}</div><h2>{escape(t["chart"])}</h2>{chart_svg(L, t, r)}'
                 + (f'<p class="note">{escape(t["no_local"])}</p>' if (L == "zh-tw" and r["twser"]) or (L == "ko" and r["krser"]) else "")
+                + extra
                 + f'<p><a href="/{L}/box-prices/">{t["box"]} →</a> · <a href="/{L}/releases/">{t["releases"]} →</a></p>')
-        return (f"sets/{set_slug(g, x)}/", "set", title, h1, desc, "", body, "box")
+        return (f"sets/{set_slug(g, x)}/", "set", title, h1, desc, "", body, "box", ld)
 
     # ===== 11/8 細かい検索語の受け皿ページ =====
     # (1) カードごとのページ：「Mew ex 205/165 japanese price」「Mega Charizard X ex SAR M2 japanese」など
@@ -907,6 +1155,65 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             continue
         pre_sets.append((r_, g_, x_, inf_))
 
+    # ---- 11/8 ワンピースの新弾4つ（OP-18・EB-06・OP-19・PEB-01）：説明・重点の表・FAQ（FAQPage の構造化データ付き）・4弾の相互リンク ----
+    jp_slugs = ((s.get("series_slugs") or {}).get("onepiece") or {})
+
+    def op_new_links(L, t, cur=None):
+        """4弾を互いにリンクする小さな一覧（発売日順）。cur＝いま見ている弾（リンクしない）"""
+        lb = OP_NEW_LBL[L]
+        h = []
+        for x in OP_NEW_ORDER:
+            d = OP_NEW[x]
+            code, en = set_info("onepiece", x)[:2]
+            nm = f'<b>{escape(en)}</b>' + (f'<span class="code">{escape(code)}</span>' if code.lower() not in en.lower() else "")
+            if x != cur:
+                nm = f'<a href="/{L}/sets/{set_slug("onepiece", x)}/" style="color:inherit">{nm}</a>'
+            sub = [x if x != en else "", lb["kind"].get(code, ""), lb["pack_short"].format(pack=f"{d['pack']:,}")]
+            h.append(f'<div class="rel"><time datetime="{d["rel"]}">{fmt_date(L, d["rel"])}</time><div>{nm}'
+                     + (f'<span class="soon">{t["unreleased"]}</span>' if d["rel"] > tdy else "")
+                     + f'<span class="jp">{escape(" · ".join(w for w in sub if w))}</span></div></div>')
+        return f'<h2>{escape(lb["h_links"])}</h2><div class="card">{"".join(h)}</div>'
+
+    def op_new_parts(L, t, x, full=False):
+        """弾ページに足す部分：title/h1/desc/lead の差し替え、本文のHTML、FAQPage の構造化データ
+        full=True（相場のあるページ）は説明の1文目も本文に入れる（lead は相場の文章が使うため）"""
+        d, lb, tx = OP_NEW[x], OP_NEW_LBL[L], OP_NEW_T[L][x]
+        code, en, ctp, zh, ko = set_info("onepiece", x)
+        lr = (LOCAL_REL.get("onepiece") or {}).get(x) or {}
+        enrel = fmt_date(L, lr["en"]) if lr.get("en") else ""
+        en_line = ""
+        if enrel and ctp:
+            en_line = {"en": f"The English edition, {ctp}, launches on {enrel}, so the Japanese box is mainly for collectors who want Japanese-text cards. ",
+                       "zh-tw": f"英文版 {ctp} 於{enrel}發售，想收日文卡的人再買日版即可。",
+                       "ko": f"영문판 {ctp}{_josa(ctp)} {enrel} 발매이므로, 일판 박스는 일본어 카드를 모으는 분께 적합합니다. "}[L]
+        f = dict(rel=fmt_date(L, d["rel"]), pack=f"{d['pack']:,}", packl=money(L, d["pack"]),
+                 box=f"{d['box'][1]:,}" if d["box"] else "", boxl=money(L, d["box"][1]) if d["box"] else "",
+                 per_pack=d["per_pack"] or "", enrel=enrel, en_line=en_line)
+        about = [a.format(**f) for a in tx["about"]]
+        faq = [(q.format(**f), a.format(**f)) for q, a in tx["faq"]]
+        rows_ = [(lb["rel"], fmt_date(L, d["rel"])), (lb["type"], lb["kind"].get(code, "")), (lb["price"], lb["pack_v"].format(**f))]
+        if d["box"]:
+            rows_.append((lb["box"], lb["box_v"].format(n=d["box"][0], **f)))
+        elif code == "PEB-01":
+            rows_.append((lb["box"], lb["tba"]))
+        if d["per_pack"]:
+            rows_.append((lb["per_pack"], lb["per_pack_v"].format(n=d["per_pack"])))
+        if lb["theme_v"].get(code):
+            rows_.append((lb["theme"], lb["theme_v"][code]))
+        rows_.append((lb["ann"], lb["ann_v"]))
+        rows_.append((lb["en"], (f"{ctp} · {enrel}" if ctp and ctp != en else enrel) if enrel else lb["tbd_en"]))
+        jp_url = f'/onepiece/{jp_slugs.get(x) or d["jp_slug"]}/'
+        rows_.append((lb["jp"], f'<a href="{jp_url}" hreflang="ja">{escape(x)}</a>'))
+        tbl = "".join(f'<tr><th>{escape(k)}</th><td>{v if k == lb["jp"] else escape(v)}</td></tr>' for k, v in rows_)
+        body = (f'<h2>{escape(lb["h_about"])}</h2>' + "".join(f"<p>{escape(a)}</p>" for a in (about if full else about[1:]))
+                + f'<h2>{escape(lb["h_facts"])}</h2><div class="tw"><table class="kv">{tbl}</table></div>'
+                + f'<h2>{escape(lb["h_faq"])}</h2><div class="card faq">' + "".join(f"<h3>{escape(q)}</h3><p>{escape(a)}</p>" for q, a in faq) + "</div>"
+                + op_new_links(L, t, x)
+                + f'<p><a href="{jp_url}" hreflang="ja">{escape(lb["jp_link"])}</a></p>')
+        ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+        return {"title": tx["title"], "h1": tx["h1"], "desc": tx["desc"], "lead": about[0], "body": body, "ld": [ld]}
+
     def pre_page(L, t, r_, g, x, inf):
         ct = CT[L]
         code, en, ctp, zh, ko = set_info(g, x)
@@ -930,9 +1237,12 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         h1 = ct["pre_h1"].format(**f).replace(" ()", "").replace("（）", "")
         top, sub = names_html(L, g, x, t)
         body = (f'<div class="card">{top}<span class="jp">{escape(sub)}</span>{rel_line(L, g, x, t, r_)}{buy_btns(g, x, t, L)}</div>'
-                + (f'<p class="note">{t["affnote"]}</p>' if t["affnote"] else "")
-                + f'<p><a href="/{L}/releases/">{t["releases"]} →</a> · <a href="/{L}/box-prices/">{t["box"]} →</a></p>')
-        return (f"sets/{set_slug(g, x)}/", "set", title, h1, ct["pre_desc"].format(**f), ct["pre_lead"].format(**f), body, "releases")
+                + (f'<p class="note">{t["affnote"]}</p>' if t["affnote"] else ""))
+        tail = f'<p><a href="/{L}/releases/">{t["releases"]} →</a> · <a href="/{L}/box-prices/">{t["box"]} →</a></p>'
+        if g == "onepiece" and x in OP_NEW:  # 11/8 新弾4つは説明・表・FAQ付きの厚いページに
+            o = op_new_parts(L, t, x)
+            return (f"sets/{set_slug(g, x)}/", "set", o["title"], o["h1"], o["desc"], o["lead"], body + o["body"] + tail, "releases", o["ld"])
+        return (f"sets/{set_slug(g, x)}/", "set", title, h1, ct["pre_desc"].format(**f), ct["pre_lead"].format(**f), body + tail, "releases")
 
     # (3) 弾の一覧（「japanese pokemon set list」「japanese set codes」）
     def sets_index(L, t):
@@ -957,6 +1267,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                          f'<td class="n">{escape(fmt_date(L, rel)) if rel else "–"}</td>'
                          f'<td class="n">' + (f'¥{rr["p"]:,}<span class="jp">{escape(money(L, rr["p"]))}</span>' if rr else "–") + '</td></tr>')
             h.append("</table></div>")
+        h.append(op_new_links(L, t))  # 11/8 ワンピースの新弾4つ
         return ("sets/", "setsidx", ct["idx_title"], ct["idx_h1"], ct["idx_desc"], ct["idx_lead"], "".join(h), None)
 
     ex_rel = ", ".join(" ".join(w for w in (set_name(g, x), set_info(g, x)[0] if set_info(g, x)[0].lower() != set_name(g, x).lower() else "") if w)
@@ -982,7 +1293,8 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                         f'<h2>{t["hot"]}</h2>{card_table(L, t, 10)}<p><a href="/{L}/card-prices/">{t["cards"]} →</a></p>'
                         f'<p><a href="/{L}/buy-in-japan/">{t["buy"]} →</a></p>')
             elif key == "releases":
-                body = f'<div class="card">{rel_list(L, t)}</div><p><a href="/{L}/box-prices/">{t["box"]} →</a></p>'
+                body = (f'<div class="card">{rel_list(L, t)}</div>{op_new_links(L, t)}'
+                        f'<p><a href="/{L}/box-prices/">{t["box"]} →</a> · <a href="/{L}/sets/">{t["setsidx"]} →</a></p>')
             elif key == "box":
                 body = (f'<h2>{t["pokemon"]}</h2>{price_table(L, t, "pokemon")}<h2>{t["onepiece"]}</h2>{price_table(L, t, "onepiece")}'
                         f'<p><a href="/{L}/releases/">{t["releases"]} →</a> · <a href="/{L}/sets/">{t["setsidx"]} →</a></p>')
@@ -1000,7 +1312,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
         for c in card_pages:
             specs.append(card_page(L, t, c))
         specs.append(sets_index(L, t))
-        for path, key, title, h1, desc, lead, body, parent in specs:
+        for path, key, title, h1, desc, lead, body, parent, *extra_ld in specs:  # 9つ目（あれば）＝ページ固有の構造化データ（FAQPage など）
             url = f"{site}/{L}/{path}"
             # hreflang：自分を含む全言語。中国語は zh-Hant・zh-TW・zh-HK を同じページに
             alt = "".join(f'<link rel="alternate" hreflang="{hl}" href="{site}/{l}/{path}">' for l, m in LANGS.items() for hl in m["hreflang"])
@@ -1025,7 +1337,9 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
                         it["url"] = f'{site}/{L}/sets/{set_slug(r["g"], r["x"])}/'
                     items.append(it)
                 ld.append({"@context": "https://schema.org", "@type": "ItemList", "itemListElement": items})
-            ld_html = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
+            for x_ in extra_ld:
+                ld.extend(x_ or [])
+            ld_html ="".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
             og_img = f"{site}/og-{L}.png"
             ogalt = '<meta property="og:locale:alternate" content="zh_HK">' if L == "zh-tw" else ""
             cur = parent or key
