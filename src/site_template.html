@@ -664,6 +664,8 @@ table.wr { width: 100%; border-collapse: collapse; background: var(--card, #fff)
 table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; } table.wr th { font-size: 12px; color: var(--ink-2); }
 .ad .ad-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .ad.lose { border: 2px solid #f3d9a4; background: #fffaf0; } .lose-sub { margin: 4px 0 8px; font-size: 13px; color: var(--ink-2); }
+.ad.lose > :not(.ad-top) { margin-left: 14px; margin-right: 14px; } .ad.lose > :last-child { margin-bottom: 12px; }  /* 11/8：文が枠の端にくっついていた */
+.ad.lose .sh-ok, .ad.lose .sh-ng { margin-top: 10px; }
 .lose-l { list-style: none; margin: 0; padding: 0; } .lose-l li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #f0e2c4; }
 .lose-l li:first-child { border-top: 0; } .lose-l small { display: block; font-size: 12px; color: var(--ink-2); } .lose-l a { flex: none; font-size: 13px; font-weight: 700; padding: 8px 12px; border-radius: 8px; text-decoration: none; }
 .lose-l .b-rakb { background: #bf0000; color: #fff; } .ad-note { font-size: 11px; color: var(--ink-2); margin: 6px 0 0; }
