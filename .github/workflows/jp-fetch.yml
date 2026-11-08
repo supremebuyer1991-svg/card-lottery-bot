@@ -1,0 +1,28 @@
+name: jp-fetch-deploy
+
+# 日本の買取店を代わりに読む中継（Cloudflare Worker）を公開する。worker/jp-fetch を変えたとき・手動で
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["worker/jp-fetch/**", ".github/workflows/jp-fetch.yml"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - name: deploy
+        env:
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          cd worker/jp-fetch
+          printf 'name = "jp-fetch"\nmain = "index.js"\ncompatibility_date = "2026-10-01"\nworkers_dev = true\n' > wrangler.toml
+          npx --yes wrangler@4 deploy 2>&1 | grep -E "workers.dev|Uploaded|Deployed|error|Error" || true
+          KEY=$(printf '%s' "${CLOUDFLARE_ACCOUNT_ID}jp-fetch" | sha256sum | cut -c1-24)
+          for n in 1 2 3; do printf '%s' "$KEY" | npx --yes wrangler@4 secret put KEY >/dev/null && break; sleep 5; done
+          echo "公開しました"
