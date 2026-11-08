@@ -861,7 +861,7 @@
   },
   "store/batoroco-900b1/": {
     "name": "バトロコミニ前橋文京店",
-    "last": "2026-10-27",
+    "last": "2026-11-08",
     "game": "onepiece",
     "area": "群馬県"
   },
@@ -1655,7 +1655,7 @@
   },
   "store/aeon-2f753/": {
     "name": "ふるいちイオンモール熱田店",
-    "last": "2026-11-03",
+    "last": "2026-11-08",
     "game": "pokemon",
     "area": "愛知県"
   },
@@ -2576,7 +2576,7 @@
   },
   "store/tsutaya-e614b/": {
     "name": "TSUTAYA城西店トレカコーナー",
-    "last": "2026-10-26",
+    "last": "2026-11-08",
     "game": "onepiece",
     "keep": true
   },
@@ -4072,9 +4072,10 @@
   },
   "store/torekaesu-0aff2/": {
     "name": "トレカエース勝田東石川店",
-    "last": "2026-08-30",
+    "last": "2026-11-08",
     "game": "dragonball",
-    "keep": true
+    "keep": true,
+    "area": "茨城県"
   },
   "store/tsutaya-7069c/": {
     "name": "TSUTAYA錦糸町店",
@@ -4368,8 +4369,8 @@
     "area": "徳島県"
   },
   "store/torekapaku-7ffce/": {
-    "name": "トレカパーク横浜西口店",
-    "last": "2026-11-01",
+    "name": "トレカパーク 横浜西口店",
+    "last": "2026-11-08",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -5378,7 +5379,7 @@
   },
   "store/torekapoto-7e90a/": {
     "name": "トレカポート",
-    "last": "2026-11-03",
+    "last": "2026-11-08",
     "game": "onepiece"
   },
   "store/furuichi-305a5/": {
@@ -6025,7 +6026,7 @@
   },
   "store/hobbyoff-1ba31/": {
     "name": "ホビーオフ愛川店",
-    "last": "2026-11-06",
+    "last": "2026-11-08",
     "game": "pokemon",
     "area": "神奈川県"
   },
@@ -7452,5 +7453,71 @@
     "name": "オレタン",
     "last": "2026-11-08",
     "game": "onepiece"
+  },
+  "store/torekapuraza55-ame-bd499/": {
+    "name": "トレカプラザ55 大須アメ横店",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/kadoshoppu-ef8e9/": {
+    "name": "カードショップ黄鶏屋",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/furuichi-8aeee/": {
+    "name": "ふるいち高野店",
+    "last": "2026-11-08",
+    "game": "onepiece",
+    "area": "京都府"
+  },
+  "store/tsutaya-7ce33/": {
+    "name": "TSUTAYA松戸",
+    "last": "2026-11-08",
+    "game": "onepiece",
+    "area": "千葉県"
+  },
+  "store/shop-18963/": {
+    "name": "松戸",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-7dd21/": {
+    "name": "常陸太田",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-03315/": {
+    "name": "与野本町",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-d3bbf/": {
+    "name": "伊勢丘",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-fae30/": {
+    "name": "流山",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-f77e3/": {
+    "name": "横須賀",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/shop-efe43/": {
+    "name": "辰巳台",
+    "last": "2026-11-08",
+    "game": "pokemon",
+    "keep": true
   }
 }
