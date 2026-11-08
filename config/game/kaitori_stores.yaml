@@ -1,0 +1,19 @@
+# 買取店の「ゲームの新品の買取価格」の一覧ページ（kaitori-search.app に載っている店のうち、中継経由で価格まで読めた店。11/8 確認）
+# urls は最大3つ（1回のAIにまとめて渡す）。読めなくなった店は enabled: false に
+# 読めなかった店（11/8）：森森買取（523）・買取wiki（ファイアウォール）・ドラゴンモバイル/ベストワン（価格が本文に無い）・
+#   買取ホムラ/エノキング/TOJO（後から読み込む作り）・モバイル一番（ゲームの一覧ページのURLが未特定）ほか
+stores:
+  - name: 買取ルデヤ
+    urls: ["https://kaitori-rudeya.com/category/detail/214", "https://kaitori-rudeya.com/category/detail/2", "https://kaitori-rudeya.com/category/detail/1"]
+  - name: 買取商店
+    urls: ["https://www.kaitorishouten-co.jp/category/2/703", "https://www.kaitorishouten-co.jp/category/2/280", "https://www.kaitorishouten-co.jp/category/2/637"]
+  - name: PANDA買取
+    urls: ["https://panda-kaitori.co.jp/?cpro=nintendo", "https://panda-kaitori.co.jp/?cpro=playstation"]
+  - name: 家電市場
+    urls: ["https://www.kaden-ichiba.com/item/node/2050/", "https://www.kaden-ichiba.com/item/node/4310/"]
+  - name: 買取当番
+    urls: ["https://tobansyoji.co.jp/product-category/game/"]
+  - name: JCKA（ジェーシカモバイル）
+    urls: ["https://www.jcka-mobile.co.jp/kisyu/game/"]
+  - name: 買取ミライ
+    urls: ["https://kaitori-mirai.com/playstation-2"]
