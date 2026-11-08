@@ -4,7 +4,8 @@ Xの予約投稿で入れるので、ここでは速報だけ。
 
 決まりごと（11/8 Fable の調査より）：
 ・1日 x_speed_per_day 本まで、前の投稿から x_speed_gap_min 分以上あける（1回の実行で1本だけ。複数あれば1本にまとめる）
-・リンクは付けない（URL付きは1件約$0.20、なしは約$0.015）。ハッシュタグは2つまで
+・リンクは、その商品のアフィリエイトのページがあるとき（1件だけの速報）だけ付ける（URL付きは1件約$0.20、なしは約$0.015）。
+  付けるときは「（PR）」と書く（ステマ規制）。Amazonがあれば Amazon（定価で買えるページ）、なければ楽天。ハッシュタグは2つまで
 ・自動リプ・引用はしない。冒頭の言い回しは毎回変える（同じ文面のくり返しはスパム扱いされやすい）
 ・最初に動いたときは、それまでに載っていた分を「投稿済み」として記録するだけ（昔の分をまとめて流さない）
 鍵：X_API_KEY / X_API_SECRET（トレカと同じアプリ）＋ X_GAME_ACCESS_TOKEN / X_GAME_ACCESS_SECRET（@a9994aaa）
@@ -54,8 +55,8 @@ def x_len(text):
     return sum(2 if unicodedata.east_asian_width(c) in "FWA" else 1 for c in text)
 
 
-def compose(items, k=0):
-    """items（1件以上）から投稿の文面。k は言い回しを変える番号"""
+def compose(items, k=0, link=""):
+    """items（1件以上）から投稿の文面。k は言い回しを変える番号。link はアフィリエイトのページ（1件のときだけ使う）"""
     tags = _tags(items)
     if len(items) == 1:
         it = items[0]
@@ -76,11 +77,14 @@ def compose(items, k=0):
             lines.append(f"▶{_short(it.get('product'), 28)}（{it.get('store') or '公式'}・{_kind(it)}{'・〜' + en if en else ''}）")
         if len(items) > 4:
             lines.append(f"ほか{len(items) - 4}件")
-    lines += ["", CLOSE[k % len(CLOSE)]]
+    if link and len(items) == 1:
+        lines += ["", f"{'Amazon' if 'amazon.' in link else '楽天'}の商品ページ（PR）👉 {link}"]
+    else:
+        lines += ["", CLOSE[k % len(CLOSE)]]
     if tags:
         lines.append(tags)
     text = "\n".join(lines)
-    while x_len(text) > 280 and len(lines) > 4:   # 長すぎたら途中の行を削る
+    while x_len(re.sub(r"https?://\S+", "x" * 23, text)) > 280 and len(lines) > 4:   # 長すぎたら途中の行を削る
         lines.pop(-4 if tags else -3)
         text = "\n".join(lines)
     return text
@@ -179,7 +183,15 @@ def post_speed(settings, send=None, image=None):
     if t.hour < 7:
         return
     items = [it for _, it in cands]
-    text = compose(items, k=len(posts))
+    link = ""
+    if len(items) == 1 and settings.get("x_speed_link", True):
+        try:
+            import game_affi
+            lk = game_affi.links_for(items[0], load_json(game_affi.CACHE, {}), settings)
+            link = lk.get("az") or (lk.get("rk") or {}).get("u") or ""
+        except Exception as e:
+            log(f"X速報：リンクの用意に失敗 {e}")
+    text = compose(items, k=len(posts), link=link)
     dry = settings.get("dry_run") or (send is None and not os.environ.get("X_GAME_ACCESS_TOKEN"))
     if dry:
         log("X速報（テスト・投稿しない）:\n" + text)
