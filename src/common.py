@@ -210,3 +210,11 @@ def site_name(html):
     import html as _h
     name = _h.unescape(name).strip()
     return name if 1 < len(name) <= 40 and not GENERIC_STORE_RE.search(name) else None
+
+
+def job_elapsed():
+    """GitHubの実行が始まってからの秒数（JOB_T0 が無いとき＝手元・テストでは 0）。1回の実行を5分以内に収めるための目安"""
+    import os
+    import time
+    t0 = os.environ.get("JOB_T0", "")
+    return time.time() - int(t0) if t0.isdigit() else 0

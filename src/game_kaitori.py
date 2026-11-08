@@ -78,7 +78,11 @@ def update(settings, fetch=None, ai=None):
     todo = sorted([s for s in sts if not (st.get(s["name"]) and parse_dt(st[s["name"]]["at"])
                                           and (t - parse_dt(st[s["name"]]["at"])).total_seconds() < 20 * 3600)],
                   key=lambda s: (st.get(s["name"]) or {}).get("at", ""))
+    from common import job_elapsed
     for s in todo[:int(settings.get("kaitori_stores_per_run", 2))]:
+        if job_elapsed() > float(settings.get("pre_collect_max_sec", 100)) - 30:
+            log("買取価格：時間の上限なので、残りの店は次の回に回します")
+            break
         items = []
         try:
             pages = [html_to_text(fetch(u), u) for u in s["urls"][:10 if s.get("parser") else 3]]
