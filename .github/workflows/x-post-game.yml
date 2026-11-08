@@ -1,0 +1,50 @@
+# ゲーム・ホビー入荷速報（@a9994aaa）に、手で決めた文面を1回投稿する（Claude が予約の時刻に動かす）
+# mark_id を入れると、見張り（game-watch）の速報と二重にならないよう「投稿済み」の印を付ける（見張りがすでに1時間以内に投稿していたら、こちらは投稿しない）
+name: x-post-game
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "投稿する文面"
+        required: true
+      mark_id:
+        description: "見張りの商品（AmazonはASIN、楽天は shop:code）"
+        required: false
+        default: ""
+      mark_w:
+        description: "az（Amazon）か rk（楽天）"
+        required: false
+        default: "az"
+permissions:
+  contents: read
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: pip install requests requests-oauthlib >/dev/null
+      - env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_GAME_ACCESS_TOKEN: ${{ secrets.X_GAME_ACCESS_TOKEN }}
+          X_GAME_ACCESS_SECRET: ${{ secrets.X_GAME_ACCESS_SECRET }}
+          TEXT: ${{ inputs.text }}
+          MARK_ID: ${{ inputs.mark_id }}
+          MARK_W: ${{ inputs.mark_w }}
+        run: |
+          python - <<'PY'
+          import hashlib, os, time, requests
+          from requests_oauthlib import OAuth1
+          admin = hashlib.sha256((os.environ["X_API_KEY"].strip() + "game-watch").encode()).hexdigest()[:24]
+          base = "https://game-watch.supreme-buyer-1991.workers.dev"
+          mid, mw = os.environ.get("MARK_ID", "").strip(), os.environ.get("MARK_W", "az")
+          if mid:
+              r = requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre", "check": "1"}, timeout=15).json()
+              if time.time() * 1000 - (r.get("postedAt") or 0) < 3600e3:
+                  print("見張りがすでに1時間以内に速報しているので、投稿しません"); raise SystemExit(0)
+          auth = OAuth1(os.environ["X_API_KEY"], os.environ["X_API_SECRET"], os.environ["X_GAME_ACCESS_TOKEN"], os.environ["X_GAME_ACCESS_SECRET"])
+          r = requests.post("https://api.x.com/2/tweets", json={"text": os.environ["TEXT"]}, auth=auth, timeout=30)
+          print(r.status_code, r.text[:200]); r.raise_for_status()
+          if mid:
+              print(requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre"}, timeout=15).text)
+          PY

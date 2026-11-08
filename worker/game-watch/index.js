@@ -183,6 +183,15 @@ export default {
   async fetch(req, env) {
     const u = new URL(req.url);
     if (u.searchParams.get("k") !== env.ADMIN_KEY) return new Response("game-watch", { status: 200 });
+    if (u.pathname === "/mark") {   // 手で投稿した商品に「投稿済み」の印（見張りの速報と二重にならないように）。?id=ASIN&s=pre&w=az
+      const k = u.searchParams.get("w") === "rk" ? "rk" : "az", st = (await env.STATE.get(k, "json")) || { items: {}, posted: {} };
+      const id = u.searchParams.get("id"), sv = u.searchParams.get("s") || "pre";
+      const before = (st.posted || {})[id + sv] || 0;
+      if (u.searchParams.get("check") === "1") return Response.json({ postedAt: before });
+      st.posted = st.posted || {}; st.posted[id + sv] = Date.now(); st.posted[id + "buy"] = Date.now();
+      await env.STATE.put(k, JSON.stringify(st));
+      return Response.json({ ok: true, postedBefore: before });
+    }
     if (u.pathname === "/map") {   // JANで見つけた楽天・Amazonの商品ページ（サイトのボタン・写真に使う）
       const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};
       const m = {};
