@@ -161,6 +161,40 @@ def shop_buttons(rk, az, name="", yh="", mc=""):
             + (f'<a class="btn btn-mc" href="{escape(mc)}" target="_blank" rel="nofollow noopener">メルカリで探す{who}</a>' if mc else ""))
 
 
+AV_LABEL = {"pre": "予約受付中", "buy": "販売中", "invite": "招待リクエスト受付中"}
+
+
+def avail_of(row, status):
+    """楽天・Amazonのいまの状態（見張り worker/game-watch が見たもの）→ [{"shop","s","u","p"}]（予約受付中・販売中だけ）"""
+    from urllib.parse import unquote
+    out = []
+    m = re.search(r"/dp/([A-Z0-9]{10})", row.get("az") or "")
+    if m and (status.get(m.group(1)) or {}).get("s") in AV_LABEL:
+        x = status[m.group(1)]
+        out.append({"shop": "Amazon", "s": x["s"], "u": x.get("u") or row["az"], "p": x.get("p") or 0})
+    u = unquote((row.get("rk") or {}).get("u") or "")
+    m = re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#&]+)", u)
+    if m and (status.get(f"{m.group(1)}:{m.group(2)}") or {}).get("s") in AV_LABEL:
+        x = status[f"{m.group(1)}:{m.group(2)}"]
+        out.append({"shop": "楽天ブックス", "s": x["s"], "u": row["rk"]["u"], "p": x.get("p") or 0})
+    return out
+
+
+def avail_html(av, name=""):
+    """「🛒 いまAmazonで予約受付中（63,980円）［予約する］」の枠"""
+    if not av:
+        return ""
+    rows = "".join(
+        f'<a class="av-go" href="{escape(a["u"])}" target="_blank" rel="nofollow sponsored noopener"><b>{escape(a["shop"])}で{AV_LABEL[a["s"]]}</b>'
+        f'{(" " + format(int(a["p"]), ",") + "円") if a.get("p") else ""}<span>{"予約する" if a["s"] == "pre" else "申し込む" if a["s"] == "invite" else "買う"} →</span></a>' for a in av)
+    return f'<div class="av"><p>🛒 いま定価で買える・予約できるお店（PR）</p>{rows}</div>'
+
+
+AV_CSS = (".av{background:#1d1a0b;border:2px solid #ffd23f;border-radius:12px;padding:12px 14px;margin:12px 0}.av p{margin:0 0 8px;font-weight:900;color:#ffd23f}"
+          ".av-go{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:#ffd23f;color:#0b0d12;border-radius:8px;padding:10px 14px;"
+          "margin:6px 0;text-decoration:none;font-weight:700}.av-go span{font-weight:900}")
+
+
 def _release_detail(html, snap):
     """発売日の情報（kind=release）は抽選ではないので、「締切」「応募」の言葉を「発売」に直す（detail.py はトレカと共通なので変えない）"""
     if snap.get("kind") != "release":
@@ -183,6 +217,9 @@ def _release_detail(html, snap):
 def _shop_detail(html, snap):
     """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
     sh = snap.get("shop") or {}
+    if snap.get("avail"):   # いま予約・販売しているお店をいちばん目立つところ（見出しのすぐ下）に
+        html = html.replace("</style>", AV_CSS + "</style>", 1)
+        html = re.sub(r"(</h1>)", lambda m: m.group(1) + avail_html(snap["avail"]), html, count=1)
     b = shop_buttons(sh.get("rk"), sh.get("az"), yh=sh.get("yh", ""), mc=sh.get("mc", ""))
     if b:
         html = html.replace('<div class="sub-acts">', f'<div class="shopb">{b}</div><div class="sub-acts">', 1)
@@ -380,6 +417,7 @@ def build(settings=None, out_dir=None, force=False):
     souba_st = load_json("souba.json", {})
     kaitori_st = load_json("kaitori.json", {})
     kaitori_multi = load_json("kaitori_multi.json", {})
+    watch_status = (load_json("watch_map.json", {}) or {}).get("_status") or {}
     t = now()
     verify = s.get("google_site_verification") or ""
 
@@ -427,6 +465,9 @@ def build(settings=None, out_dir=None, force=False):
                 row["rec"] = bool(CHAIN[ch][3])
         row["ph"] = _phase(row, t)
         row.update(game_affi.links_for(i, rk_cache, s, shop_models))   # rk（楽天の商品ページ・写真）・az（Amazonの商品ページ）
+        av = avail_of(row, watch_status)
+        if av:
+            row["avail"] = av   # いま楽天・Amazonで予約受付中・販売中（見張りが見た状態）→ カード・個別ページの目立つところに
         items.append(row)
     live = [i for i in items if i["ph"] != "ended"]
 
@@ -676,6 +717,8 @@ def build(settings=None, out_dir=None, force=False):
         else:
             snap.pop("image", None), snap.pop("img_url", None)
         snap["shop"] = {k: i[k] for k in ("rk", "az", "yh", "mc") if i.get(k)}
+        if i.get("avail"):
+            snap["avail"] = i["avail"]
         pages[i["key"]] = {"snap": snap, "path": i["lpath"], "end": i.get("end"), "seen": today_iso}
     for k, rec in list(pages.items()):
         snap = dict(rec["snap"])

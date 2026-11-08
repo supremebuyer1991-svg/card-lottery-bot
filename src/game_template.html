@@ -63,6 +63,7 @@ h1{font-size:24px;line-height:1.35;margin:4px 0;font-weight:900}
 .btn-o{border:1px solid #3a4152;color:var(--ink);font-weight:700}.btn-o:hover{border-color:var(--mute);color:var(--ink)}
 .btn-rk{background:#bf0000;color:#fff}.btn-rk:hover{background:#d61a1a;color:#fff}
 .btn-az{background:#ff9900;color:#0b0d12}.btn-az:hover{background:#ffad33;color:#0b0d12}
+.btn-av{background:#ffd23f;color:#0b0d12;font-weight:900;box-shadow:0 0 0 2px #ffd23f55}.btn-av:hover{background:#ffe68a;color:#0b0d12}
 .btn-yh{background:#ff0033;color:#fff}.btn-yh:hover{background:#ff3355;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-mc:hover{background:#ffecea;color:#ea352d}
 .acts{position:relative;z-index:1;flex:none;display:flex;flex-wrap:wrap;gap:8px}
 /* 商品写真のあるカード（写真は左。押すと楽天の商品ページ） */
@@ -272,6 +273,13 @@ __SIDEBAR__
     var r = i.rk; if (!r || !r.img || !r.u) return "";
     return '<a class="ph" href="' + esc(r.u) + '" ' + SHOP + ' tabindex="-1"><img src="' + esc(r.img) + '" alt="' + esc(nm(i)) + '" width="132" height="132" loading="lazy"></a>';
   }
+  // いま楽天・Amazonで予約受付中・販売中（見張りが見た状態）→ いちばん目立つボタン
+  var AVL = { pre: "予約受付中", buy: "販売中", invite: "招待受付中" };
+  function avBtns(i) {
+    return (i.avail || []).map(function (a) {
+      return '<a class="btn btn-av" href="' + esc(a.u) + '" ' + SHOP + ">🛒 " + esc(a.shop) + "で" + AVL[a.s] + (a.p ? " " + Number(a.p).toLocaleString() + "円" : "") + "</a>";
+    }).join("");
+  }
   function shopBtns(i) {
     var who = '<span class="sr">：' + esc(short(nm(i), 30)) + "</span>", b = "";
     if (i.rk && i.rk.u) b += '<a class="btn btn-rk" href="' + esc(i.rk.u) + '" ' + SHOP + ">楽天で見る" + who + "</a>";
@@ -286,7 +294,7 @@ __SIDEBAR__
     var pic = photo(i);
     return '<div class="row' + (pic ? " has-ph" : "") + (ph === "ended" ? " is-end" : "") + '">' + pic + timeCell(i, ph, now) +
       '<div class="bd"><a class="pn" href="' + esc(href(i)) + '">' + esc(nm(i)) + '</a><div class="sn">' + meta + "</div>" + condChips(i) + "</div>" +
-      '<div class="acts">' + action(i, ph) + shopBtns(i) + "</div></div>";
+      '<div class="acts">' + avBtns(i) + action(i, ph) + shopBtns(i) + "</div></div>";
   }
   var state = { tab: null, nomember: false, online: false, nohist: false, q: "" };
   function has(i, t) { return (i.tags || []).indexOf(t) >= 0; }

@@ -300,6 +300,14 @@ def features_html(x):
     return "<h2>商品の詳細・特徴</h2><ul>" + "".join(f"<li>{escape(p.strip('】 '))}</li>" for p in parts) + "</ul><p class=\"note\">商品説明は楽天ブックスの商品情報からの抜粋です。</p>"
 
 
+def _av(av):
+    """いま予約・販売しているお店の枠（sitegen_game.avail_html と同じ）"""
+    if not av:
+        return ""
+    import sitegen_game
+    return f"<style>{sitegen_game.AV_CSS}</style>" + sitegen_game.avail_html(av)
+
+
 def mercari_box(name):
     """「この商品をメルカリで見る」（出品中・売れた価格）"""
     from urllib.parse import quote
@@ -419,7 +427,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f"{nm}の抽選・予約・再販の受付状況、定価、相場（{souba}）、楽天・Amazonの販売ページ。販売開始はXで通知。",
              f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>'
              f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
-             f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{mercari_box(nm)}'
+             f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
              f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
         made += 1
     log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）、抽選・発売の商品ページ：{made}件")

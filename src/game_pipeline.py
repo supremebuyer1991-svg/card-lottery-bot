@@ -55,6 +55,7 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             game_kaitori.update(s)
             import game_premium   # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価（1回8件まで）
             game_premium.update(s)
+            game_premium.watch_map()   # 見張りが見た楽天・Amazonの状態（予約受付中・販売中）と商品ページ → サイトに出す
         except Exception as e:
             log(f"買取価格: スキップ {e}")
     if step in ("all", "collect"):

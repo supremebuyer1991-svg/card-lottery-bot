@@ -13,7 +13,7 @@ const REFERER = "https://toreca-chusen-navi.pages.dev/"; // 楽天に登録し�
 const AMZ_SELLER = "AN1VRQENFRJN5"; // Amazon.co.jp
 const AMZ_TAG = "st9994ststst-22";
 const COOLDOWN = 6 * 3600e3, PER_DAY = 12, HOBBY_PER_DAY = 3;
-const RANK = { none: 0, invite: 1, buy: 2 };
+const RANK = { none: 0, invite: 1, pre: 2, buy: 3 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function affLink(url, aff) {
@@ -79,13 +79,15 @@ function amzState(it) {
   if (!l) return "none";
   const a = l.availability || {};
   if (/招待/.test(a.message || "")) return "invite";
+  if (/PRE_?ORDER/i.test(a.type || "") || /予約/.test(a.message || "")) return "pre";   // 予約受付中（11/9 ユーザー指摘：Switch2選べるソフトセットの予約を拾えていなかった）
   if (/^IN_STOCK/.test(a.type || "") && (a.maxOrderQuantity ?? 1) > 0) return "buy";
   return "none";
 }
 
 function compose(w, shop, kind, url) {
-  const head = shop === "rk" ? "楽天ブックスで販売開始🔥" : kind === "invite" ? "Amazonで招待リクエスト受付開始🔥" : "Amazonで販売開始🔥";
-  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), "", shop === "az" ? "Amazon.co.jp本体の販売です👇（PR）" : "定価で買えます👇（PR）", url, ""];
+  const head = shop === "rk" ? (kind === "pre" ? "楽天ブックスで予約受付開始🔥" : "楽天ブックスで販売開始🔥")
+    : kind === "invite" ? "Amazonで招待リクエスト受付開始🔥" : kind === "pre" ? "Amazonで予約受付開始🔥" : "Amazonで販売開始🔥";
+  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), "", kind === "pre" ? "定価で予約できます👇（PR）" : shop === "az" ? "Amazon.co.jp本体の販売です👇（PR）" : "定価で買えます👇（PR）", url, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
   return lines.join("\n");
@@ -127,7 +129,7 @@ async function run(env, which, { dry = false } = {}) {
         const it = w.rk ? await rakutenItem(env, w.rk) : await rakutenByJan(env, w.jan);
         if (it) {
           price = Number(it.itemPrice) || 0;
-          cur = it.availability === 1 ? "buy" : "none";
+          cur = it.availability === 1 ? (/予約/.test((it.itemName || "") + (it.itemCaption || "").slice(0, 200)) ? "pre" : "buy") : "none";
           url = affLink(it.itemUrl, env.RAKUTEN_AFF);
           if (w.jan && !st.map[w.jan]) { st.map[w.jan] = { rkUrl: it.itemUrl.split("?")[0], img: (it.mediumImageUrls || [])[0] ? String(it.mediumImageUrls[0]).split("?")[0] + "?_ex=300x300" : "", rkPrice: price }; changed = true; }
         }
@@ -145,7 +147,9 @@ async function run(env, which, { dry = false } = {}) {
     // 定価より高い値段で売っているものは「定価で買える」とは言わない（定価が分かるときだけ。110%まで）
     if (cur !== "none" && w.tk && price && price > w.tk * 1.1) cur = "none";
     const prev = st.items[id];
+    st.stat = st.stat || {};
     if (prev !== cur) changed = true;
+    if (!st.stat[id] || st.stat[id].s !== cur || (cur !== "none" && st.stat[id].p !== price)) { st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true; }
     if (prev && prev !== "none" && cur === "none") st.off[id + prev] = Date.now();   // 売り切れた時刻（24時間以内に戻っただけなら速報しない）
     const flapped = Date.now() - (st.off[id + cur] || 0) < 24 * 3600e3;
     const fresh = st.init[id] && prev !== undefined && RANK[cur] > RANK[prev] && !flapped && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
@@ -184,6 +188,7 @@ export default {
       const m = {};
       for (const [j, v] of Object.entries(rk.map || {})) m[j] = { ...(m[j] || {}), ...v };
       for (const [j, v] of Object.entries(az.map || {})) m[j] = { ...(m[j] || {}), ...v };
+      m._status = { ...((rk.stat) || {}), ...((az.stat) || {}) };   // いまの状態（予約受付中・販売中など）：サイトの目立つところに出す
       return Response.json(m);
     }
     if (u.pathname === "/dry") return Response.json({ rk: await run(env, "rk", { dry: true }), az: await run(env, "az", { dry: true }) });
