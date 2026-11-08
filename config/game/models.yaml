@@ -48,3 +48,11 @@ series_slugs:
 series_info: {}
 #  ps5:
 #    PS5 Pro: {release: "", type: 本体, price: ""}   # TODO: オーナーが公式で確認して入れる（税込の定価）
+
+# 機種・モデルごとの「楽天で見る」「Amazonで見る」（そのモデルの抽選・予約・発売のカード全部に出る。1件ごとの manual.yaml の指定が優先）
+#   rakuten_url … 楽天の「その商品のページ」（検索結果のページは不可）。amazon_asin … AmazonのASIN（10文字）。jan … JANコード
+# 例：
+# series_shop:
+#   ps5:
+#     PS5 Pro: {rakuten_url: "https://books.rakuten.co.jp/rb/00000000/", amazon_asin: "B000000000"}   # TODO: オーナーが確認
+series_shop: {}

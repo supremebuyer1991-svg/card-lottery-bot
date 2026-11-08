@@ -87,6 +87,14 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             log(f"重複: スキップ {e}")
         from approve import approve
         approve(s)
+        try:  # 楽天ブックスの商品ページ・写真（鍵が無ければ何もしない。1回15回まで・同じ商品は24時間に1回）
+            import game_affi
+            lots = load_json("lotteries.json", {})
+            t = now()
+            game_affi.update(s, [i for i in lots.values() if i.get("status") in ("approved", "posted", "listed")
+                                 and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t)])
+        except Exception as e:
+            log(f"楽天の商品写真: スキップ {e}")
         import sitegen_game
         sitegen_game.build(s, out_dir=out_dir)
     log("完了")

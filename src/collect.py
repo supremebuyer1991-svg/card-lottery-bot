@@ -9,7 +9,7 @@ from fetch_x import search as x_search
 SEEN_VERSION = 5
 MANUAL_FIELDS = ("game", "store", "product", "series", "products", "channel", "area", "method", "start", "end",
                  "announce", "buy", "conditions", "member", "id_check", "tags", "url", "image", "address",
-                 "kind", "price", "round")  # kind・price・round はゲーム・ホビー版で使う
+                 "kind", "price", "round", "jan", "rakuten_url", "amazon_asin")  # kind・price・round・jan・rakuten_url・amazon_asin はゲーム・ホビー版で使う
 
 
 def _iso(v):
@@ -78,6 +78,8 @@ def add_manual(lots):
             n += 1
             log(f"手動追加: [{it['game']}] {it['store']} / {it['product']}")
         else:
+            for f in ("jan", "rakuten_url", "amazon_asin"):  # 消した手書きのリンクが残らないように（ゲーム・ホビー版の項目）
+                old.pop(f, None)
             old.update(it, manual=True)
             if old.get("status") == "duplicate":  # 手動の方を正にする
                 old["status"] = "listed"
