@@ -7,7 +7,7 @@ const ALLOW = [
   "kaden-ichiba.com", "keitaispace.co.jp", "morimori-kaitori.jp", "mobile-ichiban.com", "gamekaitori.jp",
   "newenoking-kaitori.com", "kaitori-oku.jp", "kaitoristar.com", "somurie-kaitori.com", "top1mobile.net",
   "kaitori-homura.com", "kaitoriminato.com", "kaitori-mirai.com", "kaitori-rudeya.com", "kaitorishouten-co.jp",
-  "tobansyoji.co.jp", "keitairakuen.com", "1-chome.com",
+  "tobansyoji.co.jp", "keitairakuen.com", "1-chome.com", "aboutec.jp", "top1-offer.com", "sy-kaitori.com", "hachiden.com",
 ];
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 

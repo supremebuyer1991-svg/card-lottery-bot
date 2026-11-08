@@ -40,13 +40,20 @@ def _ai(text):
         raise RuntimeError("ANTHROPIC_API_KEY が未設定")
     r = requests.post("https://api.anthropic.com/v1/messages", timeout=90, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": PROMPT.format(text=text[:36000])}]})
+        json={"model": MODEL, "max_tokens": 16000, "messages": [{"role": "user", "content": PROMPT.format(text=text[:36000])}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API {r.status_code}: {r.text[:200]}")
     raw = "".join(b.get("text", "") for b in r.json().get("content", []))
-    m = re.search(r"\[.*\]", raw, re.S)
     out = []
-    for x in (json.loads(m.group(0)) if m else []):
+    objs = []
+    for mo in re.finditer(r"\{[^{}]*\}", raw):   # 1件ずつ読む（返事が途中で切れても、そこまでは使う）
+        try:
+            objs.append(json.loads(mo.group(0)))
+        except Exception:
+            pass
+    if not objs:
+        log(f"  買取価格のAIの返事（先頭）: {raw[:120]!r}")
+    for x in objs:
         try:
             p = int(str(x.get("price")).replace(",", "").replace("円", ""))
         except Exception:
@@ -73,9 +80,13 @@ def update(settings, fetch=None, ai=None):
                   key=lambda s: (st.get(s["name"]) or {}).get("at", ""))
     for s in todo[:int(settings.get("kaitori_stores_per_run", 2))]:
         items = []
-        try:   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
-            text = "\n\n=====\n\n".join(html_to_text(fetch(u), u)[:12000] for u in s["urls"][:3])
-            items += ai(text)
+        try:
+            pages = [html_to_text(fetch(u), u) for u in s["urls"][:3]]
+            if s.get("parser") == "rudeya":   # 買取ルデヤは決まった形なのでAIを使わずに読む
+                import game_souba
+                items += [list(x) for p in pages for x in game_souba.parse_rudeya(p)]
+            else:   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
+                items += ai("\n\n=====\n\n".join(p[:12000] for p in pages))
             st[s["name"]] = {"at": t.isoformat(), "items": items[:400]}
             log(f"買取価格：{s['name']} {len(items)}件")
         except Exception as e:
