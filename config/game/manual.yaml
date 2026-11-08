@@ -55,4 +55,84 @@
 #     end: ""          # TODO
 #     url: ""          # TODO
 
-lotteries: []
+lotteries:
+  # ---- 2026-11-08 に確認して追加（出典は各行の source） ----
+  - slug: gundam-base-shibuya-pre-entry-lottery
+    game: gunpla
+    kind: lottery
+    store: THE GUNDAM BASE SHIBUYA
+    series: ガンダムベース
+    product: ガンダムベース渋谷（渋谷PARCO 5F）オープン記念期間（11/20〜11/30）の事前入店抽選
+    channel: store
+    area: 東京都
+    method: 事前入店抽選（応募手順は公式サイトで告知）→ 当選したら入店券をスマホで発行
+    start: 2026-11-09T10:00
+    end: 2026-11-15T23:59
+    announce: 11/16（月）から順次
+    conditions: 入店枠1つにつき当選者本人のみ。入店券は入店の保証で、購入の保証ではない。時間枠の変更不可。
+    tags: [整理券]
+    url: https://www.gundam-base.net/
+    # source: https://premium.gamepedia.jp/hobby/archives/279411
+
+  - slug: switch2-eraberu-soft-set-1112
+    game: switch2
+    kind: release
+    store: 任天堂
+    series: Switch2 選べるソフトセット
+    product: Nintendo Switch 2（日本語・国内専用）選べるソフト セット
+    channel: online
+    end: 2026-11-12T23:59
+    price: "63,980円（税込）"
+    conditions: マリオカート ワールド／Nintendo Switch Sports Resort／トモダチコレクション わくわく生活 から1本をダウンロード番号で選べる（番号の有効期限 2027年3月31日）。
+    url: https://www.nintendo.co.jp/corporate/release/2026/261006.html
+
+  - slug: ps5-midnight-black-release-1119
+    game: ps5
+    kind: release
+    store: ソニー・インタラクティブエンタテインメント
+    series: PS5 ミッドナイト ブラック
+    product: PlayStation 5 デジタル・エディション 日本語専用 ミッドナイト ブラック
+    channel: online
+    end: 2026-11-19T23:59
+    price: "55,000円（税込）"
+    conditions: 数量限定。日本語・日本地域のPSNアカウント専用。ディスクドライブは別売（ミッドナイト ブラック、同日発売）。予約は10/20から各店で順次。
+    url: ""
+    # source: https://www.inside-games.jp/article/2026/10/20/189523.html
+
+  - slug: gunpla-hg-gundam-ashtaron-1128
+    game: gunpla
+    kind: release
+    store: BANDAI SPIRITS
+    series: HG ガンダムアシュタロン
+    product: HG 1/144 ガンダムアシュタロン
+    channel: store
+    end: 2026-11-28T23:59
+    price: "3,960円（税込）"
+    url: ""
+    # source: https://dengekionline.com/article/202611/92745
+
+  - slug: ichibankuji-godzilla-1113
+    game: ichibankuji
+    kind: release
+    store: BANDAI SPIRITS
+    series: 一番くじ ゴジラ
+    product: 一番くじ ゴジラ 怪獣乱舞-ゼロの鼓動-
+    channel: store
+    end: 2026-11-13T23:59
+    price: "1回850円（税込）"
+    conditions: 11/13から順次発売。景品がなくなり次第終了。
+    url: ""
+    # source: https://premium.gamepedia.jp/hobby/?p=271234
+
+  - slug: ichibankuji-onepiece-animaru-1114
+    game: ichibankuji
+    kind: release
+    store: BANDAI SPIRITS
+    series: 一番くじ ワンピース
+    product: 一番くじ ワンピース 〜あにまる大集合！〜
+    channel: store
+    end: 2026-11-14T23:59
+    price: "1回750円（税込）"
+    conditions: 11/14から順次発売（ファミリーマート・麦わらストア・一番くじ公式ショップ・一番くじONLINEなど）。店舗により在庫・発売日が異なる。
+    url: ""
+    # source: https://premium.gamepedia.jp/hobby/archives/278965

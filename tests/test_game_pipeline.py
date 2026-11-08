@@ -73,15 +73,22 @@ else:
     out = Path(tempfile.mkdtemp())
     game_pipeline.run("all", extractor=fake_extract, fetcher=lambda u: html, out_dir=out, sources=src)
     lots = load_json("lotteries.json", {})
-    by = {i["store"]: i for i in lots.values()}
+    by = {i["store"]: i for i in lots.values() if not i.get("manual")}   # 手動追加分は別に確認
     assert "終了店" not in by                                   # 締切済みは拾わない
     assert by["ソニーストア"]["status"] == "approved" and by["ソニーストア"]["kind"] == "lottery"
     assert by["ビックカメラ.com"]["status"] == "approved"      # 再入荷は締切が無くても載せる
     assert by["ヨドバシ.com"]["status"] == "approved"          # 予約（開始日あり）
     assert by["謎の店"]["status"] == "pending"                 # 自信度不足は承認待ち
     assert by["BANDAI SPIRITS"]["game"] == "gunpla" and by["BANDAI SPIRITS"]["kind"] == "release"
-    # 手動追加のサンプルは全部コメントなので増えない（lotteries: []）
-    assert not any(i.get("manual") for i in lots.values())
+    # 手動追加（config/game/manual.yaml）は、有効なカテゴリ・種類で取り込まれている
+    import yaml
+    import gamecats
+    cats = gamecats.by_id()
+    mf = Path(__file__).resolve().parent.parent / "config/game/manual.yaml"
+    want = {e["slug"] for e in (yaml.safe_load(mf.read_text(encoding="utf-8")).get("lotteries") or [])}
+    manual = [i for i in lots.values() if i.get("manual")]
+    assert len(manual) == len(want)
+    assert all(i["game"] in cats for i in manual)
     # サイトができている
     files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
     assert "index.html" in files and "ps5/index.html" in files and "gunpla/index.html" in files and "x-draft.html" in files
