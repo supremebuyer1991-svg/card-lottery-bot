@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       pin:
-        description: "2回目だけ：Xに表示された数字（PIN）"
+        description: "2回目だけ：認証後に開いたページのURL（まるごと）"
         required: false
         default: ""
 permissions:
@@ -41,17 +41,21 @@ jobs:
           import json, os, pathlib, requests
           from requests_oauthlib import OAuth1Session, OAuth1
           ck, cs, pin = os.environ["X_API_KEY"], os.environ["X_API_SECRET"], os.environ["PIN"].strip()
+          import re
+          m = re.search(r"oauth_verifier=([A-Za-z0-9_-]+)", pin)   # 戻ってきたページのURLをまるごと貼ってもOK
+          if m:
+              pin = m.group(1)
           out = open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8")
           p = pathlib.Path("xauth/req.json")
           if not pin:
-              s = OAuth1Session(ck, client_secret=cs, callback_uri="oob")
+              s = OAuth1Session(ck, client_secret=cs, callback_uri="https://game-nyuka.com/")
               t = s.fetch_request_token("https://api.twitter.com/oauth/request_token")
               p.parent.mkdir(exist_ok=True)
               p.write_text(json.dumps(t))
               url = "https://api.twitter.com/oauth/authorize?oauth_token=" + t["oauth_token"]
               out.write("## 1回目 OK\n\n1. 下のリンクを開く（Xに **@a9994aaa** でログインした状態で）\n\n"
-                        f"   {url}\n\n2. 「連携アプリを認証」を押すと数字（PIN）が出る\n"
-                        "3. もう一度「Run workflow」を押し、pin の欄にその数字を入れて実行\n")
+                        f"   {url}\n\n2. 「連携アプリを認証」を押すと game-nyuka.com が開く\n"
+                        "3. そのページのアドレス（URL）をまるごとコピーして Claude に送る\n")
               print("::notice::結果画面（Summary）のリンクを開いてください")
               print("AUTH_URL", url)
           else:
