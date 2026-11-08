@@ -13,7 +13,7 @@ common.now = lambda: T
 def w(name, d): (tmp / name).write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
 def r(name): return json.loads((tmp / name).read_text(encoding="utf-8"))
 def it(p, **k):
-    d = dict(status="listed", kind="lottery", game="ps5", store="ヨドバシ", product=p, end="2026-11-12T23:59+09:00", found_at=(T - dt.timedelta(hours=1)).isoformat())
+    d = dict(status="listed", kind="lottery", game="ps5", store="ヨドバシ", product=p, end="2026-11-10T09:00+09:00", found_at=(T - dt.timedelta(hours=1)).isoformat())
     d.update(k); return d
 S = {"x_speed_post": True, "x_speed_per_day": 2, "x_speed_gap_min": 20, "dry_run": False}
 sent = []
@@ -46,5 +46,14 @@ t1 = gx.compose([it("PS5 Pro")], link="https://www.amazon.co.jp/dp/B0TEST1234?ta
 assert "Amazonの商品ページ（PR）👉 https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22" in t1 and "プロフ" not in t1
 t2 = gx.compose([it("A"), it("B")], link="https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22")
 assert "http" not in t2                                                       # まとめ投稿にはリンクを付けない
+# 急がないもの（締切が先）は予約投稿の待ち行列へ。ホビーの速報は1日の上限あり
+st = r("xpost.json"); st["posts"] = []; w("xpost.json", st)
+T = T + dt.timedelta(days=1); gx.now = lambda: T
+lots.update(q1=it("先の抽選", end="2026-11-20T23:59+09:00", found_at=T.isoformat()))
+w("lotteries.json", lots); n0 = len(sent)
+gx.post_speed(S, send, img)
+assert len(sent) == n0 and "q1" in r("xpost.json")["queue"]
+assert gx.is_urgent(it("再入荷", kind="restock", end=None), T, {}) and not gx.is_urgent(it("先", end="2026-11-30T00:00+09:00"), T, {})
+assert gx.is_game(it("x", game="ps5")) and not gx.is_game(it("x", game="gunpla"))
 print(t1); print("---"); print(sent[0][0]); print("---"); print(sent[1][0])
 print("XPOST OK")
