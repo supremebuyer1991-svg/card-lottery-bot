@@ -60,13 +60,39 @@ categories:
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
 
+  - id: xbox
+    group: console
+    name: Xbox（Series X|S・ROG Xbox Ally）本体・限定モデル
+    short: Xbox
+    slug: xbox
+    hashtags: "#Xbox #XboxSeriesX"
+    hints: "Xbox|エックスボックス"
+    strip_words: "本体|モデル|セット|同梱版|TB|デジタル ?エディション"
+    aff_keywords: ["Xbox Series X", "Xbox コントローラー"]
+    color: "#107c10"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: pc_parts
+    group: game_goods
+    name: ゲーミングPCパーツ（GeForce RTX・Radeon のグラボ、Ryzen X3D のCPU）の入荷・抽選
+    short: PCパーツ
+    slug: pc-parts
+    hashtags: "#自作PC #RTX5090"
+    hints: "RTX ?50\\d0|GeForce|Radeon|RX ?9070|Ryzen|X3D|グラフィックボード|グラボ|ビデオカード"
+    strip_words: "グラフィックボード|グラボ|ビデオカード|搭載|モデル|GB"
+    aff_keywords: ["RTX 5070", "Ryzen 7 9800X3D"]
+    color: "#76b900"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
   - id: game_limited
     group: game_goods
     name: ゲームの限定モデル・同梱版・amiibo・限定グッズ
     short: 限定・同梱版
     slug: game-limited
     hashtags: "#限定版 #同梱版 #amiibo"
-    hints: "amiibo|アミーボ|限定(モデル|版|カラー|デザイン|セット)|同梱版|同梱セット|スペシャル ?エディション|Special ?Edition|コレクターズ ?エディション|Collector'?s ?Edition|数量限定"
+    hints: "アーセナルベース|ARSENAL ?BASE|amiibo|アミーボ|限定(モデル|版|カラー|デザイン|セット)|同梱版|同梱セット|スペシャル ?エディション|Special ?Edition|コレクターズ ?エディション|Collector'?s ?Edition|数量限定"
     strip_words: "限定|限定版|同梱版|同梱|セット|通常版|特別版|数量限定"
     aff_keywords: ["amiibo", "ゲーム 限定版"]
     color: "#5c4d7d"
@@ -188,5 +214,18 @@ categories:
     strip_words: "トミカ|TOMICA|限定|プレミアム|発売記念仕様"
     aff_keywords: ["トミカ"]
     color: "#1d3557"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: bearbrick
+    group: hobby
+    name: BE@RBRICK（ベアブリック）の抽選・限定
+    short: ベアブリック
+    slug: bearbrick
+    hashtags: "#ベアブリック #BEARBRICK"
+    hints: "BE@RBRICK|ベアブリック|BEARBRICK|メディコム"
+    strip_words: "BE@RBRICK|ベアブリック|BEARBRICK|100％|400％|1000％|%|限定"
+    aff_keywords: ["ベアブリック"]
+    color: "#6c757d"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
