@@ -355,6 +355,7 @@ def build(settings=None, out_dir=None, force=False):
     out = Path(out_dir or ROOT / "site_game")
     souba_st = load_json("souba.json", {})
     kaitori_st = load_json("kaitori.json", {})
+    kaitori_multi = load_json("kaitori_multi.json", {})
     t = now()
     verify = s.get("google_site_verification") or ""
 
@@ -381,10 +382,15 @@ def build(settings=None, out_dir=None, force=False):
             sb = game_souba.for_item(dict(i, series=canon_series(i["game"], i["series"]) if i.get("series") else None), souba_st)
             if sb:
                 row["sb"] = sb["text"] + (f"・{sb['hint']}" if sb["hint"] else "")
-            else:   # スニダンに無い商品は、買取ルデヤの新品の買取価格
-                kp = game_souba.kaitori_for(i, kaitori_st)
-                if kp:
-                    row["sb"] = game_souba.kaitori_label(i, kp)
+            else:   # スニダンに無い商品は、買取店の新品の買取価格（全店でいちばん高いところ）
+                import game_kaitori
+                bk = game_kaitori.best_for(i, kaitori_multi)
+                if bk:
+                    row["sb"] = game_kaitori.label(i, bk)
+                else:
+                    kp = game_souba.kaitori_for(i, kaitori_st)
+                    if kp:
+                        row["sb"] = game_souba.kaitori_label(i, kp)
         except Exception:
             pass
         if row.get("series"):

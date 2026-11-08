@@ -107,6 +107,8 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             try:  # スニダンの相場（1日1回・models.yaml の series_souba に書いたモデルだけ）
                 import game_souba
                 game_souba.update(s)
+                import game_kaitori   # 買取店（kaitori-search.app の店）の新品の買取価格（1回5店まで・各店1日1回）
+                game_kaitori.update(s)
                 lots = load_json("lotteries.json", {})
                 t = now()
                 game_souba.kaitori_update(s, [i for i in lots.values() if i.get("status") in ("approved", "listed", "posted")
