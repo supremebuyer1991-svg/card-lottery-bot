@@ -22,6 +22,7 @@ from pathlib import Path
 
 from common import ROOT, load_json, save_json, now, parse_dt, sha, normalize, log
 import detail
+import game_affi
 import gamecats
 import sitegen as sg
 
@@ -134,7 +135,35 @@ h1{font-weight:900}
 .ad.lose{background:#1a1710;border-color:#4a3d1c}.lose-l li{border-top-color:#3a3020}
 .followbox{background:#1c2130}
 footer a{color:var(--ink-2)}
+.shopb{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.shopb .btn{flex:1 1 160px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:900;font-size:15px;text-decoration:none}
+.btn-rk{background:#bf0000;color:#fff}.btn-rk:hover{background:#d61a1a;color:#fff}
+.btn-az{background:#ff9900;color:#0b0d12}.btn-az:hover{background:#ffad33;color:#0b0d12}
+.credit{display:block;margin-top:6px}
 """
+
+
+CREDIT = '<p>商品の写真は楽天ブックス（楽天市場）の商品の写真です。写真・「楽天で見る」「Amazonで見る」のリンクは広告（PR）です。</p>'
+SHOP_REL = "nofollow sponsored noopener"
+
+
+def shop_buttons(rk, az, name=""):
+    """「楽天で見る」「Amazonで見る」（その商品そのもののページ。検索結果のページにはしない）"""
+    who = f'<span class="sr">：{escape(name)}</span>' if name else ""
+    return ((f'<a class="btn btn-rk" href="{escape(rk["u"])}" target="_blank" rel="{SHOP_REL}">楽天で見る{who}</a>' if (rk or {}).get("u") else "")
+            + (f'<a class="btn btn-az" href="{escape(az)}" target="_blank" rel="{SHOP_REL}">Amazonで見る{who}</a>' if az else ""))
+
+
+def _shop_detail(html, snap):
+    """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
+    sh = snap.get("shop") or {}
+    b = shop_buttons(sh.get("rk"), sh.get("az"))
+    if b:
+        html = html.replace('<div class="sub-acts">', f'<div class="shopb">{b}</div><div class="sub-acts">', 1)
+    if snap.get("image"):
+        html = re.sub(r'(<div class="pics n1"><a [^>]*><img )', r'\1width="150" height="150" ', html, count=1)
+        html = html.replace("</footer>", f'<span class="credit">{CREDIT[3:-4]}</span></footer>', 1)
+    return html
 
 
 def _fmt(s):
@@ -320,12 +349,14 @@ def build(settings=None, out_dir=None, force=False):
     kinds = dict(gamecats.KINDS, **(s.get("kind_names") or {}))
     brand = _brand(s)
     site = (s.get("site_public_url") or os.environ.get("SITE_URL_GAME") or "").rstrip("/")
-    tag = (os.environ.get("AMAZON_TAG_GAME") or s.get("amazon_tag") or "").strip()
+    tag = game_affi.amazon_tag(s)   # AMAZON_TAG_GAME → settings の amazon_tag → トレカと同じ AMAZON_TAG
     out = Path(out_dir or ROOT / "site_game")
     t = now()
     verify = s.get("google_site_verification") or ""
 
     raw = load_json("lotteries.json", {})
+    rk_cache = load_json(game_affi.CACHE, {})   # 楽天ブックスの商品ページ・写真（game_affi.update が作る）
+    shop_models = game_affi._models()
     items = []
     for i in raw.values():
         st = i.get("status")
@@ -350,6 +381,7 @@ def build(settings=None, out_dir=None, force=False):
                 row["chain"] = ch
                 row["rec"] = bool(CHAIN[ch][3])
         row["ph"] = _phase(row, t)
+        row.update(game_affi.links_for(i, rk_cache, s, shop_models))   # rk（楽天の商品ページ・写真）・az（Amazonの商品ページ）
         items.append(row)
     live = [i for i in items if i["ph"] != "ended"]
 
@@ -467,6 +499,7 @@ def build(settings=None, out_dir=None, force=False):
                      "__H1__": escape(meta["h1"]), "__UPDATED__": escape(f"更新 {_fmt(updated)}"), "__SUMSHORT__": escape(meta.get("sumshort") or ""),
                      "__PIN__": meta.get("pin", ""), "__BODY_TOP__": body_top, "__PRERENDER__": prerender(sub) if list_mode else "", "__BODY_BOTTOM__": body_bottom,
                      "__FAQ__": fh, "__LEAD__": escape(meta.get("lead") or ""), "__SUMMARY__": meta.get("summary") or "", "__LINKS__": meta.get("links", ""),
+                     "__CREDIT__": CREDIT if any((i.get("rk") or {}).get("img") for i in sub) else "",
                      "__SHELL_CSS__": shell_css, "__SIDEBAR__": side_html(cats, (data_extra or {}).get("game"), cur)}.items():
             body = body.replace(k, v)
         body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
@@ -593,6 +626,11 @@ def build(settings=None, out_dir=None, force=False):
         snap["kind"] = i.get("kind") or "lottery"
         if i.get("price"):
             snap["price"] = i["price"]
+        if (i.get("rk") or {}).get("img"):   # 写真（押すと楽天の商品ページ）
+            snap["image"], snap["img_url"] = i["rk"]["img"], i["rk"]["u"]
+        else:
+            snap.pop("image", None), snap.pop("img_url", None)
+        snap["shop"] = {k: i[k] for k in ("rk", "az") if i.get(k)}
         pages[i["key"]] = {"snap": snap, "path": i["lpath"], "end": i.get("end"), "seen": today_iso}
     for k, rec in list(pages.items()):
         snap = dict(rec["snap"])
@@ -612,7 +650,7 @@ def build(settings=None, out_dir=None, force=False):
         nxt = (f"いま受付中の{cat_by[g]['short']}を見る", f"/{cat_by[g]['slug']}/") if ended else None
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
                              next_link=nxt, brand=dbrand, games=games_map)
-        html = _theme_detail(html, side_html(cats, g, counts=False))
+        html = _theme_detail(_shop_detail(html, snap), side_html(cats, g, counts=False))
         p = out / rec["path"] / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html, encoding="utf-8")

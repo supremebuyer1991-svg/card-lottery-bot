@@ -149,3 +149,98 @@ else:
     gamecats.PATH = common.ROOT / "config" / "game" / "categories.yaml"
     gamecats._CACHE.clear()
     print("CATEGORY CONFIG OK")
+
+    # ---- 商品写真と「楽天で見る」「Amazonで見る」（楽天は偽物のAPIで。ネットにはつながない） ----
+    import json
+    import game_affi
+    for k_ in ("RAKUTEN_AFFILIATE_ID_GAME", "RAKUTEN_AFFILIATE_ID", "AMAZON_TAG_GAME", "AMAZON_TAG", "RAKUTEN_APP_ID", "RAKUTEN_ACCESS_KEY"):
+        os.environ.pop(k_, None)
+    common.STATE_DIR = Path(tempfile.mkdtemp())
+    s3 = load_settings()
+    s3.update(site_public_url="https://example-game.jp", amazon_tag="g-22", rakuten_affiliate_id="aff.test")
+    IMG = "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0000/4948872000000.jpg"
+    BOOK = {"shopName": "楽天ブックス", "shopCode": "book"}
+    calls = []
+
+    def fake_fetch(params):
+        calls.append(params)
+        kw = params.get("keyword") or ""
+        if params.get("itemCode") == "book:12345678":
+            return [dict(BOOK, itemName="RG 1/144 Hi-νガンダム", itemUrl="https://item.rakuten.co.jp/book/12345678/?rafcid=x", mediumImageUrls=[IMG + "?_ex=128x128"])]
+        if "Pro" in kw:
+            return [dict(BOOK, itemName="PS5 Pro用 保護フィルム", itemUrl="https://item.rakuten.co.jp/book/1/", mediumImageUrls=[IMG]),            # 周辺機器は使わない
+                    dict(BOOK, itemName="【中古】PlayStation 5 Pro", itemUrl="https://item.rakuten.co.jp/book/2/", mediumImageUrls=[IMG]),           # 中古は使わない
+                    dict(BOOK, itemName="PlayStation 5 Pro(CFI-7000B01)", itemUrl="https://item.rakuten.co.jp/book/18000001/?rafcid=wsc", mediumImageUrls=[IMG + "?_ex=128x128"])]
+        if "ミッドナイト" in kw:
+            return [dict(BOOK, itemName="PlayStation 5 Pro(CFI-7000B01)", itemUrl="https://item.rakuten.co.jp/book/3/", mediumImageUrls=[IMG])]  # 別のモデルは使わない
+        return []
+
+    lots3 = [
+        it("p1", "ps5", "ソニーストア", "PS5 Pro", "PlayStation 5 Pro 本体", "lottery", 30, -10, price="119,980円", amazon_asin="B0TEST1234"),
+        it("p2", "ps5", "ヨドバシ.com", "PS5 ミッドナイト ブラック", "PlayStation 5 ミッドナイト ブラック 本体", "preorder", None, 48),
+        it("p3", "gunpla", "プレミアムバンダイ", "RG Hi-νガンダム", "RG 1/144 Hi-νガンダム 抽選販売", "lottery", 72, rakuten_url="https://books.rakuten.co.jp/rb/12345678/"),
+        it("p4", "ichibankuji", "ローソン", "一番くじ テスト", "一番くじ テスト", "release", 24),
+        it("p5", "gunpla", "プレミアムバンダイ", "HG テスト", "HG 1/144 テストガンダム", "lottery", 50, rakuten_url="https://search.rakuten.co.jp/search/mall/HG/"),   # 検索ページは使わない
+    ]
+    save_json("lotteries.json", {x["key"]: x for x in lots3})
+    cache = game_affi.update(s3, lots3, fetch=fake_fetch, sleep=0)
+    assert all(c.get("shopCode") == "book" for c in calls if "keyword" in c), calls          # 楽天ブックスにしぼる
+    assert all(c.get("availability") == 0 for c in calls), calls                              # 売り切れも（入荷お知らせのため）
+    assert not any("一番くじ" in (c.get("keyword") or "") for c in calls)                       # 一番くじは探さない
+    assert any(c.get("itemCode") == "book:12345678" and c.get("affiliateId") == "aff.test" for c in calls)   # 手で書いた商品ページは商品コードで写真を取る
+    pro = cache["q:" + game_affi._n("PlayStation 5 Pro")]
+    assert pro["itemUrl"] == "https://item.rakuten.co.jp/book/18000001/" and pro["imageUrl"] == IMG and pro["checkedAt"] and "CFI-7000" in pro["title"]
+    assert "hb.afl.rakuten.co.jp/hgc/aff.test/" in pro["affiliateUrl"]
+    mb = cache["q:" + game_affi._n("PlayStation 5 ミッドナイト ブラック")]
+    assert mb["itemUrl"] == "" and mb["checkedAt"]                                           # 見つからないものも記録
+    n_calls = len(calls)
+    game_affi.update(s3, lots3, fetch=fake_fetch, sleep=0)
+    assert len(calls) == n_calls                                                             # 24時間はもう一度探さない
+    # 1回の上限
+    common.STATE_DIR = Path(tempfile.mkdtemp())
+    calls.clear()
+    game_affi.update(dict(s3, rakuten_max_calls_per_run=1), lots3, fetch=fake_fetch, sleep=0)
+    assert len(calls) == 1
+    # 鍵が無ければ何もしない（ネットにつながない・state も作らない）
+    common.STATE_DIR = Path(tempfile.mkdtemp())
+    assert game_affi.update(s3, lots3) == {} and not (common.STATE_DIR / "rakuten.json").exists()
+    # サイトに出す（さっきの結果で）
+    common.STATE_DIR = Path(tempfile.mkdtemp())
+    save_json("lotteries.json", {x["key"]: x for x in lots3})
+    save_json("rakuten.json", cache)
+    out3 = Path(tempfile.mkdtemp())
+    sitegen_game.build(s3, out_dir=out3)
+    top3 = (out3 / "index.html").read_text(encoding="utf-8")
+    data3 = json.loads(re.search(r'<script type="application/json" id="data">(.*?)</script>', top3, re.S).group(1))
+    by = {i["key"]: i for i in data3["items"]}
+    assert by["p1"]["rk"]["img"] == IMG + "?_ex=300x300" and by["p1"]["rk"]["u"].startswith("https://hb.afl.rakuten.co.jp/hgc/aff.test/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18000001%2F")
+    assert by["p1"]["az"] == "https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22"                 # ASIN を書いたものだけ Amazon
+    assert by["p3"]["rk"]["u"].startswith("https://hb.afl.rakuten.co.jp/hgc/aff.test/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F12345678%2F") and by["p3"]["rk"]["img"]  # 手で書いたURLが優先
+    assert "rk" not in by["p2"] and "az" not in by["p2"]                                     # 見つからない → 写真もボタンも無し
+    assert "rk" not in by["p4"] and "rk" not in by["p5"]                                     # 一番くじ・検索ページのURL
+    assert "楽天で見る" in top3 and "Amazonで見る" in top3 and 'class="ph"' in top3 and "has-ph" in top3 and 'loading="lazy"' in top3
+    assert "商品の写真は楽天ブックス（楽天市場）の商品の写真です" in top3                          # 写真の出どころ
+    assert "Amazonのアソシエイトとして、ゲーム・ホビー入荷速報は適格販売により収入を得ています" in top3
+    for b_ in ("円〜", "itemPrice"):                                                          # 楽天の値段は出さない
+        assert b_ not in top3, b_
+    d1 = (out3 / "l/p1/index.html").read_text(encoding="utf-8")
+    assert 'class="pics n1"' in d1 and IMG + "?_ex=300x300" in d1 and 'width="150" height="150"' in d1 and 'alt="PS5 Pro"' in d1
+    assert 'class="btn btn-rk"' in d1 and "楽天で見る" in d1 and "https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22" in d1 and "Amazonで見る" in d1
+    assert "商品の写真は楽天ブックス" in d1
+    d2 = (out3 / "l/p2/index.html").read_text(encoding="utf-8")
+    assert 'class="pics' not in d2 and "楽天で見る" not in d2 and "Amazonで見る" not in d2 and 'class="shopb"' not in d2 and "商品の写真は楽天ブックス" not in d2
+    # 楽天・Amazon のリンクは、どのページでも検索結果のページではない
+    for f_ in out3.rglob("*.html"):
+        for u_ in re.findall(r"https?://[^\"'\s<>]*(?:rakuten|amazon)[^\"'\s<>]*", f_.read_text(encoding="utf-8")):
+            if "thumbnail.image.rakuten" in u_:
+                continue
+            assert "search" not in u_.lower() and "/s?" not in u_, (f_, u_)
+    # 機種・モデルごとの指定（models.yaml の series_shop）
+    game_affi._models = lambda: {"ps5": {"PS5 ミッドナイト ブラック": {"amazon_asin": "B0MIDNIGHT", "rakuten_url": "https://books.rakuten.co.jp/rb/99999999/"}}}
+    lk = game_affi.links_for(lots3[1], {}, s3)
+    assert lk["az"] == "https://www.amazon.co.jp/dp/B0MIDNIGHT?tag=g-22" and "books.rakuten.co.jp%2Frb%2F99999999" in lk["rk"]["u"] and "img" not in lk["rk"]
+    assert "az" not in game_affi.links_for(lots3[1], {}, dict(s3, amazon_tag=""))            # タグが無ければ Amazon は出さない
+    # JSの文法チェック
+    jsp.write_text(re.findall(r"<script>(.*?)</script>", top3, re.S)[-1], encoding="utf-8")
+    assert subprocess.run(["node", "--check", str(jsp)]).returncode == 0
+    print("AFFILIATE OK")

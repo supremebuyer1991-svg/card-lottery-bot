@@ -81,6 +81,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_URL_GAME: ${{ vars.SITE_URL_GAME }}
           AMAZON_TAG_GAME: ${{ vars.AMAZON_TAG_GAME }}
+          AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+          # 楽天ブックスの商品写真・商品ページ（トレカと同じ鍵。Referer は楽天に登録してあるトレカのサイトのURL）
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ vars.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_AFFILIATE_ID_GAME: ${{ vars.RAKUTEN_AFFILIATE_ID_GAME }}
+          RAKUTEN_REFERER: ${{ vars.SITE_URL }}
           GA_ID_GAME: ${{ vars.GA_ID_GAME }}
           DRY_RUN: ${{ vars.DRY_RUN }}
         run: |
