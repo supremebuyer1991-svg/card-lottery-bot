@@ -53,6 +53,7 @@ jobs:
                         f"   {url}\n\n2. 「連携アプリを認証」を押すと数字（PIN）が出る\n"
                         "3. もう一度「Run workflow」を押し、pin の欄にその数字を入れて実行\n")
               print("::notice::結果画面（Summary）のリンクを開いてください")
+              print("AUTH_URL", url)
           else:
               if not p.exists():
                   raise SystemExit("1回目の記録が見つかりません。pin を空にして1回目からやり直してください")
