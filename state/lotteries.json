@@ -8841,10 +8841,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "1863e4604f5c1cc9",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-03T16:16:37.200680+09:00",
     "multi": false,
-    "cls": "67435b5118a8"
+    "cls": "67435b5118a8",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-08T19:56:26.412320+09:00"
   },
   "5dbf85d14bf87625": {
     "store": "トレカの郷 伊達店",
@@ -15125,39 +15127,6 @@
     "multi": false,
     "cls": "e4c8c1094e3b"
   },
-  "e189ab37d81ee495": {
-    "store": "CARD WINGS秋葉原駅前店",
-    "product": "ONE PIECEカードゲーム ONE PIECE HEROINES PRECIOUS BOX（1個 税込8,470円）",
-    "series": null,
-    "end": "2026-11-06T18:59:00+09:00",
-    "url": "https://livepocket.jp/e/8cmzh",
-    "x_post": "https://x.com/TowerO44149/status/2118229992631124118",
-    "channel": "store",
-    "area": "東京都",
-    "method": "オンライン",
-    "conditions": "会員・本人確認",
-    "tags": [
-      "会員",
-      "本人確認"
-    ],
-    "id_check": true,
-    "member": "account",
-    "confidence": 0.95,
-    "game": "onepiece",
-    "source": "カード抽選まとめ ワンピ",
-    "source_url": "https://cardchusen.com/onepiece",
-    "no_quote": true,
-    "key": "e189ab37d81ee495",
-    "status": "expired",
-    "found_at": "2026-11-05T16:26:14.592434+09:00",
-    "page_checked_at": "2026-11-06T18:05:51.920024+09:00",
-    "page_err": "中身が空",
-    "multi": false,
-    "cls": "13722115106c",
-    "start": "2026-11-05",
-    "closed_reason": "情報元の一覧から消えた",
-    "closed_at": "2026-11-06T19:09:54.008218+09:00"
-  },
   "a920170cb7ef1bc5": {
     "store": "BIGMAGICなんば店",
     "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】4BOX購入権抽選（税込23,040円・郵送なし）",
@@ -15325,36 +15294,6 @@
     "status": "duplicate",
     "found_at": "2026-11-05T16:26:57.243234+09:00",
     "duplicate_of": "17ad562111fdf969"
-  },
-  "690bf766275c5531": {
-    "store": "CARDWINGS秋葉原駅前店",
-    "product": "ワンピースカードゲーム HEROINES PRECIOUS BOX",
-    "series": "HEROINES PRECIOUS BOX",
-    "start": "2026-11-05",
-    "end": "2026-11-06T18:59:00+09:00",
-    "announce": null,
-    "method": "Web（LivePocket）",
-    "conditions": null,
-    "url": "https://livepocket.jp/e/8cmzh",
-    "x_post": "https://x.com/TowerO44149/status/2118229992631124118",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "東京都",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.8,
-    "source": "X LivePocket抽選",
-    "source_url": "https://x.com/",
-    "key": "690bf766275c5531",
-    "status": "duplicate",
-    "found_at": "2026-11-05T16:26:57.243287+09:00",
-    "tco_checked": true,
-    "page_checked_at": "2026-11-05T18:09:54.781657+09:00",
-    "page_err": "中身が空",
-    "multi": false,
-    "cls": "ac7613a84c2a",
-    "duplicate_of": "e189ab37d81ee495"
   },
   "aa020db05af096c5": {
     "store": "古本市場 小平店",
@@ -18183,12 +18122,14 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "05fcf0d641f1c9d0",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-06T10:15:10.579196+09:00",
     "multi": false,
     "cls": "121cc14c2d36",
     "page_checked_at": "2026-11-08T10:46:27.113366+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-08T19:56:26.412659+09:00"
   },
   "d4043399962a0991": {
     "store": "文教堂湘南とうきゅう店",
@@ -27494,7 +27435,7 @@
     "found_at": "2026-11-07T11:04:32.684839+09:00",
     "start": "2026-11-06T20:23:00+09:00",
     "apply_url": "https://livepocket.jp/e/vulam",
-    "page_checked_at": "2026-11-08T13:40:12.157655+09:00",
+    "page_checked_at": "2026-11-08T19:56:30.733924+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d33908119e7d"
@@ -27525,7 +27466,7 @@
     "key": "da50cf90e1c4407c",
     "status": "approved",
     "found_at": "2026-11-07T11:04:32.684869+09:00",
-    "page_checked_at": "2026-11-08T13:40:14.213262+09:00",
+    "page_checked_at": "2026-11-08T19:56:32.892483+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "150272706d7e"
@@ -27975,7 +27916,7 @@
     "multi": false,
     "cls": "de6be346223e",
     "apply_url": "https://livepocket.jp/e/itj-5",
-    "page_checked_at": "2026-11-08T13:40:18.488069+09:00",
+    "page_checked_at": "2026-11-08T19:56:35.040050+09:00",
     "page_err": "中身が空"
   },
   "8e8faa4d5e9e18df": {
@@ -28069,7 +28010,7 @@
     "cls": "d86ea01978a2",
     "issue": 536,
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:40:20.607574+09:00",
+    "page_checked_at": "2026-11-08T19:56:37.185061+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -28144,7 +28085,7 @@
     "cls": "be02fec5dd50",
     "issue": 538,
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:40:22.667092+09:00",
+    "page_checked_at": "2026-11-08T19:56:39.333160+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -28181,7 +28122,7 @@
     "tco_checked": true,
     "apply_url": "https://livepocket.jp/e/luo8lp88-d",
     "end_from": "Xの告知（11月10日(火)16時59分まで抽選応）",
-    "page_checked_at": "2026-11-08T13:40:22.667107+09:00",
+    "page_checked_at": "2026-11-08T19:56:39.333175+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -28367,7 +28308,7 @@
     "multi": false,
     "cls": "3b08dc0555af",
     "issue": 539,
-    "page_checked_at": "2026-11-08T13:40:22.667110+09:00",
+    "page_checked_at": "2026-11-08T19:56:39.333178+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -28597,7 +28538,7 @@
     "key": "44353afc3198982b",
     "status": "approved",
     "found_at": "2026-11-07T11:57:12.040947+09:00",
-    "page_checked_at": "2026-11-08T13:40:27.859019+09:00",
+    "page_checked_at": "2026-11-08T19:56:41.401095+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "8847d0f50722"
@@ -28882,7 +28823,7 @@
     "key": "34a17ce9de4d1af6",
     "status": "approved",
     "found_at": "2026-11-07T11:57:12.994622+09:00",
-    "page_checked_at": "2026-11-08T13:40:35.079507+09:00",
+    "page_checked_at": "2026-11-08T19:56:43.444365+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "b0955352aa1b",
@@ -29024,7 +28965,7 @@
     "key": "d38cbf5b3e539f6b",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509341+09:00",
-    "page_checked_at": "2026-11-08T13:40:37.142344+09:00",
+    "page_checked_at": "2026-11-08T19:56:45.588552+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "0ab48ebb81cb",
@@ -29055,7 +28996,7 @@
     "key": "29c4023363039596",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509369+09:00",
-    "page_checked_at": "2026-11-08T13:40:39.197320+09:00",
+    "page_checked_at": "2026-11-08T19:56:47.740857+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "fe24ef83ac1b"
@@ -29085,7 +29026,7 @@
     "key": "07505ba618e90739",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509389+09:00",
-    "page_checked_at": "2026-11-08T13:40:41.245584+09:00",
+    "page_checked_at": "2026-11-08T19:56:49.931470+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "4fbf16ecde57"
@@ -29116,7 +29057,7 @@
     "key": "5228d585f3c6205c",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509405+09:00",
-    "page_checked_at": "2026-11-08T13:40:43.315745+09:00",
+    "page_checked_at": "2026-11-08T19:56:52.135407+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "57c3b6870b75"
@@ -29146,7 +29087,7 @@
     "key": "1530f4df06f9d28d",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509419+09:00",
-    "page_checked_at": "2026-11-08T13:40:45.360121+09:00",
+    "page_checked_at": "2026-11-08T19:56:54.280040+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "a4b40217fb79"
@@ -29176,7 +29117,7 @@
     "key": "a6e92f975344a8df",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509435+09:00",
-    "page_checked_at": "2026-11-08T13:40:47.416848+09:00",
+    "page_checked_at": "2026-11-08T19:56:56.321854+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "6832b0f27d85"
@@ -29206,7 +29147,7 @@
     "key": "cd02bf50cb87f7d8",
     "status": "approved",
     "found_at": "2026-11-07T12:57:39.509449+09:00",
-    "page_checked_at": "2026-11-08T13:40:49.479060+09:00",
+    "page_checked_at": "2026-11-08T19:56:58.394897+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "21cf7fbfedb7"
@@ -29347,7 +29288,7 @@
     "key": "f52447cdb3a938b0",
     "status": "approved",
     "found_at": "2026-11-07T12:57:40.081792+09:00",
-    "page_checked_at": "2026-11-08T13:40:51.540562+09:00",
+    "page_checked_at": "2026-11-08T19:57:00.537281+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "541a498cdd5b"
@@ -29378,7 +29319,7 @@
     "key": "35c7666f6ca4c8ef",
     "status": "approved",
     "found_at": "2026-11-07T12:57:40.081819+09:00",
-    "page_checked_at": "2026-11-08T13:40:53.654123+09:00",
+    "page_checked_at": "2026-11-08T19:57:02.580273+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "3fdcfddb46ea"
@@ -29409,7 +29350,7 @@
     "key": "e9b1825629f29ad4",
     "status": "approved",
     "found_at": "2026-11-07T12:57:40.081835+09:00",
-    "page_checked_at": "2026-11-08T13:40:55.705621+09:00",
+    "page_checked_at": "2026-11-08T19:57:04.621996+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "e13412522fbf"
@@ -29466,7 +29407,7 @@
     "key": "599aacaa7c1181e4",
     "status": "approved",
     "found_at": "2026-11-07T12:57:40.081860+09:00",
-    "page_checked_at": "2026-11-08T13:40:57.829390+09:00",
+    "page_checked_at": "2026-11-08T19:57:06.669440+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "da2e6a5342e2"
@@ -29496,7 +29437,7 @@
     "key": "c706abf73bfd20b8",
     "status": "approved",
     "found_at": "2026-11-07T12:57:40.081873+09:00",
-    "page_checked_at": "2026-11-08T13:40:59.874843+09:00",
+    "page_checked_at": "2026-11-08T19:57:08.771121+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "808861cc3d10"
@@ -29584,7 +29525,7 @@
     "key": "a3cdd6919993f518",
     "status": "approved",
     "found_at": "2026-11-07T13:59:04.003130+09:00",
-    "page_checked_at": "2026-11-08T13:50:22.410154+09:00",
+    "page_checked_at": "2026-11-08T19:57:10.814701+09:00",
     "multi": false,
     "cls": "82a00c5b2ecc",
     "page_err": "中身が空"
@@ -29615,7 +29556,7 @@
     "key": "b763f7cb7e1ca82b",
     "status": "approved",
     "found_at": "2026-11-07T13:59:04.707646+09:00",
-    "page_checked_at": "2026-11-08T13:50:24.521816+09:00",
+    "page_checked_at": "2026-11-08T19:57:12.855770+09:00",
     "multi": false,
     "cls": "f73b9357819b",
     "page_err": "中身が空"
@@ -29731,7 +29672,7 @@
     "multi": false,
     "cls": "d10103db0d5e",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:50:26.606738+09:00",
+    "page_checked_at": "2026-11-08T19:57:14.894123+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -29762,7 +29703,7 @@
     "multi": false,
     "cls": "43c40472ac86",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:50:28.721151+09:00",
+    "page_checked_at": "2026-11-08T19:57:16.942117+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30284,7 +30225,7 @@
     "found_at": "2026-11-07T17:58:49.870399+09:00",
     "multi": false,
     "cls": "de65ef3e46d4",
-    "page_checked_at": "2026-11-08T13:50:30.824133+09:00",
+    "page_checked_at": "2026-11-08T19:57:18.986407+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://shop.joshin.co.jp/app/"
   },
   "c928912be51f480a": {
@@ -30400,7 +30341,7 @@
     "found_at": "2026-11-07T17:59:17.679918+09:00",
     "multi": false,
     "cls": "dc9d738d2eba",
-    "page_checked_at": "2026-11-08T13:50:31.179068+09:00",
+    "page_checked_at": "2026-11-08T19:57:19.351890+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30624,7 +30565,7 @@
     "found_at": "2026-11-07T18:55:42.911162+09:00",
     "multi": false,
     "cls": "ba43e1cfc369",
-    "page_checked_at": "2026-11-08T13:50:33.326881+09:00",
+    "page_checked_at": "2026-11-08T19:57:21.394830+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30798,7 +30739,7 @@
     "found_at": "2026-11-07T18:55:42.911435+09:00",
     "multi": true,
     "cls": "6abefb6cacf8",
-    "page_checked_at": "2026-11-08T13:50:35.425168+09:00",
+    "page_checked_at": "2026-11-08T19:57:23.436920+09:00",
     "page_err": "中身が空",
     "apply_url": "https://livepocket.jp/e/1q8oz"
   },
@@ -30887,7 +30828,7 @@
     "multi": false,
     "cls": "d3e036486f8a",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:50:37.508294+09:00",
+    "page_checked_at": "2026-11-08T19:57:25.482705+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -30918,7 +30859,7 @@
     "multi": false,
     "cls": "f200441f828a",
     "tco_checked": true,
-    "page_checked_at": "2026-11-08T13:50:39.571388+09:00",
+    "page_checked_at": "2026-11-08T19:57:27.660074+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -31180,7 +31121,7 @@
     "key": "6af05afe4b20bf25",
     "status": "approved",
     "found_at": "2026-11-07T22:00:07.947046+09:00",
-    "page_checked_at": "2026-11-08T13:50:41.626316+09:00",
+    "page_checked_at": "2026-11-08T19:57:29.805624+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "2e90353cb023",
@@ -31509,7 +31450,7 @@
     "key": "89499dada12fb340",
     "status": "pending",
     "found_at": "2026-11-07T23:52:47.021138+09:00",
-    "page_checked_at": "2026-11-08T13:50:43.711973+09:00",
+    "page_checked_at": "2026-11-08T19:57:31.874392+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "95150d88df34",
@@ -31687,7 +31628,7 @@
     "deadline_checked_at": "2026-11-08T07:51:48.535622+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・本文に締切の記載なし",
-    "page_checked_at": "2026-11-08T13:50:45.802701+09:00",
+    "page_checked_at": "2026-11-08T19:57:33.942197+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -31983,7 +31924,7 @@
     "found_at": "2026-11-08T07:51:17.334485+09:00",
     "multi": false,
     "cls": "6adbde44076d",
-    "page_checked_at": "2026-11-08T13:50:47.871642+09:00",
+    "page_checked_at": "2026-11-08T19:57:36.124144+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -32013,7 +31954,7 @@
     "found_at": "2026-11-08T07:51:17.334513+09:00",
     "multi": false,
     "cls": "c0bdacd2b636",
-    "page_checked_at": "2026-11-08T13:50:49.971580+09:00",
+    "page_checked_at": "2026-11-08T19:57:38.268920+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -32160,7 +32101,7 @@
     "multi": false,
     "cls": "b1babe976692",
     "issue": 553,
-    "page_checked_at": "2026-11-08T13:50:52.038417+09:00",
+    "page_checked_at": "2026-11-08T19:57:40.413722+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -32466,7 +32407,7 @@
     "multi": true,
     "cls": "699652a4d661",
     "issue": 554,
-    "page_checked_at": "2026-11-08T13:50:52.038429+09:00",
+    "page_checked_at": "2026-11-08T19:57:40.413737+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/",
     "post_checked": true,
     "details_checked": true,
@@ -32500,7 +32441,7 @@
     "multi": false,
     "cls": "ee019d7238c2",
     "start": "2026-11-07T10:00:00+09:00",
-    "page_checked_at": "2026-11-08T13:50:52.134068+09:00",
+    "page_checked_at": "2026-11-08T19:57:40.576040+09:00",
     "page_err": "中身が空"
   },
   "4b1653c823e8b7b5": {
@@ -32531,7 +32472,7 @@
     "multi": false,
     "cls": "772e3a117e95",
     "start": "2026-11-07T09:00:00+09:00",
-    "page_checked_at": "2026-11-08T13:50:54.336998+09:00",
+    "page_checked_at": "2026-11-08T19:57:42.625137+09:00",
     "page_err": "中身が空"
   },
   "37583aff84e00688": {
@@ -34389,10 +34330,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d523bad58616a85e",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-08T13:37:04.933020+09:00",
     "multi": false,
-    "cls": "ddc046ee7256"
+    "cls": "ddc046ee7256",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-08T19:56:26.412665+09:00"
   },
   "796d45cc536ade47": {
     "store": "トレカパーク 横浜西口店",
