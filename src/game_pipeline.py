@@ -103,6 +103,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                                  and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t)])
         except Exception as e:
             log(f"楽天の商品写真: スキップ {e}")
+        if out_dir is None:
+            try:  # スニダンの相場（1日1回・models.yaml の series_souba に書いたモデルだけ）
+                import game_souba
+                game_souba.update(s)
+            except Exception as e:
+                log(f"相場（ゲーム）: スキップ {e}")
         import sitegen_game
         sitegen_game.build(s, out_dir=out_dir)
         if out_dir is None:   # テストでサイトだけ作るときは投稿しない

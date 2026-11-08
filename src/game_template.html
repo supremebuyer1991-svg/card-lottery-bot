@@ -242,6 +242,7 @@ __SIDEBAR__
   function condChips(i) {
     var out = [];
     if (i.price) out.push('<span class="pr">定価 ' + esc(i.price) + "</span>");
+    if (i.sb) out.push('<span class="pr sb">' + esc(i.sb) + "</span>");
     (i.tags || []).forEach(function (t) { out.push("<span>" + esc(t) + "</span>"); });
     if (i.id_check === true && (i.tags || []).indexOf("本人確認") < 0) out.push("<span>本人確認</span>");
     if (i.member === "account" && (i.tags || []).indexOf("会員") < 0) out.push("<span>会員登録</span>");
