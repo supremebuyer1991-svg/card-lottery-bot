@@ -82,7 +82,7 @@ function amzState(it) {
 
 function compose(w, shop, kind, url) {
   const head = shop === "rk" ? "楽天ブックスで販売開始🔥" : kind === "invite" ? "Amazonで招待リクエスト受付開始🔥" : "Amazonで販売開始🔥";
-  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, "", shop === "az" ? "Amazon.co.jp本体の販売です👇（PR）" : "定価で買えます👇（PR）", url, ""];
+  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), "", shop === "az" ? "Amazon.co.jp本体の販売です👇（PR）" : "定価で買えます👇（PR）", url, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
   return lines.join("\n");

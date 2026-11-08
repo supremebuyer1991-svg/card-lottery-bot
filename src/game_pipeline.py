@@ -53,6 +53,8 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         try:  # 買取店の新品の買取価格（1回2店まで・各店1日1回）。情報集めの前に読む（残り時間は情報集めの側で調整）
             import game_kaitori
             game_kaitori.update(s)
+            import game_premium   # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価（1回8件まで）
+            game_premium.update(s)
         except Exception as e:
             log(f"買取価格: スキップ {e}")
     if step in ("all", "collect"):
@@ -132,6 +134,19 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 import game_affi
                 from common import ROOT
                 wl = game_affi.watch_list(load_json("lotteries.json", {}), s)
+                try:   # 定価以上で売れる商品も見張る（楽天ブックスの商品ページが分かったもの）
+                    import re as _re
+                    import game_premium
+                    import gamecats
+                    gh = "|".join(c.get("hints") or "" for c in gamecats.categories(False) if c.get("group") in ("console", "game_goods") and c.get("hints"))
+                    have = {w["rk"] for w in wl}
+                    for x in game_premium.premium_list(s)[:30]:
+                        m = _re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#]+)", x["itemUrl"] or "")
+                        if m and f"{m.group(1)}:{m.group(2)}" not in have:
+                            wl.append({"k": "pm" + x["jan"], "n": x["name"][:40], "g": bool(_re.search(gh, x["name"], _re.I)), "rk": f"{m.group(1)}:{m.group(2)}",
+                                       "asin": "", "tag": [], "pm": f"最高買取 {x['max']:,}円（定価比 +{round((x['ratio'] - 1) * 100)}%）"})
+                except Exception as e:
+                    log(f"見張り（プレ値）: スキップ {e}")
                 (ROOT / "site_game" / "watch.json").write_text(_json.dumps({"updated": now().isoformat(), "items": wl}, ensure_ascii=False), encoding="utf-8")
                 log(f"楽天・Amazonの見張り：{len(wl)}件")
             except Exception as e:
