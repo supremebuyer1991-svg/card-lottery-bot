@@ -1,0 +1,76 @@
+# ゲーム・ホビー入荷速報（@a9994aaa）から速報を投稿するための鍵を作る（最初の1回だけ使う）
+# 使い方：
+#   1回目：「Run workflow」をそのまま押す → 結果画面に出るリンクを開き、@a9994aaa でログインして「連携アプリを認証」→ 数字（PIN）が出る
+#   2回目：「Run workflow」で pin の欄にその数字を入れて押す → 結果画面に出る2つの値を GitHub の Secrets に登録
+#          X_GAME_ACCESS_TOKEN / X_GAME_ACCESS_SECRET
+# アプリの鍵（X_API_KEY / X_API_SECRET）はトレカと同じものを使う（費用の請求も同じ開発者アカウント）
+name: x-auth-game
+on:
+  workflow_dispatch:
+    inputs:
+      pin:
+        description: "2回目だけ：Xに表示された数字（PIN）"
+        required: false
+        default: ""
+permissions:
+  contents: read
+jobs:
+  auth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests requests-oauthlib
+      - name: restore request token
+        if: inputs.pin != ''
+        uses: actions/cache/restore@v4
+        with:
+          path: xauth
+          key: xauth-none
+          restore-keys: xauth-
+      - name: auth
+        id: auth
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          PIN: ${{ inputs.pin }}
+        run: |
+          python - <<'EOF'
+          import json, os, pathlib, requests
+          from requests_oauthlib import OAuth1Session, OAuth1
+          ck, cs, pin = os.environ["X_API_KEY"], os.environ["X_API_SECRET"], os.environ["PIN"].strip()
+          out = open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8")
+          p = pathlib.Path("xauth/req.json")
+          if not pin:
+              s = OAuth1Session(ck, client_secret=cs, callback_uri="oob")
+              t = s.fetch_request_token("https://api.x.com/oauth/request_token")
+              p.parent.mkdir(exist_ok=True)
+              p.write_text(json.dumps(t))
+              url = "https://api.x.com/oauth/authorize?oauth_token=" + t["oauth_token"]
+              out.write("## 1回目 OK\n\n1. 下のリンクを開く（Xに **@a9994aaa** でログインした状態で）\n\n"
+                        f"   {url}\n\n2. 「連携アプリを認証」を押すと数字（PIN）が出る\n"
+                        "3. もう一度「Run workflow」を押し、pin の欄にその数字を入れて実行\n")
+              print("::notice::結果画面（Summary）のリンクを開いてください")
+          else:
+              if not p.exists():
+                  raise SystemExit("1回目の記録が見つかりません。pin を空にして1回目からやり直してください")
+              t = json.loads(p.read_text())
+              s = OAuth1Session(ck, client_secret=cs, resource_owner_key=t["oauth_token"],
+                                resource_owner_secret=t["oauth_token_secret"], verifier=pin)
+              a = s.fetch_access_token("https://api.x.com/oauth/access_token")
+              name = a.get("screen_name", "?")
+              warn = "" if name.lower() == "a9994aaa" else f"\n\n⚠️ **@{name}** で連携されています。@a9994aaa でログインし直して1回目からやり直してください。\n"
+              out.write(f"## 2回目 OK：@{name} と連携できました{warn}\n\n"
+                        "GitHub の Settings → Secrets and variables → Actions → New repository secret で、次の2つを登録してください。\n\n"
+                        f"| Name | Secret（この値をそのまま貼る） |\n|---|---|\n"
+                        f"| X_GAME_ACCESS_TOKEN | `{a['oauth_token']}` |\n| X_GAME_ACCESS_SECRET | `{a['oauth_token_secret']}` |\n\n"
+                        "登録が終わったら、この実行の記録は Claude が消します。\n")
+          EOF
+      - name: save request token
+        if: inputs.pin == ''
+        uses: actions/cache/save@v4
+        with:
+          path: xauth
+          key: xauth-${{ github.run_id }}
