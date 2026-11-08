@@ -312,3 +312,33 @@ def links_for(i, cache, settings, models=None):
     if q:
         out["mc"] = f"https://jp.mercari.com/search?keyword={quote(q)}&status=on_sale"
     return out
+
+
+def watch_list(lots, settings, cache=None, models=None):
+    """楽天・Amazonの見張り（worker/game-watch）に渡す一覧：サイトに載っている商品のうち、楽天の商品ページかAmazonの商品番号が分かっているもの"""
+    import re as _re
+    from common import now as _now, parse_dt as _pd
+    cache = cache if cache is not None else load_json(CACHE, {})
+    models = models if models is not None else _models()
+    t = _now()
+    out, seen = [], set()
+    for k, i in lots.items():
+        if i.get("status") not in ("approved", "listed", "posted"):
+            continue
+        e = _pd(i.get("end"))
+        if e and e < t and i.get("kind") != "release":
+            continue
+        man = manual_of(i, models)
+        q = query_of(i, man)
+        c = (cache or {}).get(q[0]) if q else None
+        rk = man["rakuten_url"] or (c or {}).get("itemUrl") or ""
+        m = _re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#]+)", rk)
+        code = f"{m.group(1)}:{m.group(2)}" if m else ""
+        asin = man["amazon_asin"].upper() if _re.fullmatch(r"[A-Za-z0-9]{10}", man["amazon_asin"] or "") else ""
+        if not (code or asin) or (code, asin) in seen:
+            continue
+        seen.add((code, asin))
+        import game_xpost as gx
+        out.append({"k": k, "n": (i.get("product") or "")[:40], "g": gx.is_game(i), "rk": code, "asin": asin,
+                    "tag": ((__import__("gamecats").by_id(False).get(i.get("game")) or {}).get("hashtags") or "").split()[:1]})
+    return out
