@@ -131,19 +131,19 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 import game_affi
                 from common import ROOT
                 wl = game_affi.watch_list(load_json("lotteries.json", {}), s)
-                try:   # 定価以上で売れる商品も見張る（楽天ブックスの商品ページが分かったもの）
+                try:   # 買取価格が分かる商品すべても見張る（JANで楽天・Amazonの商品ページを見張りの側で探す）
                     import re as _re
                     import game_premium
                     import gamecats
                     gh = "|".join(c.get("hints") or "" for c in gamecats.categories(False) if c.get("group") in ("console", "game_goods") and c.get("hints"))
-                    have = {w["rk"] for w in wl}
-                    for x in game_premium.premium_list(s)[:30]:
-                        m = _re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#]+)", x["itemUrl"] or "")
-                        if m and f"{m.group(1)}:{m.group(2)}" not in have:
-                            wl.append({"k": "pm" + x["jan"], "n": x["name"][:40], "g": bool(_re.search(gh, x["name"], _re.I)), "rk": f"{m.group(1)}:{m.group(2)}",
-                                       "asin": "", "tag": [], "pm": f"最高買取 {x['max']:,}円（定価比 +{round((x['ratio'] - 1) * 100)}%）"})
+                    pmin = float(s.get("premium_min_ratio", 1.03))
+                    for x in game_premium.catalog(s, game_premium.watch_map())[:int(s.get("watch_catalog_max", 600))]:
+                        wl.append({"k": "j" + x["jan"], "jan": x["jan"], "n": x["name"][:40],
+                                   "g": bool(_re.search(gh, " ".join(x["names"]), _re.I)), "rk": "", "asin": "", "tag": [],
+                                   "tk": x["teika"] or 0, "mx": x["max"], "hot": bool(x["ratio"] and x["ratio"] >= pmin),
+                                   "pm": (f"最高買取 {x['max']:,}円（定価比 +{round((x['ratio'] - 1) * 100)}%）" if x["ratio"] and x["ratio"] >= pmin else "")})
                 except Exception as e:
-                    log(f"見張り（プレ値）: スキップ {e}")
+                    log(f"見張り（相場の商品）: スキップ {e}")
                 (ROOT / "site_game" / "watch.json").write_text(_json.dumps({"updated": now().isoformat(), "items": wl}, ensure_ascii=False), encoding="utf-8")
                 log(f"楽天・Amazonの見張り：{len(wl)}件")
             except Exception as e:
