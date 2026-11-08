@@ -830,7 +830,8 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     if (!st.channel) {
       var now = Date.now(), live = items.filter(function (i) { return !i.end || Date.parse(i.end) > now; });
       var nSt = live.filter(function (i) { return i.channel === "store"; }).length;
-      st.channel = lv.channel || (nSt * 2 > live.length ? "store" : "online");
+      // 前の版はトップを開くだけで「ネット」を保存していたので、自分で選んだ印（v:2）があるときだけ使う
+      st.channel = (lv.v === 2 && lv.channel) || (nSt * 2 > live.length ? "store" : "online");
     }
     if (st.channel !== "store" || LOCK.area || LOCK.store || LOCK.chain || st.area || st.region) return;
     var r = lv.area ? REG[lv.area] : lv.region;
@@ -1130,7 +1131,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     (function () {  // どのページでも、選んだ受け取り方と地域を覚える（お店・県が決まっているページの地域は除く）
       var lv = load("lot_view", {});
       if (!LOCK.game) lv.game = st.game;
-      if (!LOCK.channel) lv.channel = st.channel;
+      if (!LOCK.channel && chosen) { lv.channel = st.channel; lv.v = 2; }
       if (!LOCK.area && !LOCK.store && !LOCK.chain) { lv.region = st.region; lv.area = st.area; }
       save("lot_view", lv);
     })();
@@ -1258,7 +1259,8 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     if (DATA.gameUrls && DATA.gameUrls[gid] && (LOCK.game || !loaded)) { location.href = DATA.gameUrls[gid]; return; }
     st.game = b.dataset.g; st.series = ""; st.area = ""; st.region = ""; render();
   });
-  $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; render(); });
+  var chosen = false;  // 受け取り方を自分で選んだら覚える（11/8）
+  $("channel").addEventListener("click", function (e) { var b = e.target.closest("button[data-v]"); if (!b) return; st.channel = b.dataset.v; chosen = true; render(); });
   $("region").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b || b.disabled) return;
     if (b.hasAttribute("data-r")) { st.region = b.dataset.r; st.area = ""; }
