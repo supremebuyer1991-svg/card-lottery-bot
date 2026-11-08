@@ -732,7 +732,7 @@ def build(settings=None, out_dir=None, force=False):
     if site:
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                          + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in dict(urls).items()) + "</urlset>\n", encoding="utf-8")
-        (out / "robots.txt").write_text("".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /x-plan.html\nDisallow: /x-plan.json\n\n" for b in ("Googlebot", "Bingbot", "*")) + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
+        (out / "robots.txt").write_text("".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /x-plan.html\nDisallow: /x-plan.json\nDisallow: /watch.json\n\n" for b in ("Googlebot", "Bingbot", "*")) + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
         L = [f"# {brand['name']}", "", f"> {s.get('site_tagline') or ''}。PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーの抽選・招待・予約・再入荷・先着の受付情報を自動で集めて1日6回更新。いま受付中{n_open}件。フリマ・転売の出品価格は載せません（ゲーム機など一部の商品だけ、スニダンの取引の相場を目安として載せています）。",
              "", "## 主なページ", f"- [トップ]({site}/)", f"- [いま一覧（お店×商品）]({site}/now/)", f"- [今日締切・開始]({site}/today/)", f"- [カレンダー]({site}/calendar/)", f"- [見方・使い方]({site}/guide/)", ""]
         L += [f"- [{c['short']}]({site}/{c['slug']}/)" for c in cats]

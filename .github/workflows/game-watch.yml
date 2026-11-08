@@ -1,0 +1,46 @@
+name: game-watch-deploy
+
+# ゲーム・ホビー入荷速報：楽天・Amazonの見張り（Cloudflare Worker）を公開する。worker/game-watch を変えたとき・手動で
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["worker/game-watch/**", ".github/workflows/game-watch.yml"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: deploy
+        env:
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFF: ${{ vars.RAKUTEN_AFFILIATE_ID }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_GAME_ACCESS_TOKEN: ${{ secrets.X_GAME_ACCESS_TOKEN }}
+          X_GAME_ACCESS_SECRET: ${{ secrets.X_GAME_ACCESS_SECRET }}
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
+        run: |
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          [ -n "$RAKUTEN_AFF" ] || RAKUTEN_AFF="0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"
+          cd worker/game-watch
+          ID=$(curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces?per_page=100" | python3 -c "import sys,json;j=json.load(sys.stdin);print(j.get('errors') and ('ERR '+str(j['errors'])) or next((n['id'] for n in j['result'] if n['title']=='game-watch-state'),''))")
+          if [ -z "$ID" ]; then
+            ID=$(curl -s -X POST -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" -d '{"title":"game-watch-state"}' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces" | python3 -c "import sys,json;j=json.load(sys.stdin);print(j['result']['id'] if j.get('success') else 'ERR '+str(j.get('errors')))")
+          fi
+          case "$ID" in ERR*) echo "::error::KVを作れません $ID"; exit 1;; esac
+          printf 'name = "game-watch"\nmain = "index.js"\ncompatibility_date = "2026-10-01"\nworkers_dev = true\n[triggers]\ncrons = ["*/2 * * * *"]\n[[kv_namespaces]]\nbinding = "STATE"\nid = "%s"\n' "$ID" > wrangler.toml
+          npx --yes wrangler@4 deploy 2>&1 | grep -E "workers.dev|Deployed|rror" || true
+          ADMIN=$(printf '%s' "${X_API_KEY}game-watch" | sha256sum | cut -c1-24)
+          for k in RAKUTEN_APP_ID RAKUTEN_ACCESS_KEY RAKUTEN_AFF X_API_KEY X_API_SECRET X_GAME_ACCESS_TOKEN X_GAME_ACCESS_SECRET AMAZON_CREDENTIAL_ID AMAZON_CREDENTIAL_SECRET; do
+            for n in 1 2 3; do printf '%s' "${!k}" | tr -d '[:space:]' | npx --yes wrangler@4 secret put "$k" >/dev/null && break; sleep 5; done
+          done
+          printf '%s' "$ADMIN" | npx --yes wrangler@4 secret put ADMIN_KEY >/dev/null
+          echo "公開しました"
