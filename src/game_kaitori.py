@@ -40,7 +40,7 @@ def _ai(text):
         raise RuntimeError("ANTHROPIC_API_KEY が未設定")
     r = requests.post("https://api.anthropic.com/v1/messages", timeout=90, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": PROMPT.format(text=text[:30000])}]})
+        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": PROMPT.format(text=text[:36000])}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API {r.status_code}: {r.text[:200]}")
     raw = "".join(b.get("text", "") for b in r.json().get("content", []))
@@ -71,11 +71,11 @@ def update(settings, fetch=None, ai=None):
     todo = sorted([s for s in sts if not (st.get(s["name"]) and parse_dt(st[s["name"]]["at"])
                                           and (t - parse_dt(st[s["name"]]["at"])).total_seconds() < 20 * 3600)],
                   key=lambda s: (st.get(s["name"]) or {}).get("at", ""))
-    for s in todo[:int(settings.get("kaitori_stores_per_run", 5))]:
+    for s in todo[:int(settings.get("kaitori_stores_per_run", 2))]:
         items = []
-        try:
-            for u in s["urls"][:3]:
-                items += ai(html_to_text(fetch(u), u))
+        try:   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
+            text = "\n\n=====\n\n".join(html_to_text(fetch(u), u)[:12000] for u in s["urls"][:3])
+            items += ai(text)
             st[s["name"]] = {"at": t.isoformat(), "items": items[:400]}
             log(f"買取価格：{s['name']} {len(items)}件")
         except Exception as e:
