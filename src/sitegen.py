@@ -3544,6 +3544,16 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     (out / "mylist").mkdir(parents=True, exist_ok=True)
     (out / "mylist" / "index.html").write_text(detail.mylist_page(site, raff=raff, tag=tag or "", souba={k: [v["price"], v.get("teika")] for k, v in souba_sm.items()}), encoding="utf-8")
     # 404.html が無いと Cloudflare Pages は無いURLにトップページを200で返す（ソフト404）。消えた抽選ページなどのため（11/7）
+    # 11/9：大手の抽選の予告・受付開始のポストの予約表。Worker（rakuten-watch）が1分おきに読んで、時刻が来たものをXに出す
+    try:
+        from datetime import timedelta as _td
+        _q = (load_json("x_meta.json", {}) or {}).get("big_queue") or {}
+        _t = now()
+        (out / "x-queue.json").write_text(json.dumps(
+            [{"k": k, "at": v["at"], "text": v["text"]} for k, v in sorted(_q.items(), key=lambda kv: kv[1]["at"])
+             if (parse_dt(v.get("at")) or _t) > _t - _td(hours=12)], ensure_ascii=False), encoding="utf-8")
+    except Exception as e:
+        print("x-queue.json を書けませんでした", e)
     (out / "404.html").write_text(
         '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="robots" content="noindex"><title>ページが見つかりません｜トレカ抽選ナビ</title>'

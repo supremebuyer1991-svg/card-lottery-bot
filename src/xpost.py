@@ -262,7 +262,7 @@ def big_chain(store):
     return None
 
 
-CHAIN_WIDE = r"全国|各店|全店|対象店舗|全国の店舗|アプリ抽選"
+CHAIN_WIDE = r"全国|各店|全店|対象店舗|全国の店舗|アプリ抽選|（アプリ）"
 
 
 def big_target(i):
@@ -275,7 +275,7 @@ def big_target(i):
     return bool(re.search(CHAIN_WIDE, i.get("store") or "")) or (bool(i.get("multi")) and not i.get("area"))
 
 
-def compose_big(name, game, series, items, settings, started=False, slug=None):
+def compose_big(name, game, series, items, settings, started=False, slug=None, pre=False):
     """大手の速報の文。1店なら店名と締切、複数店ならお店の数と一番早い締切。
     started=True は「予告の段階で見つけていた抽選が、受付開始になった」お知らせ"""
     from detail import lottery_path
@@ -299,8 +299,11 @@ def compose_big(name, game, series, items, settings, started=False, slug=None):
         from urllib.parse import quote
         link = f"https://ck.jp.ap.valuecommerce.com/servlet/referral?sid={vc_sid}&pid={vc_pid}&vc_url={quote(first['url'], safe='')}"
     kind = "店頭抽選" if first.get("channel") == "store" else "抽選"
-    head = f"🔔受付開始｜{GAME_HEAD[game]}" if started else f"🚨抽選速報｜{GAME_HEAD[game]}"
+    head = f"🗓抽選予告｜{GAME_HEAD[game]}" if pre else f"🔔受付開始｜{GAME_HEAD[game]}" if started else f"🚨抽選速報｜{GAME_HEAD[game]}"
     what = f"{name}で「{series or short_product(first)}」の{kind}" + ("が始まりました" if started else "")
+    if pre:  # 11/9：告知を見つけた時点の予告。「〇日〇時から」を目立たせる
+        st_ = min((i.get("start") for i in items if i.get("start")), default=None)
+        what += f"が\n📅{fmt_dt(st_)}から始まります"
     lines = [head, "", what, "",
              f"📍{where}", (f"⏰{fmt_dt(first.get('end'))} 締切" + ("（早い店）" if len(items) > 1 else "") if first.get("end") else "⏰締切はお店の告知で確認"), "",
              ("応募ページはこちら👇（PR）" if is_ad else "応募条件・方法はこちら👇"), link, "", FOLLOW, "", TAGS[game] + (" #PR" if is_ad else "")]
@@ -347,7 +350,7 @@ def post_big(settings, client=None):
     dry = settings["dry_run"] or (client is None and not os.environ.get("X_API_KEY"))
     for (slug, name, game, series, kind), items in sorted(groups.items(), key=lambda kv: min(i.get("end") or "9" for i in kv[1])):
         key = f"{slug}|{game}|{series}" + ("|start" if kind == "start" else "")
-        if key in done:
+        if key in done or key in (meta.get("big_queue") or {}):
             continue
         if count >= cap:
             log(f"大手の速報: 今日の上限（{cap}件）に届いたので {key} は出さない")
@@ -366,6 +369,46 @@ def post_big(settings, client=None):
         count += 1
         log(f"大手の速報: {key}")
     meta["big_count"] = {today: count}
+    save_json("x_meta.json", meta)
+
+
+def plan_big_queue(settings):
+    """11/9 ユーザーの指示：大手の抽選は、告知（受付開始前）を見つけたらすぐ「〇日〇時から抽選」の予告ポスト（1分後）、
+    受付開始の時刻ちょうどに「受付開始」ポスト。実際の投稿は Worker（1分おき）が サイトの /x-queue.json を見て、時刻が来たものを出す。
+    x_meta.json の big_queue に {キー: {at, text}} で覚える（同じものを二度入れない）"""
+    if not settings.get("big_post"):
+        return
+    from datetime import timedelta
+    meta = load_json("x_meta.json", {})
+    q = meta.setdefault("big_queue", {})
+    done = meta.setdefault("big_posted", {})
+    t = now()
+    for k in [k for k, v in q.items() if (parse_dt(v.get("at")) or t) < t - timedelta(days=2)]:
+        q.pop(k)
+    groups = {}
+    for i in load_json("lotteries.json", {}).values():
+        if i.get("status") not in ("approved", "listed", "posted") or i.get("game") not in GAME_HEAD:
+            continue
+        st, e = parse_dt(i.get("start")), parse_dt(i.get("end"))
+        if not st or st <= t + timedelta(minutes=10) or (e and e <= st):
+            continue  # 予告の段階（まだ受付が始まっていない）のものだけ
+        if not big_target(i):
+            continue
+        bc = big_chain(i.get("store"))
+        if bc:
+            groups.setdefault((bc[0], bc[1], i["game"], i.get("series") or short_product(i)), []).append(i)
+    for (slug, name, game, series), items in groups.items():
+        base = f"{slug}|{game}|{series}"
+        st = min(parse_dt(i["start"]) for i in items)
+        if base + "|pre" not in q and base not in done:
+            q[base + "|pre"] = {"at": (t + timedelta(minutes=1)).isoformat(),
+                                "text": compose_big(name, game, series, items, settings, slug=slug, pre=True)}
+            done[base] = t.isoformat()  # 「見つけたばかり」の速報（post_big）は出さない＝予告がその代わり
+            log(f"大手の予告: {base}（受付開始 {st:%m/%d %H:%M}）")
+        if base + "|start" not in q and base + "|start" not in done:
+            q[base + "|start"] = {"at": st.isoformat(),
+                                  "text": compose_big(name, game, series, items, settings, started=True, slug=slug)}
+            log(f"大手の受付開始ポストを予約: {base} {st:%m/%d %H:%M}")
     save_json("x_meta.json", meta)
 
 

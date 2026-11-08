@@ -69,6 +69,11 @@ def main():
             log(f"拾い漏れチェック: スキップ {e}")
         post_all(s)
         try:
+            from xpost import plan_big_queue
+            plan_big_queue(s)  # 11/9：大手の抽選の予告（1分後）と受付開始（その時刻）のポストを予約（Workerが出す）
+        except Exception as e:
+            log(f"大手の予告: スキップ {e}")
+        try:
             post_big(s)  # 大手の抽選の速報（見つけたらすぐ・リンク付き）
         except Exception as e:
             log(f"大手の速報: スキップ {e}")

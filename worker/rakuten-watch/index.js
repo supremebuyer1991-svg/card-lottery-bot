@@ -1,5 +1,6 @@
 import { pushApi, runPush, pushStats } from "./push.js";
 import { runNewsets, newsetsStatus } from "./newsets.js";
+import { runXQueue, xqueueStatus } from "./xqueue.js";
 // 楽天ブックスのトレカの見張り（Cloudflare Worker・1分おき）
 // 楽天市場API（shopCode=book）で「注文できない(0)」→「注文できる(1)」に変わった商品を見つけたら、
 // Xに楽天アフィリエイトのリンク付きで自動投稿する。前の状態は KV（STATE）に置く。
@@ -279,6 +280,8 @@ export default {
     if (new Date(event.scheduledTime).getUTCMinutes() % 2 === 0) ctx.waitUntil(runAmazon(env));
     // 締切の通知は10分おき（11/7）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 3) ctx.waitUntil(runPush(env));
+    // 大手の抽選の予告・受付開始ポスト：毎分（11/9）
+    ctx.waitUntil(runXQueue(env, tweet));
     // 新弾の発表の見張り：10分おき（11/8）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 6) ctx.waitUntil(runNewsets(env, tweet));
   },
@@ -300,6 +303,7 @@ export default {
       const am = Object.entries(az.items || {}).filter(([, v]) => v === "buy" || v === "invite").map(([k, v]) => ({ ...(az.info || {})[k], a: v })).filter((x) => x.n);
       return Response.json({ at: st.last?.at, amz_at: az.last?.at, rakuten: rk, amazon: am }, { headers: { "Cache-Control": "max-age=60" } });
     }
+    if (u.pathname === "/xqueue") return Response.json(await xqueueStatus(env));
     if (u.pathname === "/newsets") return Response.json(await newsetsStatus(env));
     if (u.pathname === "/newsets/dry") return Response.json(await runNewsets(env, tweet, { dry: true }));
     if (u.pathname === "/rates") return Response.json(await rates(env), { headers: { "Cache-Control": "max-age=300" } });
