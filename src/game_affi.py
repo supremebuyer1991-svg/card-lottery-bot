@@ -44,7 +44,10 @@ def _n(s):
 
 def keyword(name):
     """楽天で探すときの語（受付の言葉・「本体」などを外したもの）"""
-    return " ".join(t for t in _split(name) if _n(t) not in QUIET)
+    # 楽天は「半角1文字だけの語」（Switch 2 の「2」など）があると keyword is not valid で断る。
+    # その語は検索語から外す（商品が合っているかの確認 match() では、元の名前の語のまま確かめる）
+    words = [t for t in _split(name) if _n(t) not in QUIET and not re.fullmatch(r"[\x21-\x7e]", t)]
+    return " ".join(words)
 
 
 def _split(name):
@@ -103,12 +106,24 @@ def thumb(url, px=300):
     return url
 
 
+def _tcg_setting(key):
+    """トレカ側の設定（config/settings.yaml）の値。楽天・Amazonのアフィリエイトの番号は人ごとに1つなので、
+    ゲーム側に入っていなければトレカ側と同じものを使う"""
+    try:
+        import yaml
+        return str((yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8")) or {}).get(key) or "")
+    except Exception:
+        return ""
+
+
 def affiliate_id(settings):
-    return (os.environ.get("RAKUTEN_AFFILIATE_ID_GAME") or settings.get("rakuten_affiliate_id") or os.environ.get("RAKUTEN_AFFILIATE_ID") or "").strip()
+    return (os.environ.get("RAKUTEN_AFFILIATE_ID_GAME") or settings.get("rakuten_affiliate_id") or os.environ.get("RAKUTEN_AFFILIATE_ID")
+            or _tcg_setting("rakuten_affiliate_id")).strip()
 
 
 def amazon_tag(settings):
-    return (os.environ.get("AMAZON_TAG_GAME") or settings.get("amazon_tag") or os.environ.get("AMAZON_TAG") or "").strip()
+    return (os.environ.get("AMAZON_TAG_GAME") or settings.get("amazon_tag") or os.environ.get("AMAZON_TAG")
+            or _tcg_setting("amazon_tag")).strip()
 
 
 def rakuten_link(url, aff):
@@ -225,12 +240,24 @@ def update(settings, items, fetch=None, sleep=1.1):
             params.update(keyword=word if how == "jan" else keyword(word), shopCode="book")
         if aff:
             params["affiliateId"] = aff
+        if called and sleep:
+            time.sleep(sleep)   # 楽天は1秒に1回まで。失敗した後も必ず間をあける
         called += 1
-        try:
-            found = fetch(params)
-        except Exception as e:
-            log(f"楽天（ゲーム）: {word} 取得失敗 {e}")
-            if "401" in str(e) or "403" in str(e):
+        found, err = None, None
+        for attempt in range(2):
+            try:
+                found = fetch(params)
+                break
+            except Exception as e:
+                err = e
+                if "429" in str(e) and attempt == 0:
+                    if sleep:
+                        time.sleep(max(sleep, 1) * 3)   # 混んでいたら少し待ってもう1回だけ
+                    continue
+                break
+        if found is None:
+            log(f"楽天（ゲーム）: {word} 取得失敗 {err}")
+            if "401" in str(err) or "403" in str(err):
                 break   # 鍵・Referer の設定ミス。無駄に叩かない
             continue
         best = None
@@ -254,8 +281,6 @@ def update(settings, items, fetch=None, sleep=1.1):
         else:
             cache[key] = {"itemUrl": "", "checkedAt": t.isoformat()}   # 見つからないものも記録（24時間は探さない）
             log(f"楽天（ゲーム）: {word[:30]} 該当なし")
-        if sleep:
-            time.sleep(sleep)
     if called:
         save_json(CACHE, cache)
     return cache

@@ -239,7 +239,15 @@ else:
     game_affi._models = lambda: {"ps5": {"PS5 ミッドナイト ブラック": {"amazon_asin": "B0MIDNIGHT", "rakuten_url": "https://books.rakuten.co.jp/rb/99999999/"}}}
     lk = game_affi.links_for(lots3[1], {}, s3)
     assert lk["az"] == "https://www.amazon.co.jp/dp/B0MIDNIGHT?tag=g-22" and "books.rakuten.co.jp%2Frb%2F99999999" in lk["rk"]["u"] and "img" not in lk["rk"]
-    assert "az" not in game_affi.links_for(lots3[1], {}, dict(s3, amazon_tag=""))            # タグが無ければ Amazon は出さない
+    assert game_affi.amazon_tag({}) == game_affi._tcg_setting("amazon_tag") != ""            # ゲーム側が空ならトレカ側と同じタグ
+    assert game_affi.affiliate_id({}) == game_affi._tcg_setting("rakuten_affiliate_id") != ""
+    _tcg = game_affi._tcg_setting
+    game_affi._tcg_setting = lambda k: ""
+    assert "az" not in game_affi.links_for(lots3[1], {}, dict(s3, amazon_tag=""))            # タグがどこにも無ければ Amazon は出さない
+    game_affi._tcg_setting = _tcg
+    # 楽天：半角1文字の語は検索語から外す（keyword is not valid の対策）。429 は待ってもう1回、間は毎回あける
+    assert game_affi.keyword("Nintendo Switch 2 選べるソフト セット") == "Nintendo Switch 選べるソフト セット"
+    assert game_affi.keyword("PlayStation 5 ミッドナイト ブラック") == "PlayStation ミッドナイト ブラック"
     # JSの文法チェック
     jsp.write_text(re.findall(r"<script>(.*?)</script>", top3, re.S)[-1], encoding="utf-8")
     assert subprocess.run(["node", "--check", str(jsp)]).returncode == 0
