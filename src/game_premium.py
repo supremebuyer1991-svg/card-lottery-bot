@@ -55,7 +55,8 @@ def _lookup_teika(jan, settings, fetch=None):
         p = it.get("itemPrice")
         if p:
             url = (it.get("itemUrl") or "").split("?")[0]
-            return {"price": int(p), "itemUrl": url, "img": game_affi._image(it), "title": it.get("itemName") or ""}
+            return {"price": int(p), "itemUrl": url, "img": game_affi._image(it), "title": it.get("itemName") or "",
+                    "caption": (it.get("itemCaption") or "")[:1500]}
     return None
 
 
@@ -97,7 +98,7 @@ def _books_info(jan, settings):
                 i = items[0].get("Item", items[0])
                 return {"list_price": int(i.get("listPrice") or 0) or None,
                         "sales_date": i.get("salesDate") or "", "maker": i.get("label") or i.get("makerCode") or "",
-                        "hardware": i.get("hardware") or "", "caption": (i.get("itemCaption") or "")[:400], "title": i.get("title") or ""}
+                        "hardware": i.get("hardware") or "", "caption": (i.get("itemCaption") or "")[:1500], "title": i.get("title") or ""}
             return {}
         if not _books_ok.get("logged"):
             log(f"楽天ブックス（ゲーム）: {url} → {r.status_code} {r.text[:120]}")
@@ -270,6 +271,8 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".chart .tkl,.chart .ax{fill:#8a93a6;font-size:12px}.pm-big{font-size:28px;font-weight:900;font-family:var(--font-num)}"
        ".pm-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.pm-row img{border-radius:10px;background:#fff}"
        ".shopb{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.shopb .btn{padding:10px 14px;border-radius:6px;font-weight:900;text-decoration:none}"
+       ".follow{background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:14px 16px;margin:16px 0}.follow p{margin:4px 0}"
+       ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".btn-rk{background:#bf0000;color:#fff}.btn-yh{background:#ff0033;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-az{background:#ff9900;color:#0b0d12}")
 
 
@@ -284,9 +287,21 @@ def info_rows(x):
     rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), ("定価（税込）", f'{x["teika"]:,}円' if x.get("teika") else ""),
             ("型番", model), ("対応機種", x.get("hardware")), ("JANコード", x["jan"])]
     out = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in rows if v)
-    if x.get("caption"):
-        out += f'<tr><th>説明</th><td>{escape(x["caption"][:200])}…</td></tr>'
     return out
+
+
+def features_html(x):
+    """商品の詳細・特徴（楽天ブックスの商品説明から）"""
+    c = re.sub(r"\s+", " ", x.get("caption") or "").strip()
+    if not c:
+        return ""
+    parts = [p.strip() for p in re.split(r"(?<=。)|■|◆|●|【", c) if len(p.strip()) >= 6][:8]
+    return "<h2>商品の詳細・特徴</h2><ul>" + "".join(f"<li>{escape(p.strip('】 '))}</li>" for p in parts) + "</ul><p class=\"note\">商品説明は楽天ブックスの商品情報からの抜粋です。</p>"
+
+
+FOLLOW = ('<div class="follow"><p><b>🔔 このページでは、楽天・Amazonで定価で販売されていないかを定期的にチェックしています。</b></p>'
+          '<p>販売が始まったら X（@a9994aaa）ですぐ通知するので、フォロー＆通知ONで待っててね！</p>'
+          '<a class="btn btn-x" href="https://x.com/intent/follow?screen_name=a9994aaa" target="_blank" rel="noopener">Xでフォローする</a></div>')
 
 
 def _ratio_html(x):
@@ -351,9 +366,51 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>'
-             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>'
-             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}'
-             f'<h2>買えるところ</h2><div class="shopb">{shops}</div>{rel_html}'
+             f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>'
+             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}'
+             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
              f'<h2>買取店ごとの買取価格（新品・上位5店）</h2><table class="pm-t">{top}</table>{note}', f"premium/{x['jan']}/")
-    log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）")
+    # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
+    import hashlib
+    from dedupe import norm_product
+    import gamecats
+    cats_by = gamecats.by_id(False)
+    groups_ = {}
+    for r in live_rows:
+        nm = (r.get("product") or "").strip()
+        if not nm or any(min(ol._score(nm, x["name"]), ol._score(x["name"], nm)) >= 0.75 for x in allx):
+            continue
+        groups_.setdefault(norm_product(nm), []).append(r)
+    made = 0
+    for key, rs in groups_.items():
+        r0 = max(rs, key=lambda r: (bool((r.get("rk") or {}).get("u")), bool(r.get("az")), len(r.get("product") or "")))
+        nm = re.sub(r"\s+", " ", r0.get("product") or "")[:70]
+        slug = "p" + hashlib.sha1(key.encode()).hexdigest()[:10]
+        rel = rs[:8]
+        rel_html = "<h2>この商品の抽選・予約・発売の情報</h2><ul>" + "".join(
+            f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>"
+        rel_date = next((r.get("end") for r in rs if r.get("kind") == "release" and r.get("end")), "")
+        rd = parse_dt(rel_date) if rel_date else None
+        before = bool(rd and rd > upd)
+        souba = "予測不能（発売前）" if before else "買取価格の情報はまだありません"
+        price = next((r.get("price") for r in rs if r.get("price")), "")
+        q = quote(nm[:40])
+        rk = (r0.get("rk") or {})
+        shops = (f'<a class="btn btn-rk" href="{escape(rk["u"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk.get("u") else "") + \
+            (f'<a class="btn btn-az" href="{escape(r0["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if r0.get("az") else "") + \
+            f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
+            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
+        img = f'<img src="{escape(rk["img"])}" alt="{escape(nm)}" width="120" height="120" loading="lazy">' if rk.get("img") else ""
+        cat = (cats_by.get(r0.get("game")) or {}).get("short", "")
+        info = [("商品名", nm), ("カテゴリ", cat), ("発売日", f"{rd.year}年{rd.month}月{rd.day}日" if rd else ""), ("定価（税込）", price),
+                ("JANコード", r0.get("jan") or "")]
+        info_h = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in info if v)
+        page(f"{nm} 抽選・予約・再販と相場・定価【{md}更新】｜{brand['name']}",
+             f"{nm}の抽選・予約・再販の受付状況、定価、相場（{souba}）、楽天・Amazonの販売ページ。販売開始はXで通知。",
+             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>'
+             f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
+             f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>'
+             f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
+        made += 1
+    log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）、抽選・発売の商品ページ：{made}件")
     return paths, items

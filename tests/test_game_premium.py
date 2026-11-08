@@ -37,3 +37,12 @@ assert "定価以上で売れる" in (out / "premium/index.html").read_text(enco
 assert (out / "souba/index.html").exists() and (out / "premium/4902370552683/index.html").exists()          # 定価より安い商品も相場ページは作る
 assert "<h2>商品情報</h2>" in p and "JANコード" in p and "定価（税込）" in p
 print("PREMIUM OK")
+# 抽選・発売日の商品（買取相場に無いもの）にも商品ページ。発売前は相場「予測不能」、フォローの案内
+w("lotteries.json", {"r1": {"key": "r1", "status": "listed", "kind": "release", "game": "ps5", "store": "SIE", "product": "PS5 新色 テスト", "end": "2099-01-01T00:00+09:00", "price": "55,000円", "url": "https://x", "found_at": "2026-11-08T10:00+09:00"}})
+out2 = pathlib.Path(tempfile.mkdtemp())
+sitegen_game.build(common.load_settings(), out_dir=out2)
+ip = [f for f in (out2 / "item").rglob("index.html")]
+assert len(ip) == 1, ip
+t = ip[0].read_text(encoding="utf-8")
+assert "予測不能（発売前）" in t and "定期的にチェック" in t and "intent/follow?screen_name=a9994aaa" in t and "55,000円" in t
+print("ITEM PAGES OK")
