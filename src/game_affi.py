@@ -171,7 +171,7 @@ def manual_of(i, models=None):
         from sitegen_game import canon_series   # 別名（PlayStation 5 Pro → PS5 Pro など）でも見つける
         m = by.get(canon_series(i["game"], i["series"]))
     m = m or {}
-    return {k: str(i.get(k) or m.get(k) or "").strip() for k in ("rakuten_url", "amazon_asin", "jan")}
+    return {k: str(i.get(k) or m.get(k) or "").strip() for k in ("rakuten_url", "amazon_asin", "jan", "yahoo_url")}
 
 
 def query_of(i, man=None):
@@ -302,4 +302,13 @@ def links_for(i, cache, settings, models=None):
     az = amazon_link(man["amazon_asin"], amazon_tag(settings))
     if az:
         out["az"] = az
+    # Yahoo!ショッピング（商品ページの指定があればそれ、なければ商品名で探すページ）・メルカリ（商品名で探すページ）
+    from urllib.parse import quote
+    import game_souba
+    q = game_souba._q(i.get("product") or i.get("series") or "")
+    yh = (man.get("yahoo_url") or "").strip()
+    if yh or q:
+        out["yh"] = yh or f"https://shopping.yahoo.co.jp/search?p={quote(q)}"
+    if q:
+        out["mc"] = f"https://jp.mercari.com/search?keyword={quote(q)}&status=on_sale"
     return out

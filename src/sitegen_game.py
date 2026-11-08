@@ -141,6 +141,7 @@ footer a{color:var(--ink-2)}
 .shopb .btn{flex:1 1 160px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:900;font-size:15px;text-decoration:none}
 .btn-rk{background:#bf0000;color:#fff}.btn-rk:hover{background:#d61a1a;color:#fff}
 .btn-az{background:#ff9900;color:#0b0d12}.btn-az:hover{background:#ffad33;color:#0b0d12}
+.btn-yh{background:#ff0033;color:#fff}.btn-yh:hover{background:#ff3355;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-mc:hover{background:#ffecea;color:#ea352d}
 .credit{display:block;margin-top:6px}
 """
 
@@ -149,17 +150,19 @@ CREDIT = '<p>商品の写真は楽天ブックス（楽天市場）の商品の�
 SHOP_REL = "nofollow sponsored noopener"
 
 
-def shop_buttons(rk, az, name=""):
-    """「楽天で見る」「Amazonで見る」（その商品そのもののページ。検索結果のページにはしない）"""
+def shop_buttons(rk, az, name="", yh="", mc=""):
+    """「楽天で見る」「Amazonで見る」（その商品そのもののページ）・Yahoo!ショッピング・メルカリ（商品名で探すページ）"""
     who = f'<span class="sr">：{escape(name)}</span>' if name else ""
     return ((f'<a class="btn btn-rk" href="{escape(rk["u"])}" target="_blank" rel="{SHOP_REL}">楽天で見る{who}</a>' if (rk or {}).get("u") else "")
-            + (f'<a class="btn btn-az" href="{escape(az)}" target="_blank" rel="{SHOP_REL}">Amazonで見る{who}</a>' if az else ""))
+            + (f'<a class="btn btn-az" href="{escape(az)}" target="_blank" rel="{SHOP_REL}">Amazonで見る{who}</a>' if az else "")
+            + (f'<a class="btn btn-yh" href="{escape(yh)}" target="_blank" rel="{SHOP_REL}">Yahoo!で見る{who}</a>' if yh else "")
+            + (f'<a class="btn btn-mc" href="{escape(mc)}" target="_blank" rel="nofollow noopener">メルカリで探す{who}</a>' if mc else ""))
 
 
 def _shop_detail(html, snap):
     """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
     sh = snap.get("shop") or {}
-    b = shop_buttons(sh.get("rk"), sh.get("az"))
+    b = shop_buttons(sh.get("rk"), sh.get("az"), yh=sh.get("yh", ""), mc=sh.get("mc", ""))
     if b:
         html = html.replace('<div class="sub-acts">', f'<div class="shopb">{b}</div><div class="sub-acts">', 1)
     if snap.get("image"):
@@ -651,7 +654,7 @@ def build(settings=None, out_dir=None, force=False):
             snap["image"], snap["img_url"] = i["rk"]["img"], i["rk"]["u"]
         else:
             snap.pop("image", None), snap.pop("img_url", None)
-        snap["shop"] = {k: i[k] for k in ("rk", "az") if i.get(k)}
+        snap["shop"] = {k: i[k] for k in ("rk", "az", "yh", "mc") if i.get(k)}
         pages[i["key"]] = {"snap": snap, "path": i["lpath"], "end": i.get("end"), "seen": today_iso}
     for k, rec in list(pages.items()):
         snap = dict(rec["snap"])
