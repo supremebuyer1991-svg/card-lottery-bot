@@ -63,6 +63,7 @@ h1{font-size:24px;line-height:1.35;margin:4px 0;font-weight:900}
 .btn-o{border:1px solid #3a4152;color:var(--ink);font-weight:700}.btn-o:hover{border-color:var(--mute);color:var(--ink)}
 .btn-rk{background:#bf0000;color:#fff}.btn-rk:hover{background:#d61a1a;color:#fff}
 .btn-az{background:#ff9900;color:#0b0d12}.btn-az:hover{background:#ffad33;color:#0b0d12}
+.btn-yh{background:#ff0033;color:#fff}.btn-yh:hover{background:#ff3355;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-mc:hover{background:#ffecea;color:#ea352d}
 .acts{position:relative;z-index:1;flex:none;display:flex;flex-wrap:wrap;gap:8px}
 /* 商品写真のあるカード（写真は左。押すと楽天の商品ページ） */
 .row.has-ph{display:grid;grid-template-columns:132px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:18px;row-gap:6px;align-items:start;padding:16px 18px}
@@ -275,6 +276,8 @@ __SIDEBAR__
     var who = '<span class="sr">：' + esc(short(nm(i), 30)) + "</span>", b = "";
     if (i.rk && i.rk.u) b += '<a class="btn btn-rk" href="' + esc(i.rk.u) + '" ' + SHOP + ">楽天で見る" + who + "</a>";
     if (i.az) b += '<a class="btn btn-az" href="' + esc(i.az) + '" ' + SHOP + ">Amazonで見る" + who + "</a>";
+    if (i.yh) b += '<a class="btn btn-yh" href="' + esc(i.yh) + '" ' + SHOP + ">Yahoo!で見る" + who + "</a>";
+    if (i.mc) b += '<a class="btn btn-mc" href="' + esc(i.mc) + '" target="_blank" rel="nofollow noopener">メルカリで探す' + who + "</a>";
     return b;
   }
   function rowHtml(i, ph, now) {

@@ -228,7 +228,8 @@ else:
     assert 'class="btn btn-rk"' in d1 and "楽天で見る" in d1 and "https://www.amazon.co.jp/dp/B0TEST1234?tag=g-22" in d1 and "Amazonで見る" in d1
     assert "商品の写真は楽天ブックス" in d1
     d2 = (out3 / "l/p2/index.html").read_text(encoding="utf-8")
-    assert 'class="pics' not in d2 and "楽天で見る" not in d2 and "Amazonで見る" not in d2 and 'class="shopb"' not in d2 and "商品の写真は楽天ブックス" not in d2
+    assert 'class="pics' not in d2 and "楽天で見る" not in d2 and "Amazonで見る" not in d2 and "商品の写真は楽天ブックス" not in d2
+    assert "メルカリで探す" in d2 and "jp.mercari.com/search?keyword=" in d2 and "Yahoo!で見る" in d2          # 楽天・Amazonが無くても、Yahoo!・メルカリは出す
     # 楽天・Amazon のリンクは、どのページでも検索結果のページではない
     for f_ in out3.rglob("*.html"):
         for u_ in re.findall(r"https?://[^\"'\s<>]*(?:rakuten|amazon)[^\"'\s<>]*", f_.read_text(encoding="utf-8")):
