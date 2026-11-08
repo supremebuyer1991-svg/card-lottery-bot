@@ -74,6 +74,42 @@ sources:
     every_hours: 8
     url: https://news.google.com/rss/search?q=%E3%82%B2%E3%83%BC%E3%83%A0+%E7%A6%8F%E8%A2%8B+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
+  # --- 入荷Nowと同じ範囲（11/8 追加）：Xbox・PCパーツ・アーセナルベース・ベアブリック ---
+  - id: gnews_xbox
+    game: xbox
+    name: Googleニュース「Xbox 抽選 予約」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=Xbox+%E6%8A%BD%E9%81%B8+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_gpu
+    game: pc_parts
+    name: Googleニュース「RTX 5090 在庫」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=RTX+5090+%E5%9C%A8%E5%BA%AB+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_cpu
+    game: pc_parts
+    name: Googleニュース「9800X3D 在庫」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=9800X3D+%E5%9C%A8%E5%BA%AB+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_arsenal
+    game: game_limited
+    name: Googleニュース「アーセナルベース 再販」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%82%A2%E3%83%BC%E3%82%BB%E3%83%8A%E3%83%AB%E3%83%99%E3%83%BC%E3%82%B9+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_bearbrick
+    game: bearbrick
+    name: Googleニュース「ベアブリック 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%99%E3%82%A2%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
   # --- 入荷Now（ゲーム機の抽選・入荷のまとめ記事。表はAIを使わず読む）。文章は転載しない・記事URLは載せない ---
   - id: nyuka_now_game
     game: auto
@@ -81,7 +117,7 @@ sources:
     type: html_index
     every_hours: 4
     url: https://nyuka-now.com/archives/category/restock
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "福袋", "ガンプラ", "一番くじ", "フィギュア"]
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "RTX", "GeForce", "Radeon", "Ryzen"]
     max_articles: 10
     parser: nyukanow
     quote: false
