@@ -88,6 +88,7 @@ lotteries:
     price: "63,980円（税込）"
     conditions: マリオカート ワールド／Nintendo Switch Sports Resort／トモダチコレクション わくわく生活 から1本をダウンロード番号で選べる（番号の有効期限 2027年3月31日）。
     url: https://www.nintendo.co.jp/corporate/release/2026/261006.html
+    amazon_asin: B0HM3FKH8L   # Amazonの商品ページ（オーナーが確認して貼ったURL。ソフトはトモダチコレクションの組み合わせ）
 
   - slug: ps5-midnight-black-release-1119
     game: ps5
@@ -100,6 +101,7 @@ lotteries:
     price: "55,000円（税込）"
     conditions: 数量限定。日本語・日本地域のPSNアカウント専用。ディスクドライブは別売（ミッドナイト ブラック、同日発売）。予約は10/20から各店で順次。
     url: ""
+    amazon_asin: B0HN71N1KR   # Amazonの商品ページ（オーナーが確認して貼ったURL）
     # source: https://www.inside-games.jp/article/2026/10/20/189523.html
 
   - slug: gunpla-hg-gundam-ashtaron-1128
