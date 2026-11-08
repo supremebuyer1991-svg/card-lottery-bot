@@ -751,12 +751,14 @@ def _og_photo(url):
     return im
 
 
-def og_image(path, game_label, color, title, rows, sub="", photo=None):
+def og_image(path, game_label, color, title, rows, sub="", photo=None, brand=None):
     """弾ページの共有画像（XやLINEにリンクを貼ったときに出る画像）。1200×630。
-    商品写真があれば右上に入れる（Googleの「おすすめ（Discover）」やXで目に止まりやすくする・11/7）"""
+    商品写真があれば右上に入れる（Googleの「おすすめ（Discover）」やXで目に止まりやすくする・11/7）
+    brand … (サイト名, ドメイン)。省略＝トレカ抽選ナビ（姉妹サイトは sitegen_game から渡す）"""
     import hashlib
     import shutil
-    ck = Path(".cache/og") / (hashlib.md5(repr(("v2", game_label, color, title, rows, sub, photo)).encode()).hexdigest() + ".png")
+    bname, bdom = brand or ("トレカ抽選ナビ", "tcg-chusen.com")
+    ck = Path(".cache/og") / (hashlib.md5(repr(("v2", game_label, color, title, rows, sub, photo) + ((bname, bdom) if brand else ())).encode()).hexdigest() + ".png")
     if ck.exists():  # 中身が前回と同じなら作り直さない（GitHub Actions の時間を減らす。11/7）
         path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ck, path)
@@ -801,8 +803,8 @@ def og_image(path, game_label, color, title, rows, sub="", photo=None):
         d.text((88, y + 26), k, font=F("Bold", 27), fill="#94a3b8", anchor="lm")
         d.text((W - 88, y + 26), v, font=F("Black", 32), fill=color if hl else "#f8fafc", anchor="rm")
         y += 62
-    d.text((60, H - 26), "トレカ抽選ナビ", font=F("Black", 28), fill="#ffffff", anchor="ls")
-    d.text((W - 60, H - 26), "tcg-chusen.com", font=F("Bold", 26), fill=color, anchor="rs")
+    d.text((60, H - 26), bname, font=F("Black", 28), fill="#ffffff", anchor="ls")
+    d.text((W - 60, H - 26), bdom, font=F("Bold", 26), fill=color, anchor="rs")
     path.parent.mkdir(parents=True, exist_ok=True)
     im.save(path, optimize=True)
     try:

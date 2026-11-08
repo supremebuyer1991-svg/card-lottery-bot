@@ -22,7 +22,14 @@ for _k in _SECRET_NAMES:
             _v = _v[7:]
         os.environ[_k] = "".join(_v.split())
 JST = timezone(timedelta(hours=9))
-STATE_DIR = ROOT / "state"
+
+# サイトの切り替え（SITE=tcg が今まで通りのトレカ抽選ナビ。SITE=game は姉妹サイト「ゲーム・ホビー入荷速報」）
+# 何も指定しなければ tcg。設定は config/（tcg）か config/game/（game）、状態は state/ か state/game/ に分ける
+SITE = (os.environ.get("SITE") or "tcg").strip().lower()
+if SITE not in ("tcg", "game"):
+    SITE = "tcg"
+CONFIG_DIR = ROOT / "config" if SITE == "tcg" else ROOT / "config" / "game"
+STATE_DIR = ROOT / "state" if SITE == "tcg" else ROOT / "state" / "game"
 
 
 def now() -> datetime:
@@ -49,19 +56,25 @@ def _yaml_load(text):
 def load_settings() -> dict:
     # 設定ファイルは一度だけ読んで使い回す（サイトを作る間に2,000回以上読み直していて、GitHub Actions の時間の大半を使っていた。11/7）
     import copy
-    p = ROOT / "config" / "settings.yaml"
+    p = CONFIG_DIR / "settings.yaml"
     mt = p.stat().st_mtime
-    if _SETTINGS_CACHE.get("mt") != mt:
-        _SETTINGS_CACHE.update(mt=mt, v=_yaml_load(p.read_text(encoding="utf-8")))
+    if _SETTINGS_CACHE.get("mt") != mt or _SETTINGS_CACHE.get("p") != str(p):
+        _SETTINGS_CACHE.update(mt=mt, p=str(p), v=_yaml_load(p.read_text(encoding="utf-8")))
     s = copy.deepcopy(_SETTINGS_CACHE["v"])
     s["auto_approve"] = _env_bool("AUTO_APPROVE", s.get("auto_approve", False))
     s["dry_run"] = _env_bool("DRY_RUN", s.get("dry_run", False))
     s["site_url"] = os.environ.get("WP_URL") or s.get("site_url") or ""
+    if SITE == "game":  # ゲーム・ホビー版：カテゴリの名前などは config/game/categories.yaml から組み立てる
+        try:
+            import gamecats
+            gamecats.apply(s)
+        except Exception as e:
+            log(f"カテゴリ設定の読み込みに失敗: {e}")
     return s
 
 
 def load_sources() -> list:
-    return yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8"))["sources"]
+    return yaml.safe_load((CONFIG_DIR / "sources.yaml").read_text(encoding="utf-8"))["sources"]
 
 
 def load_json(name, default):
@@ -72,7 +85,7 @@ def load_json(name, default):
 
 
 def save_json(name, data):
-    STATE_DIR.mkdir(exist_ok=True)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
     (STATE_DIR / name).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -85,8 +98,18 @@ def normalize(s: str) -> str:
 
 
 def lottery_key(item: dict) -> str:
-    """同じ抽選を一意に判定するキー（ゲーム＋店舗＋商品＋締切日）"""
+    """同じ抽選を一意に判定するキー（ゲーム＋店舗＋商品＋締切日）
+    ゲーム・ホビー版の再入荷・先着（締切が無い）は、同じ商品でも日が違えば別の出来事なので、見つけた日も混ぜる。
+    発売日・再販日（release）はお店ではなくメーカーの予定なので、カテゴリ＋商品＋発売日で1件"""
     end = (item.get("end") or "")[:10]
+    kind = item.get("kind")
+    if SITE == "game" and kind == "release":
+        return sha("|".join(["release", item.get("game", ""), normalize(item.get("product")), end]))
+    if SITE == "game" and kind in ("restock", "first_come") and not end:
+        day = (item.get("found_at") or item.get("start") or "")[:10] or now().date().isoformat()
+        item.setdefault("found_at", now().isoformat())
+        return sha("|".join([item.get("game", ""), normalize(item.get("store")),
+                             normalize(item.get("product")), kind, day]))
     return sha("|".join([item.get("game", ""), normalize(item.get("store")),
                          normalize(item.get("product")), end]))
 
@@ -115,11 +138,23 @@ GAME_HINTS = {
 }
 
 
+def game_hints():
+    """ゲーム（カテゴリ）を見分ける手がかり。tcg はこのファイルの GAME_HINTS、game は config/game/categories.yaml の hints"""
+    if SITE == "game":
+        try:
+            import gamecats
+            return gamecats.hints()
+        except Exception:
+            return {}
+    return GAME_HINTS
+
+
 def fix_game(it):
     """商品名・弾名がはっきり別のゲームのものなら、ゲームを直す。直したら True"""
+    hints = game_hints()
     txt = " ".join(str(it.get(k) or "") for k in ("product", "series"))
-    hit = [g for g, r in GAME_HINTS.items() if r.search(txt)]
-    if len(hit) == 1 and it.get("game") != hit[0] and it.get("game") in GAME_HINTS:
+    hit = [g for g, r in hints.items() if r.search(txt)]
+    if len(hit) == 1 and it.get("game") != hit[0] and it.get("game") in hints:
         it["game"] = hit[0]
         return True
     return False

@@ -1,0 +1,58 @@
+# ゲーム・ホビー入荷速報：自分で見つけた抽選・予約・再入荷を手で追加する場所
+# ここに書くと、次の実行でサイトに載り、個別ページ（ https://game-nyuka.com/l/<slug>/ ）が作られます。
+#
+# 書き方
+#   game    … カテゴリ（config/game/categories.yaml の id：ps5 / switch2 / handheld_pc / game_limited / fukubukuro / gunpla / pokecen / beyblade / figure / ichibankuji / chiikawa / lego / tomica）
+#   kind    … 種類：lottery（抽選）/ invite（招待）/ preorder（予約）/ restock（再入荷）/ first_come（先着）/ fukubukuro（福袋）/ release（発売日・再販日）
+#   store   … お店の名前（release のときはメーカー名でOK）
+#   product … 商品名、series … 機種・モデル名（例 PS5 Pro）
+#   channel … online（発送）/ store（店頭受取）
+#   start / end … 受付開始・締切（2026-11-19T10:00 のように「年-月-日T時:分」）。release は end に発売日を書く
+#   price   … 定価（税込・文字列。例 "119,980円"）※転売・フリマの値段は書かない
+#   tags    … 条件（会員 / アプリ / 本人確認 / 購入履歴 / プレイ時間 / PSN必須 / NSO加入 / 前回落選者優先 / 1人1台 / ソフト同時購入 / 要予約金）
+#   url     … 応募・予約ページ
+# 締切を過ぎると自動で「受付終了」になります。終わったものはここから消してOK。
+
+# ---- 書き方の見本（コメントのままなので載りません。URL・日付・値段を公式で確かめてから # を外す）----
+# lotteries:
+#   - slug: sonystore-ps5pro-lottery          # TODO: オーナーが確認（ソニーストアのPS5 Pro抽選：受付期間・条件（プレイ時間60時間など）・URL）
+#     game: ps5
+#     kind: lottery
+#     store: ソニーストア
+#     series: PS5 Pro
+#     product: PlayStation 5 Pro（CFI-7000）本体
+#     channel: online
+#     method: Web抽選（ソニーストアの商品ページから申し込み）→ 当選したら購入メール
+#     conditions: My Sony IDとPSNアカウントの連携が必要。プレイ時間の条件あり（公式の告知で確認）
+#     tags: [PSN必須, プレイ時間, 1人1台]
+#     start: ""        # TODO
+#     end: ""          # TODO
+#     price: ""        # TODO（税込の定価）
+#     url: ""          # TODO
+#
+#   - slug: ps5-midnight-black-preorder        # TODO: オーナーが確認（PS5 ミッドナイト ブラックの予約開始日・各店の予約URL）
+#     game: ps5
+#     kind: preorder
+#     store: ""        # TODO（お店の名前）
+#     series: PS5 ミッドナイト ブラック
+#     product: PlayStation 5 ミッドナイト ブラック 本体
+#     channel: online
+#     start: ""        # TODO（予約開始）
+#     end: ""          # TODO（締切が無ければ空のまま）
+#     price: ""        # TODO
+#     url: ""          # TODO
+#
+#   - slug: yodobashi-otoshidama-2027          # TODO: オーナーが確認（ヨドバシ 夢のお年玉箱 2027 の抽選受付期間・URL）
+#     game: fukubukuro
+#     kind: fukubukuro
+#     store: ヨドバシ.com
+#     series: 夢のお年玉箱 2027
+#     product: 夢のお年玉箱 2027（ゲーム機・ホビーの箱）
+#     channel: online
+#     method: Web抽選（ヨドバシ.comの会員）
+#     tags: [会員]
+#     start: ""        # TODO
+#     end: ""          # TODO
+#     url: ""          # TODO
+
+lotteries: []

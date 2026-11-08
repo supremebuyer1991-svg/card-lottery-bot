@@ -48,7 +48,7 @@ def check():
         log(f"見張り: 実行の確認に失敗 {e}")
     # 2. サイト
     site = (s.get("site_public_url") or "").rstrip("/")
-    for path in ("/", "/pokeka/", "/onepiece/", "/souba/"):
+    for path in (s.get("health_paths") or ("/", "/pokeka/", "/onepiece/", "/souba/")):
         try:
             r = requests.get(site + path, timeout=30, headers={"User-Agent": "Mozilla/5.0 (site-health-check)"})
             if r.status_code != 200 or len(r.text) < 5000:

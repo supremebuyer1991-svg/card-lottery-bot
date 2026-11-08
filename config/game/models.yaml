@@ -1,0 +1,50 @@
+# 機種・モデル（series）のページ設定（/<カテゴリ>/<モデルのslug>/）
+# series_aliases … 同じモデルの別の呼び方 → まとめる名前（別名ごとに薄いページができないように）
+# series_slugs   … ページのアドレス（英数字とハイフン）。ここに無い日本語名は自動の記号になる
+# series_info    … 発売日・定価（公式サイトで確かめたものだけ書く。分からなければ書かない）
+#
+# ※ 値段・発売日は、このファイルを書いた時点では確認できていないので空です（TODO: オーナーが公式サイトで確認して入れる）
+
+series_aliases:
+  ps5:
+    PlayStation 5 Pro: PS5 Pro
+    PlayStation5 Pro: PS5 Pro
+    プレステ5 Pro: PS5 Pro
+    PS5Pro: PS5 Pro
+    PlayStation 5: PS5 本体
+    PlayStation5: PS5 本体
+    プレステ5: PS5 本体
+    PS5 デジタル・エディション: PS5 デジタル・エディション
+    PS5 Digital Edition: PS5 デジタル・エディション
+    PS5 ミッドナイトブラック: PS5 ミッドナイト ブラック
+    PlayStation 5 ミッドナイト ブラック: PS5 ミッドナイト ブラック
+  switch2:
+    Nintendo Switch 2: Switch 2 本体
+    Nintendo Switch2: Switch 2 本体
+    ニンテンドースイッチ2: Switch 2 本体
+    スイッチ2: Switch 2 本体
+    Nintendo Switch 2 マリオカート ワールド セット: Switch 2 マリオカート ワールド セット
+  handheld_pc:
+    Steam Deck OLED: Steam Deck
+    スチームデック: Steam Deck
+    ROG Xbox Ally: ROG Ally
+
+series_slugs:
+  ps5:
+    PS5 Pro: ps5-pro
+    PS5 本体: ps5
+    PS5 デジタル・エディション: ps5-digital-edition
+    PS5 ミッドナイト ブラック: ps5-midnight-black
+  switch2:
+    Switch 2 本体: switch2
+    Switch 2 マリオカート ワールド セット: switch2-mario-kart-world-set
+  handheld_pc:
+    Steam Deck: steam-deck
+    ROG Ally: rog-ally
+    Legion Go: legion-go
+  fukubukuro:
+    夢のお年玉箱 2027: yodobashi-otoshidama-2027
+
+series_info: {}
+#  ps5:
+#    PS5 Pro: {release: "", type: 本体, price: ""}   # TODO: オーナーが公式で確認して入れる（税込の定価）

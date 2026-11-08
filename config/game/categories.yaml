@@ -1,0 +1,192 @@
+# ゲーム・ホビー入荷速報：カテゴリの一覧（カテゴリを増やす＝ここに1ブロック足す ＋ sources.yaml に情報元を足す）
+#
+# groups   … 上のタブのまとまり（ゲーム機／ゲーム関連の限定品／ホビー・おもちゃ）
+# categories の各項目：
+#   id          … プログラム内の名前（英数字。抽選データの game に入る）
+#   group       … 上の groups のどれか
+#   name        … 正式名（AIへの指示・ページの説明文に使う）
+#   short       … 短い名前（タブ・カードのラベル）
+#   slug        … ページのアドレス（/ps5/ のように）
+#   hashtags    … Xの下書きに付けるハッシュタグ
+#   hints       … 商品名からこのカテゴリと分かる言葉（正規表現。別カテゴリに入ってしまった抽選を直すのに使う）
+#   strip_words … 重複をまとめる時に無視する共通の言葉（正規表現。「本体」「同梱版」など）
+#   aff_keywords… 関連商品（Amazon・楽天の検索リンク）に使う言葉
+#   color       … カテゴリの色（カードのラベル・共有画像）
+#   kinds       … このカテゴリで出てくる種類（lottery=抽選 / invite=招待 / preorder=予約 / restock=再入荷 / first_come=先着 / fukubukuro=福袋 / release=発売日・再販日）
+#   enabled     … false にすると集めない・ページも作らない（情報元を用意するまで）
+
+groups:
+  console: ゲーム機
+  game_goods: ゲーム関連の限定品
+  hobby: ホビー・おもちゃ
+
+categories:
+  - id: ps5
+    group: console
+    name: PS5（PlayStation 5）本体・PS5 Pro
+    short: PS5
+    slug: ps5
+    hashtags: "#PS5 #PS5Pro #PS5抽選"
+    hints: "PS5|PlayStation ?5|プレステ5|プレイステーション ?5|DualSense|デュアルセンス"
+    strip_words: "本体|同梱版|同梱|セット|通常版|デジタル・?エディション|Digital ?Edition|CFI-\\w+"
+    aff_keywords: ["PS5 本体", "PS5 コントローラー"]
+    color: "#1b4965"
+    kinds: [lottery, invite, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: switch2
+    group: console
+    name: Nintendo Switch 2 本体
+    short: Switch 2
+    slug: switch2
+    hashtags: "#Switch2 #スイッチ2"
+    hints: "Switch ?2|スイッチ ?2|Nintendo Switch2|ニンテンドースイッチ2"
+    strip_words: "本体|同梱版|同梱|セット|通常版|日本語・?国内専用|多言語対応|マリオカート ?ワールド ?セット"
+    aff_keywords: ["Switch 2 本体", "Switch 2 ケース"]
+    color: "#2a6f97"
+    kinds: [lottery, invite, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: handheld_pc
+    group: console
+    name: 携帯ゲーミングPC（Steam Deck・ROG Ally・Legion Go など）
+    short: 携帯ゲームPC
+    slug: handheld-pc
+    hashtags: "#SteamDeck #ROGAlly #携帯ゲーミングPC"
+    hints: "Steam ?Deck|スチームデック|ROG ?Ally|ROG ?Xbox ?Ally|Legion ?Go|レギオン ?ゴー|MSI ?Claw|AYANEO|GPD ?Win|OneXPlayer|携帯ゲーミング ?PC|ポータブルゲーミング ?PC"
+    strip_words: "本体|モデル|GB|TB|OLED|LCD"
+    aff_keywords: ["Steam Deck", "ROG Ally"]
+    color: "#0b7285"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: game_limited
+    group: game_goods
+    name: ゲームの限定モデル・同梱版・amiibo・限定グッズ
+    short: 限定・同梱版
+    slug: game-limited
+    hashtags: "#限定版 #同梱版 #amiibo"
+    hints: "amiibo|アミーボ|限定(モデル|版|カラー|デザイン|セット)|同梱版|同梱セット|スペシャル ?エディション|Special ?Edition|コレクターズ ?エディション|Collector'?s ?Edition|数量限定"
+    strip_words: "限定|限定版|同梱版|同梱|セット|通常版|特別版|数量限定"
+    aff_keywords: ["amiibo", "ゲーム 限定版"]
+    color: "#5c4d7d"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: fukubukuro
+    group: game_goods
+    name: ゲーム・ホビーの福袋（お年玉箱など）
+    short: 福袋
+    slug: fukubukuro
+    hashtags: "#福袋2027 #福袋 #お年玉箱"
+    hints: "福袋|お年玉箱|夢のお年玉箱|ハッピーバッグ|HAPPY ?BAG|ラッキーバッグ|LUCKY ?BAG|初売り"
+    strip_words: "福袋|お年玉箱|夢の|2027|2026|年|の夢"
+    aff_keywords: ["福袋 ゲーム"]
+    color: "#9b2226"
+    kinds: [lottery, preorder, first_come, fukubukuro, release]
+    enabled: true
+
+  # ---- ホビー・おもちゃ ----
+  - id: gunpla
+    group: hobby
+    name: ガンプラ（ガンダムのプラモデル）
+    short: ガンプラ
+    slug: gunpla
+    hashtags: "#ガンプラ #ガンプラ再販 #プレバン"
+    hints: "ガンプラ|ガンダム|GUNDAM|HGUC|HGCE|\\bHG\\b|\\bRG\\b|\\bMG\\b|\\bPG\\b|\\bMGEX\\b|\\bMGSD\\b|\\bSD\\b|\\bEG\\b|\\bFM\\b|ジオング|ザク|ガンダムベース|プレミアムバンダイ.{0,10}(HG|RG|MG|PG)"
+    strip_words: "プラモデル|ガンプラ|\\d+/\\d+|スケール|再販|再生産|出荷|バンダイスピリッツ|BANDAI ?SPIRITS"
+    aff_keywords: ["ガンプラ", "ガンプラ 新作"]
+    color: "#3a5a40"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: pokecen
+    group: hobby
+    name: ポケモンセンター限定グッズ（ぬいぐるみ・フィギュア・雑貨）
+    short: ポケセン限定
+    slug: pokecen
+    hashtags: "#ポケモンセンター #ポケセン #ポケモングッズ"
+    hints: "ポケモンセンター|ポケセン|ポケモングッズ|Pok[eé]mon ?Center"
+    strip_words: "ポケモンセンター|ポケモンセンターオンライン|ポケセン|限定|オリジナル"
+    aff_keywords: ["ポケモン ぬいぐるみ", "ポケモンセンター"]
+    color: "#b5541c"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: beyblade
+    group: hobby
+    name: ベイブレードX
+    short: ベイブレードX
+    slug: beyblade
+    hashtags: "#ベイブレードX #ベイブレード"
+    hints: "ベイブレード|BEYBLADE|ベイ(ランチャー|スタジアム|バトル)"
+    strip_words: "ベイブレードX|ベイブレード|BEYBLADE ?X|BX-\\d+|UX-\\d+|CX-\\d+"
+    aff_keywords: ["ベイブレードX"]
+    color: "#7f4f24"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: figure
+    group: hobby
+    name: フィギュア（S.H.Figuarts・METAL BUILD・ねんどろいど など）
+    short: フィギュア
+    slug: figure
+    hashtags: "#フィギュア #SHFiguarts #魂ウェブ商店"
+    hints: "S\\.?H\\.?Figuarts|フィギュアーツ|METAL ?BUILD|メタルビルド|ROBOT魂|魂ウェブ|魂ネイション|figma|ねんどろいど|スケールフィギュア|1/7 ?スケール|プライズフィギュア"
+    strip_words: "フィギュア|S\\.?H\\.?Figuarts|魂ウェブ商店|魂ウェブ|限定|受注"
+    aff_keywords: ["S.H.Figuarts", "フィギュア 予約"]
+    color: "#4a4e69"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: ichibankuji
+    group: hobby
+    name: 一番くじ（一番くじONLINE・店頭）
+    short: 一番くじ
+    slug: ichibankuji
+    hashtags: "#一番くじ #一番くじONLINE"
+    hints: "一番くじ|いちばんくじ|1番くじ|ICHIBAN ?KUJI"
+    strip_words: "一番くじ|ONLINE|オンライン|発売|取扱店"
+    aff_keywords: ["一番くじ"]
+    color: "#bc6c25"
+    kinds: [lottery, first_come, release]
+    enabled: true
+
+  - id: chiikawa
+    group: hobby
+    name: ちいかわ（限定グッズ・抽選・受注）
+    short: ちいかわ
+    slug: chiikawa
+    hashtags: "#ちいかわ #ちいかわグッズ"
+    hints: "ちいかわ|ハチワレ|うさぎ.{0,4}ちいかわ|ちいかわらんど|CHIIKAWA"
+    strip_words: "ちいかわ|限定|グッズ|受注|ちいかわらんど"
+    aff_keywords: ["ちいかわ グッズ"]
+    color: "#c9a227"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: lego
+    group: hobby
+    name: レゴ（LEGO）限定・再販
+    short: レゴ
+    slug: lego
+    hashtags: "#レゴ #LEGO"
+    hints: "レゴ|LEGO"
+    strip_words: "レゴ|LEGO|限定|再販|セット"
+    aff_keywords: ["レゴ"]
+    color: "#9d0208"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: tomica
+    group: hobby
+    name: トミカ（限定・抽選）
+    short: トミカ
+    slug: tomica
+    hashtags: "#トミカ #トミカプレミアム"
+    hints: "トミカ|TOMICA"
+    strip_words: "トミカ|TOMICA|限定|プレミアム|発売記念仕様"
+    aff_keywords: ["トミカ"]
+    color: "#1d3557"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true

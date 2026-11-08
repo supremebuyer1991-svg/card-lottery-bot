@@ -1,0 +1,79 @@
+# ゲーム・ホビー入荷速報（game-nyuka.com）の動作設定
+# ※ トレカ抽選ナビの設定（config/settings.yaml）とは別。SITE=game のときだけ読まれる
+# カテゴリ（PS5・ガンプラ など）は config/game/categories.yaml に書く（game_names はそこから自動で入る）
+
+auto_approve: true        # true=見つけたらサイトに載せる（Xへの自動投稿はこのサイトでは無し）
+dry_run: false
+min_confidence: 0.7       # AI抽出の自信度がこれ未満は承認待ち（GitHubのIssue）
+max_posts_per_run: 0      # Xの自動投稿は使わない（下書きページ /x-draft.html からコピペで手動投稿）
+big_post: false
+remind_hours_before: 24
+run_hours: [7, 10, 13, 17, 19, 22]   # 自動の実行の時刻（run.yml の cron と同じ・1日6回）
+page_checks_per_run: 20     # 応募ページ（通販・フォーム）を見に行く数（1件につき1日1回）
+deadline_checks_per_run: 30
+no_end_post_days: 10
+no_end_expire_days: 10      # 締切が書かれていない抽選・予約は、見つけてからこの日数で終了に
+no_end_start_days: 14
+no_deadline_kind_days: 3    # 再入荷・先着（締切という考えがない）は、見つけてからこの日数で一覧から外す
+purge_closed_days: 2
+max_entry_days: 120         # 予約は発売日まで長く受け付けることがあるので、トレカ（90日）より長め
+
+# --- X API（従量課金）：このサイトでは使わない（sources.yaml の X は enabled: false）---
+x_read_budget_per_day: 0
+x_read_budget_peak: 0
+x_peak_days_before: 0
+x_read_budget_by_date: {}
+post_link: false
+quote_source: false
+summary_hours: []
+trend_hours: []
+buzz_hour:
+market_hour:
+deadline_post: false
+
+# --- サイト ---
+site_name: ゲーム・ホビー入荷速報
+site_name_en: GAME & HOBBY RESTOCK NEWS
+site_tagline: 定価で買いたいファンのための抽選・予約・再入荷情報
+site_public_url: "https://game-nyuka.com"   # 独自ドメイン（Cloudflare Pages の project は run.yml の CF_PROJECT_GAME）
+theme_color: "#1b3a5c"      # 濃いネイビー（トレカ抽選ナビの赤とは別のブランド）
+accent_color: "#0f8b8d"     # ティール
+ga_id: ""                   # Googleアナリティクスの測定ID（取ったら入れる。空なら入れない）
+google_site_verification: ""   # Search Console の確認コード（取ったら入れる）
+indexnow_key: "a0f3c6d1e9b24f7a8c5d1e2f3a4b5c6d"   # IndexNow の鍵（変えなくてOK）
+x_account: ""               # このサイト用のXアカウントID（@なし）。入れると「Xをフォロー」のボタンが出る   # TODO: オーナーが決める
+site_url: ""                # WordPress は使わない（空のまま）
+
+# アフィリエイト
+amazon_tag: ""              # Amazonアソシエイトのトラッキングタグ（例 xxxx-22）。このサイト用に登録したら入れる   # TODO: オーナーが確認
+rakuten_affiliate_id: ""    # 楽天アフィリエイトID（このサイトをサイト登録してから）   # TODO: オーナーが確認
+amazon_invite:              # トップの一番上に固定で出す「Amazonの招待リクエスト」の案内（url が空なら出さない）
+  enabled: false
+  label: "Amazon 招待リクエスト（PS5・Switch 2）"
+  url: ""                   # TODO: オーナーが確認（Amazonの招待制販売の商品ページ or 検索URL）
+
+# 情報元ではなく「まとめブログ」のドメイン。応募ボタンのリンク先がここなら、リンクを外す
+blog_domains: [nyuka-now.com, cardchusen.com, mikeco-room.com]
+
+# 終了にする抽選（応募先URLの一部）
+closed_urls: []
+
+# 条件のタグ（AIが付ける。絞り込みに使う）
+condition_tags: [会員, アプリ, 本人確認, 購入履歴, プレイ時間, PSN必須, NSO加入, 前回落選者優先, 1人1台, ソフト同時購入, 要予約金, 店舗クレカ, SNS応募, 整理券]
+
+# 種類ごとの表示名（プログラム側にもあるが、ここで上書きできる）
+kind_names:
+  lottery: 抽選
+  invite: 招待
+  preorder: 予約
+  restock: 再入荷
+  first_come: 先着
+  fukubukuro: 福袋
+  release: 発売・再販
+
+# LivePocket常連店の仕組みは使わない
+lp_shops_enabled: false
+threads_each: false
+
+# 見張り（health.py）で開けるか確かめるページ
+health_paths: ["/", "/ps5/", "/now/"]

@@ -6,9 +6,22 @@
 import re
 import unicodedata
 
-from common import load_json, save_json, log, load_settings
+from common import load_json, save_json, log, load_settings, SITE
 
 ACTIVE = ("new", "pending", "approved", "posted", "listed")
+# ゲーム・ホビー版：締切という考えのない種類（再入荷・先着・発売日）は「締切なし同士をまとめる」の対象にしない
+NO_DEADLINE_KINDS = ("restock", "first_come", "release")
+
+
+def _extra_strip():
+    """ゲーム・ホビー版：カテゴリ設定（categories.yaml の strip_words）にある共通の言葉も無視する"""
+    if SITE != "game":
+        return ""
+    try:
+        import gamecats
+        return gamecats.strip_words()
+    except Exception:
+        return ""
 STORE_ALIAS = {"電機": "デンキ", "ヤマダ電器": "ヤマダデンキ", "ビックカメラ": "ビックカメラ", "ヨドバシカメラ": "ヨドバシ",
                "トイザらス": "トイザラス", "ツタヤ": "TSUTAYA", "ふるいち": "古本市場",
                "JUMP SHOP": "ジャンプショップ", "JUMPSHOP": "ジャンプショップ", "Jump Shop": "ジャンプショップ", "ドラスタ": "ドラゴンスター",
@@ -38,6 +51,9 @@ def norm_series(s, aliases):
     s = re.sub(r"[(\[【][^)\]】]*[)\]】]", "", s)
     s = re.sub(r"ポケモンカードゲーム|ポケモンカード|one ?piece ?カードゲーム|mega|強化拡張パック|拡張パック|ブースターパック|"
                r"エクストラブースター|\d+ ?box|box|ボックス|抽選販売|抽選|販売|予約", "", s)
+    ex = _extra_strip()
+    if ex:
+        s = re.sub(ex, "", s, flags=re.I)
     return re.sub(r"[\s・「」『』\-/]", "", s)
 
 
@@ -54,6 +70,8 @@ def _url_key(u):
 
 def _skey(it):
     x = it.get("series") or it.get("product")
+    if SITE == "game":  # ゲーム・ホビー版は弾のまとめ（sitegen の設定）を使わない
+        return norm_series(x, {})
     try:
         from sitegen import item_series
         x = "/".join(sorted(item_series(it.get("game"), x, it.get("product")) or [x]))  # 2つの弾をまとめた抽選は、両方の名前で比べる
@@ -126,7 +144,7 @@ def dedupe(settings=None):
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
             continue
-        g = (it.get("game"), norm_store(it.get("store")), _skey(it), it["end"][:10])
+        g = (it.get("game"), norm_store(it.get("store")), _skey(it), it["end"][:10], it.get("kind") if SITE == "game" else None)
         groups.setdefault(g, []).append(k)
     n = 0
 
@@ -179,12 +197,13 @@ def dedupe(settings=None):
     full = {}
     for k, it in lots.items():
         if it.get("status") in ACTIVE:
-            full.setdefault((it.get("game"), norm_store(it.get("store")), _skey(it)), []).append(k)
+            full.setdefault((it.get("game"), norm_store(it.get("store")), _skey(it), it.get("kind") if SITE == "game" else None), []).append(k)
     for keys in full.values():
         if len(keys) < 2:
             continue
         noend = [k for k in keys if not lots[k].get("end") and not str(lots[k].get("source", "")).startswith("カード抽選")
-                 and not re.search(r"amazon|amzn", (lots[k].get("url") or "") + (lots[k].get("store") or ""), re.I)]
+                 and not re.search(r"amazon|amzn", (lots[k].get("url") or "") + (lots[k].get("store") or ""), re.I)
+                 and lots[k].get("kind") not in NO_DEADLINE_KINDS]
         if not noend:
             continue
         rest = [k for k in keys if k not in noend]

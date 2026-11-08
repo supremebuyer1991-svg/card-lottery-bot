@@ -85,6 +85,16 @@ def _notify_limit(settings):
         log(f"上限のお知らせ失敗: {e}")
 
 
+def _own_account():
+    """自分のXアカウント（settings の x_account。トレカ抽選ナビは pokepi_tcg）"""
+    try:
+        from common import load_settings
+        a = (load_settings().get("x_account") or "").strip().lstrip("@")
+    except Exception:
+        a = ""
+    return a or ("pokepi_tcg" if __import__("common").SITE == "tcg" else "")
+
+
 def build_query(src) -> str:
     """sources.yaml の x 設定からXの検索クエリを作る"""
     parts = []
@@ -93,7 +103,9 @@ def build_query(src) -> str:
     if src.get("keywords"):
         parts.append(src["keywords"])
     parts.append("-is:retweet -is:reply lang:ja")
-    parts.append("-from:pokepi_tcg")  # 自分のアカウント（トレカ抽選ナビ）のポストは拾わない
+    own = _own_account()
+    if own:
+        parts.append(f"-from:{own}")  # 自分のアカウント（トレカ抽選ナビ）のポストは拾わない
     if not src.get("accounts"):
         # 一般ユーザーの雑談を除外して告知だけに寄せる
         parts.append(("has:links " if src.get("require_links", True) else "")

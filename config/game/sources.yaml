@@ -1,0 +1,265 @@
+# ゲーム・ホビー入荷速報の情報元（SITE=game のときだけ読む）
+# type: rss = 新着記事 / html = ページの変化 / html_index = 一覧 → 記事 / html_newlinks = 新しいリンク先だけ読む
+# game: categories.yaml の id（ps5 / switch2 / handheld_pc / game_limited / fukubukuro / gunpla / pokecen / beyblade / figure / ichibankuji / chiikawa / lego / tomica）
+#       auto = AIが記事の中身からカテゴリを判定
+# every_hours: 何時間に1回だけ読むか（1日6回の実行のうち、2〜3回に1回にして費用と時間を抑える）
+#
+# ※ URLはこのファイルを書いた環境から直接確かめられなかったものがあります（enabled: false ＋ TODO）。
+#    GitHub Actions の「Run workflow」で1回動かし、ログに「取得失敗」が出なければ enabled: true にしてください。
+# ※ Xの検索はこのサイトでは使いません（費用がかかるため。全部 enabled: false）
+
+sources:
+  # ============ ゲーム機 ============
+  # --- Googleニュース（各店の抽選・予約開始・再入荷のニュースを拾う。費用：AIの読み取りだけ）---
+  - id: gnews_ps5pro_lottery
+    game: ps5
+    name: Googleニュース「PS5 Pro 抽選」
+    type: rss
+    every_hours: 4
+    url: https://news.google.com/rss/search?q=PS5+Pro+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_ps5_preorder
+    game: ps5
+    name: Googleニュース「PS5 予約 開始」
+    type: rss
+    every_hours: 4
+    url: https://news.google.com/rss/search?q=PS5+%E4%BA%88%E7%B4%84+%E9%96%8B%E5%A7%8B+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_ps5_restock
+    game: ps5
+    name: Googleニュース「PS5 再入荷」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=PS5+%E5%86%8D%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_switch2_bundle
+    game: switch2
+    name: Googleニュース「Switch2 同梱 予約」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=Switch2+%E5%90%8C%E6%A2%B1+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_switch2_lottery
+    game: switch2
+    name: Googleニュース「Switch2 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=Switch2+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_steamdeck
+    game: handheld_pc
+    name: Googleニュース「Steam Deck 再入荷」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=Steam+Deck+%E5%86%8D%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_amiibo
+    game: game_limited
+    name: Googleニュース「amiibo 予約」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=amiibo+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_otoshidama
+    game: fukubukuro
+    name: Googleニュース「お年玉箱 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%81%8A%E5%B9%B4%E7%8E%89%E7%AE%B1+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_fukubukuro
+    game: fukubukuro
+    name: Googleニュース「ゲーム 福袋 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%B2%E3%83%BC%E3%83%A0+%E7%A6%8F%E8%A2%8B+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  # --- 入荷Now（ゲーム機の抽選・入荷のまとめ記事。表はAIを使わず読む）。文章は転載しない・記事URLは載せない ---
+  - id: nyuka_now_game
+    game: auto
+    name: 入荷Now 入荷情報
+    type: html_index
+    every_hours: 4
+    url: https://nyuka-now.com/archives/category/restock
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "福袋", "ガンプラ", "一番くじ", "フィギュア"]
+    max_articles: 10
+    parser: nyukanow
+    quote: false
+    hide_source_url: true
+
+  # --- ヨドバシ.com の抽選一覧（トレカ抽選ナビと同じページ。ゲーム機・福袋（夢のお年玉箱）の抽選もここに出る）---
+  - id: yodobashi_lottery_game
+    game: auto
+    name: ヨドバシ.com 抽選
+    type: html
+    every_hours: 4
+    url: https://limited.yodobashi.com/entry/shared/
+
+  # --- 各店の抽選ページ（URLを確かめてから有効に）---
+  - id: geo_lottery
+    enabled: false   # TODO: オーナーが確認（ゲオの抽選ページのURL。トレカの抽選結果で使っていた https://draw.geo-online.co.jp/lottery/ が候補）
+    game: auto
+    name: ゲオ 抽選
+    type: html
+    every_hours: 6
+    url: https://draw.geo-online.co.jp/lottery/
+
+  # ============ ホビー・おもちゃ ============
+  # --- ガンプラ ---
+  - id: gnews_gunpla_resale
+    game: gunpla
+    name: Googleニュース「ガンプラ 再販」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%82%AC%E3%83%B3%E3%83%97%E3%83%A9+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_pbandai_lottery
+    game: auto   # プレバンはガンプラ・フィギュア・おもちゃが混ざるのでAIが判定
+    name: Googleニュース「プレバン 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%83%97%E3%83%AC%E3%83%90%E3%83%B3+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: bandai_hobby_schedule
+    enabled: false   # TODO: オーナーが確認（バンダイホビーサイトの再販・出荷スケジュールのページ。2022年に出荷予定の掲載をやめたという報道があり、今のURLが不明）
+    game: gunpla
+    name: バンダイホビーサイト 再販・出荷スケジュール
+    type: html
+    every_hours: 24
+    url: ""
+
+  - id: pbandai_hobby_new
+    enabled: false   # TODO: オーナーが確認（プレミアムバンダイ ホビーオンラインショップの新着・抽選の一覧ページURL）
+    game: auto
+    name: プレミアムバンダイ 新着・抽選
+    type: html_newlinks
+    every_hours: 3
+    url: ""
+    link_keywords: ["抽選", "予約", "受注"]
+    max_articles: 15
+
+  - id: gundam_base_news
+    enabled: false   # TODO: オーナーが確認（ガンダムベースのお知らせページURL。例 https://www.gundam-base.net/news/ ）
+    game: gunpla
+    name: ガンダムベース お知らせ
+    type: html
+    every_hours: 6
+    url: ""
+
+  # --- ポケモンセンター限定グッズ（公式サイトはGitHubから403で読めないので、ニュースと手動追加（manual.yaml）で）---
+  - id: gnews_pokecen_lottery
+    game: pokecen
+    name: Googleニュース「ポケモンセンター 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_pokecen_limited
+    game: pokecen
+    name: Googleニュース「ポケセン 限定 予約」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%9D%E3%82%B1%E3%82%BB%E3%83%B3+%E9%99%90%E5%AE%9A+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: x_pokecen_official
+    enabled: false   # X は費用がかかるので使わない（使うなら X_BEARER_TOKEN と settings の x_read_budget_per_day を入れて true に）
+    game: pokecen
+    name: X ポケモンセンター公式
+    type: x
+    accounts: ["pokemoncenterPR"]
+    keywords: '(抽選 OR 予約 OR 受注 OR 発売)'
+    max_results: 10
+
+  # --- ベイブレードX ---
+  - id: gnews_beyblade_lottery
+    game: beyblade
+    name: Googleニュース「ベイブレードX 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%83%99%E3%82%A4%E3%83%96%E3%83%AC%E3%83%BC%E3%83%89X+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_beyblade_order
+    game: beyblade
+    name: Googleニュース「ベイブレードX 受注」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%99%E3%82%A4%E3%83%96%E3%83%AC%E3%83%BC%E3%83%89X+%E5%8F%97%E6%B3%A8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: beyblade_news
+    enabled: false   # TODO: オーナーが確認（ベイブレードX公式のニュースページURL。例 https://beyblade.takaratomy.co.jp/news/ ）
+    game: beyblade
+    name: ベイブレードX公式 ニュース
+    type: html
+    every_hours: 6
+    url: ""
+
+  - id: takaratomy_mall_lottery
+    enabled: false   # TODO: オーナーが確認（タカラトミーモールの新商品・抽選のページURL）
+    game: auto
+    name: タカラトミーモール 新商品・抽選
+    type: html
+    every_hours: 6
+    url: ""
+
+  # --- フィギュア ---
+  - id: gnews_shf_lottery
+    game: figure
+    name: Googleニュース「S.H.Figuarts 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=S.H.Figuarts+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_figure_lottery
+    game: figure
+    name: Googleニュース「フィギュア 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: tamashii_web_lottery
+    enabled: false   # TODO: オーナーが確認（魂ウェブ商店（プレミアムバンダイ内）の抽選・新着ページURL。pbandai_hobby_new と同じページで足りるなら不要）
+    game: figure
+    name: 魂ウェブ商店 抽選・新着
+    type: html_newlinks
+    every_hours: 6
+    url: ""
+    link_keywords: ["抽選", "予約", "受注"]
+    max_articles: 15
+
+  # --- 一番くじ ---
+  - id: gnews_ichibankuji_online
+    game: ichibankuji
+    name: Googleニュース「一番くじONLINE 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98ONLINE+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: ichibankuji_schedule
+    enabled: false   # TODO: オーナーが確認（一番くじ公式 1kuji.com の発売予定・新着ページURL。例 https://1kuji.com/topics ）
+    game: ichibankuji
+    name: 一番くじ公式 発売予定
+    type: html
+    every_hours: 24
+    url: ""
+
+  # --- そのほかのホビー（ニュースだけ・低頻度） ---
+  - id: gnews_chiikawa
+    game: chiikawa
+    name: Googleニュース「ちいかわ 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_lego
+    game: lego
+    name: Googleニュース「レゴ 限定 再販」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%AC%E3%82%B4+%E9%99%90%E5%AE%9A+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_tomica
+    game: tomica
+    name: Googleニュース「トミカ 限定 抽選」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%88%E3%83%9F%E3%82%AB+%E9%99%90%E5%AE%9A+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja

@@ -20,6 +20,11 @@ from dedupe import dedupe
 
 
 def main():
+    from common import SITE
+    if SITE == "game":  # 姉妹サイト「ゲーム・ホビー入荷速報」（SITE=game）。トレカの流れには一切触らない
+        import game_pipeline
+        game_pipeline.run(sys.argv[1] if len(sys.argv) > 1 else "all")
+        return
     s = load_settings()
     log(f"開始 auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
     step = sys.argv[1] if len(sys.argv) > 1 else "all"
