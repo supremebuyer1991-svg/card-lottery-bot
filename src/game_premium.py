@@ -212,6 +212,8 @@ def catalog(settings=None, wmap=None):
         wm = wmap.get(jan) or {}
         if tk.get("list_price"):
             tk["price"] = tk["list_price"]   # 楽天ブックスの「定価」があればそれ（販売価格より正確）
+        if not tk.get("price") and wm.get("rkPrice"):
+            tk["price"] = int(wm["rkPrice"])   # 見張り（Cloudflare）がJANで見た楽天ブックスの値段（GitHubの時間を使わずに定価がそろう）
         price = tk.get("price")
         r = x["max"] / price if price else None
         h = hist.get(jan, {})

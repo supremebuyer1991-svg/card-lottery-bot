@@ -47,7 +47,6 @@ sources:
     url: https://news.google.com/rss/search?q=Switch2+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_steamdeck
-    enabled: false   # 11/9 カテゴリを外したので読まない
     game: handheld_pc
     name: Googleニュース「Steam Deck 再入荷」
     type: rss

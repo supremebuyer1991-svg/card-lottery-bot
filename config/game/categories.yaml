@@ -58,7 +58,7 @@ categories:
     aff_keywords: ["Steam Deck", "ROG Ally"]
     color: "#0b7285"
     kinds: [lottery, preorder, restock, first_come, release]
-    enabled: false   # 11/9 ユーザーの指示でサイトから外す
+    enabled: true   # 11/9 いったん外したが、やっぱり載せる（ユーザーの指示）
 
   - id: xbox
     group: console
