@@ -42317,11 +42317,13 @@
       "method": "告知内の商品別リンクから応募（締切11/9(月)22:00、詳しい方法は記載なし）",
       "conditions": "本文には応募・購入の条件(会員登録、アプリ、本人確認、購入上限、代理購入、価格など)の記載がない。あるのは応募締切の11/9(月)22:00と、商品ごとのリンクだけ。",
       "tags": [
-        "会員"
+        "会員",
+        "本人確認"
       ],
       "url": "https://livepocket.jp/e/ek6xw",
       "channel": "store",
       "area": "佐賀県",
+      "id_check": true,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
@@ -47637,6 +47639,7 @@
       "store": "トレカエース勝田東石川店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（抽選販売・お一人様1回）",
       "series": "ストームエメラルダ",
+      "start": "2026-11-09T10:00:00+09:00",
       "end": "2026-11-11T22:00:00+09:00",
       "method": "オンライン",
       "conditions": "会員・本人確認",
@@ -47750,6 +47753,7 @@
       "store": "古本市場 名谷店",
       "product": "ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション（抽選販売）",
       "series": "スタートデッキ100 バトルコレクション",
+      "start": "2026-11-09T10:00:00+09:00",
       "end": "2026-11-13T22:00:00+09:00",
       "method": "オンライン",
       "conditions": "会員・本人確認",
@@ -48373,6 +48377,89 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpremiumgarage%2Fb-drbl-fb-fs11%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fpremiumgarage%2Fb-drbl-fb-fs11%2F",
       "spath": "store/cardcrew-66c26/",
       "found_at": "2026-11-09T17:01:28.691641+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/cbf750d265/": {
+    "d": {
+      "key": "cbf750d2657d895f",
+      "game": "pokemon",
+      "store": "カードボックス大垣書店 フォレオ大津一里山店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-22T20:00:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/Cardbox_ichiriy/status/2119691459263865159",
+      "channel": "store",
+      "area": "滋賀県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/cardbox-19e42/",
+      "found_at": "2026-11-09T18:26:53.199753+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/8e2ccdf972/": {
+    "d": {
+      "key": "8e2ccdf972d13d79",
+      "game": "onepiece",
+      "store": "カードボックス大垣書店 フォレオ大津一里山店",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "end": "2026-11-15T20:00:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/Cardbox_ichiriy/status/2119691708397158560",
+      "channel": "store",
+      "area": "滋賀県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/cardbox-19e42/",
+      "found_at": "2026-11-09T18:26:54.395002+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/6963abba4e/": {
+    "d": {
+      "key": "6963abba4ebea448",
+      "game": "pokemon",
+      "store": "晴れる屋2",
+      "product": "ポケカ ハドウシーカー BOX",
+      "series": "ハドウシーカー",
+      "end": "2026-11-11T18:00:00+09:00",
+      "method": "Web",
+      "conditions": "ネット完結。晴れる屋2 LINE会員＋LivePocket登録が必要。配送",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/s191v",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/reru-2-6e663/",
+      "found_at": "2026-11-09T18:27:44.539699+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/6fec2ba9da/": {
+    "d": {
+      "key": "6fec2ba9dab4364e",
+      "game": "onepiece",
+      "store": "TSUTAYAデイズタウンつくば",
+      "product": "ONE PIECEカードゲーム 神の支配 OP18 抽選販売",
+      "series": "神の支配",
+      "end": "2026-11-15T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/f98e5",
+      "channel": "store",
+      "area": "茨城県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tsutaya-108b2/",
+      "found_at": "2026-11-09T18:27:44.539854+09:00"
     },
     "last": "2026-11-09"
   }

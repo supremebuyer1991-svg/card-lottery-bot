@@ -905,7 +905,7 @@
         "f": "2026-11-07",
         "c": "store",
         "m": "Web",
-        "id": null,
+        "id": true,
         "mem": "account",
         "rq": []
       },
@@ -28152,6 +28152,17 @@
         "mem": "account",
         "rq": [],
         "a": "2026-11-11"
+      },
+      "6b705fe25aa91369": {
+        "p": "拡張パック",
+        "g": "pokemon",
+        "e": "2026-11-09T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -33384,6 +33395,65 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/cardbox-19e42/": {
+    "name": "カードボックス大垣書店 フォレオ大津一里山店",
+    "items": {
+      "cbf750d2657d895f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "8e2ccdf972d13d79": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/reru-2-6e663/": {
+    "name": "晴れる屋2",
+    "items": {
+      "6963abba4ebea448": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-11T18:00",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-108b2/": {
+    "name": "TSUTAYAデイズタウンつくば",
+    "items": {
+      "6fec2ba9dab4364e": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
