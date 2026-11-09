@@ -872,5 +872,30 @@
     "end": "2026-12-10T23:59:00+09:00",
     "seen": "2026-11-09",
     "ended": false
+  },
+  "adcabb2e8fb70152": {
+    "snap": {
+      "key": "adcabb2e8fb70152",
+      "game": "chiikawa",
+      "store": "ちいかわぽけっとグッズストア",
+      "product": "ちいかわクリスマスマーケット限定グッズ（一部商品）",
+      "series": "ちいかわクリスマスマーケット",
+      "start": "2026-11-24T11:00:00+09:00",
+      "method": "Web",
+      "conditions": "本文に抽選の応募・購入条件の記載はありません。ECでの一部商品の販売開始は11/24 11時とあるだけです。",
+      "url": "https://chiikawamarket.jp/",
+      "channel": "online",
+      "spath": "chiikawa/chiikawakurisumasumaketto-967f0/",
+      "found_at": "2026-11-09T17:03:18.060134+09:00",
+      "kind": "first_come",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%83%9E%E3%83%BC%E3%82%B1%E3%83%83%E3%83%88%E9%99%90%E5%AE%9A%E3%82%B0%E3%83%83%E3%82%BA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%83%9E%E3%83%BC%E3%82%B1%E3%83%83%E3%83%88%E9%99%90%E5%AE%9A%E3%82%B0%E3%83%83%E3%82%BA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/adcabb2e8f/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
   }
 }

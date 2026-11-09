@@ -100,7 +100,7 @@
     "name": "ブックエース上荒川店",
     "last": "2026-11-09",
     "game": "pokemon",
-    "area": "福島県"
+    "area": "埼玉県"
   },
   "store/booksantoku-b63f7/": {
     "name": "BOOKSあんとく（みづま店・あらお店・やまが店）",
@@ -183,7 +183,7 @@
   },
   "store/cardcrew-66c26/": {
     "name": "CARD CREW（カードクルー）トレカ通販",
-    "last": "2026-10-30",
+    "last": "2026-11-09",
     "game": "pokemon"
   },
   "store/gemushoppupurasuarufa-752de/": {
@@ -599,7 +599,7 @@
   },
   "store/cardbox-4d5dc/": {
     "name": "カードボックスあづみ野店",
-    "last": "2026-11-06",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "長野県"
   },
@@ -701,13 +701,13 @@
   },
   "store/biccamera-bbb22/": {
     "name": "ビックカメラ浦和西口店",
-    "last": "2026-11-01",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "埼玉県"
   },
   "store/biccamera-664c4/": {
     "name": "ビックカメラ 大宮西口そごう店",
-    "last": "2026-11-01",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "埼玉県"
   },
@@ -2426,9 +2426,10 @@
   },
   "store/batosuta-d2259/": {
     "name": "バトスタ松本店",
-    "last": "2026-10-26",
+    "last": "2026-11-09",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "長野県"
   },
   "store/tsutaya-6b16b/": {
     "name": "TSUTAYA鹿嶋南店",
@@ -3074,7 +3075,7 @@
   },
   "store/bookoff-a59ea/": {
     "name": "ブックオフスーパーバザー ららぽーとTOKYO-BAY North Gate店",
-    "last": "2026-11-03",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "千葉県"
   },
@@ -3398,7 +3399,7 @@
   },
   "store/tsutaya-ecb61/": {
     "name": "TSUTAYA別府上人ヶ浜店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "大分県"
   },
@@ -3690,9 +3691,10 @@
   },
   "store/bookoff-eab20/": {
     "name": "ブックオフスーパーバザー ショップス市川店",
-    "last": "2026-09-10",
+    "last": "2026-11-09",
     "game": "dragonball",
-    "keep": true
+    "keep": true,
+    "area": "千葉県"
   },
   "store/biccamera-b6698/": {
     "name": "コジマ",
@@ -4548,7 +4550,7 @@
   },
   "store/kabos-geo-d962f/": {
     "name": "KaBoS+GEO三国店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "福井県"
   },
@@ -5175,13 +5177,13 @@
   },
   "store/geo-a7162/": {
     "name": "SuperKaBoS＋ゲオ二の宮本店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "福井県"
   },
   "store/torekachanpion-0abbb/": {
     "name": "トレカチャンピオン神戸三宮店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "兵庫県"
   },
@@ -5425,7 +5427,7 @@
   },
   "store/tsutaya-a95b2/": {
     "name": "TSUTAYA室蘭店",
-    "last": "2026-11-07",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "北海道"
   },
@@ -6884,7 +6886,8 @@
     "name": "古本市場 名谷店",
     "last": "2026-11-09",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "兵庫県"
   },
   "store/bookoff-d1a8e/": {
     "name": "ブックオフ ザ・ビッグ 昭島店",
@@ -6957,5 +6960,40 @@
     "last": "2026-11-09",
     "game": "onepiece",
     "area": "兵庫県"
+  },
+  "store/ierokyatto-465be/": {
+    "name": "いえろーきゃっと大曽根店",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "愛知県"
+  },
+  "store/aeon-a6278/": {
+    "name": "カードボックス田中書店イオンモール都城駅前店",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "宮崎県"
+  },
+  "store/shop-970c9/": {
+    "name": "北国書林辰口店（Cardbox）",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "石川県"
+  },
+  "store/tsutaya-8474a/": {
+    "name": "TSUTAYA神明店トレカ",
+    "last": "2026-11-09",
+    "game": "pokemon"
+  },
+  "store/toukyuu-1946e/": {
+    "name": "文教堂湘南とうきゅう店【トレカ】",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "神奈川県"
+  },
+  "store/torekaesusoyora-nyutaun-e576a/": {
+    "name": "トレカエースそよら成田ニュータウン",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "千葉県"
   }
 }
