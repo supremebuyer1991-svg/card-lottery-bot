@@ -278,7 +278,7 @@ def chart_svg(h, teika):
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
 
-CSS = (".pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+CSS = (".sellb{display:inline-block;margin-top:8px;padding:9px 14px;border-radius:8px;background:#3ddc84;color:#0b0d12!important;font-weight:900;text-decoration:none}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
        ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
@@ -382,6 +382,26 @@ def buy_box(az, rk, name):
             f'<small>{escape(name)}を定価で買えるお店のページです。在庫・価格はお店のページで確認してください。販売が始まったら X（@a9994aaa）で速報します。</small></div>{BUY_JS}')
 
 
+def _sl(store, jan, name, cls=""):
+    """買取店の名前 → その店のページへのリンク（広告ではない）"""
+    try:
+        import game_kaitori
+        u = game_kaitori.store_link(store, jan, name)
+    except Exception:
+        u = ""
+    return (f'<a{(" class=" + chr(34) + cls + chr(34)) if cls else ""} href="{escape(u)}" target="_blank" rel="nofollow noopener">{escape(store)}</a>' if u else escape(store))
+
+
+def _sell_btn(x):
+    """いちばん高く買い取る店へのボタン"""
+    try:
+        import game_kaitori
+        u = game_kaitori.store_link(x["store"], x["jan"], x["name"])
+    except Exception:
+        u = ""
+    return (f'<a class="btn sellb" href="{escape(u)}" target="_blank" rel="nofollow noopener">最高値の{escape(x["store"])}で売る（{x["max"]:,}円）</a>' if u else "")
+
+
 def _aitext(key):
     try:
         import game_aitext
@@ -425,7 +445,7 @@ def seo_parts(x, allx, site, cats_by, md):
     secs = ""
     # 買取店すべての価格（上位5店だけでなく）
     if n:
-        rows = "".join(f'<tr><td>{i + 1}位 {escape(s_)}</td><td class="n">{p_:,}円</td>'
+        rows = "".join(f'<tr><td>{i + 1}位 {_sl(s_, jan, name)}</td><td class="n">{p_:,}円</td>'
                        f'<td class="n">{(("+" if p_ - teika >= 0 else "") + format(p_ - teika, ",") + "円") if teika else "—"}</td></tr>' for i, (s_, p_) in enumerate(prices))
         secs += (f'<h2>{escape(name)}の買取価格 店舗比較（新品・{n}店）</h2><table class="pm-t"><tr><th>買取店</th><th>買取価格</th><th>定価との差</th></tr>{rows}</table>'
                  + (f'<p class="note">平均 {avg:,}円・最高 {x["max"]:,}円・最安 {lo:,}円（{md}時点）</p>' if n >= 2 else ""))
@@ -543,7 +563,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             paths.append((path, fp))
 
     def table(xs):
-        return plist_html([{"name": x["name"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
+        return plist_html([{"name": x["name"], "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
                             "store": x["store"], "ratio": x["ratio"], "w1h": _chg(x["max"], x["w1"]) if x.get("w1") else "",
                             "rk": rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", "az": x.get("azUrl", "")} for x in xs])
 
@@ -577,7 +597,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         desc = f"{x['name']}の新品の最高買取価格は{x['max']:,}円" + (f"（定価{x['teika']:,}円の{round(x['ratio'] * 100)}%）" if x["teika"] else "") + "。1週間前比・1か月前比・買取店ごとの価格・抽選や再販の情報。"
         page(f"{x['name']} 買取価格・定価・在庫/再販情報【{md}更新】｜{brand['name']}", desc,
              f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
-             f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
+             f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
@@ -716,7 +736,7 @@ def product_index(settings, live_rows):
         if not cid:
             continue
         out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],
-                                        "url": f"/premium/{x['jan']}/", "img": x.get("img", ""),
+                                        "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""),
                                         "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", "")})
     seen = set()
     from dedupe import norm_product
@@ -764,7 +784,7 @@ def plist_html(prods):
                if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
         nums = [f'<div><small>定価</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
         if p.get("max"):
-            nums.append(f'<div><small>最高買取（新品）</small><b>{format(p["max"], ",")}円</b>{("<em>" + escape(p["store"]) + "</em>") if p.get("store") else ""}</div>')
+            nums.append(f'<div><small>最高買取（新品）</small><b>{format(p["max"], ",")}円</b>{("<em>" + _sl(p["store"], p.get("jan", ""), p["name"]) + "</em>") if p.get("store") else ""}</div>')
         if p.get("ratio"):
             pc = round((p["ratio"] - 1) * 100)
             nums.append(f'<span class="pc-r{" dn" if pc < 0 else ""}">定価比 {"+" if pc >= 0 else ""}{pc}%</span>')

@@ -34,6 +34,22 @@ def stores():
     return [s for s in (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("stores", []) if s.get("enabled", True) and s.get("urls")]
 
 
+def store_link(store, jan="", name=""):
+    """買取店のページ（その商品を探した結果か、ゲームの買取価格の一覧）。設定の link。分からなければ空"""
+    from urllib.parse import quote
+    if "_links" not in _cache:
+        p = ROOT / "config" / "game" / "kaitori_stores.yaml"
+        d = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}
+        _cache["_links"] = {x["name"]: x.get("link", "") for x in d.get("stores", [])}
+    t = _cache["_links"].get(store) or ""
+    q = re.sub(r"[（(【\[].*?[）)】\]]", " ", name or "")
+    q = " ".join(q.split()[:4])[:40]
+    return t.replace("{jan}", quote(jan or q)).replace("{name}", quote(q or jan or ""))
+
+
+_cache = {}
+
+
 def _ai(text):
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
