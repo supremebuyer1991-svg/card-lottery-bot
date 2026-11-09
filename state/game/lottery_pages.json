@@ -100,6 +100,12 @@
       },
       "avail": [
         {
+          "shop": "Amazon",
+          "s": "pre",
+          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+          "p": 55000
+        },
+        {
           "shop": "楽天ブックス",
           "s": "pre",
           "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F",
@@ -317,6 +323,7 @@
       "product": "PlayStation(R)5 デジタル・エディション ミッドナイト ブラック 日本語専用 CFI-2200B02S",
       "series": "PS5 デジタル・エディション",
       "end": "2026-11-19T23:59:00+09:00",
+      "conditions": "数量限定",
       "url": "https://www.playstation.com/ja-jp/",
       "channel": "online",
       "spath": "ps5/ps5-digital-edition/",
@@ -785,6 +792,89 @@
     },
     "path": "l/a2597a3a24/",
     "end": "2026-11-21T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "0c76a803fd52658a": {
+    "snap": {
+      "key": "0c76a803fd52658a",
+      "game": "ps5",
+      "store": "ソニー・インタラクティブエンタテインメント",
+      "product": "PS5用カバー「プリズム コレクション」",
+      "series": "プリズム コレクション",
+      "start": "2026-11-10T10:00:00+09:00",
+      "end": "2027-02-04T23:59:00+09:00",
+      "conditions": "数量限定",
+      "url": "https://www.playstation.com/ja-jp/",
+      "channel": "online",
+      "spath": "ps5/purizumukorekushon-3416f/",
+      "found_at": "2026-11-09T15:09:22.687366+09:00",
+      "kind": "release",
+      "price": "9,980円",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=PS5%E7%94%A8%E3%82%AB%E3%83%90%E3%83%BC%E3%80%8C%E3%83%97%E3%83%AA%E3%82%BA%E3%83%A0%20%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D",
+        "mc": "https://jp.mercari.com/search?keyword=PS5%E7%94%A8%E3%82%AB%E3%83%90%E3%83%BC%E3%80%8C%E3%83%97%E3%83%AA%E3%82%BA%E3%83%A0%20%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/0c76a803fd/",
+    "end": "2027-02-04T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "cbcf6c062e1fa005": {
+    "snap": {
+      "key": "cbcf6c062e1fa005",
+      "game": "ps5",
+      "store": "全国のPlayStation取扱店・ECサイト",
+      "product": "PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用",
+      "series": "PlayStation Portal",
+      "start": "2026-11-13T10:00:00+09:00",
+      "method": "店頭・ECサイト",
+      "conditions": "PlayStation Plus プレミアム1ヶ月利用権付属（対象販売店で在庫がなくなり次第終了）",
+      "url": "https://www.playstation.com/ja-jp/",
+      "channel": "online",
+      "spath": "ps5/playstation-portal/",
+      "found_at": "2026-11-09T15:09:22.687472+09:00",
+      "kind": "preorder",
+      "price": "39,980円（税込）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7251/4948872017251.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7251/4948872017251.jpg?_ex=300x300"
+        },
+        "yh": "https://shopping.yahoo.co.jp/search?p=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC",
+        "mc": "https://jp.mercari.com/search?keyword=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/cbcf6c062e/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "b6144664b326ac66": {
+    "snap": {
+      "key": "b6144664b326ac66",
+      "game": "ps5",
+      "store": "ソニー・インタラクティブエンタテインメント",
+      "product": "DualSense ワイヤレスコントローラー “グランツーリスモ” リミテッドエディション CFI-ZCT2JZM",
+      "series": "DualSense ワイヤレスコントローラー",
+      "end": "2026-12-10T23:59:00+09:00",
+      "conditions": "数量限定",
+      "url": "https://www.playstation.com/ja-jp/",
+      "channel": "online",
+      "spath": "ps5/dualsensewaiyaresukontorora-9dce9/",
+      "found_at": "2026-11-09T15:09:22.687628+09:00",
+      "kind": "release",
+      "price": "12,480円（税込）",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=DualSense%20%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC",
+        "mc": "https://jp.mercari.com/search?keyword=DualSense%20%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/b6144664b3/",
+    "end": "2026-12-10T23:59:00+09:00",
     "seen": "2026-11-09",
     "ended": false
   }
