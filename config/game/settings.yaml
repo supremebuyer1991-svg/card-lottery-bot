@@ -24,8 +24,8 @@ job_tail_sec: 90           # 抽選集めのあとに残しておく秒数（買
 rss_read_article: true       # ニュースのRSSは記事を開いて本文まで読む（締切・プレバンの商品ページなどの応募先を拾うため）
 rss_article_max_per_run: 24  # 1回に開く記事の数の上限（時間と費用の上限。時間は collect_time_budget でも止まる）
 rss_article_per_source: 3    # 1つの情報元で開く記事の数の上限（最初の情報元で使い切らないように）
-page_checks_per_run: 20     # 応募ページ（通販・フォーム）を見に行く数（1件につき1日1回）
-deadline_checks_per_run: 30
+page_checks_per_run: 6   # 応募ページが終わっていないか見る数（1回あたり。17件で約90秒かかったため 11/9 に少なく）
+deadline_checks_per_run: 3   # 締切が分からない抽選を応募ページで調べる数（1回あたり。8件で約90秒かかったため 11/9 に少なく）
 no_end_post_days: 10
 no_end_expire_days: 10      # 締切が書かれていない抽選・予約は、見つけてからこの日数で終了に
 no_end_start_days: 14
