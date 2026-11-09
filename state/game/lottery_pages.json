@@ -100,12 +100,6 @@
       },
       "avail": [
         {
-          "shop": "Amazon",
-          "s": "pre",
-          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
-          "p": 55000
-        },
-        {
           "shop": "楽天ブックス",
           "s": "pre",
           "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F",
@@ -829,6 +823,7 @@
       "product": "PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用",
       "series": "PlayStation Portal",
       "start": "2026-11-13T10:00:00+09:00",
+      "end": "2027-02-04T23:59:00+09:00",
       "method": "店頭・ECサイト",
       "conditions": "PlayStation Plus プレミアム1ヶ月利用権付属（対象販売店で在庫がなくなり次第終了）",
       "url": "https://www.playstation.com/ja-jp/",
@@ -849,7 +844,7 @@
       }
     },
     "path": "l/cbcf6c062e/",
-    "end": null,
+    "end": "2027-02-04T23:59:00+09:00",
     "seen": "2026-11-09",
     "ended": false
   },

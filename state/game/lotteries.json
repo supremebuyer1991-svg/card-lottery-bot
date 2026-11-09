@@ -161,7 +161,7 @@
     "found_at": "2026-11-08T15:42:44.721669+09:00",
     "page_checked_at": "2026-11-09T11:51:40.585226+09:00",
     "details_checked": true,
-    "cls": "87e8c485f126",
+    "cls": "3544005863c3",
     "official_checked": true
   },
   "86bcd3d5225412a4": {
@@ -222,12 +222,13 @@
     "source": "Googleニュース「PS5 予約 開始」",
     "source_url": "https://kunkoku.jp/dualsense-prism.html",
     "key": "a8f4c6cfa442464f",
-    "status": "listed",
+    "status": "duplicate",
     "found_at": "2026-11-08T15:42:44.721768+09:00",
     "page_checked_at": "2026-11-09T11:51:43.091294+09:00",
     "details_checked": true,
     "cls": "d213529ed4ed",
-    "official_checked": true
+    "official_checked": true,
+    "duplicate_of": "cbcf6c062e1fa005"
   },
   "ed0eb35fa98d34a1": {
     "store": "プレミアムバンダイ",
@@ -1919,12 +1920,13 @@
     "source": "Googleニュース「PS5 予約 開始」",
     "source_url": "https://kunkoku.jp/dualsense-prism-2.html",
     "key": "0c76a803fd52658a",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-09T15:09:22.687366+09:00",
     "page_checked_at": "2026-11-09T15:10:42.843053+09:00",
     "details_checked": true,
-    "cls": "13ecbe63da31",
-    "official_checked": true
+    "cls": "020f4c7df285",
+    "official_checked": true,
+    "duplicate_of": "cbcf6c062e1fa005"
   },
   "897072cce8b66673": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -1994,7 +1996,7 @@
     "series": "PlayStation Portal",
     "kind": "preorder",
     "start": "2026-11-13T10:00:00+09:00",
-    "end": null,
+    "end": "2027-02-04T23:59:00+09:00",
     "announce": null,
     "method": "店頭・ECサイト",
     "conditions": "PlayStation Plus プレミアム1ヶ月利用権付属（対象販売店で在庫がなくなり次第終了）",
@@ -2017,7 +2019,10 @@
     "page_checked_at": "2026-11-09T15:10:59.628164+09:00",
     "details_checked": true,
     "cls": "138f0adee141",
-    "official_checked": true
+    "official_checked": true,
+    "deadline_checked_at": "2026-11-09T15:33:30.155644+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし"
   },
   "6a8321dd502e42b3": {
     "store": "ソニーストア",
@@ -2046,7 +2051,12 @@
     "key": "6a8321dd502e42b3",
     "status": "pending",
     "cls": "8978a9380d6b",
-    "issue": 625
+    "issue": 625,
+    "deadline_checked_at": "2026-11-09T15:33:31.618217+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の受付締切の記載なし",
+    "page_checked_at": "2026-11-09T15:33:33.722588+09:00",
+    "details_checked": true
   },
   "b6144664b326ac66": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -2075,7 +2085,9 @@
     "status": "approved",
     "found_at": "2026-11-09T15:09:22.687628+09:00",
     "cls": "2fe784e83769",
-    "official_checked": true
+    "official_checked": true,
+    "page_checked_at": "2026-11-09T15:33:40.408475+09:00",
+    "details_checked": true
   },
   "fbd9df90d918417b": {
     "store": "ソニーショップくんこく",
@@ -2134,7 +2146,9 @@
     "status": "pending",
     "found_at": "2026-11-09T15:09:22.687730+09:00",
     "cls": "4a07a6dd2ed8",
-    "issue": 626
+    "issue": 626,
+    "page_checked_at": "2026-11-09T15:33:44.930698+09:00",
+    "details_checked": true
   },
   "7fa6861fd8663899": {
     "store": "ソニー・インタラクティブエンタテインメント",
