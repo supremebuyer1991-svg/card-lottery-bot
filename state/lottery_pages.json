@@ -42203,6 +42203,7 @@
       "store": "TSUTAYA大安寺店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
       "series": "ハドウシーカー",
+      "start": "2026-11-06T20:59:00+09:00",
       "end": "2026-11-15T21:59:00+09:00",
       "method": "Web",
       "conditions": "応募・購入の条件（会員登録、アプリ、本人確認書類、購入数の上限、代理購入、価格など）は、本文には書かれていません。分かるのは応募の締切が11/15(日)21:59ということだけです。",
@@ -43298,6 +43299,7 @@
       "product": "ワンピースカードゲーム『ONE PIECE HEROINES PRECIOUS BOX』（購入権抽選）",
       "start": "2026-11-07T19:37:00+09:00",
       "end": "2026-11-09T23:59:00+09:00",
+      "announce": "2026-11-11",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -43323,7 +43325,9 @@
       "store": "TSUTAYA 涌谷店",
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】1BOX購入権",
       "series": "神の支配",
+      "start": "2026-11-07T12:00:00+09:00",
       "end": "2026-11-10T21:00:00+09:00",
+      "announce": "2026-11-18",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -46350,6 +46354,7 @@
       "store": "ブックエース茨大前店",
       "product": "ONE PIECEカードゲーム ブースターパック 神の支配 OP18",
       "series": "神の支配",
+      "start": "2026-11-09T09:00:00+09:00",
       "end": "2026-11-15T22:00:00+09:00",
       "method": "Web",
       "conditions": "ページ本文には、会員登録・アプリ・本人確認書類・購入数の上限・代理購入・価格といった条件の記載がない。書かれているのは、応募の締切が11/15(日)22:00ということだけ。",
@@ -47755,6 +47760,7 @@
       "series": "スタートデッキ100 バトルコレクション",
       "start": "2026-11-09T10:00:00+09:00",
       "end": "2026-11-13T22:00:00+09:00",
+      "announce": "2026-11-19〜2026-11-20",
       "method": "オンライン",
       "conditions": "会員・本人確認",
       "tags": [
@@ -48460,6 +48466,60 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "spath": "store/tsutaya-108b2/",
       "found_at": "2026-11-09T18:27:44.539854+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/258c786520/": {
+    "d": {
+      "key": "258c7865207a075c",
+      "game": "onepiece",
+      "store": "古本市場 西淀川店",
+      "product": "ワンピースカード抽選販売（ONE PIECE Heroines Edition vol.2）",
+      "series": "ヒロインズエディション vol.2",
+      "end": "2026-11-09T22:00:00+09:00",
+      "url": "https://livepocket.jp/e/xkmih",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922090.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F",
+      "spath": "store/furuichi-5ec26/",
+      "found_at": "2026-11-09T20:12:14.919734+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/67af17f343/": {
+    "d": {
+      "key": "67af17f343430dce",
+      "game": "pokemon",
+      "store": "TSUTAYA TRADING CARD錦糸町",
+      "product": "ポケモンカードゲーム 「ストームエメラルダ」再入荷分 抽選販売",
+      "series": "ストームエメラルダ",
+      "end": "2026-11-11T21:00:00+09:00",
+      "url": "https://livepocket.jp/e/j4vq_",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/tsutaya-bf899/",
+      "found_at": "2026-11-09T20:12:14.919788+09:00"
+    },
+    "last": "2026-11-09"
+  },
+  "l/d820dc2575/": {
+    "d": {
+      "key": "d820dc25752c4cac",
+      "game": "onepiece",
+      "store": "TCG桜華",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配 【OP-18】抽選販売",
+      "series": "神の支配",
+      "end": "2026-11-15T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/ic0y3",
+      "channel": "store",
+      "area": "愛媛県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tcg-36478/",
+      "found_at": "2026-11-09T20:12:14.919827+09:00"
     },
     "last": "2026-11-09"
   }

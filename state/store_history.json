@@ -443,6 +443,17 @@
   "store/torecastation-ae3f2/": {
     "name": "トレカステーション",
     "items": {
+      "65e42dc450e8570f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "5a1487b5b4f46af3": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -559,6 +570,17 @@
         "m": "SNS",
         "id": true,
         "mem": "account",
+        "rq": []
+      },
+      "67af17f343430dce": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-11T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "8201005e123005dd": {
@@ -22176,6 +22198,28 @@
   "store/furuichi-5ec26/": {
     "name": "古本市場西淀川店",
     "items": {
+      "258c7865207a075c": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "6b47adad889dd9ad": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "f0f0ecf377c95f7d": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -29954,7 +29998,7 @@
       }
     }
   },
-  "store/reru-2-68759/": {
+  "store/reru-2-6e663/": {
     "name": "晴れる屋2(通販)",
     "items": {
       "8931bec57377ae24": {
@@ -29966,6 +30010,17 @@
         "m": "Web",
         "id": null,
         "mem": null,
+        "rq": []
+      },
+      "6963abba4ebea448": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-11T18:00",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
         "rq": []
       }
     }
@@ -32288,7 +32343,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-11"
       }
     }
   },
@@ -32409,7 +32465,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-18"
       }
     }
   },
@@ -33096,7 +33153,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-19"
       },
       "397c7692960a0925": {
         "p": "スタートデッキ100バトルコレクション",
@@ -33426,22 +33484,6 @@
       }
     }
   },
-  "store/reru-2-6e663/": {
-    "name": "晴れる屋2",
-    "items": {
-      "6963abba4ebea448": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-11T18:00",
-        "f": "2026-11-09",
-        "c": "online",
-        "m": "Web",
-        "id": null,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
   "store/tsutaya-108b2/": {
     "name": "TSUTAYAデイズタウンつくば",
     "items": {
@@ -33449,6 +33491,54 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "2026-11-15T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/tcg-36478/": {
+    "name": "TCG桜華",
+    "items": {
+      "d820dc25752c4cac": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/shop-47021/": {
+    "name": "追浜",
+    "items": {
+      "dbb6b62a78e44eaa": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/cardbox-03b0b/": {
+    "name": "カードボックス松阪",
+    "items": {
+      "3221c3d3bbf59683": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-09T22:00",
         "f": "2026-11-09",
         "c": "store",
         "m": "Web",
