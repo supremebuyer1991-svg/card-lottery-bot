@@ -266,7 +266,8 @@ def chart_svg(h, teika):
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
 
-CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
+CSS = (".pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+       ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
        ".chart .ln{fill:none;stroke:#ffd23f;stroke-width:2.5}.chart circle{fill:#ffd23f}.chart .tk{stroke:#5ee0ff;stroke-dasharray:5 5}"
@@ -303,6 +304,88 @@ def features_html(x):
         return ""
     parts = [p.strip() for p in re.split(r"(?<=。)|■|◆|●|【", c) if len(p.strip()) >= 6][:8]
     return "<h2>商品の詳細・特徴</h2><ul>" + "".join(f"<li>{escape(p.strip('】 '))}</li>" for p in parts) + "</ul><p class=\"note\">商品説明は楽天ブックスの商品情報からの抜粋です。</p>"
+
+
+def _jsonld(d):
+    import json as _j
+    return '<script type="application/ld+json">' + _j.dumps(d, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def seo_parts(x, allx, site, cats_by, md):
+    """商品ページを検索で見つけてもらうための追加の情報：まとめの文・買取店すべての価格・店での呼び方・よくある質問・同じカテゴリの商品・構造化データ
+    → (まとめの文, 追加の節, 構造化データ)"""
+    name, jan = x["name"], x["jan"]
+    cid = cat_of([name] + x.get("names", []))
+    cat = (cats_by.get(cid) or {}).get("short", "") if cid else ""
+    prices = x.get("prices") or []
+    n = len(prices)
+    avg = round(sum(p for _, p in prices) / n) if n else 0
+    lo = min((p for _, p in prices), default=0)
+    teika = x.get("teika") or 0
+    diff = x["max"] - teika if teika else 0
+    # まとめの文（検索結果の説明にもなる、商品のことが一目で分かる文）
+    s1 = f"{name}（JANコード {jan}）は" + (f"{x['maker']}の" if x.get("maker") else "") + (f"{cat}の商品です。" if cat else "商品です。")
+    if x.get("sales_date"):
+        s1 += f"発売日は{x['sales_date']}"
+        s1 += f"、定価は{teika:,}円（税込）です。" if teika else "です。"
+    elif teika:
+        s1 += f"定価は{teika:,}円（税込）です。"
+    s2 = f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円"
+    if teika:
+        s2 += f"で、定価より{abs(diff):,}円{'高く' if diff >= 0 else '安く'}売れる（定価比 {'+' if diff >= 0 else ''}{round((x['ratio'] - 1) * 100)}%）状態です。"
+    else:
+        s2 += "です。"
+    if n >= 2:
+        s2 += f"買取店{n}店の平均は{avg:,}円、いちばん安い店は{lo:,}円で、店によって{x['max'] - lo:,}円の差があります。"
+    intro = f'<p class="pm-intro">{escape(s1 + s2)}</p>'
+    secs = ""
+    # 買取店すべての価格（上位5店だけでなく）
+    if n:
+        rows = "".join(f'<tr><td>{i + 1}位 {escape(s_)}</td><td class="n">{p_:,}円</td>'
+                       f'<td class="n">{(("+" if p_ - teika >= 0 else "") + format(p_ - teika, ",") + "円") if teika else "—"}</td></tr>' for i, (s_, p_) in enumerate(prices))
+        secs += (f'<h2>{escape(name)}の買取価格 店舗比較（新品・{n}店）</h2><table class="pm-t"><tr><th>買取店</th><th>買取価格</th><th>定価との差</th></tr>{rows}</table>'
+                 + (f'<p class="note">平均 {avg:,}円・最高 {x["max"]:,}円・最安 {lo:,}円（{md}時点）</p>' if n >= 2 else ""))
+    # 買取店での呼び方（別の名前・型番で探す人のため）
+    alias = []
+    for a in x.get("names", []):
+        a = re.sub(r"\s+", " ", a).strip()
+        if a and a != name and a not in alias and len(alias) < 8:
+            alias.append(a)
+    if alias:
+        secs += "<h2>この商品の別の呼び方・表記</h2><ul>" + "".join(f"<li>{escape(a)}</li>" for a in alias) + "</ul>"
+    # よくある質問（データから作る。構造化データにも入れる）
+    faq = []
+    faq.append((f"{name}の定価はいくら？", f"定価は{teika:,}円（税込）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
+    faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "")))
+    if teika:
+        faq.append((f"{name}は定価以上で売れる？（プレ値？）",
+                    f"はい、{md}時点で定価より{diff:,}円高い{x['max']:,}円で買い取られています。" if diff > 0 else
+                    f"{md}時点では定価を下回る{x['max']:,}円の買取です（定価との差 {diff:,}円）。"))
+    faq.append((f"{name}はどこで買える？在庫・再販は？",
+                "楽天・Amazonで定価で販売していないかを定期的にチェックしています。販売が始まったら X（@a9994aaa）ですぐ通知します。このページの「定価で買えるところ」からも確認できます。"))
+    faq.append((f"{name}のJANコードは？", f"JANコードは {jan} です。"))
+    secs += "<h2>よくある質問</h2>" + "".join(f'<details class="faq"><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q, a in faq)
+    # 同じカテゴリの商品（中のリンクで関連の商品を見てもらう）
+    same = [y for y in allx if y["jan"] != jan and cid and cat_of([y["name"]] + y.get("names", [])) == cid][:8]
+    if same:
+        secs += f"<h2>{escape(cat)}のほかの商品の買取相場</h2><ul>" + "".join(
+            f'<li><a href="/premium/{y["jan"]}/">{escape(y["name"])}</a>（最高買取 {y["max"]:,}円' + (f'・定価 {y["teika"]:,}円' if y.get("teika") else "") + "）</li>" for y in same) + "</ul>"
+    # 構造化データ（Google向け：商品・よくある質問・パンくず）
+    prod = {"@context": "https://schema.org", "@type": "Product", "name": name, "gtin13" if len(jan) == 13 else "gtin8": jan,
+            "description": s1 + s2, "url": f"{site}/premium/{jan}/"}
+    if x.get("img"):
+        prod["image"] = x["img"]
+    if x.get("maker"):
+        prod["brand"] = {"@type": "Brand", "name": x["maker"]}
+    if teika:
+        prod["offers"] = {"@type": "Offer", "price": teika, "priceCurrency": "JPY", "url": f"{site}/premium/{jan}/"}
+    ld = _jsonld(prod) + _jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
+    ld += _jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{site}/"},
+        {"@type": "ListItem", "position": 2, "name": "ゲーム・ホビー買取相場一覧", "item": f"{site}/souba/"},
+        {"@type": "ListItem", "position": 3, "name": name, "item": f"{site}/premium/{jan}/"}]})
+    return intro, secs, ld
 
 
 def _av(av):
@@ -381,8 +464,11 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
          "ゲーム機・周辺機器・たまごっち・ホビーの新品の最高買取価格（買取店9店）と定価比・1週間前比の一覧。毎日更新。",
          f'<h1>ゲーム・ホビー買取相場一覧</h1><p>買取店9店の新品の買取価格から、商品ごとのいちばん高い価格を毎日まとめています（{md}更新・{len(allx)}件）。'
          f'<a href="/premium/">定価以上で売れる商品だけを見る</a></p>' + table(allx) + note, "souba/")
+    import gamecats as _gc
+    _cats = _gc.by_id(False)
     for x in allx:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
+        intro, extra, ld = seo_parts(x, allx, site, _cats, md)
         rel = [r for r in live_rows if min(ol._score(r.get("product") or "", x["name"]), ol._score(x["name"], r.get("product") or "")) >= 0.6][:6]
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>") if rel else \
@@ -395,14 +481,14 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
         tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
         desc = f"{x['name']}の新品の最高買取価格は{x['max']:,}円" + (f"（定価{x['teika']:,}円の{round(x['ratio'] * 100)}%）" if x["teika"] else "") + "。1週間前比・1か月前比・買取店ごとの価格・抽選や再販の情報。"
-        page(f"{x['name']} 買取価格の相場・定価比【{md}更新】｜{brand['name']}", desc,
-             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>'
+        page(f"{x['name']} 買取価格・定価・在庫/再販情報【{md}更新】｜{brand['name']}", desc,
+             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
-             f'<h2>買取店ごとの買取価格（新品・上位5店）</h2><table class="pm-t">{top}</table>{note}', f"premium/{x['jan']}/")
+             f'{extra}{note}', f"premium/{x['jan']}/")
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
