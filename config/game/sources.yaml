@@ -158,6 +158,15 @@ sources:
     url: https://limited.yodobashi.com/entry/shared/
 
   # --- 各店の抽選ページ（URLを確かめてから有効に）---
+  - id: geo_news   # 11/9 中継経由で読めることを確認（お知らせに抽選販売の告知が並ぶ）
+    game: auto
+    name: ゲオ お知らせ（抽選販売）
+    type: html_index
+    every_hours: 4
+    url: https://geo-online.co.jp/news/
+    link_keywords: ["抽選", "予約", "Switch", "スイッチ", "PS5", "プレイステーション", "販売"]
+    max_articles: 5
+
   - id: geo_lottery
     enabled: false   # TODO: オーナーが確認（ゲオの抽選ページのURL。トレカの抽選結果で使っていた https://draw.geo-online.co.jp/lottery/ が候補）
     game: auto

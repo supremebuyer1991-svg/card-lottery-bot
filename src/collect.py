@@ -132,6 +132,15 @@ def prefetch(urls, fetcher, workers=6):
 
 
 def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) -> list:
+    jp_hosts = settings.get("via_jp_hosts") or []
+    if jp_hosts and os.environ.get("JPFETCH_SEED"):   # GitHub（海外）からだと断られるお店は、日本の中継（Cloudflare）経由で読む（ゲーム側だけ）
+        from urllib.parse import urlparse
+        import jpfetch
+        _plain = fetcher
+
+        def fetcher(url, _plain=_plain):
+            h = urlparse(url).hostname or ""
+            return jpfetch.get(url) if any(h == x or h.endswith("." + x) for x in jp_hosts) else _plain(url)
     seen = load_json("seen.json", {})
     if seen.get("_v") != SEEN_VERSION:  # 仕組みを直した時は、もう一度全部読み直す
         seen = {"_v": SEEN_VERSION}
