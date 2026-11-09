@@ -276,6 +276,8 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".follow{background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:14px 16px;margin:16px 0}.follow p{margin:4px 0}"
        ".mc-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box .btn{padding:8px 12px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
+       ".pm-shops{white-space:nowrap}.pm-sh{display:inline-block;padding:6px 9px;margin-right:4px;border-radius:6px;font-weight:900;text-decoration:none;font-size:13px}"
+       ".pm-sh.rk{background:#bf0000;color:#fff}.pm-sh.az{background:#ff9900;color:#0b0d12}"
        ".pm-go{display:inline-block;white-space:nowrap;padding:6px 10px;border-radius:6px;background:#ffd23f;color:#0b0d12;font-weight:900;text-decoration:none;font-size:13px}"
        ".btn-rk{background:#bf0000;color:#fff}.btn-yh{background:#ff0033;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-az{background:#ff9900;color:#0b0d12}")
 
@@ -464,8 +466,12 @@ def worth_posting(it, settings=None):
 
 # ---- カテゴリごとの商品一覧（左メニューの数・カテゴリページの商品一覧に使う）----
 # 商品名からカテゴリを決める順番（細かいものを先に。たまごっち・GO Plus+ が「ポケモン」に入らないように等）
-CAT_ORDER = ["digital_toys", "pc_parts", "handheld_pc", "xbox", "switch2", "ps5", "game_limited", "gunpla", "beyblade", "pokecen",
+CAT_ORDER = ["digital_toys", "pc_parts", "handheld_pc", "xbox", "switch2", "switch1", "ps5", "game_limited", "gunpla", "beyblade", "pokecen",
              "chiikawa", "lego", "tomica", "bearbrick", "figure", "ichibankuji", "fukubukuro"]
+
+
+def watch_map_cached():
+    return load_json("watch_map.json", {})
 
 
 def cat_of(names):
@@ -491,14 +497,18 @@ def product_index(settings, live_rows):
     """{カテゴリid: [{"name","teika","max","store","url","img","ratio"}]}：買取相場の商品（/premium/<JAN>/）と、
     抽選・発売の商品（/item/<slug>/。買取相場に無いもの）。カテゴリの中は「定価以上で売れる」順→最高買取の高い順"""
     import official_link as ol
+    import game_affi
+    from game_affi import rakuten_link
+    aff = game_affi.affiliate_id(settings or {})
     out = {}
-    allx = catalog(settings)
+    allx = catalog(settings, watch_map_cached())
     for x in allx:
         cid = cat_of(x["names"] + [x["name"]])
         if not cid:
             continue
         out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],
-                                        "url": f"/premium/{x['jan']}/", "img": x.get("img", "")})
+                                        "url": f"/premium/{x['jan']}/", "img": x.get("img", ""),
+                                        "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", "")})
     seen = set()
     from dedupe import norm_product
     for r in live_rows:
@@ -512,9 +522,20 @@ def product_index(settings, live_rows):
         m = re.search(r"([\d,]{4,})", str(r.get("price") or ""))
         out.setdefault(r["game"], []).append({"name": re.sub(r"\s+", " ", nm)[:70], "teika": int(m.group(1).replace(",", "")) if m else None,
                                               "max": None, "store": "", "ratio": None, "url": f"/item/{item_slug(nm)}/",
-                                              "img": ((r.get("rk") or {}).get("img") or "")})
+                                              "img": ((r.get("rk") or {}).get("img") or ""),
+                                              "rk": (r.get("rk") or {}).get("u", ""), "az": r.get("az", "")})
     for cid in out:
         out[cid].sort(key=lambda p: (not (p["ratio"] and p["ratio"] >= 1.03), -(p["max"] or 0)))
+    return out
+
+
+def _shop_mini(p):
+    """一覧の行の「楽天」「Amazon」の小さいボタン（その商品のページ。アフィリエイト）"""
+    out = ""
+    if p.get("rk"):
+        out += f'<a class="pm-sh rk" href="{escape(p["rk"])}" target="_blank" rel="nofollow sponsored noopener">楽天</a>'
+    if p.get("az"):
+        out += f'<a class="pm-sh az" href="{escape(p["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazon</a>'
     return out
 
 
@@ -526,7 +547,7 @@ def cat_products_html(prods, short):
         f'<tr><td>{escape(p["name"])}</td><td class="n">{(format(p["teika"], ",") + "円") if p["teika"] else "—"}</td>'
         f'<td class="n">{(format(p["max"], ",") + "円" + ("<br><small>" + escape(p["store"]) + "</small>" if p["store"] else "")) if p["max"] else "—"}'
         f'{(" <span class=\"up\">+" + str(round((p["ratio"] - 1) * 100)) + "%</span>") if p["ratio"] and p["ratio"] >= 1.03 else ""}</td>'
-        f'<td><a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
+        f'<td class="pm-shops">{_shop_mini(p)}<a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
     return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
             '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。定価で売り出されたらXで通知します。</p>'
             f'<div style="overflow-x:auto"><table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>')

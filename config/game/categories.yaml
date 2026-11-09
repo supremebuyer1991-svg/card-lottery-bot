@@ -40,7 +40,7 @@ categories:
     short: Switch 2
     slug: switch2
     hashtags: "#Switch2 #スイッチ2"
-    hints: "Switch ?2|スイッチ ?2|Nintendo Switch2|ニンテンドースイッチ2"
+    hints: "Switch ?2(?!\\d)|スイッチ ?2(?!\\d)|Nintendo Switch2|ニンテンドースイッチ2|Joy-Con ?2"
     strip_words: "本体|同梱版|同梱|セット|通常版|日本語・?国内専用|多言語対応|マリオカート ?ワールド ?セット"
     aff_keywords: ["Switch 2 本体", "Switch 2 ケース"]
     color: "#2a6f97"
@@ -240,5 +240,18 @@ categories:
     strip_words: "たまごっち|Tamagotchi|本体|カラー"
     aff_keywords: ["たまごっち", "Pokemon GO Plus +"]
     color: "#ff7ab3"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: switch1
+    group: console
+    name: Nintendo Switch（初代・有機EL・Lite）の限定版・本体・コントローラー
+    short: Switch（初代）
+    slug: switch
+    hashtags: "#NintendoSwitch #Switch"
+    hints: "Nintendo Switch(?! ?2(?!\\d))|Switch Lite|有機ELモデル|Joy-Con(?! ?2)|HAC-|HEG-|HDH-|ニンテンドースイッチ(?! ?2(?!\\d))"
+    strip_words: "本体|セット|エディション"
+    aff_keywords: ["Nintendo Switch 有機ELモデル", "Switch Lite"]
+    color: "#e60012"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true

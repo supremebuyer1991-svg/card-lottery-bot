@@ -88,6 +88,7 @@ PCOUNTS = {}   # カテゴリごとの商品の数（build の最初に入れる
 def side_html(cats, cur_game=None, cur=None, counts=True):
     """左のメニュー：いちばん上にカテゴリ（横に商品の数）→ 定価以上で売れる・買取相場・カレンダー → 下に抽選・受付の状況。スマホでは本文の上に横並び"""
     here = ' aria-current="page"'
+    cats = sorted(cats, key=lambda c: -PCOUNTS.get(c["id"], 0))   # 商品の多いカテゴリから（11/9 ユーザーの指示）
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
                  + (f'<span class="n">{PCOUNTS[c["id"]]}</span>' if PCOUNTS.get(c["id"]) else "") + "</a>" for c in cats)
     pages = (f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
