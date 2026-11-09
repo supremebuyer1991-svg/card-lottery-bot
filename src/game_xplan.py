@@ -137,7 +137,7 @@ def build(lots, settings, site, t=None, st=None):
         for _, i in rest:
             en = parse_dt(i.get("end"))
             lines.append(f"▶{_short(i.get('product'), 26)}（{i.get('store') or '公式'}・{gx._kind(i)}{'・〜' + _md(en) if en and i.get('kind') != 'release' else ''}）")
-        lines += ["", "一覧はこちら👇", f"{site}/", tag([i for _, i in rest[:2]])]
+        lines += ["", "一覧はこちら👇", f"{site}/chusen/", tag([i for _, i in rest[:2]])]
         plan.append({"at": at(12, 30), "slot": "新着まとめ", "text": _fit(lines)})
     # 20:30 今夜締切
     tonight = [kv for kv in ends if parse_dt(kv[1]["end"]) >= at(20, 45)]

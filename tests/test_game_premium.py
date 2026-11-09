@@ -33,7 +33,7 @@ out = pathlib.Path(tempfile.mkdtemp())
 sitegen_game.build(common.load_settings(), out_dir=out)
 p = (out / "premium/4902370554564/index.html").read_text(encoding="utf-8")
 assert "最高買取" in p and "13,800円" in p and "1週間前比" in p and "1か月前比" in p and "<svg class=\"chart\"" in p and "楽天で見る" in p and "メルカリで探す" in p
-assert "定価以上で売れる" in (out / "premium/index.html").read_text(encoding="utf-8") and "/premium/4902370554564/" in (out / "sitemap.xml").read_text(encoding="utf-8")
+assert "定価以上で売れる" in (out / "index.html").read_text(encoding="utf-8") and "/premium/4902370554564/" in (out / "sitemap.xml").read_text(encoding="utf-8")
 assert (out / "souba/index.html").exists() and (out / "premium/4902370552683/index.html").exists()          # 定価より安い商品も相場ページは作る
 assert "<h2>商品情報</h2>" in p and "JANコード" in p and "定価（税込）" in p
 print("PREMIUM OK")

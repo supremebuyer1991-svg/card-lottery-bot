@@ -21,7 +21,7 @@ NOT_HOBBY = re.compile(r"カメラ|レンズ|PowerShot|EOS|Nikon|LUMIX|instax|�
                        r"Apple Watch|Dyson|ダイソン|ドライヤー|炊飯|掃除機|冷蔵庫|洗濯|電子レンジ|ウイスキー|ワイン|イヤホン|ヘッドホン|スマートウォッチ|Kindle|ルーター|Wi-Fi|"
                        r"SIGMA|TAMRON|FUJIFILM|Canon|CANON|SONY α|GoPro|DJI|Fitbit|Garmin|ロボット掃除機|美容|ReFa|シェーバー|"
                        # トレカはトレカ抽選ナビの担当（このサイトには載せない）
-                       r"カードゲーム|ポケモンカード|ポケカ|遊戯王|デュエル・?マスターズ|デュエマ|拡張パック|ブースターパック|トレカ|ヴァイスシュヴァルツ|ユニオンアリーナ|"
+                       r"カードゲーム|BOOSTER|ブースター|フュージョンワールド|ダイバーズ|バトスピ|ポケモンカード|ポケカ|遊戯王|デュエル・?マスターズ|デュエマ|拡張パック|ブースターパック|トレカ|ヴァイスシュヴァルツ|ユニオンアリーナ|"
                        r"\bOP-\d|\bEB-\d|\bPRB-\d|\bSV\d|\bM\d[a-z]?\b.*BOX")
 
 
@@ -234,6 +234,8 @@ def catalog(settings=None, wmap=None):
             withm = [n for n in x["names"] if model.search(n)]
             if withm:
                 name = _clean(withm[0])
+        if NOT_HOBBY.search(" ".join([name, tk.get("title") or "", (tk.get("caption") or "")[:200]] + x["names"])):   # 楽天の商品名・説明で分かるトレカ・家電も外す
+            continue
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": price, "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
                     "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", ""), "azUrl": wm.get("azUrl", ""),
@@ -278,7 +280,7 @@ def chart_svg(h, teika):
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
 
-CSS = (".sellb{display:inline-block;margin-top:8px;padding:9px 14px;border-radius:8px;background:#3ddc84;color:#0b0d12!important;font-weight:900;text-decoration:none}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+CSS = (".sellb{display:inline-block;margin-top:6px;font-size:13px;color:#8a93a6!important}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
        ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
@@ -399,7 +401,7 @@ def _sell_btn(x):
         u = game_kaitori.store_link(x["store"], x["jan"], x["name"])
     except Exception:
         u = ""
-    return (f'<a class="btn sellb" href="{escape(u)}" target="_blank" rel="nofollow noopener">最高値の{escape(x["store"])}で売る（{x["max"]:,}円）</a>' if u else "")
+    return (f'<a class="sellb" href="{escape(u)}" target="_blank" rel="nofollow noopener">→ {escape(x["store"])}の買取ページを見る</a>' if u else "")
 
 
 def _aitext(key):
@@ -567,15 +569,15 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
                             "store": x["store"], "ratio": x["ratio"], "w1h": _chg(x["max"], x["w1"]) if x.get("w1") else "",
                             "rk": rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", "az": x.get("azUrl", "")} for x in xs])
 
-    page(f"定価以上で売れるゲーム・ホビー一覧【{md}更新】買取価格の相場｜{brand['name']}",
+    page(f"プレミア商品一覧｜定価以上で売れるゲーム・ホビー【{md}更新】買取相場と再販・入荷速報｜{brand['name']}",
          "定価より高く買い取られているゲーム機・周辺機器・ホビーの一覧。買取店の新品の最高買取価格・定価との差・1週間前比を毎日更新。",
-         f'<h1>定価以上で売れるゲーム・ホビー</h1><p>買取店の新品の最高買取価格が定価を上回っている商品です（{md}更新・{len(items)}件）。'
+         f'<h1>プレミア商品一覧（定価以上で売れるゲーム・ホビー）</h1><p>買取店の新品の最高買取価格が定価を上回っている商品です（{md}更新・{len(items)}件）。'
          f'楽天・Amazonで定価で売り出されたら、Xですぐお知らせします。<a href="/souba/">すべての商品の買取相場（{len(allx)}件）</a></p>'
-         + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "premium/")
+         + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "")
     page(f"ゲーム・ホビー買取相場一覧【{md}更新】{len(allx)}商品の最高買取価格｜{brand['name']}",
          "ゲーム機・周辺機器・たまごっち・ホビーの新品の最高買取価格（買取店9店）と定価比・1週間前比の一覧。毎日更新。",
          f'<h1>ゲーム・ホビー買取相場一覧</h1><p>買取店9店の新品の買取価格から、商品ごとのいちばん高い価格を毎日まとめています（{md}更新・{len(allx)}件）。'
-         f'<a href="/premium/">定価以上で売れる商品だけを見る</a></p>' + table(allx) + note, "souba/")
+         f'<a href="/">プレミア商品一覧（定価以上で売れる商品だけ）を見る</a></p>' + table(allx) + note, "souba/")
     import gamecats as _gc
     _cats = _gc.by_id(False)
     _wm_all = load_json("watch_map.json", {}) or {}
@@ -596,7 +598,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
         desc = f"{x['name']}の新品の最高買取価格は{x['max']:,}円" + (f"（定価{x['teika']:,}円の{round(x['ratio'] * 100)}%）" if x["teika"] else "") + "。1週間前比・1か月前比・買取店ごとの価格・抽選や再販の情報。"
         page(f"{x['name']} 買取価格・定価・在庫/再販情報【{md}更新】｜{brand['name']}", desc,
-             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
+             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'

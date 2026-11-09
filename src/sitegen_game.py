@@ -99,11 +99,11 @@ def side_html(cats, cur_game=None, cur=None, counts=True):
     cats = sorted(cats, key=lambda c: -PCOUNTS.get(c["id"], 0))   # 商品の多いカテゴリから（11/9 ユーザーの指示）
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
                  + (f'<span class="n">{PCOUNTS[c["id"]]}</span>' if PCOUNTS.get(c["id"]) else "") + "</a>" for c in cats)
-    pages = (f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
+    pages = (f'<a href="/"{here if cur == "premium" else ""}>プレミア商品一覧</a>'
              f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
              f'<a href="/calendar/"{here if cur == "calendar" else ""}>発売カレンダー</a>'
              f'<a href="/new/"{here if cur == "new" else ""}>発売予定・予約</a>')
-    stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
+    stat = "".join(f'<a href="/chusen/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
     return ('<aside class="side" aria-label="メニュー">'
             '<a class="brand" href="/"><img src="/rinrin.png" alt="" width="36" height="36"><span>ゲーム・ホビー<br><em>入荷速報</em></span></a>'
             f'<nav class="cats" aria-label="カテゴリ"><p class="cats-h">カテゴリ（商品数）</p>{cl}</nav>'
@@ -631,7 +631,7 @@ def build(settings=None, out_dir=None, force=False):
             pmod[path] = [fp, lm, (prev or [None, None, today_iso])[2]]
             urls.append((f"{site}/{path}", lm))
 
-    menu = [("すべて", ""), ("いま一覧", "now/"), ("今日", "today/"), ("カレンダー", "calendar/")] + [(c["short"], f"{c['slug']}/") for c in cats] + [("見方・使い方", "guide/")]
+    menu = [("すべて", "chusen/"), ("いま一覧", "now/"), ("今日", "today/"), ("カレンダー", "calendar/")] + [(c["short"], f"{c['slug']}/") for c in cats] + [("見方・使い方", "guide/")]
     lk = links_html(menu)
     cat_counts = {c["id"]: sum(1 for i in live if i["game"] == c["id"] and i["ph"] == "open") for c in cats}
 
@@ -640,9 +640,10 @@ def build(settings=None, out_dir=None, force=False):
     top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、楽天・Amazonなどで定価で売り出された（再販・入荷・予約開始）ことをXで速報し、買取店の新品の買取相場・定価以上で売れる商品・発売予定を毎日まとめているサイトです。抽選・招待・先着の受付情報も各店の告知から自動で集めています。"),
                ("受付状況はいつの時点のものですか？", "ページを開いた時刻でブラウザが計算しています。受付中・予告・終了と残り時間は、開くたびに今の時刻で表示されます。"),
                ("どんな条件があるか分かりますか？", "会員・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台などの条件を、告知から読み取ってタグで表示しています。必ず応募ページの原文でご確認ください。")]
-    write("", {"title": f"ゲーム・ホビーの再販・入荷速報と買取相場【{md}更新】定価以上で売れる商品も｜{brand['name']}",
+    # 11/9 ユーザーの指示：サイトのトップ（/）は「プレミア商品一覧」（game_premium が書く）。抽選・受付中の一覧は /chusen/ へ
+    write("chusen/", {"title": f"ゲーム・ホビーの抽選・予約・受付中の一覧【{md}更新】締切が近い順｜{brand['name']}",
                "desc": f"PS5・Switch 2・たまごっち・ガンプラ・フィギュアなどの再販・入荷・予約開始を速報。楽天・Amazonで定価で売り出されたらXで通知。買取店{_n_stores()}店の買取相場と、定価以上で売れる商品の一覧も毎日更新。いま受付中の抽選・予約{n_open}件。",
-               "h1": "ゲーム・ホビーの再販・入荷速報と買取相場", "sumshort": f"いま受付中{n_open}件。締切が近い順に、条件つきで並べています。",
+               "h1": "ゲーム・ホビーの抽選・予約・受付中の一覧", "sumshort": f"いま受付中{n_open}件。締切が近い順に、条件つきで並べています。",
                "lead": s.get("site_tagline") or "", "summary": summary(live, "受付"), "links": lk, "faq": top_faq, "pin": pin_html()}, items,
           trail=None, data_extra={"game": ""})
 
@@ -813,7 +814,7 @@ def build(settings=None, out_dir=None, force=False):
         f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">'
         f'<title>ページが見つかりません｜{escape(brand["name"])}</title></head>'
         '<body><img src="/rinrin.png" alt="" width="96" height="96"><h1>ページが見つかりません</h1><p>受付が終わってページを削除した可能性があります。</p>'
-        '<p><a href="/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
+        '<p><a href="/">プレミア商品一覧</a> ・ <a href="/chusen/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
     _x_draft(out, live, s, site, updated, cats)
     try:   # 定価以上で売れる商品（買取店の新品の買取価格×楽天の定価）：/premium/ と /premium/<JAN>/
         import game_premium
@@ -842,6 +843,7 @@ def build(settings=None, out_dir=None, force=False):
             shutil.copy(f, out / f.name)
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
+    (out / "_redirects").write_text("/premium /  301\n/premium/ /  301\n", encoding="utf-8")   # 「定価以上で売れる」はトップに移した（11/9）
     (out / "_headers").write_text("/og.png\n  Cache-Control: public, max-age=3600\n", encoding="utf-8")
     if site:
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'

@@ -67,10 +67,10 @@ else:
     # すべてのカテゴリ（有効なもの）のページができる
     for c in gamecats.categories():
         assert f"{c['slug']}/index.html" in files, c["slug"]
-    top = (out / "index.html").read_text(encoding="utf-8")
+    top = (out / "chusen/index.html").read_text(encoding="utf-8")
     head = top[:top.index("</head>")]
-    assert "<title>ゲーム・ホビーの再販・入荷速報と買取相場【" in head and "｜ゲーム・ホビー入荷速報</title>" in head
-    assert 'rel="canonical" href="https://example-game.jp/"' in head and '"BreadcrumbList"' not in head and '"WebSite"' in head and '"FAQPage"' in head
+    assert "<title>ゲーム・ホビーの抽選・予約・受付中の一覧【" in head and "｜ゲーム・ホビー入荷速報</title>" in head
+    assert 'rel="canonical" href="https://example-game.jp/chusen/"' in head and '"FAQPage"' in head
     assert "記載の社名・製品名は各社の商標です。当サイトは各社と関係ありません。" in top                 # 商標の注意書き
     assert "Amazonのアソシエイトとして、ゲーム・ホビー入荷速報は適格販売により収入を得ています" in top     # アフィリエイト表記
     assert "本ページはプロモーションを含みます" in top
@@ -145,7 +145,7 @@ else:
     out2 = Path(tempfile.mkdtemp())
     sitegen_game.build(s2, out_dir=out2)
     assert (out2 / "testcat/index.html").exists() and "https://example-game.jp/testcat/" in (out2 / "sitemap.xml").read_text(encoding="utf-8")
-    assert "テスト商品 A" in (out2 / "index.html").read_text(encoding="utf-8")
+    assert "テスト商品 A" in (out2 / "chusen/index.html").read_text(encoding="utf-8")
     gamecats.PATH = common.ROOT / "config" / "game" / "categories.yaml"
     gamecats._CACHE.clear()
     print("CATEGORY CONFIG OK")
@@ -210,7 +210,7 @@ else:
     save_json("rakuten.json", cache)
     out3 = Path(tempfile.mkdtemp())
     sitegen_game.build(s3, out_dir=out3)
-    top3 = (out3 / "index.html").read_text(encoding="utf-8")
+    top3 = (out3 / "chusen/index.html").read_text(encoding="utf-8")
     data3 = json.loads(re.search(r'<script type="application/json" id="data">(.*?)</script>', top3, re.S).group(1))
     by = {i["key"]: i for i in data3["items"]}
     assert by["p1"]["rk"]["img"] == IMG + "?_ex=300x300" and by["p1"]["rk"]["u"].startswith("https://hb.afl.rakuten.co.jp/hgc/aff.test/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18000001%2F")

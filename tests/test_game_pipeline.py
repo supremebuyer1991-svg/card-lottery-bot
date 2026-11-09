@@ -92,7 +92,7 @@ else:
     # サイトができている
     files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
     assert "index.html" in files and "ps5/index.html" in files and "gunpla/index.html" in files and "x-draft.html" in files
-    top = (out / "index.html").read_text(encoding="utf-8")
+    top = (out / "chusen/index.html").read_text(encoding="utf-8")
     assert "ソニーストア" in top and "謎の店" not in top and "トレカ抽選ナビ" not in top
     # 2回目：変化なし → AIを呼ばない・.changed なし
     game_pipeline.run("all", extractor=lambda *a: (_ for _ in ()).throw(AssertionError("再抽出した")), fetcher=lambda u: html, out_dir=out, sources=src)
