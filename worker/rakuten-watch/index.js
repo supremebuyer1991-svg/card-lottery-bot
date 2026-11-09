@@ -158,15 +158,19 @@ function amzState(it) {
   return { s: "none" };
 }
 function amzCompose(game, kind, items) {
+  // 11/9：見られる数が楽天の1/5だったので、1行目から「何が・いくらで」が分かる形に（商品名と定価を見出しに）
   const g = GAME[game], invite = kind === "invite";
-  const lines = ["🚨🚨速報🚨🚨", invite ? `Amazonで${g.head}の招待リクエスト受付開始🔥` : `Amazonで${g.head}が販売開始🔥`, "",
-    invite ? "Amazon.co.jp本体の販売！リクエストは今すぐ👇" : "Amazon.co.jp本体の販売！今なら買えます👇", ""];
+  const first = shortName(items[0]?.itemInfo?.title?.displayValue || "") || g.head;
+  const yen = (it) => it._price || "";  // Amazon本体の出品の値段（amzState で入れた値）
+  const lines = ["🚨🚨速報🚨🚨", invite ? `Amazon本体で「${first}」の招待リクエスト受付開始🔥` : `Amazon本体で「${first}」が定価で販売開始🔥`,
+    invite ? "📩リクエストしておくと、招待された人が定価で買える方式です" : "今なら定価で買えます！急いで👇", ""];
   for (const it of items.slice(0, 10)) {
     const t = shortName(it.itemInfo?.title?.displayValue || "");
-    lines.push(`・${t}`, it.detailPageURL || `https://www.amazon.co.jp/dp/${it.asin}?tag=${AMZ_TAG}`, "");
+    const p = yen(it);
+    lines.push(`・${t}${p ? `（${p}）` : ""}`, it.detailPageURL || `https://www.amazon.co.jp/dp/${it.asin}?tag=${AMZ_TAG}`, "");
   }
   if (items.length > 10) lines.push(`ほか${items.length - 10}商品も`, "");
-  if (invite) lines.push("📩リクエストして、招待メールが届いた人が購入できる方式です", "");
+  if (invite) lines.push("✉️招待メールが来ていなくても招待されていることがあるので、ときどき商品ページを確認👀", "");
   lines.push("⚠️売り切れてもすぐ復活することあり！", "定期的にリンクを見張って👀", "", "🔔フォロー＆通知ONで速報が届きます", "",
     g.tags.replace("#PR", "#Amazon #PR"));
   return lines.join("\n");
