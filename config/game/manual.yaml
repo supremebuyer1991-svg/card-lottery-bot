@@ -141,3 +141,29 @@ lotteries:
     conditions: 11/14から順次発売（ファミリーマート・麦わらストア・一番くじ公式ショップ・一番くじONLINEなど）。店舗により在庫・発売日が異なる。
     url: ""
     # source: https://premium.gamepedia.jp/hobby/archives/278965
+
+  - slug: ps-portal-midnight-black-preorder-1113
+    game: ps5
+    kind: preorder
+    store: PlayStation取扱店・ECサイト
+    series: PlayStation Portal
+    product: PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用
+    channel: online
+    start: 2026-11-13T10:00
+    end: 2026-12-09T23:59
+    price: "39,980円（税込）"
+    conditions: 11/13（金）10:00から全国のPlayStation取扱店・ECサイトで順次予約受付。PS Plus プレミアム1ヶ月利用権つき。日本語専用モデル（国/地域が日本のアカウントのみ）。
+    url: https://blog.ja.playstation.com/2026/11/09/20261109-playstation-portal-announcement-o/
+    # source: PlayStation.Blog 2026/11/09
+
+  - slug: ps-portal-midnight-black-release-1210
+    game: ps5
+    kind: release
+    store: ソニー・インタラクティブエンタテインメント
+    series: PlayStation Portal
+    product: PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用
+    channel: online
+    end: 2026-12-10T23:59
+    price: "39,980円（税込）"
+    url: https://blog.ja.playstation.com/2026/11/09/20261109-playstation-portal-announcement-o/
+    # source: PlayStation.Blog 2026/11/09

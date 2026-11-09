@@ -137,7 +137,7 @@ def update(settings, fetch=None, sleep=None):
         if left <= 0:
             break
         from common import job_elapsed
-        if job_elapsed() > float(settings.get("pre_collect_max_sec", 100)):   # 1回の実行を5分以内に収める
+        if job_elapsed() > float(settings.get("kaitori_until_sec", 230)) + 20:   # 1回の実行を5分以内に収める
             log("プレ値：時間の上限なので、定価の確認は次の回に回します")
             break
         left -= 1
@@ -155,7 +155,7 @@ def update(settings, fetch=None, sleep=None):
     if fetch is None:   # 定価が分かっていて、商品情報（発売日など）がまだのものを少しずつ埋める
         from common import job_elapsed
         for jan in [j for j in order if (teika.get(j) or {}).get("price") and "sales_date" not in teika[j]][:int(settings.get("premium_info_per_run", 6))]:
-            if job_elapsed() > float(settings.get("pre_collect_max_sec", 100)):
+            if job_elapsed() > float(settings.get("kaitori_until_sec", 230)) + 20:
                 break
             info = _books_info(jan, settings)
             if info is None:

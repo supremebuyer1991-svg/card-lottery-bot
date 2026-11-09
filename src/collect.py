@@ -204,7 +204,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         # GitHubの使用時間は1回ごとに分単位で切り上げ。実行全体が job_target_sec（既定 4分40秒）に収まるよう、
         # トレカ側で使った分を引いて、ゲーム側の情報集めの時間を決める（後ろのサイト作り・公開の分を残す）
         left = int(settings.get("job_target_sec", 280)) - (time.time() - int(t0)) - int(settings.get("job_tail_sec", 60))
-        budget = max(20, min(budget, int(left)))
+        budget = max(int(settings.get("collect_min_sec", 60)), min(budget, int(left)))   # 抽選集めは最低60秒は使う
         log(f"情報集めの時間：{budget}秒まで（実行全体を5分以内に収めるため）")
     t_start = now()
     # RSSの記事を開いて本文まで読む（ゲーム側だけ。設定 rss_read_article）。Googleニュースのリンクは元の記事に直す。

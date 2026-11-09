@@ -49,15 +49,6 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
     log(f"開始（ゲーム・ホビー入荷速報） auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
     from collect import collect, sync_manual
     sync_manual()  # 自分で追加した抽選（config/game/manual.yaml）
-    if step in ("all", "publish") and fetcher is None and sources is None:
-        try:  # 買取店の新品の買取価格（1回2店まで・各店1日1回）。情報集めの前に読む（残り時間は情報集めの側で調整）
-            import game_kaitori
-            game_kaitori.update(s)
-            import game_premium   # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価（1回8件まで）
-            game_premium.update(s)
-            game_premium.watch_map()   # 見張りが見た楽天・Amazonの状態（予約受付中・販売中）と商品ページ → サイトに出す
-        except Exception as e:
-            log(f"買取価格: スキップ {e}")
     if step in ("all", "collect"):
         srcs = sources if sources is not None else load_sources()
         kw = {}
@@ -67,6 +58,15 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             kw["fetcher"] = fetcher
         new = collect(srcs, s, **kw)
         log(f"新着 {len(new)} 件")
+    if step in ("all", "publish") and fetcher is None and sources is None:
+        try:  # 買取店の新品の買取価格（1回2店まで・各店1日1回）。抽選集めのあと、残りの時間で（11/9：先に読むと抽選集めの時間が無くなったため）
+            import game_premium
+            game_premium.watch_map()   # 見張りが見た楽天・Amazonの状態（予約受付中・販売中）と商品ページ → サイトに出す（すぐ終わる）
+            import game_kaitori
+            game_kaitori.update(s)
+            game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
+        except Exception as e:
+            log(f"買取価格: スキップ {e}")
     if step in ("all", "publish"):
         lots = load_json("lotteries.json", {})
         _fill_kind(lots)

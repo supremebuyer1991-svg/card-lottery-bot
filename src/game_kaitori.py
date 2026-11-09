@@ -80,7 +80,7 @@ def update(settings, fetch=None, ai=None):
                   key=lambda s: (st.get(s["name"]) or {}).get("at", ""))
     from common import job_elapsed
     for s in todo[:int(settings.get("kaitori_stores_per_run", 2))]:
-        if job_elapsed() > float(settings.get("pre_collect_max_sec", 100)) - 30:
+        if job_elapsed() > float(settings.get("kaitori_until_sec", 230)):   # 実行開始から230秒をすぎたら次の回に（5分以内に収める）
             log("買取価格：時間の上限なので、残りの店は次の回に回します")
             break
         items = []
