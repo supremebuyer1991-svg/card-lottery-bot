@@ -104,3 +104,5 @@ health_paths: ["/", "/ps5/", "/now/"]
 kaitori_stores_per_run: 3
 # 検索語の多い店：1回に読むページ数（残りは次の回に続きから。実行時間を5分に収めるため）
 kaitori_urls_per_run: 20
+# 買取価格・定価を調べるのは実行開始から何秒まで（全体を5分前後に収める）
+kaitori_until_sec: 200
