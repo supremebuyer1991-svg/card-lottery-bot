@@ -3,7 +3,8 @@
 // ・楽天：「注文できない」→「注文できる」
 // ・Amazon：Amazon.co.jp 本体の販売が「なし」→「招待リクエスト受付中」「販売中」（転売業者の在庫は見ない）
 // に変わったら、@a9994aaa にアフィリンク付きで速報する（PRの表記はXのプロフィールにあるので本文には書かない）。
-// ・商品ごとに最初の1回は記録だけ ・同じ商品は6時間あける ・売り切れてから24時間以内に戻っただけなら速報しない
+// ・速報は「売り切れ（2回以上・30分以上続けて確認）→ 販売中・予約受付中」に切り替わった時だけ（前から売っているものは出さない）
+// ・検索で見つからなかっただけの時は売り切れと数えない ・同じ商品は6時間あける
 // ・相場の商品（watch.json の jan）は JAN で楽天ブックス・Amazon の商品ページを探し、見つけたページは /map でサイトに渡す
 // ・1回に見る数を決めて順番に回す（プレ値の商品は回ってくる間隔が短い）。定価の110%より高い売値は「定価で買える」とみなさない
 // ・1日12本まで（ホビーは3本まで。ゲームが本業のアカウントのため）
@@ -85,8 +86,8 @@ function amzState(it) {
 }
 
 function compose(w, shop, kind, url) {
-  const head = shop === "rk" ? (kind === "pre" ? "楽天ブックスで予約受付開始🔥" : "楽天ブックスで販売開始🔥")
-    : kind === "invite" ? "Amazonで招待リクエスト受付開始🔥" : kind === "pre" ? "Amazonで予約受付開始🔥" : "Amazonで販売開始🔥";
+  const where = shop === "rk" ? "楽天ブックス" : "Amazon";
+  const head = `${where}で` + (kind === "invite" ? "招待リクエスト受付再開🔥" : kind === "pre" ? "予約受付再開🔥" : "販売再開🔥") + "（売り切れ→在庫あり）";
   const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), "", kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇", url, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
@@ -127,6 +128,7 @@ async function run(env, which, { dry = false } = {}) {
     try {
       if (which === "rk") {
         const it = w.rk ? await rakutenItem(env, w.rk) : await rakutenByJan(env, w.jan);
+        if (!it) { await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
         if (it) {
           price = Number(it.itemPrice) || 0;
           cur = it.availability === 1 ? (/予約/.test((it.itemName || "") + (it.itemCaption || "").slice(0, 200)) ? "pre" : "buy") : "none";
@@ -135,6 +137,7 @@ async function run(env, which, { dry = false } = {}) {
         }
       } else {
         const it = await amzItem(env, w.asin || w.jan, !w.asin);
+        if (!it) { await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
         cur = amzState(it);
         const l = ((it && it.offersV2?.listings) || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
         price = yen(l?.price?.money?.amount ?? l?.price?.money?.displayAmount);
@@ -150,9 +153,14 @@ async function run(env, which, { dry = false } = {}) {
     st.stat = st.stat || {};
     if (prev !== cur) changed = true;
     if (!st.stat[id] || st.stat[id].s !== cur || (cur !== "none" && st.stat[id].p !== price)) { st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true; }
-    if (prev && prev !== "none" && cur === "none") st.off[id + prev] = Date.now();   // 売り切れた時刻（24時間以内に戻っただけなら速報しない）
-    const flapped = Date.now() - (st.off[id + cur] || 0) < 24 * 3600e3;
-    const fresh = st.init[id] && prev !== undefined && RANK[cur] > RANK[prev] && !flapped && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
+    // 売り切れの確認：売り切れ（none）を2回以上・30分以上続けて見たら「本当に売り切れ」（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報）
+    st.soldout = st.soldout || {};
+    const so = st.soldout[id];
+    if (cur === "none") { if (!so) { st.soldout[id] = { since: Date.now(), n: 1 }; changed = true; } else if (so.n < 2) { so.n++; changed = true; } }
+    const confirmed = so && so.n >= 2 && Date.now() - so.since >= 30 * 60e3;
+    if (cur !== "none" && so) { delete st.soldout[id]; changed = true; }
+    // 速報：前に「本当に売り切れ」を見ていて、いま販売中・予約受付中・招待受付中に変わった時だけ。前から売っているものは出さない
+    const fresh = st.init[id] && prev === "none" && cur !== "none" && confirmed && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
     if (!st.init[id]) { st.init[id] = 1; changed = true; }
     st.items[id] = cur;
     if (!fresh) continue;
