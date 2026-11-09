@@ -103,4 +103,4 @@ health_paths: ["/", "/ps5/", "/now/"]
 # 買取相場：1回の実行で読む店の数（店が15に増えたので3。各店1日1回）
 kaitori_stores_per_run: 3
 # 検索語の多い店：1回に読むページ数（残りは次の回に続きから。実行時間を5分に収めるため）
-kaitori_urls_per_run: 25
+kaitori_urls_per_run: 20
