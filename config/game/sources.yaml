@@ -137,6 +137,18 @@ sources:
     quote: false
     hide_source_url: true
 
+  - id: nyuka_now_chusen
+    game: auto
+    name: 入荷Now 抽選情報
+    type: html_index
+    every_hours: 3
+    url: https://nyuka-now.com/archives/category/chusen
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "amiibo", "ポケモン"]
+    max_articles: 12
+    parser: nyukanow
+    quote: false
+    hide_source_url: true
+
   # --- ヨドバシ.com の抽選一覧（トレカ抽選ナビと同じページ。ゲーム機・福袋（夢のお年玉箱）の抽選もここに出る）---
   - id: yodobashi_lottery_game
     game: auto

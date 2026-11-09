@@ -316,8 +316,9 @@ __SIDEBAR__
     [].forEach.call(document.querySelectorAll("[data-n]"), function (el) { var v = by[el.getAttribute("data-n")]; el.textContent = v ? v.length : ""; });
   }
   function catCounts(now) {
-    var c = {}; CC.forEach(function (i) { if (phase(i, now) === "open") c[i.game] = (c[i.game] || 0) + 1; });
-    [].forEach.call(document.querySelectorAll("[data-cn]"), function (el) { el.textContent = c[el.getAttribute("data-cn")] || 0; });
+    // カテゴリの横の数：受付中だけでなく、これから始まる・再入荷・発売予定も含めた「いま載っている数」。0 のときは何も出さない
+    var c = {}; CC.forEach(function (i) { var p = phase(i, now); if (p !== "ended" && p !== "waiting") c[i.game] = (c[i.game] || 0) + 1; });
+    [].forEach.call(document.querySelectorAll("[data-cn]"), function (el) { el.textContent = c[el.getAttribute("data-cn")] || ""; });
   }
   function setNav() {
     [].forEach.call(document.querySelectorAll(".stat a[data-t]"), function (a) { if (a.getAttribute("data-t") === state.tab) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
