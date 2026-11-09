@@ -369,10 +369,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         paths.append(path)
 
     def table(xs):
-        rows = "".join(
-            f'<tr><td><a href="/premium/{x["jan"]}/">{escape(x["name"])}</a></td><td class="n">{(str(format(x["teika"], ",")) + "円") if x["teika"] else "—"}</td>'
-            f'<td class="n">{x["max"]:,}円</td><td class="n">{_ratio_html(x)}</td><td class="n">{_chg(x["max"], x["w1"])}</td></tr>' for x in xs)
-        return f'<table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th>定価比</th><th>1週間前比</th></tr></thead><tbody>{rows}</tbody></table>'
+        return plist_html([{"name": x["name"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
+                            "store": x["store"], "ratio": x["ratio"], "w1h": _chg(x["max"], x["w1"]) if x.get("w1") else "",
+                            "rk": rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", "az": x.get("azUrl", "")} for x in xs])
 
     page(f"定価以上で売れるゲーム・ホビー一覧【{md}更新】買取価格の相場｜{brand['name']}",
          "定価より高く買い取られているゲーム機・周辺機器・ホビーの一覧。買取店の新品の最高買取価格・定価との差・1週間前比を毎日更新。",
@@ -550,6 +549,46 @@ def product_index(settings, live_rows):
     return out
 
 
+PL_CSS = (".pl{display:flex;flex-direction:column;gap:12px;margin:12px 0}"
+          ".pc{display:grid;grid-template-columns:84px 1fr auto;gap:14px;align-items:center;background:#141823;border:1px solid #262c3a;border-radius:14px;padding:14px}"
+          ".pc-img{display:block;width:84px;height:84px;border-radius:10px;background:#fff;overflow:hidden}.pc-img img{width:100%;height:100%;object-fit:contain}"
+          ".pc-img.none{background:#1d2230}"
+          ".pc-name{display:block;color:#e9edf5;font-weight:900;font-size:15px;line-height:1.45;text-decoration:none;margin-bottom:8px}.pc-name:hover{color:#ffd23f}"
+          ".pc-nums{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:flex-end}.pc-nums small{display:block;font-size:11px;color:#8a93a6}"
+          ".pc-nums b{font-family:var(--font-num);font-size:17px}.pc-nums em{font-style:normal;font-size:11px;color:#8a93a6;margin-left:4px}"
+          ".pc-r{font-weight:900;font-size:14px;padding:3px 8px;border-radius:999px;background:#0f2a1a;color:#3ddc84}.pc-r.dn{background:#2a1316;color:#ff8a95}"
+          ".pc-sub{margin-top:6px;font-size:12px;color:#8a93a6}"
+          ".pc-acts{display:flex;flex-direction:column;gap:6px;min-width:132px}"
+          ".pc-acts a{display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:8px;font-weight:900;font-size:14px;text-decoration:none;white-space:nowrap}"
+          ".pc-acts .rk{background:#bf0000;color:#fff}.pc-acts .az{background:#ff9900;color:#0b0d12}.pc-acts .det{background:#ffd23f;color:#0b0d12}"
+          "@media (max-width:640px){.pc{grid-template-columns:72px 1fr;gap:12px;padding:14px 12px}.pc-img{width:72px;height:72px}"
+          ".pc-acts{grid-column:1/-1;flex-direction:row;min-width:0}.pc-acts a{flex:1;padding:12px 6px;font-size:14px}.pc-name{font-size:15px}}")
+
+
+def plist_html(prods):
+    """商品のカード一覧（写真・商品名・定価・最高買取・定価比・楽天/Amazon/詳細を見る）。スマホでは1商品ずつ大きめのカードで、ボタンは下に横並び"""
+    out = []
+    for p in prods:
+        img = (f'<a class="pc-img" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="" loading="lazy" width="84" height="84"></a>'
+               if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
+        nums = [f'<div><small>定価</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
+        if p.get("max"):
+            nums.append(f'<div><small>最高買取（新品）</small><b>{format(p["max"], ",")}円</b>{("<em>" + escape(p["store"]) + "</em>") if p.get("store") else ""}</div>')
+        if p.get("ratio"):
+            pc = round((p["ratio"] - 1) * 100)
+            nums.append(f'<span class="pc-r{" dn" if pc < 0 else ""}">定価比 {"+" if pc >= 0 else ""}{pc}%</span>')
+        sub = f'<div class="pc-sub">1週間前比 {p["w1h"]}</div>' if p.get("w1h") else ""
+        acts = ""
+        if p.get("rk"):
+            acts += f'<a class="rk" href="{escape(p["rk"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>'
+        if p.get("az"):
+            acts += f'<a class="az" href="{escape(p["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>'
+        acts += f'<a class="det" href="{escape(p["url"])}">詳細を見る</a>'
+        out.append(f'<div class="pc">{img}<div class="pc-body"><a class="pc-name" href="{escape(p["url"])}">{escape(p["name"])}</a>'
+                   f'<div class="pc-nums">{"".join(nums)}</div>{sub}</div><div class="pc-acts">{acts}</div></div>')
+    return f'<style>{PL_CSS}</style><div class="pl">{"".join(out)}</div>'
+
+
 def _shop_mini(p):
     """一覧の行の「楽天」「Amazon」の小さいボタン（その商品のページ。アフィリエイト）"""
     out = ""
@@ -561,14 +600,9 @@ def _shop_mini(p):
 
 
 def cat_products_html(prods, short):
-    """カテゴリページの商品一覧の表（商品・定価・最高買取・詳細を見る）"""
+    """カテゴリページの商品一覧（カード）"""
     if not prods:
         return f'<section class="sec"><h2>{escape(short)}の商品一覧</h2><p>商品はまだありません。</p></section>'
-    rows = "".join(
-        f'<tr><td>{escape(p["name"])}</td><td class="n">{(format(p["teika"], ",") + "円") if p["teika"] else "—"}</td>'
-        f'<td class="n">{(format(p["max"], ",") + "円" + ("<br><small>" + escape(p["store"]) + "</small>" if p["store"] else "")) if p["max"] else "—"}'
-        f'{(" <span class=\"up\">+" + str(round((p["ratio"] - 1) * 100)) + "%</span>") if p["ratio"] and p["ratio"] >= 1.03 else ""}</td>'
-        f'<td class="pm-shops">{_shop_mini(p)}</td><td class="pm-det"><a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
     return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
             '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。定価で売り出されたらXで通知します。</p>'
-            f'<div style="overflow-x:auto"><table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th>買えるところ</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+            f'{plist_html(prods)}</section>')
