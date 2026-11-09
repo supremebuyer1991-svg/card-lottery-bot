@@ -35878,7 +35878,7 @@
     "found_at": "2026-11-09T07:01:09.275054+09:00",
     "multi": false,
     "cls": "c0ffb66f449b",
-    "page_checked_at": "2026-11-09T07:54:02.246572+09:00",
+    "page_checked_at": "2026-11-09T13:56:41.466000+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -39980,7 +39980,9 @@
     "status": "approved",
     "found_at": "2026-11-09T13:43:23.773333+09:00",
     "multi": false,
-    "cls": "3474681818ea"
+    "cls": "3474681818ea",
+    "page_checked_at": "2026-11-09T13:56:43.566067+09:00",
+    "page_err": "中身が空"
   },
   "17f7fab4b20ddc3e": {
     "store": "カードゲームショップ りらい（福島）",
@@ -40008,5 +40010,38 @@
     "found_at": "2026-11-09T13:43:23.773353+09:00",
     "multi": false,
     "cls": "1f82ecdce399"
+  },
+  "4900632893b50a8f": {
+    "store": "ビックカメラ",
+    "start": "2026-11-10T13:00:00+09:00",
+    "end": "2026-11-11T20:00:00+09:00",
+    "announce": "11月13日(金)13:00〜（ビックカメラ浦和西口店X）",
+    "buy": null,
+    "method": "店頭抽選受付（当選者には店頭販売）",
+    "url": null,
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "id_check": true,
+    "member": "account",
+    "tags": [
+      "本人確認",
+      "会員",
+      "購入履歴",
+      "レシート",
+      "店舗クレカ"
+    ],
+    "confidence": 0.5,
+    "product": "30th CELEBRATION BOX",
+    "series": "30th CELEBRATION",
+    "source": "入荷Now 入荷情報",
+    "source_url": "https://nyuka-now.com/archives/159770",
+    "no_quote": true,
+    "key": "4900632893b50a8f",
+    "status": "pending",
+    "found_at": "2026-11-09T13:56:39.719532+09:00",
+    "multi": false,
+    "cls": "48bf7e3f090e",
+    "issue": 612
   }
 }
