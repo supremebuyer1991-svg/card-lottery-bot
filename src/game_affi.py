@@ -310,7 +310,7 @@ def links_for(i, cache, settings, models=None):
     if yh or q:
         out["yh"] = yh or f"https://shopping.yahoo.co.jp/search?p={quote(q)}"
     if q:
-        out["mc"] = f"https://jp.mercari.com/search?keyword={quote(q)}&status=on_sale"
+        out["mc"] = f"https://jp.mercari.com/search?keyword={quote(q)}&status=on_sale&afid=1350793153"   # メルカリのアフィリエイト（ユーザーのID）
     return out
 
 

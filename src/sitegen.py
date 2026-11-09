@@ -762,7 +762,7 @@ def cards_block(x, cards, tag=None):
         img = (f'<img src="{escape(rk["image"])}" alt="{escape(c["label"])}" loading="lazy" width="96" height="96">' if rk.get("image")
                else '<span class="cd-noimg" aria-hidden="true"></span>')
         links = ((f'<a class="cd-rk" href="{escape(rk["url"])}" target="_blank" rel="nofollow sponsored noopener">{"楽天で探す" if rk.get("search") else "楽天で見る"}</a>' if rk.get("url") else "")
-                 + f'<a class="cd-mc" href="https://jp.mercari.com/search?keyword={quote(q.strip())}" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
+                 + f'<a class="cd-mc" href="https://jp.mercari.com/search?keyword={quote(q.strip())}&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
                  + (f'<a class="cd-az" href="{escape(_amz(q.strip(), tag))}" target="_blank" rel="nofollow sponsored noopener">Amazonで探す</a>' if tag else ""))
         rows.append(f'<li><div class="cd-img">{img}</div><div class="cd-body"><b>{escape(c["label"])}</b>'
                     + (f'<small>{escape(c["num"])}</small>' if c.get("num") else "")

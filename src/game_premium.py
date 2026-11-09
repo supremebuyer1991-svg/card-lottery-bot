@@ -401,8 +401,8 @@ def mercari_box(name):
     from urllib.parse import quote
     q = quote(re.sub(r"\s+", " ", name or "")[:40])
     return ('<div class="mc-box"><b>この商品をメルカリで見る</b>'
-            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale" target="_blank" rel="nofollow noopener">出品中を見る</a>'
-            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=sold_out" target="_blank" rel="nofollow noopener">売れた価格を見る</a></div>')
+            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">出品中を見る</a>'
+            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=sold_out&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">売れた価格を見る</a></div>')
 
 
 FOLLOW = ('<div class="follow"><p><b>🔔 定価販売を定期的にチェック中<br>販売されたらXで即通知！</b></p>'
@@ -476,7 +476,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         shops = (f'<a class="btn btn-rk" href="{escape(rakuten_link(x["itemUrl"], aff_id))}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if x["itemUrl"] else "") + \
             (f'<a class="btn btn-az" href="{escape(x["azUrl"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if x.get("azUrl") else "") + \
             f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
-            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
+            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
         tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
@@ -518,7 +518,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         shops = (f'<a class="btn btn-rk" href="{escape(rk["u"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk.get("u") else "") + \
             (f'<a class="btn btn-az" href="{escape(r0["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if r0.get("az") else "") + \
             f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
-            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale" target="_blank" rel="nofollow noopener">メルカリで探す</a>'
+            f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         img = f'<img src="{escape(rk["img"])}" alt="{escape(nm)}" width="120" height="120" loading="lazy">' if rk.get("img") else ""
         cat = (cats_by.get(r0.get("game")) or {}).get("short", "")
         info = [("商品名", nm), ("カテゴリ", cat), ("発売日", f"{rd.year}年{rd.month}月{rd.day}日" if rd else ""), ("定価（税込）", price),
@@ -672,7 +672,7 @@ def plist_html(prods):
         if p.get("rk"):
             acts += f'<a class="rk" href="{escape(p["rk"])}" target="_blank" rel="nofollow sponsored noopener">楽天</a>'
         mq = quote(re.sub(r"\s+", " ", p.get("name") or "")[:40])
-        acts += f'<a class="mc" href="https://jp.mercari.com/search?keyword={mq}&amp;status=on_sale" target="_blank" rel="nofollow noopener">メルカリ</a>'
+        acts += f'<a class="mc" href="https://jp.mercari.com/search?keyword={mq}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリ</a>'
         acts = f'<div class="pc-shops">{acts}</div><a class="det" href="{escape(p["url"])}">詳細を見る</a>'
         out.append(f'<div class="pc">{img}<div class="pc-body"><a class="pc-name" href="{escape(p["url"])}">{escape(p["name"])}</a>'
                    f'<div class="pc-nums">{"".join(nums)}</div>{sub}</div><div class="pc-acts">{acts}</div></div>')
