@@ -27,6 +27,8 @@ PROMPT = """あなたはゲーム機・ホビーの価格情報サイトの編�
 ・見出しを3つ立てる（行頭に「## 」）。例：「## どんな商品？」「## 買取相場の動き」「## 買うとき・売るときのポイント」（発売前の商品は「## 発売前に知っておきたいこと」など、データに合う見出しにする）
 ・全体で600〜900文字。です・ます調。箇条書きは使わず、短い段落で
 ・最後に余計な挨拶や注意書きは付けない
+・「データ」「このページ」「情報がありません」「記録がない」など、材料の有無についての話は書かない。分からない項目には一切ふれず、分かっていることだけで自然な文章にする
+・英語の単語を混ぜない（商品名・ブランド名は除く）
 
 商品データ：
 {data}"""
@@ -42,7 +44,11 @@ def _ai(data):
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API {r.status_code}: {r.text[:160]}")
     text = "".join(b.get("text", "") for b in r.json().get("content", [])).strip()
-    return text if 300 <= len(text) <= 3000 and "## " in text else ""
+    text = re.sub(r"^#\s.*\n", "", text)   # 先頭の大見出し（# …）は外す
+    if not (300 <= len(text) <= 4000 and "## " in text) or re.search(r"データ|このページ|情報がありません|記録がな", text):
+        log(f"  解説：使わない返事（{len(text)}文字）{text[:60]!r}")
+        return ""
+    return text
 
 
 def _premium_data(x):
