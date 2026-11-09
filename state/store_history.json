@@ -2152,6 +2152,17 @@
   "store/furuichi-329a3/": {
     "name": "ふるいち名古屋大須店",
     "items": {
+      "bbd8a948a244e923": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "f1b52efe56a0c196": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -16050,6 +16061,17 @@
         "mem": "card",
         "rq": []
       },
+      "a7fbd415a41d3d8e": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-11T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9c6bc3338addadfb": {
         "p": "神の支配",
         "g": "onepiece",
@@ -23566,6 +23588,17 @@
   "store/tsutaya-f5763/": {
     "name": "TSUTAYA北習志野駅前店",
     "items": {
+      "9bbe4c8b6a8cbd02": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "000e1a0c993f822e": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -23701,6 +23734,17 @@
   "store/superkabos-geo-bf112/": {
     "name": "SuperKaBoS+GEO武生店",
     "items": {
+      "5219960abdb4034a": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "69da1a99928e6f40": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -24431,6 +24475,18 @@
   "store/torekachanpion-e4292/": {
     "name": "トレカチャンピオン",
     "items": {
+      "c32d55b73750340b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-18"
+      },
       "c6b0a6ec0c31a4ae": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -32182,6 +32238,33 @@
         "m": "SNS",
         "id": false,
         "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/geo-5614b/": {
+    "name": "SuperKaBoS+ゲオ二の宮本店",
+    "items": {
+      "7a09df83756ea200": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "350dd48ecf822a58": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
