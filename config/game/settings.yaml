@@ -54,7 +54,7 @@ site_tagline: 定価で買いたいファンのための抽選・予約・再入
 site_public_url: "https://game-nyuka.com"   # 独自ドメイン（Cloudflare Pages の project は run.yml の CF_PROJECT_GAME）
 theme_color: "#1b3a5c"      # 濃いネイビー（トレカ抽選ナビの赤とは別のブランド）
 accent_color: "#0f8b8d"     # ティール
-ga_id: ""                   # Googleアナリティクスの測定ID（取ったら入れる。空なら入れない）
+ga_id: "G-Q760DX5QF4"                 # Googleアナリティクスの測定ID（取ったら入れる。空なら入れない）
 google_site_verification: ""   # Search Console の確認コード（取ったら入れる）
 indexnow_key: "a0f3c6d1e9b24f7a8c5d1e2f3a4b5c6d"   # IndexNow の鍵（変えなくてOK）
 x_account: ""               # このサイト用のXアカウントID（@なし）。入れると「Xをフォロー」のボタンが出る   # TODO: オーナーが決める

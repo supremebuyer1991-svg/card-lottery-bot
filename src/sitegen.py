@@ -3836,12 +3836,16 @@ def ga_snippet(ga_id):
             'if(/[?&]notrack=0/.test(location.search))localStorage.removeItem("tcg_notrack");'
             'n=localStorage.getItem("tcg_notrack")==="1";}catch(e){}'
             'if(n||navigator.webdriver||/ Claude\\/|HeadlessChrome|Playwright/.test(u))return;'
-            f'var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";'
-            'document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
-            f"gtag('js',new Date());gtag('config','{ga_id}');"
+            + (f'var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtm.js?id={ga_id}";'   # GTM-…（Googleタグ。ゲームサイト）
+               'window.dataLayer=window.dataLayer||[];dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});document.head.appendChild(s);'
+               'window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());'
+               if ga_id.startswith("GTM-") else
+               f'var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";'
+               'document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
+               f"gtag('js',new Date());gtag('config','{ga_id}');")
             # アフィリンクのクリックを数える（11/7）：どこに置いたリンクが押されたか（placement）
-            'document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.href||"";'
-            'var n=/rakuten\\.co\\.jp/.test(h)?"rakuten":/amazon\\.(co\\.jp|com)/.test(h)?"amazon":/valuecommerce|7net|yamada/.test(h)?"vc":/ebay\\.com/.test(h)?"ebay":"";'
+            + 'document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.href||"";'
+            'var n=/rakuten\\.co\\.jp/.test(h)?"rakuten":/amazon\\.(co\\.jp|com)/.test(h)?"amazon":/valuecommerce|7net|yamada/.test(h)?"vc":/ebay\\.com/.test(h)?"ebay":/mercari\\.com/.test(h)?"mercari":"";'
             'if(!n||!/sponsored/.test(a.rel||""))return;var p=a.dataset.pl||(a.closest("[data-pl]")||{}).dataset&&a.closest("[data-pl]").dataset.pl||(a.closest(".ad,.lose,.feed,.anchor,.cal-buy,.ticket")||{}).className||"other";'
             'gtag("event","affiliate_click",{network:n,placement:String(p).slice(0,40),page:location.pathname.slice(0,60)});},true);'
             "})();</script>")
@@ -3850,14 +3854,14 @@ def ga_snippet(ga_id):
 def inject_ga(out, ga_id):
     """書き出したすべてのページの <head> に Googleアナリティクスのタグ、フッターに注意書きを入れる"""
     ga_id = (ga_id or "").strip()
-    if not re.fullmatch(r"G-[A-Z0-9]{4,}", ga_id):
+    if not re.fullmatch(r"(?:G|GTM)-[A-Z0-9]{4,}", ga_id):
         return 0
     tag, n = ga_snippet(ga_id), 0
     for p in Path(out).rglob("*.html"):
         if p.name in GA_SKIP:
             continue
         h = p.read_text(encoding="utf-8")
-        if "googletagmanager.com/gtag/js" in h or "</head>" not in h:  # すでに入っている（2回入れない）
+        if "googletagmanager.com/gtag/js" in h or "googletagmanager.com/gtm.js" in h or "</head>" not in h:  # すでに入っている（2回入れない）
             continue
         h = h.replace("</head>", tag + "</head>", 1)
         if "</footer>" in h:
