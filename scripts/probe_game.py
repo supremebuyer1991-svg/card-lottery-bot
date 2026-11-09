@@ -31,7 +31,10 @@ for u in urls:
         print("  head:", re.sub(r"\s+", " ", t[:int(os.environ.get("HEAD", "400"))]))
         if pb:
             print("  p-bandai:", pb)
-        if os.environ.get("LINKS"):
+        if os.environ.get("LINKS", "").startswith("raw:"):   # HTMLの中身をそのまま探す（JavaScriptで動くメニューのURL探し）
+            for m in list(re.finditer(os.environ["LINKS"][4:], r.text))[:60]:
+                print("  raw:", re.sub(r"\s+", " ", r.text[max(0, m.start() - 80):m.end() + 120]))
+        elif os.environ.get("LINKS"):
             from bs4 import BeautifulSoup
             seen = []
             for a in BeautifulSoup(r.text, "html.parser").find_all("a", href=True):
