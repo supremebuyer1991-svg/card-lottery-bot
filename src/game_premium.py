@@ -15,6 +15,12 @@ HIST = "premium_hist.json"
 TEIKA = "premium_teika.json"
 
 
+# ゲーム・ホビー以外（カメラ・スマホ・家電・お酒など）は載せない（買取店の一覧に混ざってくるため・11/9）
+NOT_HOBBY = re.compile(r"カメラ|レンズ|PowerShot|EOS|Nikon|LUMIX|instax|チェキ|写ルンです|iPhone|iPad|Galaxy|Pixel|Xperia|AQUOS|arrows|MacBook|AirPods|"
+                       r"Apple Watch|Dyson|ダイソン|ドライヤー|炊飯|掃除機|冷蔵庫|洗濯|電子レンジ|ウイスキー|ワイン|イヤホン|ヘッドホン|スマートウォッチ|Kindle|ルーター|Wi-Fi|"
+                       r"SIGMA|TAMRON|FUJIFILM|Canon|CANON|SONY α|GoPro|DJI|Fitbit|Garmin|ロボット掃除機|美容|ReFa|シェーバー")
+
+
 def groups(st=None):
     """{JAN: {"names": [...], "prices": {店: 価格}, "max": 価格, "store": 店}}"""
     import official_link as ol
@@ -25,6 +31,8 @@ def groups(st=None):
         if not isinstance(rec, dict):
             continue
         for name, jan, price in rec.get("items", []):
+            if NOT_HOBBY.search(name or ""):
+                continue
             jan = re.sub(r"\D", "", str(jan or ""))
             if len(jan) in (8, 13):
                 x = g.setdefault(jan, {"names": [], "prices": {}})
@@ -266,7 +274,7 @@ def chart_svg(h, teika):
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
 
-CSS = (".pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+CSS = (".pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
        ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
@@ -304,6 +312,14 @@ def features_html(x):
         return ""
     parts = [p.strip() for p in re.split(r"(?<=。)|■|◆|●|【", c) if len(p.strip()) >= 6][:8]
     return "<h2>商品の詳細・特徴</h2><ul>" + "".join(f"<li>{escape(p.strip('】 '))}</li>" for p in parts) + "</ul><p class=\"note\">商品説明は楽天ブックスの商品情報からの抜粋です。</p>"
+
+
+def _aitext(key):
+    try:
+        import game_aitext
+        return game_aitext.html_for(key)
+    except Exception:
+        return ""
 
 
 def _jsonld(d):
@@ -494,7 +510,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
-             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}'
+             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
              f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "")
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）

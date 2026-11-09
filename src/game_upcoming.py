@@ -166,7 +166,7 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
              f'<div class="pm-row">{img}<div><div>発売日</div><div class="pm-big" style="font-size:22px">{escape(x.get("sales_date") or "未定")}</div>'
              f'<div>定価 {escape(price)}{("・" + escape(st_)) if st_ else ""}</div><div>買取相場：{"予測不能（発売前）" if before else "買取価格の情報はまだありません"}</div></div></div>'
              f'{gp.mercari_box(nm)}{gp.FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
-             f'<h2>商品情報</h2><table class="pm-t">{info_h}</table>{feat}{faq_h}{same_h}'
+             f'<h2>商品情報</h2><table class="pm-t">{info_h}</table>{feat}{gp._aitext("new:" + jan)}{faq_h}{same_h}'
              '<p class="note">発売日・定価は楽天ブックスの商品情報です（変わることがあります）。リンクの一部は広告（PR）です。</p>', f"new/{jan}/",
              img=x.get("img") or "", noindex=not hot)
         made.append(jan)
