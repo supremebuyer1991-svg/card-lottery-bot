@@ -92,7 +92,7 @@
   },
   "store/furuichi-329a3/": {
     "name": "ふるいち名古屋大須店",
-    "last": "2026-11-05",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "愛知県"
   },
@@ -177,7 +177,7 @@
   },
   "store/sanyodo-b160b/": {
     "name": "スマ本屋 三洋堂生桑店",
-    "last": "2026-11-05",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "三重県"
   },
@@ -473,7 +473,7 @@
   },
   "store/torekano-aeaf9/": {
     "name": "トレカの零式書店鈴鹿店",
-    "last": "2026-10-29",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "三重県"
   },
@@ -838,7 +838,7 @@
   },
   "store/torekachanpion-3ef8c/": {
     "name": "トレカチャンピオン名駅店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "愛知県"
   },
@@ -964,7 +964,7 @@
   },
   "store/bookoff-18f3a/": {
     "name": "ブックオフ富士中島店／メディアポリス富士中島店",
-    "last": "2026-10-28",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "静岡県"
   },
@@ -3651,8 +3651,8 @@
     "keep": true
   },
   "store/torekaesu-71d00/": {
-    "name": "トレカエース茨大前店",
-    "last": "2026-11-01",
+    "name": "トレカエース 茨大前店",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "茨城県",
     "address": "茨城県茨城県堀町1094-7"
@@ -3773,8 +3773,8 @@
     "area": "東京都"
   },
   "store/cardlabo-03312/": {
-    "name": "カードラボ大阪日本橋店",
-    "last": "2026-11-07",
+    "name": "カードラボ 大阪日本橋店",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "大阪府"
   },
@@ -5000,7 +5000,7 @@
     "area": "佐賀県"
   },
   "store/torekaesu-db0d0/": {
-    "name": "トレカエース 日立鮎川店",
+    "name": "トレカエース日立鮎川店",
     "last": "2026-11-09",
     "game": "pokemon",
     "area": "茨城県"
@@ -6024,7 +6024,7 @@
   },
   "store/kiddyland-50e38/": {
     "name": "キデイランド 神戸店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "兵庫県"
   },
@@ -6207,12 +6207,6 @@
   },
   "store/shop-f535a/": {
     "name": "福山",
-    "last": "2026-11-06",
-    "game": "onepiece",
-    "keep": true
-  },
-  "store/shop-fb1bf/": {
-    "name": "唐津（佐賀）",
     "last": "2026-11-06",
     "game": "onepiece",
     "keep": true
@@ -6859,7 +6853,7 @@
     "name": "ふるいちトップブックス竹尾インター店",
     "last": "2026-11-09",
     "game": "onepiece",
-    "area": "福井県"
+    "area": "岐阜県"
   },
   "store/shop-8bab9/": {
     "name": "熱田",
@@ -6891,16 +6885,52 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/kiddyland-51666/": {
-    "name": "キデイランド 神戸",
-    "last": "2026-11-09",
-    "game": "onepiece",
-    "keep": true
-  },
   "store/furuichi-b036d/": {
     "name": "古本市場 名谷店",
     "last": "2026-11-09",
     "game": "pokemon",
     "keep": true
+  },
+  "store/bookoff-d1a8e/": {
+    "name": "ブックオフ ザ・ビッグ 昭島店",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "東京都"
+  },
+  "store/bigguban-bd519/": {
+    "name": "ビッグバン札幌白石店",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "北海道"
+  },
+  "store/bookoff-0d4ba/": {
+    "name": "ブックオフプラス仙台南バイパス店",
+    "last": "2026-11-09",
+    "game": "pokemon",
+    "area": "宮城県"
+  },
+  "store/yellowsubmarine-51d19/": {
+    "name": "イエローサブマリン名古屋GAMESHOP",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "愛知県"
+  },
+  "store/shop-aa9f8/": {
+    "name": "文教堂 函館昭和店【トレカ】",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "北海道"
+  },
+  "store/torekaesu-021c6/": {
+    "name": "トレカエース結城店（ブックエース結城店）",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "茨城県"
+  },
+  "store/bookoff-f3b4a/": {
+    "name": "ブックオフ御殿場店／メディアポリス御殿場店",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "静岡県"
   }
 }
