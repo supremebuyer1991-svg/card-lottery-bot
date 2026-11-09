@@ -58,7 +58,7 @@ categories:
     aff_keywords: ["Steam Deck", "ROG Ally"]
     color: "#0b7285"
     kinds: [lottery, preorder, restock, first_come, release]
-    enabled: true
+    enabled: false   # 11/9 ユーザーの指示でサイトから外す
 
   - id: xbox
     group: console
@@ -97,7 +97,7 @@ categories:
     aff_keywords: ["amiibo", "ゲーム 限定版"]
     color: "#5c4d7d"
     kinds: [lottery, preorder, restock, first_come, release]
-    enabled: true
+    enabled: false   # 11/9 ユーザーの指示でサイトから外す
 
   - id: fukubukuro
     group: game_goods
@@ -110,7 +110,7 @@ categories:
     aff_keywords: ["福袋 ゲーム"]
     color: "#9b2226"
     kinds: [lottery, preorder, first_come, fukubukuro, release]
-    enabled: true
+    enabled: false   # 11/9 ユーザーの指示でサイトから外す
 
   # ---- ホビー・おもちゃ ----
   - id: gunpla

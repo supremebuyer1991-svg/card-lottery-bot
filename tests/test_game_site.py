@@ -59,7 +59,7 @@ else:
     sitegen_game.build(s, out_dir=out)
     files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
     need = ["index.html", "now/index.html", "today/index.html", "calendar/index.html", "ps5/index.html", "ps5/ps5-pro/index.html",
-            "ps5/ps5-midnight-black/index.html", "switch2/index.html", "gunpla/index.html", "fukubukuro/index.html",
+            "ps5/ps5-midnight-black/index.html", "switch2/index.html", "gunpla/index.html",
             "chain/sonystore/ps5/index.html", "chain/pbandai/gunpla/index.html", "l/a1/index.html", "guide/index.html",
             "guide/how-to-read/index.html", "x-draft.html", "sitemap.xml", "robots.txt", "404.html", "privacy.html", "og.png", "favicon.svg", "llms.txt", ".changed"]
     for f in need:

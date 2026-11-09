@@ -47,6 +47,7 @@ sources:
     url: https://news.google.com/rss/search?q=Switch2+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_steamdeck
+    enabled: false   # 11/9 カテゴリを外したので読まない
     game: handheld_pc
     name: Googleニュース「Steam Deck 再入荷」
     type: rss
@@ -54,6 +55,7 @@ sources:
     url: https://news.google.com/rss/search?q=Steam+Deck+%E5%86%8D%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_amiibo
+    enabled: false   # 11/9 カテゴリを外したので読まない
     game: game_limited
     name: Googleニュース「amiibo 予約」
     type: rss
@@ -61,6 +63,7 @@ sources:
     url: https://news.google.com/rss/search?q=amiibo+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_otoshidama
+    enabled: false   # 11/9 カテゴリを外したので読まない
     game: fukubukuro
     name: Googleニュース「お年玉箱 抽選」
     type: rss
@@ -68,6 +71,7 @@ sources:
     url: https://news.google.com/rss/search?q=%E3%81%8A%E5%B9%B4%E7%8E%89%E7%AE%B1+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_fukubukuro
+    enabled: false   # 11/9 カテゴリを外したので読まない
     game: fukubukuro
     name: Googleニュース「ゲーム 福袋 抽選」
     type: rss
@@ -97,6 +101,7 @@ sources:
     url: https://news.google.com/rss/search?q=9800X3D+%E5%9C%A8%E5%BA%AB+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   - id: gnews_arsenal
+    enabled: false   # 11/9 カテゴリを外したので読まない
     game: game_limited
     name: Googleニュース「アーセナルベース 再販」
     type: rss
