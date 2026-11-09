@@ -152,7 +152,12 @@ async function run(env, which, { dry = false } = {}) {
     const prev = st.items[id];
     st.stat = st.stat || {};
     if (prev !== cur) changed = true;
-    if (!st.stat[id] || st.stat[id].s !== cur || (cur !== "none" && st.stat[id].p !== price)) { st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true; }
+    if (!st.stat[id] || st.stat[id].s !== cur || (cur !== "none" && st.stat[id].p !== price)) {
+      // 販売・在庫の履歴（11/9：サイトの商品ページに「楽天・Amazonの販売・在庫の履歴」の表を出す。状態が変わった時だけ・直近12件）
+      st.hist = st.hist || {};
+      if (!st.stat[id] || st.stat[id].s !== cur) { (st.hist[id] = st.hist[id] || []).unshift({ t: new Date().toISOString(), s: cur, p: price }); st.hist[id] = st.hist[id].slice(0, 12); }
+      st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true;
+    }
     // 売り切れの記録（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報。売り切れは1回見たらOK）
     st.soldout = st.soldout || {};
     const so = st.soldout[id];
@@ -207,6 +212,8 @@ export default {
       for (const [j, v] of Object.entries(rk.map || {})) m[j] = { ...(m[j] || {}), ...v };
       for (const [j, v] of Object.entries(az.map || {})) m[j] = { ...(m[j] || {}), ...v };
       m._status = { ...((rk.stat) || {}), ...((az.stat) || {}) };   // いまの状態（予約受付中・販売中など）：サイトの目立つところに出す
+      m._st2 = { rk: rk.stat || {}, az: az.stat || {} };   // 楽天とAmazonを分けた今の状態（同じ「j+JAN」でも別々に）
+      m._hist = { rk: rk.hist || {}, az: az.hist || {} };   // 販売・在庫の履歴
       return Response.json(m);
     }
     if (u.pathname === "/dry") return Response.json({ rk: await run(env, "rk", { dry: true }), az: await run(env, "az", { dry: true }) });

@@ -10,6 +10,7 @@ from datetime import timedelta
 from html import escape
 
 from common import load_json, save_json, now, parse_dt, log
+from common import parse_dt as _pd
 
 HIST = "premium_hist.json"
 TEIKA = "premium_teika.json"
@@ -314,6 +315,48 @@ def features_html(x):
     return "<h2>商品の詳細・特徴</h2><ul>" + "".join(f"<li>{escape(p.strip('】 '))}</li>" for p in parts) + "</ul><p class=\"note\">商品説明は楽天ブックスの商品情報からの抜粋です。</p>"
 
 
+SNAME = {"buy": "在庫あり（販売中）", "pre": "予約受付中", "invite": "招待受付中", "none": "売り切れ・販売なし"}
+
+
+def stock_html(jan, wm_all, name):
+    """楽天ブックス・Amazon（Amazon.co.jp が売っているもの）の今の状態と、販売・在庫の履歴（見張りの記録）→ (今の状態の節, 履歴の節)"""
+    from datetime import timezone as _tz
+    jst = _tz(timedelta(hours=9))
+
+    def parse_dt(v):   # 見張りの日時は世界時（Z）なので日本時間に直す
+        d = _pd(v)
+        return d.astimezone(jst) if d else None
+    wm = wm_all.get(jan) or {}
+    st2, hist = wm_all.get("_st2") or {}, wm_all.get("_hist") or {}
+    ids = {"rk": ["j" + jan], "az": [i for i in (wm.get("asin"), "j" + jan) if i]}
+    shop = {"rk": "楽天ブックス", "az": "Amazon"}
+    now_rows, h_rows = [], []
+    for w in ("az", "rk"):
+        cur = next((st2.get(w, {}).get(i) for i in ids[w] if st2.get(w, {}).get(i)), None)
+        if cur:
+            d = parse_dt(cur.get("at"))
+            now_rows.append((shop[w], SNAME.get(cur.get("s"), cur.get("s")), cur.get("p") or 0, d))
+        for i in ids[w]:
+            for h in (hist.get(w, {}).get(i) or []):
+                h_rows.append((parse_dt(h.get("t")), shop[w], SNAME.get(h.get("s"), h.get("s")), h.get("p") or 0))
+            if hist.get(w, {}).get(i):
+                break
+    if not now_rows:
+        return "", ""
+    last = max((r[3] for r in now_rows if r[3]), default=None)
+    any_buy = any("売り切れ" not in r[1] for r in now_rows)
+    lead = (f"{name}の楽天ブックス・Amazonでの販売状況です（{last.month}/{last.day} {last:%H:%M}時点）。" if last else "") + \
+        ("いま定価付近で買える可能性があります。売り切れる前に確認してください。" if any_buy else
+         "いまはどちらも売り切れ・販売なしです。販売が始まったら X（@a9994aaa）ですぐお知らせします。")
+    cur_h = (f'<h2>{escape(name)}の最新の販売状況</h2><p class="pm-intro">{escape(lead)}</p><table class="pm-t"><tr><th>お店</th><th>状態</th><th>価格</th></tr>'
+             + "".join(f"<tr><td>{escape(a)}</td><td>{escape(b)}</td><td>{(format(c, ',') + '円') if c else '—'}</td></tr>" for a, b, c, _ in now_rows) + "</table>")
+    h_rows = sorted([r for r in h_rows if r[0]], key=lambda r: r[0], reverse=True)[:12]
+    hist_h = ("<h2>楽天・Amazonの販売・在庫の履歴</h2><table class=\"pm-t\"><tr><th>日時</th><th>お店</th><th>状態</th><th>価格</th></tr>"
+              + "".join(f"<tr><td>{d.month}/{d.day} {d:%H:%M}</td><td>{escape(a)}</td><td>{escape(b)}</td><td>{(format(c, ',') + '円') if c else '—'}</td></tr>" for d, a, b, c in h_rows)
+              + "</table><p class=\"note\">楽天ブックスとAmazon（Amazon.co.jpが販売するもの）を数十分〜1時間ごとに見て、状態が変わったときだけ記録しています（11/9から記録）。</p>") if h_rows else ""
+    return cur_h, hist_h
+
+
 def _aitext(key):
     try:
         import game_aitext
@@ -490,9 +533,11 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
          f'<a href="/premium/">定価以上で売れる商品だけを見る</a></p>' + table(allx) + note, "souba/")
     import gamecats as _gc
     _cats = _gc.by_id(False)
+    _wm_all = load_json("watch_map.json", {}) or {}
     for x in allx:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
+        cur_h, hist_h = stock_html(x["jan"], _wm_all, x["name"])
         rel = [r for r in live_rows if min(ol._score(r.get("product") or "", x["name"]), ol._score(x["name"], r.get("product") or "")) >= 0.6][:6]
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>") if rel else \
@@ -509,7 +554,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
-             f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
+             f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
              f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "")
