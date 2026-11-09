@@ -581,9 +581,24 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     import gamecats as _gc
     _cats = _gc.by_id(False)
     _wm_all = load_json("watch_map.json", {}) or {}
+    # 買取店の一覧から一時的に消えた商品も、60日はページを残す（すぐ404にすると Search Console で「見つかりません」になるため・11/9）
+    snap = load_json("premium_snap.json", {}) or {}
+    today_s = upd.date().isoformat()
     for x in allx:
+        snap[x["jan"]] = dict({k: v for k, v in x.items() if k != "caption"}, caption=(x.get("caption") or "")[:600], seen=today_s)
+    cut = (upd.date() - timedelta(days=60)).isoformat()
+    cur_j = {x["jan"] for x in allx}
+    revived = [dict(v, stale=v["seen"], prices=[tuple(p) for p in v.get("prices") or []]) for j, v in snap.items()
+               if j not in cur_j and v.get("seen", "") >= cut and not NOT_HOBBY.search(" ".join([v.get("name", "")] + list(v.get("names") or [])))]
+    for j in [j for j, v in snap.items() if v.get("seen", "") < cut]:
+        snap.pop(j, None)
+    save_json("premium_snap.json", snap)
+    for x in allx + revived:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
+        if x.get("stale"):
+            sd = x["stale"]
+            intro = (f'<p class="note">⚠ この商品は いま買取店の一覧に載っていません。下の買取価格は{int(sd[5:7])}/{int(sd[8:10])}時点のものです。</p>') + intro
         cur_h, hist_h = stock_html(x["jan"], _wm_all, x["name"])
         rel = [r for r in live_rows if min(ol._score(r.get("product") or "", x["name"]), ol._score(x["name"], r.get("product") or "")) >= 0.6][:6]
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
