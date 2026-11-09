@@ -38,6 +38,9 @@ jobs:
           admin = hashlib.sha256((os.environ["X_API_KEY"].strip() + "game-watch").encode()).hexdigest()[:24]
           base = "https://game-watch.supreme-buyer-1991.workers.dev"
           mid, mw = os.environ.get("MARK_ID", "").strip(), os.environ.get("MARK_W", "az")
+          if os.environ["TEXT"].strip() == "?":   # 文面が「?」なら、見張りの最近の動き（投稿・エラー）を記録に出すだけ
+              import json
+              print(json.dumps(requests.get(f"{base}/", params={"k": admin}, timeout=15).json(), ensure_ascii=False)[:3000]); raise SystemExit(0)
           if os.environ["TEXT"].strip() == "-":   # 文面が「-」なら、印を付けるだけ（先に印を付けて、見張りの速報を止めておく）
               print(requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre"}, timeout=15).text); raise SystemExit(0)
           if mid:
