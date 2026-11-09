@@ -16,6 +16,7 @@ stores:
     parser: twinkle
     urls: ["https://twinkle-mobile.com/shop/products/category/0/101?page=1&pageSize=200", "https://twinkle-mobile.com/shop/products/category/0/101?page=2&pageSize=200"]
   - name: ゲストモバイル
+    enabled: false   # ゲーム・ホビーの新品の価格が無かった（11/9）
     urls: ["https://www.guestmobile.jp/%e3%83%94%e3%83%83%e3%82%af%e3%82%a2%e3%83%83%e3%83%97%e8%b2%b7%e5%8f%96%e6%a9%9f%e7%a8%ae/"]
   - name: モバイル一番
     parser: ichiban
@@ -34,6 +35,7 @@ stores:
   - name: JCKA（ジェーシカモバイル）
     urls: ["https://www.jcka-mobile.co.jp/kisyu/game/"]
   - name: 買取ミライ
+    enabled: false   # 価格は後から読み込む作りで読めない（11/9）
     urls: ["https://kaitori-mirai.com/playstation-2"]
   - name: アバウテック
     urls: ["https://www.aboutec.jp/purchase/?pca=5"]
