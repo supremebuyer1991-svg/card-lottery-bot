@@ -200,13 +200,30 @@ sources:
     link_keywords: ["抽選", "予約", "受注"]
     max_articles: 15
 
-  - id: gundam_base_news
-    enabled: false   # TODO: オーナーが確認（ガンダムベースのお知らせページURL。例 https://www.gundam-base.net/news/ ）
+  - id: gundam_base_news   # 11/9 GitHubから読めることを確認
     game: gunpla
     name: ガンダムベース お知らせ
+    type: html_index
+    every_hours: 6
+    url: https://www.gundam-base.net/news
+    link_keywords: ["抽選", "事前", "予約", "販売", "整理券", "限定"]
+    max_articles: 5
+
+  # --- 一番くじ公式の発売予定（11/9 GitHubから読めることを確認）---
+  - id: ichibankuji_products
+    game: ichibankuji
+    name: 一番くじ公式 ラインナップ
+    type: html
+    every_hours: 24
+    url: https://1kuji.com/products
+
+  # --- セブンネットショッピングの抽選販売（商品名に【抽選販売】が付く。11/9 GitHubから読めることを確認）---
+  - id: sevennet_lottery
+    game: auto
+    name: セブンネットショッピング 抽選販売
     type: html
     every_hours: 6
-    url: ""
+    url: https://7net.omni7.jp/search/?keyword=%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2
 
   # --- ポケモンセンター限定グッズ（公式サイトはGitHubから403で読めないので、ニュースと手動追加（manual.yaml）で）---
   - id: gnews_pokecen_lottery
