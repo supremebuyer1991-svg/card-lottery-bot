@@ -6,6 +6,8 @@ import common
 tmp = pathlib.Path(tempfile.mkdtemp())
 common.STATE_DIR = tmp
 import game_xpost as gx
+import game_premium   # 「定価以上で売れる商品」の判定はテスト用に固定（アシュタロン・PS5 新色・HG ガンダム）
+game_premium.premium_match = lambda n, s=None: ({} if any(w in (n or "") for w in ("アシュタロン", "PS5 新色", "HG ガンダム", "HG アシュタロン")) else None)
 J = dt.timezone(dt.timedelta(hours=9))
 T = dt.datetime(2026, 11, 9, 12, 0, tzinfo=J)
 gx.now = lambda: T

@@ -432,3 +432,28 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         made += 1
     log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）、抽選・発売の商品ページ：{made}件")
     return paths, items
+
+
+_PM_CACHE = {}
+
+
+def premium_match(name, settings=None):
+    """商品名が「定価以上で売れる商品」に当たるなら、その商品（dict）を返す。当たらなければ None"""
+    import official_link as ol
+    if "list" not in _PM_CACHE:
+        try:
+            _PM_CACHE["list"] = premium_list(settings or {})
+        except Exception:
+            _PM_CACHE["list"] = []
+    for x in _PM_CACHE["list"]:
+        for n in [x["name"]] + x.get("names", [])[:3]:
+            if min(ol._score(name or "", n), ol._score(n, name or "")) >= 0.75:
+                return x
+    return None
+
+
+def worth_posting(it, settings=None):
+    """Xに出す価値があるか（11/9 ユーザーの指示）：定価以上で売れる商品か、品薄の商品（抽選・招待販売になっているもの）だけ"""
+    if it.get("kind") in ("lottery", "invite", "fukubukuro"):
+        return True
+    return premium_match(it.get("product") or "", settings) is not None

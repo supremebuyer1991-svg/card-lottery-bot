@@ -188,7 +188,9 @@ def post_speed(settings, send=None, image=None):
         return
     seen = set(st["seen"])
     ex = set(settings.get("x_exclude_games") or [])
-    cands = [(k, i) for k, i in candidates(lots, seen, t) if i.get("game") not in ex]   # 投稿しないカテゴリ（一番くじなど）
+    import game_premium
+    cands = [(k, i) for k, i in candidates(lots, seen, t) if i.get("game") not in ex   # 投稿しないカテゴリ（一番くじなど）
+             and game_premium.worth_posting(i, settings)]   # 定価以上で売れる商品か、品薄の商品（抽選・招待）だけ
     later = [(k, i) for k, i in cands if not is_urgent(i, t, settings)]
     if later:   # 急がないもの → 予約投稿（リンク付き・無料）に回す
         q = st.setdefault("queue", {})

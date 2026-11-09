@@ -13,7 +13,7 @@ const ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/2
 const REFERER = "https://toreca-chusen-navi.pages.dev/"; // 楽天に登録してあるアドレス
 const AMZ_SELLER = "AN1VRQENFRJN5"; // Amazon.co.jp
 const AMZ_TAG = "st9994ststst-22";
-const COOLDOWN = 6 * 3600e3, PER_DAY = 12, HOBBY_PER_DAY = 3;
+const COOLDOWN = 6 * 3600e3, PER_DAY = 12, HOBBY_PER_DAY = 3, SCARCE_DAYS = 3;   // 3日以上売り切れが続いた＝品薄
 const RANK = { none: 0, invite: 1, pre: 2, buy: 3 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -88,7 +88,7 @@ function amzState(it) {
 function compose(w, shop, kind, url) {
   const where = shop === "rk" ? "楽天ブックス" : "Amazon";
   const head = `${where}で` + (kind === "invite" ? "招待リクエスト受付再開🔥" : kind === "pre" ? "予約受付再開🔥" : "販売再開🔥") + "（売り切れ→在庫あり）";
-  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), "", kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇", url, ""];
+  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), ...(w._days >= 3 ? [`📦${Math.floor(w._days)}日ぶりの在庫復活`] : []), "", kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇", url, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
   return lines.join("\n");
@@ -164,10 +164,11 @@ async function run(env, which, { dry = false } = {}) {
     if (!st.init[id]) { st.init[id] = 1; changed = true; }
     st.items[id] = cur;
     if (!fresh || w.nopost) continue;   // nopost：投稿しないカテゴリ（一番くじなど）
-    // 相場の商品は「買う価値のある」ものだけ速報：プレ値、または最高買取が売値（定価）の95%以上
-    const ref = w.tk || price;
-    if (w.jan && !w.rk && !w.asin && !(w.hot || (w.mx && ref && w.mx >= ref * 0.95))) continue;
+    // 速報するのは（11/9 ユーザーの指示）：定価以上で売れる商品（hot）か、売り切れが長く続いていた品薄の商品（3日以上）だけ
+    const soldDays = so ? (Date.now() - so.since) / 86400e3 : 0;
+    if (!(w.hot || soldDays >= SCARCE_DAYS)) continue;
     if (st.count >= PER_DAY || (!w.g && st.hobby >= HOBBY_PER_DAY)) { log.push("1日の上限"); continue; }
+    w._days = soldDays;
     const text = compose(w, which, cur, url);
     if (dry) { out.push(text); continue; }
     try {

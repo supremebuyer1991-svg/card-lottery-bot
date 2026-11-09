@@ -341,5 +341,6 @@ def watch_list(lots, settings, cache=None, models=None):
         import game_xpost as gx
         out.append({"k": k, "n": (i.get("product") or "")[:40], "g": gx.is_game(i), "rk": code, "asin": asin,
                     "nopost": i.get("game") in set(settings.get("x_exclude_games") or []),   # 見張るが投稿しない（一番くじなど）
+                    "hot": __import__("game_premium").premium_match(i.get("product") or "", settings) is not None,   # 定価以上で売れる商品
                     "tag": ((__import__("gamecats").by_id(False).get(i.get("game")) or {}).get("hashtags") or "").split()[:1]})
     return out

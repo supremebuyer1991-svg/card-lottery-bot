@@ -69,7 +69,9 @@ def build(lots, settings, site, t=None, st=None):
         return gx._tags(items)
 
     ex = set(settings.get("x_exclude_games") or [])   # 投稿しないカテゴリ（一番くじなど）
-    live = {k: dict(i, key=i.get("key") or k) for k, i in lots.items() if i.get("status") in ("approved", "listed", "posted") and i.get("game") not in ex}
+    import game_premium
+    live = {k: dict(i, key=i.get("key") or k) for k, i in lots.items() if i.get("status") in ("approved", "listed", "posted") and i.get("game") not in ex
+            and game_premium.worth_posting(i, settings)}   # 定価以上で売れる商品か、品薄の商品（抽選・招待）だけ（11/9 ユーザーの指示）
     gfirst = lambda kv: (not gx.is_game(kv[1]), kv[1].get("end") or "9999")   # noqa: E731
     # 待ち行列 → この日に割り当て（前の日に割り当てたものは使わない。この日の分は作り直しても同じ）
     planned = st.setdefault("planned", {})

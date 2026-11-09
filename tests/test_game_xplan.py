@@ -5,6 +5,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "src"))
 import common
 common.STATE_DIR = pathlib.Path(tempfile.mkdtemp())
 import game_xplan as xp, game_xpost as gx
+import game_premium   # 「定価以上で売れる商品」の判定はテスト用に固定（アシュタロン・PS5 新色・HG ガンダム）
+game_premium.premium_match = lambda n, s=None: ({} if any(w in (n or "") for w in ("アシュタロン", "PS5 新色", "HG ガンダム", "HG アシュタロン")) else None)
 J = dt.timezone(dt.timedelta(hours=9))
 T = dt.datetime(2026, 11, 14, 22, 30, tzinfo=J)   # 土曜の夜 → 日曜の計画
 def it(p, **k):
@@ -35,4 +37,5 @@ plan3 = xp.build(lots, {}, "https://game-nyuka.com", T, st2)
 pk3 = [p["text"] for p in plan3 if p["slot"] == "ピックアップ"]
 assert len(pk3) == 2 and all("HG" not in x for x in pk3), pk3                      # 新着が無くても、ゲームの受付中・発売で埋める
 assert xp.build(lots, {}, "https://game-nyuka.com", T, st2) and [p["text"] for p in xp.build(lots, {}, "https://game-nyuka.com", T, st2)] == [p["text"] for p in plan3]
+assert game_premium.worth_posting({"kind": "release", "product": "ふつうの商品"}) is False and game_premium.worth_posting({"kind": "lottery", "product": "ふつうの商品"}) is True
 print("XPLAN OK")
