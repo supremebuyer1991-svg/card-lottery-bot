@@ -34,7 +34,11 @@ for u in urls:
         print("  head:", re.sub(r"\s+", " ", t[:int(os.environ.get("HEAD", "400"))]))
         if pb:
             print("  p-bandai:", pb)
-        if os.environ.get("LINKS", "").startswith("raw:"):   # HTMLの中身をそのまま探す（JavaScriptで動くメニューのURL探し）
+        if os.environ.get("LINKS", "").startswith("text:"):   # 本文（テキスト）の中を探して前後を出す（価格の並び方を見る）
+            tt = re.sub(r"\s+", " ", t)
+            for m in list(re.finditer(os.environ["LINKS"][5:], tt))[:8]:
+                print("  text:", tt[max(0, m.start() - 150):m.end() + 450])
+        elif os.environ.get("LINKS", "").startswith("raw:"):   # HTMLの中身をそのまま探す（JavaScriptで動くメニューのURL探し）
             for m in list(re.finditer(os.environ["LINKS"][4:], r.text))[:60]:
                 print("  raw:", re.sub(r"\s+", " ", r.text[max(0, m.start() - 80):m.end() + 120]))
         elif os.environ.get("LINKS"):
