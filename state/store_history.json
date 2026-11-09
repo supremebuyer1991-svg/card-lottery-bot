@@ -2961,6 +2961,13 @@
   "store/cardcrew-66c26/": {
     "name": "CARD CREW（カードクルー）トレカ通販",
     "items": {
+      "c4b1d391536ee20e": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "",
+        "f": "2026-10-30",
+        "c": "online"
+      },
       "d49df043ca2b0238": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -2974,6 +2981,14 @@
         "e": "2026-10-29T23:59",
         "f": "2026-10-26",
         "c": "online"
+      },
+      "2c55caeb230d1e8d": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-10-29T23:59",
+        "f": "2026-10-27",
+        "c": "online",
+        "a": "2026-10-30"
       }
     }
   },
@@ -13121,26 +13136,6 @@
       }
     }
   },
-  "store/cardcrew-fee32/": {
-    "name": "CARD CREW(カードクルー)通販",
-    "items": {
-      "c4b1d391536ee20e": {
-        "p": "BRIGHTNESS OF HOPE",
-        "g": "dragonball",
-        "e": "",
-        "f": "2026-10-30",
-        "c": "online"
-      },
-      "2c55caeb230d1e8d": {
-        "p": "ヒロインズエディション vol.2",
-        "g": "onepiece",
-        "e": "2026-10-29T23:59",
-        "f": "2026-10-27",
-        "c": "online",
-        "a": "2026-10-30"
-      }
-    }
-  },
   "store/tsutaya-4b64f/": {
     "name": "TSUTAYA 八戸ニュータウン店",
     "items": {
@@ -13223,6 +13218,32 @@
   "store/heiwado-b4c48/": {
     "name": "平和堂",
     "items": {
+      "9e845c51b9d18d8b": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "9572d94308e78957": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "アプリ",
+        "id": null,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "4d25cc475c2223eb": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
