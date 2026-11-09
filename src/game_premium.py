@@ -557,11 +557,13 @@ PL_CSS = (".pl{display:flex;flex-direction:column;gap:12px;margin:12px 0}"
           ".pc-nums b{font-family:var(--font-num);font-size:17px}.pc-nums em{font-style:normal;font-size:11px;color:#8a93a6;margin-left:4px}"
           ".pc-r{font-weight:900;font-size:14px;padding:3px 8px;border-radius:999px;background:#0f2a1a;color:#3ddc84}.pc-r.dn{background:#2a1316;color:#ff8a95}"
           ".pc-sub{margin-top:6px;font-size:12px;color:#8a93a6}"
-          ".pc-acts{display:flex;flex-direction:column;gap:6px;min-width:132px}"
+          ".pc-acts{display:flex;gap:8px;align-items:stretch}.pc-shops{display:flex;flex-direction:column;gap:6px;min-width:128px}"
           ".pc-acts a{display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:8px;font-weight:900;font-size:14px;text-decoration:none;white-space:nowrap}"
-          ".pc-acts .rk{background:#bf0000;color:#fff}.pc-acts .az{background:#ff9900;color:#0b0d12}.pc-acts .det{background:#ffd23f;color:#0b0d12}"
+          ".pc-acts .rk{background:#bf0000;color:#fff}.pc-acts .az{background:#ff9900;color:#0b0d12}.pc-acts .mc{background:#ff4f50;color:#fff}"
+          ".pc-acts .det{background:#ffd23f;color:#0b0d12;min-width:108px}"
           "@media (max-width:640px){.pc{grid-template-columns:72px 1fr;gap:12px;padding:14px 12px}.pc-img{width:72px;height:72px}"
-          ".pc-acts{grid-column:1/-1;flex-direction:row;min-width:0}.pc-acts a{flex:1;padding:12px 6px;font-size:14px}.pc-name{font-size:15px}}")
+          ".pc-acts{grid-column:1/-1;flex-direction:column;gap:6px}.pc-shops{flex-direction:row;min-width:0}.pc-shops a{flex:1;padding:12px 4px;font-size:13px}"
+          ".pc-acts .det{padding:12px}.pc-name{font-size:15px}}")
 
 
 def plist_html(prods):
@@ -577,12 +579,15 @@ def plist_html(prods):
             pc = round((p["ratio"] - 1) * 100)
             nums.append(f'<span class="pc-r{" dn" if pc < 0 else ""}">定価比 {"+" if pc >= 0 else ""}{pc}%</span>')
         sub = f'<div class="pc-sub">1週間前比 {p["w1h"]}</div>' if p.get("w1h") else ""
-        acts = ""
-        if p.get("rk"):
-            acts += f'<a class="rk" href="{escape(p["rk"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>'
+        from urllib.parse import quote
+        acts = ""   # 上から Amazon・楽天・メルカリ（メルカリはいつも出す）、右端に「詳細を見る」
         if p.get("az"):
-            acts += f'<a class="az" href="{escape(p["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>'
-        acts += f'<a class="det" href="{escape(p["url"])}">詳細を見る</a>'
+            acts += f'<a class="az" href="{escape(p["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazon</a>'
+        if p.get("rk"):
+            acts += f'<a class="rk" href="{escape(p["rk"])}" target="_blank" rel="nofollow sponsored noopener">楽天</a>'
+        mq = quote(re.sub(r"\s+", " ", p.get("name") or "")[:40])
+        acts += f'<a class="mc" href="https://jp.mercari.com/search?keyword={mq}&amp;status=on_sale" target="_blank" rel="nofollow noopener">メルカリ</a>'
+        acts = f'<div class="pc-shops">{acts}</div><a class="det" href="{escape(p["url"])}">詳細を見る</a>'
         out.append(f'<div class="pc">{img}<div class="pc-body"><a class="pc-name" href="{escape(p["url"])}">{escape(p["name"])}</a>'
                    f'<div class="pc-nums">{"".join(nums)}</div>{sub}</div><div class="pc-acts">{acts}</div></div>')
     return f'<style>{PL_CSS}</style><div class="pl">{"".join(out)}</div>'
