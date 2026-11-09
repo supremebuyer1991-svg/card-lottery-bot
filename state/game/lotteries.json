@@ -1582,7 +1582,7 @@
     "cls": "cd6debd3283b"
   },
   "6fa5b135e173a486": {
-    "store": "その他のストア",
+    "store": "ファミマオンライン",
     "start": "2026-11-04T00:00:00+09:00",
     "end": "2026-11-09T23:59:00+09:00",
     "announce": "11月11日(水)",
@@ -1608,7 +1608,11 @@
     "found_at": "2026-11-09T14:26:44.932511+09:00",
     "kind": "lottery",
     "area": null,
-    "cls": "468f63d6cf97"
+    "cls": "b3345318fd6b",
+    "page_checked_at": "2026-11-09T14:39:08.264605+09:00",
+    "name_checked": true,
+    "details_checked": true,
+    "conditions": "海外からのアクセスは不可で、日本国内から利用する必要がある。このページには抽選の応募・購入条件は書かれていない。"
   },
   "4900632893b50a8f": {
     "store": "ビックカメラ",
@@ -1756,7 +1760,9 @@
     "found_at": "2026-11-09T14:26:44.932602+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "ecd96965d68d"
+    "cls": "ecd96965d68d",
+    "page_checked_at": "2026-11-09T14:39:12.604902+09:00",
+    "page_err": "中身が空"
   },
   "abc5c33ec5476450": {
     "store": "ブックオフ",
@@ -1812,6 +1818,9 @@
     "found_at": "2026-11-09T14:26:44.932625+09:00",
     "kind": "lottery",
     "area": null,
-    "cls": "0a1a85a4d834"
+    "cls": "384a6e1290ef",
+    "page_checked_at": "2026-11-09T14:39:14.693495+09:00",
+    "details_checked": true,
+    "conditions": "本文に「30th CELEBRATION BOX」の抽選条件は書かれていません。ページはDMMマイカの紹介とサイトのカテゴリ一覧のみです。"
   }
 }
