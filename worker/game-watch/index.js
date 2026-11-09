@@ -3,7 +3,7 @@
 // ・楽天：「注文できない」→「注文できる」
 // ・Amazon：Amazon.co.jp 本体の販売が「なし」→「招待リクエスト受付中」「販売中」（転売業者の在庫は見ない）
 // に変わったら、@a9994aaa にアフィリンク付きで速報する（PRの表記はXのプロフィールにあるので本文には書かない）。
-// ・速報は「売り切れ（2回以上・30分以上続けて確認）→ 販売中・予約受付中」に切り替わった時だけ（前から売っているものは出さない）
+// ・速報は「売り切れ → 販売中・予約受付中」に切り替わった時だけ（前から売っているものは出さない）
 // ・検索で見つからなかっただけの時は売り切れと数えない ・同じ商品は6時間あける
 // ・相場の商品（watch.json の jan）は JAN で楽天ブックス・Amazon の商品ページを探し、見つけたページは /map でサイトに渡す
 // ・1回に見る数を決めて順番に回す（プレ値の商品は回ってくる間隔が短い）。定価の110%より高い売値は「定価で買える」とみなさない
@@ -153,11 +153,11 @@ async function run(env, which, { dry = false } = {}) {
     st.stat = st.stat || {};
     if (prev !== cur) changed = true;
     if (!st.stat[id] || st.stat[id].s !== cur || (cur !== "none" && st.stat[id].p !== price)) { st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true; }
-    // 売り切れの確認：売り切れ（none）を2回以上・30分以上続けて見たら「本当に売り切れ」（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報）
+    // 売り切れの記録（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報。売り切れは1回見たらOK）
     st.soldout = st.soldout || {};
     const so = st.soldout[id];
     if (cur === "none") { if (!so) { st.soldout[id] = { since: Date.now(), n: 1 }; changed = true; } else if (so.n < 2) { so.n++; changed = true; } }
-    const confirmed = so && so.n >= 2 && Date.now() - so.since >= 30 * 60e3;
+    const confirmed = !!so;   // 11/9 ユーザーの指示：売り切れは1回見たらOK（商品を見る間隔がもともと40分〜1時間あるため）
     if (cur !== "none" && so) { delete st.soldout[id]; changed = true; }
     // 速報：前に「本当に売り切れ」を見ていて、いま販売中・予約受付中・招待受付中に変わった時だけ。前から売っているものは出さない
     const fresh = st.init[id] && prev === "none" && cur !== "none" && confirmed && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
