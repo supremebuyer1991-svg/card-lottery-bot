@@ -5200,6 +5200,17 @@
   "store/shop-ab157/": {
     "name": "北国書林辰口店",
     "items": {
+      "94e931187cfbd4c7": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-21T00:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "769f7af17bf65d58": {
         "p": "神の支配",
         "g": "onepiece",
@@ -6321,6 +6332,17 @@
   "store/torekaesusoyora-nyutaun-87fff/": {
     "name": "トレカエースそよら成田ニュータウン店",
     "items": {
+      "300af197ffc2bfd5": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "3fae2224a23e7849": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -30071,6 +30093,17 @@
   "store/toukyuu-c8baa/": {
     "name": "文教堂湘南とうきゅう店",
     "items": {
+      "86989e2b188be20f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:30",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "ce355e821ac49fa2": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -33339,22 +33372,6 @@
       }
     }
   },
-  "store/shop-970c9/": {
-    "name": "北国書林辰口店（Cardbox）",
-    "items": {
-      "94e931187cfbd4c7": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-21T00:00",
-        "f": "2026-11-09",
-        "c": "store",
-        "m": "Web",
-        "id": true,
-        "mem": "none",
-        "rq": []
-      }
-    }
-  },
   "store/tsutaya-8474a/": {
     "name": "TSUTAYA神明店トレカ",
     "items": {
@@ -33367,38 +33384,6 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
-      }
-    }
-  },
-  "store/toukyuu-1946e/": {
-    "name": "文教堂湘南とうきゅう店【トレカ】",
-    "items": {
-      "86989e2b188be20f": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-15T20:30",
-        "f": "2026-11-09",
-        "c": "store",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
-  "store/torekaesusoyora-nyutaun-e576a/": {
-    "name": "トレカエースそよら成田ニュータウン",
-    "items": {
-      "300af197ffc2bfd5": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-15T23:59",
-        "f": "2026-11-09",
-        "c": "store",
-        "m": "店頭",
-        "id": true,
-        "mem": "none",
         "rq": []
       }
     }
