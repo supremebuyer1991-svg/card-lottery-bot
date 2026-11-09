@@ -187,7 +187,8 @@ def post_speed(settings, send=None, image=None):
         log(f"X速報：初回なので、今ある{len(lots)}件は投稿済みとして記録しました（次の新着から速報します）")
         return
     seen = set(st["seen"])
-    cands = candidates(lots, seen, t)
+    ex = set(settings.get("x_exclude_games") or [])
+    cands = [(k, i) for k, i in candidates(lots, seen, t) if i.get("game") not in ex]   # 投稿しないカテゴリ（一番くじなど）
     later = [(k, i) for k, i in cands if not is_urgent(i, t, settings)]
     if later:   # 急がないもの → 予約投稿（リンク付き・無料）に回す
         q = st.setdefault("queue", {})

@@ -163,7 +163,7 @@ async function run(env, which, { dry = false } = {}) {
     const fresh = st.init[id] && prev === "none" && cur !== "none" && confirmed && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
     if (!st.init[id]) { st.init[id] = 1; changed = true; }
     st.items[id] = cur;
-    if (!fresh) continue;
+    if (!fresh || w.nopost) continue;   // nopost：投稿しないカテゴリ（一番くじなど）
     // 相場の商品は「買う価値のある」ものだけ速報：プレ値、または最高買取が売値（定価）の95%以上
     const ref = w.tk || price;
     if (w.jan && !w.rk && !w.asin && !(w.hot || (w.mx && ref && w.mx >= ref * 0.95))) continue;

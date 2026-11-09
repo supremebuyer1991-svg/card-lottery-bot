@@ -68,7 +68,8 @@ def build(lots, settings, site, t=None, st=None):
     def tag(items):
         return gx._tags(items)
 
-    live = {k: dict(i, key=i.get("key") or k) for k, i in lots.items() if i.get("status") in ("approved", "listed", "posted")}
+    ex = set(settings.get("x_exclude_games") or [])   # 投稿しないカテゴリ（一番くじなど）
+    live = {k: dict(i, key=i.get("key") or k) for k, i in lots.items() if i.get("status") in ("approved", "listed", "posted") and i.get("game") not in ex}
     gfirst = lambda kv: (not gx.is_game(kv[1]), kv[1].get("end") or "9999")   # noqa: E731
     # 待ち行列 → この日に割り当て（前の日に割り当てたものは使わない。この日の分は作り直しても同じ）
     planned = st.setdefault("planned", {})
