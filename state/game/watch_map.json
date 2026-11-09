@@ -686,12 +686,16 @@
   "4902370552027": {
     "rkUrl": "https://item.rakuten.co.jp/book/17770284/",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2027/4902370552027.jpg?_ex=300x300",
-    "rkPrice": 8228
+    "rkPrice": 8228,
+    "asin": "B0CSSGWN92",
+    "azUrl": "https://www.amazon.co.jp/dp/B0CSSGWN92?tag=st9994ststst-22&linkCode=osi&th=1&psc=1"
   },
   "4902370537345": {
     "rkUrl": "https://item.rakuten.co.jp/book/14943338/",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7345/4902370537345.jpg?_ex=300x300",
-    "rkPrice": 8228
+    "rkPrice": 8228,
+    "asin": "B0728BF99G",
+    "azUrl": "https://www.amazon.co.jp/dp/B0728BF99G?tag=st9994ststst-22&linkCode=osi&th=1&psc=1"
   },
   "4523052030185": {
     "rkUrl": "https://item.rakuten.co.jp/book/18210486/",
@@ -1588,6 +1592,21 @@
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7893/4549576167893.jpg?_ex=300x300",
     "rkPrice": 21978
   },
+  "4974365870584": {
+    "rkUrl": "https://item.rakuten.co.jp/book/18223335/",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0584/4974365870584.jpg?_ex=300x300",
+    "rkPrice": 5346
+  },
+  "4902370552461": {
+    "rkUrl": "https://item.rakuten.co.jp/book/17915651/",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2461/4902370552461.jpg?_ex=300x300",
+    "rkPrice": 3564
+  },
+  "4974365870744": {
+    "rkUrl": "https://item.rakuten.co.jp/book/18329371/",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0744/4974365870744_1_2.jpg?_ex=300x300",
+    "rkPrice": 2682
+  },
   "4549576241708": {
     "asin": "B0DGY1PY7G",
     "azUrl": "https://www.amazon.co.jp/dp/B0DGY1PY7G?tag=st9994ststst-22&linkCode=osi&th=1&psc=1"
@@ -1925,15 +1944,15 @@
     },
     "j4902370552027": {
       "s": "none",
-      "p": 8228,
-      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17770284%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17770284%2F",
-      "at": "2026-11-08T23:16:42.776Z"
+      "p": 0,
+      "u": "https://www.amazon.co.jp/dp/B0CSSGWN92?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+      "at": "2026-11-09T05:32:38.594Z"
     },
     "j4902370537345": {
       "s": "none",
-      "p": 8228,
-      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F14943338%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F14943338%2F",
-      "at": "2026-11-08T23:16:44.031Z"
+      "p": 0,
+      "u": "https://www.amazon.co.jp/dp/B0728BF99G?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+      "at": "2026-11-09T05:32:40.028Z"
     },
     "j4523052030185": {
       "s": "none",
@@ -3458,6 +3477,24 @@
       "p": 21978,
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16896812%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16896812%2F",
       "at": "2026-11-09T05:20:39.228Z"
+    },
+    "j4974365870584": {
+      "s": "none",
+      "p": 5346,
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18223335%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18223335%2F",
+      "at": "2026-11-09T05:32:43.632Z"
+    },
+    "j4902370552461": {
+      "s": "none",
+      "p": 3564,
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17915651%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17915651%2F",
+      "at": "2026-11-09T05:32:45.003Z"
+    },
+    "j4974365870744": {
+      "s": "none",
+      "p": 2682,
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18329371%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18329371%2F",
+      "at": "2026-11-09T05:32:47.738Z"
     },
     "B0HN71N1KR": {
       "s": "none",

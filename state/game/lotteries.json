@@ -1356,7 +1356,9 @@
     "found_at": "2026-11-09T14:26:44.932411+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "43765479641f"
+    "cls": "43765479641f",
+    "page_checked_at": "2026-11-09T14:33:57.526765+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "831b4d07a8ead3b3": {
     "store": "ホビーゾーン",
@@ -1414,7 +1416,9 @@
     "found_at": "2026-11-09T14:26:44.932436+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "f831f51feccd"
+    "cls": "f831f51feccd",
+    "page_checked_at": "2026-11-09T14:33:57.733811+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789"
   },
   "cc81610f2587f0d9": {
     "store": "ゲオ（アプリ）",
@@ -1444,7 +1448,9 @@
     "found_at": "2026-11-09T14:26:44.932449+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "6eeb58778608"
+    "cls": "6eeb58778608",
+    "page_checked_at": "2026-11-09T14:33:57.980183+09:00",
+    "page_err": "中身が空"
   },
   "9e845c51b9d18d8b": {
     "store": "平和堂",
@@ -1474,7 +1480,11 @@
     "found_at": "2026-11-09T14:26:44.932460+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "9f8c8a48b308"
+    "cls": "047aa8ad8c56",
+    "page_checked_at": "2026-11-09T14:33:57.980193+09:00",
+    "address_checked": true,
+    "details_checked": true,
+    "conditions": "本文に「ハドウシーカー」の抽選条件の記載はありません。"
   },
   "9572d94308e78957": {
     "store": "平和堂",
@@ -1504,7 +1514,11 @@
     "found_at": "2026-11-09T14:26:44.932474+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "19de7419d95d"
+    "cls": "a0cdd4367a6b",
+    "page_checked_at": "2026-11-09T14:34:03.373764+09:00",
+    "address_checked": true,
+    "details_checked": true,
+    "conditions": "本文は平和堂のHOPアプリの紹介ページで、「30th CELEBRATION カードセット各種」の抽選や応募・購入の条件については書かれていません。"
   },
   "d3c12123628d4b8a": {
     "store": "晴れる屋2",
@@ -1533,7 +1547,9 @@
     "found_at": "2026-11-09T14:26:44.932487+09:00",
     "kind": "lottery",
     "area": null,
-    "cls": "5cf2965a4e8a"
+    "cls": "5cf2965a4e8a",
+    "page_checked_at": "2026-11-09T14:34:05.706586+09:00",
+    "page_err": "中身が空"
   },
   "a71033e0acc8b5b1": {
     "store": "ドン・キホーテ",
