@@ -1151,6 +1151,17 @@
         "mem": "account",
         "rq": []
       },
+      "6f38477a22dfa6a6": {
+        "p": "OP18",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "72408dc16984e6f2": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -1783,7 +1794,7 @@
         "g": "pokemon",
         "e": "2026-11-12T23:59",
         "f": "2026-11-09",
-        "c": "store",
+        "c": "online",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -18939,6 +18950,17 @@
   "store/kiddyland-668b3/": {
     "name": "キデイランド 浦和美園店",
     "items": {
+      "b9ec87ebf39bf9df": {
+        "p": "OP18 神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "13ab9807971313a3": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -19673,6 +19695,17 @@
   "store/kiddyland-1e44f/": {
     "name": "キデイランド 京都四条河原町店",
     "items": {
+      "9e2ad30b8d667e85": {
+        "p": "OP18 神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "b0bdc992af671b09": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -23275,15 +23308,26 @@
   "store/tsutaya-be8e8/": {
     "name": "TSUTAYA合川店",
     "items": {
-      "93e087fdddefdf75": {
+      "dff9d7fa1604ea37": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-16T23:00",
+        "f": "2026-11-08",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
+      "6b4f55224a52718c": {
         "p": "神の支配",
         "g": "onepiece",
         "e": "2026-11-16T23:00",
-        "f": "2026-11-09",
+        "f": "2026-11-08",
         "c": "store",
         "m": "Web",
-        "id": null,
-        "mem": null,
+        "id": false,
+        "mem": "account",
         "rq": []
       },
       "6f65a810bf800193": {
@@ -23306,28 +23350,6 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
-        "rq": []
-      },
-      "dff9d7fa1604ea37": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-11-08",
-        "c": "store",
-        "m": "Web",
-        "id": false,
-        "mem": "account",
-        "rq": []
-      },
-      "6b4f55224a52718c": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-11-08",
-        "c": "store",
-        "m": "Web",
-        "id": false,
-        "mem": "account",
         "rq": []
       },
       "0af321b481f99ac4": {
@@ -29694,6 +29716,17 @@
   "store/kiddyland-50e38/": {
     "name": "キデイランド 神戸店",
     "items": {
+      "777f6c442482f6c5": {
+        "p": "OP18",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "2f6df72825e16c1a": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -32106,7 +32139,7 @@
         "g": "pokemon",
         "e": "2026-11-24T23:59",
         "f": "2026-11-09",
-        "c": "store",
+        "c": "online",
         "m": "SNS",
         "id": false,
         "mem": "none",

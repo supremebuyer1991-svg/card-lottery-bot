@@ -3552,8 +3552,8 @@
     "area": "京都府"
   },
   "store/kiddyland-668b3/": {
-    "name": "キデイランド 浦和美園店",
-    "last": "2026-11-08",
+    "name": "キデイランド浦和美園店",
+    "last": "2026-11-09",
     "game": "pokemon",
     "keep": true,
     "area": "埼玉県"
@@ -3705,10 +3705,11 @@
     "game": "pokemon"
   },
   "store/kiddyland-1e44f/": {
-    "name": "キデイランド 京都四条河原町店",
-    "last": "2026-10-30",
+    "name": "キデイランド京都四条河原町店",
+    "last": "2026-11-09",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "京都府"
   },
   "store/aeon-d2e12/": {
     "name": "BOOKOFF イオン本牧店",
@@ -4190,7 +4191,8 @@
     "name": "文教堂浦安西友店",
     "last": "2026-11-09",
     "game": "pokemon",
-    "area": "千葉県"
+    "area": "千葉県",
+    "address": "千葉県千葉県浦安市北栄1-14-1"
   },
   "store/tsutaya-52c8f/": {
     "name": "TSUTAYA平塚",

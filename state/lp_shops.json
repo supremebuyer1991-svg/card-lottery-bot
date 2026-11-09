@@ -165,9 +165,9 @@
     "dbf5m": "https://livepocket.jp/p/ebo-6",
     "httoz": "",
     "zm4do": "",
-    "wk1f_": "",
+    "wk1f_": "https://livepocket.jp/p/hpmzs",
     "c2suq": "",
-    "mt1eq": "",
+    "mt1eq": "https://livepocket.jp/p/hpmzs",
     "fgr_6": "",
     "pv9dk": "",
     "9lv0h": "",
@@ -229,7 +229,7 @@
     "0aq7y": "",
     "s61fn": "",
     "hle-5": "",
-    "23ohg": "",
+    "23ohg": "https://livepocket.jp/p/i9q1i",
     "0r314": "",
     "ek6xw": "",
     "yvpts": "",
@@ -247,7 +247,7 @@
     "7_pst": "",
     "pu-eo": "",
     "4-ufh": "",
-    "mpbzb": "",
+    "mpbzb": "https://livepocket.jp/p/8s6bg",
     "jogp8": "",
     "3-ayh": "",
     "2q34tryqw98dvhasjkl-jgh12u89yru": "",
@@ -279,8 +279,8 @@
     "uxxkg": "",
     "854lu": "",
     "f2n7x": "",
-    "hrld4": "",
-    "hloou": ""
+    "hrld4": "https://livepocket.jp/p/6-4m5",
+    "hloou": "https://livepocket.jp/p/tumjc"
   },
   "shops": {
     "https://livepocket.jp/p/isjs6": {
@@ -398,7 +398,8 @@
     "https://livepocket.jp/p/i9q1i": {
       "name": "TSUTAYA 合川店",
       "events": [
-        "uk_yi"
+        "uk_yi",
+        "23ohg"
       ]
     },
     "https://livepocket.jp/p/xk335": {
@@ -477,7 +478,9 @@
     "https://livepocket.jp/p/hpmzs": {
       "name": "ときわ書房ニューコースト新浦安店",
       "events": [
-        "bgwe7"
+        "bgwe7",
+        "mt1eq",
+        "wk1f_"
       ]
     },
     "https://livepocket.jp/p/gl4ys": {
@@ -496,6 +499,24 @@
       "name": "キデイランド浦和美園店",
       "events": [
         "tgk3o"
+      ]
+    },
+    "https://livepocket.jp/p/6-4m5": {
+      "name": "ふるいちイオンモール座間店",
+      "events": [
+        "hrld4"
+      ]
+    },
+    "https://livepocket.jp/p/tumjc": {
+      "name": "文教堂浦安西友店",
+      "events": [
+        "hloou"
+      ]
+    },
+    "https://livepocket.jp/p/8s6bg": {
+      "name": "TSUTAYA東仙台店",
+      "events": [
+        "mpbzb"
       ]
     }
   }
