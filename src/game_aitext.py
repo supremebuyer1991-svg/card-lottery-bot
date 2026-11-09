@@ -40,10 +40,13 @@ def _ai(data):
         raise RuntimeError("ANTHROPIC_API_KEY が未設定")
     r = requests.post("https://api.anthropic.com/v1/messages", timeout=60, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": MODEL, "max_tokens": 1500, "messages": [{"role": "user", "content": PROMPT.format(data=json.dumps(data, ensure_ascii=False, indent=1))}]})
+        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": PROMPT.format(data=json.dumps(data, ensure_ascii=False, indent=1))}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API {r.status_code}: {r.text[:160]}")
-    text = "".join(b.get("text", "") for b in r.json().get("content", [])).strip()
+    js = r.json()
+    text = "".join(b.get("text", "") for b in js.get("content", []) if b.get("type") == "text").strip()
+    if not text:
+        log(f"  解説：返事が空（stop_reason={js.get('stop_reason')}・{[b.get('type') for b in js.get('content', [])]}）")
     text = re.sub(r"^#\s.*\n", "", text)   # 先頭の大見出し（# …）は外す
     if not (300 <= len(text) <= 4000 and "## " in text) or re.search(r"データ|このページ|情報がありません|記録がな", text):
         log(f"  解説：使わない返事（{len(text)}文字）{text[:60]!r}")
