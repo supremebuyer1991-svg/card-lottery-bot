@@ -3552,7 +3552,7 @@
     "area": "京都府"
   },
   "store/kiddyland-668b3/": {
-    "name": "キデイランド浦和美園店",
+    "name": "キデイランド 浦和美園店",
     "last": "2026-11-09",
     "game": "pokemon",
     "keep": true,
@@ -3705,7 +3705,7 @@
     "game": "pokemon"
   },
   "store/kiddyland-1e44f/": {
-    "name": "キデイランド京都四条河原町店",
+    "name": "キデイランド 京都四条河原町店",
     "last": "2026-11-09",
     "game": "onepiece",
     "keep": true,
@@ -6812,7 +6812,8 @@
     "name": "ミント沖縄店",
     "last": "2026-11-09",
     "game": "pokemon",
-    "area": "沖縄県"
+    "area": "沖縄県",
+    "address": "沖縄県中頭郡北中城村ライカム1番地"
   },
   "store/o-0a7d2/": {
     "name": "お宝市番館 尾張小牧店（おたいち）",
@@ -6836,10 +6837,5 @@
     "name": "ジャングルトレカ 本店",
     "last": "2026-11-09",
     "game": "pokemon"
-  },
-  "store/noshippo-ce4f8/": {
-    "name": "竜のしっぽ各店",
-    "last": "2026-11-09",
-    "game": "onepiece"
   }
 }

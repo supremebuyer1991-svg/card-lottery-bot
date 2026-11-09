@@ -158,6 +158,7 @@
       "product": "一番くじ ゴジラ 怪獣乱舞-ゼロの鼓動-",
       "series": "一番くじ ゴジラ",
       "end": "2026-11-13T23:59+09:00",
+      "method": "店頭",
       "conditions": "11/13から順次発売。景品がなくなり次第終了。",
       "channel": "store",
       "spath": "ichibankuji/kujigojira-fe39e/",
@@ -605,6 +606,307 @@
     },
     "path": "l/8221b237e8/",
     "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "f0e91fa89e56e285": {
+    "snap": {
+      "key": "f0e91fa89e56e285",
+      "game": "ps5",
+      "store": "PlayStation取扱店・ECサイト",
+      "product": "PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用",
+      "series": "PlayStation Portal",
+      "start": "2026-11-13T10:00+09:00",
+      "end": "2026-12-09T23:59+09:00",
+      "conditions": "11/13（金）10:00から全国のPlayStation取扱店・ECサイトで順次予約受付。PS Plus プレミアム1ヶ月利用権つき。日本語専用モデル（国/地域が日本のアカウントのみ）。",
+      "url": "https://www.playstation.com/ja-jp/",
+      "channel": "online",
+      "spath": "ps5/playstation-portal/",
+      "found_at": "2026-11-09T11:16:19.652127+09:00",
+      "manual": true,
+      "kind": "preorder",
+      "price": "39,980円（税込）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7251/4948872017251.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18121093%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7251/4948872017251.jpg?_ex=300x300"
+        },
+        "yh": "https://shopping.yahoo.co.jp/search?p=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC",
+        "mc": "https://jp.mercari.com/search?keyword=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC&status=on_sale"
+      }
+    },
+    "path": "l/ps-portal-midnight-black-preorder-1113/",
+    "end": "2026-12-09T23:59+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "871d0bd0faa0edbb": {
+    "snap": {
+      "key": "871d0bd0faa0edbb",
+      "game": "ichibankuji",
+      "store": "一番くじONLINE（BANDAI SPIRITS）",
+      "product": "一番くじ 機動戦士ガンダム UNIVERSAL CENTURY SAGA INTERLUDE",
+      "series": "UNIVERSAL CENTURY SAGA INTERLUDE",
+      "start": "2026-11-05T17:00:00+09:00",
+      "method": "Web",
+      "url": "https://1kuji.com/products/gundam_ucsi",
+      "channel": "online",
+      "spath": "ichibankuji/universal-century-saga-interlude/",
+      "found_at": "2026-11-09T11:17:42.157641+09:00",
+      "kind": "first_come",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%20UNIVERSAL",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%20UNIVERSAL&status=on_sale"
+      }
+    },
+    "path": "l/871d0bd0fa/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "9c8059867c93c433": {
+    "snap": {
+      "key": "9c8059867c93c433",
+      "game": "ichibankuji",
+      "store": "一番くじONLINE（BANDAI SPIRITS）",
+      "product": "一番くじ アニメ カードキャプターさくら クリアカード編～Blessed collection～",
+      "series": "カードキャプターさくら クリアカード編～Blessed collection～",
+      "start": "2026-11-06T17:00:00+09:00",
+      "method": "Web",
+      "url": "https://1kuji.com/products/sakura15",
+      "channel": "online",
+      "spath": "ichibankuji/kadokyaputasakurakuriakado-ble-683b3/",
+      "found_at": "2026-11-09T11:17:42.157875+09:00",
+      "kind": "first_come",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%A2%E3%83%8B%E3%83%A1%20%E3%82%AB%E3%83%BC%E3%83%89%E3%82%AD%E3%83%A3%E3%83%97%E3%82%BF%E3%83%BC%E3%81%95%E3%81%8F%E3%82%89",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%A2%E3%83%8B%E3%83%A1%20%E3%82%AB%E3%83%BC%E3%83%89%E3%82%AD%E3%83%A3%E3%83%97%E3%82%BF%E3%83%BC%E3%81%95%E3%81%8F%E3%82%89&status=on_sale"
+      }
+    },
+    "path": "l/9c8059867c/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "90733359b7fffa86": {
+    "snap": {
+      "key": "90733359b7fffa86",
+      "game": "ichibankuji",
+      "store": "一番くじONLINE（BANDAI SPIRITS）",
+      "product": "一番くじ エスターバニー -ROMANCE ANGEL-",
+      "series": "エスターバニー -ROMANCE ANGEL-",
+      "start": "2026-11-09T11:00:00+09:00",
+      "method": "Web",
+      "url": "https://1kuji.com/products/estherbunny",
+      "channel": "online",
+      "spath": "ichibankuji/esutabani-romanceangel-b07ae/",
+      "found_at": "2026-11-09T11:17:42.157935+09:00",
+      "kind": "first_come",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%A8%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%8B%E3%83%BC%20-ROMANCE%20ANGEL-",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%A8%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%8B%E3%83%BC%20-ROMANCE%20ANGEL-&status=on_sale"
+      }
+    },
+    "path": "l/90733359b7/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "c356f1e90ec3a681": {
+    "snap": {
+      "key": "c356f1e90ec3a681",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ ストリートファイター ～俺より強い奴に会いに行く～",
+      "series": "ストリートファイター ～俺より強い奴に会いに行く～",
+      "start": "2026-11-11T11:00:00+09:00",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/streetfighter3",
+      "channel": "store",
+      "spath": "ichibankuji/sutoritofaita-yori-i-ni-ini-ku-4ae47/",
+      "found_at": "2026-11-09T11:17:42.157971+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%82%BF%E3%83%BC%20~%E4%BF%BA%E3%82%88%E3%82%8A%E5%BC%B7%E3%81%84%E5%A5%B4%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%AB%E8%A1%8C%E3%81%8F~",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%83%95%E3%82%A1%E3%82%A4%E3%82%BF%E3%83%BC%20~%E4%BF%BA%E3%82%88%E3%82%8A%E5%BC%B7%E3%81%84%E5%A5%B4%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%AB%E8%A1%8C%E3%81%8F~&status=on_sale"
+      }
+    },
+    "path": "l/c356f1e90e/",
+    "end": "2026-11-11T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "acf4b0f43366cc12": {
+    "snap": {
+      "key": "acf4b0f43366cc12",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ hololive FLOW GLOW",
+      "series": "hololive FLOW GLOW",
+      "start": "2026-11-13T11:00:00+09:00",
+      "end": "2026-11-13T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/hololive-flowglow",
+      "channel": "store",
+      "spath": "ichibankuji/hololive-flow-glow/",
+      "found_at": "2026-11-09T11:17:42.158044+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20hololive%20FLOW%20GLOW",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20hololive%20FLOW%20GLOW&status=on_sale"
+      }
+    },
+    "path": "l/acf4b0f433/",
+    "end": "2026-11-13T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "362381c5ca3b46cf": {
+    "snap": {
+      "key": "362381c5ca3b46cf",
+      "game": "ichibankuji",
+      "store": "一番くじONLINE（BANDAI SPIRITS）",
+      "product": "一番くじ ゴジラ 怪獣乱舞-ゼロの鼓動-",
+      "series": "ゴジラ 怪獣乱舞-ゼロの鼓動-",
+      "start": "2026-11-16T17:00:00+09:00",
+      "method": "Web",
+      "url": "https://1kuji.com/products/godzilla10",
+      "channel": "online",
+      "spath": "ichibankuji/gojira-zerono-bcb99/",
+      "found_at": "2026-11-09T11:17:42.158153+09:00",
+      "kind": "first_come",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%B4%E3%82%B8%E3%83%A9%20%E6%80%AA%E7%8D%A3%E4%B9%B1%E8%88%9E-%E3%82%BC%E3%83%AD%E3%81%AE%E9%BC%93%E5%8B%95-",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%B4%E3%82%B8%E3%83%A9%20%E6%80%AA%E7%8D%A3%E4%B9%B1%E8%88%9E-%E3%82%BC%E3%83%AD%E3%81%AE%E9%BC%93%E5%8B%95-&status=on_sale"
+      }
+    },
+    "path": "l/362381c5ca/",
+    "end": null,
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "f9bf5e6a41d570d7": {
+    "snap": {
+      "key": "f9bf5e6a41d570d7",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ ワンピース～あにまる大集合！～",
+      "series": "ワンピース～あにまる大集合！～",
+      "start": "2026-12-07T11:00:00+09:00",
+      "end": "2026-11-14T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/onep105",
+      "channel": "store",
+      "spath": "ichibankuji/wanpisu-animaru-d081a/",
+      "found_at": "2026-11-09T11:17:42.158195+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9~%E3%81%82%E3%81%AB%E3%81%BE%E3%82%8B%E5%A4%A7%E9%9B%86%E5%90%88%21~",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9~%E3%81%82%E3%81%AB%E3%81%BE%E3%82%8B%E5%A4%A7%E9%9B%86%E5%90%88%21~&status=on_sale"
+      }
+    },
+    "path": "l/f9bf5e6a41/",
+    "end": "2026-11-14T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "425bf517493e43c0": {
+    "snap": {
+      "key": "425bf517493e43c0",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ HUNTER×HUNTER CHMERA ANT ②（再販売）",
+      "series": "HUNTER×HUNTER CHMERA ANT ②",
+      "end": "2026-11-14T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/hxh8_2",
+      "channel": "store",
+      "spath": "ichibankuji/hunter-hunterchmeraant-a786e/",
+      "found_at": "2026-11-09T11:17:42.158284+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20HUNTER%C3%97HUNTER%20CHMERA%20ANT",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20HUNTER%C3%97HUNTER%20CHMERA%20ANT&status=on_sale"
+      }
+    },
+    "path": "l/425bf51749/",
+    "end": "2026-11-14T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "13067662f7bd7a05": {
+    "snap": {
+      "key": "13067662f7bd7a05",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ To LOVEる-とらぶる-ダークネス",
+      "series": "To LOVEる-とらぶる-ダークネス",
+      "end": "2026-11-18T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/toloveru_d",
+      "channel": "store",
+      "spath": "ichibankuji/toloveru-toraburu-dakunesu-3a156/",
+      "found_at": "2026-11-09T11:17:42.158326+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20To%20LOVE%E3%82%8B-%E3%81%A8%E3%82%89%E3%81%B6%E3%82%8B-%E3%83%80%E3%83%BC%E3%82%AF%E3%83%8D%E3%82%B9",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20To%20LOVE%E3%82%8B-%E3%81%A8%E3%82%89%E3%81%B6%E3%82%8B-%E3%83%80%E3%83%BC%E3%82%AF%E3%83%8D%E3%82%B9&status=on_sale"
+      }
+    },
+    "path": "l/13067662f7/",
+    "end": "2026-11-18T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "c86c90468b5e2a1c": {
+    "snap": {
+      "key": "c86c90468b5e2a1c",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじちょこっと ホイッピ＆ラッピ",
+      "series": "ホイッピ＆ラッピ",
+      "start": "2026-11-19T11:00:00+09:00",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/whippi_wrappi",
+      "channel": "store",
+      "spath": "ichibankuji/hoippi-rappi-e43b6/",
+      "found_at": "2026-11-09T11:17:42.158365+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%E3%81%A1%E3%82%87%E3%81%93%E3%81%A3%E3%81%A8%20%E3%83%9B%E3%82%A4%E3%83%83%E3%83%94%26%E3%83%A9%E3%83%83%E3%83%94",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%E3%81%A1%E3%82%87%E3%81%93%E3%81%A3%E3%81%A8%20%E3%83%9B%E3%82%A4%E3%83%83%E3%83%94%26%E3%83%A9%E3%83%83%E3%83%94&status=on_sale"
+      }
+    },
+    "path": "l/c86c90468b/",
+    "end": "2026-11-19T23:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": false
+  },
+  "ca74a523c54cba9b": {
+    "snap": {
+      "key": "ca74a523c54cba9b",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ にゃんこ大戦争 ～みんなでペリペリするにゃ～（再販売）",
+      "series": "にゃんこ大戦争 ～みんなでペリペリするにゃ～",
+      "end": "2026-11-20T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/battlecats2-2",
+      "channel": "store",
+      "spath": "ichibankuji/nyanko-minnadeperiperisurunya-b0fc6/",
+      "found_at": "2026-11-09T11:17:42.158433+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%81%AB%E3%82%83%E3%82%93%E3%81%93%E5%A4%A7%E6%88%A6%E4%BA%89%20~%E3%81%BF%E3%82%93%E3%81%AA%E3%81%A7%E3%83%9A%E3%83%AA%E3%83%9A%E3%83%AA%E3%81%99%E3%82%8B%E3%81%AB%E3%82%83~",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%81%AB%E3%82%83%E3%82%93%E3%81%93%E5%A4%A7%E6%88%A6%E4%BA%89%20~%E3%81%BF%E3%82%93%E3%81%AA%E3%81%A7%E3%83%9A%E3%83%AA%E3%83%9A%E3%83%AA%E3%81%99%E3%82%8B%E3%81%AB%E3%82%83~&status=on_sale"
+      }
+    },
+    "path": "l/ca74a523c5/",
+    "end": "2026-11-20T23:59:00+09:00",
     "seen": "2026-11-09",
     "ended": false
   }

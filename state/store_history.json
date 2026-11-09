@@ -1794,7 +1794,7 @@
         "g": "pokemon",
         "e": "2026-11-12T23:59",
         "f": "2026-11-09",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -1808,7 +1808,7 @@
         "g": "onepiece",
         "e": "2026-11-12T23:59",
         "f": "2026-11-09",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -22547,7 +22547,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-09",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "none",
@@ -23133,6 +23133,18 @@
         "c": "store",
         "m": "Web",
         "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-18"
+      },
+      "17a6455a91d995a8": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": false,
         "mem": "account",
         "rq": [],
         "a": "2026-11-18"
@@ -32139,7 +32151,7 @@
         "g": "pokemon",
         "e": "2026-11-24T23:59",
         "f": "2026-11-09",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -32155,23 +32167,6 @@
         "id": false,
         "mem": "none",
         "rq": []
-      }
-    }
-  },
-  "store/noshippo-ce4f8/": {
-    "name": "竜のしっぽ各店",
-    "items": {
-      "17a6455a91d995a8": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-13T23:59",
-        "f": "2026-11-09",
-        "c": "online",
-        "m": "Web",
-        "id": false,
-        "mem": "account",
-        "rq": [],
-        "a": "2026-11-18"
       }
     }
   }
