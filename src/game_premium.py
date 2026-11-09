@@ -276,7 +276,7 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".follow{background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:14px 16px;margin:16px 0}.follow p{margin:4px 0}"
        ".mc-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box .btn{padding:8px 12px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
-       ".pm-shops{white-space:nowrap}.pm-sh{display:inline-block;padding:6px 9px;margin-right:4px;border-radius:6px;font-weight:900;text-decoration:none;font-size:13px}"
+       ".pm-shops{white-space:nowrap}.pm-det{text-align:right;white-space:nowrap;width:1%}.pm-sh{display:inline-block;padding:6px 9px;margin-right:4px;border-radius:6px;font-weight:900;text-decoration:none;font-size:13px}"
        ".pm-sh.rk{background:#bf0000;color:#fff}.pm-sh.az{background:#ff9900;color:#0b0d12}"
        ".pm-go{display:inline-block;white-space:nowrap;padding:6px 10px;border-radius:6px;background:#ffd23f;color:#0b0d12;font-weight:900;text-decoration:none;font-size:13px}"
        ".btn-rk{background:#bf0000;color:#fff}.btn-yh{background:#ff0033;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-az{background:#ff9900;color:#0b0d12}")
@@ -332,6 +332,18 @@ def _ratio_html(x):
         return '<span class="na">定価確認中</span>'
     pc = round((x["ratio"] - 1) * 100)
     return f'<span class="{"up" if pc > 0 else "dn" if pc < 0 else "eq"}">{"+" if pc > 0 else ""}{pc}%</span>'
+
+
+SEARCH_JS = r"""<script>
+(function(){var q=(new URLSearchParams(location.search).get("q")||"").trim();var box=document.querySelector(".qsearch input");if(box)box.value=q;
+var n=document.getElementById("qs-n"),r=document.getElementById("qs-r");if(!q){n.textContent="商品名（例：PS5 Pro、たまごっち）かJANコード（13けた）を入れてください。";return;}
+function norm(s){return (s||"").normalize("NFKC").toLowerCase().replace(/\s+/g," ");}
+fetch("/search.json").then(function(x){return x.json();}).then(function(d){
+var ws=norm(q).split(" ").filter(Boolean),dig=q.replace(/\D/g,"");
+var hit=d.filter(function(e){var t=norm(e[0]);if(dig.length>=8&&e[1]&&e[1].indexOf(dig)>=0)return true;return ws.every(function(w){return t.indexOf(w)>=0;});});
+n.textContent="「"+q+"」の検索結果："+hit.length+"件";
+r.innerHTML=hit.slice(0,100).map(function(e){return '<a class="qs-i" href="'+e[2]+'"><b>'+e[0].replace(/[<>&]/g,"")+'</b><span>'+(e[3]?"定価 "+e[3].toLocaleString()+"円 ":"")+(e[4]?"最高買取 "+e[4].toLocaleString()+"円":"")+(e[1]?" ・JAN "+e[1]:"")+'</span></a>';}).join("")||"<p>見つかりませんでした。言葉を短くするか、別の言い方で探してみてください。</p>";});})();
+</script><style>.qs-i{display:block;padding:12px 14px;margin:8px 0;border:1px solid #262c3a;border-radius:10px;background:#141823;color:#e9edf5;text-decoration:none}.qs-i b{display:block}.qs-i span{font-size:13px;color:#8a93a6}</style>"""
 
 
 def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id=""):
@@ -435,6 +447,15 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
              f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
         made += 1
+    # 商品名・JANコードで検索：/search.json（商品ページ・抽選の一覧）と /search/
+    import json as _json
+    idx = [[x["name"], x["jan"], f"/premium/{x['jan']}/", x["teika"] or 0, x["max"]] for x in allx]
+    idx += [[re.sub(r"\s+", " ", rs_[0].get("product") or "")[:70], rs_[0].get("jan") or "", f"/item/{item_slug(rs_[0].get('product') or k_)}/", 0, 0]
+            for k_, rs_ in groups_.items()]
+    idx += [[f'{r.get("store") or ""} {r.get("product") or ""}'.strip()[:80], r.get("jan") or "", "/" + r["lpath"], 0, 0] for r in live_rows if r.get("lpath")]
+    (out / "search.json").write_text(_json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    page(f"商品名・JANコードで検索｜{brand['name']}", "ゲーム機・ホビーの商品を商品名やJANコードで検索。定価・買取相場・抽選や発売の情報のページに移動できます。",
+         '<h1>商品名・JANコードで検索</h1><p id="qs-n" class="note"></p><div id="qs-r"></div>' + SEARCH_JS, "search/")
     log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）、抽選・発売の商品ページ：{made}件")
     return paths, items
 
@@ -547,7 +568,7 @@ def cat_products_html(prods, short):
         f'<tr><td>{escape(p["name"])}</td><td class="n">{(format(p["teika"], ",") + "円") if p["teika"] else "—"}</td>'
         f'<td class="n">{(format(p["max"], ",") + "円" + ("<br><small>" + escape(p["store"]) + "</small>" if p["store"] else "")) if p["max"] else "—"}'
         f'{(" <span class=\"up\">+" + str(round((p["ratio"] - 1) * 100)) + "%</span>") if p["ratio"] and p["ratio"] >= 1.03 else ""}</td>'
-        f'<td class="pm-shops">{_shop_mini(p)}<a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
+        f'<td class="pm-shops">{_shop_mini(p)}</td><td class="pm-det"><a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
     return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
             '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。定価で売り出されたらXで通知します。</p>'
-            f'<div style="overflow-x:auto"><table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+            f'<div style="overflow-x:auto"><table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th>買えるところ</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>')

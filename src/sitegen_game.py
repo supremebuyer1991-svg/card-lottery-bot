@@ -82,6 +82,14 @@ CHAIN = {c[0]: c for c in GAME_CHAINS}
 WEEK = "月火水木金土日"
 
 
+# いちばん上の「商品名・JANコードで検索」（どのページにも出す。/search/ で探す）
+SEARCH_FORM = ('<form class="qsearch" action="/search/" method="get" role="search">'
+               '<input type="search" name="q" placeholder="商品名・JANコードで検索" aria-label="商品名・JANコードで検索" enterkeyhint="search">'
+               '<button type="submit">検索</button></form>'
+               '<style>.qsearch{display:flex;gap:8px;margin:0 0 14px}.qsearch input{flex:1;min-width:0;padding:11px 14px;border-radius:8px;border:1px solid #3a4152;'
+               'background:#0f121a;color:#e9edf5;font-size:16px}.qsearch button{padding:11px 18px;border-radius:8px;border:0;background:#ffd23f;color:#0b0d12;'
+               'font-weight:900;font-size:15px;cursor:pointer}</style>')
+
 PCOUNTS = {}   # カテゴリごとの商品の数（build の最初に入れる。左メニューの数）
 
 
@@ -117,7 +125,7 @@ def _theme_detail(html, side):
     html = html.replace('<link rel="preconnect" href="https://fonts.googleapis.com">', FONTS, 1)
     html = html.replace("</head>", f"<style>{css}</style></head>", 1)
     html = re.sub(r"<body><header>.*?</header><main class=\"wrap\">",
-                  lambda m: f'<body><div class="shell">{side}<div class="main"><p class="promo">本ページはプロモーションを含みます</p><main class="wrap">', html, count=1, flags=re.S)
+                  lambda m: f'<body><div class="shell">{side}<div class="main"><p class="promo">本ページはプロモーションを含みます</p>{SEARCH_FORM}<main class="wrap">', html, count=1, flags=re.S)
     html = html.replace("</main><script>", "</main></div></div><script>", 1)
     head, body = html.split("<body>", 1)
     return head + "<body>" + _EMOJI.sub("", body)
@@ -354,7 +362,7 @@ def _simple_page(cats, html):
     html = html.replace("</head>", f'<meta name="theme-color" content="{BG}">{FONTS}<style>{css}</style></head>', 1)
     head, body = html.split("<body>", 1)
     body = body.replace("</body></html>", "")
-    return f'{head}<body><div class="shell">{side_html(cats, counts=False)}<main class="main doc">{body}</main></div></body></html>'
+    return f'{head}<body><div class="shell">{side_html(cats, counts=False)}<main class="main doc">{SEARCH_FORM}{body}</main></div></body></html>'
 
 
 def _favicon_svg(color, accent):
@@ -599,7 +607,7 @@ def build(settings=None, out_dir=None, force=False):
                      "__PIN__": meta.get("pin", ""), "__BODY_TOP__": body_top, "__PRERENDER__": prerender(sub) if list_mode else "", "__BODY_BOTTOM__": body_bottom,
                      "__FAQ__": fh, "__LEAD__": escape(meta.get("lead") or ""), "__SUMMARY__": meta.get("summary") or "", "__LINKS__": meta.get("links", ""),
                      "__CREDIT__": CREDIT if any((i.get("rk") or {}).get("img") for i in sub) else "",
-                     "__SHELL_CSS__": shell_css, "__SIDEBAR__": side_html(cats, (data_extra or {}).get("game"), cur)}.items():
+                     "__SHELL_CSS__": shell_css, "__SIDEBAR__": side_html(cats, (data_extra or {}).get("game"), cur), "__SEARCH__": SEARCH_FORM}.items():
             body = body.replace(k, v)
         body = body.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
         cut = body.index('<div class="shell">')
