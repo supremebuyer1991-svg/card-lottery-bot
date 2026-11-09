@@ -148,7 +148,7 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                     for x in game_premium.catalog(s, game_premium.watch_map())[:int(s.get("watch_catalog_max", 600))]:
                         wl.append({"k": "j" + x["jan"], "jan": x["jan"], "n": x["name"][:40],
                                    "g": bool(_re.search(gh, " ".join(x["names"]), _re.I)), "rk": "", "asin": "", "tag": [],
-                                   "tk": x["teika"] or 0, "mx": x["max"], "hot": bool(x["ratio"] and x["ratio"] >= pmin),
+                                   "tk": x["teika"] or 0, "mx": x["max"], "hot": bool(x["ratio"] and x["ratio"] >= pmin), "pg": f"/premium/{x['jan']}/",
                                    "pm": (f"最高買取 {x['max']:,}円（定価比 +{round((x['ratio'] - 1) * 100)}%）" if x["ratio"] and x["ratio"] >= pmin else "")})
                 except Exception as e:
                     log(f"見張り（相場の商品）: スキップ {e}")

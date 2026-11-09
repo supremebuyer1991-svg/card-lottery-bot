@@ -105,7 +105,10 @@ function amzState(it) {
 function compose(w, shop, kind, url) {
   const where = shop === "rk" ? "楽天ブックス" : "Amazon";
   const head = `${where}で` + (kind === "invite" ? "招待リクエスト受付再開🔥" : kind === "pre" ? "予約受付再開🔥" : "販売再開🔥") + "（売り切れ→在庫あり）";
-  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), ...(w._days >= 3 ? [`📦${Math.floor(w._days)}日ぶりの在庫復活`] : []), "", kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇", url, ""];
+  // 11/9 ユーザーの指示：リンク先はサイトの商品ページ（いちばん上に Amazon・楽天のボタンと「速報から来た方へ」の案内）。ページが無い商品はお店へ直接
+  const link = w.pg ? `https://game-nyuka.com${w.pg}?x=${shop}` : url;
+  const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), ...(w._days >= 3 ? [`📦${Math.floor(w._days)}日ぶりの在庫復活`] : []), "",
+    w.pg ? `${where}の購入ボタンはこちら👇` : (kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇"), link, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
   return lines.join("\n");

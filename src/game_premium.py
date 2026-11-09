@@ -360,6 +360,28 @@ def stock_html(jan, wm_all, name):
     return cur_h, hist_h
 
 
+BUY_CSS = (".buyb{margin:10px 0 16px;padding:14px;border:2px solid #ffd23f;border-radius:14px;background:#17140a}"
+           ".buyb .xin{display:none;margin:0 0 10px;font-weight:900;line-height:1.6;color:#ffd23f}.buyb.on .xin{display:block}"
+           ".buyb .bb{display:grid;grid-template-columns:1fr 1fr;gap:8px}.buyb .bb a{display:flex;align-items:center;justify-content:center;padding:14px 8px;"
+           "border-radius:10px;font-weight:900;font-size:16px;text-decoration:none;text-align:center}.buyb .bb .az{background:#ff9900;color:#0b0d12}"
+           ".buyb .bb .rk{background:#bf0000;color:#fff}.buyb .bb a.hl{outline:3px solid #fff;outline-offset:2px}.buyb small{display:block;margin-top:8px;color:#a3abbd;font-size:12px;line-height:1.6}")
+BUY_JS = ("<script>(function(){var w=(new URLSearchParams(location.search).get('x')||'');var b=document.querySelector('.buyb');if(!b||!/^(az|rk)$/.test(w))return;"
+          "b.classList.add('on');var n=w==='az'?'Amazon':'楽天';b.querySelector('.xin').textContent='🚨 Xの販売速報から来た方へ：'+n+'で販売・予約が再開しました。'"
+          "+'人気商品はすぐ売り切れるので、下の「'+n+'で見る」から早めに確認してください（すでに売り切れの場合もあります）。';"
+          "var a=b.querySelector('.bb .'+w);if(a){a.classList.add('hl');a.parentNode.insertBefore(a,a.parentNode.firstChild);}"
+          "try{b.scrollIntoView({block:'start'});window.scrollBy(0,-12);}catch(e){}})();</script>")   # 速報から来た人はメニューを飛ばして購入ボタンへ
+
+
+def buy_box(az, rk, name):
+    """ページの上の方の購入ボタン（Amazon・楽天）。Xの販売速報（?x=az / ?x=rk）から来た人には、どのお店で再開したかの案内を出してそのボタンを目立たせる"""
+    if not (az or rk):
+        return ""
+    btn = (f'<a class="az" href="{escape(az)}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if az else "") + \
+          (f'<a class="rk" href="{escape(rk)}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk else "")
+    return (f'<style>{BUY_CSS}</style><div class="buyb"><p class="xin"></p><div class="bb">{btn}</div>'
+            f'<small>{escape(name)}を定価で買えるお店のページです。在庫・価格はお店のページで確認してください。販売が始まったら X（@a9994aaa）で速報します。</small></div>{BUY_JS}')
+
+
 def _aitext(key):
     try:
         import game_aitext
@@ -554,7 +576,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
         desc = f"{x['name']}の新品の最高買取価格は{x['max']:,}円" + (f"（定価{x['teika']:,}円の{round(x['ratio'] * 100)}%）" if x["teika"] else "") + "。1週間前比・1か月前比・買取店ごとの価格・抽選や再販の情報。"
         page(f"{x['name']} 買取価格・定価・在庫/再販情報【{md}更新】｜{brand['name']}", desc,
-             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{intro}'
+             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
@@ -599,7 +621,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         thin = sum(bool(v) for v in (price, r0.get("jan"), rk.get("img"), rd)) < 3   # 定価・JAN・写真・発売日のうち3つ以上そろうまでは検索に出さない
         page(f"{nm} 抽選・予約・再販と相場・定価【{md}更新】｜{brand['name']}",
              f"{nm}の抽選・予約・再販の受付状況、定価、相場（{souba}）、楽天・Amazonの販売ページ。販売開始はXで通知。",
-             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>'
+             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>{buy_box(r0.get("az") or "", rk.get("u") or "", nm)}'
              f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/", img=rk.get("img") or "", noindex=thin)
