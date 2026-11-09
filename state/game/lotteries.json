@@ -23,10 +23,11 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-08T13:57:08.074022+09:00",
+    "page_checked_at": "2026-11-09T11:03:12.843818+09:00",
     "address_checked": true,
     "multi": false,
-    "cls": "1a55bf085870"
+    "cls": "1a55bf085870",
+    "address": "東京都渋谷区宇田川町15-1"
   },
   "1cfb0e4f0ad713b4": {
     "game": "switch2",
@@ -46,7 +47,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-08T13:57:11.165326+09:00",
+    "page_checked_at": "2026-11-09T11:03:15.891607+09:00",
     "area": null,
     "cls": "a91c0a86f864",
     "amazon_asin": "B0HM3FKH8L"
@@ -763,5 +764,36 @@
     "details_checked": true,
     "cls": "8e4af66b04d0",
     "issue": 600
+  },
+  "d8b2c87892deb3a6": {
+    "store": "ソニー・インタラクティブエンタテインメント",
+    "product": "PlayStation Portal プレーヤー 日本語専用",
+    "series": "PlayStation Portal",
+    "kind": "release",
+    "start": null,
+    "end": "2026-12-10T23:59:00+09:00",
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": "39,980円",
+    "round": null,
+    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE93MXN0MXFXUmgwR3pPVTd6SWhGRjQ0UmZlNjl5a2U5dGZ6SkFQZWJlZWFDM0oyUUE5S08yMzhvS0pJNnlGZldtMkJ6MDVNRXpxcHBnQjFEZUluTm4xalRPaG94WQ?oc=5",
+    "x_post": null,
+    "game": "ps5",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.6,
+    "source": "Googleニュース「PS5 予約 開始」",
+    "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE93MXN0MXFXUmgwR3pPVTd6SWhGRjQ0UmZlNjl5a2U5dGZ6SkFQZWJlZWFDM0oyUUE5S08yMzhvS0pJNnlGZldtMkJ6MDVNRXpxcHBnQjFEZUluTm4xalRPaG94WQ?oc=5",
+    "key": "d8b2c87892deb3a6",
+    "status": "pending",
+    "found_at": "2026-11-09T11:02:47.714631+09:00",
+    "page_checked_at": "2026-11-09T11:03:18.405728+09:00",
+    "details_checked": true,
+    "cls": "0a9f0ce7001f",
+    "issue": 602
   }
 }

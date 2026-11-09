@@ -1778,6 +1778,32 @@
         "rq": [],
         "a": "2026-11-17"
       },
+      "a45d2a41c8edc8a3": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-12T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-17"
+      },
+      "8d61d56edec277ed": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-12T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-17"
+      },
       "4b397e1a5ac9f800": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -3339,6 +3365,28 @@
   "store/torekaesu-aa829/": {
     "name": "トレカエース新取手店",
     "items": {
+      "0a1b2a4c10d7550a": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "4666438f92af5f81": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "71da34644793807a": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -5413,6 +5461,28 @@
   "store/tsutaya-909ae/": {
     "name": "TSUTAYA積文館書店シュロアモール店",
     "items": {
+      "6156593778550049": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-15T21:45",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
+      "4855a327b18ba483": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T21:45",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "11851e55173b34ed": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -5551,6 +5621,17 @@
   "store/tsutaya-9b687/": {
     "name": "TSUTAYA山口葵店",
     "items": {
+      "9e20e39aa2749a7c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "9be2fb870011cdc1": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -6530,6 +6611,19 @@
   "store/biccamera-0be56/": {
     "name": "ビックカメラAKIBA",
     "items": {
+      "3700342a94e0ef72": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-10T19:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
       "0061d3e51687a334": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -8536,6 +8630,17 @@
   "store/bideoinamerika-3eaed/": {
     "name": "ビデオインアメリカ一宮本店（inトレカチャンピオン）",
     "items": {
+      "53910e32673f270f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "98617ec02c2af250": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -8559,6 +8664,17 @@
   "store/rakkusu-08d7c/": {
     "name": "ラックス奈良柏木店",
     "items": {
+      "8dc322860b30e30c": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "b7941ed2eac5482f": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -8870,6 +8986,17 @@
   "store/mint-174e4/": {
     "name": "MINT GAMES 池袋店",
     "items": {
+      "bed5b5503c2df198": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-24T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "c14ee1db77f63b2b": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -10176,6 +10303,17 @@
   "store/bookoff-aae2e/": {
     "name": "BOOKOFF SUPER BAZAAR 1号四日市日永店",
     "items": {
+      "e010d1ad854bd106": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "1282288ffeee558e": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -10512,6 +10650,17 @@
   "store/tsutaya-b260c/": {
     "name": "フタバ図書 TSUTAYA 可部センター店",
     "items": {
+      "ba24ccd65ca43346": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "324dc173aa9d0e05": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -10633,6 +10782,17 @@
   "store/tsutaya-c8b38/": {
     "name": "フタバ図書TSUTAYA Alti福山店",
     "items": {
+      "772404bf1d82d03a": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-15T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "c15144f9209ad4ed": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -14987,6 +15147,17 @@
   "store/toredingukadopitto-57796/": {
     "name": "トレーディングカードピット亀戸店",
     "items": {
+      "a2aaef65ba1304f1": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-12T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "08b7fcf852132190": {
         "p": "メガシンフォニア",
         "g": "pokemon",
@@ -15857,6 +16028,17 @@
   "store/tsutaya-66810/": {
     "name": "TSUTAYA富士八幡町店",
     "items": {
+      "182ab3c7a5c49165": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-11T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "9c6bc3338addadfb": {
         "p": "神の支配",
         "g": "onepiece",
@@ -17888,6 +18070,50 @@
   "store/tsutaya-e7db4/": {
     "name": "TSUTAYA中津店トレカコーナー",
     "items": {
+      "48d6c56a51dbd729": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
+      "a13b9502ab486ca2": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
+      "363cc946d8e75da8": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
+      "590fdc079d06452b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "c5ecdd9181bc0d1b": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -18975,6 +19201,17 @@
   "store/tsutaya-69522/": {
     "name": "TSUTAYA柳川店",
     "items": {
+      "1e9bf23b410096d1": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T22:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "6bab30bc32ac687d": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -19102,6 +19339,17 @@
   "store/aeon-31a96/": {
     "name": "ふるいち イオンモール座間店",
     "items": {
+      "4ed28f3fadf5807d": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-09T21:01",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "fb00efee501a26d4": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -19345,6 +19593,17 @@
   "store/torekaesu-0aff2/": {
     "name": "トレカエース勝田東石川店",
     "items": {
+      "6256c3311f96e8bb": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "2be9ea44f60aef48": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -21712,6 +21971,17 @@
   "store/tsutaya-7a15b/": {
     "name": "TSUTAYA 17号北浦和店",
     "items": {
+      "fd34dc9afdb2639a": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "06eec593ff5faa4c": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -21800,6 +22070,17 @@
   "store/shop-1f5da/": {
     "name": "文教堂浦安西友店",
     "items": {
+      "7be52076433d3652": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:30",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "2d849a4ec68d7e97": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -22228,6 +22509,50 @@
   "store/kikuzawa-nappimoru-2cdbc/": {
     "name": "きくざわ書店 ナッピィモール店",
     "items": {
+      "8af4a301f1f00d05": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "8b3982b80a202b18": {
+        "p": "DUAL EVOLUTION",
+        "g": "dragonball",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "b3a9bcedbbc668ee": {
+        "p": "CROSS FORCE",
+        "g": "dragonball",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "22ca94fac4bcd218": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "b556c3f1f0733f61": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -22950,6 +23275,17 @@
   "store/tsutaya-be8e8/": {
     "name": "TSUTAYA合川店",
     "items": {
+      "93e087fdddefdf75": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-16T23:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "6f65a810bf800193": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -23390,6 +23726,17 @@
   "store/geo-869fc/": {
     "name": "SuperKaBoS+ゲオwasse店",
     "items": {
+      "7798c78a804fe231": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "adc34045ac07c448": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -23569,6 +23916,17 @@
   "store/tsutaya-dff5e/": {
     "name": "トレカステーションTSUTAYAハレノテラス東大宮店",
     "items": {
+      "160081d0ae4cfd70": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "aebbfce53b086d39": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -23644,6 +24002,17 @@
   "store/batoroco-3f695/": {
     "name": "TCバトロコ新静岡駅前",
     "items": {
+      "ae92ed9b2fb164c9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "9581323cab0ac7dd": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -24741,6 +25110,17 @@
   "store/torekachanpionmegadon-kihote-1fc4c/": {
     "name": "トレカチャンピオンMEGAドン・キホーテ豊橋店",
     "items": {
+      "8ac61ab8157364f4": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "16daa83f217e7ea3": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -25043,6 +25423,17 @@
   "store/aeon-32a26/": {
     "name": "トレカエースイオンタウン水戸南店",
     "items": {
+      "919f4e6334dcc5cd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "2cdf4d41cbcaebf7": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -25091,6 +25482,17 @@
         "g": "dragonball",
         "e": "2026-12-06T21:00",
         "f": "2026-11-08",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "3284a57a0f10c251": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T21:00",
+        "f": "2026-11-09",
         "c": "store",
         "m": "店頭",
         "id": true,
@@ -25183,6 +25585,17 @@
   "store/torekaesu-d95ea/": {
     "name": "トレカエース小名浜住吉店",
     "items": {
+      "312dde436633fb77": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "465af42651fc5d36": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -26015,6 +26428,17 @@
   "store/torekachanpion-478d7/": {
     "name": "トレカチャンピオン大須店",
     "items": {
+      "750ad41ab87ca8c0": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "65295f5e964da657": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -26818,6 +27242,39 @@
   "store/superkabos-geo-57da3/": {
     "name": "SuperKaBoS+GEO鯖江店",
     "items": {
+      "ccdb8911c43a6927": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "ba91bb00e43737db": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "82eb1cb326f21dd0": {
+        "p": "BRIGHTNESS OF HOPE",
+        "g": "dragonball",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "c4356eb63c2fad92": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -26845,6 +27302,17 @@
   "store/bideoinamerika-225bb/": {
     "name": "ビデオインアメリカ西七条店（iNトレカチャンピオン）",
     "items": {
+      "888f3c52b50c1324": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "eed3de242d04604a": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -26911,6 +27379,17 @@
   "store/torekachanpion-c06dc/": {
     "name": "トレカチャンピオン各務原店",
     "items": {
+      "9375e2847e4e214e": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "3d3ddbab590d053c": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -27527,6 +28006,17 @@
   "store/torekaesu-f7bb9/": {
     "name": "トレカエース下妻店",
     "items": {
+      "523ba9dd9d951d94": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "eed372d187ec6c09": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -31537,6 +32027,118 @@
         "id": null,
         "mem": null,
         "rq": []
+      }
+    }
+  },
+  "store/mint-9b6b6/": {
+    "name": "ミント沖縄店",
+    "items": {
+      "0b839bb8edecd4d2": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T14:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/o-0a7d2/": {
+    "name": "お宝市番館 尾張小牧店（おたいち）",
+    "items": {
+      "d0c6b1dd6480cf1a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/bookoff-b1357/": {
+    "name": "ブックオフ和歌山次郎丸店",
+    "items": {
+      "23bd3075a00e0b4f": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-1d6e8/": {
+    "name": "ブックオフ イオン桑名店",
+    "items": {
+      "1944d11803897dcc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/jangurutoreka-f28c4/": {
+    "name": "ジャングルトレカ 本店",
+    "items": {
+      "cd8e867d58c55309": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-24T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "30705e794112c8a7": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/noshippo-ce4f8/": {
+    "name": "竜のしっぽ各店",
+    "items": {
+      "17a6455a91d995a8": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-18"
       }
     }
   }
