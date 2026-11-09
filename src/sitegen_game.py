@@ -82,20 +82,24 @@ CHAIN = {c[0]: c for c in GAME_CHAINS}
 WEEK = "月火水木金土日"
 
 
+PCOUNTS = {}   # カテゴリごとの商品の数（build の最初に入れる。左メニューの数）
+
+
 def side_html(cats, cur_game=None, cur=None, counts=True):
-    """左のメニュー（ロゴ・受付状況・カテゴリ・通知をオン）。スマホでは本文の上に横並びで出る"""
-    stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
+    """左のメニュー：いちばん上にカテゴリ（横に商品の数）→ 定価以上で売れる・買取相場・カレンダー → 下に抽選・受付の状況。スマホでは本文の上に横並び"""
     here = ' aria-current="page"'
-    stat += f'<a href="/calendar/"{here if cur == "calendar" else ""}>カレンダー</a>'
-    stat += f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
-    stat += f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
-                 + (f'<span class="n" data-cn="{escape(c["id"])}"></span>' if counts else "") + "</a>" for c in cats)
+                 + (f'<span class="n">{PCOUNTS[c["id"]]}</span>' if PCOUNTS.get(c["id"]) else "") + "</a>" for c in cats)
+    pages = (f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
+             f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
+             f'<a href="/calendar/"{here if cur == "calendar" else ""}>発売カレンダー</a>')
+    stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
     return ('<aside class="side" aria-label="メニュー">'
             '<a class="brand" href="/"><img src="/rinrin.png" alt="" width="36" height="36"><span>ゲーム・ホビー<br><em>入荷速報</em></span></a>'
-            f'<nav class="stat" aria-label="受付状況">{stat}</nav>'
-            f'<nav class="cats" aria-label="カテゴリ"><p class="cats-h">カテゴリ</p>{cl}</nav>'
-            f'<a class="notify" href="/calendar/#sub"><span>{BELL_SVG}通知をオン</span><small>締切をカレンダーでお知らせ</small></a>'
+            f'<nav class="cats" aria-label="カテゴリ"><p class="cats-h">カテゴリ（商品数）</p>{cl}</nav>'
+            f'<nav class="stat" aria-label="ページ">{pages}</nav>'
+            f'<nav class="stat stat-sub" aria-label="抽選・受付の状況"><p class="cats-h">抽選・受付</p>{stat}</nav>'
+            f'<a class="notify" href="https://x.com/a9994aaa" target="_blank" rel="noopener"><span>{BELL_SVG}Xで発売の通知を受け取る</span><small>販売開始・再販をすぐお知らせ</small></a>'
             '</aside>')
 
 
@@ -470,6 +474,14 @@ def build(settings=None, out_dir=None, force=False):
             row["avail"] = av   # いま楽天・Amazonで予約受付中・販売中（見張りが見た状態）→ カード・個別ページの目立つところに
         items.append(row)
     live = [i for i in items if i["ph"] != "ended"]
+    import game_premium
+    try:   # カテゴリごとの商品一覧（買取相場の商品＋抽選・発売の商品）→ 左メニューの数・カテゴリページ
+        pidx = game_premium.product_index(s, live)
+    except Exception as e:
+        log(f"商品一覧: スキップ {e}")
+        pidx = {}
+    PCOUNTS.clear()
+    PCOUNTS.update({cid: len(v) for cid, v in pidx.items()})
 
     meta_state = load_json("site_meta.json", {})
     digest = sha(json.dumps(sorted(items, key=lambda x: x.get("key") or ""), ensure_ascii=False, sort_keys=True) + t.date().isoformat()
@@ -676,10 +688,13 @@ def build(settings=None, out_dir=None, force=False):
         faq = [(f"{c['short']}の{'抽選' if 'lottery' in c['kinds'] else '予約'}はどこで受け付けていますか？",
                 ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in sub if i["ph"] == "open")) + f"（{n}件）です。" if n else "いま受付中のものはありません。") + "一覧は締切が近い順です。"),
                ("どんな条件がありますか？", "会員登録・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台など、告知から読み取った条件をタグで表示しています。応募前に公式ページで必ずご確認ください。")]
-        write(f"{c['slug']}/", {"title": f"{c['short']} 抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
-                                 "desc": f"{c['name']}の抽選販売・招待・予約開始・再入荷・先着の受付情報を各店の公式告知から自動で集めて1日6回更新。いま受付中{n}件。締切までの残り時間と条件が分かります。",
-                                 "h1": f"{c['short']}の抽選・予約・再入荷", "sumshort": f"いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
-                                 "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g}, body_bottom=ser_links)
+        npd = len(pidx.get(g, []))
+        write(f"{c['slug']}/", {"title": f"{c['short']} 商品一覧・定価・買取相場と発売・再販情報【{md}更新】｜{brand['name']}",
+                                 "desc": f"{c['name']}の商品{npd}件の定価・最高買取価格（買取相場）と、発売・予約・再販・抽選の情報。楽天・Amazonで定価で売り出されたらXで通知します。",
+                                 "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": f"商品{npd}件・いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
+                                 "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
+              body_top=f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
+              body_bottom=ser_links)
         for x, lst in sers.items():
             path = lst[0]["spath"]
             no = sum(1 for i in lst if i["ph"] == "open")

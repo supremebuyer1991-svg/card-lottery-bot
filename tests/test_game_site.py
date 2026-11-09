@@ -79,7 +79,7 @@ else:
     assert "119,980円" in top and "PSN必須" in top
     assert 'name="theme-color" content="#0b0d12"' in head                                              # 暗い見た目のブランドの色（トレカの赤ではない）
     # 見た目（11/8 承認のデザイン）：左のメニュー・リンリンのお知らせ・絞り込み・今週の発売・フォント
-    assert 'class="side"' in top and 'data-cn="ps5"' in top and 'href="/calendar/#sub"' in top and "通知をオン" in top
+    assert 'class="side"' in top and 'カテゴリ（商品数）' in top and '抽選・受付' in top and 'Xで発売の通知を受け取る' in top   # 11/9：カテゴリを上に、抽選・受付は下に
     assert 'id="rin"' in top and 'src="/rinrin.png"' in top and 'id="bubble"' in top and 'id="week"' in top
     for f_ in ("f-nomember", "f-online", "f-nohist"):
         assert f'id="{f_}"' in top, f_

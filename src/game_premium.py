@@ -265,7 +265,7 @@ def chart_svg(h, teika):
 
 
 CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
-       ".pm-t td.n{text-align:right;font-family:var(--font-num)}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
+       ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
        ".chart .ln{fill:none;stroke:#ffd23f;stroke-width:2.5}.chart circle{fill:#ffd23f}.chart .tk{stroke:#5ee0ff;stroke-dasharray:5 5}"
        ".chart .tkl,.chart .ax{fill:#8a93a6;font-size:12px}.pm-big{font-size:28px;font-weight:900;font-family:var(--font-num)}"
@@ -274,6 +274,7 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".follow{background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:14px 16px;margin:16px 0}.follow p{margin:4px 0}"
        ".mc-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box .btn{padding:8px 12px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
+       ".pm-go{display:inline-block;white-space:nowrap;padding:6px 10px;border-radius:6px;background:#ffd23f;color:#0b0d12;font-weight:900;text-decoration:none;font-size:13px}"
        ".btn-rk{background:#bf0000;color:#fff}.btn-yh{background:#ff0033;color:#fff}.btn-mc{background:#fff;color:#ea352d;border:1px solid #ea352d}.btn-az{background:#ff9900;color:#0b0d12}")
 
 
@@ -403,7 +404,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     for key, rs in groups_.items():
         r0 = max(rs, key=lambda r: (bool((r.get("rk") or {}).get("u")), bool(r.get("az")), len(r.get("product") or "")))
         nm = re.sub(r"\s+", " ", r0.get("product") or "")[:70]
-        slug = "p" + hashlib.sha1(key.encode()).hexdigest()[:10]
+        slug = item_slug(r0.get("product") or key)
         rel = rs[:8]
         rel_html = "<h2>この商品の抽選・予約・発売の情報</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>"
@@ -457,3 +458,73 @@ def worth_posting(it, settings=None):
     if it.get("kind") in ("lottery", "invite", "fukubukuro"):
         return True
     return premium_match(it.get("product") or "", settings) is not None
+
+
+# ---- カテゴリごとの商品一覧（左メニューの数・カテゴリページの商品一覧に使う）----
+# 商品名からカテゴリを決める順番（細かいものを先に。たまごっち・GO Plus+ が「ポケモン」に入らないように等）
+CAT_ORDER = ["digital_toys", "pc_parts", "handheld_pc", "xbox", "switch2", "ps5", "game_limited", "gunpla", "beyblade", "pokecen",
+             "chiikawa", "lego", "tomica", "bearbrick", "figure", "ichibankuji", "fukubukuro"]
+
+
+def cat_of(names):
+    """商品名（複数）からカテゴリid（当たらなければ None）"""
+    import gamecats
+    hs = gamecats.hints()
+    text = " ".join(names or [])
+    for cid in CAT_ORDER + [c for c in hs if c not in CAT_ORDER]:
+        h = hs.get(cid)
+        if h and h.search(text):
+            return cid
+    return None
+
+
+def item_slug(name):
+    """抽選・発売の商品ページ（/item/<slug>/）の名前"""
+    import hashlib
+    from dedupe import norm_product
+    return "p" + hashlib.sha1(norm_product(name).encode()).hexdigest()[:10]
+
+
+def product_index(settings, live_rows):
+    """{カテゴリid: [{"name","teika","max","store","url","img","ratio"}]}：買取相場の商品（/premium/<JAN>/）と、
+    抽選・発売の商品（/item/<slug>/。買取相場に無いもの）。カテゴリの中は「定価以上で売れる」順→最高買取の高い順"""
+    import official_link as ol
+    out = {}
+    allx = catalog(settings)
+    for x in allx:
+        cid = cat_of(x["names"] + [x["name"]])
+        if not cid:
+            continue
+        out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],
+                                        "url": f"/premium/{x['jan']}/", "img": x.get("img", "")})
+    seen = set()
+    from dedupe import norm_product
+    for r in live_rows:
+        nm = (r.get("product") or "").strip()
+        k = norm_product(nm)
+        if not nm or k in seen or r.get("game") is None:
+            continue
+        if any(min(ol._score(nm, x["name"]), ol._score(x["name"], nm)) >= 0.75 for x in allx):
+            continue
+        seen.add(k)
+        m = re.search(r"([\d,]{4,})", str(r.get("price") or ""))
+        out.setdefault(r["game"], []).append({"name": re.sub(r"\s+", " ", nm)[:70], "teika": int(m.group(1).replace(",", "")) if m else None,
+                                              "max": None, "store": "", "ratio": None, "url": f"/item/{item_slug(nm)}/",
+                                              "img": ((r.get("rk") or {}).get("img") or "")})
+    for cid in out:
+        out[cid].sort(key=lambda p: (not (p["ratio"] and p["ratio"] >= 1.03), -(p["max"] or 0)))
+    return out
+
+
+def cat_products_html(prods, short):
+    """カテゴリページの商品一覧の表（商品・定価・最高買取・詳細を見る）"""
+    if not prods:
+        return f'<section class="sec"><h2>{escape(short)}の商品一覧</h2><p>商品はまだありません。</p></section>'
+    rows = "".join(
+        f'<tr><td>{escape(p["name"])}</td><td class="n">{(format(p["teika"], ",") + "円") if p["teika"] else "—"}</td>'
+        f'<td class="n">{(format(p["max"], ",") + "円" + ("<br><small>" + escape(p["store"]) + "</small>" if p["store"] else "")) if p["max"] else "—"}'
+        f'{(" <span class=\"up\">+" + str(round((p["ratio"] - 1) * 100)) + "%</span>") if p["ratio"] and p["ratio"] >= 1.03 else ""}</td>'
+        f'<td><a class="pm-go" href="{escape(p["url"])}">詳細を見る</a></td></tr>' for p in prods)
+    return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
+            '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。定価で売り出されたらXで通知します。</p>'
+            f'<div style="overflow-x:auto"><table class="pm-t"><thead><tr><th>商品</th><th>定価</th><th>最高買取</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>')
