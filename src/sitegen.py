@@ -3680,10 +3680,17 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 for L_ in {L_ for _, L_ in HL_}:
                     f_ = out / L_ / "sets" / ss_ / "index.html"
                     t_ = f_.read_text(encoding="utf-8")
-                    if 'hreflang="ja"' not in t_:
+                    if '<link rel="alternate" hreflang="ja"' not in t_:  # 本文の <a hreflang="ja"> と間違えない（11/9 SEO点検で発覚）
                         f_.write_text(t_.replace('<link rel="alternate" hreflang="en"', tags_[0] + '<link rel="alternate" hreflang="en"', 1), encoding="utf-8")
                 n_hl += 1
         print(f"日本語⇔海外の弾ページを hreflang でつないだ: {n_hl}弾")
+        # 海外のトップ（/en/ /zh-tw/ /ko/）にも、日本語トップへの hreflang="ja" を足す（日本語トップからは出しているので、返しのリンクが要る）
+        for L_ in ("en", "zh-tw", "ko"):
+            f_ = out / L_ / "index.html"
+            if f_.exists():
+                t_ = f_.read_text(encoding="utf-8")
+                if '<link rel="alternate" hreflang="ja"' not in t_ and '<link rel="alternate" hreflang="en"' in t_:
+                    f_.write_text(t_.replace('<link rel="alternate" hreflang="en"', f'<link rel="alternate" hreflang="ja" href="{site}/"><link rel="alternate" hreflang="en"', 1), encoding="utf-8")
 
     if site:
         # 11/7 監査：サイトマップを種類ごとに分ける（Search Consoleで、どの種類が載っていないか分かる）。sitemap.xml は索引
