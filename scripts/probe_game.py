@@ -18,10 +18,13 @@ if not urls:
 import jpfetch
 for u in urls:
     try:
+        body = None
+        if "##" in u:   # 「URL##a=1&b=2」は POST で送る（検索フォームで動くお店用）
+            u, body = u.split("##", 1)
         if os.environ.get("VIA") == "jp":
             u0 = u
             u = jpfetch.url(u)
-        r = requests.get(u, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36", "Accept-Language": "ja"}, timeout=(6, 15))
+        r = (requests.post(u, data=body.encode(), headers={"Content-Type": "application/x-www-form-urlencoded", "X-Requested-With": "XMLHttpRequest"}, timeout=(6, 15)) if body is not None else requests.get(u, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36", "Accept-Language": "ja"}, timeout=(6, 15)))
         r.encoding = r.apparent_encoding or r.encoding
         t = html_to_text(r.text, u) if "<rss" not in r.text[:500] else r.text
         title = re.search(r"<title[^>]*>(.*?)</title>", r.text, re.S)
