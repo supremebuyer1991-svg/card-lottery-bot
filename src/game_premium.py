@@ -273,8 +273,8 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".chart .tkl,.chart .ax{fill:#8a93a6;font-size:12px}.pm-big{font-size:28px;font-weight:900;font-family:var(--font-num)}"
        ".pm-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.pm-row img{border-radius:10px;background:#fff}"
        ".shopb{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.shopb .btn{padding:10px 14px;border-radius:6px;font-weight:900;text-decoration:none}"
-       ".follow{background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:14px 16px;margin:16px 0}.follow p{margin:4px 0}"
-       ".mc-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box .btn{padding:8px 12px;border-radius:6px;font-weight:900;text-decoration:none}"
+       ".follow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:12px 14px;margin:16px 0}.follow p{margin:0;flex:1 1 200px}.follow .btn{white-space:nowrap;flex:1 1 140px;text-align:center}"
+       ".mc-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box b{grid-column:1/-1}.mc-box .btn{display:block;text-align:center;padding:11px 6px;border-radius:8px;font-weight:900;text-decoration:none;white-space:nowrap}"
        ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".pm-shops{white-space:nowrap}.pm-det{text-align:right;white-space:nowrap;width:1%}.pm-sh{display:inline-block;padding:6px 9px;margin-right:4px;border-radius:6px;font-weight:900;text-decoration:none;font-size:13px}"
        ".pm-sh.rk{background:#bf0000;color:#fff}.pm-sh.az{background:#ff9900;color:#0b0d12}"
@@ -322,8 +322,7 @@ def mercari_box(name):
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=sold_out" target="_blank" rel="nofollow noopener">売れた価格を見る</a></div>')
 
 
-FOLLOW = ('<div class="follow"><p><b>🔔 このページでは、楽天・Amazonで定価で販売されていないかを定期的にチェックしています。</b></p>'
-          '<p>販売が始まったら X（@a9994aaa）ですぐ通知するので、フォロー＆通知ONで待っててね！</p>'
+FOLLOW = ('<div class="follow"><p><b>🔔 定価販売を定期的にチェック中<br>販売されたらXで即通知！</b></p>'
           '<a class="btn btn-x" href="https://x.com/intent/follow?screen_name=a9994aaa" target="_blank" rel="noopener">Xでフォローする</a></div>')
 
 
