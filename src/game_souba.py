@@ -97,6 +97,17 @@ def parse_rudeya(text):
     return out
 
 
+def parse_ichiban(text):
+    """モバイル一番の検索結果（本文テキスト）→ [(商品名, JAN, 買取価格)]（新品だけ。「来店+○円」は足さない＝郵送の価格）"""
+    import re
+    out = []
+    text = re.sub(r"\s+", " ", text or "")
+    for m in re.finditer(r"(?:強 化 )?(.+?) JAN: ?(\d{8,13}) (?:来店\+\d+ )?新品 (?:商品買取選択項目 来店 \+[\d,]+円 確定 )?([\d,]+) ?円", text):
+        name = re.sub(r"^.*?(?:更新日:\S+ |円 )", "", m.group(1)).replace("強 化 ", "").strip()
+        out.append((name, m.group(2), int(m.group(3).replace(",", ""))))
+    return out
+
+
 def _q(product):
     """買取ルデヤで探す言葉（商品名の最初の数語。カッコ書き・受付の言葉は外す）"""
     import re

@@ -17,8 +17,14 @@ def url(target):
 
 
 def get(target, timeout=(6, 20)):
+    """「URL##a=1&b=2」と書いたら POST で送る（検索フォームで動くお店：モバイル一番など）"""
     import requests
-    r = requests.get(url(target), timeout=timeout)
+    if "##" in target:
+        target, body = target.split("##", 1)
+        r = requests.post(url(target), data=body.encode(), timeout=timeout,
+                          headers={"Content-Type": "application/x-www-form-urlencoded"})
+    else:
+        r = requests.get(url(target), timeout=timeout)
     r.raise_for_status()
     r.encoding = r.apparent_encoding or r.encoding
     return r.text
