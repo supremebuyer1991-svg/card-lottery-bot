@@ -134,7 +134,23 @@ def parse_twinkle(text):
     return out
 
 
-PARSERS = {"rudeya": "parse_rudeya", "ichiban": "parse_ichiban", "god": "parse_god", "twinkle": "parse_twinkle"}
+def parse_shopapi(text):
+    """SY買取センター・カイトリTOJO（同じ作りの店）の /api/products?q=… の返事（JSON）→ [(商品名, JAN, 買取価格)]"""
+    import json
+    import unicodedata
+    try:
+        data = json.loads(text)
+    except Exception:
+        return []
+    out = []
+    for p in data.get("products") or []:
+        sku, price = str(p.get("sku") or ""), p.get("basePrice")
+        if p.get("name") and isinstance(price, (int, float)) and price > 0:
+            out.append((unicodedata.normalize("NFKC", p["name"]), sku if sku.isdigit() and len(sku) in (8, 13) else None, int(price)))
+    return out
+
+
+PARSERS = {"rudeya": "parse_rudeya", "ichiban": "parse_ichiban", "god": "parse_god", "twinkle": "parse_twinkle", "shopapi": "parse_shopapi"}
 
 
 def _q(product):
