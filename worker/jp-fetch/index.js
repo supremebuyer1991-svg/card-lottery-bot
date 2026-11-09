@@ -8,6 +8,7 @@ const ALLOW = [
   "newenoking-kaitori.com", "kaitori-oku.jp", "kaitoristar.com", "somurie-kaitori.com", "top1mobile.net",
   "kaitori-homura.com", "kaitoriminato.com", "kaitori-mirai.com", "kaitori-rudeya.com", "kaitorishouten-co.jp",
   "tobansyoji.co.jp", "keitairakuen.com", "1-chome.com", "aboutec.jp", "top1-offer.com", "sy-kaitori.com", "hachiden.com",
+  "otachu-akiba.com", "kaitorikensakukun.com", "kaitoritatsujin.com", "kaitorithe1.com", "mobatori.com",
   // 抽選の公式ページ（GitHubから止められる店）
   "geo-online.co.jp", "joshinweb.jp", "aeonretail.com", "biccamera.com", "edion.com", "pokemoncenter-online.com", "tsutaya.tsite.jp",
 ];

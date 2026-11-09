@@ -3,6 +3,14 @@
 # 読めなかった店（11/8）：森森買取（523）・買取wiki（ファイアウォール）・ドラゴンモバイル/ベストワン（価格が本文に無い）・
 #   買取ホムラ/エノキング/TOJO（後から読み込む作り）ほか
 stores:
+  - name: ケータイゴッド
+    parser: god
+    urls: ["https://keitai-god.com/price/index.php?ci=8", "https://keitai-god.com/price/index.php?ci=21"]
+  - name: トゥインクルモバイル
+    parser: twinkle
+    urls: ["https://twinkle-mobile.com/shop/products/category/0/101?page=1&pageSize=200", "https://twinkle-mobile.com/shop/products/category/0/101?page=2&pageSize=200"]
+  - name: ゲストモバイル
+    urls: ["https://www.guestmobile.jp/%e3%83%94%e3%83%83%e3%82%af%e3%82%a2%e3%83%83%e3%83%97%e8%b2%b7%e5%8f%96%e6%a9%9f%e7%a8%ae/"]
   - name: モバイル一番
     parser: ichiban
     urls: ["https://www.mobile-ichiban.com/##g01Search=Switch&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Switch%202&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Switch%20Lite&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Joy-Con&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Pro%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=amiibo&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=PS5&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=PlayStation%20Portal&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=PlayStation&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=DualSense&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Xbox&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Steam%20Deck&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=ROG&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Legion&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Meta%20Quest&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Pokemon%20GO&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=%E3%82%BC%E3%83%AB%E3%83%80&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=%E3%83%9E%E3%83%AA%E3%82%AA&X-Requested-With=XMLHttpRequest", "https://www.mobile-ichiban.com/##g01Search=Nintendo&X-Requested-With=XMLHttpRequest"]

@@ -108,6 +108,35 @@ def parse_ichiban(text):
     return out
 
 
+def parse_god(text):
+    """ケータイゴッドの買取価格一覧（「商品名 JAN 価格円 査定」の並び）→ [(商品名, JAN, 買取価格)]"""
+    import re
+    out = []
+    text = re.sub(r"\s+", " ", text or "")
+    for chunk in text.split(" 査定 "):
+        m = re.search(r"(?:自動査定 )?([^円]{4,160}?) ?(\d{13})? ?([\d,]{3,})円$", chunk.strip())
+        if m:
+            name = re.sub(r"^.*自動査定 ", "", m.group(1)).replace("【ゲーム機本体】", "").strip()
+            out.append((name, m.group(2), int(m.group(3).replace(",", ""))))
+    return out
+
+
+def parse_twinkle(text):
+    """トゥインクルモバイルの買取価格一覧（「商品名 JANコード: JAN … 新品 価格 円」）→ [(商品名, JAN, 買取価格)]"""
+    import re
+    out = []
+    text = re.sub(r"\s+", " ", text or "")
+    for chunk in re.split(r" 円 ", text + " "):
+        m = re.search(r"(?:数量 )?([^円]{4,160}?) JANコード: ?(\d{8,13}) .*?新品 ([\d,]{3,})$", chunk.strip())
+        if m:
+            name = re.sub(r"^.*新品買取額 数量 ", "", m.group(1)).strip()
+            out.append((name, m.group(2), int(m.group(3).replace(",", ""))))
+    return out
+
+
+PARSERS = {"rudeya": "parse_rudeya", "ichiban": "parse_ichiban", "god": "parse_god", "twinkle": "parse_twinkle"}
+
+
 def _q(product):
     """買取ルデヤで探す言葉（商品名の最初の数語。カッコ書き・受付の言葉は外す）"""
     import re

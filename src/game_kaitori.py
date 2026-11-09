@@ -86,14 +86,14 @@ def update(settings, fetch=None, ai=None):
         items = []
         try:
             pages = [html_to_text(fetch(u), u) for u in s["urls"][:40 if s.get("parser") else 3]]
-            if s.get("parser") in ("rudeya", "ichiban"):   # 買取ルデヤ・モバイル一番は決まった形なのでAIを使わずに読む
-                import game_souba
-                parse = game_souba.parse_rudeya if s["parser"] == "rudeya" else game_souba.parse_ichiban
+            import game_souba
+            if s.get("parser") in game_souba.PARSERS:   # 決まった形の店（ルデヤ・モバイル一番・ケータイゴッド・トゥインクル）はAIを使わずに読む
+                parse = getattr(game_souba, game_souba.PARSERS[s["parser"]])
                 seen = set()
                 for p in pages:
                     for x in parse(p):
-                        if x[1] not in seen:   # 違う言葉の検索で同じ商品が出たら1つに
-                            seen.add(x[1])
+                        if (x[1] or x[0]) not in seen:   # 違う言葉の検索で同じ商品が出たら1つに
+                            seen.add(x[1] or x[0])
                             items.append(list(x))
             else:   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
                 items += ai("\n\n=====\n\n".join(p[:12000] for p in pages))
