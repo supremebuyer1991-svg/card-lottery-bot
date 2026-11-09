@@ -336,7 +336,7 @@ if(ps5pro.length){{var p=ps5pro[0];sec("PS5 Pro の申込",("PS5 Pro の"+(D.kin
 if(today.length){{sec("本日締切",("【本日締切】"+(today.length)+"件\\n"+today.slice(0,6).map(function(i){{return "・"+i.store+" "+nm(i)+" "+f(i.end).split(" ")[1]+"まで"}}).join("\\n")+"\\n"+D.site+"/today/\\n"+(tg(today[0])||"")))}}
 if(ann.length){{sec("結果発表",("【本日 結果発表】\\n"+ann.slice(0,6).map(function(i){{return "・"+i.store+" "+nm(i)}}).join("\\n")+"\\n当選メール・マイページをご確認ください\\n"+D.site+"/\\n"+(tg(ann[0])||"")))}}
 var byc={{}};open.forEach(function(i){{(byc[i.game]=byc[i.game]||[]).push(i)}});
-sec("朝のまとめ",("【"+(N.getMonth()+1)+"/"+N.getDate()+" いま受付中】\\n"+Object.keys(byc).map(function(g){{return (D.cats[g]||g)+" "+byc[g].length+"件"}}).join(" / ")+"\\n"+open.sort(function(a,b){{return (a.end||"9")>(b.end||"9")?1:-1}}).slice(0,5).map(function(i){{return "・"+i.store+" "+nm(i)+(i.end?"（"+f(i.end)+"まで）":"")}}).join("\\n")+"\\n"+D.site+"/\\n#PS5 #Switch2 #ガンプラ #福袋2027"));
+sec("朝のまとめ",("【"+(N.getMonth()+1)+"/"+N.getDate()+" いま受付中】\\n"+Object.keys(byc).map(function(g){{return (D.cats[g]||g)+" "+byc[g].length+"件"}}).join(" / ")+"\\n"+open.sort(function(a,b){{return (a.end||"9")>(b.end||"9")?1:-1}}).slice(0,5).map(function(i){{return "・"+i.store+" "+nm(i)+(i.end?"（"+f(i.end)+"まで）":"")}}).join("\\n")+"\\n"+D.site+"/\\n#PS5 #Switch2 #ガンプラ #入荷速報"));
 if(!H.length)H.push("<p>いま下書きにできる情報がありません。</p>");document.getElementById("app").innerHTML=H.join("")}})();
 </script></body></html>"""
     (out / "x-draft.html").write_text(html, encoding="utf-8")
@@ -354,6 +354,15 @@ def _privacy(s):
             '<h2>掲載情報について</h2><p>掲載している受付期間・条件・価格は各店舗・各メーカーの公式発表を元に自動で収集したものです。内容は変わることがあるため、申し込み前に必ず公式ページでご確認ください。'
             '当サイトはフリマ・転売の価格を掲載しません。記載の社名・製品名は各社の商標です。当サイトは各社と関係ありません。</p>'
             '<p><a href="/">トップへ戻る</a></p></body></html>')
+
+
+def _n_stores():
+    """買取価格を読んでいる店の数（設定の有効な店）"""
+    try:
+        import game_kaitori
+        return len(game_kaitori.stores())
+    except Exception:
+        return 10
 
 
 def _simple_page(cats, html):
@@ -628,12 +637,12 @@ def build(settings=None, out_dir=None, force=False):
 
     # --- トップ ---
     n_open = sum(1 for i in live if i["ph"] == "open")
-    top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、定価で買える「抽選・招待・予約・再入荷・先着・福袋」の受付情報を自動で集めて1日6回更新しているサイトです。フリマ・転売の出品価格は載せません（ゲーム機など一部の商品だけ、スニダンの取引の相場を目安として載せています）。"),
+    top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、楽天・Amazonなどで定価で売り出された（再販・入荷・予約開始）ことをXで速報し、買取店の新品の買取相場・定価以上で売れる商品・発売予定を毎日まとめているサイトです。抽選・招待・先着の受付情報も各店の告知から自動で集めています。"),
                ("受付状況はいつの時点のものですか？", "ページを開いた時刻でブラウザが計算しています。受付中・予告・終了と残り時間は、開くたびに今の時刻で表示されます。"),
                ("どんな条件があるか分かりますか？", "会員・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台などの条件を、告知から読み取ってタグで表示しています。必ず応募ページの原文でご確認ください。")]
-    write("", {"title": f"ゲーム機・ホビーの抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
-               "desc": f"PS5 Pro・Switch 2・ガンプラ・フィギュア・一番くじ・福袋などの抽選販売・招待・予約開始・再入荷・先着を、各店の公式告知から自動で集めて1日6回更新。いま受付中{n_open}件。締切までの残り時間・条件（会員・本人確認・プレイ時間など）が一目で分かります。",
-               "h1": f"ゲーム機・ホビーの抽選・予約・再入荷 まとめ", "sumshort": f"いま受付中{n_open}件。締切が近い順に、条件つきで並べています。",
+    write("", {"title": f"ゲーム・ホビーの再販・入荷速報と買取相場【{md}更新】定価以上で売れる商品も｜{brand['name']}",
+               "desc": f"PS5・Switch 2・たまごっち・ガンプラ・フィギュアなどの再販・入荷・予約開始を速報。楽天・Amazonで定価で売り出されたらXで通知。買取店{_n_stores()}店の買取相場と、定価以上で売れる商品の一覧も毎日更新。いま受付中の抽選・予約{n_open}件。",
+               "h1": "ゲーム・ホビーの再販・入荷速報と買取相場", "sumshort": f"いま受付中{n_open}件。締切が近い順に、条件つきで並べています。",
                "lead": s.get("site_tagline") or "", "summary": summary(live, "受付"), "links": lk, "faq": top_faq, "pin": pin_html()}, items,
           trail=None, data_extra={"game": ""})
 
@@ -810,8 +819,11 @@ def build(settings=None, out_dir=None, force=False):
         import game_premium
         import game_affi as _ga
         pm_paths, _ = game_premium.write_pages(out, cats, site, brand, live, s, _simple_page, _ga.affiliate_id(s))
-        for pth in pm_paths:
-            urls.append((f"{site}/{pth}", str(updated)[:10]))
+        for pth, fp in pm_paths:   # 更新日は中身（価格など）が変わった日だけ（毎回「今日」だとGoogleが日付を信用しなくなる）
+            prev = pmod.get(pth)
+            lm = today_iso if not prev or prev[0] != fp else prev[1]
+            pmod[pth] = [fp, lm, (prev or [None, None, today_iso])[2]]
+            urls.append((f"{site}/{pth}", lm))
     except Exception as e:
         log(f"プレ値商品のページ: スキップ {e}")
     (out / "favicon.svg").write_text(_favicon_svg(brand["color"], s.get("accent_color") or "#0f8b8d"), encoding="utf-8")

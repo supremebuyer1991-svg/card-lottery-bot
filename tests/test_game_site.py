@@ -69,7 +69,7 @@ else:
         assert f"{c['slug']}/index.html" in files, c["slug"]
     top = (out / "index.html").read_text(encoding="utf-8")
     head = top[:top.index("</head>")]
-    assert "<title>ゲーム機・ホビーの抽選・予約・再入荷情報まとめ【" in head and "｜ゲーム・ホビー入荷速報</title>" in head
+    assert "<title>ゲーム・ホビーの再販・入荷速報と買取相場【" in head and "｜ゲーム・ホビー入荷速報</title>" in head
     assert 'rel="canonical" href="https://example-game.jp/"' in head and '"BreadcrumbList"' not in head and '"WebSite"' in head and '"FAQPage"' in head
     assert "記載の社名・製品名は各社の商標です。当サイトは各社と関係ありません。" in top                 # 商標の注意書き
     assert "Amazonのアソシエイトとして、ゲーム・ホビー入荷速報は適格販売により収入を得ています" in top     # アフィリエイト表記

@@ -377,8 +377,6 @@ def seo_parts(x, allx, site, cats_by, md):
         prod["image"] = x["img"]
     if x.get("maker"):
         prod["brand"] = {"@type": "Brand", "name": x["maker"]}
-    if teika:
-        prod["offers"] = {"@type": "Offer", "price": teika, "priceCurrency": "JPY", "url": f"{site}/premium/{jan}/"}
     ld = _jsonld(prod) + _jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
     ld += _jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -441,14 +439,24 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     note = ('<p class="note">買取価格は各買取店が公開している新品（未開封）の買取価格を毎日読み取ったものです（店の条件で変わることがあります）。'
             '定価は楽天ブックスの定価・販売価格です。転売を勧めるものではありません。リンクの一部は広告（PR）です。</p>')
 
-    def page(title, desc, body, path):
+    def page(title, desc, body, path, img="", noindex=False):
+        """1ページ書く。img＝Xなどで共有したときのカードの画像（無ければサイトの共通画像）。noindex＝検索に出さない（情報が少ないページ）"""
+        og = img or f"{site}/og.png"
         html = (f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
                 f'<title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{site}/{path}">'
+                + ('<meta name="robots" content="noindex,follow">' if noindex else '<meta name="robots" content="index,follow,max-image-preview:large">')
+                + f'<meta property="og:type" content="website"><meta property="og:site_name" content="{escape(brand["name"])}"><meta property="og:locale" content="ja_JP">'
+                f'<meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{site}/{path}">'
+                f'<meta property="og:image" content="{escape(og)}"><meta name="twitter:card" content="{"summary" if img else "summary_large_image"}">'
+                f'<meta name="twitter:site" content="@a9994aaa"><meta name="twitter:image" content="{escape(og)}">'
                 f'<link rel="icon" href="/favicon.svg" type="image/svg+xml"><style></style></head><body><style>{CSS}</style>{body}</body></html>')
         d = out / path
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(simple_page(cats, html), encoding="utf-8")
-        paths.append(path)
+        if not noindex:   # 検索に出すページだけサイトマップへ。中身（日付以外）の指紋も渡す＝本当に変わった日だけ更新日を変える
+            import hashlib
+            fp = hashlib.sha1(re.sub(r"\d{1,2}/\d{1,2}(?:更新|時点|\([月火水木金土日]\))", "", body).encode()).hexdigest()[:16]
+            paths.append((path, fp))
 
     def table(xs):
         return plist_html([{"name": x["name"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
@@ -488,7 +496,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
-             f'{extra}{note}', f"premium/{x['jan']}/")
+             f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "")
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
@@ -524,12 +532,13 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         info = [("商品名", nm), ("カテゴリ", cat), ("発売日", f"{rd.year}年{rd.month}月{rd.day}日" if rd else ""), ("定価（税込）", price),
                 ("JANコード", r0.get("jan") or "")]
         info_h = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in info if v)
+        thin = sum(bool(v) for v in (price, r0.get("jan"), rk.get("img"), rd)) < 3   # 定価・JAN・写真・発売日のうち3つ以上そろうまでは検索に出さない
         page(f"{nm} 抽選・予約・再販と相場・定価【{md}更新】｜{brand['name']}",
              f"{nm}の抽選・予約・再販の受付状況、定価、相場（{souba}）、楽天・Amazonの販売ページ。販売開始はXで通知。",
              f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>'
              f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
-             f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
+             f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/", img=rk.get("img") or "", noindex=thin)
         made += 1
     # 発売予定のゲーム（楽天ブックス）：/new/<JAN>/ と /new/（11/9）
     up_made = []
@@ -548,7 +557,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     idx += [[_up[j]["title"], j, f"/new/{j}/", _up[j].get("price") or 0, 0] for j in up_made if j in _up]
     (out / "search.json").write_text(_json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     page(f"商品名・JANコードで検索｜{brand['name']}", "ゲーム機・ホビーの商品を商品名やJANコードで検索。定価・買取相場・抽選や発売の情報のページに移動できます。",
-         '<h1>商品名・JANコードで検索</h1><p id="qs-n" class="note"></p><div id="qs-r"></div>' + SEARCH_JS, "search/")
+         '<h1>商品名・JANコードで検索</h1><p id="qs-n" class="note"></p><div id="qs-r"></div>' + SEARCH_JS, "search/", noindex=True)
     log(f"相場ページ：{len(allx)}件（うち定価以上で売れる {len(items)}件）、抽選・発売の商品ページ：{made}件")
     return paths, items
 
@@ -665,7 +674,7 @@ def plist_html(prods):
     """商品のカード一覧（写真・商品名・定価・最高買取・定価比・楽天/Amazon/詳細を見る）。スマホでは1商品ずつ大きめのカードで、ボタンは下に横並び"""
     out = []
     for p in prods:
-        img = (f'<a class="pc-img" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="" loading="lazy" width="84" height="84"></a>'
+        img = (f'<a class="pc-img" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
                if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
         nums = [f'<div><small>定価</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
         if p.get("max"):

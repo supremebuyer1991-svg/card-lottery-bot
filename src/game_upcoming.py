@@ -15,7 +15,15 @@ from html import escape
 from common import load_json, save_json, now, parse_dt, log, job_elapsed
 
 STATE = "upcoming.json"
-HARD = ["Nintendo Switch 2", "PS5", "Nintendo Switch", "Xbox Series X"]
+HARD = ["Nintendo Switch 2", "PS5", "Nintendo Switch", "Xbox Series X", "Xbox Series X|S", "Xbox"]
+# 検索に出す商品（本体・周辺機器・限定版・セットなど＝品薄・プレ値になりやすいもの）。普通のソフトはページを作るが検索には出さない（11/9 SEO監査）
+def is_hot(title):
+    """本体・周辺機器・限定版などか（「【楽天ブックス限定特典】」「(早期購入特典…)」などの特典の書き方は見ない）"""
+    t = re.sub(r"【[^】]*】|[（(][^）)]*[）)]?", " ", title or "")
+    return bool(HOT.search(t))
+
+
+HOT = re.compile(r"本体|コントローラ|限定|特装|コレクターズ|同梱|エディション|Edition|EDITION|セット|amiibo|ケース|充電|microSD|周辺|BOX|ボックス|プレミアム|アクセサリ|ヘッドセット|スタンド|ドック|カメラ|ポーチ")
 
 
 def _sales_date(s):
@@ -65,6 +73,7 @@ def update(settings, call=None, sleep=time.sleep):
     items = dict(st.get("items") or {})
     today = t.date()
     n = 0
+    per = {}
     for hw in settings.get("upcoming_hardware") or HARD:
         for params in ([{"hardware": hw, "sort": "-releaseDate", "page": pg} for pg in (1, 2, 3)] + [{"hardware": hw, "sort": "-releaseDate", "limitedFlag": 1}]):
             if job_elapsed() > float(settings.get("kaitori_until_sec", 230)) + 30:
@@ -75,6 +84,7 @@ def update(settings, call=None, sleep=time.sleep):
                 log(f"発売予定：{hw} 失敗 {e}")
                 rows = []
             n += 1
+            per[hw] = per.get(hw, 0) + len(rows)
             for i in rows:
                 jan = str(i.get("jan") or "")
                 d = _sales_date(i.get("salesDate"))
@@ -83,14 +93,14 @@ def update(settings, call=None, sleep=time.sleep):
                 items[jan] = {"title": i.get("title") or "", "hardware": i.get("hardware") or hw, "maker": i.get("label") or "",
                               "sales_date": i.get("salesDate") or "", "date": d.isoformat(), "price": int(i.get("listPrice") or i.get("itemPrice") or 0),
                               "url": (i.get("itemUrl") or "").split("?")[0], "img": re.sub(r"\?_ex=\d+x\d+$", "", i.get("largeImageUrl") or ""),
-                              "caption": (i.get("itemCaption") or "")[:1500], "limited": bool(params.get("limitedFlag") or i.get("limitedFlag")),
+                              "caption": (i.get("itemCaption") or "")[:1500], "limited": bool(str(i.get("limitedFlag") or "0") == "1" or is_hot(i.get("title"))),
                               "avail": str(i.get("availability") or "")}
             sleep(1.1)
     # 発売から30日すぎたものは消す
     items = {k: v for k, v in items.items() if v.get("date", "") >= (today - timedelta(days=30)).isoformat()}
     st = {"at": t.isoformat(), "items": items}
     save_json(STATE, st)
-    log(f"発売予定：楽天ブックスを{n}回見て {len(items)}件")
+    log(f"発売予定：楽天ブックスを{n}回見て {len(items)}件（機種ごとの返事 {per}）")
     return st
 
 
@@ -125,7 +135,8 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         img = f'<img src="{escape(x["img"])}" alt="{escape(nm)}" width="120" height="120" loading="lazy">' if x.get("img") else ""
         price = f'{x["price"]:,}円' if x.get("price") else "確認中"
-        kind = "限定版・特典つき" if x.get("limited") or re.search(r"限定|特装|コレクターズ|同梱|エディション|Edition|セット", nm) else ""
+        hot = is_hot(nm)
+        kind = "限定版・セット・周辺機器" if hot else ""
         intro = (f"{nm}は{x.get('maker') or 'メーカー'}から{x.get('sales_date') or '近日'}に発売{'予定' if before else 'された'}の"
                  f"{x.get('hardware') or 'ゲーム'}向けの商品です（JANコード {jan}）。定価（楽天ブックスの販売価格）は{price}"
                  + (f"、楽天ブックスでは「{st_}」です。" if st_ else "です。")
@@ -147,9 +158,6 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
             prod["image"] = x["img"]
         if x.get("maker"):
             prod["brand"] = {"@type": "Brand", "name": x["maker"]}
-        if x.get("price"):
-            prod["offers"] = {"@type": "Offer", "price": x["price"], "priceCurrency": "JPY", "url": f"{site}/new/{jan}/",
-                              "availability": "https://schema.org/PreOrder" if before else "https://schema.org/InStock"}
         ld = gp._jsonld(prod) + gp._jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": a, "acceptedAnswer": {"@type": "Answer", "text": b}} for a, b in faq]})
         page(f"{nm} 予約・在庫・発売日・定価【{md}更新】｜{brand['name']}",
@@ -159,7 +167,8 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
              f'<div>定価 {escape(price)}{("・" + escape(st_)) if st_ else ""}</div><div>買取相場：{"予測不能（発売前）" if before else "買取価格の情報はまだありません"}</div></div></div>'
              f'{gp.mercari_box(nm)}{gp.FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
              f'<h2>商品情報</h2><table class="pm-t">{info_h}</table>{feat}{faq_h}{same_h}'
-             '<p class="note">発売日・定価は楽天ブックスの商品情報です（変わることがあります）。リンクの一部は広告（PR）です。</p>', f"new/{jan}/")
+             '<p class="note">発売日・定価は楽天ブックスの商品情報です（変わることがあります）。リンクの一部は広告（PR）です。</p>', f"new/{jan}/",
+             img=x.get("img") or "", noindex=not hot)
         made.append(jan)
     # 一覧：機種ごと・発売日の順
     blocks = ""
