@@ -205,10 +205,10 @@ function mkCard(h,hint,t){
  return d;
 }
 function mkParse(src){
- const segs=src.split(/現在価格\s*[:：]/);const out=[];
+ const segs=src.split(/現在価格\\s*[:：]/);const out=[];
  for(let k=1;k<segs.length;k++){
   const before=segs[k-1].split("\\n").map(s=>s.trim()).filter(s=>s&&!s.startsWith("#")&&!/https?:|招待コード|商品詳細/.test(s));
-  const raw=before[before.length-1]||"";const pm=segs[k].match(/[¥￥]\s*([0-9,]+)/);const im=segs[k].match(/apparels\/(\d+)/);
+  const raw=before[before.length-1]||"";const pm=segs[k].match(/[¥￥]\\s*([0-9,]+)/);const im=segs[k].match(/apparels\\/(\\d+)/);
   if(!pm)continue;
   const price=parseInt(pm[1].replace(/,/g,""),10);
   let p=MKP.find(x=>im&&x.id===im[1])||MKP.find(x=>raw.includes(x.name));

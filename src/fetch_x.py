@@ -5,6 +5,7 @@
   - 1日の読み取り件数に上限（settings.x_read_budget_per_day）
 """
 import os
+import time
 
 from common import load_json, save_json, now, log
 
@@ -126,11 +127,28 @@ def search(src, settings, since_id=None, client=None):
         log("X_BEARER_TOKEN 未設定のためXの収集はスキップ")
         return [], since_id
     client = client or _client()
-    res = client.search_recent_tweets(
-        query=build_query(src), since_id=since_id,
-        max_results=max(10, min(src.get("max_results", 20), left, 100)),
-        expansions=["author_id"], tweet_fields=["created_at", "entities"],
-        user_fields=["username", "name"])
+    # Xの検索は直近7日しか見られない。前回のIDが7日より古いと 400 になるので使わない
+    if since_id:
+        try:
+            ms = (int(since_id) >> 22) + 1288834974657
+            if time.time() * 1000 - ms > 6.8 * 86400e3:
+                log(f"X {src['id']}: 前回のIDが7日より古いので最初から取り直し")
+                since_id = None
+        except ValueError:
+            since_id = None
+    kw = dict(query=build_query(src),
+              max_results=max(10, min(src.get("max_results", 20), left, 100)),
+              expansions=["author_id"], tweet_fields=["created_at", "entities"],
+              user_fields=["username", "name"])
+    try:
+        res = client.search_recent_tweets(since_id=since_id, **kw)
+    except Exception as e:
+        if since_id and "since_id" in str(e):
+            log(f"X {src['id']}: since_id が使えないので外して取り直し")
+            since_id = None
+            res = client.search_recent_tweets(**kw)
+        else:
+            raise
     tweets = res.data or []
     _spend(len(tweets))
     users = {u.id: u for u in (res.includes or {}).get("users", [])}

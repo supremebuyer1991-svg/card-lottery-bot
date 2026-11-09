@@ -302,9 +302,12 @@ input[type="search"] { flex: 1 1 160px; }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .thumb .pr { position: absolute; right: 0; bottom: 0; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; background: #bf0000; padding: 2px 4px; border-top-left-radius: 4px; }
 .thumb .ph { font-family: var(--font-body); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--ink-2); text-align: center; padding: 6px; overflow-wrap: anywhere; }
-.flow { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.flow { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; row-gap: 4px; font-size: 12px; font-weight: 700; color: var(--ink-2); }
 .flow i { font-style: normal; opacity: .6; }
-.flow span { border-radius: 4px; padding: 1px 6px; background: var(--navy-soft); }
+.flow span { border-radius: 4px; padding: 1px 6px; background: var(--navy-soft); white-space: nowrap; }
+.flow span.an { background: #fff4d6; color: #7a4d00; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .flow span.an { background: var(--amber-soft); color: var(--amber); } }
+:root[data-theme="dark"] .flow span.an { background: var(--amber-soft); color: var(--amber); }
 .flow .st { background: var(--st-bg); color: var(--st-fg); }
 .flow .sh { background: var(--sh-bg); color: #fff; }
 .req { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -1036,7 +1039,20 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
       : /店頭|整理券|抽選券/.test(m + tg) ? "店頭応募" : (m || it.channel === "online") ? "Web応募" : "";
     var get = it.channel === "store" ? "店頭受取" : "発送";
     return '<div class="flow">' + (how ? '<span>' + how + '</span><i aria-hidden="true">→</i>' : "") +
-      '<span class="' + (it.channel === "store" ? "st" : "sh") + '">' + get + '</span></div>';
+      '<span class="' + (it.channel === "store" ? "st" : "sh") + '">' + get + '</span>' + annChip(it) + '</div>';
+  }
+  // 結果発表日（分かるものだけ。11/9）
+  function annChip(it) {
+    var a = String(it.announce || "");
+    if (!a || a === "pending" || a === "posted") return "";
+    var m = a.match(/^(\d{4})-(\d{2})-(\d{2})/), t;
+    if (m) { var d = new Date(+m[1], +m[2] - 1, +m[3]); t = (+m[2]) + "/" + (+m[3]) + "(" + "日月火水木金土".charAt(d.getDay()) + ")"; }
+    else {
+      var b = a.replace(/[（(]([日月火水木金土])[)）]/g, "($1)").replace(/\s+/g, ""), all = b.match(/\d{1,2}[月\/]\d{1,2}日?(\([日月火水木金土]\))?(\d{1,2}(時|:\d{2}))?/g);
+      if (all) { t = all[0].replace("月", "/").replace("日", ""); var u = all.filter(function (x, i) { return all.indexOf(x) === i; }); if (u.length > 1) t += "ほか"; else if (/予定|頃/.test(b)) t += "予定"; }
+      else t = b.slice(0, 12);
+    }
+    return '<span class="an">🎯結果発表 ' + esc(t) + '</span>';
   }
   var TAGWORDS = ["会員", "本人確認", "SNS応募", "アプリ", "レシート", "整理券", "購入履歴", "店舗クレカ"];
   function condText(it) {
