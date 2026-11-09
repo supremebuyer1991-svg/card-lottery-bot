@@ -62,13 +62,16 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         try:  # 買取店の新品の買取価格（1回2店まで・各店1日1回）。抽選集めのあと、残りの時間で（11/9：先に読むと抽選集めの時間が無くなったため）
             import game_premium
             game_premium.watch_map()   # 見張りが見た楽天・Amazonの状態（予約受付中・販売中）と商品ページ → サイトに出す（すぐ終わる）
+            try:
+                import game_aitext
+                game_aitext.update(s)     # 中身の少ない商品ページから順に解説を足す（前の回の測定を使う・数件を同時に頼むので15秒くらい）
+            except Exception as e:
+                log(f"解説: スキップ {e}")
             import game_kaitori
             game_kaitori.update(s)
             game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
             import game_upcoming
             game_upcoming.update(s)   # 発売予定のゲーム（楽天ブックス・1日1回）
-            import game_aitext
-            game_aitext.update(s)     # 中身の少ない商品ページから順に解説を足す（前の回の測定を使う・1回数件）
         except Exception as e:
             log(f"買取価格: スキップ {e}")
     if step in ("all", "publish"):

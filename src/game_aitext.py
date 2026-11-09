@@ -108,7 +108,10 @@ def update(settings, ai=None):
     todo = []
     for c in cands[:int(settings.get("aitext_per_run", 12))]:
         todo.append(c)
-    if not todo or job_elapsed() > float(settings.get("aitext_until_sec", 215)):
+    if not todo:
+        return st
+    if job_elapsed() > float(settings.get("aitext_until_sec", 215)):
+        log("解説：時間の上限なので次の回に")
         return st
     made = 0
     with ThreadPoolExecutor(max_workers=int(settings.get("aitext_parallel", 4))) as ex:
