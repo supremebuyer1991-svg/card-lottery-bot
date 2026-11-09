@@ -215,8 +215,10 @@ def _alias_of(store):
     """表記ゆれのお店の名前 → 代表の名前（state/store_alias.json。ビルドの最初に作る）"""
     if "m" not in _STORE_ALIAS:
         _STORE_ALIAS["m"] = load_json("store_alias.json", {})
+    if "fix" not in _STORE_ALIAS:  # 手で決めた「同じお店」（settings.yaml の store_alias_fix：名前 → 代表の名前。11/9 SEO：同じ店が2ページに分かれていた）
+        _STORE_ALIAS["fix"] = {store_key(k): v for k, v in ((load_settings().get("store_alias_fix") or {}).items())}
     k = store_key(store)
-    return _STORE_ALIAS["m"].get(k) or store
+    return _STORE_ALIAS["fix"].get(k) or _STORE_ALIAS["m"].get(k) or store
 
 
 def update_store_alias(names_count):

@@ -473,3 +473,8 @@ deadline_post_hour: 7
 vc_x_site_id: ""
 vc_programs:
   sevennet: ""
+
+# 同じお店なのに名前の書き方が違って別ページになっていたもの（11/9 SEO点検。検索の評価が2ページに割れるので1つにまとめる）
+store_alias_fix:
+  "CARD CREW(カードクルー)通販": "CARD CREW（カードクルー）トレカ通販"
+
