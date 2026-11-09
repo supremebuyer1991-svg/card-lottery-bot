@@ -15,6 +15,8 @@ const AMZ_SELLER = "AN1VRQENFRJN5"; // Amazon.co.jp
 const AMZ_TAG = "st9994ststst-22";
 const COOLDOWN = 6 * 3600e3, PER_DAY = 12, HOBBY_PER_DAY = 3, SCARCE_DAYS = 3;   // 3日以上売り切れが続いた＝品薄
 const RANK = { none: 0, invite: 1, pre: 2, buy: 3 };
+// 1回（2分ごと）に見る数（11/9 ユーザー：できるだけ速く）：楽天は1件ずつ・1秒に1回まで、Amazonは10件ずつまとめて
+const RK_PER_RUN = 40, AZ_BATCH = 40, AZ_SEARCH = 2;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function affLink(url, aff) {
@@ -75,6 +77,21 @@ async function amzItem(env, asin, byJan = false) {
   const items = (await r.json()).searchResult?.items || [];
   return byJan ? items[0] : items.find((x) => x.asin === asin);
 }
+// 10件まとめて調べる（11/9：見張りを速くするため）。失敗したら null（呼び出し側で1件ずつの検索に戻す）
+async function amzItems(env, asins) {
+  const r = await fetch("https://creatorsapi.amazon/catalog/v1/getItems", { method: "POST",
+    headers: { Authorization: `Bearer ${await amzToken(env)}`, "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp" },
+    body: JSON.stringify({ itemIds: asins, itemIdType: "ASIN", marketplace: "www.amazon.co.jp", partnerTag: AMZ_TAG,
+      resources: ["itemInfo.title", "offersV2.listings.availability", "offersV2.listings.price", "offersV2.listings.merchantInfo"] }) });
+  if (!r.ok) { lastAmzErr = `getItems ${r.status} ${(await r.text()).slice(0, 120)}`; return null; }
+  const j = await r.json();
+  const items = j.itemsResult?.items || j.items || j.itemResults?.items || j.getItemsResult?.items || [];
+  if (!items.length) { lastAmzErr = `getItems 0件 ${JSON.stringify(j).slice(0, 160)}`; return null; }   // 返事の形が違う時は1件ずつに戻す
+  const m = {};
+  for (const it of items) if (it && it.asin) m[it.asin] = it;
+  return m;
+}
+let lastAmzErr = "";
 function amzState(it) {
   const l = ((it && it.offersV2?.listings) || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
   if (!l) return "none";
@@ -118,11 +135,28 @@ async function run(env, which, { dry = false } = {}) {
   const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   if (st.day !== today) { st.day = today; st.count = 0; st.hobby = 0; }
   const log = [], out = [];
-  let changed = false, n = 0;
+  let changed = false, minor = false, n = 0;
   let list = [];
   try { list = await watchList(); } catch (e) { log.push(String(e)); }
   list = list.filter((w) => (which === "rk" ? (w.rk || w.jan) : (w.asin || w.jan)));
-  for (const w of batch(list, which === "rk" ? 12 : 6, which === "rk" ? 0 : 7)) {
+  // Amazon：ASINが分かっている商品は10件ずつまとめて調べる（1回で最大 AZ_BATCH 件）。ASINがまだ分からない商品だけ1件ずつ検索
+  const azAsin = (w) => w.asin || (w.jan && st.map[w.jan] && st.map[w.jan].asin) || "";
+  let pre = {};
+  let targets;
+  if (which === "rk") targets = batch(list, RK_PER_RUN, 0);
+  else {
+    const known = list.filter((w) => azAsin(w)), unknown = list.filter((w) => !azAsin(w));
+    targets = [...batch(known, AZ_BATCH, 7), ...batch(unknown, AZ_SEARCH, 3)];
+    const asins = [...new Set(targets.map(azAsin).filter(Boolean))];
+    for (let i = 0; i < asins.length; i += 10) {
+      const m = await amzItems(env, asins.slice(i, i + 10));
+      if (m === null) { log.push(lastAmzErr); pre = null; break; }
+      Object.assign(pre, m);
+      await sleep(1100);
+    }
+    if (pre === null) targets = [...batch(known, 6, 7), ...batch(unknown, 2, 3)];   // まとめて調べられない時は前のやり方（1件ずつ）
+  }
+  for (const w of targets) {
     const id = which === "rk" ? (w.rk || "j" + w.jan) : (w.asin || "j" + w.jan);
     let cur = "none", url = "", price = 0;
     try {
@@ -136,8 +170,10 @@ async function run(env, which, { dry = false } = {}) {
           if (w.jan && !st.map[w.jan]) { st.map[w.jan] = { rkUrl: it.itemUrl.split("?")[0], img: (it.mediumImageUrls || [])[0] ? String(it.mediumImageUrls[0]).split("?")[0] + "?_ex=300x300" : "", rkPrice: price }; changed = true; }
         }
       } else {
-        const it = await amzItem(env, w.asin || w.jan, !w.asin);
-        if (!it) { await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
+        const a = azAsin(w);
+        const usePre = pre && a;
+        const it = usePre ? pre[a] : await amzItem(env, w.asin || w.jan, !w.asin);
+        if (!it) { if (!usePre) await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
         cur = amzState(it);
         const l = ((it && it.offersV2?.listings) || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
         price = yen(l?.price?.money?.amount ?? l?.price?.money?.displayAmount);
@@ -145,7 +181,7 @@ async function run(env, which, { dry = false } = {}) {
         if (w.jan && it && !st.map[w.jan]) { st.map[w.jan] = { asin: it.asin, azUrl: url }; changed = true; }
       }
     } catch (e) { log.push(String(e).slice(0, 160)); await sleep(1500); continue; }
-    await sleep(1100);
+    if (which === "rk" || !(pre && azAsin(w))) await sleep(1100);   // 楽天は1秒に1回まで（まとめて調べたAmazonは待たない）
     n++;
     // 定価より高い値段で売っているものは「定価で買える」とは言わない（定価が分かるときだけ。110%まで）
     if (cur !== "none" && w.tk && price && price > w.tk * 1.1) cur = "none";
@@ -156,7 +192,9 @@ async function run(env, which, { dry = false } = {}) {
       // 販売・在庫の履歴（11/9：サイトの商品ページに「楽天・Amazonの販売・在庫の履歴」の表を出す。状態が変わった時だけ・直近12件）
       st.hist = st.hist || {};
       if (!st.stat[id] || st.stat[id].s !== cur) { (st.hist[id] = st.hist[id] || []).unshift({ t: new Date().toISOString(), s: cur, p: price }); st.hist[id] = st.hist[id].slice(0, 12); }
-      st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() }; changed = true;
+      const sChanged = !st.stat[id] || st.stat[id].s !== cur;
+      st.stat[id] = { s: cur, p: price, u: url, at: new Date().toISOString() };
+      if (sChanged) changed = true; else minor = true;   // 値段だけ変わった時は急いで保存しない（KVの書き込みは1日1,000回まで）
     }
     // 売り切れの記録（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報。売り切れは1回見たらOK）
     st.soldout = st.soldout || {};
@@ -184,7 +222,10 @@ async function run(env, which, { dry = false } = {}) {
   }
   st.last = { at: new Date().toISOString(), checked: n, total: list.length, out, log };
   // KVの保存は無料だと1日1,000回まで：在庫が変わった・新しく見つけた・投稿した・エラーのときだけ
-  if (!dry && (changed || log.length)) await env.STATE.put(key, JSON.stringify(st));
+  // 2分ごとに2つ（楽天・Amazon）動くので、毎回保存すると上限を超える：在庫の状態が変わった・新しく見つけた・投稿した時はすぐ、
+  // 値段だけの変化やエラーの記録は30分に1回まとめて
+  const due = Date.now() - (st.savedAt || 0) > 30 * 60e3;
+  if (!dry && (changed || ((minor || log.length) && due))) { st.savedAt = Date.now(); await env.STATE.put(key, JSON.stringify(st)); }
   return st.last;
 }
 
@@ -192,7 +233,7 @@ export default {
   async scheduled(event, env, ctx) {
     const m = new Date(event.scheduledTime).getUTCMinutes();
     if (env.RAKUTEN_APP_ID) ctx.waitUntil(run(env, "rk"));
-    if (env.AMAZON_CREDENTIAL_ID && m % 4 === 0) ctx.waitUntil(run(env, "az"));
+    if (env.AMAZON_CREDENTIAL_ID) ctx.waitUntil(run(env, "az"));   // 11/9：4分ごと → 2分ごと（10件ずつまとめて調べるので呼び出し回数はむしろ少ない）
   },
   async fetch(req, env) {
     const u = new URL(req.url);
