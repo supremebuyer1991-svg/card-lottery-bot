@@ -36832,8 +36832,8 @@
     "end": "2026-11-15T23:59:00+09:00",
     "url": "https://x.com/Champion_osu/status/2119550530720817228",
     "x_post": "https://x.com/Champion_osu/status/2119550530720817228",
-    "channel": "online",
-    "area": null,
+    "channel": "store",
+    "area": "愛知県",
     "method": "X抽選",
     "conditions": "会員・本人確認",
     "tags": [
@@ -36849,7 +36849,9 @@
     "no_quote": true,
     "key": "750ad41ab87ca8c0",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894454+09:00"
+    "found_at": "2026-11-09T11:04:51.894454+09:00",
+    "multi": false,
+    "cls": "77e7c213b1f6"
   },
   "8ac61ab8157364f4": {
     "store": "トレカチャンピオンMEGAドン・キホーテ豊橋店",
@@ -36875,7 +36877,9 @@
     "no_quote": true,
     "key": "8ac61ab8157364f4",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894468+09:00"
+    "found_at": "2026-11-09T11:04:51.894468+09:00",
+    "multi": false,
+    "cls": "ac53a24854b9"
   },
   "53910e32673f270f": {
     "store": "ビデオインアメリカ一宮本店（inトレカチャンピオン）",
@@ -36901,7 +36905,9 @@
     "no_quote": true,
     "key": "53910e32673f270f",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894481+09:00"
+    "found_at": "2026-11-09T11:04:51.894481+09:00",
+    "multi": false,
+    "cls": "b1161b5d5717"
   },
   "9375e2847e4e214e": {
     "store": "トレカチャンピオン各務原店",
@@ -36927,7 +36933,9 @@
     "no_quote": true,
     "key": "9375e2847e4e214e",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894493+09:00"
+    "found_at": "2026-11-09T11:04:51.894493+09:00",
+    "multi": false,
+    "cls": "c7474f7f03c4"
   },
   "4666438f92af5f81": {
     "store": "トレカエース新取手店",
@@ -36953,7 +36961,9 @@
     "no_quote": true,
     "key": "4666438f92af5f81",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894504+09:00"
+    "found_at": "2026-11-09T11:04:51.894504+09:00",
+    "multi": false,
+    "cls": "0644f55c829b"
   },
   "523ba9dd9d951d94": {
     "store": "トレカエース下妻店",
@@ -36979,7 +36989,9 @@
     "no_quote": true,
     "key": "523ba9dd9d951d94",
     "status": "approved",
-    "found_at": "2026-11-09T11:04:51.894516+09:00"
+    "found_at": "2026-11-09T11:04:51.894516+09:00",
+    "multi": false,
+    "cls": "9b9e2c97238d"
   },
   "312dde436633fb77": {
     "store": "トレカエース小名浜住吉店",
@@ -37304,7 +37316,7 @@
     "status": "approved",
     "found_at": "2026-11-09T11:05:41.918608+09:00",
     "multi": false,
-    "cls": "63ef59370d72",
+    "cls": "f1b1cb1b5153",
     "tco_checked": true,
     "page_checked_at": "2026-11-09T11:22:26.238690+09:00",
     "page_err": "中身が空",
@@ -37366,7 +37378,7 @@
     "status": "approved",
     "found_at": "2026-11-09T11:05:41.918669+09:00",
     "multi": false,
-    "cls": "9d80c1085a94",
+    "cls": "fdc46572b9e4",
     "tco_checked": true,
     "page_checked_at": "2026-11-09T11:22:28.387148+09:00",
     "page_err": "中身が空",
@@ -37582,5 +37594,31 @@
     "multi": false,
     "cls": "41ce67a8f276",
     "duplicate_of": "7be52076433d3652"
+  },
+  "dab94a6e3c18866c": {
+    "store": "トレカプロ",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」定価販売抽選",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T23:59:00+09:00",
+    "url": "https://x.com/tcgprocojp/status/2119614977212666203",
+    "x_post": "https://x.com/tcgprocojp/status/2119614977212666203",
+    "channel": "online",
+    "area": null,
+    "method": "X抽選",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "dab94a6e3c18866c",
+    "status": "approved",
+    "found_at": "2026-11-09T11:44:37.114188+09:00",
+    "cls": "1ec03a1080b4"
   }
 }

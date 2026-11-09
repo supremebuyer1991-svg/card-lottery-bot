@@ -16415,8 +16415,8 @@
       "game": "onepiece",
       "store": "トレカチャンピオン大須店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "愛知県",
       "found_at": "2026-11-09T11:04:51.894454+09:00",
       "chain": null
     },
@@ -16581,6 +16581,15 @@
       "area": "埼玉県",
       "found_at": "2026-11-09T11:05:41.918669+09:00",
       "chain": "kiddyland"
+    },
+    "dab94a6e3c18866c": {
+      "game": "pokemon",
+      "store": "トレカプロ",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-09T11:44:37.114188+09:00",
+      "chain": null
     }
   }
 }
