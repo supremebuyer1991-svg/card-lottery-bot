@@ -273,7 +273,7 @@ CSS = (".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t 
        ".chart .tkl,.chart .ax{fill:#8a93a6;font-size:12px}.pm-big{font-size:28px;font-weight:900;font-family:var(--font-num)}"
        ".pm-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.pm-row img{border-radius:10px;background:#fff}"
        ".shopb{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.shopb .btn{padding:10px 14px;border-radius:6px;font-weight:900;text-decoration:none}"
-       ".follow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:12px 14px;margin:16px 0}.follow p{margin:0;flex:1 1 200px}.follow .btn{white-space:nowrap;flex:1 1 140px;text-align:center}"
+       "h2 .hot{font-size:.7em;color:#ff6b3d;font-weight:900;margin-left:6px}.follow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#141823;border:1px solid #ffd23f;border-radius:12px;padding:12px 14px;margin:16px 0}.follow p{margin:0;flex:1 1 200px}.follow .btn{white-space:nowrap;flex:1 1 140px;text-align:center}"
        ".mc-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid #ea352d;border-radius:10px}.mc-box b{grid-column:1/-1}.mc-box .btn{display:block;text-align:center;padding:11px 6px;border-radius:8px;font-weight:900;text-decoration:none;white-space:nowrap}"
        ".btn-x{display:inline-block;margin-top:8px;background:#e9edf5;color:#0b0d12;padding:10px 16px;border-radius:6px;font-weight:900;text-decoration:none}"
        ".pm-shops{white-space:nowrap}.pm-det{text-align:right;white-space:nowrap;width:1%}.pm-sh{display:inline-block;padding:6px 9px;margin-right:4px;border-radius:6px;font-weight:900;text-decoration:none;font-size:13px}"
@@ -399,7 +399,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">定価以上で売れる</a></p><h1>{escape(x["name"])}</h1>'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{escape(x["store"])}・{tk}</div></div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
-             f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>'
+             f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
              f'<h2>買取店ごとの買取価格（新品・上位5店）</h2><table class="pm-t">{top}</table>{note}', f"premium/{x['jan']}/")
@@ -443,7 +443,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>'
              f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
-             f'{FOLLOW}<h2>買えるところ</h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
+             f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
         made += 1
     # 商品名・JANコードで検索：/search.json（商品ページ・抽選の一覧）と /search/
     import json as _json
