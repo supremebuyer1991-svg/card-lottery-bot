@@ -1167,7 +1167,7 @@
     "status": "approved",
     "found_at": "2026-11-09T14:26:44.932329+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:28:03.818416+09:00",
+    "page_checked_at": "2026-11-09T23:32:13.720265+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261106ec&ver=v3-javascript-3.7.10&",
     "area": null,
     "cls": "828b8b6b4f7c"
@@ -1232,7 +1232,7 @@
     "status": "approved",
     "found_at": "2026-11-09T14:26:44.932359+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:28:17.096717+09:00",
+    "page_checked_at": "2026-11-09T23:32:14.916983+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.suruga-ya.jp/blog/?q=pokeka_chusen261105.html",
     "area": null,
     "cls": "9e6d4bf7098a"
@@ -1296,7 +1296,7 @@
     "status": "approved",
     "found_at": "2026-11-09T14:26:44.932385+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:28:24.927675+09:00",
+    "page_checked_at": "2026-11-09T23:32:15.678291+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.kidsrepublic.jp/campaign/campaign_detail/20261127pokemoncardgame",
     "multi": false,
     "cls": "8daa1c28e4a0"
@@ -1360,7 +1360,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "43765479641f",
-    "page_checked_at": "2026-11-09T14:33:57.526765+09:00",
+    "page_checked_at": "2026-11-09T23:32:16.216835+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "831b4d07a8ead3b3": {
@@ -1420,7 +1420,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "f831f51feccd",
-    "page_checked_at": "2026-11-09T14:33:57.733811+09:00",
+    "page_checked_at": "2026-11-09T23:32:16.324883+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789"
   },
   "cc81610f2587f0d9": {
@@ -1452,7 +1452,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "6eeb58778608",
-    "page_checked_at": "2026-11-09T14:33:57.980183+09:00",
+    "page_checked_at": "2026-11-09T23:32:16.452227+09:00",
     "page_err": "中身が空"
   },
   "9e845c51b9d18d8b": {
@@ -1703,12 +1703,13 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "2b93ea15b8da9135",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-09T14:26:44.932563+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "79fad9fc87a9",
-    "issue": 623
+    "issue": 623,
+    "closed_at": "2026-11-09T23:32:23.596945+09:00"
   },
   "bf5ad3c80e259f0f": {
     "store": "WonderGOO / 新星堂",
@@ -1731,12 +1732,13 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "bf5ad3c80e259f0f",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-09T14:26:44.932577+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "8abf7d972cd3",
-    "issue": 624
+    "issue": 624,
+    "closed_at": "2026-11-09T23:32:23.596963+09:00"
   },
   "3d8ac22f7d918f5e": {
     "store": "キデイランド",
@@ -2339,5 +2341,68 @@
     "details_checked": true,
     "cls": "f3e9ec433eca",
     "duplicate_of": "9b733fea1612cbd8"
+  },
+  "a8ebc5141fccdebd": {
+    "store": "ポケモンセンターオンライン",
+    "product": "ピカピカボックス2027",
+    "series": null,
+    "kind": "lottery",
+    "start": "2026-10-27T17:00:00+09:00",
+    "end": "2026-11-02T16:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "グッズがいろいろ入ったお楽しみ商品。ポケモンセンターオンラインで抽選受付",
+    "price": null,
+    "round": null,
+    "url": "https://www.4gamer.net/games/991/G999106/20261027044/",
+    "x_post": null,
+    "game": "pokecen",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ポケモンセンター 抽選」",
+    "source_url": "https://www.4gamer.net/games/991/G999106/20261109034/",
+    "key": "a8ebc5141fccdebd",
+    "status": "expired",
+    "found_at": "2026-11-09T23:32:04.016739+09:00",
+    "deadline_checked_at": "2026-11-09T23:32:12.141415+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・応募受付期間 〜11月2日16：59",
+    "end_from": "応募ページ（応募受付期間 〜11月2日16：59）",
+    "cls": "371948dd7fc9",
+    "issue": 633,
+    "closed_at": "2026-11-09T23:32:23.597167+09:00"
+  },
+  "9e51cb833efe1784": {
+    "store": "ポケモン",
+    "product": "どうろのイメージをジオラマ化したオルゴール",
+    "series": null,
+    "kind": "release",
+    "start": null,
+    "end": "2026-11-12T23:59:00+09:00",
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://www.4gamer.net/games/991/G999106/20261106028/",
+    "x_post": null,
+    "game": "pokecen",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.4,
+    "source": "Googleニュース「ポケモンセンター 抽選」",
+    "source_url": "https://www.4gamer.net/games/991/G999106/20261109027/",
+    "key": "9e51cb833efe1784",
+    "status": "pending",
+    "found_at": "2026-11-09T23:32:04.016828+09:00",
+    "cls": "2a4d8a8b9923",
+    "issue": 634
   }
 }

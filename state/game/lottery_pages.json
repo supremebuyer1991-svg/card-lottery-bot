@@ -100,6 +100,12 @@
       },
       "avail": [
         {
+          "shop": "Amazon",
+          "s": "pre",
+          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+          "p": 55000
+        },
+        {
           "shop": "楽天ブックス",
           "s": "pre",
           "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F",
@@ -897,5 +903,29 @@
     "end": null,
     "seen": "2026-11-09",
     "ended": false
+  },
+  "a8ebc5141fccdebd": {
+    "snap": {
+      "key": "a8ebc5141fccdebd",
+      "game": "pokecen",
+      "store": "ポケモンセンターオンライン",
+      "product": "ピカピカボックス2027",
+      "start": "2026-10-27T17:00:00+09:00",
+      "end": "2026-11-02T16:59:00+09:00",
+      "method": "Web",
+      "conditions": "グッズがいろいろ入ったお楽しみ商品。ポケモンセンターオンラインで抽選受付",
+      "url": "https://www.4gamer.net/games/991/G999106/20261027044/",
+      "channel": "online",
+      "found_at": "2026-11-09T23:32:04.016739+09:00",
+      "kind": "lottery",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E3%83%94%E3%82%AB%E3%83%94%E3%82%AB%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B92027",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%94%E3%82%AB%E3%83%94%E3%82%AB%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B92027&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/a8ebc5141f/",
+    "end": "2026-11-02T16:59:00+09:00",
+    "seen": "2026-11-09",
+    "ended": true
   }
 }
