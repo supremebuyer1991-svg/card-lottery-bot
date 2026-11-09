@@ -19,7 +19,10 @@ TEIKA = "premium_teika.json"
 # ゲーム・ホビー以外（カメラ・スマホ・家電・お酒など）は載せない（買取店の一覧に混ざってくるため・11/9）
 NOT_HOBBY = re.compile(r"カメラ|レンズ|PowerShot|EOS|Nikon|LUMIX|instax|チェキ|写ルンです|iPhone|iPad|Galaxy|Pixel|Xperia|AQUOS|arrows|MacBook|AirPods|"
                        r"Apple Watch|Dyson|ダイソン|ドライヤー|炊飯|掃除機|冷蔵庫|洗濯|電子レンジ|ウイスキー|ワイン|イヤホン|ヘッドホン|スマートウォッチ|Kindle|ルーター|Wi-Fi|"
-                       r"SIGMA|TAMRON|FUJIFILM|Canon|CANON|SONY α|GoPro|DJI|Fitbit|Garmin|ロボット掃除機|美容|ReFa|シェーバー")
+                       r"SIGMA|TAMRON|FUJIFILM|Canon|CANON|SONY α|GoPro|DJI|Fitbit|Garmin|ロボット掃除機|美容|ReFa|シェーバー|"
+                       # トレカはトレカ抽選ナビの担当（このサイトには載せない）
+                       r"カードゲーム|ポケモンカード|ポケカ|遊戯王|デュエル・?マスターズ|デュエマ|拡張パック|ブースターパック|トレカ|ヴァイスシュヴァルツ|ユニオンアリーナ|"
+                       r"\bOP-\d|\bEB-\d|\bPRB-\d|\bSV\d|\bM\d[a-z]?\b.*BOX")
 
 
 def groups(st=None):
