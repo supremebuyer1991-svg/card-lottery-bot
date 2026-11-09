@@ -1132,11 +1132,11 @@
     "no_quote": true,
     "key": "b488e5b19e6b554c",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.750719+09:00",
+    "found_at": "2026-11-09T14:26:44.932302+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "3da433fc97d2",
-    "issue": 613
+    "issue": 619
   },
   "556356e584972c61": {
     "store": "ポケモンセンターオンライン",
@@ -1162,9 +1162,9 @@
     "no_quote": true,
     "key": "556356e584972c61",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750747+09:00",
+    "found_at": "2026-11-09T14:26:44.932329+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:23:59.774627+09:00",
+    "page_checked_at": "2026-11-09T14:28:03.818416+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261106ec&ver=v3-javascript-3.7.10&",
     "area": null,
     "cls": "828b8b6b4f7c"
@@ -1195,9 +1195,9 @@
     "no_quote": true,
     "key": "24d4a79be83f0f5c",
     "status": "rejected",
-    "found_at": "2026-11-09T14:22:07.750764+09:00",
+    "found_at": "2026-11-09T14:26:44.932345+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:24:01.230279+09:00",
+    "page_checked_at": "2026-11-09T14:28:04.749590+09:00",
     "page_err": "HTTPSConnectionPool(host='limited.yodobashi.com', port=443): Read timed out. (read timeout=12)",
     "area": null,
     "cls": "88d07ab517c5",
@@ -1227,9 +1227,9 @@
     "no_quote": true,
     "key": "b660975d9c87901b",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750778+09:00",
+    "found_at": "2026-11-09T14:26:44.932359+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:24:13.555678+09:00",
+    "page_checked_at": "2026-11-09T14:28:17.096717+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.suruga-ya.jp/blog/?q=pokeka_chusen261105.html",
     "area": null,
     "cls": "9e6d4bf7098a"
@@ -1258,9 +1258,9 @@
     "no_quote": true,
     "key": "393488f1a202558d",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750792+09:00",
+    "found_at": "2026-11-09T14:26:44.932372+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:24:14.029304+09:00",
+    "page_checked_at": "2026-11-09T14:28:17.353035+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
@@ -1291,9 +1291,9 @@
     "no_quote": true,
     "key": "01ea40943595433f",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750805+09:00",
+    "found_at": "2026-11-09T14:26:44.932385+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:24:21.408283+09:00",
+    "page_checked_at": "2026-11-09T14:28:24.927675+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.kidsrepublic.jp/campaign/campaign_detail/20261127pokemoncardgame",
     "multi": false,
     "cls": "8daa1c28e4a0"
@@ -1320,9 +1320,9 @@
     "no_quote": true,
     "key": "18e896e1ecf776ff",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750819+09:00",
+    "found_at": "2026-11-09T14:26:44.932398+09:00",
     "kind": "lottery",
-    "page_checked_at": "2026-11-09T14:24:21.622648+09:00",
+    "page_checked_at": "2026-11-09T14:28:25.134667+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
@@ -1353,7 +1353,7 @@
     "no_quote": true,
     "key": "4950c953657f66a8",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750832+09:00",
+    "found_at": "2026-11-09T14:26:44.932411+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "43765479641f"
@@ -1380,11 +1380,11 @@
     "no_quote": true,
     "key": "831b4d07a8ead3b3",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.750849+09:00",
+    "found_at": "2026-11-09T14:26:44.932425+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "3b04eb01339c",
-    "issue": 614
+    "issue": 620
   },
   "cbe165aa99781dda": {
     "store": "ゲオ（アプリ）",
@@ -1411,7 +1411,7 @@
     "no_quote": true,
     "key": "cbe165aa99781dda",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750862+09:00",
+    "found_at": "2026-11-09T14:26:44.932436+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "f831f51feccd"
@@ -1441,7 +1441,7 @@
     "no_quote": true,
     "key": "cc81610f2587f0d9",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750875+09:00",
+    "found_at": "2026-11-09T14:26:44.932449+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "6eeb58778608"
@@ -1471,7 +1471,7 @@
     "no_quote": true,
     "key": "9e845c51b9d18d8b",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750887+09:00",
+    "found_at": "2026-11-09T14:26:44.932460+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "9f8c8a48b308"
@@ -1501,7 +1501,7 @@
     "no_quote": true,
     "key": "9572d94308e78957",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750902+09:00",
+    "found_at": "2026-11-09T14:26:44.932474+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "19de7419d95d"
@@ -1530,7 +1530,7 @@
     "no_quote": true,
     "key": "d3c12123628d4b8a",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750914+09:00",
+    "found_at": "2026-11-09T14:26:44.932487+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "5cf2965a4e8a"
@@ -1560,7 +1560,7 @@
     "no_quote": true,
     "key": "a71033e0acc8b5b1",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750939+09:00",
+    "found_at": "2026-11-09T14:26:44.932499+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "cd6debd3283b"
@@ -1589,7 +1589,7 @@
     "no_quote": true,
     "key": "6fa5b135e173a486",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.750952+09:00",
+    "found_at": "2026-11-09T14:26:44.932511+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "468f63d6cf97"
@@ -1622,11 +1622,11 @@
     "no_quote": true,
     "key": "4900632893b50a8f",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.750982+09:00",
+    "found_at": "2026-11-09T14:26:44.932538+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "48bf7e3f090e",
-    "issue": 615
+    "issue": 621
   },
   "bdcd6d3d2a8d97c8": {
     "store": "ビックカメラ",
@@ -1653,11 +1653,11 @@
     "no_quote": true,
     "key": "bdcd6d3d2a8d97c8",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.750996+09:00",
+    "found_at": "2026-11-09T14:26:44.932551+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "48bf7e3f090e",
-    "issue": 616
+    "issue": 622
   },
   "2b93ea15b8da9135": {
     "store": "WonderGOO / 新星堂",
@@ -1681,11 +1681,11 @@
     "no_quote": true,
     "key": "2b93ea15b8da9135",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.751009+09:00",
+    "found_at": "2026-11-09T14:26:44.932563+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "79fad9fc87a9",
-    "issue": 617
+    "issue": 623
   },
   "bf5ad3c80e259f0f": {
     "store": "WonderGOO / 新星堂",
@@ -1709,11 +1709,11 @@
     "no_quote": true,
     "key": "bf5ad3c80e259f0f",
     "status": "pending",
-    "found_at": "2026-11-09T14:22:07.751023+09:00",
+    "found_at": "2026-11-09T14:26:44.932577+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "8abf7d972cd3",
-    "issue": 618
+    "issue": 624
   },
   "3d8ac22f7d918f5e": {
     "store": "キデイランド",
@@ -1737,7 +1737,7 @@
     "no_quote": true,
     "key": "3d8ac22f7d918f5e",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.751048+09:00",
+    "found_at": "2026-11-09T14:26:44.932602+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "ecd96965d68d"
@@ -1766,7 +1766,7 @@
     "no_quote": true,
     "key": "abc5c33ec5476450",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.751062+09:00",
+    "found_at": "2026-11-09T14:26:44.932614+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "5850fdaa6a65"
@@ -1793,7 +1793,7 @@
     "no_quote": true,
     "key": "c928912be51f480a",
     "status": "approved",
-    "found_at": "2026-11-09T14:22:07.751074+09:00",
+    "found_at": "2026-11-09T14:26:44.932625+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "0a1a85a4d834"
