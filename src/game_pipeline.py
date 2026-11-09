@@ -65,6 +65,8 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             import game_kaitori
             game_kaitori.update(s)
             game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
+            import game_upcoming
+            game_upcoming.update(s)   # 発売予定のゲーム（楽天ブックス・1日1回）
         except Exception as e:
             log(f"買取価格: スキップ {e}")
     if step in ("all", "publish"):

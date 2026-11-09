@@ -101,7 +101,8 @@ def side_html(cats, cur_game=None, cur=None, counts=True):
                  + (f'<span class="n">{PCOUNTS[c["id"]]}</span>' if PCOUNTS.get(c["id"]) else "") + "</a>" for c in cats)
     pages = (f'<a href="/premium/"{here if cur == "premium" else ""}>定価以上で売れる</a>'
              f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
-             f'<a href="/calendar/"{here if cur == "calendar" else ""}>発売カレンダー</a>')
+             f'<a href="/calendar/"{here if cur == "calendar" else ""}>発売カレンダー</a>'
+             f'<a href="/new/"{here if cur == "new" else ""}>発売予定・予約</a>')
     stat = "".join(f'<a href="/#{k}" data-t="{k}">{n}<span class="n" data-n="{k}"></span></a>' for k, n in STAT_NAV)
     return ('<aside class="side" aria-label="メニュー">'
             '<a class="brand" href="/"><img src="/rinrin.png" alt="" width="36" height="36"><span>ゲーム・ホビー<br><em>入荷速報</em></span></a>'

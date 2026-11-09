@@ -85,18 +85,33 @@ def update(settings, fetch=None, ai=None):
             break
         items = []
         try:
-            pages = [html_to_text(fetch(u), u) for u in s["urls"][:40 if s.get("parser") else 3]]
             import game_souba
-            if s.get("parser") in game_souba.PARSERS:   # 決まった形の店（ルデヤ・モバイル一番・ケータイゴッド・トゥインクル）はAIを使わずに読む
+            if s.get("parser") in game_souba.PARSERS:   # 決まった形の店（ルデヤ・モバイル一番・ケータイゴッド・トゥインクル・SY・TOJO）はAIを使わずに読む
+                # 検索の言葉が多い店は、1回に kaitori_urls_per_run ずつ数回に分けて読む（続きは cur に覚える。1周したら「読んだ日時」を更新）
                 parse = getattr(game_souba, game_souba.PARSERS[s["parser"]])
-                seen = set()
-                for p in pages:
-                    for x in parse(p):
-                        if (x[1] or x[0]) not in seen:   # 違う言葉の検索で同じ商品が出たら1つに
-                            seen.add(x[1] or x[0])
-                            items.append(list(x))
-            else:   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
-                items += ai("\n\n=====\n\n".join(p[:12000] for p in pages))
+                rec = st.get(s["name"]) or {}
+                urls = s["urls"]
+                cur = int(rec.get("cur") or 0) if int(rec.get("cur") or 0) < len(urls) else 0
+                acc = {(x[1] or x[0]): x for x in (rec.get("acc") or [])} if cur else {}
+                old = {(x[1] or x[0]): x for x in (rec.get("items") or [])}
+                done = cur
+                for u in urls[cur:cur + int(settings.get("kaitori_urls_per_run", 35))]:
+                    if job_elapsed() > float(settings.get("kaitori_until_sec", 230)):
+                        break
+                    try:
+                        for x in parse(html_to_text(fetch(u), u)):
+                            acc[x[1] or x[0]] = list(x)   # 違う言葉の検索で同じ商品が出たら1つに
+                            old[x[1] or x[0]] = list(x)
+                    except Exception as e:
+                        log(f"  買取価格：{s['name']} 1ページ失敗 {str(e)[:80]}")
+                    done += 1
+                lap = done >= len(urls)
+                st[s["name"]] = {"at": t.isoformat() if lap else rec.get("at", ""), "cur": 0 if lap else done,
+                                 "acc": [] if lap else list(acc.values()), "items": list((acc if lap else old).values())[:2000]}
+                log(f"買取価格：{s['name']} {len(st[s['name']]['items'])}件（{done}/{len(urls)}ページ）")
+                continue
+            pages = [html_to_text(fetch(u), u) for u in s["urls"][:3]]
+            items += ai("\n\n=====\n\n".join(p[:12000] for p in pages))   # ページをまとめて1回のAIに渡す（時間と費用を減らす）
             st[s["name"]] = {"at": t.isoformat(), "items": items[:400]}
             log(f"買取価格：{s['name']} {len(items)}件")
         except Exception as e:

@@ -137,14 +137,19 @@ def parse_twinkle(text):
 def parse_shopapi(text):
     """SY買取センター・カイトリTOJO（同じ作りの店）の /api/products?q=… の返事（JSON）→ [(商品名, JAN, 買取価格)]"""
     import json
+    import re
     import unicodedata
     try:
         data = json.loads(text)
     except Exception:
         return []
     out = []
+    skip = re.compile(r"カメラ|レンズ|iPhone|iPad|Galaxy|Pixel|Xperia|AQUOS|arrows|FUJIFILM|Canon|CANON|Nikon|SIGMA|TAMRON|SONY α|instax|チェキ|Apple|MacBook|AirPods|Apple Watch|Dyson|ドライヤー|炊飯|掃除機|お酒|ウイスキー|イヤホン|ヘッドホン")
     for p in data.get("products") or []:
         sku, price = str(p.get("sku") or ""), p.get("basePrice")
+        cat = " ".join(((c.get("category") or {}).get("name") or "") for c in (p.get("categories") or []))
+        if skip.search((p.get("name") or "") + " " + cat):   # ゲーム・ホビー以外（カメラ・スマホ・家電など）は入れない
+            continue
         if p.get("name") and isinstance(price, (int, float)) and price > 0:
             out.append((unicodedata.normalize("NFKC", p["name"]), sku if sku.isdigit() and len(sku) in (8, 13) else None, int(price)))
     return out

@@ -531,12 +531,21 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/")
         made += 1
+    # 発売予定のゲーム（楽天ブックス）：/new/<JAN>/ と /new/（11/9）
+    up_made = []
+    try:
+        import game_upcoming
+        up_made = game_upcoming.write_pages(out, cats, site, brand, settings, page, aff_id, {x["jan"] for x in allx})
+    except Exception as e:
+        log(f"発売予定の商品ページ: スキップ {e}")
     # 商品名・JANコードで検索：/search.json（商品ページ・抽選の一覧）と /search/
     import json as _json
     idx = [[x["name"], x["jan"], f"/premium/{x['jan']}/", x["teika"] or 0, x["max"]] for x in allx]
     idx += [[re.sub(r"\s+", " ", rs_[0].get("product") or "")[:70], rs_[0].get("jan") or "", f"/item/{item_slug(rs_[0].get('product') or k_)}/", 0, 0]
             for k_, rs_ in groups_.items()]
     idx += [[f'{r.get("store") or ""} {r.get("product") or ""}'.strip()[:80], r.get("jan") or "", "/" + r["lpath"], 0, 0] for r in live_rows if r.get("lpath")]
+    _up = (load_json("upcoming.json", {}) or {}).get("items") or {}
+    idx += [[_up[j]["title"], j, f"/new/{j}/", _up[j].get("price") or 0, 0] for j in up_made if j in _up]
     (out / "search.json").write_text(_json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     page(f"商品名・JANコードで検索｜{brand['name']}", "ゲーム機・ホビーの商品を商品名やJANコードで検索。定価・買取相場・抽選や発売の情報のページに移動できます。",
          '<h1>商品名・JANコードで検索</h1><p id="qs-n" class="note"></p><div id="qs-r"></div>' + SEARCH_JS, "search/")
