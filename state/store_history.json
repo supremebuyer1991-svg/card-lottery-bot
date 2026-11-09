@@ -550,6 +550,17 @@
         "mem": "none",
         "rq": []
       },
+      "84b704119d0928a2": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-11T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "8201005e123005dd": {
         "p": "神の支配",
         "g": "onepiece",
@@ -6176,6 +6187,39 @@
   "store/torekaesu-55edf/": {
     "name": "トレカエース下館店",
     "items": {
+      "3c6e5d64a6465325": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "b11cfd641feb04e6": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-14T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "43207e936bf47ec3": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-14T22:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "e2fecb38b17b317a": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -8818,6 +8862,17 @@
   "store/bideoinamerika-41ca7/": {
     "name": "ビデオインアメリカ尼崎店（inトレカチャンピオン）",
     "items": {
+      "3e8237128967c65d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "a9d2c1c6943549c5": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -9896,6 +9951,17 @@
   "store/kadogemushoppurirai-cc4ba/": {
     "name": "カードゲームショップ りらい（福島）",
     "items": {
+      "17f7fab4b20ddc3e": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-20T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "e646bc9d7d431bba": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -11055,6 +11121,17 @@
   "store/mint-841ca/": {
     "name": "ミント横浜ビブレ店",
     "items": {
+      "aa34493e58f7cca9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-12T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "91139608e191e384": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -22740,6 +22817,72 @@
         "mem": "none",
         "rq": []
       },
+      "0aa5ff75accdf751": {
+        "p": "蒼海の七傑",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "7d31355f4e4cd1d9": {
+        "p": "決戦の刻",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "d49c8dc78c7e9e02": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "0ebe214415192477": {
+        "p": "ヒロインズエディション",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "e0cb72355f861c56": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "af097232ff1a4e20": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "b556c3f1f0733f61": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -23493,6 +23636,28 @@
         "c": "store",
         "m": "Web",
         "id": false,
+        "mem": "account",
+        "rq": []
+      },
+      "fc59a58b36f563ce": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-16T23:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "51922c646787f3be": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-16T23:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
         "mem": "account",
         "rq": []
       },
@@ -28038,6 +28203,17 @@
   "store/aeon-46f7c/": {
     "name": "ティーズ イオンタウン宇多津",
     "items": {
+      "c450a5d508cc131a": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "b2c4f2c6907390ef": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -32723,6 +32899,101 @@
         "p": "神の支配",
         "g": "onepiece",
         "e": "2026-11-16T23:59",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/yellowsubmarine-df994/": {
+    "name": "イエローサブマリン新宿店",
+    "items": {
+      "a498ad9a617d31c9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      }
+    }
+  },
+  "store/yellowsubmarine-ba7f3/": {
+    "name": "イエローサブマリン姫路店",
+    "items": {
+      "d1788c9060310b93": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      }
+    }
+  },
+  "store/japantcgcenterkitemitematsudo-4c20d/": {
+    "name": "Japan TCG Center キテミテマツド店",
+    "items": {
+      "1ee21aaf030026c4": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/shop-675a5/": {
+    "name": "文教堂 南大沢店【トレカ】",
+    "items": {
+      "e76571e0dc254a08": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "4be060f930f5e0cb": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-15T21:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/aeon-5fd00/": {
+    "name": "カードボックスイオンモール姫路店",
+    "items": {
+      "363306a4c063219f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
         "f": "2026-11-09",
         "c": "store",
         "m": "店頭",

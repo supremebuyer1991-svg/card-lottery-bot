@@ -885,7 +885,7 @@
   },
   "store/bideoinamerika-41ca7/": {
     "name": "ビデオインアメリカ尼崎店（inトレカチャンピオン）",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "兵庫県"
   },
@@ -1161,7 +1161,7 @@
   },
   "store/kadogemushoppurirai-cc4ba/": {
     "name": "カードゲームショップ りらい（福島）",
-    "last": "2026-11-06",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "福島県"
   },
@@ -1413,7 +1413,7 @@
   },
   "store/mint-841ca/": {
     "name": "ミント横浜ビブレ店",
-    "last": "2026-10-27",
+    "last": "2026-11-09",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -2336,9 +2336,10 @@
   },
   "store/torekaesu-55edf/": {
     "name": "トレカエース下館店",
-    "last": "2026-08-29",
+    "last": "2026-11-09",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "area": "茨城県"
   },
   "store/hobisukueanishina-21ed7/": {
     "name": "ホビースクエアにしな",
@@ -4437,7 +4438,7 @@
   },
   "store/tsutaya-be8e8/": {
     "name": "TSUTAYA合川店",
-    "last": "2026-11-08",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "福岡県",
     "address": "福岡県久留米市合川2丁目8-18"
@@ -5478,7 +5479,7 @@
   },
   "store/aeon-46f7c/": {
     "name": "ティーズ イオンタウン宇多津",
-    "last": "2026-11-05",
+    "last": "2026-11-09",
     "game": "pokemon",
     "area": "香川県"
   },
@@ -6932,5 +6933,35 @@
     "last": "2026-11-09",
     "game": "onepiece",
     "area": "静岡県"
+  },
+  "store/yellowsubmarine-df994/": {
+    "name": "イエローサブマリン新宿店",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/yellowsubmarine-ba7f3/": {
+    "name": "イエローサブマリン姫路店",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "兵庫県"
+  },
+  "store/japantcgcenterkitemitematsudo-4c20d/": {
+    "name": "Japan TCG Center キテミテマツド店",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "千葉県"
+  },
+  "store/shop-675a5/": {
+    "name": "文教堂 南大沢店【トレカ】",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "東京都"
+  },
+  "store/aeon-5fd00/": {
+    "name": "カードボックスイオンモール姫路店",
+    "last": "2026-11-09",
+    "game": "onepiece",
+    "area": "兵庫県"
   }
 }
