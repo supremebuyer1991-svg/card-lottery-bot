@@ -253,6 +253,7 @@ async function run(env, which, { dry = false } = {}) {
     try {
       const tid = await tweet(env, text);
       st.count++; if (!w.g) st.hobby++; st.posted[id + cur] = Date.now(); changed = true;
+      st.postlog = [{ t: new Date().toISOString(), id, jan: w.jan || "", n: w.n, cur, url, pg: w.pg || "", tid, text }, ...(st.postlog || [])].slice(0, 30);   // 何を投稿したかの記録（11/10）
       out.push(`posted ${tid}`);
     } catch (e) { log.push(String(e)); }
   }
@@ -294,6 +295,8 @@ export default {
       return Response.json(m);
     }
     if (u.pathname === "/dry") return Response.json({ rk: await run(env, "rk", { dry: true }), az: await run(env, "az", { dry: true }) });
-    return Response.json({ rk: (await env.STATE.get("rk", "json"))?.last, az: (await env.STATE.get("az", "json"))?.last });
+    const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};
+    const recent = (st) => Object.entries(st.posted || {}).filter(([, v]) => Date.now() - v < 24 * 3600e3).map(([k, v]) => [k, new Date(v).toISOString()]);
+    return Response.json({ rk: rk.last, az: az.last, posts: { rk: rk.postlog || [], az: az.postlog || [] }, posted24h: { rk: recent(rk), az: recent(az) } });
   },
 };
