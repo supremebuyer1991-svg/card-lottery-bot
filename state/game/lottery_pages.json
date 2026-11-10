@@ -1445,15 +1445,16 @@
     "snap": {
       "key": "9b923fe088a3ebc2",
       "game": "gunpla",
-      "store": "BANDAI SPIRITS",
+      "store": "プレミアムバンダイ",
       "product": "HGUC 1/144 ボールK型（第08MS小隊版）＆ボール（シャークマウス仕様）",
       "series": "ボール",
+      "start": "2026-11-10T11:00:00+09:00",
       "conditions": "発送予定時期 2027年4月（日付の記載なし）",
       "url": "https://p-bandai.jp/item/item-1000260986/",
       "channel": "online",
       "spath": "gunpla/boru-394a1/",
       "found_at": "2026-11-10T10:45:59.975166+09:00",
-      "kind": "release",
+      "kind": "restock",
       "price": "1,980円",
       "shop": {
         "yh": "https://shopping.yahoo.co.jp/search?p=HGUC%201/144%20%E3%83%9C%E3%83%BC%E3%83%ABK%E5%9E%8B%20%26%E3%83%9C%E3%83%BC%E3%83%AB",
@@ -1462,6 +1463,79 @@
     },
     "path": "l/9b923fe088/",
     "end": null,
+    "seen": "2026-11-10",
+    "ended": false
+  },
+  "f9bf5e6a41d570d7": {
+    "snap": {
+      "key": "f9bf5e6a41d570d7",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ ワンピース～あにまる大集合！～",
+      "series": "ワンピース～あにまる大集合！～",
+      "start": "2026-11-14",
+      "end": "2026-11-14",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/onep105",
+      "channel": "store",
+      "spath": "ichibankuji/wanpisu-animaru-d081a/",
+      "found_at": "2026-11-10T12:22:13.793519+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9~%E3%81%82%E3%81%AB%E3%81%BE%E3%82%8B%E5%A4%A7%E9%9B%86%E5%90%88%21~",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9~%E3%81%82%E3%81%AB%E3%81%BE%E3%82%8B%E5%A4%A7%E9%9B%86%E5%90%88%21~&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/f9bf5e6a41/",
+    "end": "2026-11-14",
+    "seen": "2026-11-10",
+    "ended": false
+  },
+  "425bf517493e43c0": {
+    "snap": {
+      "key": "425bf517493e43c0",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ HUNTER×HUNTER CHMERA ANT ②（再販売）",
+      "series": "HUNTER×HUNTER CHMERA ANT ②",
+      "end": "2026-11-14",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/hxh8_2",
+      "channel": "store",
+      "spath": "ichibankuji/hunter-hunterchmeraant-a786e/",
+      "found_at": "2026-11-10T12:22:13.793555+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20HUNTER%C3%97HUNTER%20CHMERA%20ANT",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20HUNTER%C3%97HUNTER%20CHMERA%20ANT&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/425bf51749/",
+    "end": "2026-11-14",
+    "seen": "2026-11-10",
+    "ended": false
+  },
+  "13067662f7bd7a05": {
+    "snap": {
+      "key": "13067662f7bd7a05",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ To LOVEる-とらぶる-ダークネス",
+      "series": "To LOVEる-とらぶる-ダークネス",
+      "end": "2026-11-19",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/toloveru_d",
+      "channel": "store",
+      "spath": "ichibankuji/toloveru-toraburu-dakunesu-3a156/",
+      "found_at": "2026-11-10T12:22:13.793570+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20To%20LOVE%E3%82%8B-%E3%81%A8%E3%82%89%E3%81%B6%E3%82%8B-%E3%83%80%E3%83%BC%E3%82%AF%E3%83%8D%E3%82%B9",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20To%20LOVE%E3%82%8B-%E3%81%A8%E3%82%89%E3%81%B6%E3%82%8B-%E3%83%80%E3%83%BC%E3%82%AF%E3%83%8D%E3%82%B9&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/13067662f7/",
+    "end": "2026-11-19",
     "seen": "2026-11-10",
     "ended": false
   }

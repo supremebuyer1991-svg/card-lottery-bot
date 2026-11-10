@@ -17514,7 +17514,7 @@
       "store": "ふるいち忍者シティー店",
       "series": "30th CELEBRATION",
       "channel": "store",
-      "area": null,
+      "area": "三重県",
       "found_at": "2026-11-10T10:41:35.051717+09:00",
       "chain": "furuichi"
     },
@@ -17832,6 +17832,69 @@
       "area": null,
       "found_at": "2026-11-10T11:07:24.889776+09:00",
       "chain": "yodobashi"
+    },
+    "ebb1b242319308ce": {
+      "game": "pokemon",
+      "store": "ホビーステーション",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-10T12:18:30.137876+09:00",
+      "chain": "hobbystation"
+    },
+    "de68dbadc3eac1a5": {
+      "game": "pokemon",
+      "store": "キデイランド",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-10T12:18:30.137901+09:00",
+      "chain": "kiddyland"
+    },
+    "252bdcc2c9d57072": {
+      "game": "pokemon",
+      "store": "ブックオフスーパーバザー14号千葉幕張店",
+      "series": null,
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-10T12:18:30.874620+09:00",
+      "chain": "bookoff"
+    },
+    "ac3b885ba85dec82": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール熱田店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-10T12:18:31.586796+09:00",
+      "chain": "aeon"
+    },
+    "1deb3c5be6b2dba2": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール熱田店",
+      "series": null,
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-10T12:18:31.586827+09:00",
+      "chain": "aeon"
+    },
+    "67ccdbedde2d9474": {
+      "game": "onepiece",
+      "store": "TSUTAYA加須店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-10T12:18:31.586844+09:00",
+      "chain": "tsutaya"
+    },
+    "05188e361bfd609d": {
+      "game": "onepiece",
+      "store": "お宝市番館 尾張小牧店（おたいち）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-10T12:18:31.586860+09:00",
+      "chain": null
     }
   }
 }
