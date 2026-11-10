@@ -491,7 +491,7 @@ def yt_meta(kind, span, game, rows, today):
     """YouTube のタイトル・説明・タグ"""
     word = "上昇" if kind == "up" else "下落"
     sj = "今週" if span == "week" else "今日"
-    gs = "ポケカ" if game == "pokemon" else "ワンピカード"
+    gs = "ポケカ" if game == "pokemon" else "ワンピースカード"
     title = f"【{gs}相場】{sj}のBOX{word}ランキングTOP{len(rows)}｜1位はまさかの…？（{today.month}/{today.day}）#shorts"
     desc = (caption(kind, span, game, rows) + "\n\n"
             "▼BOXの相場グラフ・抽選の締切はこちら\nトレカ抽選ナビ https://tcg-chusen.com/souba/\n\n"
@@ -525,7 +525,11 @@ if __name__ == "__main__":
                 if only and f"{game}-{kind}" not in only:
                     continue
                 rows = rk_all[kind].get(game) or []
-                p = make(out, kind, span, game, rows, today, theme=th, all_rows=all_rows)
+                if "--classic" in sys.argv:
+                    p = make(out, kind, span, game, rows, today, theme=th, all_rows=all_rows)
+                else:  # 11/10 ユーザー決定：ハイテンション版（boxrank_hype）をテンプレにする
+                    from boxrank_hype import make_hype
+                    p = make_hype(out, kind, span, game, rows, today)
                 print(th, game, kind, p, [(round(x[0], 1), x[1]) for x in rows])
                 if not p:
                     continue
