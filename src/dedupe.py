@@ -82,6 +82,9 @@ def _skey(it):
     return norm_series(x, {})
 
 
+XURL = re.compile(r"//(www\.|mobile\.)?(x|twitter)\.com/")
+
+
 def _rank(it):
     """残す優先度（大きいほど残す）"""
     return (bool(it.get("manual")),                                          # 自分で追加した抽選（個別ページのURLを変えないため）
@@ -142,6 +145,23 @@ def dedupe(settings=None):
                     tg.append(x)
                     filled += 1
             t["tags"] = tg
+    # 11/10：応募先が他人のXのポストになっている抽選は、同じ抽選（同じ店・弾・締切日）の別の記録に
+    # お店の応募ページがあれば、そちらに差し替える（はじかれた記録も見る。Xのポストは x_post に残す）
+    official = {}
+    for k, it in lots.items():
+        u = it.get("url") or ""
+        if it.get("end") and u.startswith("http") and not XURL.search(u):
+            official.setdefault((it.get("game"), norm_store(it.get("store")), _skey(it), it["end"][:10]), u)
+    fixed = 0
+    for k, it in lots.items():
+        if it.get("status") in ACTIVE and it.get("end") and XURL.search(it.get("url") or ""):
+            u = official.get((it.get("game"), norm_store(it.get("store")), _skey(it), it["end"][:10]))
+            if u:
+                it["x_post"] = it.get("x_post") or it["url"]
+                it["url"] = u
+                fixed += 1
+    if fixed:
+        log(f"重複: 応募先がXのポストだった{fixed}件を、お店の応募ページに差し替え")
     groups = {}
     for k, it in lots.items():
         if it.get("status") not in ACTIVE or not it.get("end"):
@@ -153,6 +173,9 @@ def dedupe(settings=None):
     def merge(keep_k, k):
         nonlocal n
         keep, d = lots[keep_k], lots[k]
+        if XURL.search(keep.get("url") or "") and d.get("url") and not XURL.search(d["url"]):
+            keep["x_post"] = keep.get("x_post") or keep["url"]
+            keep["url"] = d["url"]  # お店の応募ページを優先
         for f in ("area", "conditions", "url", "x_post", "image", "end", "apply_url",
                   "announce", "buy", "start", "method", "address"):  # 残す方の空欄を補う（発表日も：結果ページの「今日発表」に使う）
             if not keep.get(f) and d.get(f):
@@ -256,7 +279,7 @@ def dedupe(settings=None):
             if not same and all(_different_item(lots[k], lots[c]) for c in cc):
                 continue  # 1つのフォームで別々の商品を受け付ける抽選（例：あみあみの「BOX」と「デッキセット」）は別の抽選
             merge(sorted(same or cc, key=lambda c: _rank(lots[c]), reverse=True)[0], k)
-    if n or filled:
+    if n or filled or fixed:
         save_json("lotteries.json", lots)
         log(f"重複: {n}件をまとめました")
     return n
