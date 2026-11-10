@@ -2126,7 +2126,10 @@
     "cls": "2fe784e83769",
     "official_checked": true,
     "page_checked_at": "2026-11-10T12:24:42.007103+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "verified_at": "2026-11-10T12:33:47.459160+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：store・kind・start・end・channel 予約受付（10/22 午前10時から全国のPlayStation取扱店で順次）が主な販売機会で、発売日は12/10だが時刻の記載はない。記事にない『SIE』を店名にし、kindをreleaseとしている。endの23:59も記事にない時刻。販売は"
   },
   "fbd9df90d918417b": {
     "store": "ソニーショップくんこく",
@@ -2250,7 +2253,10 @@
     "page_checked_at": "2026-11-09T17:04:27.615716+09:00",
     "details_checked": true,
     "cls": "643df541174d",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-10T12:33:44.092036+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：kind 公式オンラインストアで一部商品を2026年11月24日11時より取り扱うという販売情報で、store・product・start・end(null)・channelは記事と合っています。ただし記事に「先着」と書かれていないため、kindのfirst_comeは根拠がありません。記事から分かる販"
   },
   "790fc5ca4d56f13f": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -2475,7 +2481,10 @@
     "deadline_note": "画像0/0枚読込・予約受付は11月13日午前10時から",
     "cls": "10e581624cce",
     "page_checked_at": "2026-11-10T11:13:38.757344+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "verified_at": "2026-11-10T12:33:36.220420+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：channel 予約受付は2026年11月13日10時から「全国の取扱店やECサイト」で順次開始と記載されており、受付日時・店舗・商品名・予約受付の種別は記事と一致します。一方、記事は店頭（取扱店）とECの両方を挙げているため、channelを「online」のみとするのは不完全です。記事からは単独の値"
   },
   "521cb5f267233a03": {
     "store": "プレミアムバンダイ",
@@ -2711,11 +2720,11 @@
     "closed_at": "2026-11-10T10:56:35.627085+09:00"
   },
   "fa43301a833a133a": {
-    "store": "BANDAI SPIRITS",
+    "store": "プレミアムバンダイ",
     "product": "HG 1/144 リック・ディアス",
     "series": "リック・ディアス",
-    "kind": "release",
-    "start": null,
+    "kind": "restock",
+    "start": "2026-11-10T11:00:00+09:00",
     "end": null,
     "announce": null,
     "method": null,
@@ -2741,14 +2750,22 @@
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
     "page_checked_at": "2026-11-10T11:13:49.773829+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "verified_at": "2026-11-10T12:33:35.733560+09:00",
+    "before_verify": {
+      "store": "BANDAI SPIRITS",
+      "kind": "release",
+      "start": null
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store・kind・start"
   },
   "7ba03fbf224c94d3": {
-    "store": "BANDAI SPIRITS",
+    "store": "プレミアムバンダイ",
     "product": "HG 1/144 リック・ディアス（クワトロ・バジーナ機）",
     "series": "リック・ディアス（クワトロ・バジーナ機）",
-    "kind": "release",
-    "start": null,
+    "kind": "restock",
+    "start": "2026-11-10T11:00:00+09:00",
     "end": null,
     "announce": null,
     "method": null,
@@ -2774,14 +2791,22 @@
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
     "page_checked_at": "2026-11-10T12:24:46.784575+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "verified_at": "2026-11-10T12:33:35.294062+09:00",
+    "before_verify": {
+      "store": "BANDAI SPIRITS",
+      "kind": "release",
+      "start": null
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store・kind・start"
   },
   "fbdcb7721b595447": {
-    "store": "BANDAI SPIRITS",
+    "store": "プレミアムバンダイ",
     "product": "HGUC 1/144 イフリート",
     "series": "イフリート",
-    "kind": "release",
-    "start": null,
+    "kind": "restock",
+    "start": "2026-11-10T11:00:00+09:00",
     "end": null,
     "announce": null,
     "method": null,
@@ -2807,7 +2832,15 @@
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
     "page_checked_at": "2026-11-10T12:24:49.358034+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "verified_at": "2026-11-10T12:33:34.947454+09:00",
+    "before_verify": {
+      "store": "BANDAI SPIRITS",
+      "kind": "release",
+      "start": null
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store・kind・start"
   },
   "9b923fe088a3ebc2": {
     "store": "プレミアムバンダイ",
@@ -2835,7 +2868,7 @@
     "key": "9b923fe088a3ebc2",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975166+09:00",
-    "cls": "344e5728a3f0",
+    "cls": "472bd4ab103b",
     "page_checked_at": "2026-11-10T12:24:52.735676+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:25:26.404155+09:00",
@@ -2845,7 +2878,10 @@
       "start": null
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：store・kind・start"
+    "verify_note": "記事に合わせて直した：store・kind・start",
+    "deadline_checked_at": "2026-11-10T12:32:59.668029+09:00",
+    "deadline_v": 5,
+    "deadline_note": "応募ページの中身が空"
   },
   "a836031f284f4e91": {
     "store": "プレミアムバンダイ",
@@ -2961,7 +2997,12 @@
     "status": "pending",
     "found_at": "2026-11-10T10:46:36.410941+09:00",
     "cls": "15ccede338c4",
-    "issue": 644
+    "issue": 644,
+    "deadline_checked_at": "2026-11-10T12:32:59.668050+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・本文に締切の記載なし",
+    "page_checked_at": "2026-11-10T12:33:02.427001+09:00",
+    "details_checked": true
   },
   "8ad3383dfc981753": {
     "store": "プレミアムバンダイ",
@@ -2990,7 +3031,12 @@
     "key": "8ad3383dfc981753",
     "status": "pending",
     "cls": "4aab9ce512f7",
-    "issue": 645
+    "issue": 645,
+    "deadline_checked_at": "2026-11-10T12:33:01.112255+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-10T12:33:06.097897+09:00",
+    "details_checked": true
   },
   "d5df261342adb9fe": {
     "store": "プレミアムバンダイ",
@@ -3048,7 +3094,9 @@
     "key": "7e836f51c63fb79c",
     "status": "pending",
     "cls": "04fc25b9d6ec",
-    "issue": 646
+    "issue": 646,
+    "page_checked_at": "2026-11-10T12:33:09.839163+09:00",
+    "details_checked": true
   },
   "d64b0581571fa3f6": {
     "store": "プレミアムバンダイ",
@@ -3077,7 +3125,9 @@
     "key": "d64b0581571fa3f6",
     "status": "pending",
     "cls": "416fab590950",
-    "issue": 647
+    "issue": 647,
+    "page_checked_at": "2026-11-10T12:33:11.100305+09:00",
+    "details_checked": true
   },
   "2f40e7cc6750db3b": {
     "store": "プレミアムバンダイ",
@@ -3088,7 +3138,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文に応募・購入条件の記載はありません。",
     "price": null,
     "round": null,
     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1TQWoydWcxQ1dlN0FtcXRUYWt4ZWdHQlJGTFVob3VpRDh6aTBnWkM3OTdDMGtfdWUyejRHV0FxRk9VTWVlUEVVM0JMVzhpLS1rd1hQbnVLYllIalgyLU5z?oc=5",
@@ -3105,8 +3155,10 @@
     "found_at": "2026-11-10T10:46:36.411140+09:00",
     "key": "2f40e7cc6750db3b",
     "status": "pending",
-    "cls": "6a8d6f51cef2",
-    "issue": 648
+    "cls": "23dcc4b91911",
+    "issue": 648,
+    "page_checked_at": "2026-11-10T12:33:12.553998+09:00",
+    "details_checked": true
   },
   "e03b45485333cd68": {
     "store": "セブンネットショッピング",
@@ -3346,7 +3398,9 @@
     "cls": "4c2a15c92820",
     "verified_at": "2026-11-10T12:25:26.404069+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：store・kind 販売の情報であり、product、start（2026年11月16日17:00の販売開始予定）、end（null）、channel（オンライン販売）は記事と合っています。一方、「一番くじONLINE」という店名は記事に書かれておらず、「オンライン販売」とあるだけです。また、記事には"
+    "verify_note": "記事と合わない：store・kind 販売の情報であり、product、start（2026年11月16日17:00の販売開始予定）、end（null）、channel（オンライン販売）は記事と合っています。一方、「一番くじONLINE」という店名は記事に書かれておらず、「オンライン販売」とあるだけです。また、記事には",
+    "page_checked_at": "2026-11-10T12:33:16.502571+09:00",
+    "details_checked": true
   },
   "f9bf5e6a41d570d7": {
     "store": "BANDAI SPIRITS",
