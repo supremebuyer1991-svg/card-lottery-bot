@@ -10400,9 +10400,12 @@
     "status": "approved",
     "found_at": "2026-11-06T12:59:03.844330+09:00",
     "multi": false,
-    "cls": "6eeb58778608",
+    "cls": "2c588f5b1aad",
     "page_checked_at": "2026-11-11T05:30:46.043883+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789"
+    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
+    "post_checked": true,
+    "details_checked": true,
+    "conditions": "自宅からオンラインで応募できる抽選。ゲオの応募締切は11/12(木)17:59。会員登録、アプリ、本人確認書類、購入上限、代理購入、価格などの条件は書かれていない。"
   },
   "3d8ac22f7d918f5e": {
     "store": "キデイランド",
@@ -20316,7 +20319,7 @@
     "start": "2026-11-08T22:00:00+09:00",
     "multi": true,
     "cls": "814f7019c42c",
-    "page_checked_at": "2026-11-10T13:10:54.704104+09:00",
+    "page_checked_at": "2026-11-11T05:52:31.007362+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "bed5b5503c2df198": {
@@ -20748,7 +20751,7 @@
     "buy": "11/21(土)〜11/23(月)",
     "multi": true,
     "cls": "7aeb6ef95562",
-    "page_checked_at": "2026-11-10T13:10:57.074180+09:00",
+    "page_checked_at": "2026-11-11T05:52:31.178526+09:00",
     "page_err": "中身が空"
   },
   "17a6455a91d995a8": {
@@ -20780,7 +20783,7 @@
     "buy": "11/21(土)〜11/23(月)",
     "multi": true,
     "cls": "da7af4dd8c54",
-    "page_checked_at": "2026-11-10T13:10:57.074197+09:00",
+    "page_checked_at": "2026-11-11T05:52:31.178540+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://ryuunoshippo.membercard.jp/lottery"
   },
   "ba24ccd65ca43346": {
@@ -21201,7 +21204,7 @@
     "found_at": "2026-11-09T11:04:51.894516+09:00",
     "multi": false,
     "cls": "9b9e2c97238d",
-    "page_checked_at": "2026-11-10T15:54:04.861490+09:00",
+    "page_checked_at": "2026-11-11T05:52:31.368029+09:00",
     "page_err": "中身が空"
   },
   "312dde436633fb77": {
@@ -21256,7 +21259,9 @@
     "status": "approved",
     "found_at": "2026-11-09T11:04:51.894538+09:00",
     "multi": false,
-    "cls": "bfb4fef99fa5"
+    "cls": "bfb4fef99fa5",
+    "page_checked_at": "2026-11-11T05:52:33.518676+09:00",
+    "page_err": "中身が空"
   },
   "919f4e6334dcc5cd": {
     "store": "トレカエースイオンタウン水戸南店",
@@ -21931,7 +21936,7 @@
     "key": "a7fbd415a41d3d8e",
     "status": "approved",
     "found_at": "2026-11-09T11:48:13.297036+09:00",
-    "page_checked_at": "2026-11-10T10:51:25.941709+09:00",
+    "page_checked_at": "2026-11-11T05:52:35.587541+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -22353,7 +22358,7 @@
     "key": "a1276933aa0242f3",
     "status": "approved",
     "found_at": "2026-11-09T12:31:36.390633+09:00",
-    "page_checked_at": "2026-11-10T10:51:28.139140+09:00",
+    "page_checked_at": "2026-11-11T05:52:37.672485+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true,
@@ -22916,7 +22921,7 @@
     "key": "4e812d4c4e154d5b",
     "status": "approved",
     "found_at": "2026-11-09T12:31:36.391200+09:00",
-    "page_checked_at": "2026-11-10T10:51:32.412595+09:00",
+    "page_checked_at": "2026-11-11T05:52:39.829926+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "83ba15e48372",
@@ -22974,7 +22979,7 @@
     "key": "a02485bbaded814b",
     "status": "approved",
     "found_at": "2026-11-09T12:43:53.282510+09:00",
-    "page_checked_at": "2026-11-10T10:51:34.473597+09:00",
+    "page_checked_at": "2026-11-11T05:52:41.934026+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "4fa0b40331b8",
@@ -23287,7 +23292,7 @@
     "key": "75573a14fd3e0ddf",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397256+09:00",
-    "page_checked_at": "2026-11-10T10:51:40.042249+09:00",
+    "page_checked_at": "2026-11-11T05:52:44.091964+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d1957045dffe"
@@ -23317,7 +23322,7 @@
     "key": "e112676cc7b78db4",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397285+09:00",
-    "page_checked_at": "2026-11-10T10:51:42.131429+09:00",
+    "page_checked_at": "2026-11-11T05:52:46.285163+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "91c83357101b"
@@ -23347,7 +23352,7 @@
     "key": "23ebcab982792689",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397315+09:00",
-    "page_checked_at": "2026-11-10T10:51:44.166339+09:00",
+    "page_checked_at": "2026-11-11T05:52:48.370072+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "c3d2ac842ab8"
@@ -23377,7 +23382,7 @@
     "key": "b5c924e04453a972",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397345+09:00",
-    "page_checked_at": "2026-11-10T10:51:46.225611+09:00",
+    "page_checked_at": "2026-11-11T05:52:50.459548+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "912bd158b93e"
@@ -23407,7 +23412,7 @@
     "key": "c07c2d765dbd68ad",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397378+09:00",
-    "page_checked_at": "2026-11-10T10:51:48.406564+09:00",
+    "page_checked_at": "2026-11-11T05:52:52.677373+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "1386bca6664e"
@@ -23464,7 +23469,7 @@
     "key": "7706d94a458fb9cb",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397441+09:00",
-    "page_checked_at": "2026-11-10T10:51:50.441952+09:00",
+    "page_checked_at": "2026-11-11T05:52:54.720032+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d4d5dcb244af"
@@ -23635,7 +23640,7 @@
     "key": "84b704119d0928a2",
     "status": "approved",
     "found_at": "2026-11-09T13:43:22.995472+09:00",
-    "page_checked_at": "2026-11-10T10:51:52.476111+09:00",
+    "page_checked_at": "2026-11-11T05:52:56.763855+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "153ba2b37cc8"
@@ -23665,7 +23670,7 @@
     "key": "b11cfd641feb04e6",
     "status": "approved",
     "found_at": "2026-11-09T13:43:22.995510+09:00",
-    "page_checked_at": "2026-11-10T10:51:54.511884+09:00",
+    "page_checked_at": "2026-11-11T05:52:58.945005+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "dcbcb8fef922",
@@ -23696,7 +23701,7 @@
     "key": "43207e936bf47ec3",
     "status": "approved",
     "found_at": "2026-11-09T13:43:22.995535+09:00",
-    "page_checked_at": "2026-11-10T10:51:56.605699+09:00",
+    "page_checked_at": "2026-11-11T05:53:00.985947+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "3eb899910817"
@@ -23726,7 +23731,7 @@
     "key": "fc59a58b36f563ce",
     "status": "approved",
     "found_at": "2026-11-09T13:43:22.995556+09:00",
-    "page_checked_at": "2026-11-10T10:51:56.605714+09:00",
+    "page_checked_at": "2026-11-11T05:53:00.985962+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "b4fd2db6bad2"
@@ -23897,7 +23902,7 @@
     "key": "e76571e0dc254a08",
     "status": "approved",
     "found_at": "2026-11-09T13:43:23.773122+09:00",
-    "page_checked_at": "2026-11-10T10:51:58.667316+09:00",
+    "page_checked_at": "2026-11-11T05:53:03.130598+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d28cd0bc0e49"
