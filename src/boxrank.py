@@ -150,6 +150,59 @@ class Ctx:
         V.draw_ticker(im, self.strip, t + self.t0)
 
 
+class Cover:
+    """いちばん最初の0.5秒＝TikTok・ショートの表紙（サムネ）になる1枚（11/10）
+    ・大きな文字で「何のランキングか」と「1位の上がり幅（名前は伏せる）」
+    ・2〜4位の箱の写真を並べ、1位はぼかして「？」"""
+    transition = "cut"
+
+    def __init__(self, c):
+        self.c, self.dur = c, 0.5
+        self.events = []
+        th = c.th
+        im, _ = V.canvas(th)
+        W, H = V.VW, V.VH
+        d = ImageDraw.Draw(im)
+        # 上半分を色の帯にして目立たせる
+        d.rectangle((0, 0, W, 760), fill=c.col)
+        d.polygon([(0, 760), (W, 700), (W, 760)], fill=th.paper)
+        put(im, text_layer(c.gname, FD(170 if c.game == "pokemon" else 120), (255, 255, 255)), W / 2, 230)
+        put(im, text_layer(f"{c.sj}のBOX相場", FB(110), (255, 255, 255)), W / 2, 420)
+        put(im, text_layer(f"{c.word}TOP{len(c.rows)}", FD(150), (255, 236, 120)), W / 2, 590)
+        # 1位（ぼかし＋？）
+        pct = c.rows[0][0]
+        ph = c.photo(c.rows[0][4], 520)
+        card, cd = layer(560, 560)
+        cd.rounded_rectangle((0, 0, 559, 559), 34, fill=th.card + (255,), outline=c.col + (255,), width=10)
+        if ph:
+            card.alpha_composite(ph, (20, 20))
+        card = V.blur(card, 18)
+        cd = ImageDraw.Draw(card)
+        cd.text((280, 270), "？", font=FD(300), fill=c.col + (255,), anchor="mm")
+        put(im, card, W / 2 - 150, 1110)
+        sign = "+" if pct > 0 else "−"
+        badge = band_layer(f"1位 {sign}{abs(pct):.1f}%", 78, c.col)
+        put(im, badge, W / 2 - 150, 1440)
+        # 2〜4位の写真
+        for i, row in enumerate(c.rows[1:4]):
+            p2 = c.photo(row[4], 230)
+            t, td = layer(250, 250)
+            td.rounded_rectangle((0, 0, 249, 249), 22, fill=th.card + (255,), outline=th.rule + (255,), width=4)
+            if p2:
+                t.alpha_composite(p2, (10, 10))
+            td = ImageDraw.Draw(t)
+            td.ellipse((6, 6, 76, 76), fill=c.col + (255,))
+            td.text((41, 41), str(i + 2), font=FD(48), fill=(255, 255, 255, 255), anchor="mm")
+            put(im, t, W - 200, 900 + i * 270)
+        td_ = c.today
+        put(im, text_layer(f"{td_.month}/{td_.day}時点・スニダンの取引", FB(42, "Bold"), th.pink2), W / 2, 1660)
+        put(im, text_layer("トレカ抽選ナビ", FD(60), th.pink), W / 2, 1780)
+        self.im = im
+
+    def frame(self, t):
+        return self.im.copy()
+
+
 class Hook:
     """最初の1.8秒：1位をぼかしてチラ見せ"""
     transition = "fade"
@@ -391,7 +444,7 @@ def make(out_dir, kind, span, game, rows, today=None, theme="dark", all_rows=Non
     out_dir.mkdir(parents=True, exist_ok=True)
     th = V.theme(theme, game)
     c = Ctx(th, kind, span, game, rows, all_rows or rows, _rk(), today)
-    sc = ([Hook(c)] if hook else []) + [Intro(c)] + [BoxPage(c, r) for r in range(len(rows) - 1, -1, -1)] + [Summary(c), Outro(c)]
+    sc = [Cover(c)] + ([Hook(c)] if hook else []) + [Intro(c)] + [BoxPage(c, r) for r in range(len(rows) - 1, -1, -1)] + [Summary(c), Outro(c)]
     t0 = 0.0
     for s_ in sc:  # 電光掲示板は動画全体で流れ続ける
         s_.c.t0 = t0
