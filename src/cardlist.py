@@ -76,6 +76,10 @@ def photos(settings, lists, budget=25):
             try:
                 data[k] = _photo(settings, r)
                 got += bool(data[k].get("image"))
+                if not data[k].get("image"):  # 楽天にカードだけの写真がないときは TCGplayer（日本版）の写真を控えておく
+                    t = tcg_find(r.get("no") or "")
+                    if t:
+                        data[k]["tcg"] = t
             except Exception as e:
                 log(f"収録カード（楽天の写真）: {r['n']} 失敗 {e}")
                 if "401" in str(e) or "403" in str(e):
@@ -116,6 +120,42 @@ def _photo(settings, r):
     return {"image": "", "url": rakuten.search_link(q, aff), "search": True, "fetched": day}
 
 
+_TCG = {}
+
+
+def tcg_find(no):
+    """「M6 080/076」→ TCGplayer の日本版ポケカ（tcgcsv.com のカテゴリ85）の同じ弾・同じ番号の商品 {id, img, url}
+    ・弾は TCGplayer の略号（m6・M5・m6a など）と型番の頭（M6 など）が同じもの。番号は「080/076」がぴったり同じもの"""
+    m = re.match(r"([A-Za-z0-9]+)\s+(\d{3}/\d{3})", no or "")
+    if not m:
+        return None
+    code, num = m[1].lower(), m[2]
+    if "groups" not in _TCG:
+        _TCG["groups"] = {g.get("abbreviation", "").lower(): g["groupId"]
+                          for g in requests.get("https://tcgcsv.com/tcgplayer/85/groups", timeout=30).json().get("results", [])}
+    gid = _TCG["groups"].get(code)
+    if not gid:
+        return None
+    if gid not in _TCG:
+        idx = {}
+        for p in requests.get(f"https://tcgcsv.com/tcgplayer/85/{gid}/products", timeout=30).json().get("results", []):
+            n_ = next((e["value"] for e in p.get("extendedData") or [] if e.get("name") == "Number"), "")
+            if n_ and p.get("imageUrl"):
+                idx.setdefault(n_, []).append(p)
+        _TCG[gid] = idx
+    ps = _TCG[gid].get(num) or []
+    if len(ps) != 1:  # 同じ番号で何種類もある（ミラー違いなど）ときは使わない
+        return None
+    p = ps[0]
+    return {"id": p["productId"], "img": p["imageUrl"], "url": p.get("url") or f"https://www.tcgplayer.com/product/{p['productId']}"}
+
+
+def _tcg_on():
+    from common import load_settings
+    st = load_settings()
+    return bool(st.get("tcgplayer_photos")), (st.get("tcgplayer_aff") or "").strip()
+
+
 def _cut(d0, days):
     return (datetime.fromisoformat(d0) - timedelta(days=days)).date().isoformat()
 
@@ -147,11 +187,20 @@ def html(game, series, esc):
         return f'<span class="{cls}">{"+" if v > 0 else ""}{v:.0f}%</span>'
     last = max(r["d"] for r in rows)
     ph = load_json("card_photos.json", {})
+    tcg_on, tcg_aff = _tcg_on()
+    used_tcg = []
     def img(r):
         x = ph.get(str(r["id"])) or {}
-        if x.get("image") and x.get("url"):
+        alt = f'{esc(r["n"])} {esc(r["r"])} {esc(r.get("no") or "")}'
+        if x.get("image") and x.get("url"):  # 1. 楽天のカードだけの写真
             return (f'<a href="{esc(x["url"])}" target="_blank" rel="nofollow sponsored noopener">'
-                    f'<img src="{esc(x["image"])}" alt="{esc(r["n"])} {esc(r["r"])} {esc(r.get("no") or "")}" loading="lazy" width="48" height="48"></a>')
+                    f'<img src="{esc(x["image"])}" alt="{alt}" loading="lazy" width="48" height="48"></a>')
+        t = x.get("tcg")
+        if tcg_on and t and tcg_aff:  # 2. なければ TCGplayer（アフィリエイトの承認後に settings の tcgplayer_photos を true に）
+            used_tcg.append(1)
+            href = tcg_aff.replace("{url}", __import__("urllib.parse").parse.quote(t["url"], safe=""))
+            return (f'<a href="{esc(href)}" target="_blank" rel="nofollow sponsored noopener">'
+                    f'<img src="{esc(t["img"])}" alt="{alt}" loading="lazy" width="48" height="48"></a>')
         return '<span class="noimg" aria-hidden="true"></span>'
     def rk(r):
         x = ph.get(str(r["id"])) or {}
@@ -172,4 +221,4 @@ def html(game, series, esc):
             f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「メルカリで探す」「楽天で見る」でそのカードの出品・商品を開きます。</p>'
             f'<div class="tbl"><table><thead><tr><th></th><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th>買う</th></tr></thead><tbody>{trs}</tbody></table></div>'
             + (f'<button type="button" class="cmore" onclick="this.closest(\'.scards\').classList.add(\'open\')">残り{len(rows) - SHOW}枚もすべて見る ▼</button>' if len(rows) > SHOW else '') +
-            f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。' + ('写真は楽天市場の商品の写真です。' if has_ph else '') + 'メルカリ・楽天市場へのリンクは広告（PR）です。</p></section>')
+            f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。' + ('写真は楽天市場' + ('・TCGplayer' if used_tcg else '') + 'の商品の写真です。' if has_ph or used_tcg else '') + 'メルカリ・楽天市場' + ('・TCGplayer' if used_tcg else '') + 'へのリンクは広告（PR）です。</p></section>')

@@ -487,3 +487,7 @@ card_sets:
   - {key: "pokemon|ストームエメラルダ", q: "「ストームエメラルダ」", rar: [RR, AR, SR, SAR, UR, MUR]}
   - {key: "pokemon|アビスアイ", q: "「アビスアイ」", rar: [RR, AR, SR, SAR, UR, MUR]}
   - {key: "pokemon|MEGAドリームex", q: "「MEGAドリームex」", rar: [RR, AR, SR, SAR, UR, MUR]}
+# 11/11：収録カードの写真。楽天にカードだけの写真がないカードは TCGplayer（日本版）の写真で補う
+# TCGplayer のアフィリエイト（Impact）の承認が下りて、写真を使ってよいと確かめてから true にする
+tcgplayer_photos: false
+tcgplayer_aff: ""  # Impact のリンクの形（{url} のところに商品ページのURLが入る）
