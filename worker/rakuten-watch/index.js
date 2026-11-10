@@ -149,6 +149,28 @@ async function amzSearch(env, kw) {
   if (!r.ok) throw new Error(`Amazon ${r.status} ${(await r.text()).slice(0, 160)}`);
   return (await r.json()).searchResult?.items || [];
 }
+// 11/11：弾ページの JANコード用。Amazon の商品情報（externalIds の EAN＝JAN）を返す。結果は7日間 KV に置く
+async function janLookup(env, q) {
+  q = String(q || "").slice(0, 80).trim();
+  if (q.length < 4) return { error: "q" };
+  const key = "jan:" + q;
+  const c = await env.STATE.get(key, "json");
+  if (c) return c;
+  const r = await fetch("https://creatorsapi.amazon/catalog/v1/searchItems", { method: "POST",
+    headers: { Authorization: `Bearer ${await amzToken(env)}`, "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp" },
+    body: JSON.stringify({ keywords: q, searchIndex: "All", marketplace: "www.amazon.co.jp", partnerTag: AMZ_TAG, itemCount: 10,
+      resources: ["itemInfo.title", "itemInfo.externalIds", "itemInfo.byLineInfo"] }) });
+  if (!r.ok) return { error: `Amazon ${r.status}` };
+  const items = ((await r.json()).searchResult?.items || []).map((it) => {
+    const ids = JSON.stringify(it.itemInfo?.externalIds || {});
+    return { asin: it.asin, title: it.itemInfo?.title?.displayValue || "", brand: it.itemInfo?.byLineInfo?.brand?.displayValue || it.itemInfo?.byLineInfo?.manufacturer?.displayValue || "",
+      jan: [...new Set(ids.match(/\b4[59]\d{11}\b/g) || [])] };
+  });
+  const out = { q, at: new Date().toISOString(), items };
+  await env.STATE.put(key, JSON.stringify(out), { expirationTtl: 7 * 86400 });
+  return out;
+}
+
 function amzState(it) {
   const l = (it.offersV2?.listings || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
   if (!l) return { s: "none" };
@@ -306,6 +328,9 @@ export default {
       const rk = Object.entries(st.items || {}).filter(([, v]) => v === 1).map(([k]) => ({ ...(st.info || {})[k], a: "buy" })).filter((x) => x.n);
       const am = Object.entries(az.items || {}).filter(([, v]) => v === "buy" || v === "invite").map(([k, v]) => ({ ...(az.info || {})[k], a: v })).filter((x) => x.n);
       return Response.json({ at: st.last?.at, amz_at: az.last?.at, rakuten: rk, amazon: am }, { headers: { "Cache-Control": "max-age=60" } });
+    }
+    if (u.pathname === "/jan") {
+      try { return Response.json(await janLookup(env, u.searchParams.get("q"))); } catch (e) { return Response.json({ error: String(e).slice(0, 120) }); }
     }
     if (u.pathname === "/xqueue") return Response.json(await xqueueStatus(env));
     if (u.pathname === "/newsets") return Response.json(await newsetsStatus(env));
