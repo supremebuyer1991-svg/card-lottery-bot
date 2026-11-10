@@ -118,6 +118,8 @@ def candidates(lots, seen, t):
     for key, it in sorted(lots.items(), key=lambda kv: kv[1].get("end") or "9999"):
         if key in seen or it.get("status") not in ("approved", "listed", "posted"):
             continue
+        if it.get("verified") is not True:   # 元の記事で確かめたものだけ速報する（11/10 精度上げて）
+            continue
         if it.get("kind") not in SPEED_KINDS:
             continue
         en, st = parse_dt(it.get("end")), parse_dt(it.get("start"))

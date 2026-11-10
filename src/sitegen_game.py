@@ -36,6 +36,15 @@ STAT_NAV = (("open", "受付中"), ("upcoming", "予告"), ("waiting", "結果�
 BELL_SVG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
             '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>')
 ACTIVE = ("approved", "posted", "listed")
+VERIFY_FROM = "2026-11-10T12:00"   # この時刻より後に見つけたものは、元の記事で確かめてから出す（11/10 精度上げて）
+
+
+def shown_ok(i):
+    if i.get("verified") is False:
+        return False
+    if i.get("verified") is None and not i.get("manual") and (i.get("found_at") or "") > VERIFY_FROM:
+        return False
+    return True
 # 終了したものも「終了」タブと結果待ちのために少しのあいだ残す
 KEEP_ENDED_DAYS = 7
 FIELDS = ("key", "game", "store", "product", "series", "start", "end", "announce", "buy", "conditions", "tags", "url",
@@ -373,7 +382,8 @@ def _write_x_queue(out, items, site, t=None):
     from datetime import timedelta as _td
     t = t or now()
     q = []
-    pk = [i for i in items if i.get("game") in ("pokemon", "onepiece") and i.get("ph") != "ended" and i.get("lpath")]
+    pk = [i for i in items if i.get("game") in ("pokemon", "onepiece") and i.get("ph") != "ended" and i.get("lpath")
+          and i.get("verified") is True]   # 元の記事で確かめたものだけ予約投稿する
     fresh = sorted([i for i in pk if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) > t - _td(hours=12)],
                    key=lambda i: i.get("end") or "9999")[:6]
     for i in fresh:
@@ -494,7 +504,10 @@ def build(settings=None, out_dir=None, force=False):
             continue
         if i.get("game") not in cat_by:
             continue
+        if not shown_ok(i):
+            continue   # 元の記事と合わなかった・まだ確かめていない新着（game_verify）はサイトに出さない
         row = {k: i.get(k) for k in FIELDS}
+        row["verified"] = i.get("verified")
         row["kind"] = row.get("kind") or "lottery"
         row["lpath"] = detail.lottery_path(i)
         try:

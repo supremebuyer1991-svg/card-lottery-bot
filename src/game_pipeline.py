@@ -187,6 +187,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             save_json("lotteries.json", lots)   # 差し替え・まとめの両方を残す
         except Exception as e:
             log(f"公式リンク探し: スキップ {e}")
+        if fetcher is None:
+            try:  # 載せる前に、読み取った内容（お店・商品・種類・日時・通販/店頭）が元の記事と合っているかAIでもう一度確かめる
+                import game_verify
+                game_verify.verify(s)
+            except Exception as e:
+                log(f"内容の確認: スキップ {e}")
         try:  # 楽天ブックスの商品ページ・写真（鍵が無ければ何もしない。1回15回まで・同じ商品は24時間に1回）
             import game_affi
             lots = load_json("lotteries.json", {})

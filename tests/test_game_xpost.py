@@ -15,7 +15,7 @@ common.now = lambda: T
 def w(name, d): (tmp / name).write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
 def r(name): return json.loads((tmp / name).read_text(encoding="utf-8"))
 def it(p, **k):
-    d = dict(status="listed", kind="lottery", game="ps5", store="ヨドバシ", product=p, end="2026-11-10T09:00+09:00", found_at=(T - dt.timedelta(hours=1)).isoformat())
+    d = dict(status="listed", verified=True, kind="lottery", game="ps5", store="ヨドバシ", product=p, end="2026-11-10T09:00+09:00", found_at=(T - dt.timedelta(hours=1)).isoformat())
     d.update(k); return d
 S = {"x_speed_post": True, "x_speed_per_day": 2, "x_speed_gap_min": 20, "dry_run": False}
 sent = []
