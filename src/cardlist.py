@@ -11,6 +11,7 @@ import requests
 
 from common import load_json, save_json, log, now
 
+MERCARI_AFID = "1350793153"
 URL = "https://rakuten-watch.supreme-buyer-1991.workers.dev/cards"
 RANK = {"MUR": 0, "UR": 1, "FUR": 1, "SAR": 2, "SR": 3, "AR": 4, "CHR": 5, "RR": 6}
 
@@ -57,7 +58,8 @@ def mercari(r):
     import urllib.parse
     no = (re.search(r"[A-Z]*\d+/\d+|[A-Z]{2,4}\d{0,2}-\d{3}", r.get("no") or "") or [None])[0] or ""
     q = f"{r['n']} {no}".strip()
-    return "https://jp.mercari.com/search?status=on_sale&amp;keyword=" + urllib.parse.quote(q, safe="")
+    # 11/11：メルカリアンバサダーのID（afid）。リンクから24時間以内に買われると販売価格の2%がメルカリポイントで入る
+    return "https://jp.mercari.com/search?status=on_sale&amp;keyword=" + urllib.parse.quote(q, safe="") + "&amp;afid=" + MERCARI_AFID
 
 
 def rows_of(game, series):
