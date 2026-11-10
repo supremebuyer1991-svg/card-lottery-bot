@@ -3574,9 +3574,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         print("x-queue.json を書けませんでした", e)
     try:  # 11/11：Worker が収録カードの相場を集める弾の一覧
         (out / "data").mkdir(exist_ok=True)
-        (out / "data" / "card-sets.json").write_text(json.dumps(
-            [{"key": c["key"], "q": c["q"], "rar": c.get("rar") or ["RR", "AR", "SR", "SAR", "UR"]} for c in (s.get("card_sets") or [])],
-            ensure_ascii=False), encoding="utf-8")
+        (out / "data" / "card-sets.json").write_text(json.dumps(card_sets(s), ensure_ascii=False), encoding="utf-8")
     except Exception as e:
         print("card-sets.json を書けませんでした", e)
     (out / "404.html").write_text(
@@ -3954,6 +3952,32 @@ def inject_pwa(out):
         p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
+
+
+CARD_RAR = {  # 11/11：弾ごとに「収録カードの相場」を集めるレアリティ（スニダンの書き方）
+    "pokemon": ["RR", "RRR", "AR", "SR", "SAR", "UR", "HR", "MUR", "CHR", "CSR", "SSR", "S"],
+    "onepiece": ["L", "SR", "SEC", "L-P", "SR-P", "SEC-P", "SP"],
+}
+CARD_SKIP = re.compile(r"デッキ|スターター|カードセット|セットMEGA|プロモ|サプライ|ジャンボ")
+
+
+def card_sets(s):
+    """Worker が収録カードの相場を集める弾の一覧（新しい弾から）。settings の card_sets（手書き）が優先、ほかは弾ページのある弾すべて"""
+    import jan as _jan
+    info = _ser_cfg()["info"]
+    out, seen = [], set()
+    for c in (s.get("card_sets") or []):
+        out.append({"key": c["key"], "q": c["q"], "rar": c.get("rar") or CARD_RAR[c["key"].split("|")[0]]})
+        seen.add(c["key"])
+    auto = []
+    for g, names in _jan.series_names(sys.modules[__name__]).items():
+        for x in names:
+            k = f"{g}|{x}"
+            if k in seen or CARD_SKIP.search(x):
+                continue
+            auto.append((str((info.get(g) or {}).get(x, {}).get("release") or ""), {"key": k, "q": f"「{x}」", "rar": CARD_RAR[g]}))
+    auto.sort(key=lambda t: t[0], reverse=True)
+    return out + [c for _, c in auto]
 
 
 def inject_meta(out, name, value):

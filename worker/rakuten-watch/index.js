@@ -341,8 +341,8 @@ export default {
       }
       return Response.json(out);
     }
-    if (u.pathname === "/cards") return Response.json(await cardsData(env), { headers: { "Cache-Control": "max-age=300" } });
-    if (u.pathname === "/cards/status") { const d = await cardsData(env); return Response.json({ last: d.last, sets: Object.fromEntries(Object.entries(d.sets || {}).map(([k, v]) => [k, { cards: Object.keys(v.cards || {}).length, priced: Object.values(v.cards || {}).filter((c) => c.at).length }])) }); }
+    if (u.pathname === "/cards") return Response.json(await cardsData(env, u.searchParams.get("set")), { headers: { "Cache-Control": "max-age=300" } });  // ?set=キー でその弾、なしで目次
+    if (u.pathname === "/cards/status") { const d = await cardsData(env); const v = Object.values(d.sets || {}); return Response.json({ last: d.last, total: { sets: v.length, found: v.filter((x) => x.n).length, cards: v.reduce((a, x) => a + (x.n || 0), 0), priced: v.reduce((a, x) => a + (x.priced || 0), 0) }, sets: d.sets }); }
     if (u.pathname === "/jan") {
       try { return Response.json(await janLookup(env, u.searchParams.get("q"))); } catch (e) { return Response.json({ error: String(e).slice(0, 120) }); }
     }

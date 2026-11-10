@@ -14,7 +14,8 @@ from common import load_json, save_json, log, now
 MERCARI_AFID = "1350793153"
 URL = "https://rakuten-watch.supreme-buyer-1991.workers.dev/cards"
 SHOW = 15  # 最初に見せる枚数（残りは「すべて見る」で開く）
-RANK = {"MUR": 0, "UR": 1, "FUR": 1, "SAR": 2, "SR": 3, "AR": 4, "CHR": 5, "RR": 6}
+RANK = {"MUR": 0, "UR": 1, "FUR": 1, "HR": 1, "SAR": 2, "CSR": 2, "SSR": 2, "SR": 3, "AR": 4, "CHR": 5, "S": 5, "RRR": 6, "RR": 6,
+        "SEC-P": 0, "SEC": 1, "SR-P": 2, "L-P": 2, "SP": 2, "SR": 3, "L": 4}
 
 
 def _ago(pts, d0, days):
@@ -27,13 +28,20 @@ def _ago(pts, d0, days):
 
 
 def update(settings=None):
-    try:
-        j = requests.get(URL, timeout=30).json()
+    try:  # 11/11：Worker は弾ごとに分けて持つ。目次（/cards）を読んで、カードのある弾だけ /cards?set=キー で読む
+        idx = requests.get(URL, timeout=30).json()
     except Exception as e:
         log(f"収録カード: 読めなかった {e}")
         return
     out = {}
-    for key, s in (j.get("sets") or {}).items():
+    for key, ix in (idx.get("sets") or {}).items():
+        if not ix.get("priced"):
+            continue
+        try:
+            s = requests.get(URL, params={"set": key}, timeout=30).json()
+        except Exception as e:
+            log(f"収録カード: {key} 読めなかった {e}")
+            continue
         rows = []
         for c in (s.get("cards") or {}).values():
             pts = sorted((c.get("h") or {}).items())
@@ -218,7 +226,7 @@ def html(game, series, esc):
     md = f"{int(last[5:7])}/{int(last[8:10])}"
     return (f'<section class="sinfo scards" aria-label="収録カードの相場"><h2>{esc(series)}の収録カードの相場（{"・".join(esc(x) for x in rars)}）</h2>'
             f'<p class="note">スニダンの取引の値段（未鑑定・状態Aの1枚、{md}時点の最新の取引日の平均）。高い順。「取引少」は30日の取引が少なく、値段がぶれやすいカードです。'
-            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「メルカリで探す」「楽天で見る」でそのカードの出品・商品を開きます。</p>'
+            f'{"型番は「弾のマーク 番号/収録数」です。" if game == "pokemon" else ""}名前を押すとスニダンの商品ページ、「メルカリで探す」「楽天で見る」でそのカードの出品・商品を開きます。</p>'
             f'<div class="tbl"><table><thead><tr><th></th><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th>買う</th></tr></thead><tbody>{trs}</tbody></table></div>'
             + (f'<button type="button" class="cmore" onclick="this.closest(\'.scards\').classList.add(\'open\')">残り{len(rows) - SHOW}枚もすべて見る ▼</button>' if len(rows) > SHOW else '') +
             f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。' + ('写真は楽天市場' + ('・TCGplayer' if used_tcg else '') + 'の商品の写真です。' if has_ph or used_tcg else '') + 'メルカリ・楽天市場' + ('・TCGplayer' if used_tcg else '') + 'へのリンクは広告（PR）です。</p></section>')
