@@ -23487,7 +23487,9 @@
       "game": "onepiece",
       "store": "トレーディングカードショップ アイランド",
       "product": "ONE PIECEカードゲーム ONE PIECE HEROINES PRECIOUS BOX",
+      "start": "2026-11-02T16:00:00+09:00",
       "end": "2026-11-11T23:59:00+09:00",
+      "announce": "2026-11-16",
       "method": "オンライン",
       "conditions": "会員・レシート・本人確認",
       "tags": [
@@ -50471,6 +50473,394 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
       "spath": "store/shop-4e060/",
       "found_at": "2026-11-10T15:53:17.223855+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/2b6ab4d782/": {
+    "d": {
+      "key": "2b6ab4d782bc279e",
+      "game": "pokemon",
+      "store": "オレタン",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-10T20:00:00+09:00",
+      "end": "2026-11-22T23:59:00+09:00",
+      "announce": "11月24日(火)予定",
+      "buy": "11/27(金)〜11/29(日)",
+      "method": "WEB抽選受付（当選者には店頭販売）",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://oretan.membercard.jp/lottery?search_store_id=118",
+      "channel": "store",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/oretan-a5033/",
+      "found_at": "2026-11-10T21:42:33.629619+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/b53c658c96/": {
+    "d": {
+      "key": "b53c658c961efe55",
+      "game": "pokemon",
+      "store": "カードスタジアム小禄店（沖縄）",
+      "product": "【再販】ポケモンカードゲーム「30th CELEBRATION」1BOX（7,200円税込・購入権抽選）",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-11T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/kx4r0",
+      "channel": "store",
+      "area": "沖縄県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/kadosutajiamu-188c0/",
+      "found_at": "2026-11-10T21:42:34.311678+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/7101de10c7/": {
+    "d": {
+      "key": "7101de10c78c19a9",
+      "game": "pokemon",
+      "store": "あそビバ平塚四之宮店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（当選者は1BOX購入可）",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-12T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/BO_Shinomiya/status/2120049586723328511",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/asobiba-0ee98/",
+      "found_at": "2026-11-10T21:42:34.311710+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/28dc5b9a9f/": {
+    "d": {
+      "key": "28dc5b9a9f2e6680",
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 北千住",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」BOX（10名様に定価販売）",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-23T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/TSUTAYA_Card_ks/status/2120047906409578568",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/tsutaya-02cfc/",
+      "found_at": "2026-11-10T21:42:34.311729+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/39f2a2722e/": {
+    "d": {
+      "key": "39f2a2722eebadec",
+      "game": "pokemon",
+      "store": "TENDO八文字屋",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（購入権抽選・定価販売）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T20:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/TENDO38678704/status/2120063719422242994",
+      "channel": "store",
+      "area": "山形県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tendo-05432/",
+      "found_at": "2026-11-10T21:42:34.311744+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/8957174e56/": {
+    "d": {
+      "key": "8957174e56ef2b72",
+      "game": "onepiece",
+      "store": "あそビバ平塚四之宮店",
+      "product": "ONE PIECEカードゲーム ブースターパック「世界最強の戦士」【OP-17】（当選者は1BOX購入可）",
+      "series": "世界最強の戦士",
+      "end": "2026-11-12T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/BO_Shinomiya/status/2120048993002831875",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
+      "spath": "store/asobiba-0ee98/",
+      "found_at": "2026-11-10T21:42:35.011917+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/249ff8f61e/": {
+    "d": {
+      "key": "249ff8f61e3dea39",
+      "game": "onepiece",
+      "store": "あそビバ平塚四之宮店",
+      "product": "ONE PIECEカードゲーム ブースターパック「受け継がれる意志」（当選者は1BOX購入可）",
+      "series": "受け継がれる意志",
+      "end": "2026-11-12T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/BO_Shinomiya/status/2120042938122350651",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/misc/4582769865213.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F",
+      "spath": "store/asobiba-0ee98/",
+      "found_at": "2026-11-10T21:42:35.011939+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/093ed692d5/": {
+    "d": {
+      "key": "093ed692d5386e36",
+      "game": "onepiece",
+      "store": "TENDO八文字屋",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」1BOX（購入権抽選・定価販売）",
+      "series": "神の支配",
+      "end": "2026-11-15T20:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/TENDO38678704/status/2120063827060687023",
+      "channel": "store",
+      "area": "山形県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tendo-05432/",
+      "found_at": "2026-11-10T21:42:35.011952+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/5c2246544c/": {
+    "d": {
+      "key": "5c2246544c688dd1",
+      "game": "onepiece",
+      "store": "ときわ書房ニューコースト新浦安店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」1BOX（購入権抽選）",
+      "series": "神の支配",
+      "end": "2026-11-15T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://shoplottery.e-starbox.com/lottery/entry?code=tcVDZMxNwi",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/tokiwa-nyukosuto-5e95e/",
+      "found_at": "2026-11-10T21:42:35.011985+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/56f137c149/": {
+    "d": {
+      "key": "56f137c14971588c",
+      "game": "onepiece",
+      "store": "CARDMASTER D.C.（カードマスターDC）",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】",
+      "series": "神の支配",
+      "end": "2026-11-17T21:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・レシート・本人確認",
+      "tags": [
+        "会員",
+        "レシート",
+        "本人確認"
+      ],
+      "url": "https://x.com/Cardmaster_DC/status/2120042352924590452",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/laffeystore/cabinet/13661047/imgrc0119766592.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
+      "spath": "store/cardmasterd-c-08e17/",
+      "found_at": "2026-11-10T21:42:35.011999+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/e585742133/": {
+    "d": {
+      "key": "e585742133d681df",
+      "game": "onepiece",
+      "store": "ブックオフスーパーバザー カインズモール名古屋みなと店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】（当選者は1BOXまで）",
+      "series": "神の支配",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/bookoff_minato/status/2120038750034284781",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/laffeystore/cabinet/13661047/imgrc0119766592.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
+      "spath": "store/bookoff-c8679/",
+      "found_at": "2026-11-10T21:42:35.012012+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/d0decb8b9f/": {
+    "d": {
+      "key": "d0decb8b9fc642d3",
+      "game": "onepiece",
+      "store": "バトロコミニ苫小牧バイパス店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配【OP-18】」1BOX",
+      "series": "神の支配",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSdquZh46h7V9Oup6XuIQnq8L4Mc8TOdtbTFJhzvTsMn7-RrXw/viewform",
+      "channel": "store",
+      "area": "北海道",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/laffeystore/cabinet/13661047/imgrc0119766592.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
+      "spath": "store/batoroco-5ebb1/",
+      "found_at": "2026-11-10T21:42:35.012023+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/eafee11b50/": {
+    "d": {
+      "key": "eafee11b500c8652",
+      "game": "onepiece",
+      "store": "［トレカ］広店（フタバ図書TSUTAYA）",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（5,760円税込）",
+      "series": "神の支配",
+      "end": "2026-11-15T22:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/ftb_hiro_tcg/status/2120057137011597363",
+      "channel": "store",
+      "area": "広島県",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/laffeystore/cabinet/13661047/imgrc0119766592.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
+      "spath": "store/shop-6acc7/",
+      "found_at": "2026-11-10T21:42:35.012037+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/57906c5111/": {
+    "d": {
+      "key": "57906c51113f78ee",
+      "game": "onepiece",
+      "store": "キデイランド堺鉄砲町店",
+      "product": "ワンピースカードゲーム 拡張パック「OP18 神の支配」購入券",
+      "series": "神の支配",
+      "end": "2026-11-13T23:59:00+09:00",
+      "url": "https://livepocket.jp/e/ovy7u",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "spath": "store/kiddyland-99a82/",
+      "found_at": "2026-11-10T21:43:21.480397+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/771c588605/": {
+    "d": {
+      "key": "771c58860559cd55",
+      "game": "pokemon",
+      "store": "トレカショップASXIA 鹿屋笠之原店",
+      "product": "ポケモンカード【ハドウシーカー】（11/27発売）大会参加者予約抽選",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T21:00:00+09:00",
+      "method": "予約",
+      "conditions": "大会参加者限定",
+      "url": "https://livepocket.jp/e/y5pdh",
+      "channel": "store",
+      "area": "鹿児島県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/torekashoppuasxia-a91e3/",
+      "found_at": "2026-11-10T21:43:21.480483+09:00"
+    },
+    "last": "2026-11-10"
+  },
+  "l/ae33c29e6a/": {
+    "d": {
+      "key": "ae33c29e6a55f8ea",
+      "game": "onepiece",
+      "store": "ブックエース坂東店",
+      "product": "ONE PIECE ブースターパック 神の支配 OP18 抽選販売",
+      "series": "神の支配",
+      "end": "2026-11-15T21:00:00+09:00",
+      "url": "https://livepocket.jp/e/gywmn",
+      "channel": "store",
+      "area": "茨城県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/laffeystore/cabinet/13661047/imgrc0119766592.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Flaffeystore%2Fcardbox-o-025%2F",
+      "spath": "store/bukkuesu-9e2af/",
+      "found_at": "2026-11-10T21:43:21.480514+09:00"
     },
     "last": "2026-11-10"
   }

@@ -325,7 +325,7 @@
   },
   "store/tsutaya-02cfc/": {
     "name": "TSUTAYA Trading Card 北千住",
-    "last": "2026-11-08",
+    "last": "2026-11-10",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -750,7 +750,7 @@
   },
   "store/cardmasterd-c-08e17/": {
     "name": "CARDMASTER D.C.（カードマスターDC）",
-    "last": "2026-10-27",
+    "last": "2026-11-10",
     "game": "onepiece"
   },
   "store/tsutaya-836bf/": {
@@ -1203,7 +1203,7 @@
   },
   "store/bookoff-c8679/": {
     "name": "ブックオフスーパーバザー カインズモール名古屋みなと店",
-    "last": "2026-10-29",
+    "last": "2026-11-10",
     "game": "onepiece",
     "area": "愛知県"
   },
@@ -1959,8 +1959,9 @@
   },
   "store/tendo-05432/": {
     "name": "TENDO八文字屋",
-    "last": "2026-11-01",
-    "game": "pokemon"
+    "last": "2026-11-10",
+    "game": "pokemon",
+    "area": "山形県"
   },
   "store/aeon-e3f93/": {
     "name": "BOOKOFF イオンモール成田店",
@@ -5317,7 +5318,7 @@
   },
   "store/bukkuesu-9e2af/": {
     "name": "ブックエース坂東店",
-    "last": "2026-11-08",
+    "last": "2026-11-10",
     "game": "pokemon",
     "area": "茨城県",
     "address": "茨城県茨城県坂東市辺田1104-1"
@@ -5357,7 +5358,7 @@
   },
   "store/tokiwa-nyukosuto-5e95e/": {
     "name": "ときわ書房ニューコースト新浦安店",
-    "last": "2026-11-08",
+    "last": "2026-11-10",
     "game": "pokemon",
     "area": "千葉県"
   },
@@ -7082,5 +7083,41 @@
     "last": "2026-11-10",
     "game": "onepiece",
     "area": "神奈川県"
+  },
+  "store/kadosutajiamu-188c0/": {
+    "name": "カードスタジアム小禄店（沖縄）",
+    "last": "2026-11-10",
+    "game": "pokemon",
+    "area": "沖縄県"
+  },
+  "store/asobiba-0ee98/": {
+    "name": "あそビバ平塚四之宮店",
+    "last": "2026-11-10",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/shop-6acc7/": {
+    "name": "［トレカ］広店（フタバ図書TSUTAYA）",
+    "last": "2026-11-10",
+    "game": "onepiece",
+    "area": "広島県"
+  },
+  "store/kiddyland-99a82/": {
+    "name": "キデイランド堺鉄砲町店",
+    "last": "2026-11-10",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/torekashoppuasxia-a91e3/": {
+    "name": "トレカショップASXIA 鹿屋笠之原店",
+    "last": "2026-11-10",
+    "game": "pokemon",
+    "area": "鹿児島県"
+  },
+  "store/shop-2f3b8/": {
+    "name": "行徳",
+    "last": "2026-11-10",
+    "game": "onepiece",
+    "keep": true
   }
 }
