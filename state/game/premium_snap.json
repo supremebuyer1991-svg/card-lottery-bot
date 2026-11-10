@@ -266,7 +266,8 @@
     "jan": "4948872017152",
     "name": "PS5 プレイステーション5 原神 ギフトパック CFIJ-10024 [1TB]",
     "names": [
-      "PS5 プレイステーション5 原神 ギフトパック CFIJ-10024 [1TB]"
+      "PS5 プレイステーション5 原神 ギフトパック CFIJ-10024 [1TB]",
+      "PS5 \"原神\" ギフトパック CFIJ-10024"
     ],
     "teika": 66980,
     "max": 112000,
@@ -275,6 +276,10 @@
       [
         "家電市場",
         112000
+      ],
+      [
+        "PANDA買取",
+        102000
       ]
     ],
     "ratio": 1.6721409375933114,
@@ -661,10 +666,10 @@
   },
   "4948872415620": {
     "jan": "4948872415620",
-    "name": "PS5 コントローラー \"ゴッド・オブ・ウォー\" CFI-ZCT1JZ1",
+    "name": "PS5 コントローラー “ゴッド・オブ・ウォー\" CFI-ZCT1JZ1",
     "names": [
       "ps5 DualSense ワイヤレスコントローラー ゴッド・オブ・ウォー ラグナロク リミテッドエディション",
-      "PS5 コントローラー \"ゴッド・オブ・ウォー\" CFI-ZCT1JZ1",
+      "PS5 コントローラー “ゴッド・オブ・ウォー\" CFI-ZCT1JZ1",
       "PlayStation5 ワイヤレスコントローラー DualSense ゴッド・オブ・ウォー ラグナロク リミテッドエディション [CFI-ZCT1JZ1]",
       "PS5 コントローラー  DualSense ゴッド・オブ・ウォー ラグナロク",
       "PS5 DualSense ワイヤレスコントローラー ゴッドオブウォー ラグナロク CFI-ZCT1JZ1"
@@ -1260,22 +1265,22 @@
       "たまごっちパラダイス Tamagotchi Paradise -Purple Sky 竹下☆ぱらだいす＆しなこスペシャルセット"
     ],
     "teika": 7480,
-    "max": 9000,
+    "max": 7000,
     "store": "ケータイゴッド",
     "prices": [
       [
         "ケータイゴッド",
-        9000
+        7000
       ]
     ],
-    "ratio": 1.2032085561497325,
+    "ratio": 0.9358288770053476,
     "itemUrl": "https://item.rakuten.co.jp/book/18406473/",
     "azUrl": "https://www.amazon.co.jp/dp/B0FRM5M18S?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8258/4582769808258.jpg",
     "hist": {
       "2026-11-09": 9000,
       "2026-11-10": 9000,
-      "2026-11-11": 9000
+      "2026-11-11": 7000
     },
     "w1": null,
     "m1": null,
@@ -1503,7 +1508,7 @@
     "name": "DualSense ワイヤレスコントローラー “FINAL FANTASY XVI” リミテッドエディション",
     "names": [
       "PS5 ワイヤレスコントローラー CFIJ-15500 FINAL FANTASY XVI",
-      "PS5 コントローラー \"FINAL FANTASY\" CFIJ-15500",
+      "PS5 コントローラー “FINAL FANTASY” CFIJ-15500",
       "PlayStation5 ワイヤレスコントローラー DualSense FINAL FANTASY XVI リミテッドエディション [CFIJ-15500]",
       "PS5 コントローラー DualSense FINAL FANTASY XVI",
       "PS5 DualSense ワイヤレスコントローラー FINAL FANTASY XVI CFIJ-15500"
@@ -2634,6 +2639,7 @@
     "name": "DualSense ワイヤレスコントローラー “DEATH STRANDING 2： ON THE BEACH“ リミテッドエディション",
     "names": [
       "PS5 ワイヤレスコントローラー \"DEATH STRANDING 2: ON THE BEACH\" リミテッドエディション",
+      "PS5 ワイヤレスコントローラー ”DEATH STRANDING 2: ON THE BEACH”リミテッドエディション",
       "PS5 ワイヤレスコントローラー DualSense “DEATH STRANDING 2： ON THE BEACH“ リミテッドエディション [CFIJ-15501]",
       "PS5 ワイヤレスコントローラー ”DEATH STRANDING 2: ON THE BEACH” リミテッドエディション",
       "PS5 コントローラー DualSense “DEATH STRANDING 2: ON THE BEACH“"
@@ -2692,22 +2698,22 @@
       "たまごっちパラダイス Tamagotchi Paradise - Blue Water"
     ],
     "teika": 5858,
-    "max": 4000,
+    "max": 3000,
     "store": "ケータイゴッド",
     "prices": [
       [
         "ケータイゴッド",
-        4000
+        3000
       ]
     ],
-    "ratio": 0.6828269033799932,
+    "ratio": 0.5121201775349948,
     "itemUrl": "https://item.rakuten.co.jp/book/18247578/",
     "azUrl": "https://www.amazon.co.jp/dp/B0F8HCR6H4?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3352/4582769733352_1_2.jpg",
     "hist": {
       "2026-11-09": 5500,
       "2026-11-10": 4000,
-      "2026-11-11": 4000
+      "2026-11-11": 3000
     },
     "w1": null,
     "m1": null,
@@ -2728,13 +2734,9 @@
       "Nintendo Switch 有機ELモデル ネオンブルー・ネオンレッド ※2026年製"
     ],
     "teika": 47979,
-    "max": 45000,
-    "store": "ケータイゴッド",
+    "max": 44500,
+    "store": "家電市場",
     "prices": [
-      [
-        "ケータイゴッド",
-        45000
-      ],
       [
         "家電市場",
         44500
@@ -2756,11 +2758,15 @@
         44000
       ],
       [
+        "ケータイゴッド",
+        44000
+      ],
+      [
         "アバウテック",
         41000
       ]
     ],
-    "ratio": 0.9379103357719002,
+    "ratio": 0.9274891098188791,
     "itemUrl": "https://item.rakuten.co.jp/book/16882956/",
     "azUrl": "https://www.amazon.co.jp/dp/B098B79SJL?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8501/4902370548501.jpg",
@@ -2768,7 +2774,7 @@
       "2026-11-08": 44300,
       "2026-11-09": 45000,
       "2026-11-10": 45000,
-      "2026-11-11": 45000
+      "2026-11-11": 44500
     },
     "w1": null,
     "m1": null,
@@ -2977,15 +2983,20 @@
       "PS5 プレイステーション5 デジタル・エディション 日本語専用 CFI-2200B01 [825GB]",
       "プレイステーション5 デジタル・エディション 日本語専用 CFI-2200B01 825GB",
       "PS5 デジタル・エディション日本語専用 CFI-2200B01",
+      "PS5 Slimモデル 日本語専用 (CFI-2200B01)",
       "プレイステーション5 PlayStation5 デジタル・エディション 日本語専用 (CFI-2200B01)",
       "PlayStation5 本体 デジタルエディション 日本語専用 Slimモデル CFI-2200B01 ※2026年10月以降製造モデル減額対象",
       "PlayStation 5 デジタル・エディション 日本語専用 CFI-2200B01",
       "プレイステーション5 デジタル・エディション 日本語専用 CFI-2200B01"
     ],
     "teika": 55000,
-    "max": 50900,
-    "store": "買取商店",
+    "max": 51200,
+    "store": "PANDA買取",
     "prices": [
+      [
+        "PANDA買取",
+        51200
+      ],
       [
         "買取商店",
         50900
@@ -3019,7 +3030,7 @@
         45500
       ]
     ],
-    "ratio": 0.9254545454545454,
+    "ratio": 0.9309090909090909,
     "itemUrl": "https://item.rakuten.co.jp/book/18440637/",
     "azUrl": "https://www.amazon.co.jp/dp/B0FX2GKFP8?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7419/4948872417419_1_4.jpg",
@@ -3027,7 +3038,7 @@
       "2026-11-08": 51200,
       "2026-11-09": 51200,
       "2026-11-10": 50900,
-      "2026-11-11": 50900
+      "2026-11-11": 51200
     },
     "w1": null,
     "m1": null,
@@ -3444,7 +3455,6 @@
     "name": "DualSense ワイヤレスコントローラー CFI-ZCT1J12 [クロマ パール]",
     "names": [
       "DualSense ワイヤレスコントローラー CFI-ZCT1J12 [クロマ パール]",
-      "クロマ パール CFI-ZCT1J12",
       "PlayStation5 ワイヤレスコントローラー DualSense クロマ パール [CFI-ZCT1J12]",
       "PS5 コントローラー DualSense クロマ パール [CFI-ZCT1J12]",
       "PS5 DualSense ワイヤレスコントローラー クロマパール CFI-ZCT1J12"
@@ -3464,10 +3474,6 @@
       [
         "カイトリTOJO",
         8800
-      ],
-      [
-        "PANDA買取",
-        8700
       ],
       [
         "買取商店",
@@ -4869,7 +4875,7 @@
     "jan": "4948872416306",
     "name": "PlayStation5 ワイヤレスコントローラー DualSense アストロボット リミテッドエディション [CFI-ZCT1JZ3]",
     "names": [
-      "\"アストロボット\" リミテッドエディション",
+      "“アストロボット” リミテッドエディション",
       "PlayStation5 ワイヤレスコントローラー DualSense アストロボット リミテッドエディション [CFI-ZCT1JZ3]",
       "PS5 コントローラー DualSense アストロボット  [CFI-ZCT1JZ3]",
       "PS5 DualSense ワイヤレスコントローラー アストロボット CFI-ZCT1JZ3"
@@ -5125,10 +5131,6 @@
         42000
       ],
       [
-        "ケータイゴッド",
-        42000
-      ],
-      [
         "トゥインクルモバイル",
         41900
       ],
@@ -5142,6 +5144,10 @@
       ],
       [
         "アバウテック",
+        41000
+      ],
+      [
+        "ケータイゴッド",
         41000
       ]
     ],
@@ -5512,22 +5518,22 @@
       "たまごっちパラダイス Tamagotchi Paradise -Jade Forest"
     ],
     "teika": 6061,
-    "max": 4000,
+    "max": 3000,
     "store": "ケータイゴッド",
     "prices": [
       [
         "ケータイゴッド",
-        4000
+        3000
       ]
     ],
-    "ratio": 0.6599571027883188,
+    "ratio": 0.49496782709123904,
     "itemUrl": "https://item.rakuten.co.jp/book/18404848/",
     "azUrl": "https://www.amazon.co.jp/dp/B0FRLTC7GM?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6223/4582769806223.jpg",
     "hist": {
       "2026-11-09": 5200,
       "2026-11-10": 4000,
-      "2026-11-11": 4000
+      "2026-11-11": 3000
     },
     "w1": null,
     "m1": null,
@@ -5785,22 +5791,22 @@
       "たまごっちパラダイス Tamagotchi Paradise - Pink Land"
     ],
     "teika": 5855,
-    "max": 4000,
+    "max": 3000,
     "store": "ケータイゴッド",
     "prices": [
       [
         "ケータイゴッド",
-        4000
+        3000
       ]
     ],
-    "ratio": 0.6831767719897524,
+    "ratio": 0.5123825789923142,
     "itemUrl": "https://item.rakuten.co.jp/book/18247577/",
     "azUrl": "https://www.amazon.co.jp/dp/B0F8H35HG3?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3345/4582769733345_1_2.jpg",
     "hist": {
       "2026-11-09": 5000,
       "2026-11-10": 4000,
-      "2026-11-11": 4000
+      "2026-11-11": 3000
     },
     "w1": null,
     "m1": null,
@@ -7170,10 +7176,6 @@
       [
         "買取商店",
         7500
-      ],
-      [
-        "PANDA買取",
-        7500
       ]
     ],
     "ratio": 0.8351893095768375,
@@ -7530,22 +7532,22 @@
       "たまごっちパラダイス Tamagotchi Paradise -Purple Sky"
     ],
     "teika": 6050,
-    "max": 4000,
+    "max": 3000,
     "store": "ケータイゴッド",
     "prices": [
       [
         "ケータイゴッド",
-        4000
+        3000
       ]
     ],
-    "ratio": 0.6611570247933884,
+    "ratio": 0.49586776859504134,
     "itemUrl": "https://item.rakuten.co.jp/book/18247579/",
     "azUrl": "https://www.amazon.co.jp/dp/B0F8GS281Q?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3369/4582769733369_1_2.jpg",
     "hist": {
       "2026-11-09": 5000,
       "2026-11-10": 4000,
-      "2026-11-11": 4000
+      "2026-11-11": 3000
     },
     "w1": null,
     "m1": null,
@@ -7563,13 +7565,9 @@
       "PlayStation 5 ディスクドライブ [CFI-ZDD1J]"
     ],
     "teika": 11980,
-    "max": 9900,
-    "store": "PANDA買取",
+    "max": 9500,
+    "store": "買取ルデヤ",
     "prices": [
-      [
-        "PANDA買取",
-        9900
-      ],
       [
         "買取ルデヤ",
         9500
@@ -7581,6 +7579,10 @@
       [
         "買取商店",
         9400
+      ],
+      [
+        "PANDA買取",
+        9000
       ],
       [
         "SY買取センター",
@@ -7595,7 +7597,7 @@
         9000
       ]
     ],
-    "ratio": 0.8263772954924875,
+    "ratio": 0.7929883138564274,
     "itemUrl": "https://item.rakuten.co.jp/book/17668538/",
     "azUrl": "https://www.amazon.co.jp/dp/B0CKYKPKD3?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6030/4948872416030.jpg",
@@ -7603,7 +7605,7 @@
       "2026-11-08": 9900,
       "2026-11-09": 9900,
       "2026-11-10": 9900,
-      "2026-11-11": 9900
+      "2026-11-11": 9500
     },
     "w1": null,
     "m1": null,
@@ -9196,7 +9198,7 @@
     ],
     "ratio": 0.7843137254901961,
     "itemUrl": "https://item.rakuten.co.jp/book/18265274/",
-    "azUrl": "",
+    "azUrl": "https://www.amazon.co.jp/dp/B0FBW2X8QD?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2003/4988601012003.jpg",
     "hist": {
       "2026-11-09": 4800,
@@ -10857,10 +10859,11 @@
   },
   "4948872016612": {
     "jan": "4948872016612",
-    "name": "PlayStation VR2 \"Horizon Call of the Mountain\" 同梱版 CFIJ-17001",
+    "name": "PlayStation VR2 “Horizon Call of the Mountain” 同梱版 CFIJ-17001",
     "names": [
-      "PlayStation VR2 \"Horizon Call of the Mountain\" 同梱版 CFIJ-17001",
+      "PlayStation VR2 “Horizon Call of the Mountain” 同梱版 CFIJ-17001",
       "プレイステーションVR2 PlayStationVR2 Horizon同梱版 (CFIJ-17001)【新品】",
+      "PlayStation VR2 \"Horizon Call of the Mountain\" 同梱版 CFIJ-17001",
       "プレイステーション VR2 CFIJ-17001 Horizon Call of the Mountain 同梱版"
     ],
     "teika": 64240,
@@ -20651,7 +20654,7 @@
     ],
     "ratio": 0.7016434892541087,
     "itemUrl": "https://item.rakuten.co.jp/book/18045491/",
-    "azUrl": "",
+    "azUrl": "https://www.amazon.co.jp/dp/B0DKJWMWQQ?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0636/4549576210636.jpg",
     "hist": {
       "2026-11-10": 11100,
@@ -20946,7 +20949,7 @@
   },
   "4988601012270": {
     "jan": "4988601012270",
-    "name": "キングダム ハーツ コレクション [I～III] [Nintendo Switch 2 専用]",
+    "name": "KINGDOM HEARTS Collection [I~III] Switch2版",
     "names": [
       "キングダム ハーツ コレクション [I～III] [Nintendo Switch 2 専用]"
     ],
@@ -20962,7 +20965,7 @@
     "ratio": 0.8181818181818182,
     "itemUrl": "https://item.rakuten.co.jp/book/18669726/",
     "azUrl": "https://www.amazon.co.jp/dp/B0H3NL4YDS?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2270/4988601012270.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2270/4988601012270.jpg",
     "hist": {
       "2026-11-10": 8100,
       "2026-11-11": 8100
@@ -20972,12 +20975,12 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "スクウェア・エニックス Nintendo Switch 2発売日：2026年10月08日 プレーヤー人数：1人 CERO区分：全年齢対象 POTーPーABU8A JAN：4988601012270 ゲーム Nintendo Switch 2 RPG オーソドックスRPG",
     "seen": "2026-11-11"
   },
   "4948872414340": {
     "jan": "4948872414340",
-    "name": "ワイヤレスコントローラー (DUALSHOCK 4) グレイシャー・ホワイト (CUH-ZCT2J13)",
+    "name": "ワイヤレスコントローラー(DUALSHOCK 4) グレイシャー・ホワイト",
     "names": [
       "ワイヤレスコントローラー (DUALSHOCK 4) グレイシャー・ホワイト (CUH-ZCT2J13)"
     ],
@@ -20993,7 +20996,7 @@
     "ratio": 1.1535812672176309,
     "itemUrl": "https://item.rakuten.co.jp/book/14638363/",
     "azUrl": "https://www.amazon.co.jp/dp/B01NARTIBI?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4340/4948872414340.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4340/4948872414340.jpg",
     "hist": {
       "2026-11-10": 6700,
       "2026-11-11": 6700
@@ -21003,12 +21006,12 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "ソニー・インタラクティブエンタテインメント PS4ワイヤレスコントローラー(デュアルショック 4) グレイシャー・ホワイト PS4 発売日：2017年02月23日 予約締切日：2017年02月21日 CUHーZCT2J13 JAN：4948872414340 ゲーム PS4 周辺機器",
     "seen": "2026-11-11"
   },
   "4948872414296": {
     "jan": "4948872414296",
-    "name": "ワイヤレスコントローラー (DUALSHOCK 4) マグマ・レッド (CUH-ZCT2J11)",
+    "name": "ワイヤレスコントローラー(DUALSHOCK 4) マグマ・レッド",
     "names": [
       "ワイヤレスコントローラー (DUALSHOCK 4) マグマ・レッド (CUH-ZCT2J11)"
     ],
@@ -21024,7 +21027,7 @@
     "ratio": 1.0185466707205837,
     "itemUrl": "https://item.rakuten.co.jp/book/14441155/",
     "azUrl": "https://www.amazon.co.jp/dp/B01LRMLR9W?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4296/4948872414296.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4296/4948872414296.jpg",
     "hist": {
       "2026-11-10": 6700,
       "2026-11-11": 6700
@@ -21034,12 +21037,12 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "ソニー・インタラクティブエンタテインメント PS4ワイヤレスコントローラー(DUALSHOCK 4) マグマ・レッド 発売日：2016年11月10日 予約締切日：2016年11月08日 CUHーZCT2J11 JAN：4948872414296 ゲーム PS4 周辺機器",
     "seen": "2026-11-11"
   },
   "4948872414203": {
     "jan": "4948872414203",
-    "name": "ワイヤレスコントローラー(DUALSHOCK 4) ジェット・ブラック(CUH-ZCT2J)",
+    "name": "ワイヤレスコントローラー(DUALSHOCK4) ジェット・ブラック",
     "names": [
       "ワイヤレスコントローラー(DUALSHOCK 4) ジェット・ブラック(CUH-ZCT2J)"
     ],
@@ -21055,7 +21058,7 @@
     "ratio": 0.8395989974937343,
     "itemUrl": "https://item.rakuten.co.jp/book/14428225/",
     "azUrl": "https://www.amazon.co.jp/dp/B01LPTFJ8W?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4203/4948872414203.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4203/4948872414203.jpg",
     "hist": {
       "2026-11-10": 6700,
       "2026-11-11": 6700
@@ -21065,12 +21068,12 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "ソニー・インタラクティブエンタテインメント PS4ワイヤレスコントローラー　デュアルショック4 ジェット・ブラック 発売日：2016年09月15日 予約締切日：2016年09月13日 CUHーZCT2J JAN：4948872414203 ゲーム PS4 周辺機器",
     "seen": "2026-11-11"
   },
   "4948872414562": {
     "jan": "4948872414562",
-    "name": "ワイヤレスコントローラー(DUALSHOCK 4) ミッドナイト・ブルー (CUH-ZCT2J22)",
+    "name": "ワイヤレスコントローラー(DUALSHOCK 4) ミッドナイト・ブルー",
     "names": [
       "ワイヤレスコントローラー(DUALSHOCK 4) ミッドナイト・ブルー (CUH-ZCT2J22)"
     ],
@@ -21086,7 +21089,7 @@
     "ratio": 1.1535812672176309,
     "itemUrl": "https://item.rakuten.co.jp/book/15112418/",
     "azUrl": "https://www.amazon.co.jp/dp/B0759J345Q?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4562/4948872414562.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4562/4948872414562.jpg",
     "hist": {
       "2026-11-10": 6700,
       "2026-11-11": 6700
@@ -21096,12 +21099,12 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "ソニー・インタラクティブエンタテインメント PS4ワイヤレスコントローラー 発売日：2017年11月03日 予約締切日：2017年11月01日 CUHーZCT2J22 JAN：4948872414562 ゲーム PS4 周辺機器",
     "seen": "2026-11-11"
   },
   "4938833024923": {
     "jan": "4938833024923",
-    "name": "It Takes Two [Nintendo Switch 2 専用]",
+    "name": "It Takes Two",
     "names": [
       "It Takes Two [Nintendo Switch 2 専用]"
     ],
@@ -21117,17 +21120,17 @@
     "ratio": 1.7581823099810658,
     "itemUrl": "https://item.rakuten.co.jp/book/18814798/",
     "azUrl": "https://www.amazon.co.jp/dp/B0HJT6N3FV?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4923/4938833024923.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4923/4938833024923.jpg",
     "hist": {
       "2026-11-10": 6500,
       "2026-11-11": 6500
     },
     "w1": null,
     "m1": null,
-    "sales_date": "",
-    "maker": "",
-    "hardware": "",
-    "caption": "",
+    "sales_date": "2026年11月19日",
+    "maker": "エレクトロニック・アーツ",
+    "hardware": "Nintendo Switch 2",
+    "caption": "究極の協力プレイアドベンチャー\n\n\n■商品概要：\nNintendo Switch&trade; 2の究極の協力プレイアドベンチャーで、2人のために作られたクレイジーな旅を堪能しましょう。高解像度、向上したフレームレート、より豊かなビジュアルエフェクトが楽しめます。フレンドパスでフレンドを招待して、仲違いしたカップルのコーディとメイとして、一緒に愉快で過激なゲームプレイに無料で挑戦しましょう。PC、PlayStation&reg;5、PlayStation&reg;4、Xbox Series X|Sでフレンドとオンラインでプレイしましょう！（Nintendo Switch&trade; 2をご利用の場合、Nintendo Switch&trade;版のプレイヤーとプレイするにはNintendo Switch&trade;版にダウングレードする必要があります。）\n\nセールスポイント：\n1）協力プレイの完成形\nフレンドパスでフレンドを招待して無料でオンライン協力プレイ。2人プレイ専用ならではのスリリングな体験を楽しみましょう。協力プレイは画面分割でプレイでき、オフライン・オンラインの両方で楽しめます。キャラクターに降りかかるチャレンジは多種多様。前に進むには、一緒に協力しなければなりません。\n\n2）愉快で過激なゲームプレイ\n大暴れする掃除機やもの柔らかな愛の伝道師が登場。「It Take",
     "seen": "2026-11-11"
   },
   "4549576183398": {
@@ -21256,7 +21259,7 @@
   },
   "4995506005825": {
     "jan": "4995506005825",
-    "name": "ほの暮しの庭 [Nintendo Switch 2 専用]",
+    "name": "ほの暮しの庭 switch2版",
     "names": [
       "ほの暮しの庭 [Nintendo Switch 2 専用]"
     ],
@@ -21272,17 +21275,17 @@
     "ratio": 0.7848511274448735,
     "itemUrl": "https://item.rakuten.co.jp/book/18328670/",
     "azUrl": "https://www.amazon.co.jp/dp/B0FKRVM26S?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5825/4995506005825_1_3.jpg?_ex=300x300",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5825/4995506005825_1_3.jpg",
     "hist": {
       "2026-11-10": 6300,
       "2026-11-11": 6300
     },
     "w1": null,
     "m1": null,
-    "sales_date": "",
-    "maker": "",
-    "hardware": "",
-    "caption": "",
+    "sales_date": "2026年07月30日",
+    "maker": "日本一ソフトウェア",
+    "hardware": "Nintendo Switch 2",
+    "caption": "暮らし、ときどき、--\n\n『ほの暮しの庭』は、郷愁あふれる田舎の村を舞台にした生活シミュレーションゲームです。\n農作や畜産に勤しみながら、釣りや狩りを楽しんだり、村人と交流を深めたりーー\nどこか懐かしい、ほのぼのとした田舎暮らしを楽しめます。\n\n【ゲームの特徴】\n◆静かな山あいに息づく、日本の原風景\n日本のどこか、山あいにひっそりと佇む小さな村ーー「彼ヶ津村」。\n物懐かしい風景が広がるこの村で、あなたの新しい暮らしが始まります。\n\n◆やりがいに満ちたスローライフ\n主人公に与えられたのは、村はずれの古びた小屋と、草ぼうぼうの荒れた庭。\nまずはこの庭を耕し、畑を作ることから始めましょう。\n\n※本作のパッケージ版は「キーカード」です。\nはじめてゲームをプレイする際に、インターネットを通じてソフト本編のデータをダウンロードすることで遊ぶことができます。\n2回目以降はインターネット接続環境がなくてもゲームを開始できますが、通常のパッケージ版と同様、キーカードを本体に差し込んでおく必要があります。　\n※インターネット接続環境・6GB以上の空き容量（更新データなどで追加の空き容量が必要になる場合があります）をご用意ください。\n\n&copy;2026 Nippon Ichi Software, Inc.",
     "seen": "2026-11-11"
   },
   "4988601012218": {
@@ -27234,7 +27237,7 @@
     ],
     "ratio": 0.7593254658778119,
     "itemUrl": "https://item.rakuten.co.jp/book/18222233/",
-    "azUrl": "",
+    "azUrl": "https://www.amazon.co.jp/dp/B0FDKVB871?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3652/4582239433652.jpg",
     "hist": {
       "2026-11-10": 24000,
@@ -27750,7 +27753,7 @@
     "names": [
       "MOTOROLA (モトローラ) moto g06 SIMフリー [PANTONE Laurel Oak(ローレルオーク)] SIMフリー"
     ],
-    "teika": null,
+    "teika": 24341,
     "max": 11500,
     "store": "買取ルデヤ",
     "prices": [
@@ -27759,10 +27762,10 @@
         11500
       ]
     ],
-    "ratio": null,
-    "itemUrl": "",
+    "ratio": 0.4724538843925886,
+    "itemUrl": "https://item.rakuten.co.jp/book/18518241/",
     "azUrl": "",
-    "img": "",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4178/4582239434178.jpg",
     "hist": {
       "2026-11-10": 11500,
       "2026-11-11": 11500
@@ -27772,7 +27775,7 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "モトローラ・モビリティ・ジャパンすまほ スマホ モトローラ スマートフォン すまーとふぉん moto Google ぐーぐる グーグル 消しゴムマジッ moto g06 ローレルオーク SIMフリー メモリ/ストレージ：4GB / 128GB PB9B0013JP JAN：4582239434178 PCソフト・周辺機器 スマートフォン関連 スマートフォン本体",
     "seen": "2026-11-11"
   },
   "4582239434185": {
@@ -27781,7 +27784,7 @@
     "names": [
       "MOTOROLA (モトローラ) moto g06 SIMフリー [PANTONE Tapestry(タペストリーブルー)] SIMフリー"
     ],
-    "teika": null,
+    "teika": 24341,
     "max": 11500,
     "store": "買取ルデヤ",
     "prices": [
@@ -27790,10 +27793,10 @@
         11500
       ]
     ],
-    "ratio": null,
-    "itemUrl": "",
+    "ratio": 0.4724538843925886,
+    "itemUrl": "https://item.rakuten.co.jp/book/18518242/",
     "azUrl": "",
-    "img": "",
+    "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4185/4582239434185.jpg",
     "hist": {
       "2026-11-10": 11500,
       "2026-11-11": 11500
@@ -27803,7 +27806,7 @@
     "sales_date": "",
     "maker": "",
     "hardware": "",
-    "caption": "",
+    "caption": "モトローラ・モビリティ・ジャパンすまほ スマホ モトローラ スマートフォン すまーとふぉん moto Google ぐーぐる グーグル 消しゴムマジッ moto g06 タペストリーブルー SIMフリー メモリ/ストレージ：4GB / 128GB PB9B0014JP JAN：4582239434185 PCソフト・周辺機器 スマートフォン関連 スマートフォン本体",
     "seen": "2026-11-11"
   },
   "4548736121133": {
