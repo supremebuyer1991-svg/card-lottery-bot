@@ -942,6 +942,17 @@
   "store/tsutaya-2d349/": {
     "name": "TSUTAYA鳥栖店",
     "items": {
+      "c9b62caa86e6af6e": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "8f67389e4cf8fa24": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -28711,6 +28722,17 @@
   "store/nexustradingcards-c54dd/": {
     "name": "Nexus Trading Cards",
     "items": {
+      "167e512256feea49": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-12T23:59",
+        "f": "2026-11-11",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "74c081a68dca0d3c": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -30431,6 +30453,17 @@
   "store/ing-64e0e/": {
     "name": "遊ING浜町店",
     "items": {
+      "ca1992a37e737320": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-23",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "019fff9e02bfe296": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -34866,6 +34899,102 @@
         "rq": [
           "X（旧Twitter）のフォロー"
         ]
+      }
+    }
+  },
+  "store/batoroco-204f5/": {
+    "name": "トーナメントセンターバトロコ 弘前駅前",
+    "items": {
+      "f4a921f4488962c8": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:00",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/joshin-9aa0a/": {
+    "name": "ジョーシン",
+    "items": {
+      "794e260d14642afb": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/edion-8e6bf/": {
+    "name": "エディオン／トレカキャピタル",
+    "items": {
+      "c25073ef8f3b7dd6": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/furuichi-6213c/": {
+    "name": "ふるいち（古本市場）",
+    "items": {
+      "02041ae9e0a0443f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/toysrus-24847/": {
+    "name": "トイザらス",
+    "items": {
+      "1c33cd9c610bd149": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/toredingukadopitto-44b1b/": {
+    "name": "トレーディングカードピット長岡",
+    "items": {
+      "e494388601b3038a": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-11T23:00",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   }

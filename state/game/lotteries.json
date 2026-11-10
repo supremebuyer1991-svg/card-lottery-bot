@@ -202,7 +202,7 @@
     "series": "ガンダムヴァサーゴ",
     "kind": "lottery",
     "start": null,
-    "end": null,
+    "end": "2026-11-09T15:00:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -229,7 +229,13 @@
     "details_checked": true,
     "cls": "5229e41c6e5f",
     "official_checked": true,
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "verified_at": "2026-11-11T05:35:50.716645+09:00",
+    "before_verify": {
+      "end": null
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：end"
   },
   "66891c533d6ae74d": {
     "store": "プレミアムバンダイ",
@@ -259,7 +265,9 @@
     "found_at": "2026-11-08T15:49:35.381715+09:00",
     "page_checked_at": "2026-11-10T10:38:46.058351+09:00",
     "cls": "771ffff9f0d4",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T05:35:48.654107+09:00",
+    "verified": true
   },
   "98b34a6a1791d2de": {
     "store": "プレミアムバンダイ",
@@ -327,7 +335,9 @@
     "address_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "9dedd077a461"
+    "cls": "9dedd077a461",
+    "verified_at": "2026-11-11T05:35:47.143064+09:00",
+    "verified": true
   },
   "dfff5bb62f1cd7da": {
     "store": "プレミアムバンダイ（プレバン）",
@@ -513,7 +523,7 @@
     "duplicate_of": "f0e91fa89e56e285"
   },
   "871d0bd0faa0edbb": {
-    "store": "一番くじONLINE（BANDAI SPIRITS）",
+    "store": "一番くじ倶楽部（BANDAI SPIRITS）",
     "product": "一番くじ 機動戦士ガンダム UNIVERSAL CENTURY SAGA INTERLUDE",
     "series": "機動戦士ガンダム UNIVERSAL CENTURY SAGA INTERLUDE",
     "kind": "first_come",
@@ -543,10 +553,16 @@
     "deadline_note": "画像0/0枚読込・抽選の応募期間の記載なし",
     "page_checked_at": "2026-11-10T10:47:00.152176+09:00",
     "details_checked": true,
-    "cls": "9a4c3eb50b38"
+    "cls": "9a4c3eb50b38",
+    "verified_at": "2026-11-11T05:35:47.142972+09:00",
+    "before_verify": {
+      "store": "一番くじONLINE（BANDAI SPIRITS）"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store"
   },
   "9c8059867c93c433": {
-    "store": "一番くじONLINE（BANDAI SPIRITS）",
+    "store": "BANDAI SPIRITS（オンライン販売）",
     "product": "一番くじ アニメ カードキャプターさくら クリアカード編～Blessed collection～",
     "series": "アニメ カードキャプターさくら クリアカード編～Blessed collection～",
     "kind": "first_come",
@@ -576,7 +592,13 @@
     "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし",
     "page_checked_at": "2026-11-10T10:47:03.041533+09:00",
     "details_checked": true,
-    "cls": "9ddf0d5d81d4"
+    "cls": "9ddf0d5d81d4",
+    "verified_at": "2026-11-11T05:35:46.660331+09:00",
+    "before_verify": {
+      "store": "一番くじONLINE（BANDAI SPIRITS）"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store"
   },
   "90733359b7fffa86": {
     "store": "BANDAI SPIRITS（オンライン販売）",
@@ -1116,7 +1138,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "a854d1d19ea3",
-    "page_checked_at": "2026-11-10T21:48:50.845073+09:00",
+    "page_checked_at": "2026-11-11T05:35:12.753830+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
     "product_short": "ハドウシーカー",
     "verified_at": "2026-11-10T13:15:13.922407+09:00",
@@ -1151,7 +1173,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "5a9b3b4d8a9b",
-    "page_checked_at": "2026-11-10T21:48:51.014708+09:00",
+    "page_checked_at": "2026-11-11T05:35:12.798647+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
     "product_short": "30th CELEBRATION BOX",
     "verified_at": "2026-11-10T13:15:10.528684+09:00",
@@ -2378,7 +2400,7 @@
     "deadline_checked_at": "2026-11-10T11:13:30.225613+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-10T21:48:53.255781+09:00",
+    "page_checked_at": "2026-11-11T05:35:12.798659+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:33:35.733560+09:00",
     "before_verify": {
@@ -2415,11 +2437,11 @@
     "key": "7ba03fbf224c94d3",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975114+09:00",
-    "cls": "40ba79945ac4",
+    "cls": "47aec1b12b3f",
     "deadline_checked_at": "2026-11-10T11:13:30.225633+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-10T21:48:56.058156+09:00",
+    "page_checked_at": "2026-11-11T05:35:15.197472+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:33:35.294062+09:00",
     "before_verify": {
@@ -2456,11 +2478,11 @@
     "key": "fbdcb7721b595447",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975139+09:00",
-    "cls": "845db5ad549d",
+    "cls": "9a7259fde8ed",
     "deadline_checked_at": "2026-11-10T11:13:30.225636+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-10T21:49:00.269350+09:00",
+    "page_checked_at": "2026-11-11T05:35:17.545632+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:33:34.947454+09:00",
     "before_verify": {
@@ -2497,7 +2519,7 @@
     "key": "9b923fe088a3ebc2",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975166+09:00",
-    "cls": "472bd4ab103b",
+    "cls": "526d3a6feebd",
     "page_checked_at": "2026-11-11T00:30:57.088809+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:25:26.404155+09:00",
@@ -4052,7 +4074,12 @@
     "key": "3d6631ca395161af",
     "status": "pending",
     "cls": "6a8d6f51cef2",
-    "issue": 662
+    "issue": 662,
+    "deadline_checked_at": "2026-11-11T05:35:08.904101+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-11T05:35:19.863539+09:00",
+    "details_checked": true
   },
   "306d35f1b133ba40": {
     "store": "プレミアムバンダイ",
@@ -4081,7 +4108,10 @@
     "key": "306d35f1b133ba40",
     "status": "pending",
     "cls": "04fc25b9d6ec",
-    "issue": 663
+    "issue": 663,
+    "deadline_checked_at": "2026-11-11T05:35:10.010734+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
   "949c02ff355926cf": {
     "store": "プレミアムバンダイ",
@@ -4110,7 +4140,10 @@
     "key": "949c02ff355926cf",
     "status": "pending",
     "cls": "416fab590950",
-    "issue": 664
+    "issue": 664,
+    "deadline_checked_at": "2026-11-11T05:35:11.321042+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
   "b5c44733a0fd8681": {
     "store": "プレミアムバンダイ",
@@ -4256,5 +4289,97 @@
     "status": "duplicate",
     "cls": "3b3c0ea0caa7",
     "duplicate_of": "3cd44ad01c2c859e"
+  },
+  "bd93c66a5771540d": {
+    "store": "全国のPlayStation取扱店",
+    "product": "DualSense ワイヤレスコントローラー「プリズム コレクション」（フレア オレンジ / エメラルド グリーン / グラファイト グレー）",
+    "series": "DualSense プリズム コレクション",
+    "kind": "preorder",
+    "start": "2026-11-10",
+    "end": "2027-02-04T23:59:00+09:00",
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": "12,480円",
+    "round": null,
+    "url": "https://www.playstation.com/ja-jp/",
+    "x_post": "https://x.com/PlayStation_jp/status/2119958262506537428",
+    "game": "ps5",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.7,
+    "source": "Googleニュース「PS5 予約 開始」",
+    "source_url": "https://blog.ja.playstation.com/2026/10/29/20261029-dualsense-prism-collection-o/",
+    "key": "bd93c66a5771540d",
+    "status": "approved",
+    "found_at": "2026-11-11T05:33:29.988040+09:00",
+    "multi": true,
+    "cls": "79e813e32df4",
+    "official_checked": true,
+    "verified_at": "2026-11-11T05:35:43.138578+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：start・end 記事は全国のPlayStation取扱店で2026年11月10日（火）午前10時から予約受付を開始すると書いています。店舗、商品、種類（予約受付）、受け取り方法（店頭）は合っています。startは日付のみで時刻が抜けているため修正が必要です。endの2027-02-04T23:59は"
+  },
+  "1857b43aaf97f710": {
+    "store": "全国のPlayStation取扱店",
+    "product": "PS5用カバー「プリズム コレクション」（数量限定・3色）",
+    "series": "PS5 カバー（プリズム コレクション）",
+    "kind": "preorder",
+    "start": "2026-11-10",
+    "end": "2027-02-04T23:59:00+09:00",
+    "announce": null,
+    "method": null,
+    "conditions": "数量限定",
+    "price": "9,980円",
+    "round": null,
+    "url": "https://blog.ja.playstation.com/2026/10/29/20261029-dualsense-prism-collection-o/",
+    "x_post": "https://x.com/PlayStation_jp/status/2119958262506537428",
+    "game": "ps5",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.6,
+    "source": "Googleニュース「PS5 予約 開始」",
+    "source_url": "https://news.denfaminicogamer.jp/news/2611102e",
+    "key": "1857b43aaf97f710",
+    "status": "pending",
+    "found_at": "2026-11-11T05:33:29.988097+09:00",
+    "multi": true,
+    "cls": "1dff1dc79fe5",
+    "issue": 672
+  },
+  "8e3fa5a3606d1a85": {
+    "store": "ソニー・インタラクティブエンタテインメント",
+    "product": "PS5用カバー「プリズム コレクション」（数量限定・3色）",
+    "series": "PS5 カバー（プリズム コレクション）",
+    "kind": "release",
+    "start": null,
+    "end": "2027-02-04T23:59:00+09:00",
+    "announce": null,
+    "method": null,
+    "conditions": "数量限定",
+    "price": "9,980円",
+    "round": null,
+    "url": "https://blog.ja.playstation.com/2026/10/29/20261029-dualsense-prism-collection-o/",
+    "x_post": null,
+    "game": "ps5",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "Googleニュース「PS5 予約 開始」",
+    "source_url": "https://news.denfaminicogamer.jp/news/2611102e",
+    "key": "8e3fa5a3606d1a85",
+    "status": "duplicate",
+    "found_at": "2026-11-11T05:33:29.988165+09:00",
+    "cls": "73f0a58bcf00",
+    "duplicate_of": "1857b43aaf97f710"
   }
 }
