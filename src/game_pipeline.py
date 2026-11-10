@@ -4,6 +4,7 @@
 トレカ抽選ナビにある相場・Threads・海外向けページ・WordPress・新弾・BOXランキングはこのサイトでは使わない。
 Xへの自動投稿も無し（/x-draft.html の下書きをコピペして手で投稿する）。
 """
+import re
 import sys
 
 from common import load_settings, load_sources, load_json, save_json, log, now, parse_dt
@@ -44,6 +45,24 @@ def _fill_kind(lots):
             it["kind"] = "lottery"
 
 
+def _drop_other_games(lots):
+    """このサイトのカテゴリ（config/game/categories.yaml）に無いもの（ポケカなどトレカ＝トレカ抽選ナビの担当）は載せない・投稿しない
+    11/10 ユーザー指摘：入荷Nowの抽選情報からポケカ「ハドウシーカー」が入り、ゲームのXアカウントに投稿された"""
+    import gamecats
+    ok = set(gamecats.by_id(False).keys())
+    tcg = re.compile(r"ポケモンカード|ポケカ|カードゲーム|拡張パック|強化拡張|ブースター|遊戯王|デュエマ|デュエル・?マスターズ|ワンピースカード|ヴァイス|ユニオンアリーナ|トレカ")
+    n = 0
+    for it in lots.values():
+        if it.get("status") in ("rejected", "expired"):
+            continue
+        text = " ".join(str(it.get(k) or "") for k in ("product", "title", "summary"))
+        if (it.get("game") and it["game"] not in ok) or tcg.search(text):
+            it["status"] = "rejected"
+            it["reject_reason"] = "このサイトの対象外（トレカなど）"
+            n += 1
+    return n
+
+
 def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
     s = load_settings()
     log(f"開始（ゲーム・ホビー入荷速報） auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
@@ -77,6 +96,9 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
     if step in ("all", "publish"):
         lots = load_json("lotteries.json", {})
         _fill_kind(lots)
+        nt = _drop_other_games(lots)
+        if nt:
+            log(f"このサイトのカテゴリ以外（トレカなど）{nt}件を外しました")
         n = _end_releases(lots)
         save_json("lotteries.json", lots)
         if n:
