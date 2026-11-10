@@ -43,7 +43,7 @@ jobs:
         run: |
           cd src
           case "${{ github.event.inputs.action }}" in
-            url)  python tiktok.py url ;;
+            url)  python tiktok.py url | tail -1 | base64 -w0; echo ;;  # client_key は公開の値（ブラウザのアドレスにも出る）だが Secret なのでログで伏せられるため、base64 で出す
             code) python tiktok.py code "$CODE" ;;
             test) python boxrank.py ../video week --theme=light --only=pokemon-up && python tiktok.py test "$(ls ../video/*.mp4 | head -1)" ;;
           esac
