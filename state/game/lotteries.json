@@ -274,7 +274,7 @@
     "end": "2026-11-08T23:59:59+09:00",
     "announce": null,
     "method": null,
-    "conditions": "本文に応募・購入条件の記載がありません",
+    "conditions": null,
     "price": null,
     "round": null,
     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9vMHd1bDgyTnh0WWFPWTBLU3pxOXpDSlZ0bkRLa3A1Y1hhQ09kV252NEZOazA1Vll5Rkd6aVlmU0Izc0d6dWxNMmd0SkpFaHRySXh3NDZ1RV9fbzNYNTlZZG5xZG0yNFRpWlBB?oc=5",
@@ -1469,8 +1469,8 @@
     "kind": "lottery",
     "multi": false,
     "cls": "72164fd4bd8e",
-    "page_checked_at": "2026-11-09T23:32:16.452227+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-10T11:03:44.673547+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
     "product_short": "30th CELEBRATION BOX"
   },
   "9e845c51b9d18d8b": {
@@ -1505,7 +1505,7 @@
     "page_checked_at": "2026-11-09T14:33:57.980193+09:00",
     "address_checked": true,
     "details_checked": true,
-    "conditions": "本文に「ハドウシーカー」の抽選条件の記載はありません。",
+    "conditions": null,
     "reject_reason": "このサイトの対象外（トレカなど）",
     "product_short": "ハドウシーカー"
   },
@@ -1541,7 +1541,7 @@
     "page_checked_at": "2026-11-09T14:34:03.373764+09:00",
     "address_checked": true,
     "details_checked": true,
-    "conditions": "本文は平和堂のHOPアプリの紹介ページで、「30th CELEBRATION カードセット各種」の抽選や応募・購入の条件については書かれていません。",
+    "conditions": null,
     "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "d3c12123628d4b8a": {
@@ -1861,7 +1861,7 @@
     "cls": "384a6e1290ef",
     "page_checked_at": "2026-11-09T14:39:14.693495+09:00",
     "details_checked": true,
-    "conditions": "本文に「30th CELEBRATION BOX」の抽選条件は書かれていません。ページはDMMマイカの紹介とサイトのカテゴリ一覧のみです。",
+    "conditions": null,
     "reject_reason": "このサイトの対象外（トレカなど）",
     "product_short": "30th CELEBRATION BOX"
   },
@@ -2227,7 +2227,7 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": "本文に抽選の応募・購入条件の記載はありません。ECでの一部商品の販売開始は11/24 11時とあるだけです。",
+    "conditions": null,
     "price": null,
     "round": null,
     "url": "https://chiikawamarket.jp/",
@@ -2249,7 +2249,7 @@
     "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし",
     "page_checked_at": "2026-11-09T17:04:27.615716+09:00",
     "details_checked": true,
-    "cls": "dde118f2ae24",
+    "cls": "643df541174d",
     "official_checked": true
   },
   "790fc5ca4d56f13f": {
@@ -2440,7 +2440,9 @@
     "status": "pending",
     "found_at": "2026-11-09T23:32:04.016828+09:00",
     "cls": "2a4d8a8b9923",
-    "issue": 634
+    "issue": 634,
+    "page_checked_at": "2026-11-10T11:03:44.830000+09:00",
+    "details_checked": true
   },
   "6d1d384b883d5d33": {
     "store": "全国の取扱店・ECサイト",
@@ -2471,7 +2473,9 @@
     "deadline_checked_at": "2026-11-10T10:38:32.185971+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・予約受付は11月13日午前10時から",
-    "cls": "10e581624cce"
+    "cls": "10e581624cce",
+    "page_checked_at": "2026-11-10T11:03:51.560124+09:00",
+    "details_checked": true
   },
   "521cb5f267233a03": {
     "store": "プレミアムバンダイ",
@@ -2550,7 +2554,7 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "ページには「ボール」の応募・購入条件の記載がない。11月10日11時より4商品が再販されるとだけ書かれている。",
     "price": null,
     "round": null,
     "url": "https://s.inside-games.jp/article/img/2026/11/10/190638/1805160.html",
@@ -2570,8 +2574,10 @@
     "deadline_checked_at": "2026-11-10T10:46:51.549041+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選・応募期間の記載なし",
-    "cls": "4d3360e143c7",
-    "issue": 643
+    "cls": "2bd5ec211656",
+    "issue": 643,
+    "page_checked_at": "2026-11-10T11:03:58.123390+09:00",
+    "details_checked": true
   },
   "1ff2dff863c23f2a": {
     "store": "プレミアムバンダイ",
@@ -2730,7 +2736,12 @@
     "key": "fa43301a833a133a",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975075+09:00",
-    "cls": "15bd7db729fd"
+    "cls": "15bd7db729fd",
+    "deadline_checked_at": "2026-11-10T11:03:44.669768+09:00",
+    "deadline_v": 5,
+    "deadline_note": "応募ページの中身が空",
+    "page_checked_at": "2026-11-10T11:04:03.482380+09:00",
+    "page_err": "中身が空"
   },
   "7ba03fbf224c94d3": {
     "store": "BANDAI SPIRITS",
@@ -2758,7 +2769,12 @@
     "key": "7ba03fbf224c94d3",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975114+09:00",
-    "cls": "3c3a5cae8e1d"
+    "cls": "3c3a5cae8e1d",
+    "deadline_checked_at": "2026-11-10T11:03:44.669786+09:00",
+    "deadline_v": 5,
+    "deadline_note": "応募ページの中身が空",
+    "page_checked_at": "2026-11-10T11:04:05.948293+09:00",
+    "page_err": "中身が空"
   },
   "fbdcb7721b595447": {
     "store": "BANDAI SPIRITS",
@@ -2786,7 +2802,10 @@
     "key": "fbdcb7721b595447",
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975139+09:00",
-    "cls": "3d7be6a6abfe"
+    "cls": "3d7be6a6abfe",
+    "deadline_checked_at": "2026-11-10T11:03:44.669791+09:00",
+    "deadline_v": 5,
+    "deadline_note": "応募ページの中身が空"
   },
   "9b923fe088a3ebc2": {
     "store": "BANDAI SPIRITS",
