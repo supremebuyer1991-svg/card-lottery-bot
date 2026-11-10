@@ -145,6 +145,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
     if step in ("all", "publish"):
         lots = load_json("lotteries.json", {})
         _fill_kind(lots)
+        # AIが「本文に記載はありません」のような説明を条件の欄に書いてしまうことがある → サイトに出さない（11/10 ちいかわクリスマスマーケット）
+        for it in lots.values():
+            if re.search(r"本文|記載はありません|記載がありません|書かれていません|明記されていません", it.get("conditions") or ""):
+                it["conditions"] = None
         nt = _drop_other_games(lots)
         _tcg_full_names(lots)
         if nt:
