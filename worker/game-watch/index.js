@@ -68,14 +68,31 @@ async function amzToken(env) {
   amzTok = { v: j.access_token, exp: Date.now() + (j.expires_in || 3600) * 1000 };
   return amzTok.v;
 }
-async function amzItem(env, asin, byJan = false) {
+// 商品名がどれだけ合っているか（0〜1）：こちらの商品名の2文字の組が、Amazonの商品名にどれだけ入っているか
+// 11/10 ユーザー指摘：JANで検索したAmazonの1件目が別の商品で、速報のリンクがサイトの商品と違っていた → 名前が合わないものは使わない
+function norm(t) { return String(t || "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").normalize("NFKC").toLowerCase().replace(/[（(【\[][^）)】\]]*[）)】\]]/g, " ").replace(/[\s・\-_/／,.、。!！?？+＋:：'"]/g, ""); }
+function sim(name, title) {
+  const a = norm(name), b = norm(title);
+  if (a.length < 2 || !b) return 0;
+  const grams = new Set(); for (let i = 0; i < a.length - 1; i++) grams.add(a.slice(i, i + 2));
+  let hit = 0; for (const g of grams) if (b.includes(g)) hit++;
+  return hit / grams.size;
+}
+const SIM_MIN = 0.5;
+const amzTitle = (it) => (it && (it.itemInfo?.title?.displayValue || it.itemInfo?.title?.value)) || "";
+
+async function amzItem(env, asin, byJan = false, name = "") {
   const r = await fetch("https://creatorsapi.amazon/catalog/v1/searchItems", { method: "POST",
     headers: { Authorization: `Bearer ${await amzToken(env)}`, "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp" },
     body: JSON.stringify({ keywords: asin, searchIndex: "All", marketplace: "www.amazon.co.jp", partnerTag: AMZ_TAG, itemCount: 3,
       resources: ["itemInfo.title", "offersV2.listings.availability", "offersV2.listings.price", "offersV2.listings.merchantInfo"] }) });
   if (!r.ok) throw new Error(`Amazon ${r.status} ${(await r.text()).slice(0, 160)}`);
   const items = (await r.json()).searchResult?.items || [];
-  return byJan ? items[0] : items.find((x) => x.asin === asin);
+  if (!byJan) return items.find((x) => x.asin === asin);
+  // JANで探した時は、商品名がいちばん合うものだけ（合うものが無ければ「見つからない」扱い）
+  let best = null, bs = 0;
+  for (const x of items) { const v = name ? sim(name, amzTitle(x)) : 1; if (v > bs) { bs = v; best = x; } }
+  return bs >= SIM_MIN ? best : null;
 }
 // 10件まとめて調べる（11/9：見張りを速くするため）。失敗したら null（呼び出し側で1件ずつの検索に戻す）
 async function amzItems(env, asins) {
@@ -175,13 +192,19 @@ async function run(env, which, { dry = false } = {}) {
       } else {
         const a = azAsin(w);
         const usePre = pre && a;
-        const it = usePre ? pre[a] : await amzItem(env, w.asin || w.jan, !w.asin);
+        const it = usePre ? pre[a] : await amzItem(env, w.asin || w.jan, !w.asin, w.n);
         if (!it) { if (!usePre) await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
+        // JANから見つけたASINなのに名前が合わない（前に間違って覚えた）→ 忘れて使わない（次に探し直す）
+        if (!w.asin && w.n && sim(w.n, amzTitle(it)) < SIM_MIN) {
+          if (w.jan && st.map[w.jan] && st.map[w.jan].asin) { delete st.map[w.jan].asin; delete st.map[w.jan].azUrl; changed = true; log.push(`名前が合わないASINを外した ${w.jan} ${amzTitle(it).slice(0, 40)}`); }
+          delete st.items[id]; delete st.soldout[id];
+          continue;
+        }
         cur = amzState(it);
         const l = ((it && it.offersV2?.listings) || []).find((x) => x.merchantInfo?.id === AMZ_SELLER);
         price = yen(l?.price?.money?.amount ?? l?.price?.money?.displayAmount);
         url = (it && it.detailPageURL) || (it ? `https://www.amazon.co.jp/dp/${it.asin}?tag=${AMZ_TAG}` : "");
-        if (w.jan && it && !st.map[w.jan]) { st.map[w.jan] = { asin: it.asin, azUrl: url }; changed = true; }
+        if (w.jan && it && !(st.map[w.jan] && st.map[w.jan].asin)) { st.map[w.jan] = Object.assign(st.map[w.jan] || {}, { asin: it.asin, azUrl: url, t: amzTitle(it).slice(0, 80) }); changed = true; }
       }
     } catch (e) { log.push(String(e).slice(0, 160)); await sleep(1500); continue; }
     if (which === "rk" || !(pre && azAsin(w))) await sleep(1100);   // 楽天は1秒に1回まで（まとめて調べたAmazonは待たない）
