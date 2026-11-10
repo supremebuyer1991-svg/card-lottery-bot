@@ -52,6 +52,37 @@ DROP_REASON = "このサイトの対象外（トレカなど）"
 BIG_TCG = ("pokemon", "onepiece")   # 大手のお店の抽選だけ載せるトレカ（11/10 ユーザー：ポケカ・ワンピースは大手ならいい）
 
 
+def _tcg_full_names(lots):
+    """ポケカ・ワンピカードの抽選の商品名を正式な名前に（「ハドウシーカー」→「ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」」）。
+    トレカ抽選ナビ（state/lotteries.json）で同じ商品にいちばん多く使われている正式な名前を使う（11/10 ユーザーの指示：何の商品か分かるように）"""
+    import json
+    from collections import Counter
+    from common import ROOT
+    try:
+        tcg = json.loads((ROOT / "state" / "lotteries.json").read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+    head = {"pokemon": ("ポケモンカード",), "onepiece": ("ONE PIECEカード", "ワンピースカード")}
+    n = 0
+    for it in lots.values():
+        g, prod = it.get("game"), (it.get("product") or "").strip()
+        if g not in head or not prod or prod.startswith(head[g]):
+            continue
+        core = re.sub(r"\s*(BOX|ボックス|1BOX)$", "", prod).strip()
+        c = Counter()
+        for v in tcg.values():
+            full = re.sub(r"[（(][^）)]*[）)]\s*$", "", (v.get("product") or "")).strip()
+            full = re.sub(r"\s*\d*\s*BOX$", "", full).strip()
+            if v.get("game") == g and core and core in full and full.startswith(head[g]) and len(full) <= 70:
+                c[full] += 1
+        if c:
+            best = c.most_common(1)[0][0]
+            it.setdefault("product_short", prod)
+            it["product"] = best + ("BOX" if re.search(r"BOX|ボックス", prod) and "BOX" not in best else "")
+            n += 1
+    return n
+
+
 def _drop_other_games(lots):
     """このサイトのカテゴリ（config/game/categories.yaml）に無いもの・トレカは載せない・投稿しない
     11/10 ユーザー指摘：入荷Nowの抽選情報からポケカ「ハドウシーカー」が入り、ゲームのXアカウントにAPIで投稿された
@@ -109,6 +140,7 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         lots = load_json("lotteries.json", {})
         _fill_kind(lots)
         nt = _drop_other_games(lots)
+        _tcg_full_names(lots)
         if nt:
             log(f"このサイトのカテゴリ以外（トレカなど）{nt}件を外しました")
         n = _end_releases(lots)
