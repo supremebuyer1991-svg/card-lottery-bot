@@ -23,7 +23,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-09T11:11:17.768435+09:00",
+    "page_checked_at": "2026-11-10T10:38:34.317357+09:00",
     "address_checked": true,
     "multi": false,
     "cls": "1a55bf085870",
@@ -47,7 +47,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-09T11:11:20.444781+09:00",
+    "page_checked_at": "2026-11-10T10:38:37.441560+09:00",
     "area": null,
     "cls": "a91c0a86f864",
     "amazon_asin": "B0HM3FKH8L"
@@ -159,7 +159,7 @@
     "key": "bf054c65589173bf",
     "status": "listed",
     "found_at": "2026-11-08T15:42:44.721669+09:00",
-    "page_checked_at": "2026-11-09T11:51:40.585226+09:00",
+    "page_checked_at": "2026-11-10T10:38:40.918155+09:00",
     "details_checked": true,
     "cls": "3544005863c3",
     "official_checked": true
@@ -259,7 +259,7 @@
     "deadline_checked_at": "2026-11-09T17:04:25.934220+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-09T11:51:43.091563+09:00",
+    "page_checked_at": "2026-11-10T10:38:43.284815+09:00",
     "details_checked": true,
     "cls": "5229e41c6e5f",
     "official_checked": true,
@@ -356,7 +356,7 @@
     "key": "66891c533d6ae74d",
     "status": "listed",
     "found_at": "2026-11-08T15:49:35.381715+09:00",
-    "page_checked_at": "2026-11-09T11:51:46.022875+09:00",
+    "page_checked_at": "2026-11-10T10:38:46.058351+09:00",
     "cls": "771ffff9f0d4",
     "official_checked": true
   },
@@ -384,11 +384,12 @@
     "source": "Googleニュース「フィギュア 抽選販売」",
     "source_url": "https://www.inside-games.jp/article/2026/11/08/190546.html",
     "key": "98b34a6a1791d2de",
-    "status": "listed",
+    "status": "rejected",
     "found_at": "2026-11-08T15:50:53.105546+09:00",
     "page_checked_at": "2026-11-09T18:30:11.965282+09:00",
     "page_err": "中身が空",
-    "cls": "f5fc03a48697"
+    "cls": "f5fc03a48697",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "6475988fc780fb56": {
     "store": "プレミアムバンダイ",
@@ -622,7 +623,7 @@
     "deadline_checked_at": "2026-11-09T18:30:10.611519+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の告知ではなく入荷記事",
-    "page_checked_at": "2026-11-09T13:41:19.960243+09:00",
+    "page_checked_at": "2026-11-10T10:38:48.963080+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
@@ -726,7 +727,7 @@
     "key": "ae4b61c642bed31a",
     "status": "pending",
     "found_at": "2026-11-09T07:10:02.974346+09:00",
-    "deadline_checked_at": "2026-11-09T07:10:09.272821+09:00",
+    "deadline_checked_at": "2026-11-10T10:38:29.990234+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-09T07:10:14.377029+09:00",
@@ -760,7 +761,7 @@
     "found_at": "2026-11-09T07:45:45.030933+09:00",
     "key": "26786d8b4a3e56ad",
     "status": "pending",
-    "deadline_checked_at": "2026-11-09T07:45:51.593876+09:00",
+    "deadline_checked_at": "2026-11-10T10:38:30.812276+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-09T07:45:53.095119+09:00",
@@ -1164,13 +1165,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "556356e584972c61",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932329+09:00",
     "kind": "lottery",
     "page_checked_at": "2026-11-09T23:32:13.720265+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://wr.pokemoncenter-online.com/?c=pol&e=wr20261106ec&ver=v3-javascript-3.7.10&",
     "area": null,
-    "cls": "828b8b6b4f7c"
+    "cls": "828b8b6b4f7c",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "24d4a79be83f0f5c": {
     "store": "ヨドバシ・ドット・コム",
@@ -1229,13 +1231,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "b660975d9c87901b",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932359+09:00",
     "kind": "lottery",
     "page_checked_at": "2026-11-09T23:32:14.916983+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.suruga-ya.jp/blog/?q=pokeka_chusen261105.html",
     "area": null,
-    "cls": "9e6d4bf7098a"
+    "cls": "9e6d4bf7098a",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "393488f1a202558d": {
     "store": "カードラボ",
@@ -1260,14 +1263,15 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "393488f1a202558d",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932372+09:00",
     "kind": "lottery",
     "page_checked_at": "2026-11-09T14:28:17.353035+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "ac1b889ca5a5"
+    "cls": "ac1b889ca5a5",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "01ea40943595433f": {
     "store": "キッズリパブリック（アプリ）",
@@ -1293,13 +1297,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "01ea40943595433f",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932385+09:00",
     "kind": "lottery",
     "page_checked_at": "2026-11-09T23:32:15.678291+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.kidsrepublic.jp/campaign/campaign_detail/20261127pokemoncardgame",
     "multi": false,
-    "cls": "8daa1c28e4a0"
+    "cls": "8daa1c28e4a0",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "18e896e1ecf776ff": {
     "store": "三洋堂書店",
@@ -1322,14 +1327,15 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "18e896e1ecf776ff",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932398+09:00",
     "kind": "lottery",
     "page_checked_at": "2026-11-09T14:28:25.134667+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "4215edacb6b9"
+    "cls": "4215edacb6b9",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "4950c953657f66a8": {
     "store": "ドラゴンスター",
@@ -1355,13 +1361,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "4950c953657f66a8",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932411+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "43765479641f",
     "page_checked_at": "2026-11-09T23:32:16.216835+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
+    "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "831b4d07a8ead3b3": {
     "store": "ホビーゾーン",
@@ -1384,12 +1391,13 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "831b4d07a8ead3b3",
-    "status": "pending",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932425+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "3b04eb01339c",
-    "issue": 620
+    "issue": 620,
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "cbe165aa99781dda": {
     "store": "ゲオ（アプリ）",
@@ -1415,13 +1423,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "cbe165aa99781dda",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932436+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "f831f51feccd",
     "page_checked_at": "2026-11-09T23:32:16.324883+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789"
+    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "cc81610f2587f0d9": {
     "store": "ゲオ（アプリ）",
@@ -1447,13 +1456,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "cc81610f2587f0d9",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932449+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "6eeb58778608",
     "page_checked_at": "2026-11-09T23:32:16.452227+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "9e845c51b9d18d8b": {
     "store": "平和堂",
@@ -1479,7 +1489,7 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "9e845c51b9d18d8b",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932460+09:00",
     "kind": "lottery",
     "multi": false,
@@ -1487,7 +1497,8 @@
     "page_checked_at": "2026-11-09T14:33:57.980193+09:00",
     "address_checked": true,
     "details_checked": true,
-    "conditions": "本文に「ハドウシーカー」の抽選条件の記載はありません。"
+    "conditions": "本文に「ハドウシーカー」の抽選条件の記載はありません。",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "9572d94308e78957": {
     "store": "平和堂",
@@ -1513,7 +1524,7 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "9572d94308e78957",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932474+09:00",
     "kind": "lottery",
     "multi": false,
@@ -1521,7 +1532,8 @@
     "page_checked_at": "2026-11-09T14:34:03.373764+09:00",
     "address_checked": true,
     "details_checked": true,
-    "conditions": "本文は平和堂のHOPアプリの紹介ページで、「30th CELEBRATION カードセット各種」の抽選や応募・購入の条件については書かれていません。"
+    "conditions": "本文は平和堂のHOPアプリの紹介ページで、「30th CELEBRATION カードセット各種」の抽選や応募・購入の条件については書かれていません。",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "d3c12123628d4b8a": {
     "store": "晴れる屋2",
@@ -1546,13 +1558,14 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "d3c12123628d4b8a",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932487+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "5cf2965a4e8a",
     "page_checked_at": "2026-11-09T14:34:05.706586+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "a71033e0acc8b5b1": {
     "store": "ドン・キホーテ",
@@ -1578,11 +1591,12 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "a71033e0acc8b5b1",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932499+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "cd6debd3283b"
+    "cls": "cd6debd3283b",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "6fa5b135e173a486": {
     "store": "ファミマオンライン",
@@ -1607,7 +1621,7 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "6fa5b135e173a486",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932511+09:00",
     "kind": "lottery",
     "area": null,
@@ -1615,7 +1629,8 @@
     "page_checked_at": "2026-11-09T14:39:08.264605+09:00",
     "name_checked": true,
     "details_checked": true,
-    "conditions": "海外からのアクセスは不可で、日本国内から利用する必要がある。このページには抽選の応募・購入条件は書かれていない。"
+    "conditions": "海外からのアクセスは不可で、日本国内から利用する必要がある。このページには抽選の応募・購入条件は書かれていない。",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "4900632893b50a8f": {
     "store": "ビックカメラ",
@@ -1644,12 +1659,13 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "4900632893b50a8f",
-    "status": "pending",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932538+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "48bf7e3f090e",
-    "issue": 621
+    "issue": 621,
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "bdcd6d3d2a8d97c8": {
     "store": "ビックカメラ",
@@ -1675,12 +1691,13 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "bdcd6d3d2a8d97c8",
-    "status": "pending",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932551+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "48bf7e3f090e",
-    "issue": 622
+    "issue": 622,
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "2b93ea15b8da9135": {
     "store": "WonderGOO / 新星堂",
@@ -1761,13 +1778,14 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "3d8ac22f7d918f5e",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932602+09:00",
     "kind": "lottery",
     "multi": false,
     "cls": "ecd96965d68d",
     "page_checked_at": "2026-11-09T14:39:12.604902+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "abc5c33ec5476450": {
     "store": "ブックオフ",
@@ -1792,11 +1810,12 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "abc5c33ec5476450",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932614+09:00",
     "kind": "lottery",
     "multi": false,
-    "cls": "5850fdaa6a65"
+    "cls": "5850fdaa6a65",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "c928912be51f480a": {
     "store": "DMMマイカ",
@@ -1819,14 +1838,15 @@
     "source_url": "https://nyuka-now.com/archives/159770",
     "no_quote": true,
     "key": "c928912be51f480a",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T14:26:44.932625+09:00",
     "kind": "lottery",
     "area": null,
     "cls": "384a6e1290ef",
     "page_checked_at": "2026-11-09T14:39:14.693495+09:00",
     "details_checked": true,
-    "conditions": "本文に「30th CELEBRATION BOX」の抽選条件は書かれていません。ページはDMMマイカの紹介とサイトのカテゴリ一覧のみです。"
+    "conditions": "本文に「30th CELEBRATION BOX」の抽選条件は書かれていません。ページはDMMマイカの紹介とサイトのカテゴリ一覧のみです。",
+    "reject_reason": "このサイトの対象外（トレカなど）"
   },
   "3f97a83dd798e28a": {
     "store": "全国のPlayStation取扱店",
@@ -2404,5 +2424,36 @@
     "found_at": "2026-11-09T23:32:04.016828+09:00",
     "cls": "2a4d8a8b9923",
     "issue": 634
+  },
+  "6d1d384b883d5d33": {
+    "store": "全国の取扱店・ECサイト",
+    "product": "PlayStation Portal プレーヤー ミッドナイトブラック 日本語専用",
+    "series": "PlayStation Portal",
+    "kind": "preorder",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "全国の取扱店・ECサイト",
+    "conditions": null,
+    "price": "39,980円",
+    "round": null,
+    "url": "https://news.infoseek.co.jp/amp/article/otakulab_213245/",
+    "x_post": null,
+    "game": "ps5",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.7,
+    "source": "Googleニュース「PS5 予約 開始」",
+    "source_url": "https://news.infoseek.co.jp/amp/article/otakulab_213245/",
+    "key": "6d1d384b883d5d33",
+    "status": "approved",
+    "found_at": "2026-11-10T10:37:29.593937+09:00",
+    "deadline_checked_at": "2026-11-10T10:38:32.185971+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・予約受付は11月13日午前10時から",
+    "cls": "10e581624cce"
   }
 }

@@ -1859,6 +1859,17 @@
         "rq": [],
         "a": "2026-11-17"
       },
+      "ed326087419983f1": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-11",
+        "f": "2026-11-10",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "4b397e1a5ac9f800": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -2560,7 +2571,8 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-11-18"
       },
       "391cc750e25ec59b": {
         "p": "30th CELEBRATION",
@@ -3554,6 +3566,17 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
+        "rq": []
+      },
+      "809faf01d7111f9a": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "71da34644793807a": {
@@ -19652,6 +19675,20 @@
           "購入履歴"
         ]
       },
+      "058e370d0b2174ea": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-09",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": [
+          "購入履歴"
+        ],
+        "a": "2026-11-17"
+      },
       "fc4d5c14fc5c7a96": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -19661,20 +19698,6 @@
         "m": "Web",
         "id": false,
         "mem": "none",
-        "rq": [
-          "購入履歴"
-        ],
-        "a": "2026-11-17"
-      },
-      "058e370d0b2174ea": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-11-02",
-        "c": "online",
-        "m": "Web",
-        "id": null,
-        "mem": "account",
         "rq": [
           "購入履歴"
         ],
@@ -23198,6 +23221,17 @@
         "mem": "none",
         "rq": []
       },
+      "6970b0b2d50be97c": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "b556c3f1f0733f61": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -25120,6 +25154,17 @@
         "mem": null,
         "rq": [],
         "a": "2026-11-18"
+      },
+      "59f3e93c4b6603f6": {
+        "p": "ボルメテウスの書・神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       },
       "c6b0a6ec0c31a4ae": {
         "p": "スペシャルデッキセットMEGA",
@@ -27060,6 +27105,17 @@
         "m": "Web",
         "id": true,
         "mem": "none",
+        "rq": []
+      },
+      "0d0a731ec28acd6d": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       },
       "f58433cdca9f7d36": {
@@ -33535,6 +33591,86 @@
         "g": "onepiece",
         "e": "",
         "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/santy-kurisurodo-bb7e1/": {
+    "name": "santy仙台クリスロード店",
+    "items": {
+      "1582d1d45df4c42d": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "2026-11-10T23:59",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/animeitoonrain-744de/": {
+    "name": "アニメイトオンライン",
+    "items": {
+      "1c56d15e5852e4c4": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-10",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/animeitoonrainshoppu-4b595/": {
+    "name": "アニメイトオンラインショップ",
+    "items": {
+      "63f5b6d227349081": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-10",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/superkabos-e335e/": {
+    "name": "SuperKaBoS敦賀店",
+    "items": {
+      "92742e5cf8e84899": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/kabos-geo-acb77/": {
+    "name": "KaBoS＋GEO三国店",
+    "items": {
+      "0308469341fb77c4": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-10",
         "c": "store",
         "m": "Web",
         "id": null,
