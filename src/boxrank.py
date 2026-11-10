@@ -552,7 +552,9 @@ if __name__ == "__main__":
                 if "--tiktok" in sys.argv:
                     import tiktok
                     try:
-                        if tiktok.upload_draft(p):
+                        from boxrank_hype import se_mp4
+                        tp = se_mp4(p) if se_mp4(p).exists() else p  # TikTok は効果音だけの版（曲は自分でのせる）
+                        if tiktok.upload_draft(tp):
                             note += "\n📱TikTokの下書きに送りました（アプリの受信箱から曲をのせて「投稿」）"
                     except Exception as e:
                         log(f"TikTok: 失敗 {e}")

@@ -1185,7 +1185,20 @@ def render(sc, mp4, music=True):
     wav.unlink(missing_ok=True)
     if not ok:
         raise RuntimeError("ffmpeg が失敗")
+    if music:  # 11/10：TikTok は自分で曲をのせるので、BGMなし・効果音だけの版も作る（絵はそのまま、音だけ差し替え）
+        se_wav = mp4.with_name(mp4.stem + "_se.wav")
+        V.write_wav(se_wav, mix(events, total, levels, music=False))
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4), "-i", str(se_wav), "-map", "0:v", "-map", "1:a",
+                        "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart",
+                        str(se_mp4(mp4))], check=False)
+        se_wav.unlink(missing_ok=True)
     return mp4
+
+
+def se_mp4(mp4):
+    """効果音だけの版（TikTok 用）のパス"""
+    mp4 = Path(mp4)
+    return mp4.with_name(mp4.stem + "_se.mp4")
 
 
 def make_hype(out_dir, kind, span, game, rows, today=None, music=True):
