@@ -205,8 +205,9 @@ def draw_ticker(im, strip, t, y=HEAD_H, speed=170):
         im.alpha_composite(strip.crop((0, 0, off + VW - w, TICK_H)), (w - off, y))
 
 
-def line_chart(lay, box, vals, p, col, th, base=None, base_label="", ox=0, oy=0, tag_fmt="¥{:,}"):
-    """箱 box の中に値の線（p=0〜1 で左から伸びる）。base は点線。lay は box の左上を (ox,oy) とする絵"""
+def line_chart(lay, box, vals, p, col, th, base=None, base_label="", ox=0, oy=0, tag_fmt="¥{:,}", tag=True, label_in=False):
+    """箱 box の中に値の線（p=0〜1 で左から伸びる）。base は点線。lay は box の左上を (ox,oy) とする絵
+    tag=False で線の先の値札なし。label_in=True で点線のラベルを箱の中（左上）に書く（画面の右はしを空けたいとき）"""
     d = ImageDraw.Draw(lay)
     px0, py0, px1, py1 = box
     lo, hi = min(vals + ([base] if base else [])), max(vals + ([base] if base else []))
@@ -223,7 +224,10 @@ def line_chart(lay, box, vals, p, col, th, base=None, base_label="", ox=0, oy=0,
         while xx < px1 - ox:
             d.line((xx, by, min(xx + 16, px1 - ox), by), fill=th.cink2 + (a,), width=3)
             xx += 28
-        d.text((px1 - ox + 10, by), base_label, font=FB(24, "Bold"), fill=th.cink2 + (a,), anchor="lm")
+        if label_in:
+            d.text((px0 - ox + 8, by - 8), base_label, font=FB(26, "Bold"), fill=th.cink2 + (a,), anchor="ls")
+        else:
+            d.text((px1 - ox + 10, by), base_label, font=FB(24, "Bold"), fill=th.cink2 + (a,), anchor="lm")
     if len(vals) < 2 or p <= 0:
         return None
     pos = p * (len(vals) - 1)
@@ -240,6 +244,8 @@ def line_chart(lay, box, vals, p, col, th, base=None, base_label="", ox=0, oy=0,
     d.line(xy, fill=col + (255,), width=8, joint="curve")
     ex, ey = xy[-1]
     d.ellipse((ex - 14, ey - 14, ex + 14, ey + 14), fill=col + (255,), outline=th.card + (255,), width=4)
+    if not tag:
+        return cur
     tag = tag_fmt.format(round(cur))
     tw = d.textlength(tag, font=FB(34))
     bx = min(max(ex - tw / 2 - 16, 10), lay.width - tw - 42)
@@ -288,6 +294,13 @@ def _sum(*xs):
 
 
 def sfx(name):
+    if name.startswith("tick:"):  # 高さつきのカチッ（数字が数えあがるとき、だんだん高くする）。例 "tick:1.4"
+        k = float(name.split(":")[1])
+        return 0.16 * _sine(1500 * k, 1400 * k, 0.035, 0.012)
+    if name == "heart":  # ドクン（1位の発表の前のため）
+        return _sum(0.9 * _sine(95, 40, 0.3, 0.1), np.concatenate([np.zeros(int(0.13 * SR)), 0.6 * _sine(80, 38, 0.3, 0.1)]))
+    if name == "shine":  # キラッ
+        return _sum(*[np.concatenate([np.zeros(int(0.05 * j * SR)), 0.14 * _sine(f, f, 0.6, 0.2)]) for j, f in enumerate((1568, 2093, 2637, 3136))])
     if name == "pop":
         return 0.55 * _sine(900, 420, 0.14, 0.05)
     if name == "tick":
@@ -325,8 +338,8 @@ def sfx(name):
     return np.zeros(1)
 
 
-def bgm(dur, bpm=124, seed=0):
-    """BGM：キック・ハイハット・ベース（Aマイナーの4小節をくり返す）"""
+def bgm(dur, bpm=124, seed=0, rich=False):
+    """BGM：キック・ハイハット・ベース（Aマイナーの4小節をくり返す）。rich=True で手拍子と分散和音も足す"""
     n = int(dur * SR)
     out = np.zeros(n + SR)
     beat = 60 / bpm
@@ -346,27 +359,40 @@ def bgm(dur, bpm=124, seed=0):
             bass = 0.16 * np.sign(_sine(root * 2, root * 2, beat * 0.45, 0.2))  # ぶーん（くぐもった四角い波）
             bass = _lp(bass, 30)
             out[j:j + len(bass)] += bass
+        if rich:
+            if k % 2 == 1:  # 2・4拍目の手拍子
+                cl = 0.22 * _noise(0.12, 0.04, seed=20)
+                out[i:i + len(cl)] += cl
+            ch = root * 8  # 分散和音（根音・短3度か長3度・5度・オクターブ）
+            third = 1.189 if (k // 4) % 4 == 0 else 1.26
+            for e, m in enumerate((1, third, 1.498, 2)):
+                j = int((t + e * beat / 4) * SR)
+                pl = 0.07 * _sine(ch * m, ch * m, beat * 0.5, 0.09)
+                out[j:j + len(pl)] += pl
         t += beat
         k += 1
     return out[:n]
 
 
-def mix(events, dur, music=True):
+def mix(events, dur, music=True, bpm=124, rich=False):
     n = int(dur * SR)
     out = np.zeros(n + 3 * SR)
     if music:
-        m = bgm(dur)
+        m = bgm(dur, bpm=bpm, rich=rich)
         # 1位の発表の前後は少し小さく（ドラムロールを聞かせる）
         duck = np.ones(len(m))
         for t, nm in events:
-            if nm == "drumroll":
+            if nm.startswith("duck:"):  # "duck:秒数" ＝その間だけBGMをぐっと小さく（発表の前のため）
+                a, b = int(t * SR), int((t + float(nm.split(":")[1])) * SR)
+                duck[a:b] = 0.12
+            elif nm == "drumroll" and not rich:
                 a, b = int(t * SR), int((t + 2.6) * SR)
                 duck[a:b] = 0.35
         out[:len(m)] += m * duck * 0.55
     for t, nm in events:
         s = sfx(nm)
         i = int(t * SR)
-        if i < len(out):
+        if 0 <= i < len(out):
             out[i:i + len(s)] += s[:len(out) - i]
     out = np.tanh(out[:n] * 1.2) * 0.9
     # はじめと終わりをなめらかに
@@ -387,18 +413,19 @@ def write_wav(path, x):
 
 
 # ---------------- 書き出し ----------------
-def render(scenes, mp4, th, slide=0.35, music=True):
-    """場面を順に描いて mp4 に。切りかえは横スライド（transition="fade" の場面はふわっと）"""
+def render(scenes, mp4, th, slide=0.35, music=True, bpm=124, rich=False):
+    """場面を順に描いて mp4 に。切りかえは横スライド（transition="fade" の場面はふわっと・"cut" はパッと）
+    場面に tdur（秒）があれば、その場面に入るときの切りかえの長さ"""
     mp4 = Path(mp4)
     total = sum(s.dur for s in scenes)
     events, t0 = [], 0.0
     for k, s in enumerate(scenes):
-        if k > 0:
+        if k > 0 and getattr(s, "transition", "slide") != "cut":
             events.append((t0, "whoosh"))
         events += [(t0 + t, nm) for t, nm in getattr(s, "events", [])]
         t0 += s.dur
     wav = mp4.with_suffix(".wav")
-    write_wav(wav, mix(events, total, music))
+    write_wav(wav, mix(events, total, music, bpm=bpm, rich=rich))
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{VW}x{VH}",
                            "-r", str(FPS), "-i", "-", "-i", str(wav), "-map", "0:v", "-map", "1:a",
                            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
@@ -409,9 +436,11 @@ def render(scenes, mp4, th, slide=0.35, music=True):
         for f in range(nf):
             t = f / FPS
             im = s.frame(t).convert("RGB")
-            if last is not None and t < slide:
-                p = eo(t / slide)
-                if getattr(s, "transition", "slide") == "fade":
+            sl = getattr(s, "tdur", slide)
+            tr = getattr(s, "transition", "slide")
+            if last is not None and t < sl and tr != "cut":
+                p = eo(t / sl)
+                if tr == "fade":
                     im = Image.blend(last, im, p)
                 else:
                     dx = int(VW * p)
