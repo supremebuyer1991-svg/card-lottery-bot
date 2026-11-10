@@ -1,6 +1,6 @@
 name: gacha-tiktok
 
-# ガチャプラネット（gachapla.com）の毎日のリール動画（音なし版）を、ガチャ用 TikTok アカウントの受信箱（下書き）に送る。
+# ガチャプラネット（gachapla.com）の毎日のリールと同じ中身を、写真スライド（10枚前後）としてガチャ用 TikTok アカウントの受信箱（下書き）に送る。
 # 投稿はユーザーが TikTok アプリで曲をのせて行う。動画はガチャサイトの公開のたびに作られる（gacha-site の src/reel.js）。
 on:
   schedule:
@@ -32,11 +32,9 @@ jobs:
           TIKTOK_ACCOUNT: gacha
         run: |
           D=$(TZ=Asia/Tokyo date +%F)
-          mkdir -p video
-          if ! curl -fsSL -o video/gacha.mp4 "https://gachapla.com/images/social/reel-$D-silent.mp4"; then
-            echo "今日のガチャの動画がまだありません（$D）"; exit 0
-          fi
-          cd src && python tiktok.py test ../video/gacha.mp4
+          curl -fsSL -o /tmp/reel.json "https://gachapla.com/data/social-reel.json?t=$(date +%s)" || { echo "データが読めません"; exit 0; }
+          if [ "$(python -c "import json;print(json.load(open('/tmp/reel.json'))['date'])")" != "$D" ]; then echo "今日のガチャのスライドがまだありません（$D）"; exit 0; fi
+          cd src && python tiktok.py photos /tmp/reel.json
       - name: save state
         if: always()
         run: |

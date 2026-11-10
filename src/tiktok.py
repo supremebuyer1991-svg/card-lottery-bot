@@ -113,6 +113,28 @@ def upload_draft(path):
     return data.get("publish_id")
 
 
+CONTENT_INIT_URL = "https://open.tiktokapis.com/v2/post/publish/content/init/"
+
+
+def upload_photos(urls, title="", description=""):
+    """写真（最大35枚）を TikTok の受信箱（下書き）に送る。写真は TikTok が URL から取りに来るので、
+    URL のドメイン（例 gachapla.com）を TikTok の開発者ページで「URLプロパティ」として確認しておく必要がある"""
+    if not ready():
+        log("TikTok: 未連携なのでスキップ")
+        return None
+    acc = _access()
+    body = {"post_info": {"title": title[:90], "description": description[:4000]},
+            "source_info": {"source": "PULL_FROM_URL", "photo_cover_index": 0, "photo_images": urls[:35]},
+            "post_mode": "MEDIA_UPLOAD", "media_type": "PHOTO"}
+    r = requests.post(CONTENT_INIT_URL, headers={"Authorization": f"Bearer {acc}", "Content-Type": "application/json; charset=UTF-8"},
+                      data=json.dumps(body, ensure_ascii=False).encode(), timeout=30)
+    j = r.json() if r.content else {}
+    if not r.ok or (j.get("error") or {}).get("code") not in (None, "ok"):
+        raise RuntimeError(f"TikTok: 写真の下書きに失敗 {r.status_code} {json.dumps(j.get('error'), ensure_ascii=False)[:300]}")
+    log(f"TikTok: 写真{len(urls[:35])}枚を下書きに送った（アプリの受信箱に届きます）")
+    return (j.get("data") or {}).get("publish_id")
+
+
 def status(publish_id):
     acc = _access()
     r = requests.post(STATUS_URL, headers={"Authorization": f"Bearer {acc}", "Content-Type": "application/json; charset=UTF-8"},
@@ -127,6 +149,20 @@ if __name__ == "__main__":
         print(auth_url())
     elif cmd == "code":
         print("連携できました：", connect(sys.argv[2]))
+    elif cmd == "photos":  # python tiktok.py photos social-reel.json（ガチャのスライド）
+        d = json.load(open(sys.argv[2], encoding="utf-8"))
+        main = [i for i in d["items"] if i["id"] not in set(d.get("kawaii") or [])]
+        kw = [i for i in d["items"] if i["id"] in set(d.get("kawaii") or [])]
+        line = lambda it: f"・{it['name']}（{it['price']}円）"
+        desc = "\n".join([f"{d['title']}（{d['sub']}）", "", *map(line, main), *( ["", f"ラストの{d['word']}が可愛すぎる♡", *map(line, kw)] if kw else []), "",
+                          "どれを回したい？コメントで教えてね🪐", "発売日・近くの在庫店はプロフィールのリンクから", "",
+                          "#ガチャガチャ #ガチャ #カプセルトイ #新作ガチャ #ガチャ活" + (f" #{d['word']}" if d.get("word") else "")])
+        pid = upload_photos(d["slides"], d["title"], desc)
+        print("publish_id:", pid)
+        if pid:
+            import time
+            time.sleep(20)
+            print(json.dumps(status(pid), ensure_ascii=False)[:500])
     elif cmd == "test":
         pid = upload_draft(sys.argv[2])
         print("publish_id:", pid)
