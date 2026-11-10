@@ -125,6 +125,11 @@ def main():
         except Exception as e:
             log(f"カード相場: スキップ {e}")
         try:
+            import jan, sitegen as _sg
+            jan.update(jan.series_names(_sg))  # 弾ページの JANコード（11/11）。1回最大15件
+        except Exception as e:
+            log(f"JAN: スキップ {e}")
+        try:
             import genre_count
             genre_count.update(s)  # ほかのトレカのタイトルの抽選の数を数えるだけ（1日1回・11/10〜）
         except Exception as e:

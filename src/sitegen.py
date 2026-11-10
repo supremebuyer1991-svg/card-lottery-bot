@@ -2112,6 +2112,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 info_rows.append(("発売日", jdate(info["release"])))
             if info.get("price"):
                 info_rows.append(("希望小売価格", info["price"]))
+            try:  # 11/11：BOX の JANコード（Amazon のメーカー公式の出品で確かめた番号、または手書き）
+                import jan as _jan
+                jb = _jan.jan_of(g, x, info)
+            except Exception:
+                jb = None
+            if jb:
+                info_rows.append(("JANコード（BOX）", jb["jan"] + ("（Amazonの商品情報より）" if jb["src"] == "amazon" else "")))
             info_rows += [("受付中の抽選", f"{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）"), ("情報の最終更新", upd_hm)]
             info_html = ('<section class="sinfo" aria-label="基本情報"><h2>' + escape(x) + 'の基本情報</h2><table>' +
                          "".join(f"<tr><th>{escape(a)}</th><td>{escape(b)}</td></tr>" for a, b in info_rows) + "</table></section>")
