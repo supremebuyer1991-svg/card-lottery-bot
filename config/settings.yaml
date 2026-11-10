@@ -478,3 +478,12 @@ vc_programs:
 store_alias_fix:
   "CARD CREW(カードクルー)通販": "CARD CREW（カードクルー）トレカ通販"
 
+
+# 11/11：弾ページの「収録カードの相場（RR以上）」。Cloudflare の Worker（rakuten-watch）がスニダンから少しずつ集める
+# q：スニダンの商品名にある弾の名前（かっこ「」ごと）。rar：集めるレアリティ
+card_sets:
+  - {key: "pokemon|ハドウシーカー", q: "「ハドウシーカー」", rar: [RR, AR, SR, SAR, UR, MUR]}
+  - {key: "pokemon|30th CELEBRATION", q: "「30th CELEBRATION」", rar: [RR, AR, SR, SAR, UR, MUR, FUR]}
+  - {key: "pokemon|ストームエメラルダ", q: "「ストームエメラルダ」", rar: [RR, AR, SR, SAR, UR, MUR]}
+  - {key: "pokemon|アビスアイ", q: "「アビスアイ」", rar: [RR, AR, SR, SAR, UR, MUR]}
+  - {key: "pokemon|MEGAドリームex", q: "「MEGAドリームex」", rar: [RR, AR, SR, SAR, UR, MUR]}

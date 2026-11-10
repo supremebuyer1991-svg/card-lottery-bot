@@ -1,3 +1,4 @@
+import { runCards, cardsData } from "./cards.js";
 import { pushApi, runPush, pushStats } from "./push.js";
 import { runNewsets, newsetsStatus } from "./newsets.js";
 import { runXQueue, xqueueStatus } from "./xqueue.js";
@@ -310,6 +311,7 @@ export default {
     // ctx.waitUntil(runXQueue(env, tweet));
     // 新弾の発表の見張り：10分おき（11/8）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 6) ctx.waitUntil(runNewsets(env, tweet));
+    if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 9) ctx.waitUntil(runCards(env));  // 弾ごとの収録カードの相場（11/11）
   },
   async fetch(req, env) {
     const u = new URL(req.url);
@@ -339,6 +341,8 @@ export default {
       }
       return Response.json(out);
     }
+    if (u.pathname === "/cards") return Response.json(await cardsData(env), { headers: { "Cache-Control": "max-age=300" } });
+    if (u.pathname === "/cards/status") { const d = await cardsData(env); return Response.json({ last: d.last, sets: Object.fromEntries(Object.entries(d.sets || {}).map(([k, v]) => [k, { cards: Object.keys(v.cards || {}).length, priced: Object.values(v.cards || {}).filter((c) => c.at).length }])) }); }
     if (u.pathname === "/jan") {
       try { return Response.json(await janLookup(env, u.searchParams.get("q"))); } catch (e) { return Response.json({ error: String(e).slice(0, 120) }); }
     }

@@ -3566,6 +3566,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
              if (parse_dt(v.get("at")) or _t) > _t - _td(hours=12)], ensure_ascii=False), encoding="utf-8")
     except Exception as e:
         print("x-queue.json を書けませんでした", e)
+    try:  # 11/11：Worker が収録カードの相場を集める弾の一覧
+        (out / "data").mkdir(exist_ok=True)
+        (out / "data" / "card-sets.json").write_text(json.dumps(
+            [{"key": c["key"], "q": c["q"], "rar": c.get("rar") or ["RR", "AR", "SR", "SAR", "UR"]} for c in (s.get("card_sets") or [])],
+            ensure_ascii=False), encoding="utf-8")
+    except Exception as e:
+        print("card-sets.json を書けませんでした", e)
     (out / "404.html").write_text(
         '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta name="robots" content="noindex"><title>ページが見つかりません｜トレカ抽選ナビ</title>'
