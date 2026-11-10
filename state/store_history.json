@@ -1829,6 +1829,18 @@
   "store/dragonstar-d49e0/": {
     "name": "ドラゴンスター各店（ららぽーと甲子園店・ららぽーと堺店・秋葉原駅前店・日本橋3号店・泉佐野店 ほか）",
     "items": {
+      "06507edd0902f0b1": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-13T23:59",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-16"
+      },
       "4950c953657f66a8": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -9186,6 +9198,18 @@
   "store/kadosutajiamu-f57b0/": {
     "name": "カードスタジアム小禄店",
     "items": {
+      "b53c658c961efe55": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-11T23:59",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-12"
+      },
       "3d74e28430af8a8b": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -11615,6 +11639,17 @@
   "store/shop-f8447/": {
     "name": "文教堂行徳店（トレカ）",
     "items": {
+      "616f68a4ca5ddb9d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-16T20:30",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "af5707baf2ee5680": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -29701,6 +29736,17 @@
   "store/yamashiroya-79c07/": {
     "name": "ヤマシロヤ",
     "items": {
+      "1c7d14b331786729": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-12T21:30",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "9b1f1edeae5e6645": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -34656,22 +34702,6 @@
       }
     }
   },
-  "store/kadosutajiamu-188c0/": {
-    "name": "カードスタジアム小禄店（沖縄）",
-    "items": {
-      "b53c658c961efe55": {
-        "p": "30th CELEBRATION",
-        "g": "pokemon",
-        "e": "2026-11-11T23:59",
-        "f": "2026-11-10",
-        "c": "store",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
   "store/asobiba-0ee98/": {
     "name": "あそビバ平塚四之宮店",
     "items": {
@@ -34771,6 +34801,71 @@
         "id": null,
         "mem": null,
         "rq": []
+      }
+    }
+  },
+  "store/aeon-47189/": {
+    "name": "イオンモール高岡店",
+    "items": {
+      "d098479d9a9eb68d": {
+        "p": "ヒロインズエディション",
+        "g": "onepiece",
+        "e": "2026-11-11T21:01",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "アプリ",
+        "id": null,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "59a30cf2c40bb725": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "アプリ",
+        "id": null,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/onepiecekadogemu-shoppu-9b856/": {
+    "name": "ONE PIECEカードゲーム公式ショップ",
+    "items": {
+      "adfa4eb7edabc35c": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-11",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/bookoff-5cfdb/": {
+    "name": "BOOKOFF名古屋みなと店",
+    "items": {
+      "566b946747a5c609": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-11",
+        "c": "store",
+        "m": "SNS",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "X（旧Twitter）のフォロー"
+        ]
       }
     }
   }

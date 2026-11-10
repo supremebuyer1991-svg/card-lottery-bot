@@ -17910,7 +17910,7 @@
       "store": "ホビーステーション各店",
       "series": "30周年御三家カードセット",
       "channel": "store",
-      "area": null,
+      "area": "大阪府",
       "found_at": "2026-11-10T13:09:33.209895+09:00",
       "chain": "hobbystation"
     },
@@ -18273,6 +18273,33 @@
       "area": "茨城県",
       "found_at": "2026-11-10T21:43:21.480514+09:00",
       "chain": null
+    },
+    "1c7d14b331786729": {
+      "game": "onepiece",
+      "store": "ヤマシロヤ（東京）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-11T00:24:45.647479+09:00",
+      "chain": null
+    },
+    "616f68a4ca5ddb9d": {
+      "game": "onepiece",
+      "store": "文教堂行徳店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-11T00:25:31.023889+09:00",
+      "chain": null
+    },
+    "06507edd0902f0b1": {
+      "game": "onepiece",
+      "store": "ドラゴンスター",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-11T00:25:31.023984+09:00",
+      "chain": "dragonstar"
     }
   }
 }
