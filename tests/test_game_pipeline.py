@@ -28,7 +28,7 @@ else:
     # ゲーム版の指示（プロンプト）とカテゴリの一覧
     assert "kind を次から1つ決める" in extract.PROMPT and "転売やフリマの値段は絶対に出力しない" in extract.PROMPT
     assert extract._category_list().startswith("ps5（") and "gunpla（" in extract._category_list()
-    assert "ps5" in extract.valid_games() and "onepiece" not in extract.valid_games()
+    assert "ps5" in extract.valid_games() and "dragonball" not in extract.valid_games()
     # トレカの指示はファイルから読んでも同じ
     assert "トレカ抽選情報の抽出係" in (common.ROOT / "src/prompts/tcg_extract.txt").read_text(encoding="utf-8")
 

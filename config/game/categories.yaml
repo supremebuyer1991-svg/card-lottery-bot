@@ -268,3 +268,16 @@ categories:
     color: "#f2b705"
     kinds: [lottery, preorder, restock, first_come]
     enabled: true
+
+  - id: onepiece   # 11/10 ユーザーの指示：ワンピースカードも大手の抽選だけ載せる
+    group: hobby
+    name: ワンピースカード 大手の抽選・予約
+    short: ワンピカード抽選
+    slug: onepiece-card
+    hashtags: "#ワンピースカード #ワンピカード"
+    hints: "ワンピースカード|ONE PIECEカード|ワンピカード"
+    strip_words: "ONE PIECEカードゲーム|ワンピースカードゲーム"
+    aff_keywords: ["ワンピースカード"]
+    color: "#d7263d"
+    kinds: [lottery, preorder, restock, first_come]
+    enabled: true

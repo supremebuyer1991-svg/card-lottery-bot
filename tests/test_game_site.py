@@ -26,7 +26,7 @@ else:
     assert common.SITE == "game" and common.CONFIG_DIR.name == "game"
     s = load_settings()
     assert "ps5" in s["game_names"] and "gunpla" in s["game_names"], s["game_names"]   # カテゴリは categories.yaml から
-    assert "onepiece" not in s["game_names"]
+    assert "dragonball" not in s["game_names"]
     s.update(site_public_url="https://example-game.jp", amazon_tag="g-22",
              amazon_invite={"enabled": True, "label": "Amazon 招待リクエスト（PS5）", "url": "https://www.amazon.co.jp/dp/TEST"})
     out = Path(tempfile.mkdtemp())

@@ -49,6 +49,7 @@ def _fill_kind(lots):
 BIG_STORES = re.compile(r"ポケモンセンター|Amazon|アマゾン|楽天ブックス|ヨドバシ|ビックカメラ|ヤマダ|エディオン|ジョーシン|Joshin|ノジマ|セブンネット|イオン|ゲオ|GEO|TSUTAYA|ツタヤ|ケーズ|コジマ|ソフマップ")
 TCG = re.compile(r"ポケモンカード|ポケカ|カードゲーム|拡張パック|強化拡張|ブースター|遊戯王|デュエマ|デュエル・?マスターズ|ワンピースカード|ヴァイス|ユニオンアリーナ|トレカ")
 DROP_REASON = "このサイトの対象外（トレカなど）"
+BIG_TCG = ("pokemon", "onepiece")   # 大手のお店の抽選だけ載せるトレカ（11/10 ユーザー：ポケカ・ワンピースは大手ならいい）
 
 
 def _drop_other_games(lots):
@@ -59,7 +60,7 @@ def _drop_other_games(lots):
     ok = set(gamecats.by_id(False).keys())
     n = 0
     for it in lots.values():
-        big_poke = it.get("game") == "pokemon" and "pokemon" in ok and BIG_STORES.search(it.get("store") or "")
+        big_poke = it.get("game") in BIG_TCG and it["game"] in ok and BIG_STORES.search(it.get("store") or "")
         if it.get("status") == "rejected" and it.get("reject_reason") == DROP_REASON and big_poke:
             it["status"] = "approved"   # 前に外した大手のポケカを戻す
             it.pop("reject_reason", None)
@@ -67,7 +68,7 @@ def _drop_other_games(lots):
         if it.get("status") in ("rejected", "expired") or big_poke:
             continue
         text = " ".join(str(it.get(k) or "") for k in ("product", "title", "summary"))
-        if (it.get("game") and it["game"] not in ok) or it.get("game") == "pokemon" or TCG.search(text):
+        if (it.get("game") and it["game"] not in ok) or it.get("game") in BIG_TCG or TCG.search(text):
             it["status"] = "rejected"
             it["reject_reason"] = DROP_REASON
             n += 1

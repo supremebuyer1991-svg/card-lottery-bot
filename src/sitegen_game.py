@@ -366,33 +366,34 @@ def _n_stores():
 
 
 def _write_x_queue(out, items, site, t=None):
-    """11/10 ユーザーの指示：大手のポケカ抽選は、ゲーム垢（@a9994aaa）に「このサイトの抽選ページ」のリンク付きでXの予約投稿をする。
+    """11/10 ユーザーの指示：大手のポケカ・ワンピースカードの抽選は、ゲーム垢（@a9994aaa）に「このサイトの抽選ページ」のリンク付きでXの予約投稿をする。
     予約の作業（ユーザーのパソコンの予定作業）がこの /x-queue.json を読む。キー：g|抽選のキー|pre（見つけた→3分後）・|start（受付開始の時刻）
     1日に予告は6本まで（締切が近い順）"""
     import json as _json
     from datetime import timedelta as _td
     t = t or now()
     q = []
-    pk = [i for i in items if i.get("game") == "pokemon" and i.get("ph") != "ended" and i.get("lpath")]
+    pk = [i for i in items if i.get("game") in ("pokemon", "onepiece") and i.get("ph") != "ended" and i.get("lpath")]
     fresh = sorted([i for i in pk if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) > t - _td(hours=12)],
                    key=lambda i: i.get("end") or "9999")[:6]
     for i in fresh:
         st, en = parse_dt(i.get("start")), parse_dt(i.get("end"))
         kind = {"lottery": "抽選", "preorder": "予約", "restock": "再販", "first_come": "先着販売", "invite": "招待販売"}.get(i.get("kind"), "抽選")
         url = f"{site}/{i['lpath']}"
+        nm = "ポケカ" if i["game"] == "pokemon" else "ワンピカード"
         def text(head, when):
             ls = [head, "", f"【{i.get('store')}】{i.get('product')}", f"▶{kind}"]
             if when:
                 ls.append(when)
             if en:
                 ls.append(f"▶締切 {_fmt(i['end'])}")
-            ls += ["", "応募の条件・方法はこちら👇", url, "", "#ポケモンカード #ポケカ抽選"]
+            ls += ["", "応募の条件・方法はこちら👇", url, "", "#ポケモンカード #ポケカ抽選" if i["game"] == "pokemon" else "#ワンピースカード #ワンピカード"]
             return "\n".join(ls)
         if st and st > t:
-            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text("🔔ポケカの抽選が決まったよ！", f"▶受付開始 {_fmt(i['start'])}〜")})
-            q.append({"k": f"g|{i['key']}|start", "at": st.isoformat(), "text": text("🔔ポケカの抽選、受付スタート！", "")})
+            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text(f"🔔{nm}の抽選が決まったよ！", f"▶受付開始 {_fmt(i['start'])}〜")})
+            q.append({"k": f"g|{i['key']}|start", "at": st.isoformat(), "text": text(f"🔔{nm}の抽選、受付スタート！", "")})
         else:
-            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text("🔔ポケカの抽選、受付中だよ！", "")})
+            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text(f"🔔{nm}の抽選、受付中だよ！", "")})
     (out / "x-queue.json").write_text(_json.dumps(sorted(q, key=lambda x: x["at"]), ensure_ascii=False), encoding="utf-8")
     return q
 
