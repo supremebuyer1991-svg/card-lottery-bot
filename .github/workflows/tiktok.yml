@@ -1,6 +1,6 @@
 name: tiktok-connect
 
-# TikTok の連携（最初の1回）とテスト。url → 許可のページのアドレス / code → 連携 / test → ランキング動画を1本下書きに送る
+# TikTok の連携（最初の1回）とテスト。account=gacha でガチャプラネットのアカウント。url → 許可のページのアドレス / code → 連携 / test → ランキング動画を1本下書きに送る
 on:
   workflow_dispatch:
     inputs:
@@ -10,6 +10,9 @@ on:
       code:
         description: "tiktok-callback.html に出たコード（action=code のとき）"
         default: ""
+      account:
+        description: "tcg（トレカ）/ gacha（ガチャプラネット）"
+        default: "tcg"
 
 concurrency:
   group: bot
@@ -36,6 +39,7 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           CODE: ${{ github.event.inputs.code }}
+          TIKTOK_ACCOUNT: ${{ github.event.inputs.account }}
         run: |
           cd src
           case "${{ github.event.inputs.action }}" in

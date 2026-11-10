@@ -24,7 +24,9 @@ INIT_URL = "https://open.tiktokapis.com/v2/post/publish/inbox/video/init/"
 STATUS_URL = "https://open.tiktokapis.com/v2/post/publish/status/fetch/"
 REDIRECT = "https://tcg-chusen.com/tiktok-callback.html"
 SCOPES = "user.info.basic,video.upload"
-META = "tiktok_meta.json"
+# アカウント：TIKTOK_ACCOUNT=gacha のときはガチャプラネット用（鍵の保存先を分ける）。ふだんはトレカ
+ACCOUNT = "".join(os.environ.get("TIKTOK_ACCOUNT", "").split()) or "tcg"
+META = "tiktok_meta.json" if ACCOUNT == "tcg" else f"tiktok_{ACCOUNT}_meta.json"
 
 
 def _env(k):
@@ -37,7 +39,8 @@ def ready():
 
 # ---- 鍵の保存（Client secret をもとに暗号化。リポジトリは非公開だが念のため）----
 def _xor(data: bytes) -> bytes:
-    k = hashlib.sha256(("tcg-tiktok|" + _env("TIKTOK_CLIENT_SECRET")).encode()).digest()
+    salt = "tcg-tiktok|" if ACCOUNT == "tcg" else f"{ACCOUNT}-tiktok|"
+    k = hashlib.sha256((salt + _env("TIKTOK_CLIENT_SECRET")).encode()).digest()
     stream = b"".join(hashlib.sha256(k + i.to_bytes(4, "big")).digest() for i in range(len(data) // 32 + 1))
     return bytes(a ^ b for a, b in zip(data, stream))
 
@@ -55,7 +58,8 @@ def _refresh_token():
     return _xor(base64.b64decode(enc)).decode() if enc else ""
 
 
-def auth_url(state="tcg"):
+def auth_url(state=None):
+    state = state or ACCOUNT
     return (f"{AUTH_URL}?client_key={quote(_env('TIKTOK_CLIENT_KEY'))}&scope={quote(SCOPES, safe=',')}"
             f"&response_type=code&redirect_uri={quote(REDIRECT, safe='')}&state={state}")
 
