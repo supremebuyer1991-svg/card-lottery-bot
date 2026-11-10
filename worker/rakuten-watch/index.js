@@ -329,6 +329,16 @@ export default {
       const am = Object.entries(az.items || {}).filter(([, v]) => v === "buy" || v === "invite").map(([k, v]) => ({ ...(az.info || {})[k], a: v })).filter((x) => x.n);
       return Response.json({ at: st.last?.at, amz_at: az.last?.at, rakuten: rk, amazon: am }, { headers: { "Cache-Control": "max-age=60" } });
     }
+    if (u.pathname === "/snkrtest" && u.searchParams.get("k") === env.ADMIN_KEY) {  // 11/11：Cloudflare からスニダンが読めるかの試し
+      const out = {};
+      for (const [k, url] of [["search", "https://snkrdunk.com/search?keywords=" + encodeURIComponent(u.searchParams.get("q") || "ハドウシーカー SAR")],
+                              ["hist", "https://snkrdunk.com/v3/products/1035491/trading-history?range=month"]]) {
+        try { const r = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "Accept-Language": "ja" } });
+          const t = await r.text(); out[k] = { status: r.status, len: t.length, head: t.slice(0, 200), apparels: (t.match(/apparels\/\d+/g) || []).length };
+        } catch (e) { out[k] = { error: String(e) }; }
+      }
+      return Response.json(out);
+    }
     if (u.pathname === "/jan") {
       try { return Response.json(await janLookup(env, u.searchParams.get("q"))); } catch (e) { return Response.json({ error: String(e).slice(0, 120) }); }
     }
