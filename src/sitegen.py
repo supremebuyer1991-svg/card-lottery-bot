@@ -3554,6 +3554,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         (out / "x-queue.json").write_text(json.dumps(
             [{"k": k, "at": v["at"], "text": v["text"]} for k, v in sorted(_q.items(), key=lambda kv: kv[1]["at"])
              if (parse_dt(v.get("at")) or _t) > _t - _td(hours=12)], ensure_ascii=False), encoding="utf-8")
+        # 11/10：ゲームのアカウント（@a9994aaa）にも大手のポケカ抽選を予約投稿する（ユーザーの指示）。ポケカだけ・文末をゲーム垢向けに
+        _gq = []
+        for k, v in sorted(_q.items(), key=lambda kv: kv[1]["at"]):
+            if k.split("|")[1:2] != ["pokemon"] or (parse_dt(v.get("at")) or _t) <= _t - _td(hours=12):
+                continue
+            tx = v["text"].replace("🔔フォロー＆通知ONで、抽選の開始・締切のお知らせを受け取れます",
+                                   "🔔ポケカの抽選は姉妹サイト「トレカ抽選ナビ」にまとめてるよ")
+            _gq.append({"k": "g|" + k, "at": v["at"], "text": tx})
+        (out / "x-queue-game.json").write_text(json.dumps(_gq, ensure_ascii=False), encoding="utf-8")
     except Exception as e:
         print("x-queue.json を書けませんでした", e)
     (out / "404.html").write_text(
