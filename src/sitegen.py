@@ -3782,6 +3782,15 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     inject_linkswitch(out, s.get("vc_linkswitch_pid"))
     inject_pwa(out)  # ホーム画面に追加・締切の通知（11/7）
     inject_meta(out, "naver-site-verification", s.get("naver_site_verification"))  # NAVERサーチアドバイザーの確認（トップページで確認される）  # バリューコマースのLinkSwitch（提携先への普通のリンクを自動でアフィリンクに）
+    try:  # 11/11：Impact（TCGplayer のアフィリエイト）のサイト確認。Impact は content ではなく value の形なのでそのまま入れる（トップページだけ）
+        iv = str(s.get("impact_site_verification") or "").strip()
+        ip = Path(out) / "index.html"
+        if iv and ip.exists():
+            h = ip.read_text(encoding="utf-8")
+            if "impact-site-verification" not in h:
+                ip.write_text(h.replace("</head>", f"<meta name='impact-site-verification' value='{escape(iv)}'></head>", 1), encoding="utf-8")
+    except Exception as e:
+        print("Impact の確認タグ", e)
 
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
