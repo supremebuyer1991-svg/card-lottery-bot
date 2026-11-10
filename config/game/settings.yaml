@@ -106,5 +106,9 @@ kaitori_stores_per_run: 3
 kaitori_urls_per_run: 20
 # 買取価格・定価を調べるのは実行開始から何秒まで（全体を5分前後に収める）
 kaitori_until_sec: 230
+aitext_until_sec: 240      # 解説は買取価格のあと。実行開始（の扱い）から240秒をすぎたら次の回に
+aitext_per_run: 8
+verify_per_run: 6          # 1回に元の記事で確かめる件数（新しく見つけたものから）
+verify_until_sec: 300
 # ゲームの処理の時間の数え方：ゲームの処理が始まった時を「実行開始から何秒」とみなすか（小さいほど買取価格などに使える時間が増える）
 game_job_offset_sec: 90

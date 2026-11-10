@@ -83,7 +83,7 @@ def verify(settings, ai=None, fetcher=None):
             and (it.get("source_url") or it.get("url"))]
     todo.sort(key=lambda kv: kv[1].get("found_at") or "", reverse=True)   # 新しく見つけたものから
     todo = todo[:int(settings.get("verify_per_run", 6))]
-    if not todo or job_elapsed() > float(settings.get("verify_until_sec", 240)):
+    if not todo or job_elapsed() > float(settings.get("verify_until_sec", 300)):
         return 0
 
     def one(kv):
