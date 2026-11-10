@@ -3788,7 +3788,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if iv and ip.exists():
             h = ip.read_text(encoding="utf-8")
             if "impact-site-verification" not in h:
-                tag = f"<meta name='impact-site-verification' value='{escape(iv)}'>\n<meta name=\"impact-site-verification\" content=\"{escape(iv)}\">"
+                tag = "\n".join(f"<meta name='impact-site-verification' value='{escape(v)}'>" for v in re.split(r"[,\s]+", iv) if v)  # 複数のコード（カンマ区切り）にも対応
                 if "<head>" in h:  # 読み取りが先頭だけでも見つかるように、<head> のすぐ後ろに（value の形と content の形の両方）
                     h = h.replace("<head>", "<head>\n" + tag, 1)
                 else:
