@@ -483,13 +483,10 @@ def seo_parts(x, allx, site, cats_by, md):
         secs += f"<h2>{escape(cat)}のほかの商品の買取相場</h2><ul>" + "".join(
             f'<li><a href="/premium/{y["jan"]}/">{escape(y["name"])}</a>（最高買取 {y["max"]:,}円' + (f'・定価 {y["teika"]:,}円' if y.get("teika") else "") + "）</li>" for y in same) + "</ul>"
     # 構造化データ（Google向け：商品・よくある質問・パンくず）
-    prod = {"@context": "https://schema.org", "@type": "Product", "name": name, "gtin13" if len(jan) == 13 else "gtin8": jan,
-            "description": s1 + s2, "url": f"{site}/premium/{jan}/"}
-    if x.get("img"):
-        prod["image"] = x["img"]
-    if x.get("maker"):
-        prod["brand"] = {"@type": "Brand", "name": x["maker"]}
-    ld = _jsonld(prod) + _jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    # 「商品（Product）」の構造化データは入れない。Google は販売価格（offers）か
+    # レビュー・評価が無い Product を「無効」として扱う（Search Console で20件エラー）。
+    # このサイトは販売店ではなく、買取価格は販売価格ではないので、offers を作ると嘘になる。
+    ld = _jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
     ld += _jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{site}/"},

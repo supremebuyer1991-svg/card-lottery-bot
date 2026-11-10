@@ -153,12 +153,8 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
         same = [(j, y) for j, y in rows if j != jan and j not in have_jans and y.get("hardware") == x.get("hardware")][:8]
         same_h = (f"<h2>{escape(x.get('hardware') or '')}のほかの発売予定</h2><ul>" + "".join(
             f'<li><a href="/new/{j}/">{escape(y["title"])}</a>（{escape(y.get("sales_date") or "")}）</li>' for j, y in same) + "</ul>") if same else ""
-        prod = {"@context": "https://schema.org", "@type": "Product", "name": nm, "gtin13": jan, "description": intro, "url": f"{site}/new/{jan}/"}
-        if x.get("img"):
-            prod["image"] = x["img"]
-        if x.get("maker"):
-            prod["brand"] = {"@type": "Brand", "name": x["maker"]}
-        ld = gp._jsonld(prod) + gp._jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        # Product の構造化データは入れない（販売価格が無いと Google で無効扱いになるため。game_premium と同じ）
+        ld = gp._jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": a, "acceptedAnswer": {"@type": "Answer", "text": b}} for a, b in faq]})
         page(f"{nm} 予約・在庫・発売日・定価【{md}更新】｜{brand['name']}",
              f"{nm}（{x.get('hardware') or ''}）の発売日{x.get('sales_date') or ''}・定価{price}・予約できるお店（楽天・Amazon）・在庫と再販の情報。販売開始はXで通知。",
