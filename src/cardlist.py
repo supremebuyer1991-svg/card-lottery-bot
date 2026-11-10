@@ -59,7 +59,8 @@ def mercari(r):
     no = (re.search(r"[A-Z]*\d+/\d+|[A-Z]{2,4}\d{0,2}-\d{3}", r.get("no") or "") or [None])[0] or ""
     q = f"{r['n']} {no}".strip()
     # 11/11：メルカリアンバサダーのID（afid）。リンクから24時間以内に買われると販売価格の2%がメルカリポイントで入る
-    return "https://jp.mercari.com/search?status=on_sale&amp;keyword=" + urllib.parse.quote(q, safe="") + "&amp;afid=" + MERCARI_AFID
+    # 形はアンバサダーの「リンク生成」で作ったものと同じ（search?afid=…&keyword=…）。販売中だけに絞る status は最後
+    return "https://jp.mercari.com/search?afid=" + MERCARI_AFID + "&amp;keyword=" + urllib.parse.quote(q, safe="") + "&amp;status=on_sale"
 
 
 def rows_of(game, series):
