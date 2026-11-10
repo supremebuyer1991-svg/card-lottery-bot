@@ -125,6 +125,11 @@ def main():
         except Exception as e:
             log(f"カード相場: スキップ {e}")
         try:
+            import cardlist
+            cardlist.update()  # 弾ページの収録カード（RR以上）の相場。Worker が集めたものを読むだけ（11/11）
+        except Exception as e:
+            log(f"収録カード: スキップ {e}")
+        try:
             import jan, sitegen as _sg
             jan.update(jan.series_names(_sg))  # 弾ページの JANコード（11/11）。1回最大15件
         except Exception as e:

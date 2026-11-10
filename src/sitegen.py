@@ -2141,6 +2141,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                        + (f'<span>{escape(((re.search(r"【([A-Z]{2,4}-[0-9]{2})】", (_ser_cfg()["info"][g][k].get("type") or "")) or [None, ""])[1]))}</span>')
                                        + f'<b>{escape(jdate(r_))}</b></li>' for r_, k in up_)
                              + f'</ul><p class="more"><a href="/calendar/">発売日カレンダーをすべて見る ›</a></p></section>')
+            try:  # 11/11：収録カード（RR以上）の相場の表。Worker が集めたスニダンの値段（state/card_lists.json）
+                import cardlist as _cl
+                clist_html = _cl.html(g, x, escape) if sample is None else ""
+            except Exception as e:
+                print("収録カードの表を作れませんでした", x, e)
+                clist_html = ""
             # ページの一番上：発売日・定価・相場・受付中の抽選をひと目で（相場は下の相場の欄へ飛ぶ）
             q_ = []
             if info.get("release"):
@@ -2203,13 +2209,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                           f"スニダンで{_md(sm['date'])}に成立した1個の取引の平均は{_yen(sm['price'])}です" +
                           (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
                           "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
-                "info_html": (about_html + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
+                "info_html": (about_html + info_html + clist_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
                 "h1": f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1日6回更新）。"),
                 "aff": quick_html + sh_link + ("" if si else about_html) + _ser_areas(g, slug, x, si) + _ser_chains(g, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
                                                      + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"), g)
-                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html),
+                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + clist_html + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
