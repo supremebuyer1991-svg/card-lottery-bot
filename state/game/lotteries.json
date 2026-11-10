@@ -404,7 +404,7 @@
     "deadline_checked_at": "2026-11-10T10:38:30.812276+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
-    "page_checked_at": "2026-11-10T10:46:55.735991+09:00",
+    "page_checked_at": "2026-11-11T08:07:47.320310+09:00",
     "details_checked": true,
     "cls": "8e4af66b04d0",
     "issue": 600
@@ -460,7 +460,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-10T10:46:57.986130+09:00",
+    "page_checked_at": "2026-11-11T08:07:49.519959+09:00",
     "area": null,
     "cls": "891a1b22f087",
     "tags": [],
@@ -484,7 +484,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-10T10:47:00.151886+09:00",
+    "page_checked_at": "2026-11-11T08:07:51.646535+09:00",
     "area": null,
     "cls": "a2e4fac80c27",
     "tags": [],
@@ -519,7 +519,7 @@
     "deadline_checked_at": "2026-11-10T12:24:33.268449+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の応募期間の記載なし",
-    "page_checked_at": "2026-11-10T10:47:00.152176+09:00",
+    "page_checked_at": "2026-11-11T08:07:51.646828+09:00",
     "details_checked": true,
     "cls": "d397a50c8a1e",
     "verified_at": "2026-11-11T05:35:47.142972+09:00",
@@ -558,7 +558,7 @@
     "deadline_checked_at": "2026-11-10T12:24:34.963804+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし",
-    "page_checked_at": "2026-11-10T10:47:03.041533+09:00",
+    "page_checked_at": "2026-11-11T08:07:54.374882+09:00",
     "details_checked": true,
     "cls": "9024cd3e2535",
     "verified_at": "2026-11-11T05:35:46.660331+09:00",
@@ -597,7 +597,7 @@
     "deadline_checked_at": "2026-11-10T12:24:36.851997+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の応募期間の記載なし",
-    "page_checked_at": "2026-11-10T10:56:07.222710+09:00",
+    "page_checked_at": "2026-11-11T08:07:57.051751+09:00",
     "details_checked": true,
     "cls": "591f306acd64",
     "verified_at": "2026-11-10T21:49:34.480577+09:00",
@@ -4849,7 +4849,9 @@
     "status": "approved",
     "found_at": "2026-11-11T06:10:25.014635+09:00",
     "cls": "3b0e055a4014",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:22.292413+09:00",
+    "verified": true
   },
   "4d55e79d42b18ae2": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -4880,7 +4882,9 @@
     "status": "approved",
     "found_at": "2026-11-11T06:10:25.014648+09:00",
     "cls": "71269cf51715",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:21.244527+09:00",
+    "verified": true
   },
   "8f67ee9a88297337": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -4911,7 +4915,9 @@
     "status": "approved",
     "found_at": "2026-11-11T06:10:25.014660+09:00",
     "cls": "95e45cf62aa1",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:14.741262+09:00",
+    "verified": true
   },
   "4ec6cc62ca60f673": {
     "store": "魂ネイション2026（秋葉原）",
@@ -5132,10 +5138,11 @@
     "source": "Googleニュース「一番くじONLINE 抽選」",
     "source_url": "https://dengekionline.com/article/202611/93602",
     "key": "e6d9b7db6ecde4fc",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-11T07:50:59.311541+09:00",
     "cls": "bbc43a8a3361",
-    "official_checked": true
+    "official_checked": true,
+    "duplicate_of": "b807e1cbfca2ec14"
   },
   "f9359c5461996ebb": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -5228,7 +5235,9 @@
     "status": "approved",
     "found_at": "2026-11-11T07:50:59.311613+09:00",
     "cls": "93444e55e67b",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:14.741215+09:00",
+    "verified": true
   },
   "b3c41aa4700f3736": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -5259,7 +5268,9 @@
     "status": "approved",
     "found_at": "2026-11-11T07:50:59.311637+09:00",
     "cls": "d0b1085cfba0",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:14.741105+09:00",
+    "verified": true
   },
   "708729945fc9c183": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -5290,7 +5301,9 @@
     "status": "approved",
     "found_at": "2026-11-11T07:50:59.311659+09:00",
     "cls": "0ead466f7b52",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T08:08:14.398072+09:00",
+    "verified": true
   },
   "215aef556f730193": {
     "store": "BANDAI SPIRITS",
@@ -5298,7 +5311,7 @@
     "series": "仮面ライダークウガ",
     "kind": "preorder",
     "start": "2026-11-12",
-    "end": null,
+    "end": "2026-11-08T23:00:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -5316,14 +5329,16 @@
     "source": "Googleニュース「一番くじONLINE 抽選」",
     "source_url": "https://dengekionline.com/article/202611/93602",
     "key": "215aef556f730193",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-11T07:50:59.311682+09:00",
     "deadline_checked_at": "2026-11-11T07:53:14.356443+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "multi": false,
     "cls": "e996fc702aac",
-    "official_checked": true
+    "official_checked": true,
+    "end_from": "同じ告知の別の商品から",
+    "closed_at": "2026-11-11T08:08:06.958908+09:00"
   },
   "c7880f7b48e7e450": {
     "store": "BANDAI SPIRITS",
@@ -5416,6 +5431,9 @@
     "found_at": "2026-11-11T07:51:37.942940+09:00",
     "multi": false,
     "cls": "29ecbdca44eb",
-    "issue": 680
+    "issue": 680,
+    "deadline_checked_at": "2026-11-11T08:07:45.956620+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始（締切記載なし）"
   }
 }
