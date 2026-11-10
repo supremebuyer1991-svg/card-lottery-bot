@@ -41,6 +41,12 @@ jobs:
           if os.environ["TEXT"].strip() == "?":   # 文面が「?」なら、見張りの最近の動き（投稿・エラー）を記録に出すだけ
               import json
               print(json.dumps(requests.get(f"{base}/", params={"k": admin}, timeout=15).json(), ensure_ascii=False)[:3000]); raise SystemExit(0)
+          if os.environ["TEXT"].strip() == "@":   # 文面が「@」なら、このアカウントの最近の投稿5件を表示するだけ（読み取り。数円）
+              import json
+              auth = OAuth1(os.environ["X_API_KEY"], os.environ["X_API_SECRET"], os.environ["X_GAME_ACCESS_TOKEN"], os.environ["X_GAME_ACCESS_SECRET"])
+              me = requests.get("https://api.x.com/2/users/me", auth=auth, timeout=20).json()["data"]["id"]
+              r = requests.get(f"https://api.x.com/2/users/{me}/tweets", params={"max_results": 5, "tweet.fields": "created_at"}, auth=auth, timeout=20)
+              print(json.dumps(r.json(), ensure_ascii=False, indent=1)[:4000]); raise SystemExit(0)
           if os.environ["TEXT"].strip() == "-":   # 文面が「-」なら、印を付けるだけ（先に印を付けて、見張りの速報を止めておく）
               print(requests.get(f"{base}/mark", params={"k": admin, "id": mid, "w": mw, "s": "pre"}, timeout=15).text); raise SystemExit(0)
           if mid:

@@ -4,7 +4,7 @@
 
 auto_approve: true        # true=見つけたらサイトに載せる（Xへの自動投稿はこのサイトでは無し）
 dry_run: false
-x_speed_post: true         # 新しい抽選・予約・再入荷をXで速報（@a9994aaa。リンクなし＋商品写真、1件 約$0.015）
+x_speed_post: false        # 新しい抽選・予約・再入荷をXで速報（@a9994aaa。リンクなし＋商品写真、1件 約$0.015）
 x_speed_per_day: 5         # 速報の1日の上限（毎日の決まった投稿はXの予約投稿で別に入れる）
 x_speed_gap_min: 20        # 前の速報から何分あけるか
 x_urgent_end_hours: 24     # 締切まで何時間以内なら「急ぎ」＝速報（それより先は予約投稿に回す）
