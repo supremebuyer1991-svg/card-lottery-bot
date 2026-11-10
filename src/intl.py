@@ -99,7 +99,7 @@ SETS = {
         "20th Anniversary": ("CP6", "20th Anniversary", "", "", ""),
     },
     "onepiece": {
-        "夢の一枚": ("PEB-01", "Premium Extra Booster", "", "", ""),  # 11/8 新シリーズ「プレミアムエクストラブースター」第1弾（英語名は未発表）
+        "夢の一枚": ("PEB-01", "The Drawing of Your Dreams", "The Drawing of Your Dreams", "", ""),  # 新シリーズ「プレミアムエクストラブースター」第1弾。英語名は 11/10 英語版公式（en.onepiece-cardgame.com）で確認
         "応答せよ、世界": ("OP-19", "Come In, World", "Come In, World", "", ""),
         "EAST BLUE": ("EB-06", "EAST BLUE", "EAST BLUE", "", ""),
         "神の支配": ("OP-18", "The Dominance of God", "The Dominance of God", "", ""),
@@ -148,6 +148,7 @@ LOCAL_REL = {
         "イーブイヒーローズ": {"en": "2021-08-27", "tw": "2021-06-11", "kr": "2021-08-11"},
     },
     "onepiece": {
+        "夢の一枚": {"en": "2027-04-23"},
         "応答せよ、世界": {"en": "2027-03-05"},
         "EAST BLUE": {"en": "2027-01-29"},
         "神の支配": {"en": "2026-11-20"},
