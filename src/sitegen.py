@@ -3519,6 +3519,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         c_ = chain_of(d.get("store"))
         l_index = d.get("channel") != "store" or bool(c_ and CHAIN[c_][3])
         nxt = None
+        canon_to = None
+        if not active and l_index and c_ and (out / _cgp(c_, g).strip("/") / "index.html").exists():
+            canon_to = _cgp(c_, g)
         if not active:
             if c_ and _chain_ng.get((c_, g)) and (out / _cgp(c_, g).strip("/") / "index.html").exists():
                 nxt = (f"{CHAIN[c_][1]}でいま受付中の{short}抽選を見る（{_chain_ng[(c_, g)]}件）", _cgp(c_, g))
@@ -3530,7 +3533,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 nxt = (f"いま受付中の{short}の抽選を見る", f"/{GAME_SLUG[g]}/")
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
                                    redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx, noindex=not l_index,
-                                   next_link=nxt), encoding="utf-8")
+                                   next_link=nxt, canon_to=canon_to), encoding="utf-8")
         if active and l_index:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
         if active:
