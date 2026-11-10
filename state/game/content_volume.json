@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-10T10:39:36.299320+09:00",
+  "at": "2026-11-10T10:47:54.247685+09:00",
   "target": 1500,
   "pages": {
     "": [
@@ -7,24 +7,24 @@
       4378
     ],
     "chusen/": [
-      2423,
-      2356
+      3438,
+      3359
     ],
     "bearbrick/": [
       391,
       207
     ],
     "calendar/": [
-      1358,
-      1306
+      1606,
+      1554
     ],
     "figure/": [
       851,
       658
     ],
     "today/": [
-      212,
-      160
+      651,
+      593
     ],
     "new/": [
       23588,
@@ -50,21 +50,29 @@
       379,
       195
     ],
+    "onepiece-card/": [
+      393,
+      209
+    ],
     "lego/": [
       365,
       181
     ],
     "gunpla/": [
-      1000,
-      793
+      1716,
+      1465
+    ],
+    "pokeca/": [
+      1180,
+      978
     ],
     "guide/": [
       152,
       100
     ],
     "now/": [
-      244,
-      192
+      234,
+      182
     ],
     "tomica/": [
       366,
@@ -103,20 +111,32 @@
       370
     ],
     "chain/pbandai/gunpla/": [
-      199,
-      133
+      451,
+      385
+    ],
+    "chain/geo/pokeca/": [
+      321,
+      251
+    ],
+    "chain/biccamera/pokeca/": [
+      354,
+      279
     ],
     "chain/mynintendostore/switch2/": [
       278,
-      218
+      226
+    ],
+    "chain/pokemoncenter/pokeca/": [
+      278,
+      209
     ],
     "chain/pokemoncenter/pokecen/": [
       252,
-      186
+      194
     ],
     "chain/ichibankuji/ichibankuji/": [
       463,
-      403
+      411
     ],
     "chain/gundambase/gunpla/": [
       308,
@@ -446,37 +466,81 @@
       364,
       364
     ],
+    "gunpla/rikku-diasu-524a5/": [
+      402,
+      257
+    ],
     "gunpla/gandamubesu-9967d/": [
       373,
-      301
+      312
+    ],
+    "gunpla/boru-394a1/": [
+      381,
+      248
+    ],
+    "gunpla/rikku-diasu-kuwatoro-bajina-92b4b/": [
+      369,
+      248
+    ],
+    "gunpla/ifurito-e6f98/": [
+      387,
+      242
     ],
     "gunpla/gandamumk-ii-ugo-36fc0/": [
       390,
-      278
+      281
     ],
     "gunpla/hggandamuashutaron-95169/": [
       336,
-      224
+      227
     ],
     "gunpla/gandamuvasago-dbd67/": [
       252,
-      180
+      179
+    ],
+    "pokeca/hadoushika-1c9b5/": [
+      397,
+      397
+    ],
+    "pokeca/supesharudekkisettomegamegaoda-59e39/": [
+      471,
+      471
+    ],
+    "pokeca/30th-celebration-box/": [
+      617,
+      617
     ],
     "guide/how-to-read/": [
       1165,
       1165
     ],
+    "l/9b923fe088/": [
+      210,
+      139
+    ],
+    "l/d264c90068/": [
+      292,
+      184
+    ],
     "l/9c8059867c/": [
       311,
-      199
+      209
     ],
     "l/90733359b7/": [
       271,
-      159
+      169
+    ],
+    "l/fbdcb7721b/": [
+      192,
+      121
+    ],
+    "l/556356e584/": [
+      346,
+      195
     ],
     "l/ed0eb35fa9/": [
       234,
-      126
+      140
     ],
     "l/c356f1e90e/": [
       271,
@@ -488,19 +552,31 @@
     ],
     "l/adcabb2e8f/": [
       307,
-      191
+      201
+    ],
+    "l/521cb5f267/": [
+      235,
+      133
     ],
     "l/871d0bd0fa/": [
       307,
-      195
+      205
+    ],
+    "l/7ba03fbf22/": [
+      220,
+      149
     ],
     "l/bf054c6558/": [
       277,
       157
     ],
+    "l/cc81610f25/": [
+      337,
+      186
+    ],
     "l/66891c533d/": [
       329,
-      162
+      176
     ],
     "l/acf4b0f433/": [
       257,
@@ -508,15 +584,19 @@
     ],
     "l/8221b237e8/": [
       230,
-      114
+      128
+    ],
+    "l/1b0f2d4578/": [
+      310,
+      202
     ],
     "l/ps-portal-midnight-black-preorder-1113/": [
       433,
-      270
+      280
     ],
     "l/cbcf6c062e/": [
       401,
-      234
+      244
     ],
     "l/ichibankuji-godzilla-1113/": [
       250,
@@ -526,9 +606,25 @@
       262,
       146
     ],
+    "l/1ff2dff863/": [
+      296,
+      188
+    ],
     "l/ichibankuji-onepiece-animaru-1114/": [
       292,
       172
+    ],
+    "l/bdcd6d3d2a/": [
+      360,
+      229
+    ],
+    "l/eaa547b116/": [
+      231,
+      129
+    ],
+    "l/fa43301a83/": [
+      196,
+      125
     ],
     "l/gunpla-hg-gundam-ashtaron-1128/": [
       267,
@@ -536,11 +632,19 @@
     ],
     "l/6d1d384b88/": [
       290,
-      176
+      186
     ],
     "l/b6144664b3/": [
       283,
       163
+    ],
+    "l/cbe165aa99/": [
+      312,
+      161
+    ],
+    "l/4900632893/": [
+      354,
+      223
     ],
     "l/ps5-midnight-black-release-1119/": [
       412,
@@ -548,7 +652,7 @@
     ],
     "l/gundam-base-shibuya-pre-entry-lottery/": [
       419,
-      254
+      264
     ],
     "switch2/switch2-berusofutosetto-dcfde/": [
       363,
