@@ -41,6 +41,10 @@ def store_link(store, jan="", name=""):
         p = ROOT / "config" / "game" / "kaitori_stores.yaml"
         d = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}) if p.exists() else {}
         _cache["_links"] = {x["name"]: x.get("link", "") for x in d.get("stores", [])}
+    if "_items" not in _cache:
+        _cache["_items"] = {k: (v.get("links") or {}) for k, v in (load_json(STATE, {}) or {}).items() if isinstance(v, dict)}
+    if jan and _cache["_items"].get(store, {}).get(jan):   # その商品のページが分かっていればそこへ
+        return _cache["_items"][store][jan]
     t = _cache["_links"].get(store) or ""
     q = re.sub(r"[（(【\[].*?[）)】\]]", " ", name or "")
     q = " ".join(q.split()[:4])[:40]
@@ -111,19 +115,24 @@ def update(settings, fetch=None, ai=None):
                 acc = {(x[1] or x[0]): x for x in (rec.get("acc") or [])} if cur else {}
                 old = {(x[1] or x[0]): x for x in (rec.get("items") or [])}
                 done = cur
+                links = dict(rec.get("links") or {})
                 for u in urls[cur:cur + int(settings.get("kaitori_urls_per_run", 35))]:
                     if job_elapsed() > float(settings.get("kaitori_until_sec", 230)):
                         break
                     try:
-                        for x in parse(html_to_text(fetch(u), u)):
+                        h = fetch(u)
+                        for x in parse(html_to_text(h, u)):
                             acc[x[1] or x[0]] = list(x)   # 違う言葉の検索で同じ商品が出たら1つに
                             old[x[1] or x[0]] = list(x)
+                        if s.get("item_link"):   # 商品ごとのページ（例：ルデヤの /product/item/番号）を JAN と組で覚える → サイトの「この店で売る」リンク
+                            for m in re.finditer(s["item_link"], h, re.S):
+                                links[m.group("jan")] = m.group("url")
                     except Exception as e:
                         log(f"  買取価格：{s['name']} 1ページ失敗 {str(e)[:80]}")
                     done += 1
                 lap = done >= len(urls)
                 st[s["name"]] = {"at": t.isoformat() if lap else rec.get("at", ""), "cur": 0 if lap else done,
-                                 "acc": [] if lap else list(acc.values()), "items": list((acc if lap else old).values())[:2000]}
+                                 "acc": [] if lap else list(acc.values()), "items": list((acc if lap else old).values())[:3000], "links": links}
                 log(f"買取価格：{s['name']} {len(st[s['name']]['items'])}件（{done}/{len(urls)}ページ）")
                 continue
             pages = [html_to_text(fetch(u), u) for u in s["urls"][:3]]
