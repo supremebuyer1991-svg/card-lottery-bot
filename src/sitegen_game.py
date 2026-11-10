@@ -365,6 +365,38 @@ def _n_stores():
         return 10
 
 
+def _write_x_queue(out, items, site, t=None):
+    """11/10 ユーザーの指示：大手のポケカ抽選は、ゲーム垢（@a9994aaa）に「このサイトの抽選ページ」のリンク付きでXの予約投稿をする。
+    予約の作業（ユーザーのパソコンの予定作業）がこの /x-queue.json を読む。キー：g|抽選のキー|pre（見つけた→3分後）・|start（受付開始の時刻）
+    1日に予告は6本まで（締切が近い順）"""
+    import json as _json
+    from datetime import timedelta as _td
+    t = t or now()
+    q = []
+    pk = [i for i in items if i.get("game") == "pokemon" and i.get("ph") != "ended" and i.get("lpath")]
+    fresh = sorted([i for i in pk if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) > t - _td(hours=12)],
+                   key=lambda i: i.get("end") or "9999")[:6]
+    for i in fresh:
+        st, en = parse_dt(i.get("start")), parse_dt(i.get("end"))
+        kind = {"lottery": "抽選", "preorder": "予約", "restock": "再販", "first_come": "先着販売", "invite": "招待販売"}.get(i.get("kind"), "抽選")
+        url = f"{site}/{i['lpath']}"
+        def text(head, when):
+            ls = [head, "", f"【{i.get('store')}】{i.get('product')}", f"▶{kind}"]
+            if when:
+                ls.append(when)
+            if en:
+                ls.append(f"▶締切 {_fmt(i['end'])}")
+            ls += ["", "応募の条件・方法はこちら👇", url, "", "#ポケモンカード #ポケカ抽選"]
+            return "\n".join(ls)
+        if st and st > t:
+            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text("🔔ポケカの抽選が決まったよ！", f"▶受付開始 {_fmt(i['start'])}〜")})
+            q.append({"k": f"g|{i['key']}|start", "at": st.isoformat(), "text": text("🔔ポケカの抽選、受付スタート！", "")})
+        else:
+            q.append({"k": f"g|{i['key']}|pre", "at": i["found_at"], "text": text("🔔ポケカの抽選、受付中だよ！", "")})
+    (out / "x-queue.json").write_text(_json.dumps(sorted(q, key=lambda x: x["at"]), ensure_ascii=False), encoding="utf-8")
+    return q
+
+
 def _simple_page(cats, html):
     """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
     css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
@@ -848,7 +880,8 @@ def build(settings=None, out_dir=None, force=False):
     if site:
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                          + "".join(f"<url><loc>{escape(u)}</loc><lastmod>{lm}</lastmod></url>" for u, lm in dict(urls).items()) + "</urlset>\n", encoding="utf-8")
-        (out / "robots.txt").write_text("".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /x-plan.html\nDisallow: /x-plan.json\nDisallow: /watch.json\nDisallow: /content-report.html\n\n" for b in ("Googlebot", "Bingbot", "*")) + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
+        _write_x_queue(out, items, site)
+        (out / "robots.txt").write_text("".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /x-plan.html\nDisallow: /x-plan.json\nDisallow: /watch.json\nDisallow: /content-report.html\nDisallow: /x-queue.json\n\n" for b in ("Googlebot", "Bingbot", "*")) + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
         L = [f"# {brand['name']}", "", f"> {s.get('site_tagline') or ''}。PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーの抽選・招待・予約・再入荷・先着の受付情報を自動で集めて1日6回更新。いま受付中{n_open}件。フリマ・転売の出品価格は載せません（ゲーム機など一部の商品だけ、スニダンの取引の相場を目安として載せています）。",
              "", "## 主なページ", f"- [トップ]({site}/)", f"- [いま一覧（お店×商品）]({site}/now/)", f"- [今日締切・開始]({site}/today/)", f"- [カレンダー]({site}/calendar/)", f"- [見方・使い方]({site}/guide/)", ""]
         L += [f"- [{c['short']}]({site}/{c['slug']}/)" for c in cats]

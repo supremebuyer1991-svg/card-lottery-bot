@@ -255,3 +255,16 @@ categories:
     color: "#e60012"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+
+  - id: pokemon   # 11/10 ユーザーの指示：大手のポケカ抽選だけ載せる（ゲーム垢で予約投稿・リンク先はこのサイトのページ）
+    group: hobby
+    name: ポケモンカード（ポケカ）大手の抽選・予約
+    short: ポケカ抽選
+    slug: pokeca
+    hashtags: "#ポケモンカード #ポケカ"
+    hints: "ポケモンカード|ポケカ|強化拡張パック|拡張パック"
+    strip_words: "ポケモンカードゲーム|ポケカ"
+    aff_keywords: ["ポケモンカード"]
+    color: "#f2b705"
+    kinds: [lottery, preorder, restock, first_come]
+    enabled: true

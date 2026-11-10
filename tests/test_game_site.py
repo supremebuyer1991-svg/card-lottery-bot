@@ -26,7 +26,7 @@ else:
     assert common.SITE == "game" and common.CONFIG_DIR.name == "game"
     s = load_settings()
     assert "ps5" in s["game_names"] and "gunpla" in s["game_names"], s["game_names"]   # カテゴリは categories.yaml から
-    assert "pokemon" not in s["game_names"]
+    assert "onepiece" not in s["game_names"]
     s.update(site_public_url="https://example-game.jp", amazon_tag="g-22",
              amazon_invite={"enabled": True, "label": "Amazon 招待リクエスト（PS5）", "url": "https://www.amazon.co.jp/dp/TEST"})
     out = Path(tempfile.mkdtemp())
@@ -88,7 +88,7 @@ else:
     assert "<header" not in top                                                                         # 上のバーではなく左のメニュー
     assert "#c8102e" not in top
     # トレカの言葉がまぎれこんでいない
-    for bad in ("トレカ抽選ナビ", "ポケカ", "ワンピース", "tcg-chusen", "pokepi_tcg", "フュージョンワールド"):
+    for bad in ("トレカ抽選ナビ", "ワンピースカード", "tcg-chusen", "pokepi_tcg", "フュージョンワールド"):
         assert bad not in top, bad
     # 任天堂・ソニーの名前をサイト名に入れない（本文のお店名としては出てよい）
     assert "ゲーム・ホビー入荷速報" in head and not re.search(r"<title>[^<]*(Nintendo|Switch|PlayStation|Sony|任天堂)[^<]*入荷速報", head)
