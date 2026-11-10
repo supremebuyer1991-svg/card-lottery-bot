@@ -670,6 +670,29 @@ def build(settings=None, out_dir=None, force=False):
     lk = links_html(menu)
     cat_counts = {c["id"]: sum(1 for i in live if i["game"] == c["id"] and i["ph"] == "open") for c in cats}
 
+    # --- お店（チェーン）ごとのページ /chain/<店>/（11/10 トレカ抽選ナビを参考に：「ヨドバシ 抽選」「ゲオ 予約」などで探す人のため）---
+    chains = {}
+    for i in items:
+        c_ = sg.chain_of(i.get("store"))
+        if c_:
+            chains.setdefault(c_, []).append(i)
+    chain_links = ('<section class="sec"><h2>お店ごとの抽選・予約・再販</h2><div class="links">' + "".join(
+        f'<a href="/chain/{c_}/">{escape(sg.CHAIN[c_][1])}<small>{sum(1 for j in lst if j["ph"] == "open")}件</small></a>'
+        for c_, lst in sorted(chains.items(), key=lambda kv: -len(kv[1]))) + "</div></section>") if chains else ""
+    for c_, lst in chains.items():
+        cname = sg.CHAIN[c_][1]
+        no = sum(1 for i in lst if i["ph"] == "open")
+        cats_in = list(dict.fromkeys(cat_by[i["game"]]["short"] for i in lst if i["game"] in cat_by))
+        faq_c = [(f"{cname}のゲーム・ホビーの抽選・予約はいつありますか？",
+                  (f"いま受付中は{no}件です（" + "・".join(cats_in[:6]) + "）。" if no else "いま受付中のものはありません。") + "新しい抽選・予約・再販が見つかると、このページに自動で追加します。"),
+                 (f"{cname}の抽選の応募条件は？", "会員登録・アプリ・本人確認・購入履歴などの条件を、告知から読み取ってタグで表示しています。応募前に必ず公式の応募ページで確認してください。")]
+        write(f"chain/{c_}/", {"title": f"{cname}のゲーム・ホビー抽選・予約・再販情報【{md}更新】受付中{no}件｜{brand['name']}",
+                                "desc": f"{cname}のPS5・Switch 2・ガンプラ・ポケカなどの抽選・予約・再販の受付情報。締切・応募条件・応募ページへのリンクをまとめて毎日更新。いま受付中{no}件。",
+                                "h1": f"{cname}の抽選・予約・再販", "sumshort": f"いま受付中{no}件。締切が近い順です。", "lead": "・".join(cats_in[:8]),
+                                "summary": summary(lst, f"{cname}の受付"), "links": lk, "faq": faq_c}, lst,
+              trail=[("トップ", ""), ("抽選・受付中", "chusen/"), (cname, f"chain/{c_}/")], data_extra={"game": ""}, body_bottom=chain_links,
+              noindex=len(lst) < 3)   # 1〜2件だけのお店のページは中身が薄いので検索には出さない（11/9 監査と同じ考え方）
+
     # --- トップ ---
     n_open = sum(1 for i in live if i["ph"] == "open")
     top_faq = [("このサイトは何のサイトですか？", f"{brand['name']}は、PS5・Switch 2などのゲーム機と、ガンプラ・フィギュア・一番くじなどのホビーについて、楽天・Amazonなどで定価で売り出された（再販・入荷・予約開始）ことをXで速報し、買取店の新品の買取相場・定価以上で売れる商品・発売予定を毎日まとめているサイトです。抽選・招待・先着の受付情報も各店の告知から自動で集めています。"),
@@ -680,7 +703,7 @@ def build(settings=None, out_dir=None, force=False):
                "desc": f"PS5・Switch 2・たまごっち・ガンプラ・フィギュアなどの再販・入荷・予約開始を速報。楽天・Amazonで定価で売り出されたらXで通知。買取店{_n_stores()}店の買取相場と、定価以上で売れる商品の一覧も毎日更新。いま受付中の抽選・予約{n_open}件。",
                "h1": "ゲーム・ホビーの抽選・予約・受付中の一覧", "sumshort": f"いま受付中{n_open}件。締切が近い順に、条件つきで並べています。",
                "lead": s.get("site_tagline") or "", "summary": summary(live, "受付"), "links": lk, "faq": top_faq, "pin": pin_html()}, items,
-          trail=None, data_extra={"game": ""})
+          trail=None, data_extra={"game": ""}, body_bottom=chain_links)
 
     # --- /now/ お店 × 商品 ---
     write("now/", {"title": f"いま買える？お店×商品の受付状況一覧【{md}更新】｜{brand['name']}",
