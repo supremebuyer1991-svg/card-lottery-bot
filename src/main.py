@@ -126,7 +126,7 @@ def main():
             log(f"カード相場: スキップ {e}")
         try:
             import cardlist
-            cardlist.update()  # 弾ページの収録カード（RR以上）の相場。Worker が集めたものを読むだけ（11/11）
+            cardlist.update(s)  # 弾ページの収録カード（RR以上）の相場。Worker が集めたものを読むだけ（11/11）
         except Exception as e:
             log(f"収録カード: スキップ {e}")
         try:

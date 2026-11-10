@@ -26,7 +26,7 @@ def _ago(pts, d0, days):
     return None
 
 
-def update():
+def update(settings=None):
     try:
         j = requests.get(URL, timeout=30).json()
     except Exception as e:
@@ -47,7 +47,44 @@ def update():
         out[key] = {"rows": rows, "at": now().isoformat()}
     if out:
         save_json("card_lists.json", out)
+        try:
+            photos(settings or {}, out)
+        except Exception as e:
+            log(f"収録カード（楽天の写真）: スキップ {e}")
         log("収録カード: " + "・".join(f"{k.split('|')[1]} {sum(1 for r in v['rows'] if r['p'])}/{len(v['rows'])}枚" for k, v in out.items()))
+
+
+def photos(settings, lists, budget=40):
+    """11/11：カードの写真は楽天市場の商品の写真（楽天のアフィリエイトの商品画像。写真は楽天の商品ページへのリンクにする）
+    ・カード名と番号（080/076 など）が両方合う商品だけ（souba._rakuten_card と同じ決まり）。合わなければ写真なし・楽天の検索へのリンク
+    ・14日に1回見直す。1回の実行で最大 budget 件（1件約1秒）"""
+    import os
+    import time
+    if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
+        return
+    from souba import _rakuten_card
+    data = load_json("card_photos.json", {})
+    old = (now().date() - timedelta(days=14)).isoformat()
+    n = got = 0
+    for v in lists.values():
+        for r in v["rows"]:  # 高い順なので、目立つカードから先に付く
+            k = str(r["id"])
+            if (data.get(k) or {}).get("fetched", "") > old:
+                continue
+            if n >= budget:
+                break
+            n += 1
+            try:
+                data[k] = _rakuten_card(settings, {"label": f'{r["n"]} {r["r"]}', "num": r.get("no") or ""})
+                got += bool(data[k].get("image"))
+            except Exception as e:
+                log(f"収録カード（楽天の写真）: {r['n']} 失敗 {e}")
+                if "401" in str(e) or "403" in str(e):
+                    break
+            time.sleep(1.1)
+    if n:
+        save_json("card_photos.json", data)
+        log(f"収録カード（楽天の写真）: {n}件調べて写真{got}件")
 
 
 def _cut(d0, days):
@@ -80,18 +117,30 @@ def html(game, series, esc):
         cls = "up" if v > 0 else "down" if v < 0 else ""
         return f'<span class="{cls}">{"+" if v > 0 else ""}{v:.0f}%</span>'
     last = max(r["d"] for r in rows)
+    ph = load_json("card_photos.json", {})
+    def img(r):
+        x = ph.get(str(r["id"])) or {}
+        if x.get("image") and x.get("url"):
+            return (f'<a href="{esc(x["url"])}" target="_blank" rel="nofollow sponsored noopener">'
+                    f'<img src="{esc(x["image"])}" alt="{esc(r["n"])} {esc(r["r"])} {esc(r.get("no") or "")}" loading="lazy" width="48" height="48"></a>')
+        return '<span class="noimg" aria-hidden="true"></span>'
+    def rk(r):
+        x = ph.get(str(r["id"])) or {}
+        return (f'<a class="rk" href="{esc(x["url"])}" target="_blank" rel="nofollow sponsored noopener">{"楽天で探す" if x.get("search") else "楽天で見る"}</a>'
+                if x.get("url") else "")
     trs = "".join(
-        f'<tr{" class=\"mo\"" if n_ >= SHOW else ""}><td class="cr r-{esc(r["r"])}">{esc(r["r"])}</td><td class="cn"><a href="https://snkrdunk.com/apparels/{r["id"]}" rel="nofollow noopener" target="_blank">'
+        f'<tr{" class=\"mo\"" if n_ >= SHOW else ""}><td class="ci">{img(r)}</td><td class="cr r-{esc(r["r"])}">{esc(r["r"])}</td><td class="cn"><a href="https://snkrdunk.com/apparels/{r["id"]}" rel="nofollow noopener" target="_blank">'
         f'{esc(r["n"])}</a></td><td class="cno">{esc(r["no"])}</td><td class="num cp">¥{r["p"]:,}'
         + ('<small class="few">取引少</small>' if (r.get("k") or 0) < 3 else "") + '</td>'
         f'<td class="num cw" data-l="7日">{pct(r["p"], r.get("w")) or "−"}</td><td class="num cm" data-l="30日">{pct(r["p"], r.get("m")) or "−"}</td>'
-        f'<td class="mer"><a href="{mercari(r)}" rel="nofollow noopener" target="_blank">メルカリで探す</a></td></tr>'
+        f'<td class="mer"><a href="{mercari(r)}" rel="nofollow sponsored noopener" target="_blank">メルカリで探す</a>{rk(r)}</td></tr>'
         for n_, r in enumerate(rows))
+    has_ph = any((ph.get(str(r["id"])) or {}).get("image") for r in rows)
     rars = sorted({r["r"] for r in rows}, key=lambda x: RANK.get(x, 9))
     md = f"{int(last[5:7])}/{int(last[8:10])}"
     return (f'<section class="sinfo scards" aria-label="収録カードの相場"><h2>{esc(series)}の収録カードの相場（{"・".join(esc(x) for x in rars)}）</h2>'
             f'<p class="note">スニダンの取引の値段（未鑑定・状態Aの1枚、{md}時点の最新の取引日の平均）。高い順。「取引少」は30日の取引が少なく、値段がぶれやすいカードです。'
-            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「メルカリで探す」を押すとメルカリでそのカードの検索結果を開きます。</p>'
-            f'<div class="tbl"><table><thead><tr><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th>メルカリ</th></tr></thead><tbody>{trs}</tbody></table></div>'
+            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「メルカリで探す」「楽天で見る」でそのカードの出品・商品を開きます。</p>'
+            f'<div class="tbl"><table><thead><tr><th></th><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th>買う</th></tr></thead><tbody>{trs}</tbody></table></div>'
             + (f'<button type="button" class="cmore" onclick="this.closest(\'.scards\').classList.add(\'open\')">残り{len(rows) - SHOW}枚もすべて見る ▼</button>' if len(rows) > SHOW else '') +
-            f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。</p></section>')
+            f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。' + ('写真は楽天市場の商品の写真です。' if has_ph else '') + 'メルカリ・楽天市場へのリンクは広告（PR）です。</p></section>')

@@ -533,14 +533,21 @@ input[type="search"] { flex: 1 1 160px; }
 .sinfo.scards .cr { font-weight: 800; font-size: 11px; white-space: nowrap; }
 .sinfo.scards .r-MUR, .sinfo.scards .r-UR, .sinfo.scards .r-FUR { color: #b45309; } .sinfo.scards .r-SAR { color: #be185d; } .sinfo.scards .r-SR { color: #7c3aed; }
 .sinfo.scards .mer a { display: inline-block; padding: 3px 9px; border-radius: 999px; background: #ff333314; color: #e60023; font-size: 11px; font-weight: 800; white-space: nowrap; text-decoration: none; }
+.sinfo.scards .ci { width: 52px; padding-right: 0; }
+.sinfo.scards .ci img, .sinfo.scards .noimg { display: block; width: 48px; height: 48px; object-fit: contain; border-radius: 6px; background: #fff; border: 1px solid var(--rule); }
+.sinfo.scards .noimg { background: var(--navy-soft); }
+.sinfo.scards .mer a.rk { margin-left: 4px; background: #bf000014; color: #bf0000; }
 .sinfo.scards .note { font-size: 12px; color: var(--ink-2); margin: 4px 0 8px; }
 @media (max-width: 640px) {
   .sinfo.scards thead { display: none; }
   .sinfo.scards table, .sinfo.scards tbody { display: block; }
-  .sinfo.scards tr { display: grid; grid-template-columns: 38px 1fr auto; grid-template-areas: "r n p" "r no p" "r ch mer"; column-gap: 8px; row-gap: 2px; padding: 8px 10px; border-top: 1px solid var(--rule); }
+  .sinfo.scards tr { display: grid; grid-template-columns: 56px 1fr auto; grid-template-areas: "im r p" "im n p" "im no mer" "im ch mer"; column-gap: 8px; row-gap: 2px; padding: 8px 10px; border-top: 1px solid var(--rule); }
   .sinfo.scards tr:first-child { border-top: 0; }
   .sinfo.scards td { display: block; padding: 0; border: 0 !important; }
-  .sinfo.scards .cr { grid-area: r; padding-top: 2px; }
+  .sinfo.scards .ci { grid-area: im; width: auto; }
+  .sinfo.scards .cr { grid-area: r; font-size: 10px; }
+  .sinfo.scards .mer { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .sinfo.scards .mer a.rk { margin-left: 0; }
   .sinfo.scards .cn { grid-area: n; font-size: 14px; line-height: 1.35; }
   .sinfo.scards .cno { grid-area: no; }
   .sinfo.scards .cp { grid-area: p; font-size: 15px; align-self: center; }
