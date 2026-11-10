@@ -2835,6 +2835,18 @@
         "rq": [],
         "a": "2026-11-25"
       },
+      "90be0fab662da7c8": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-12T23:59",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-25"
+      },
       "177adcbcf8cf15db": {
         "p": "神の支配",
         "g": "onepiece",
@@ -12188,6 +12200,17 @@
   "store/aeon-2f753/": {
     "name": "ふるいちイオンモール熱田店",
     "items": {
+      "fa837da8ffec0fe8": {
+        "p": "HEROINES PRECIOUS BOX",
+        "g": "onepiece",
+        "e": "2026-11-11T21:01",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "ac3b885ba85dec82": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -23792,6 +23815,17 @@
   "store/bukkuesu-4b4f8/": {
     "name": "ブックエース小名浜住吉店",
     "items": {
+      "7f0e49f36bcde4d7": {
+        "p": "神の支配 (OP18)",
+        "g": "onepiece",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "fef1e3a48d3f3ed8": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -29082,6 +29116,17 @@
   "store/torekashoppusukippu-123ce/": {
     "name": "トレカショップ スキップ 通販店",
     "items": {
+      "d5351aa0573ce8fe": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-13T12:00",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "53eadb4f7ae04ac2": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -31704,22 +31749,22 @@
   "store/shop-96fa1/": {
     "name": "唐津（佐賀）",
     "items": {
-      "8b3cc3c1cdc5d004": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-09",
-        "f": "2026-11-06",
+      "7bc4800da843a91c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-09T22:00",
+        "f": "2026-11-09",
         "c": "store",
         "m": "Web",
         "id": null,
         "mem": null,
         "rq": []
       },
-      "7bc4800da843a91c": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-11-09",
+      "8b3cc3c1cdc5d004": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-09",
+        "f": "2026-11-06",
         "c": "store",
         "m": "Web",
         "id": null,
@@ -33659,7 +33704,7 @@
       "df38753e2cb5def3": {
         "p": "ハドウシーカー",
         "g": "pokemon",
-        "e": "",
+        "e": "2026-11-09T22:59",
         "f": "2026-11-09",
         "c": "store",
         "m": "Web",
@@ -34007,6 +34052,17 @@
         "c": "store",
         "m": "店頭",
         "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "55007cb60eb91a02": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-12T20:00",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": true,
         "mem": "none",
         "rq": []
       }
