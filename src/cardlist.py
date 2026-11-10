@@ -13,6 +13,7 @@ from common import load_json, save_json, log, now
 
 MERCARI_AFID = "1350793153"
 URL = "https://rakuten-watch.supreme-buyer-1991.workers.dev/cards"
+SHOW = 15  # 最初に見せる枚数（残りは「すべて見る」で開く）
 RANK = {"MUR": 0, "UR": 1, "FUR": 1, "SAR": 2, "SR": 3, "AR": 4, "CHR": 5, "RR": 6}
 
 
@@ -80,15 +81,17 @@ def html(game, series, esc):
         return f'<span class="{cls}">{"+" if v > 0 else ""}{v:.0f}%</span>'
     last = max(r["d"] for r in rows)
     trs = "".join(
-        f'<tr><td class="cr r-{esc(r["r"])}">{esc(r["r"])}</td><td><a href="https://snkrdunk.com/apparels/{r["id"]}" rel="nofollow noopener" target="_blank">'
-        f'{esc(r["n"])}</a></td><td class="cno">{esc(r["no"])}</td><td class="num">¥{r["p"]:,}</td><td class="num">{pct(r["p"], r.get("w"))}</td>'
-        f'<td class="num">{pct(r["p"], r.get("m"))}</td><td class="num">{"少" if (r.get("k") or 0) < 3 else ""}</td>'
-        f'<td class="mer"><a href="{mercari(r)}" rel="nofollow noopener" target="_blank">探す</a></td></tr>'
-        for r in rows)
+        f'<tr{" class=\"mo\"" if n_ >= SHOW else ""}><td class="cr r-{esc(r["r"])}">{esc(r["r"])}</td><td class="cn"><a href="https://snkrdunk.com/apparels/{r["id"]}" rel="nofollow noopener" target="_blank">'
+        f'{esc(r["n"])}</a></td><td class="cno">{esc(r["no"])}</td><td class="num cp">¥{r["p"]:,}'
+        + ('<small class="few">取引少</small>' if (r.get("k") or 0) < 3 else "") + '</td>'
+        f'<td class="num cw" data-l="7日">{pct(r["p"], r.get("w")) or "−"}</td><td class="num cm" data-l="30日">{pct(r["p"], r.get("m")) or "−"}</td>'
+        f'<td class="mer"><a href="{mercari(r)}" rel="nofollow noopener" target="_blank">メルカリで探す</a></td></tr>'
+        for n_, r in enumerate(rows))
     rars = sorted({r["r"] for r in rows}, key=lambda x: RANK.get(x, 9))
     md = f"{int(last[5:7])}/{int(last[8:10])}"
     return (f'<section class="sinfo scards" aria-label="収録カードの相場"><h2>{esc(series)}の収録カードの相場（{"・".join(esc(x) for x in rars)}）</h2>'
-            f'<p class="note">スニダンの取引の値段（未鑑定・状態Aの1枚、{md}時点の最新の取引日の平均）。高い順。「少」は30日の取引が少なく、値段がぶれやすいカードです。'
-            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「探す」を押すとメルカリでそのカードの検索結果を開きます。</p>'
-            f'<div class="tbl"><table><thead><tr><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th></th><th>メルカリ</th></tr></thead><tbody>{trs}</tbody></table></div>'
+            f'<p class="note">スニダンの取引の値段（未鑑定・状態Aの1枚、{md}時点の最新の取引日の平均）。高い順。「取引少」は30日の取引が少なく、値段がぶれやすいカードです。'
+            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページ、「メルカリで探す」を押すとメルカリでそのカードの検索結果を開きます。</p>'
+            f'<div class="tbl"><table><thead><tr><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th>メルカリ</th></tr></thead><tbody>{trs}</tbody></table></div>'
+            + (f'<button type="button" class="cmore" onclick="this.closest(\'.scards\').classList.add(\'open\')">残り{len(rows) - SHOW}枚もすべて見る ▼</button>' if len(rows) > SHOW else '') +
             f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。</p></section>')
