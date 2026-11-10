@@ -54,15 +54,14 @@ def update(settings=None):
         log("収録カード: " + "・".join(f"{k.split('|')[1]} {sum(1 for r in v['rows'] if r['p'])}/{len(v['rows'])}枚" for k, v in out.items()))
 
 
-def photos(settings, lists, budget=40):
+def photos(settings, lists, budget=25):
     """11/11：カードの写真は楽天市場の商品の写真（楽天のアフィリエイトの商品画像。写真は楽天の商品ページへのリンクにする）
-    ・カード名と番号（080/076 など）が両方合う商品だけ（souba._rakuten_card と同じ決まり）。合わなければ写真なし・楽天の検索へのリンク
+    ・カード名と番号（080/076 など）が両方合う商品だけ。写真は文字・ロゴの入っていない「カード1枚だけ」のもの（cardphoto.py）。なければ写真なし
     ・14日に1回見直す。1回の実行で最大 budget 件（1件約1秒）"""
     import os
     import time
     if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
         return
-    from souba import _rakuten_card
     data = load_json("card_photos.json", {})
     old = (now().date() - timedelta(days=14)).isoformat()
     n = got = 0
@@ -75,7 +74,7 @@ def photos(settings, lists, budget=40):
                 break
             n += 1
             try:
-                data[k] = _rakuten_card(settings, {"label": f'{r["n"]} {r["r"]}', "num": r.get("no") or ""})
+                data[k] = _photo(settings, r)
                 got += bool(data[k].get("image"))
             except Exception as e:
                 log(f"収録カード（楽天の写真）: {r['n']} 失敗 {e}")
@@ -85,6 +84,36 @@ def photos(settings, lists, budget=40):
     if n:
         save_json("card_photos.json", data)
         log(f"収録カード（楽天の写真）: {n}件調べて写真{got}件")
+
+
+NG_ITEM = re.compile(r"オリパ|英語版|韓国|中国|まとめ|セット売|ランダム|福袋|スリーブ|ローダー|PSA|BGS|ARS|CGC|鑑定|プロモ未開封|BOX")
+
+
+def _photo(settings, r):
+    """楽天で「カード名＋番号」が両方合う商品を探し、その写真からカード1枚だけの写真（文字なし）を選ぶ（cardphoto.check）"""
+    import os
+    import rakuten
+    import cardphoto
+    num = (re.search(r"\d{3}/\d{3}|[A-Z]{2,4}\d{0,2}-\d{3}", r.get("no") or "") or [None])[0] or ""
+    q = f'{r["n"]} {num}'.strip()
+    aff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or settings.get("rakuten_affiliate_id") or "").strip()
+    day = now().date().isoformat()
+    if not num:
+        return {"image": "", "url": rakuten.search_link(q, aff), "search": True, "fetched": day}
+    items = rakuten.search(q, dict(settings, _genre=None, _sort="standard"))
+    nb, nn = rakuten._norm(r["n"]), rakuten._norm(num)
+    def ok(it):
+        nm = it.get("itemName") or ""
+        n_ = rakuten._norm(nm)
+        if nb not in n_ or nn not in n_ or NG_ITEM.search(nm):
+            return False
+        if "ミラー" in nm and "ミラー" not in r["n"]:  # マスターボールミラーなど、ちがう仕様のカード
+            return False
+        return True
+    it, img = cardphoto.pick(items, ok)
+    if it:
+        return {"image": img, "url": rakuten.item_link(it.get("itemUrl") or it.get("affiliateUrl"), aff), "fetched": day}
+    return {"image": "", "url": rakuten.search_link(q, aff), "search": True, "fetched": day}
 
 
 def _cut(d0, days):
