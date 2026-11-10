@@ -392,7 +392,7 @@ def _write_x_queue(out, items, site, t=None):
             continue   # 受付が始まって半日以上たっている抽選は、このサイトが遅れて見つけただけ＝ニュースではないので出さない（11/10 ポケセンのハドウシーカー）
         kind = {"lottery": "抽選", "preorder": "予約", "restock": "再販", "first_come": "先着販売", "invite": "招待販売"}.get(i.get("kind"), "抽選")
         url = f"{site}/{i['lpath']}"
-        nm = "ポケカ" if i["game"] == "pokemon" else "ワンピカード"
+        nm = "ポケカ" if i["game"] == "pokemon" else "ワンピースカード"
         def text(head, when):
             ls = [head, "", f"【{i.get('store')}】{i.get('product')}", f"▶{kind}"]
             if when:

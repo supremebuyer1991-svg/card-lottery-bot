@@ -33,7 +33,7 @@ else:
 
 
     def it(k, g, store, series, product, kind, h_end=None, h_start=None, status="listed", **kw):
-        d = {"key": k, "game": g, "store": store, "series": series, "product": product, "kind": kind, "status": status,
+        d = {"key": k, "game": g, "store": store, "series": series, "product": product, "kind": kind, "status": status, "verified": True,
              "url": "https://shop.example/x", "channel": "online", "tags": [], "found_at": (now() - timedelta(hours=2)).isoformat()}
         if h_end is not None:
             d["end"] = (now() + timedelta(hours=h_end)).isoformat()

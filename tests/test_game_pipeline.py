@@ -20,6 +20,8 @@ else:
     from common import now, load_settings, load_json, lottery_key, fix_game  # noqa: E402
     import extract  # noqa: E402
     import game_pipeline  # noqa: E402
+    import sitegen_game  # noqa: E402
+    sitegen_game.VERIFY_FROM = "9999"   # このテストでは「元の記事で確かめる」を飛ばす（AIを使わないため）
     from dedupe import norm_series  # noqa: E402
 
     assert common.SITE == "game" and common.STATE_DIR.name  # state は別フォルダ
