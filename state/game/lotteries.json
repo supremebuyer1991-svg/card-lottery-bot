@@ -1469,7 +1469,7 @@
     "kind": "lottery",
     "multi": false,
     "cls": "72164fd4bd8e",
-    "page_checked_at": "2026-11-10T11:03:44.673547+09:00",
+    "page_checked_at": "2026-11-10T11:13:30.228714+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
     "product_short": "30th CELEBRATION BOX"
   },
@@ -2055,7 +2055,7 @@
     "key": "cbcf6c062e1fa005",
     "status": "approved",
     "found_at": "2026-11-09T15:09:22.687472+09:00",
-    "page_checked_at": "2026-11-09T15:10:59.628164+09:00",
+    "page_checked_at": "2026-11-10T11:13:30.275422+09:00",
     "details_checked": true,
     "cls": "138f0adee141",
     "official_checked": true,
@@ -2422,7 +2422,7 @@
     "end": "2026-11-12T23:59:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文には応募・購入の条件（抽選の有無、会員登録、本人確認、購入制限、価格など）の記載がない。",
     "price": null,
     "round": null,
     "url": "https://www.4gamer.net/games/991/G999106/20261106028/",
@@ -2439,9 +2439,9 @@
     "key": "9e51cb833efe1784",
     "status": "pending",
     "found_at": "2026-11-09T23:32:04.016828+09:00",
-    "cls": "2a4d8a8b9923",
+    "cls": "8bf4e05aa3ac",
     "issue": 634,
-    "page_checked_at": "2026-11-10T11:03:44.830000+09:00",
+    "page_checked_at": "2026-11-10T11:13:32.569168+09:00",
     "details_checked": true
   },
   "6d1d384b883d5d33": {
@@ -2474,7 +2474,7 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・予約受付は11月13日午前10時から",
     "cls": "10e581624cce",
-    "page_checked_at": "2026-11-10T11:03:51.560124+09:00",
+    "page_checked_at": "2026-11-10T11:13:38.757344+09:00",
     "details_checked": true
   },
   "521cb5f267233a03": {
@@ -2554,7 +2554,7 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": "ページには「ボール」の応募・購入条件の記載がない。11月10日11時より4商品が再販されるとだけ書かれている。",
+    "conditions": "ページ本文には「ボール」の応募・購入条件（会員登録、本人確認、購入個数、代理購入、価格など）の記載はありません。",
     "price": null,
     "round": null,
     "url": "https://s.inside-games.jp/article/img/2026/11/10/190638/1805160.html",
@@ -2574,9 +2574,9 @@
     "deadline_checked_at": "2026-11-10T10:46:51.549041+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選・応募期間の記載なし",
-    "cls": "2bd5ec211656",
+    "cls": "68fd083d7ae5",
     "issue": 643,
-    "page_checked_at": "2026-11-10T11:03:58.123390+09:00",
+    "page_checked_at": "2026-11-10T11:13:44.535191+09:00",
     "details_checked": true
   },
   "1ff2dff863c23f2a": {
@@ -2737,10 +2737,10 @@
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975075+09:00",
     "cls": "15bd7db729fd",
-    "deadline_checked_at": "2026-11-10T11:03:44.669768+09:00",
+    "deadline_checked_at": "2026-11-10T11:13:30.225613+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-10T11:04:03.482380+09:00",
+    "page_checked_at": "2026-11-10T11:13:49.773829+09:00",
     "page_err": "中身が空"
   },
   "7ba03fbf224c94d3": {
@@ -2770,11 +2770,9 @@
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975114+09:00",
     "cls": "3c3a5cae8e1d",
-    "deadline_checked_at": "2026-11-10T11:03:44.669786+09:00",
+    "deadline_checked_at": "2026-11-10T11:13:30.225633+09:00",
     "deadline_v": 5,
-    "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-10T11:04:05.948293+09:00",
-    "page_err": "中身が空"
+    "deadline_note": "応募ページの中身が空"
   },
   "fbdcb7721b595447": {
     "store": "BANDAI SPIRITS",
@@ -2803,7 +2801,7 @@
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975139+09:00",
     "cls": "3d7be6a6abfe",
-    "deadline_checked_at": "2026-11-10T11:03:44.669791+09:00",
+    "deadline_checked_at": "2026-11-10T11:13:30.225636+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空"
   },

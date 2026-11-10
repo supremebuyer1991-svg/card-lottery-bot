@@ -2126,7 +2126,10 @@
   "4580302151557": {
     "rkUrl": "https://item.rakuten.co.jp/book/16762010/",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1557/4580302151557.jpg?_ex=300x300",
-    "rkPrice": 6831
+    "rkPrice": 6831,
+    "asin": "B096B2KYNS",
+    "azUrl": "https://www.amazon.co.jp/dp/B096B2KYNS?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+    "t": "古書店街の橋姫 々 - Switch"
   },
   "4902370549263": {
     "rkUrl": "https://item.rakuten.co.jp/book/17056014/",
@@ -5244,10 +5247,10 @@
       "at": "2026-11-09T12:46:40.107Z"
     },
     "j4580302151557": {
-      "s": "none",
-      "p": 6831,
-      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16762010%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16762010%2F",
-      "at": "2026-11-09T06:13:00.745Z"
+      "s": "buy",
+      "p": 6367,
+      "u": "https://www.amazon.co.jp/dp/B096B2KYNS?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+      "at": "2026-11-10T02:06:39.440Z"
     },
     "j4902370549263": {
       "s": "buy",
@@ -11451,6 +11454,12 @@
         "p": 9073,
         "u": "https://www.amazon.co.jp/dp/B0CBTYTRF9?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
         "at": "2026-11-10T00:24:40.818Z"
+      },
+      "j4580302151557": {
+        "s": "buy",
+        "p": 6367,
+        "u": "https://www.amazon.co.jp/dp/B096B2KYNS?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+        "at": "2026-11-10T02:06:39.440Z"
       }
     }
   },
@@ -14110,6 +14119,13 @@
           "t": "2026-11-10T01:50:39.511Z",
           "s": "buy",
           "p": 6481
+        }
+      ],
+      "j4580302151557": [
+        {
+          "t": "2026-11-10T02:06:39.440Z",
+          "s": "buy",
+          "p": 6367
         }
       ]
     }

@@ -2,6 +2,17 @@
   "store/amazon-cbc62/": {
     "name": "Amazon",
     "items": {
+      "692df068508f4b4b": {
+        "p": "スタートデッキ100バトルコレクション",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-10",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "63384842081ab6fb": {
         "p": "神の支配",
         "g": "onepiece",
@@ -418,17 +429,6 @@
       },
       "ae0cf876e11ad06d": {
         "p": "スタートデッキ100 バトルコレクション",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-10-26",
-        "c": "online",
-        "m": "Web",
-        "id": false,
-        "mem": "none",
-        "rq": []
-      },
-      "9785fa213cb434a2": {
-        "p": "ハドウシーカー",
         "g": "pokemon",
         "e": "",
         "f": "2026-10-26",
@@ -1140,6 +1140,17 @@
   "store/kiddyland-7879f/": {
     "name": "キデイランド ららぽーと富士見店",
     "items": {
+      "6f38477a22dfa6a6": {
+        "p": "OP18",
+        "g": "onepiece",
+        "e": "2026-11-15T20:30",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "b5c924e04453a972": {
         "p": "神の支配",
         "g": "onepiece",
@@ -1204,17 +1215,6 @@
         "m": "Web",
         "id": true,
         "mem": "account",
-        "rq": []
-      },
-      "6f38477a22dfa6a6": {
-        "p": "OP18",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-11-09",
-        "c": "store",
-        "m": "Web",
-        "id": null,
-        "mem": null,
         "rq": []
       },
       "72408dc16984e6f2": {
@@ -4439,6 +4439,17 @@
   "store/ojama-8a9bf/": {
     "name": "おじゃま館 長居店",
     "items": {
+      "7b052bec08028c31": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "939ff30356e8bb1e": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -18158,6 +18169,17 @@
   "store/aeon-aa412/": {
     "name": "ふるいちイオンモール今治新都市店",
     "items": {
+      "2f410bc37bb3dfbc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "27ce88c8e3ed5d10": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -21424,6 +21446,17 @@
   "store/aeon-e187c/": {
     "name": "ふるいちイオンモール多摩平の森店",
     "items": {
+      "ec0c83e6375c40d9": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "c7b5ad26aaf1ab17": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -30947,17 +30980,6 @@
         "mem": null,
         "rq": []
       },
-      "777f6c442482f6c5": {
-        "p": "OP18",
-        "g": "onepiece",
-        "e": "",
-        "f": "2026-11-09",
-        "c": "store",
-        "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
-      },
       "2f6df72825e16c1a": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -30967,6 +30989,17 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      },
+      "777f6c442482f6c5": {
+        "p": "OP18",
+        "g": "onepiece",
+        "e": "2026-11-08T20:00",
+        "f": "2026-11-09",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }
@@ -33963,7 +33996,8 @@
         "m": "Web",
         "id": null,
         "mem": null,
-        "rq": []
+        "rq": [],
+        "a": "2026-11-17"
       }
     }
   },
@@ -34081,6 +34115,41 @@
         "m": "店頭",
         "id": false,
         "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/yodobashi-c7a0d/": {
+    "name": "ヨドバシ・ドット・コム",
+    "items": {
+      "f6467e5a33c2d635": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-11T10:59",
+        "f": "2026-11-10",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [
+          "購入履歴"
+        ],
+        "a": "2026-11-11"
+      }
+    }
+  },
+  "store/tcg-d3d48/": {
+    "name": "宝島師勝店TCG",
+    "items": {
+      "86bb9f28fa9c10cc": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-10",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
         "rq": []
       }
     }

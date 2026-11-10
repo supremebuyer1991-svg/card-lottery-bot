@@ -249,7 +249,8 @@
     "name": "トレカエース新取手店",
     "last": "2026-11-10",
     "game": "pokemon",
-    "area": "茨城県"
+    "area": "茨城県",
+    "address": "茨城県茨城県取手市寺田字佃4718-9"
   },
   "store/kadoshoppu-ho-mu-57760/": {
     "name": "カードショップ＠ほ～む。熊本店",
@@ -2339,7 +2340,8 @@
     "last": "2026-11-10",
     "game": "pokemon",
     "keep": true,
-    "area": "茨城県"
+    "area": "茨城県",
+    "address": "茨城県茨城県筑西市市野辺223-1"
   },
   "store/hobisukueanishina-21ed7/": {
     "name": "ホビースクエアにしな",
@@ -3687,7 +3689,8 @@
     "last": "2026-11-10",
     "game": "dragonball",
     "keep": true,
-    "area": "茨城県"
+    "area": "茨城県",
+    "address": "茨城県茨城県ひたちなか市東石川３６１４-１"
   },
   "store/bookoff-eab20/": {
     "name": "ブックオフスーパーバザー ショップス市川店",
@@ -6942,7 +6945,8 @@
     "name": "文教堂 南大沢店【トレカ】",
     "last": "2026-11-10",
     "game": "onepiece",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都東京都八王子市南大沢2-28-1"
   },
   "store/aeon-5fd00/": {
     "name": "カードボックスイオンモール姫路店",
@@ -7041,5 +7045,16 @@
     "last": "2026-11-10",
     "game": "onepiece",
     "area": "広島県"
+  },
+  "store/yodobashi-c7a0d/": {
+    "name": "ヨドバシ・ドット・コム",
+    "last": "2026-11-10",
+    "game": "pokemon"
+  },
+  "store/tcg-d3d48/": {
+    "name": "宝島師勝店TCG",
+    "last": "2026-11-10",
+    "game": "pokemon",
+    "keep": true
   }
 }
