@@ -3788,7 +3788,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if iv and ip.exists():
             h = ip.read_text(encoding="utf-8")
             if "impact-site-verification" not in h:
-                ip.write_text(h.replace("</head>", f"<meta name='impact-site-verification' value='{escape(iv)}'></head>", 1), encoding="utf-8")
+                tag = f"<meta name='impact-site-verification' value='{escape(iv)}'>\n<meta name=\"impact-site-verification\" content=\"{escape(iv)}\">"
+                if "<head>" in h:  # 読み取りが先頭だけでも見つかるように、<head> のすぐ後ろに（value の形と content の形の両方）
+                    h = h.replace("<head>", "<head>\n" + tag, 1)
+                else:
+                    h = h.replace("</head>", tag + "</head>", 1)
+                ip.write_text(h, encoding="utf-8")
     except Exception as e:
         print("Impact の確認タグ", e)
 
