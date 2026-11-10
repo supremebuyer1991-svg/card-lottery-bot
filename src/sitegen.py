@@ -2860,13 +2860,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             # 11/3 ユーザー指摘：下の一覧が「発売日」の一覧だと一目でわかるように見出しと説明を付ける
             h.append('<div class="cal-head"><b>📦 新弾・新商品の発売日一覧</b>'
                      '<p>日付は<strong>発売日</strong>です（過去2か月〜これから発売の弾）。「抽選 受付中〇件」を押すと、その弾の抽選の一覧が見られます。</p></div>')
-            cur_m, faq_c = "", []
+            cur_m, faq_c, by_m = "", [], {}  # by_m：11/11 月ごとのページ（/calendar/2026-12/）に使う
             for r_, g, x, inf, n_ in rows_c:
                 m_ = r_[:7]
                 if m_ != cur_m:
                     if cur_m:
                         h.append("</ul>")
-                    h.append(f"<h2>{int(m_[:4])}年{int(m_[5:7])}月</h2><ul class=\"cal-list\">")
+                    h.append(f"<h2><a href=\"/calendar/{m_}/\">{int(m_[:4])}年{int(m_[5:7])}月</a></h2><ul class=\"cal-list\">")
                     cur_m = m_
                 d_ = _dtm.date.fromisoformat(r_)
                 # 注意：ここで tag という名前を使うと、build全体のAmazonのタグが上書きされる（11/6 修正）
@@ -2878,10 +2878,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 buy_ = ((f'<span class="cal-buy">あと{dd_}日で発売｜定価で予約：' + (f'<a href="{escape(_rakb(q_, raff))}" {_REL} data-pl="calendar">楽天ブックス</a>' if raff else "")
                          + (f'<a href="{escape(_amz(q_, tag))}" {_REL} data-pl="calendar">Amazon</a>' if tag else "") + ' <span class="ad-pr">PR</span></span>')
                         if r_ > today_c and (raff or tag) else "")
-                h.append(f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})<small class="cal-rl">発売</small></time>'
-                         f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{new_b}'
-                         f'<a class="cal-t" href="/{series_path(g, x)}">{escape(x)}</a>'
-                         f'<small>{escape(inf.get("type") or "")}' + (f'｜{escape(inf["price"])}' if inf.get("price") else "") + f'</small>{lot}{buy_}</li>')
+                li_ = (f'<li><time datetime="{r_}">{d_.month}/{d_.day}({WEEK[d_.weekday()]})<small class="cal-rl">発売</small></time>'
+                       f'<span class="badge gm g-{g}">{escape(GAME_SHORT[g])}</span>{new_b}'
+                       f'<a class="cal-t" href="/{series_path(g, x)}">{escape(x)}</a>'
+                       f'<small>{escape(inf.get("type") or "")}' + (f'｜{escape(inf["price"])}' if inf.get("price") else "") + f'</small>{lot}{buy_}</li>')
+                h.append(li_)
+                by_m.setdefault(m_, []).append((li_, r_, g, x, inf, n_))
             h.append("</ul><p class=\"note\">※発売日・価格は変更になることがあります。最新の情報は公式サイトで確認してください。</p></div>")
             for g in games:
                 up_ = [t for t in rows_c if t[1] == g and t[0] > today_c]
@@ -2901,6 +2903,40 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "lead": "新弾の発売日・定価・抽選の受付状況をまとめています。下には発売前の弾の受付中の抽選を載せています。",
                 "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"}, up_items,
                 [("トップ", ""), ("発売日カレンダー", "calendar/")])
+            # 11/11：月ごとの発売スケジュール（「ポケカ 12月 発売」で探す人向け）。弾のある月だけ
+            ms_ = sorted(by_m)
+            for mi, m_ in enumerate(ms_):
+                y_, mo_ = int(m_[:4]), int(m_[5:7])
+                rs_ = by_m[m_]
+                pk_ = [t for t in rs_ if t[2] == "pokemon"]
+                op_ = [t for t in rs_ if t[2] == "onepiece"]
+                past_ = m_ < today_c[:7]
+                def _names(ts):
+                    return "・".join(f"「{t[3]}」（{int(t[1][5:7])}/{int(t[1][8:10])}）" for t in ts)
+                lead_ = (f"{y_}年{mo_}月{'に発売された' if past_ else 'に発売される'}ポケモンカード・ワンピースカードの新弾・新商品は{len(rs_)}つです。"
+                         + (f"ポケカは{_names(pk_)}。" if pk_ else "") + (f"ワンピースカードは{_names(op_)}。" if op_ else ""))
+                nav_ = ('<p class="more cal-nav">'
+                        + (f'<a href="/calendar/{ms_[mi - 1]}/">‹ {int(ms_[mi - 1][5:7])}月の発売</a>' if mi else "")
+                        + '<a href="/calendar/">発売日カレンダー（すべて）</a>'
+                        + (f'<a href="/calendar/{ms_[mi + 1]}/">{int(ms_[mi + 1][5:7])}月の発売 ›</a>' if mi + 1 < len(ms_) else "")
+                        + "</p>")
+                body_ = ('<div class="guide cal">' + f"<p>{escape(lead_)}</p>"
+                         + '<div class="cal-head"><b>📦 発売日一覧</b><p>日付は<strong>発売日</strong>です。弾の名前を押すと、発売日・定価・抽選・相場をまとめた弾のページに進めます。</p></div>'
+                         + '<ul class="cal-list">' + "".join(t[0] for t in rs_) + "</ul>" + nav_
+                         + '<p class="note">※発売日・価格は変更になることがあります。最新の情報は公式サイトで確認してください。</p></div>')
+                faq_m = []
+                for gg_, ts_ in (("pokemon", pk_), ("onepiece", op_)):
+                    if ts_:
+                        faq_m.append((f"{y_}年{mo_}月に発売{'された' if past_ else 'される'}{GAME_SHORT[gg_]}は？",
+                                      "、".join(f"{int(t[1][5:7])}月{int(t[1][8:10])}日の「{t[3]}」" + (f"（{t[4]['price']}）" if t[4].get("price") else "") for t in ts_)
+                                      + "です。" + ("抽選・予約の受付状況は、それぞれの弾のページで1日6回更新しています。" if not past_ else "")))
+                m_items = [i for i in items if any(t[2] == i["game"] and t[3] in (i.get("sers") or [i.get("series")]) for t in rs_)]
+                write(f"calendar/{m_}/", {"game": games[0], "subset": True}, {
+                    "title": f"【{y_}年{mo_}月発売】ポケカ・ワンピースカードの新弾一覧｜発売日・定価・抽選情報｜トレカ抽選ナビ",
+                    "desc": lead_[:110] + "発売日・希望小売価格・抽選の受付状況をまとめています。",
+                    "summary": "", "faq": faq_m or None, "h1": f"{y_}年{mo_}月発売のポケカ・ワンピースカード新弾",
+                    "lead": "", "aff": body_, "links": _menu(items, games, games[0]), "root": "/"}, m_items,
+                    [("トップ", ""), ("発売日カレンダー", "calendar/"), (f"{y_}年{mo_}月", f"calendar/{m_}/")])
 
     def _top_ad(sub):
         """お店・チェーンのページの広告（11/8 Fable：検索から来る人の多いページに広告が1つもなかった）。
