@@ -125,6 +125,11 @@ def main():
         except Exception as e:
             log(f"カード相場: スキップ {e}")
         try:
+            import genre_count
+            genre_count.update(s)  # ほかのトレカのタイトルの抽選の数を数えるだけ（1日1回・11/10〜）
+        except Exception as e:
+            log(f"ジャンル別の件数: スキップ {e}")
+        try:
             update_trends(s)  # Xで話題のネタから投稿文の下書き（下書きページに出す）
         except Exception as e:
             log(f"話題ネタ: スキップ {e}")
