@@ -378,6 +378,8 @@ def _write_x_queue(out, items, site, t=None):
                    key=lambda i: i.get("end") or "9999")[:6]
     for i in fresh:
         st, en = parse_dt(i.get("start")), parse_dt(i.get("end"))
+        if st and st < t - _td(hours=12):
+            continue   # 受付が始まって半日以上たっている抽選は、このサイトが遅れて見つけただけ＝ニュースではないので出さない（11/10 ポケセンのハドウシーカー）
         kind = {"lottery": "抽選", "preorder": "予約", "restock": "再販", "first_come": "先着販売", "invite": "招待販売"}.get(i.get("kind"), "抽選")
         url = f"{site}/{i['lpath']}"
         nm = "ポケカ" if i["game"] == "pokemon" else "ワンピカード"
