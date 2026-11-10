@@ -70,13 +70,13 @@ def html(game, series, esc):
     last = max(r["d"] for r in rows)
     trs = "".join(
         f'<tr><td class="cr r-{esc(r["r"])}">{esc(r["r"])}</td><td><a href="https://snkrdunk.com/apparels/{r["id"]}" rel="nofollow noopener" target="_blank">'
-        f'{esc(r["n"])}</a><small>{esc(r["no"])}</small></td><td class="num">¥{r["p"]:,}</td><td class="num">{pct(r["p"], r.get("w"))}</td>'
+        f'{esc(r["n"])}</a></td><td class="cno">{esc(r["no"])}</td><td class="num">¥{r["p"]:,}</td><td class="num">{pct(r["p"], r.get("w"))}</td>'
         f'<td class="num">{pct(r["p"], r.get("m"))}</td><td class="num">{"少" if (r.get("k") or 0) < 3 else ""}</td></tr>'
         for r in rows)
     rars = sorted({r["r"] for r in rows}, key=lambda x: RANK.get(x, 9))
     md = f"{int(last[5:7])}/{int(last[8:10])}"
     return (f'<section class="sinfo scards" aria-label="収録カードの相場"><h2>{esc(series)}の収録カードの相場（{"・".join(esc(x) for x in rars)}）</h2>'
             f'<p class="note">スニダンの取引の値段（未鑑定・状態Aの1枚、{md}時点の最新の取引日の平均）。高い順。「少」は30日の取引が少なく、値段がぶれやすいカードです。'
-            f'名前を押すとスニダンの商品ページを開きます。</p>'
-            f'<div class="tbl"><table><thead><tr><th>レア</th><th>カード</th><th>相場</th><th>7日</th><th>30日</th><th></th></tr></thead><tbody>{trs}</tbody></table></div>'
+            f'型番は「弾のマーク 番号/収録数」です。名前を押すとスニダンの商品ページを開きます。</p>'
+            f'<div class="tbl"><table><thead><tr><th>レア</th><th>カード</th><th>型番</th><th>相場</th><th>7日</th><th>30日</th><th></th></tr></thead><tbody>{trs}</tbody></table></div>'
             f'<p class="note">※値段は取引のあった日の値段で、これからの値段を約束するものではありません。</p></section>')
