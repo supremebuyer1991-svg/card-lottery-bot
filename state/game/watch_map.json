@@ -2378,7 +2378,10 @@
   "4902370545784": {
     "rkUrl": "https://item.rakuten.co.jp/book/16284769/",
     "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5784/4902370545784.jpg?_ex=300x300",
-    "rkPrice": 3965
+    "rkPrice": 3965,
+    "asin": "B086GRKKR9",
+    "azUrl": "https://www.amazon.co.jp/dp/B086GRKKR9?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+    "t": "世界のアソビ大全51-Switch"
   },
   "4940261519018": {
     "rkUrl": "https://item.rakuten.co.jp/book/17364115/",
@@ -6723,10 +6726,10 @@
       "at": "2026-11-09T08:58:38.794Z"
     },
     "j4902370545784": {
-      "s": "pre",
-      "p": 3971,
-      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16284769%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16284769%2F",
-      "at": "2026-11-10T10:59:36.081Z"
+      "s": "buy",
+      "p": 3618,
+      "u": "https://www.amazon.co.jp/dp/B086GRKKR9?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+      "at": "2026-11-10T21:02:40.223Z"
     },
     "j4940261519018": {
       "s": "buy",
@@ -15936,6 +15939,12 @@
         "p": 7727,
         "u": "https://www.amazon.co.jp/dp/B0GJB559FL?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
         "at": "2026-11-10T20:04:41.195Z"
+      },
+      "j4902370545784": {
+        "s": "buy",
+        "p": 3618,
+        "u": "https://www.amazon.co.jp/dp/B086GRKKR9?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+        "at": "2026-11-10T21:02:40.223Z"
       }
     }
   },
@@ -21103,6 +21112,13 @@
           "t": "2026-11-10T20:04:41.195Z",
           "s": "buy",
           "p": 7727
+        }
+      ],
+      "j4902370545784": [
+        {
+          "t": "2026-11-10T21:02:40.223Z",
+          "s": "buy",
+          "p": 3618
         }
       ]
     }
