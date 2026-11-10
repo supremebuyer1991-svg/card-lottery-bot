@@ -109,6 +109,12 @@ def _drop_other_games(lots):
 def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
     s = load_settings()
     log(f"開始（ゲーム・ホビー入荷速報） auto_approve={s['auto_approve']} dry_run={s['dry_run']}")
+    # 時間の目安は「ゲームの処理が始まってから」で数える（11/10：トレカ側が3〜4分かかるようになり、
+    # 実行の最初から数えると買取価格・定価・解説がいつも時間切れで1件も進まなかった）。game_job_offset_sec 秒たった所から始めた扱い
+    import os
+    import time
+    if os.environ.get("JOB_T0", "").isdigit():
+        os.environ["JOB_T0"] = str(int(time.time()) - int(s.get("game_job_offset_sec", 90)))
     from collect import collect, sync_manual
     sync_manual()  # 自分で追加した抽選（config/game/manual.yaml）
     if step in ("all", "collect"):
