@@ -306,6 +306,12 @@ def links_for(i, cache, settings, models=None):
     from urllib.parse import quote
     import game_souba
     q = game_souba._q(i.get("product") or i.get("series") or "")
+    # ポケカ・ワンピカード：楽天ブックスに商品ページが無いことが多いので、楽天・Amazonの「商品名で探す」ページ（アフィリエイト）を出す（11/10）
+    if i.get("game") in ("pokemon", "onepiece") and q:
+        if "rk" not in out:
+            out["rk"] = {"u": rakuten_link(f"https://search.rakuten.co.jp/search/mall/{quote(q)}/", aff), "search": True}
+        if "az" not in out:
+            out["az"] = f"https://www.amazon.co.jp/s?k={quote(q)}&tag={amazon_tag(settings)}"
     yh = (man.get("yahoo_url") or "").strip()
     if yh or q:
         out["yh"] = yh or f"https://shopping.yahoo.co.jp/search?p={quote(q)}"
