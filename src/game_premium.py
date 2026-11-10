@@ -48,7 +48,7 @@ def groups(st=None):
     for store, name, price in loose:   # JANの無い店の商品は、商品名がほぼ同じJANの商品に寄せる
         best = None
         for jan, x in g.items():
-            sc = min(ol._score(name, x["names"][0]), ol._score(x["names"][0], name))
+            sc = max(ol.same_item_score(name, n) for n in x["names"])   # 11/10：どの店の名前とも比べる（数字が違う名前は0）
             if sc >= 0.85 and (best is None or sc > best[0]):
                 best = (sc, jan)
         if best:
@@ -600,7 +600,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             sd = x["stale"]
             intro = (f'<p class="note">⚠ この商品は いま買取店の一覧に載っていません。下の買取価格は{int(sd[5:7])}/{int(sd[8:10])}時点のものです。</p>') + intro
         cur_h, hist_h = stock_html(x["jan"], _wm_all, x["name"])
-        rel = [r for r in live_rows if min(ol._score(r.get("product") or "", x["name"]), ol._score(x["name"], r.get("product") or "")) >= 0.6][:6]
+        rel = [r for r in live_rows if ol.same_item_score(r.get("product") or "", x["name"]) >= 0.6][:6]
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>") if rel else \
             "<h2>この商品の抽選・予約・再販</h2><p>いま受付中のものはありません。楽天・Amazonで販売が始まったらXでお知らせします。</p>"
@@ -628,7 +628,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     groups_ = {}
     for r in live_rows:
         nm = (r.get("product") or "").strip()
-        if not nm or any(min(ol._score(nm, x["name"]), ol._score(x["name"], nm)) >= 0.75 for x in allx):
+        if not nm or any(ol.same_item_score(nm, x["name"]) >= 0.75 for x in allx):
             continue
         groups_.setdefault(norm_product(nm), []).append(r)
     made = 0
@@ -698,7 +698,7 @@ def premium_match(name, settings=None):
             _PM_CACHE["list"] = []
     for x in _PM_CACHE["list"]:
         for n in [x["name"]] + x.get("names", [])[:3]:
-            if min(ol._score(name or "", n), ol._score(n, name or "")) >= 0.75:
+            if ol.same_item_score(name or "", n) >= 0.75:
                 return x
     return None
 
@@ -762,7 +762,7 @@ def product_index(settings, live_rows):
         k = norm_product(nm)
         if not nm or k in seen or r.get("game") is None:
             continue
-        if any(min(ol._score(nm, x["name"]), ol._score(x["name"], nm)) >= 0.75 for x in allx):
+        if any(ol.same_item_score(nm, x["name"]) >= 0.75 for x in allx):
             continue
         seen.add(k)
         m = re.search(r"([\d,]{4,})", str(r.get("price") or ""))

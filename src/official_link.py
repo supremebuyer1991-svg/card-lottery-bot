@@ -59,6 +59,22 @@ def _tokens(s):
     return {t for t in re.split(r"[\s・:：/／\-～〜!！?？「」『』、,]+", s) if len(t) >= 2}
 
 
+def num_set(s):
+    """商品名の中の数字（かっこの中は除く）。「Switch 2」と「Switch」のように、数字が違えば別の商品"""
+    s = unicodedata.normalize("NFKC", s or "").lower()
+    s = re.sub(r"[（(][^）)]*[）)]|【[^】]*】|＜[^＞]*＞|<[^>]*>", " ", s)
+    return set(re.findall(r"\d+", s))
+
+
+def same_item_score(a, b):
+    """2つの商品名がどれだけ同じ商品か（0〜1）。数字（世代・型番・周年など）が違えば 0。
+    11/10：買取商店の「Nintendo Switch 2 Proコントローラー」が、1文字の「2」が無視されて
+    Switch（初代）のプロコンに寄せられ、間違った買取価格で速報してしまったため"""
+    if num_set(a) != num_set(b):
+        return 0
+    return min(_score(a, b), _score(b, a))
+
+
 def _score(product, title):
     a, b = _tokens(product), _tokens(title)
     if not a:

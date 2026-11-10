@@ -176,7 +176,7 @@ def _q(product):
 
 def _match(product, name):
     import official_link as ol
-    return min(ol._score(product, name), ol._score(name, product))
+    return ol.same_item_score(product, name)
 
 
 def kaitori_update(settings, items, fetch=None, sleep=time.sleep):

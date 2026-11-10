@@ -148,7 +148,7 @@ def best_for(it, st=None):
         if not isinstance(rec, dict):
             continue
         for name, j, price in rec.get("items", []):
-            ok = (jan and j and jan == j) or min(ol._score(prod, name), ol._score(name, prod)) >= 0.75
+            ok = (jan and j and jan == j) or ol.same_item_score(prod, name) >= 0.75
             if ok and (best is None or price > best[0]):
                 best = (price, store)
     return best
