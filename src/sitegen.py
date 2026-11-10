@@ -3719,7 +3719,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                          + "".join(idx_) + "</sitemapindex>\n", encoding="utf-8")
         (out / "robots.txt").write_text(  # 検索エンジンとAI検索（ChatGPT検索・Perplexity・Claude など）の読み取りをはっきり許可（11/3）
-            "".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /*.ics$\nDisallow: /x-queue.json\n\n" for b in
+            "".join(f"User-agent: {b}\nAllow: /\nDisallow: /x-draft.html\nDisallow: /l/*/shimekiri.ics\nDisallow: /x-queue.json\n\n" for b in
                     ("Googlebot", "Bingbot", "Yeti", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot", "Claude-User", "*"))
             + f"Sitemap: {site}/sitemap.xml\n", encoding="utf-8")
         # AI検索（ChatGPT・Perplexity・Claude など）向けのサイト案内 llms.txt（11/7 Fable：AIからの流入が3割で一番多い）
