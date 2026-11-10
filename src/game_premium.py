@@ -55,7 +55,13 @@ def groups(st=None):
             x = g[best[1]]
             x["prices"][store] = max(price, x["prices"].get(store, 0))
     for x in g.values():
-        x["store"], x["max"] = max(x["prices"].items(), key=lambda kv: kv[1])
+        ps = sorted(x["prices"].items(), key=lambda kv: -kv[1])
+        # 1店だけ飛び抜けて高い（2番目の店の1.5倍より上）ときは、その店の読み間違い・別の商品とみて使わない（11/10：PS5が10万8千円になっていた）
+        if len(ps) >= 2 and ps[0][1] > ps[1][1] * 1.5:
+            x["outlier"] = ps[0]
+            x["prices"].pop(ps[0][0])
+            ps = ps[1:]
+        x["store"], x["max"] = ps[0]
     return g
 
 
@@ -574,10 +580,45 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
          f'<h1>プレミア商品一覧（定価以上で売れるゲーム・ホビー）</h1><p>買取店の新品の最高買取価格が定価を上回っている商品です（{md}更新・{len(items)}件）。'
          f'楽天・Amazonで定価で売り出されたら、Xですぐお知らせします。<a href="/souba/">すべての商品の買取相場（{len(allx)}件）</a></p>'
          + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "")
-    page(f"ゲーム・ホビー買取相場一覧【{md}更新】{len(allx)}商品の最高買取価格｜{brand['name']}",
-         "ゲーム機・周辺機器・たまごっち・ホビーの新品の最高買取価格（買取店9店）と定価比・1週間前比の一覧。毎日更新。",
-         f'<h1>ゲーム・ホビー買取相場一覧</h1><p>買取店9店の新品の買取価格から、商品ごとのいちばん高い価格を毎日まとめています（{md}更新・{len(allx)}件）。'
-         f'<a href="/">プレミア商品一覧（定価以上で売れる商品だけ）を見る</a></p>' + table(allx) + note, "souba/")
+    stores_all = {st_ for x in allx for st_, _ in (x.get("prices") or [])}
+    # 買取相場：値動き中心（11/10 ユーザーの指示：プレミア商品一覧と中身が被らないように）
+    #  値上がり・値下がりランキング（いちばん近い過去の記録＝最大7日前との差）＋ カテゴリごとの全商品（開いて見る）
+    def _base(x):
+        h = x.get("hist") or {}
+        d0 = (upd.date() - timedelta(days=7)).isoformat()
+        ks = [k for k in sorted(h) if k < upd.date().isoformat()]
+        ks7 = [k for k in ks if k >= d0]
+        k = ks7[0] if ks7 else None
+        return (h[k], k) if k else (None, None)
+    moves = []
+    for x in allx:
+        b, k = _base(x)
+        if b and x["max"] != b:
+            moves.append((x["max"] - b, (x["max"] - b) / b, k, x))
+    ups = sorted([m for m in moves if m[0] > 0], key=lambda m: -m[1])[:20]
+    downs = sorted([m for m in moves if m[0] < 0], key=lambda m: m[1])[:20]
+
+    def mv_table(ms):
+        rows = "".join(f'<tr><td><a href="/premium/{x["jan"]}/">{escape(x["name"])}</a></td><td class="n">{x["max"]:,}円</td>'
+                       f'<td class="n" style="color:{"#3ddc84" if d > 0 else "#ff6b6b"}">{"+" if d > 0 else ""}{d:,}円（{"+" if d > 0 else ""}{round(r * 100)}%）</td>'
+                       f'<td class="n">{int(k[5:7])}/{int(k[8:10])}比</td></tr>' for d, r, k, x in ms)
+        return f'<table class="pm-t"><tr><th>商品</th><th>最高買取</th><th>変化</th><th>くらべた日</th></tr>{rows}</table>'
+    since = min((m[2] for m in moves), default=None)
+    mv_html = ("<h2>📈 値上がりした商品</h2>" + (mv_table(ups) if ups else "<p>値上がりした商品はありません。</p>")
+               + "<h2>📉 値下がりした商品</h2>" + (mv_table(downs) if downs else "<p>値下がりした商品はありません。</p>")) if moves else \
+        "<p>値動きのランキングは、買取価格の記録が2日分以上たまると出ます（毎日自動で記録しています）。</p>"
+    import gamecats as _gc2
+    _cn = _gc2.by_id(False)
+    groups_ = {}
+    for x in allx:
+        groups_.setdefault(cat_of([x["name"]] + x.get("names", [])) or "_other", []).append(x)
+    cat_html = "<h2>カテゴリごとの全商品</h2>" + "".join(
+        f'<details class="faq"><summary>{escape((_cn.get(c) or {}).get("short") or "その他")}（{len(xs)}件）</summary>{table(sorted(xs, key=lambda x: -x["max"]))}</details>'
+        for c, xs in sorted(groups_.items(), key=lambda kv: (kv[0] == "_other", -len(kv[1]))))
+    page(f"ゲーム・ホビー買取相場【{md}更新】値上がり・値下がりランキングと{len(allx)}商品の最高買取価格｜{brand['name']}",
+         f"ゲーム機・周辺機器・たまごっち・ホビーの買取相場の値動き。値上がり・値下がりした商品のランキングと、{len(allx)}商品の新品の最高買取価格（買取店{len(stores_all)}店）をカテゴリごとに毎日更新。",
+         f'<h1>ゲーム・ホビー買取相場（値動き）</h1><p>買取店{len(stores_all)}店の新品の買取価格から、商品ごとのいちばん高い価格を毎日記録して、値動きをまとめています（{md}更新）。'
+         f'定価より高く売れる商品は<a href="/">プレミア商品一覧</a>にまとめています。</p>' + mv_html + cat_html + note, "souba/")
     import gamecats as _gc
     _cats = _gc.by_id(False)
     _wm_all = load_json("watch_map.json", {}) or {}
