@@ -146,6 +146,28 @@ HOOKS = {
 }
 
 
+# 11/10：問いかけの1行目をつけた11/3以降、まとめの表示回数が下がった（新着ポケカ 525→5〜100）。
+# まとめは見出し（🆕新着の抽選｜ポケカ（8店））から始める形に戻して1週間くらべる
+NO_HOOK = {"today", "new12", "new17", "soon", "amazon"}
+
+
+def _recent_same(tok, body):
+    """直近3時間の自分の投稿に、1行目が同じものがあれば True（二重投稿の防止。状態の保存が間に合わず同じまとめが2回出ていた）"""
+    try:
+        r = requests.get(f"{API}/me/threads", params={"fields": "text,timestamp", "limit": 10, "access_token": tok}, timeout=20)
+        if r.status_code != 200:
+            return False
+        h = body.split("\n")[0].strip()
+        lim = now() - timedelta(hours=3)
+        for p in r.json().get("data", []):
+            ts = parse_dt((p.get("timestamp") or "").replace("+0000", "+00:00"))
+            if ts and ts >= lim and (p.get("text") or "").split("\n")[0].strip() == h:
+                return True
+    except Exception as e:
+        log(f"Threads: 直近の投稿を確かめられなかった {e}")
+    return False
+
+
 def _kind(key):
     p = key.split("|")
     if p[0] == "big":
@@ -166,7 +188,7 @@ def threads_style(key, text, t):
     m = re.search(r"📍(.+?)（", text)
     store = m.group(1).strip() if m else ""
     opts = HOOKS[kind]
-    if kind in ("big", "each") and not store:
+    if (kind in ("big", "each") and not store) or kind in NO_HOOK:
         hook = ""
     else:
         hook = opts[(t.timetuple().tm_yday + t.hour + len(key)) % len(opts)].format(label=label, n=n, store=store)
@@ -178,6 +200,11 @@ def threads_style(key, text, t):
             reply = f"{m.group(1)}\n{m.group(2)}"
     if hook:
         body = hook + "\n\n" + body
+    elif kind in NO_HOOK and n:  # 問いかけなしのときは、見出しの1行目に店の数を足す
+        h1, _, rest = body.partition("\n")
+        if "店）" not in h1:
+            h1 = h1.replace("の抽選（", f"の抽選 {n}店（", 1) if "の抽選（" in h1 else f"{h1}（{n}店）"
+            body = h1 + ("\n" + rest if rest else "")
     if len(body) > LIMIT:
         body = body.replace("\n" + FOLLOW, "")
     return body[:LIMIT], reply
@@ -559,6 +586,10 @@ def run(settings):
             log("DRY_RUN Threads:\n" + b_ + (f"\n（画像 {img}）" if img else "") + (f"\n── 返信 ──\n{r_}" if r_ else ""))
             continue
         body, reply = threads_style(key, text, t) if settings.get("threads_style", True) else (text, None)
+        if _recent_same(tok, body):
+            log(f"Threads: 同じ投稿が直近にあるので出さない {key}")
+            done[key] = t.isoformat()
+            continue
         try:
             try:
                 pid = publish(tok, body, image=img)
