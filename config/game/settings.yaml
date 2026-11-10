@@ -21,7 +21,7 @@ remind_hours_before: 24
 run_hours: [7, 10, 13, 17, 19, 22]   # 自動の実行の時刻（run.yml の cron と同じ・1日6回）
 collect_time_budget: 150   # 情報集めは150秒まで。超えたら読んだ所までを保存して、残りは次の回に（サイト作りの時間を残すため）
 via_jp_hosts: ["geo-online.co.jp"]   # GitHubからは断られるので、日本の中継（Cloudflare Worker jp-fetch）経由で読むお店
-job_tail_sec: 90           # 抽選集めのあとに残しておく秒数（買取価格の読み取り・サイト作り・公開）
+job_tail_sec: 160          # 抽選集めのあとに残しておく秒数（買取価格の読み取り・サイト作り・公開）
 rss_read_article: true       # ニュースのRSSは記事を開いて本文まで読む（締切・プレバンの商品ページなどの応募先を拾うため）
 rss_article_max_per_run: 24  # 1回に開く記事の数の上限（時間と費用の上限。時間は collect_time_budget でも止まる）
 rss_article_per_source: 3    # 1つの情報元で開く記事の数の上限（最初の情報元で使い切らないように）
@@ -105,6 +105,6 @@ kaitori_stores_per_run: 3
 # 検索語の多い店：1回に読むページ数（残りは次の回に続きから。実行時間を5分に収めるため）
 kaitori_urls_per_run: 20
 # 買取価格・定価を調べるのは実行開始から何秒まで（全体を5分前後に収める）
-kaitori_until_sec: 200
+kaitori_until_sec: 230
 # ゲームの処理の時間の数え方：ゲームの処理が始まった時を「実行開始から何秒」とみなすか（小さいほど買取価格などに使える時間が増える）
 game_job_offset_sec: 90
