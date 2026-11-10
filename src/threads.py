@@ -340,7 +340,7 @@ def compose_new(game, lots, t, since, min_stores=1, head_note=""):
 def compose_amazon(game, lots, t, settings):
     """Amazonの招待リクエスト受付中の商品（リンクは自分のアソシエイトのタグ付き。1投稿のリンクは5つまでなので商品は4つまで）"""
     from sitegen import amazon_invites
-    tag = os.environ.get("AMAZON_TAG") or settings.get("amazon_tag")
+    tag = settings.get("amazon_tag") or os.environ.get("AMAZON_TAG")
     rows = amazon_invites(_open_items(lots, game, t), tag).get(game) or []
     rows = [r for r in rows if "/dp/" in (r.get("url") or "")][:4]
     if not rows:

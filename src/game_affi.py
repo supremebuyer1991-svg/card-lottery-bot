@@ -122,7 +122,7 @@ def affiliate_id(settings):
 
 
 def amazon_tag(settings):
-    return (os.environ.get("AMAZON_TAG_GAME") or settings.get("amazon_tag") or os.environ.get("AMAZON_TAG")
+    return (settings.get("amazon_tag") or os.environ.get("AMAZON_TAG_GAME") or os.environ.get("AMAZON_TAG")
             or _tcg_setting("amazon_tag")).strip()
 
 

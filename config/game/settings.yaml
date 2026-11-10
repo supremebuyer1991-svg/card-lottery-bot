@@ -61,7 +61,7 @@ x_account: ""               # このサイト用のXアカウントID（@なし�
 site_url: ""                # WordPress は使わない（空のまま）
 
 # アフィリエイト
-amazon_tag: ""              # Amazonアソシエイトのトラッキングタグ（例 xxxx-22）。このサイト用に登録したら入れる   # TODO: オーナーが確認
+amazon_tag: "gamenyuka-22"  # ゲーム・ホビー入荷速報専用のトラッキングID（2026-11-10作成）
 rakuten_affiliate_id: ""    # 楽天アフィリエイトID（このサイトをサイト登録してから）   # TODO: オーナーが確認
                             # ※空なら GitHub の Variable「RAKUTEN_AFFILIATE_ID_GAME」→ トレカと同じ「RAKUTEN_AFFILIATE_ID」を使う
                             # ※amazon_tag も空なら「AMAZON_TAG_GAME」→ トレカと同じ「AMAZON_TAG」を使う

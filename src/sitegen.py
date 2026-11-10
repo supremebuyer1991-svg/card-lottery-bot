@@ -1609,7 +1609,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     _SER_WRITTEN.clear()
     s = settings or load_settings()
     site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
-    tag = os.environ.get("AMAZON_TAG") or s.get("amazon_tag")
+    tag = s.get("amazon_tag") or os.environ.get("AMAZON_TAG")  # サイト別タグ（設定ファイル）を優先
     raff = (os.environ.get("RAKUTEN_AFFILIATE_ID") or s.get("rakuten_affiliate_id") or "").strip()
     out = Path(out_dir or ROOT / "site")
     games = [g for g in s["game_names"]]

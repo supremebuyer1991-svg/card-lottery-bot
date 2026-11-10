@@ -47,7 +47,7 @@ def _table(items, show_product=True):
 
 def _affiliate(game, series, settings):
     links = [a for a in settings.get("affiliate", {}).get(game, []) if a.get("url")]
-    tag = os.environ.get("AMAZON_TAG") or settings.get("amazon_tag")
+    tag = settings.get("amazon_tag") or os.environ.get("AMAZON_TAG")
     if tag and series:  # 弾名でAmazon検索リンクを自動生成
         links.insert(0, {"label": f"「{series}」をAmazonで探す",
                          "url": f"https://www.amazon.co.jp/s?k={quote(series)}&tag={tag}"})

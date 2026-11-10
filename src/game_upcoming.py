@@ -115,7 +115,7 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
     items = (load_json(STATE, {}) or {}).get("items") or {}
     upd = now()
     md = f"{upd.month}/{upd.day}"
-    tag = (settings.get("amazon_tag") or "st9994ststst-22")
+    tag = (settings.get("amazon_tag") or "gamenyuka-22")
     rows = sorted(items.items(), key=lambda kv: (kv[1].get("date", ""), kv[1].get("title", "")))
     made = []
     for jan, x in rows:

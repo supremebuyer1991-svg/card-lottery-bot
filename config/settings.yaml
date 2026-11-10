@@ -70,7 +70,7 @@ wp_pages:
   dragonball: dbfw-lottery
 
 # Amazonアソシエイトのトラッキングタグ（例 xxxx-22）。入れると弾ごとの記事にAmazon検索リンクを自動で付ける
-amazon_tag: "st9994ststst-22"
+amazon_tag: "tcgchusen-22"  # トレカ抽選ナビ専用のトラッキングID（2026-11-10作成。サイト別に売上を見るため）
 
 # 楽天：商品画像と楽天リンク（アプリID・アクセスキーは GitHub Secrets の RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY）
 rakuten_affiliate_id: "0f60e3a0.0ec21e9a.0f60e3a1.23a40abb"  # 楽天アフィリエイトID
