@@ -17,6 +17,8 @@ TEIKA = "premium_teika.json"
 
 
 # ゲーム・ホビー以外（カメラ・スマホ・家電・お酒など）は載せない（買取店の一覧に混ざってくるため・11/9）
+# 買取価格のそばに出す注意書き（11/11 ユーザーの指示：表示の金額から変わっている場合があると書いておく）
+CHANGE_NOTE = "買取価格は表示の金額から変わっている場合があります。売る前に必ず買取店のサイトでご確認ください。"
 NOT_HOBBY = re.compile(r"カメラ|レンズ|PowerShot|EOS|Nikon|LUMIX|instax|チェキ|写ルンです|iPhone|iPad|Galaxy|Pixel|Xperia|AQUOS|arrows|MacBook|AirPods|"
                        r"Apple Watch|Dyson|ダイソン|ドライヤー|炊飯|掃除機|冷蔵庫|洗濯|電子レンジ|ウイスキー|ワイン|イヤホン|ヘッドホン|スマートウォッチ|Kindle|ルーター|Wi-Fi|"
                        r"SIGMA|TAMRON|FUJIFILM|Canon|CANON|SONY α|GoPro|DJI|Fitbit|Garmin|ロボット掃除機|美容|ReFa|シェーバー|"
@@ -456,7 +458,7 @@ def seo_parts(x, allx, site, cats_by, md):
         rows = "".join(f'<tr><td>{i + 1}位 {_sl(s_, jan, name)}</td><td class="n">{p_:,}円</td>'
                        f'<td class="n">{(("+" if p_ - teika >= 0 else "") + format(p_ - teika, ",") + "円") if teika else "—"}</td></tr>' for i, (s_, p_) in enumerate(prices))
         secs += (f'<h2>{escape(name)}の買取価格 店舗比較（新品・{n}店）</h2><table class="pm-t"><tr><th>買取店</th><th>買取価格</th><th>定価との差</th></tr>{rows}</table>'
-                 + (f'<p class="note">平均 {avg:,}円・最高 {x["max"]:,}円・最安 {lo:,}円（{md}時点）</p>' if n >= 2 else ""))
+                 + (f'<p class="note">平均 {avg:,}円・最高 {x["max"]:,}円・最安 {lo:,}円（{md}時点）。{CHANGE_NOTE}</p>' if n >= 2 else f'<p class="note">{CHANGE_NOTE}</p>'))
     # 買取店での呼び方（別の名前・型番で探す人のため）
     alias = []
     for a in x.get("names", []):
@@ -468,7 +470,7 @@ def seo_parts(x, allx, site, cats_by, md):
     # よくある質問（データから作る。構造化データにも入れる）
     faq = []
     faq.append((f"{name}の定価はいくら？", f"定価は{teika:,}円（税込）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
-    faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "")))
+    faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "") + CHANGE_NOTE))
     if teika:
         faq.append((f"{name}は定価以上で売れる？（プレ値？）",
                     f"はい、{md}時点で定価より{diff:,}円高い{x['max']:,}円で買い取られています。" if diff > 0 else
@@ -545,7 +547,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     upd = now()
     md = f"{upd.month}/{upd.day}"
     paths = []
-    note = ('<p class="note">買取価格は各買取店が公開している新品（未開封）の買取価格を毎日読み取ったものです（店の条件で変わることがあります）。'
+    note = ('<p class="note">買取価格は各買取店が公開している新品（未開封）の買取価格を毎日読み取ったものです（店の条件で変わることがあります）。' + CHANGE_NOTE +
             '定価は楽天ブックスの定価・販売価格です。転売を勧めるものではありません。リンクの一部は広告（PR）です。</p>')
 
     def page(title, desc, body, path, img="", noindex=False):
@@ -654,7 +656,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、定価{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
         page(f"{x['name']} 買取価格 最高{x['max']:,}円【{md}更新】定価・再販情報｜JAN {x['jan']}", desc,
              f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
-             f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div>{_sell_btn(x)}</div></div>'
+             f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div><div class="note" style="font-size:12px">※{md}時点の金額です。{CHANGE_NOTE}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
@@ -875,5 +877,5 @@ def cat_products_html(prods, short):
     if not prods:
         return f'<section class="sec"><h2>{escape(short)}の商品一覧</h2><p>商品はまだありません。</p></section>'
     return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
-            '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。定価で売り出されたらXで通知します。</p>'
+            '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。' + CHANGE_NOTE + '定価で売り出されたらXで通知します。</p>'
             f'{plist_html(prods)}</section>')
