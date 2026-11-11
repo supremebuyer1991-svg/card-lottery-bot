@@ -19,6 +19,7 @@ groups:
   console: ゲーム機
   game_goods: ゲーム関連の限定品
   hobby: ホビー・おもちゃ
+  liquor: お酒
 
 categories:
   - id: ps5
@@ -280,4 +281,46 @@ categories:
     aff_keywords: ["ワンピースカード"]
     color: "#d7263d"
     kinds: [lottery, preorder, restock, first_come]
+    enabled: true
+
+  # ---- お酒（11/11 ユーザーの指示「ジャンルもっと広げていこか、おさけとか」）----
+  - id: liquor
+    group: liquor
+    name: お酒（山崎・響・白州・イチローズモルト・ニッカなどのジャパニーズウイスキー）の抽選・予約・再入荷
+    short: お酒・ウイスキー
+    slug: liquor
+    hashtags: "#ウイスキー #山崎 #ウイスキー抽選"
+    hints: "ウイスキー|ウィスキー|WHISKY|山崎 ?(NV|ノンエイジ|12年|18年|25年|リミテッド|LIMITED|Story|ストーリー)|サントリー ?(山崎|白州|響|知多|碧|AO)|響 ?(JAPANESE HARMONY|ジャパニーズ ?ハーモニー|BLOSSOM|ブロッサム|17年|21年|30年)|白州|イチローズ ?モルト|秩父 ?(蒸溜所|ザ・ファースト)|竹鶴|余市|宮城峡|フロム[・ ]?ザ[・ ]?バレル|ザ・?ニッカ|厚岸|駒ヶ岳|嘉之助|三郎丸|ジャパニーズ ?ウイスキー"
+    strip_words: "ウイスキー|ウィスキー|シングルモルト|ピュアモルト|ブレンデッド|700ml|700ML|180ml|ml|ML|箱付き|カートン付き|化粧箱付|カートン|ギフトBOX|サントリー|ニッカ"
+    aff_keywords: ["山崎 ウイスキー", "響 ウイスキー"]
+    color: "#8a5a19"
+    kinds: [lottery, preorder, restock, first_come, release]
+    notice: "お酒は20歳になってから。20歳未満の方の飲酒・購入は法律で禁止されています。抽選・購入は20歳以上の方に限ります。"
+    enabled: true
+
+  # ---- 11/11 入荷Nowでよく抽選・入荷が出ているホビー ----
+  - id: labubu
+    group: hobby
+    name: POP MART（ポップマート）LABUBU（ラブブ）の抽選・予約・再入荷
+    short: ラブブ
+    slug: labubu
+    hashtags: "#ラブブ #LABUBU #POPMART"
+    hints: "LABUBU|ラブブ|POP ?MART|ポップ ?マート|THE MONSTERS"
+    strip_words: "LABUBU|ラブブ|POP ?MART|ポップ ?マート|THE MONSTERS|シリーズ|ぬいぐるみ|ペンダント|フィギュア|ブラインドボックス|BOX"
+    aff_keywords: ["ラブブ", "POP MART"]
+    color: "#c9184a"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  - id: bondrop
+    group: hobby
+    name: ボンボンドロップシール（ぷっくりシール）の抽選・予約・再入荷
+    short: ボンボンドロップシール
+    slug: bonbon-drop
+    hashtags: "#ボンボンドロップシール #ボンドロ"
+    hints: "ボンボンドロップ|ボンドロ|BONBON ?DROP"
+    strip_words: "ボンボンドロップシール|ボンボンドロップ|ボンドロ|シール|BONBON ?DROP"
+    aff_keywords: ["ボンボンドロップシール"]
+    color: "#f4a261"
+    kinds: [lottery, preorder, restock, first_come, release]
     enabled: true

@@ -135,7 +135,7 @@ sources:
     type: html_index
     every_hours: 4
     url: https://nyuka-now.com/archives/category/restock
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen"]
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ"]
     max_articles: 10
     parser: nyukanow
     quote: false
@@ -147,11 +147,47 @@ sources:
     type: html_index
     every_hours: 3
     url: https://nyuka-now.com/archives/category/chusen
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "amiibo", "ポケモン"]
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "amiibo", "ポケモン", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ"]
     max_articles: 12
     parser: nyukanow
     quote: false
     hide_source_url: true
+
+  # ============ 11/11 追加：お酒・ラブブ・ボンボンドロップシール ============
+  - id: gnews_yamazaki_lottery
+    game: liquor
+    name: Googleニュース「山崎 抽選」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E5%B1%B1%E5%B4%8E+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_hibiki_lottery
+    game: liquor
+    name: Googleニュース「響 ウイスキー 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E9%9F%BF+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_whisky_lottery
+    game: liquor
+    name: Googleニュース「ウイスキー 抽選 販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_labubu
+    game: labubu
+    name: Googleニュース「ラブブ 抽選 再販」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%A9%E3%83%96%E3%83%96+%E6%8A%BD%E9%81%B8+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_bondrop
+    game: bondrop
+    name: Googleニュース「ボンボンドロップシール 再販 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB+%E5%86%8D%E8%B2%A9+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   # --- ヨドバシ.com の抽選一覧（トレカ抽選ナビと同じページ。ゲーム機・福袋（夢のお年玉箱）の抽選もここに出る）---
   - id: yodobashi_lottery_game

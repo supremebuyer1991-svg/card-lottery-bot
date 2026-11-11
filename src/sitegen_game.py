@@ -39,6 +39,14 @@ ACTIVE = ("approved", "posted", "listed")
 VERIFY_FROM = "2026-11-10T12:00"   # この時刻より後に見つけたものは、元の記事で確かめてから出す（11/10 精度上げて）
 
 
+
+def _notice_html(text):
+    """カテゴリの注意書き（例：お酒は20歳になってから）。無ければ空"""
+    if not text:
+        return ""
+    return ('<p class="cat-notice" style="margin:8px 0;padding:8px 12px;border:1px solid #e0b4b4;background:#fff5f5;'
+            f'color:#7a1f1f;border-radius:8px;font-size:13px">🔞 {escape(text)}</p>')
+
 def shown_ok(i):
     if i.get("verified") is False:
         return False
@@ -784,7 +792,7 @@ def build(settings=None, out_dir=None, force=False):
                                  "desc": f"{c['name']}の商品{npd}件の定価・最高買取価格（買取相場）と、発売・予約・再販・抽選の情報。楽天・Amazonで定価で売り出されたらXで通知します。",
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": f"商品{npd}件・いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
-              body_top=f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
+              body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
               body_bottom=ser_links)
         for x, lst in sers.items():
             path = lst[0]["spath"]
@@ -845,6 +853,8 @@ def build(settings=None, out_dir=None, force=False):
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
                              next_link=nxt, brand=dbrand, games=games_map)
         html = _theme_detail(_shop_detail(_release_detail(html, snap), snap), side_html(cats, g, counts=False))
+        if cat_by[g].get("notice"):   # お酒の「20歳になってから」など、カテゴリの注意書き（h1 のすぐ下）
+            html = re.sub(r"(</h1>)", lambda m: m.group(1) + _notice_html(cat_by[g]["notice"]), html, count=1)
         p = out / rec["path"] / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html, encoding="utf-8")
