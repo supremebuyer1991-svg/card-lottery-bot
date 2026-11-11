@@ -311,7 +311,7 @@ export default {
     // ctx.waitUntil(runXQueue(env, tweet));
     // 新弾の発表の見張り：10分おき（11/8）
     if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 6) ctx.waitUntil(runNewsets(env, tweet));
-    if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 9) ctx.waitUntil(runCards(env));  // 弾ごとの収録カードの相場（11/11）
+    if (new Date(event.scheduledTime).getUTCMinutes() % 30 === 9) ctx.waitUntil(runCards(env));  // 弾ごとの収録カードの相場（11/11）。KV の書き込み（無料枠1日1,000回）を食うので30分おき
   },
   async fetch(req, env) {
     const u = new URL(req.url);

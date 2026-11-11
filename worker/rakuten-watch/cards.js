@@ -1,5 +1,5 @@
 // 弾ごとの収録カード（RR以上など）の相場を、スニダンから少しずつ集める（11/11）
-// ・GitHub Actions の時間を使わないように、Cloudflare の定期実行（10分に1回）で動かす
+// ・GitHub Actions の時間を使わないように、Cloudflare の定期実行（30分に1回。KV の書き込みの無料枠のため）で動かす
 // ・どの弾を集めるかはサイトの /data/card-sets.json（sitegen が書く）。[{key, q, rar:[...]}]
 // ・弾ごとのカード一覧は、スニダンの検索（「弾の名前 レアリティ」）で見つける。見つかった弾は30日に1回、まだ0枚の弾は7日に1回見直す
 // ・カード1枚の相場は、取引履歴（状態A＝未鑑定の美品・1枚）の日ごとの値。2,000円以上のカードは毎日、それより安いカードは3日に1回読み直す
@@ -126,7 +126,7 @@ export async function runCards(env) {
   // 1. カード一覧を見つける（まだの弾・見直しの時期の弾。1回で2弾まで）
   let disc = 0;
   for (const set of sets) {
-    if (left < 8 || disc >= 2) break;
+    if (left < 8 || disc >= 1) break;  // 書き込む弾の数を減らすため、見つけるのは1回1弾
     const ix = idx.sets[set.key] || (idx.sets[set.key] = { found: 0, n: 0, priced: 0, due: 0 });
     const again = ix.n > 0 ? 30 * DAY : 7 * DAY;
     if (ix.found && now - ix.found < again) continue;
