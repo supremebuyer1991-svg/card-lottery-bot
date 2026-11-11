@@ -163,7 +163,10 @@
     "details_checked": true,
     "cls": "3544005863c3",
     "official_checked": true,
-    "page_err": "403 Client Error: Forbidden for url: https://www.playstation.com/ja-jp/"
+    "page_err": "403 Client Error: Forbidden for url: https://www.playstation.com/ja-jp/",
+    "verified_at": "2026-11-11T11:10:35.768532+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：store・kind・start・end・channel 記事は10月20日より国内の取扱店・ECサイトで予約受付、11月19日発売と案内している。店名は書かれておらず、kindは予約受付が正しい。開始日は10月20日で、11月10日は記事に無い。予約締切は記事に無く、11月19日は発売日。販売経路は店"
   },
   "a8f4c6cfa442464f": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -367,7 +370,7 @@
     "key": "ae4b61c642bed31a",
     "status": "pending",
     "found_at": "2026-11-09T07:10:02.974346+09:00",
-    "deadline_checked_at": "2026-11-10T10:38:29.990234+09:00",
+    "deadline_checked_at": "2026-11-11T11:09:52.911036+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-11T07:53:34.494773+09:00",
@@ -401,7 +404,7 @@
     "found_at": "2026-11-09T07:45:45.030933+09:00",
     "key": "26786d8b4a3e56ad",
     "status": "pending",
-    "deadline_checked_at": "2026-11-10T10:38:30.812276+09:00",
+    "deadline_checked_at": "2026-11-11T11:09:54.135631+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-11T08:07:47.320310+09:00",
@@ -633,7 +636,7 @@
     "key": "c356f1e90ec3a681",
     "status": "listed",
     "found_at": "2026-11-09T11:25:04.949888+09:00",
-    "page_checked_at": "2026-11-10T10:56:10.015093+09:00",
+    "page_checked_at": "2026-11-11T11:09:57.814157+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
@@ -702,7 +705,7 @@
     "key": "acf4b0f43366cc12",
     "status": "listed",
     "found_at": "2026-11-09T11:25:04.949968+09:00",
-    "page_checked_at": "2026-11-10T10:56:12.873601+09:00",
+    "page_checked_at": "2026-11-11T11:10:00.583704+09:00",
     "address_checked": true,
     "details_checked": true,
     "multi": false,
@@ -771,7 +774,7 @@
     "key": "a2597a3a24dcf7c2",
     "status": "approved",
     "found_at": "2026-11-09T13:23:12.072088+09:00",
-    "page_checked_at": "2026-11-10T10:56:15.649540+09:00",
+    "page_checked_at": "2026-11-11T11:10:03.373756+09:00",
     "details_checked": true,
     "cls": "6ca0a4981e7b",
     "official_checked": true,
@@ -1738,7 +1741,7 @@
     "key": "cbcf6c062e1fa005",
     "status": "approved",
     "found_at": "2026-11-09T15:09:22.687472+09:00",
-    "page_checked_at": "2026-11-10T11:13:30.275422+09:00",
+    "page_checked_at": "2026-11-11T11:10:06.678323+09:00",
     "details_checked": true,
     "cls": "138f0adee141",
     "official_checked": true,
@@ -1780,7 +1783,7 @@
     "deadline_checked_at": "2026-11-10T15:58:57.436530+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の応募期間の記載なし",
-    "page_checked_at": "2026-11-10T12:24:38.808821+09:00",
+    "page_checked_at": "2026-11-11T11:10:09.382242+09:00",
     "details_checked": true
   },
   "b6144664b326ac66": {
@@ -1876,7 +1879,7 @@
     "found_at": "2026-11-09T15:09:22.687730+09:00",
     "cls": "4a07a6dd2ed8",
     "issue": 626,
-    "page_checked_at": "2026-11-10T12:24:44.635945+09:00",
+    "page_checked_at": "2026-11-11T11:10:12.524997+09:00",
     "details_checked": true
   },
   "7fa6861fd8663899": {
@@ -2163,7 +2166,7 @@
     "key": "6d1d384b883d5d33",
     "status": "approved",
     "found_at": "2026-11-10T10:37:29.593937+09:00",
-    "deadline_checked_at": "2026-11-10T10:38:32.185971+09:00",
+    "deadline_checked_at": "2026-11-11T11:09:56.151835+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・予約受付は11月13日午前10時から",
     "cls": "10e581624cce",
@@ -4566,7 +4569,10 @@
     "address_checked": true,
     "multi": true,
     "cls": "9de7df7cef37",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T11:10:31.913171+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：channel 記事は「ヤマダデンキ」の抽選（抽選期間〜11/11 23:59、アプリから応募）で、store・product・kind(lottery)・end・start(null)は記事と一致します。ただし記事には受け取りが店頭か通販かの記載がなく、channel=\"store\"は記事から確認でき"
   },
   "c7636b615565f77e": {
     "store": "プレミアムバンダイ",
@@ -4599,7 +4605,9 @@
     "found_at": "2026-11-11T06:10:25.014485+09:00",
     "page_checked_at": "2026-11-11T06:12:16.955249+09:00",
     "cls": "dbe6dd862210",
-    "official_checked": true
+    "official_checked": true,
+    "verified_at": "2026-11-11T11:10:29.379895+09:00",
+    "verified": true
   },
   "9386bf55cdf56fa8": {
     "store": "プレミアムバンダイ",
@@ -5435,5 +5443,41 @@
     "deadline_checked_at": "2026-11-11T08:07:45.956620+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始（締切記載なし）"
+  },
+  "2a64a11863329835": {
+    "store": "ビックカメラ",
+    "start": "2026-11-12T10:00:00+09:00",
+    "end": "2026-11-14T23:59:00+09:00",
+    "announce": "12月5日(土)（3Fおもちゃコーナー／ビックカメラ広島駅前店X）",
+    "buy": null,
+    "method": "店頭抽選受付（当選者には店頭販売）",
+    "url": null,
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "id_check": true,
+    "member": "card",
+    "tags": [
+      "本人確認",
+      "アプリ",
+      "会員",
+      "購入履歴",
+      "レシート",
+      "店舗クレカ"
+    ],
+    "confidence": 0.5,
+    "product": "ポケモンカードゲーム MEGA スタートデッキ100 バトルコレクション",
+    "series": "スタートデッキ100 バトルコレクション",
+    "source": "入荷Now 抽選情報",
+    "source_url": "https://nyuka-now.com/archives/154698",
+    "no_quote": true,
+    "key": "2a64a11863329835",
+    "status": "pending",
+    "found_at": "2026-11-11T11:07:49.804054+09:00",
+    "kind": "lottery",
+    "product_short": "スタートデッキ100 バトルコレクション",
+    "multi": false,
+    "cls": "f205bfa30afe",
+    "issue": 684
   }
 }
