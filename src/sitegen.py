@@ -3450,7 +3450,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             if x_l:
                 lose_c = _after_lose_ad(x_l, s["game_names"][g_l], souba_sm.get(f"{g_l}|{x_l}"), tag, raff, None, g_l)
         write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
-            "title": (f"{cname}の{words_c}抽選 受付中{len(ci)}件【{md}更新】店舗別・締切順" + (f"｜{len(sts)}店舗" if len(sts) >= 5 else "") if ci else
+            "title": (f"{cname}の{words_c}抽選 受付中{len(ci)}件【{md}更新】" + (f"店舗一覧（{len(sts)}店舗）・締切順" if len(sts) >= 5 else "店舗別・締切順") if ci else
                       f"{cname}の{words_c}抽選｜" + (f"前回{_cd(cpast[0][0])}締切「{_cp(cpast[0][0])}」・" if cpast else "") + "応募方法・結果発表") + "｜トレカ抽選ナビ",
             "desc": (f"【{md}更新】" + summary(ci, f"{cname}の{words_c}の抽選").replace("現在受付中の", "いま受付中の") + "店舗別・締切順に、応募方法と本人確認・会員の条件もまとめています。" if ci else
                      f"【{md}更新】{cname}の{words}の抽選情報。いま受付中の抽選はありません。{_last}" +
