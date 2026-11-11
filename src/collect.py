@@ -103,7 +103,7 @@ def _will_read(src, src_fail, src_last):
     return True
 
 
-def prefetch(urls, fetcher, workers=6):
+def prefetch(urls, fetcher, workers=6, host_par=None):
     """一覧ページをまとめて先に読む（時間短縮）。
     同じサイトは今まで通り1件ずつ順番に（相手に負担をかけない）、別々のサイトだけ同時に読む。
     戻り値：{url: ("ok", 本文) または ("err", 例外)}"""
@@ -122,11 +122,16 @@ def prefetch(urls, fetcher, workers=6):
                 out[u] = ("err", e)
         return out
 
+    # 同時に読んでも大丈夫な大きいサイト（Googleニュースなど）は、いくつかに分けて同時に読む（11/11：検索を44本足したら先読みだけで2分40秒かかった）
+    groups_ = []
+    for h, us in by_host.items():
+        k = max(1, int((host_par or {}).get(h, 1)))
+        groups_ += [us[i::k] for i in range(min(k, len(us)))]
     res = {}
-    if not by_host:
+    if not groups_:
         return res
-    with ThreadPoolExecutor(max_workers=max(1, min(workers, len(by_host)))) as ex:
-        for part in ex.map(run, by_host.values()):
+    with ThreadPoolExecutor(max_workers=max(1, min(workers + sum(int(v) for v in (host_par or {}).values()), len(groups_)))) as ex:
+        for part in ex.map(run, groups_):
             res.update(part)
     return res
 
@@ -187,7 +192,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         log(f"X: 今回読める数 {x_allow}件（今日の残り{budget_left(settings)}件・残り{runs_left}回）" + (f"・新弾「{peak_set(settings)}」の発売前で上限アップ中" if peak_set(settings) else ""))
 
     # X以外の一覧ページは、別々のサイトどうしを同時に先読みしておく（1件ずつ待つより速い）
-    pre = prefetch([s_["url"] for s_ in sources if _will_read(s_, src_fail, src_last)], fetcher)
+    pre = prefetch([s_["url"] for s_ in sources if _will_read(s_, src_fail, src_last)], fetcher, host_par=settings.get("prefetch_host_parallel"))
 
     def read_top(url):
         if url in pre:
