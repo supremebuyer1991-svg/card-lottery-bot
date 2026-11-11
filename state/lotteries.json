@@ -17529,7 +17529,7 @@
     "key": "072781ac4228a06e",
     "status": "approved",
     "found_at": "2026-11-09T17:01:28.691584+09:00",
-    "page_checked_at": "2026-11-10T13:11:02.330126+09:00",
+    "page_checked_at": "2026-11-11T20:54:59.770573+09:00",
     "cls": "da5ba5554168"
   },
   "454c0316706a5110": {
@@ -17556,7 +17556,7 @@
     "key": "454c0316706a5110",
     "status": "approved",
     "found_at": "2026-11-09T17:01:28.691620+09:00",
-    "page_checked_at": "2026-11-10T13:11:04.679019+09:00",
+    "page_checked_at": "2026-11-11T20:55:02.288418+09:00",
     "cls": "f2dfb0d5e4e3"
   },
   "e923b0aa8da45081": {
@@ -17583,7 +17583,7 @@
     "key": "e923b0aa8da45081",
     "status": "approved",
     "found_at": "2026-11-09T17:01:28.691641+09:00",
-    "page_checked_at": "2026-11-10T13:11:07.004277+09:00",
+    "page_checked_at": "2026-11-11T20:55:04.737992+09:00",
     "cls": "60ad7d74b902"
   },
   "cbf750d2657d895f": {
@@ -17977,9 +17977,10 @@
     "deadline_checked_at": "2026-11-11T11:00:16.257926+09:00",
     "deadline_v": 5,
     "deadline_note": "画像2/2枚読込・締切の日時の記載なし",
-    "page_checked_at": "2026-11-10T11:08:36.521573+09:00",
+    "page_checked_at": "2026-11-11T20:55:09.145613+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "page_err": "中身が空"
   },
   "6b47adad889dd9ad": {
     "store": "古本市場西淀川店",
@@ -18116,10 +18117,11 @@
     "found_at": "2026-11-09T20:12:14.920030+09:00",
     "cls": "f39c76ad4bcd",
     "issue": 630,
-    "page_checked_at": "2026-11-10T12:19:27.274059+09:00",
+    "page_checked_at": "2026-11-11T20:55:11.267791+09:00",
     "details_checked": true,
     "address_checked": true,
-    "multi": false
+    "multi": false,
+    "page_err": "中身が空"
   },
   "6ba863e6c2fd0020": {
     "store": "古本市場名谷店",
@@ -18206,10 +18208,11 @@
     "cls": "29442212830e",
     "apply_url": "https://livepocket.jp/e/vznxg",
     "issue": 639,
-    "page_checked_at": "2026-11-10T11:08:49.427074+09:00",
+    "page_checked_at": "2026-11-11T20:55:13.330055+09:00",
     "address": "茨城県茨城県取手市寺田字佃4718-9",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "page_err": "中身が空"
   },
   "ea7e1cfb10f5ace4": {
     "store": "TSUTAYA涌谷店",
@@ -18578,7 +18581,7 @@
     "status": "approved",
     "found_at": "2026-11-10T10:27:31.811698+09:00",
     "cls": "1f9e6d901df6",
-    "page_checked_at": "2026-11-10T11:09:01.088235+09:00",
+    "page_checked_at": "2026-11-11T20:55:15.442775+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.animate-onlineshop.jp/sphone/products/detail.php?product_id=3592097",
     "post_checked": true,
     "details_checked": true
@@ -18879,8 +18882,9 @@
     "multi": false,
     "cls": "2b7ac67b8c80",
     "start": "2026-11-08T18:55:00+09:00",
-    "page_checked_at": "2026-11-10T11:09:01.930575+09:00",
-    "address_checked": true
+    "page_checked_at": "2026-11-11T20:55:16.174888+09:00",
+    "address_checked": true,
+    "page_err": "中身が空"
   },
   "d52d1dd2224a2a06": {
     "store": "ふるいち忍者シティー店",
@@ -18909,10 +18913,11 @@
     "found_at": "2026-11-10T10:41:35.051717+09:00",
     "multi": false,
     "cls": "da691a0778a5",
-    "page_checked_at": "2026-11-10T11:09:04.563275+09:00",
+    "page_checked_at": "2026-11-11T20:55:18.243874+09:00",
     "address_checked": true,
     "announce": "2026-11-13〜2026-11-14",
-    "start": "2026-11-09T10:00:00+09:00"
+    "start": "2026-11-09T10:00:00+09:00",
+    "page_err": "中身が空"
   },
   "71284461311934bc": {
     "store": "ブックオフ草加セーモンプラザ店",
@@ -18995,7 +19000,7 @@
     "found_at": "2026-11-10T10:41:35.051847+09:00",
     "multi": false,
     "cls": "ae68690bf77a",
-    "page_checked_at": "2026-11-10T10:59:06.198824+09:00",
+    "page_checked_at": "2026-11-11T20:55:20.293926+09:00",
     "address_checked": true
   },
   "815d6e5ca45c5db2": {
@@ -19221,7 +19226,7 @@
     "status": "approved",
     "found_at": "2026-11-10T10:41:36.329169+09:00",
     "cls": "3a8eece4c6c7",
-    "page_checked_at": "2026-11-10T10:59:14.435209+09:00",
+    "page_checked_at": "2026-11-11T20:55:24.243010+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery-entry?ekey=ZWg0OWU0dnNud1g3QVVSR1B2ZVlNUT09"
   },
   "4d1e6839861b962b": {
@@ -19307,7 +19312,7 @@
     "found_at": "2026-11-10T10:41:36.329298+09:00",
     "multi": false,
     "cls": "288368004e28",
-    "page_checked_at": "2026-11-11T06:07:10.620986+09:00",
+    "page_checked_at": "2026-11-11T20:55:24.296231+09:00",
     "page_err": "中身が空"
   },
   "f5cba38edfada9b8": {
@@ -19391,7 +19396,7 @@
     "found_at": "2026-11-10T10:41:36.329390+09:00",
     "multi": false,
     "cls": "f32f177217e2",
-    "page_checked_at": "2026-11-11T06:07:12.771662+09:00",
+    "page_checked_at": "2026-11-11T20:55:26.366957+09:00",
     "page_err": "中身が空"
   },
   "cb9d0686099c2592": {
@@ -19418,7 +19423,7 @@
     "found_at": "2026-11-10T10:41:36.329420+09:00",
     "cls": "3426abe2d942",
     "start": "2026-11-10T10:00:00+09:00",
-    "page_checked_at": "2026-11-10T10:59:18.886819+09:00",
+    "page_checked_at": "2026-11-11T20:55:28.577011+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://www.animate-onlineshop.jp/products/detail.php?product_id=3592097",
     "post_checked": true,
     "details_checked": true
@@ -19449,7 +19454,7 @@
     "status": "approved",
     "found_at": "2026-11-10T10:41:36.329447+09:00",
     "cls": "19daf4c592f9",
-    "page_checked_at": "2026-11-10T10:59:19.482319+09:00",
+    "page_checked_at": "2026-11-11T20:55:29.306280+09:00",
     "page_err": "中身が空"
   },
   "69343476c381553b": {
@@ -20680,7 +20685,7 @@
     "key": "90be0fab662da7c8",
     "status": "approved",
     "found_at": "2026-11-10T13:09:33.209895+09:00",
-    "page_checked_at": "2026-11-11T06:07:14.902766+09:00",
+    "page_checked_at": "2026-11-11T20:55:31.368410+09:00",
     "multi": true,
     "cls": "8ab37c3f78ac",
     "announce": "2026年11月25日(水)予定",
@@ -20714,7 +20719,7 @@
     "key": "d5351aa0573ce8fe",
     "status": "approved",
     "found_at": "2026-11-10T13:09:33.933206+09:00",
-    "page_checked_at": "2026-11-10T15:54:09.138554+09:00",
+    "page_checked_at": "2026-11-11T20:55:33.425411+09:00",
     "multi": false,
     "cls": "d1bbd9bb3b05",
     "address_checked": true
@@ -20835,7 +20840,7 @@
     "found_at": "2026-11-10T13:10:13.232118+09:00",
     "multi": false,
     "cls": "a338cb69051b",
-    "page_checked_at": "2026-11-11T06:07:17.032978+09:00",
+    "page_checked_at": "2026-11-11T20:55:36.382121+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -21005,7 +21010,7 @@
     "multi": false,
     "cls": "8cb6bd246962",
     "tco_checked": true,
-    "page_checked_at": "2026-11-11T06:07:19.145119+09:00",
+    "page_checked_at": "2026-11-11T20:55:38.493721+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -21155,7 +21160,7 @@
     "key": "27aed72853beb594",
     "status": "approved",
     "found_at": "2026-11-10T15:53:16.204543+09:00",
-    "page_checked_at": "2026-11-11T06:07:26.180293+09:00",
+    "page_checked_at": "2026-11-11T20:55:40.546959+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "1077cdb34253",

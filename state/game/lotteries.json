@@ -2592,7 +2592,7 @@
     "issue": 648,
     "page_checked_at": "2026-11-11T18:53:40.496163+09:00",
     "details_checked": true,
-    "deadline_checked_at": "2026-11-10T13:14:21.833586+09:00",
+    "deadline_checked_at": "2026-11-11T21:02:08.186540+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
@@ -2837,9 +2837,9 @@
     "verify_note": "記事と合わない：store・kind 販売の情報であり、product、start（2026年11月16日17:00の販売開始予定）、end（null）、channel（オンライン販売）は記事と合っています。一方、「一番くじONLINE」という店名は記事に書かれておらず、「オンライン販売」とあるだけです。また、記事には",
     "page_checked_at": "2026-11-11T18:53:42.642949+09:00",
     "details_checked": true,
-    "deadline_checked_at": "2026-11-10T15:59:00.120511+09:00",
+    "deadline_checked_at": "2026-11-11T21:02:09.712911+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・抽選の応募期間の記載なし"
+    "deadline_note": "画像0/0枚読込・応募受付期間の記載なし"
   },
   "f9bf5e6a41d570d7": {
     "store": "BANDAI SPIRITS",
@@ -4768,7 +4768,10 @@
     "issue": 677,
     "deadline_checked_at": "2026-11-11T07:53:12.825083+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-11T21:02:13.943148+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "09b228b7291e7273": {
     "store": "プレミアムバンダイ（BANDAI SPIRITS）",
@@ -5055,7 +5058,9 @@
     "cls": "93444e55e67b",
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.741215+09:00",
-    "verified": true
+    "verified": true,
+    "page_checked_at": "2026-11-11T21:02:17.776502+09:00",
+    "details_checked": true
   },
   "b3c41aa4700f3736": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -5088,7 +5093,9 @@
     "cls": "d0b1085cfba0",
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.741105+09:00",
-    "verified": true
+    "verified": true,
+    "page_checked_at": "2026-11-11T21:02:23.115071+09:00",
+    "details_checked": true
   },
   "708729945fc9c183": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -5121,7 +5128,9 @@
     "cls": "0ead466f7b52",
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.398072+09:00",
-    "verified": true
+    "verified": true,
+    "page_checked_at": "2026-11-11T21:02:26.251220+09:00",
+    "details_checked": true
   },
   "215aef556f730193": {
     "store": "BANDAI SPIRITS",
@@ -5230,7 +5239,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文には応募・購入の条件の記載がない。タイトルで高島屋限定、11/11に抽選販売の応募が始まることだけが分かる。",
     "price": null,
     "round": null,
     "url": "https://www.asahi.com/and/w/article/17026035/31530677",
@@ -5248,11 +5257,14 @@
     "status": "pending",
     "found_at": "2026-11-11T07:51:37.942940+09:00",
     "multi": false,
-    "cls": "29ecbdca44eb",
+    "cls": "f4ed395b2ec5",
     "issue": 680,
     "deadline_checked_at": "2026-11-11T08:07:45.956620+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始（締切記載なし）"
+    "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始（締切記載なし）",
+    "page_checked_at": "2026-11-11T21:02:28.533934+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "2a64a11863329835": {
     "store": "ビックカメラ",
@@ -5296,7 +5308,7 @@
     "series": "山崎 LIMITED EDITION 2023・イチローズモルト",
     "kind": "first_come",
     "start": "2026-11-11T12:00:00+09:00",
-    "end": null,
+    "end": "2026-11-12T12:00:00+09:00",
     "announce": null,
     "method": "Web",
     "conditions": "東急カード（TOKYU CARD ClubQ）会員限定。なくなり次第終了",
@@ -5319,7 +5331,11 @@
     "no_quote": true,
     "key": "9b0e97cc2b7c868d",
     "status": "approved",
-    "cls": "e19067596d2f"
+    "cls": "e19067596d2f",
+    "deadline_checked_at": "2026-11-11T21:02:12.413789+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・承り期間 2026年11月12日 12:00まで販売",
+    "end_from": "応募ページ（承り期間 2026年11月12日 12:）"
   },
   "c20c5cf4f853d1ed": {
     "store": "銀座三越",
@@ -5352,7 +5368,9 @@
     "status": "approved",
     "found_at": "2026-11-11T18:29:00.457749+09:00",
     "multi": false,
-    "cls": "781396af8052"
+    "cls": "781396af8052",
+    "page_checked_at": "2026-11-11T21:02:33.340314+09:00",
+    "page_err": "HTTPSConnectionPool(host='www.mistore.jp', port=443): Read timed out. (read timeout=12)"
   },
   "a73d05cecc6703c0": {
     "store": "銀座三越",
@@ -5909,7 +5927,7 @@
     "key": "ff122cdb62127b3a",
     "status": "listed",
     "found_at": "2026-11-11T20:45:30.511970+09:00",
-    "cls": "02d58a861951",
+    "cls": "5ccd18f0ce26",
     "verified_at": "2026-11-11T20:48:27.896728+09:00",
     "verified": false,
     "verify_note": "記事と合わない：end 記事は11月11日発売・e-STOREで予約受付中の商品情報で、販売機会の記事です。store、product、kind（release）、channelは記事と合います。start null も正しいです。ただし記事に書かれているのは発売日の2026-11-11までで、23:59という時刻は記"
@@ -5971,5 +5989,92 @@
     "found_at": "2026-11-11T20:45:56.995504+09:00",
     "cls": "6179df6dfc24",
     "duplicate_of": "ee5e342ae40428d7"
+  },
+  "4a0d62cdc1605933": {
+    "store": "Amazon.co.jp",
+    "product": "Hibiki サントリーウイスキー 響 JAPANESE HARMONY 700ml「招待制抽選販売限定」",
+    "series": "響",
+    "kind": "invite",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "Web（Amazon商品ページ）",
+    "conditions": "商品名に「招待制抽選販売限定」と記載。受付期間の記載なし",
+    "price": null,
+    "round": null,
+    "url": "https://www.amazon.co.jp/dp/B00S7Z8426/ref=nosim?tag=impresswatch-41-22",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.3,
+    "source": "Googleニュース「白州 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2155437.html",
+    "key": "4a0d62cdc1605933",
+    "status": "duplicate",
+    "found_at": "2026-11-11T20:59:56.221061+09:00",
+    "cls": "7439574d7423",
+    "dup_of": "41e3f8e4fec71ac9"
+  },
+  "c03cfbe7d35fbd36": {
+    "store": "Amazon.co.jp",
+    "product": "響 JAPANESE HARMONY 700ml（招待制抽選販売限定）",
+    "series": "響 JAPANESE HARMONY",
+    "kind": "invite",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "Amazon商品ページの招待制抽選",
+    "conditions": "「招待制抽選販売限定」と記載。受付期間の記載なし。",
+    "price": null,
+    "round": null,
+    "url": "https://www.amazon.co.jp/dp/B00S7Z8426/ref=nosim?tag=impresswatch-41-22",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.3,
+    "source": "Googleニュース「イチローズモルト 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2155579.html",
+    "key": "c03cfbe7d35fbd36",
+    "status": "duplicate",
+    "found_at": "2026-11-11T21:00:19.018683+09:00",
+    "cls": "1da6b95c68f9",
+    "dup_of": "41e3f8e4fec71ac9"
+  },
+  "9db65d3e0df4689d": {
+    "store": "Amazon.co.jp",
+    "product": "Hibiki サントリーウイスキー 響 JAPANESE HARMONY 700ml（招待制抽選販売限定）",
+    "series": "響",
+    "kind": "lottery",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "Web（Amazon商品ページ）",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://www.amazon.co.jp/dp/B00S7Z8426/ref=nosim?tag=impresswatch-41-22",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.3,
+    "source": "Googleニュース「イチローズモルト 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2155437.html",
+    "key": "9db65d3e0df4689d",
+    "status": "duplicate",
+    "found_at": "2026-11-11T21:00:19.018731+09:00",
+    "cls": "22b7a5146124",
+    "dup_of": "41e3f8e4fec71ac9"
   }
 }
