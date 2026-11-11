@@ -2097,7 +2097,7 @@
     "area": "埼玉県"
   },
   "store/batoroco-39057/": {
-    "name": "TCバトロコ 金沢駅前",
+    "name": "TCバトロコ金沢駅前",
     "last": "2026-11-11",
     "game": "onepiece",
     "area": "石川県"
@@ -2698,13 +2698,14 @@
     "keep": true
   },
   "store/batoroco-7736a/": {
-    "name": "バトロコ金沢駅前",
+    "name": "バトロコ 金沢駅前",
     "last": "2026-11-11",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "石川県"
   },
   "store/batoroco-79f13/": {
-    "name": "バトロコsatellite金沢香林坊",
+    "name": "バトロコsatellite 金沢香林坊",
     "last": "2026-11-11",
     "game": "onepiece",
     "keep": true,
@@ -2749,7 +2750,7 @@
     "keep": true
   },
   "store/yellowsubmarine-b1a94/": {
-    "name": "イエローサブマリン秋葉原ラジオ会館本店",
+    "name": "イエローサブマリン 秋葉原ラジオ会館本店",
     "last": "2026-11-11",
     "game": "pokemon",
     "keep": true,
@@ -5257,7 +5258,7 @@
     "game": "onepiece"
   },
   "store/furuichi-19787/": {
-    "name": "古本市場魚住店",
+    "name": "古本市場 魚住店",
     "last": "2026-11-11",
     "game": "onepiece",
     "area": "兵庫県"
@@ -5537,7 +5538,7 @@
     "area": "愛知県"
   },
   "store/surugaya-cc295/": {
-    "name": "駿河屋新天町店トレカ館",
+    "name": "駿河屋 新天町店トレカ館",
     "last": "2026-11-11",
     "game": "pokemon",
     "area": "福岡県"
@@ -6155,7 +6156,7 @@
     "area": "岩手県"
   },
   "store/supafurikusu-8da4d/": {
-    "name": "スーパーフリークス土佐道路店",
+    "name": "スーパーフリークス 土佐道路店",
     "last": "2026-11-11",
     "game": "pokemon",
     "area": "高知県"
@@ -7244,12 +7245,14 @@
   "store/mint-ed34a/": {
     "name": "MINT吉祥寺店",
     "last": "2026-11-11",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "東京都"
   },
   "store/bookoff-93ca5/": {
     "name": "ブックオフタイヨー小松台店",
     "last": "2026-11-11",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "愛媛県"
   },
   "store/batoroco-5b362/": {
     "name": "TCバトロコ satellite 金沢香林坊",
