@@ -9,7 +9,7 @@ import re
 from datetime import timedelta
 from html import escape
 
-from common import load_json, save_json, now, parse_dt, log
+from common import ROOT, load_json, save_json, now, parse_dt, log
 from common import parse_dt as _pd
 
 HIST = "premium_hist.json"
@@ -212,6 +212,17 @@ def watch_map():
     return cache
 
 
+def overrides():
+    """config/game/premium_overrides.yaml：楽天ブックスで分からない商品の定価・分かりにくい商品名を手で直す {JAN: {...}}"""
+    import yaml
+    p = ROOT / "config" / "game" / "premium_overrides.yaml"
+    try:
+        y = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    except Exception:
+        return {}
+    return {str(k): v for k, v in y.items() if isinstance(v, dict)}
+
+
 def _clean(n):
     n = re.sub(r"\s+", " ", n or "")
     return re.sub(r"【.*?】|^BANDAI \(バンダイ\) ", "", n).strip()[:70]
@@ -227,9 +238,13 @@ def catalog(settings=None, wmap=None):
     today = now().date()
     model = re.compile(r"[A-Z]{2,}-?[A-Z0-9]{3,}")
     out = []
+    ov_all = overrides()
     for jan, x in g.items():
         tk = dict(teika.get(jan) or {})
         wm = wmap.get(jan) or {}
+        ov = ov_all.get(jan) or {}
+        if ov.get("teika") and not tk.get("list_price") and not tk.get("price"):
+            tk["price"] = int(ov["teika"])   # 手で調べた定価（楽天ブックスに無い商品。Amazonデバイスなど）
         if tk.get("list_price"):
             tk["price"] = tk["list_price"]   # 楽天ブックスの「定価」があればそれ（販売価格より正確）
         if not tk.get("price") and wm.get("rkPrice"):
@@ -238,7 +253,9 @@ def catalog(settings=None, wmap=None):
         r = x["max"] / price if price else None
         h = hist.get(jan, {})
         name = _clean(tk.get("title") or x["names"][0])
-        if not model.search(name):   # 型番が無ければ、型番のある買取店の名前を使う（同じ名前の別モデルを見分けるため）
+        if ov.get("name"):
+            name = ov["name"]
+        elif not model.search(name):   # 型番が無ければ、型番のある買取店の名前を使う（同じ名前の別モデルを見分けるため）
             withm = [n for n in x["names"] if model.search(n)]
             if withm:
                 name = _clean(withm[0])
@@ -248,7 +265,8 @@ def catalog(settings=None, wmap=None):
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
                     "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", ""), "azUrl": wm.get("azUrl", ""),
                     "img": tk.get("img") or wm.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
-                    "sales_date": tk.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
+                    "teika_note": ov.get("teika_note", "") if ov.get("teika") and price == int(ov["teika"]) else "",
+                    "sales_date": tk.get("sales_date", "") or ov.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
     out.sort(key=lambda x: (x["ratio"] is None, -(x["ratio"] or 0), -x["max"]))
     return out
 
@@ -273,7 +291,7 @@ def chart_svg(h, teika):
     if not pts:
         return ""
     W, H, P = 640, 220, 34
-    vals = [v for _, v in pts] + [teika]
+    vals = [v for _, v in pts] + ([teika] if teika else [])
     lo, hi = min(vals) * 0.97, max(vals) * 1.03
     def X(i):
         return P + (W - 2 * P) * (i / max(1, len(pts) - 1))
@@ -281,9 +299,11 @@ def chart_svg(h, teika):
         return H - P - (H - 2 * P) * ((v - lo) / max(1, hi - lo))
     line = " ".join(f"{X(i):.1f},{Y(v):.1f}" for i, (_, v) in enumerate(pts))
     dots = "".join(f'<circle cx="{X(i):.1f}" cy="{Y(v):.1f}" r="3"><title>{d} {v:,}円</title></circle>' for i, (d, v) in enumerate(pts))
-    ty = Y(teika)
+    ty = Y(teika) if teika else 0
+    tk_line = (f'<line x1="{P}" x2="{W - P}" y1="{ty:.1f}" y2="{ty:.1f}" class="tk"/><text x="{W - P}" y="{ty - 6:.1f}" text-anchor="end" class="tkl">定価 {teika:,}円</text>'
+               if teika else "")   # 定価が分からないときは線を引かない（11/11：最高買取を「定価」と表示していた）
     return (f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="最高買取価格の推移">'
-            f'<line x1="{P}" x2="{W - P}" y1="{ty:.1f}" y2="{ty:.1f}" class="tk"/><text x="{W - P}" y="{ty - 6:.1f}" text-anchor="end" class="tkl">定価 {teika:,}円</text>'
+            f'{tk_line}'
             f'<polyline points="{line}" class="ln"/>{dots}'
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
@@ -437,13 +457,15 @@ def seo_parts(x, allx, site, cats_by, md):
     lo = min((p for _, p in prices), default=0)
     teika = x.get("teika") or 0
     diff = x["max"] - teika if teika else 0
+    tkn = ("・" + x["teika_note"]) if x.get("teika_note") else ""
     # まとめの文（検索結果の説明にもなる、商品のことが一目で分かる文）
-    s1 = f"{name}（JANコード {jan}）は" + (f"{x['maker']}の" if x.get("maker") else "") + (f"{cat}の商品です。" if cat else "商品です。")
+    s1 = (f"{name}（JANコード {jan}）は" + (f"{x['maker']}の" if x.get("maker") else "") + f"{cat}の商品です。") if (cat or x.get("maker")) else \
+        f"{name}のJANコードは {jan} です。"   # メーカーもカテゴリも分からないとき「〜は商品です。」と出ていた（11/11）
     if x.get("sales_date"):
         s1 += f"発売日は{x['sales_date']}"
-        s1 += f"、定価は{teika:,}円（税込）です。" if teika else "です。"
+        s1 += f"、定価は{teika:,}円（税込{tkn}）です。" if teika else "です。"
     elif teika:
-        s1 += f"定価は{teika:,}円（税込）です。"
+        s1 += f"定価は{teika:,}円（税込{tkn}）です。"
     s2 = f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円"
     if teika:
         s2 += f"で、定価より{abs(diff):,}円{'高く' if diff >= 0 else '安く'}売れる（定価比 {'+' if diff >= 0 else ''}{round((x['ratio'] - 1) * 100)}%）状態です。"
@@ -469,7 +491,7 @@ def seo_parts(x, allx, site, cats_by, md):
         secs += "<h2>この商品の別の呼び方・表記</h2><ul>" + "".join(f"<li>{escape(a)}</li>" for a in alias) + "</ul>"
     # よくある質問（データから作る。構造化データにも入れる）
     faq = []
-    faq.append((f"{name}の定価はいくら？", f"定価は{teika:,}円（税込）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
+    faq.append((f"{name}の定価はいくら？", f"定価は{teika:,}円（税込{tkn}）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
     faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "") + CHANGE_NOTE))
     if teika:
         faq.append((f"{name}は定価以上で売れる？（プレ値？）",
@@ -650,7 +672,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
-        tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
+        tk = (f'定価 {x["teika"]:,}円' + (f'<small>（{escape(x["teika_note"])}）</small>' if x.get("teika_note") else "") + f'（{_ratio_html(x)}）') if x["teika"] else "定価：確認中"
         # JANコードで検索する人が多い（Search Console 11/11）ので、説明の頭と題名の最後に JAN を入れる。
         # 「買取」で検索する人のため、題名に最高買取価格も入れる。
         desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、定価{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
@@ -660,7 +682,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
-             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"] or x["max"])}{rel_html}'
+             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"])}{rel_html}'
              f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "")
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
