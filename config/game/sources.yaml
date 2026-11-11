@@ -135,8 +135,8 @@ sources:
     type: html_index
     every_hours: 4
     url: https://nyuka-now.com/archives/category/restock
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ"]
-    max_articles: 10
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ", "ちいかわ", "ベイブレード", "BEYBLADE", "レゴ", "LEGO", "トミカ", "ROG", "Legion", "PlayStation Portal", "ポケモンセンター", "ポケセン", "S.H.Figuarts", "ねんどろいど", "Tamagotchi"]
+    max_articles: 15
     parser: nyukanow
     quote: false
     hide_source_url: true
@@ -147,8 +147,8 @@ sources:
     type: html_index
     every_hours: 3
     url: https://nyuka-now.com/archives/category/chusen
-    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "amiibo", "ポケモン", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ"]
-    max_articles: 12
+    link_keywords: ["PS5", "プレステ", "PlayStation", "Switch", "スイッチ", "Steam Deck", "Xbox", "福袋", "ガンプラ", "ガンダム", "アーセナルベース", "一番くじ", "フィギュア", "BE@RBRICK", "ベアブリック", "たまごっち", "GO Plus", "RTX", "GeForce", "Radeon", "Ryzen", "amiibo", "ポケモン", "山崎", "響", "白州", "ウイスキー", "イチローズ", "ニッカ", "LABUBU", "ラブブ", "ボンボンドロップ", "ちいかわ", "ベイブレード", "BEYBLADE", "レゴ", "LEGO", "トミカ", "ROG", "Legion", "PlayStation Portal", "ポケモンセンター", "ポケセン", "S.H.Figuarts", "ねんどろいど", "Tamagotchi"]
+    max_articles: 15
     parser: nyukanow
     quote: false
     hide_source_url: true
@@ -188,6 +188,316 @@ sources:
     type: rss
     every_hours: 8
     url: https://news.google.com/rss/search?q=%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB+%E5%86%8D%E8%B2%A9+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  # ============ 11/11 追加：片っ端から（Googleニュース。同時に読むので時間は増えない）============
+
+  - id: gnews_ps5pro_stock
+    game: ps5
+    name: Googleニュース「PS5 Pro 在庫 販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=PS5+Pro+%E5%9C%A8%E5%BA%AB+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_ps_portal
+    game: ps5
+    name: Googleニュース「PlayStation Portal 在庫 再販」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=PlayStation+Portal+%E5%9C%A8%E5%BA%AB+%E5%86%8D%E8%B2%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_switch2_stock
+    game: switch2
+    name: Googleニュース「Switch2 在庫 販売」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=Switch2+%E5%9C%A8%E5%BA%AB+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_switch2_bigcamera
+    game: switch2
+    name: Googleニュース「Switch 2 抽選 ビックカメラ」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=Switch+2+%E6%8A%BD%E9%81%B8+%E3%83%93%E3%83%83%E3%82%AF%E3%82%AB%E3%83%A1%E3%83%A9+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_rogally
+    game: handheld_pc
+    name: Googleニュース「ROG Xbox Ally 在庫 抽選」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=ROG+Xbox+Ally+%E5%9C%A8%E5%BA%AB+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_legiongo
+    game: handheld_pc
+    name: Googleニュース「Legion Go 2 在庫 販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=Legion+Go+2+%E5%9C%A8%E5%BA%AB+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_rtx_lottery
+    game: pc_parts
+    name: Googleニュース「RTX 50 抽選 販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=RTX+50+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_rtx5080
+    game: pc_parts
+    name: Googleニュース「RTX 5080 在庫 入荷」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=RTX+5080+%E5%9C%A8%E5%BA%AB+%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_ryzen_restock
+    game: pc_parts
+    name: Googleニュース「Ryzen X3D 再販 入荷」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=Ryzen+X3D+%E5%86%8D%E8%B2%A9+%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_gunpla_lottery
+    game: gunpla
+    name: Googleニュース「ガンプラ 抽選 販売」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%82%AC%E3%83%B3%E3%83%97%E3%83%A9+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_gundambase_lottery
+    game: gunpla
+    name: Googleニュース「ガンダムベース 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%E3%83%99%E3%83%BC%E3%82%B9+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_gunpla_restock
+    game: gunpla
+    name: Googleニュース「ガンプラ 再販 予定」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%82%AC%E3%83%B3%E3%83%97%E3%83%A9+%E5%86%8D%E8%B2%A9+%E4%BA%88%E5%AE%9A+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_pokecen_plush
+    game: pokecen
+    name: Googleニュース「ポケモンセンター 抽選販売 グッズ」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+%E3%82%B0%E3%83%83%E3%82%BA+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_beyblade_restock
+    game: beyblade
+    name: Googleニュース「ベイブレードX 再販 入荷」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%99%E3%82%A4%E3%83%96%E3%83%AC%E3%83%BC%E3%83%89X+%E5%86%8D%E8%B2%A9+%E5%85%A5%E8%8D%B7+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_nendoroid
+    game: figure
+    name: Googleニュース「ねんどろいど 再販 予約」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%81%AD%E3%82%93%E3%81%A9%E3%82%8D%E3%81%84%E3%81%A9+%E5%86%8D%E8%B2%A9+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_figma_lottery
+    game: figure
+    name: Googleニュース「フィギュア 受注 締切」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2+%E5%8F%97%E6%B3%A8+%E7%B7%A0%E5%88%87+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_chiikawa_land
+    game: chiikawa
+    name: Googleニュース「ちいかわらんど 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F%E3%82%89%E3%82%93%E3%81%A9+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_chiikawa_restock
+    game: chiikawa
+    name: Googleニュース「ちいかわ 再販 受注」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F+%E5%86%8D%E8%B2%A9+%E5%8F%97%E6%B3%A8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_lego_lottery
+    game: lego
+    name: Googleニュース「レゴ 抽選 販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%AC%E3%82%B4+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_tomica_premium
+    game: tomica
+    name: Googleニュース「トミカプレミアム 抽選 予約」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%88%E3%83%9F%E3%82%AB%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0+%E6%8A%BD%E9%81%B8+%E4%BA%88%E7%B4%84+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_bearbrick_restock
+    game: bearbrick
+    name: Googleニュース「BE@RBRICK 抽選 販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=BE%40RBRICK+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_tamagotchi_lottery
+    game: digital_toys
+    name: Googleニュース「たまごっち 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%81%9F%E3%81%BE%E3%81%94%E3%81%A3%E3%81%A1+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_hakushu
+    game: liquor
+    name: Googleニュース「白州 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E7%99%BD%E5%B7%9E+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_ichiros
+    game: liquor
+    name: Googleニュース「イチローズモルト 抽選」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%82%A4%E3%83%81%E3%83%AD%E3%83%BC%E3%82%BA%E3%83%A2%E3%83%AB%E3%83%88+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_nikka
+    game: liquor
+    name: Googleニュース「ニッカ 抽選 販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%8B%E3%83%83%E3%82%AB+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_whisky_dept
+    game: liquor
+    name: Googleニュース「ウイスキー 抽選 百貨店」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC+%E6%8A%BD%E9%81%B8+%E7%99%BE%E8%B2%A8%E5%BA%97+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_labubu_lottery
+    game: labubu
+    name: Googleニュース「LABUBU 抽選」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=LABUBU+%E6%8A%BD%E9%81%B8+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_bondrop_lottery
+    game: bondrop
+    name: Googleニュース「ボンドロ 抽選 販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_biccamera
+    game: auto
+    name: Googleニュース「ビックカメラ 抽選販売」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%83%93%E3%83%83%E3%82%AF%E3%82%AB%E3%83%A1%E3%83%A9+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_yodobashi
+    game: auto
+    name: Googleニュース「ヨドバシ 抽選販売」
+    type: rss
+    every_hours: 6
+    url: https://news.google.com/rss/search?q=%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_joshin
+    game: auto
+    name: Googleニュース「Joshin 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=Joshin+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_edion
+    game: auto
+    name: Googleニュース「エディオン 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%A8%E3%83%87%E3%82%A3%E3%82%AA%E3%83%B3+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_nojima
+    game: auto
+    name: Googleニュース「ノジマ 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%8E%E3%82%B8%E3%83%9E+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_aeon
+    game: auto
+    name: Googleニュース「イオン 抽選販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%82%A4%E3%82%AA%E3%83%B3+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_7net
+    game: auto
+    name: Googleニュース「セブンネット 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%BB%E3%83%96%E3%83%B3%E3%83%8D%E3%83%83%E3%83%88+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_amazon_invite
+    game: auto
+    name: Googleニュース「Amazon 招待 リクエスト 販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=Amazon+%E6%8B%9B%E5%BE%85+%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_rakuten
+    game: auto
+    name: Googleニュース「楽天ブックス 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E6%A5%BD%E5%A4%A9%E3%83%96%E3%83%83%E3%82%AF%E3%82%B9+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_geo
+    game: auto
+    name: Googleニュース「ゲオ 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%82%B2%E3%82%AA+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_tsutaya
+    game: auto
+    name: Googleニュース「TSUTAYA 抽選販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=TSUTAYA+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_lawson
+    game: auto
+    name: Googleニュース「ローソン 抽選販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_familymart
+    game: auto
+    name: Googleニュース「ファミマ 抽選販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%95%E3%82%A1%E3%83%9F%E3%83%9E+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_toysrus
+    game: auto
+    name: Googleニュース「トイザらス 抽選販売」
+    type: rss
+    every_hours: 8
+    url: https://news.google.com/rss/search?q=%E3%83%88%E3%82%A4%E3%82%B6%E3%82%89%E3%82%B9+%E6%8A%BD%E9%81%B8%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_amiami
+    game: auto
+    name: Googleニュース「あみあみ 抽選 販売」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%81%82%E3%81%BF%E3%81%82%E3%81%BF+%E6%8A%BD%E9%81%B8+%E8%B2%A9%E5%A3%B2+when:2d&hl=ja&gl=JP&ceid=JP:ja
+
+  - id: gnews_store_pbandai_restock
+    game: auto
+    name: Googleニュース「プレミアムバンダイ 再販 受注」
+    type: rss
+    every_hours: 12
+    url: https://news.google.com/rss/search?q=%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%90%E3%83%B3%E3%83%80%E3%82%A4+%E5%86%8D%E8%B2%A9+%E5%8F%97%E6%B3%A8+when:2d&hl=ja&gl=JP&ceid=JP:ja
 
   # --- ヨドバシ.com の抽選一覧（トレカ抽選ナビと同じページ。ゲーム機・福袋（夢のお年玉箱）の抽選もここに出る）---
   - id: yodobashi_lottery_game

@@ -212,6 +212,8 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
     art_left = int(settings.get("rss_article_max_per_run", 0)) if settings.get("rss_read_article") else 0
 
     art_per_src = {}
+    import threading
+    lock = threading.Lock()
 
     def read_article(it, sid):
         nonlocal art_left
@@ -220,8 +222,11 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             return None
         if art_per_src.get(sid, 0) >= int(settings.get("rss_article_per_source", 3)):   # 1つの情報元で使い切らない
             return None
-        art_per_src[sid] = art_per_src.get(sid, 0) + 1
-        art_left -= 1
+        with lock:   # 同時に読むとき、記事の数の上限を守る
+            if art_left <= 0:
+                return None
+            art_per_src[sid] = art_per_src.get(sid, 0) + 1
+            art_left -= 1
         try:
             import gnews
             if gnews.is_gnews(link):
@@ -232,30 +237,32 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
         except Exception as e:
             log(f"記事の読み込み失敗 {link[:80]}: {e}")
             return None
-    for src in sources:
+    def work(src):
+        """1つの情報元を読む（取得・記事・AIの読み取りまで）。戻り値：(src, sid, first_run, batches) か None"""
+        nonlocal x_allow
         if budget and (now() - t_start).total_seconds() > budget:
             log(f"情報集めの時間の上限（{budget}秒）に達したので、残りの情報元は次の回に回します")
-            break
+            return None
         if src.get("enabled") is False:
-            continue
+            return None
         if src["type"] != "x":  # 続けて読めなかった情報元は、しばらくお休み（タイムアウト待ちで実行時間がのびないように）
             fl = src_fail.get(src["id"]) or {}
             if fl.get("n", 0) >= 2 and parse_dt(fl.get("until")) and parse_dt(fl["until"]) > now():
-                continue
+                return None
         if src["type"] != "x" and src.get("every_hours"):  # Xいがいも、数時間に1回だけ見る情報元
             lt = parse_dt(src_last.get(src["id"]))
             if lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
-                continue
+                return None
             src_last[src["id"]] = now().isoformat()
         if src["type"] == "x":
             if not x_ok:
-                continue
+                return None
             if x_allow < 10:  # Xの検索は1回10件から。今回の分を使い切ったら次の回へ
-                continue
+                return None
             # あまり抽選が見つからない検索は、数時間に1回だけ（every_hours）
             lt = parse_dt(src_last.get(src["id"]))
             if src.get("every_hours") and lt and (now() - lt).total_seconds() < src["every_hours"] * 3600 - 300:
-                continue
+                return None
             src_last[src["id"]] = now().isoformat()
         sid, game = src["id"], src["game"]
         gname = settings["game_names"].get(game) or "・".join(settings["game_names"].values())
@@ -272,7 +279,7 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 x_allow -= len(posts)
             except Exception as e:
                 log(f"X取得失敗 {sid}: {e}")
-                continue
+                return None
             if newest:
                 seen[sid] = newest
             xst.setdefault(sid, [0, 0])[0] += len(posts)
@@ -294,25 +301,37 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if fl["n"] >= 2:  # 2回続けて失敗 → 3時間（5回以上は6時間）お休み
                     fl["until"] = (now() + timedelta(hours=6 if fl["n"] >= 5 else 3)).isoformat()
                 log(f"取得失敗 {sid}: {e}" + (f"（{fl['n']}回続けて失敗。しばらく休む）" if fl["n"] >= 2 else ""))
-                continue
+                return None
 
+        rss_guid = {}   # 記事のURL → guid（時間切れで読めなかった記事を、次の回に読み直すため）
         if src["type"] == "rss":
             done = set(seen.get(sid, []))
+            # 1回に読む記事の数の上限（設定があるときだけ）。初回は新しいものだけ読み、古いものは読まずに済ませる。
+            # 上限を超えた分は「読んだ」にしないので次の回に読む
+            cap = int(settings.get("rss_first_run_max" if first_run else "rss_items_per_run") or 0)
+            n_new = 0
             for it in parse_rss(body):
                 if it["guid"] in done:
                     continue
+                if cap and n_new >= cap:
+                    if first_run:
+                        done.add(it["guid"])
+                    continue
+                n_new += 1
                 done.add(it["guid"])
                 art = read_article(it, sid) if art_left > 0 else None
                 if art:
                     texts.append((f"{it['title']}\n{it['date']}\n記事URL: {art[0]}\n\n{art[1]}", art[0]))
+                    rss_guid[art[0]] = it["guid"]
                     continue
                 texts.append((f"{it['title']}\n{it['date']}\n{it['summary']}\nURL: {it['link']}", it["link"]))
+                rss_guid[it["link"]] = it["guid"]
             seen[sid] = list(done)[-500:]
         elif src["type"] == "html":
             text = html_to_text(body, src["url"])
             h = sha(text)
             if seen.get(sid) == h:
-                continue  # 変化なし → AIを呼ばない（費用節約）
+                return None  # 変化なし → AIを呼ばない（費用節約）
             seen[sid] = h
             texts.append((text, src["url"]))
         elif src["type"] == "html_index":
@@ -393,7 +412,16 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 log(f"  見本: {fresh[0][:200]!r}")
 
         batches = []
-        for text, url in texts:
+        for n_, (text, url) in enumerate(texts):
+            # 同時に読むとき、時間の上限を大きく超えないように（残りは次の回。RSSは「読んだ」から外して読み直す）
+            if budget and par > 1 and (now() - t_start).total_seconds() > budget + 15:
+                if src["type"] == "rss":
+                    for _, u in texts[n_:]:
+                        if rss_guid.get(u):
+                            done.discard(rss_guid[u])
+                    seen[sid] = list(done)[-500:]
+                log(f"  {sid}: 時間の上限なので、残り{len(texts) - n_}件は次の回に読みます")
+                break
             try:
                 items = extractor(text, game, gname, src["name"], url)
             except Exception as e:
@@ -403,6 +431,10 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
             batches.append((items, url))
         if direct:
             batches.append((direct, None))
+        return src, sid, first_run, batches
+
+    def merge(res):
+        src, sid, first_run, batches = res
         for items, url in batches:
             for it in items:
                 end = parse_dt(it.get("end"))
@@ -430,6 +462,25 @@ def collect(sources, settings, extractor=extract, fetcher=get, x_client=None) ->
                 if src["type"] == "x":
                     xst.setdefault(sid, [0, 0])[1] += 1
                 log(f"新規: [{it['game']}] {it['store']} / {it['product']} 締切={it.get('end')}")
+
+    par = int(settings.get("collect_parallel") or 1)
+    if par > 1 and not any(s_.get("type") == "x" for s_ in sources):
+        # ゲーム側：別々の情報元を同時に読む（同じ60秒の枠で、たくさんの情報元を読めるように）。
+        # 新しい抽選の登録（lots への書き込み）は、元の順番どおりに1つずつ
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=par) as ex:
+            results = list(ex.map(work, sources))
+        for res in results:
+            if res:
+                merge(res)
+    else:
+        for src in sources:
+            if budget and (now() - t_start).total_seconds() > budget:
+                log(f"情報集めの時間の上限（{budget}秒）に達したので、残りの情報元は次の回に回します")
+                break
+            res = work(src)
+            if res:
+                merge(res)
 
     # cardchusen の一覧から消えた抽選は終了（締切が書かれていない古い抽選が残り続けないように）
     for name, keys in live.items():

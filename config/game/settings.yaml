@@ -23,6 +23,9 @@ collect_time_budget: 150   # 情報集めは150秒まで。超えたら読んだ
 via_jp_hosts: ["geo-online.co.jp"]   # GitHubからは断られるので、日本の中継（Cloudflare Worker jp-fetch）経由で読むお店
 job_tail_sec: 160          # 抽選集めのあとに残しておく秒数（買取価格の読み取り・サイト作り・公開）
 rss_read_article: true       # ニュースのRSSは記事を開いて本文まで読む（締切・プレバンの商品ページなどの応募先を拾うため）
+collect_parallel: 6         # 情報元を同時にいくつ読むか（11/11：同じ60秒の枠でたくさん読むため。GitHubの使用時間は増えない）
+rss_items_per_run: 6        # ニュースの検索1つにつき、1回にAIで読む記事の数の上限（残りは次の回）
+rss_first_run_max: 2        # 新しく足した検索の初回は、新しい2件だけ読む（古い記事をまとめて読んで時間・費用が跳ねないように）
 rss_article_max_per_run: 24  # 1回に開く記事の数の上限（時間と費用の上限。時間は collect_time_budget でも止まる）
 rss_article_per_source: 3    # 1つの情報元で開く記事の数の上限（最初の情報元で使い切らないように）
 page_checks_per_run: 6   # 応募ページが終わっていないか見る数（1回あたり。17件で約90秒かかったため 11/9 に少なく）
