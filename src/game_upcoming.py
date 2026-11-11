@@ -157,7 +157,7 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
         ld = gp._jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": a, "acceptedAnswer": {"@type": "Answer", "text": b}} for a, b in faq]})
         page(f"{nm} 予約・在庫・発売日・定価【{md}更新】｜{brand['name']}",
-             f"{nm}（{x.get('hardware') or ''}）の発売日{x.get('sales_date') or ''}・定価{price}・予約できるお店（楽天・Amazon）・在庫と再販の情報。販売開始はXで通知。",
+             f"JAN {jan}｜{nm}（{x.get('hardware') or ''}）の発売日{x.get('sales_date') or ''}・定価{price}・予約できるお店（楽天・Amazon）・在庫と再販の情報。販売開始はXで通知。",
              f'{ld}<p><a href="/new/">発売予定のゲーム一覧</a> ／ <a href="/souba/">買取相場一覧</a></p><h1>{escape(nm)}</h1>{gp.buy_box(az, rk, nm)}<p class="pm-intro">{escape(intro)}</p>'
              f'<div class="pm-row">{img}<div><div>発売日</div><div class="pm-big" style="font-size:22px">{escape(x.get("sales_date") or "未定")}</div>'
              f'<div>定価 {escape(price)}{("・" + escape(st_)) if st_ else ""}</div><div>買取相場：{"予測不能（発売前）" if before else "買取価格の情報はまだありません"}</div></div></div>'

@@ -649,8 +649,10 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
         tk = f'定価 {x["teika"]:,}円（{_ratio_html(x)}）' if x["teika"] else "定価：確認中"
-        desc = f"{x['name']}の新品の最高買取価格は{x['max']:,}円" + (f"（定価{x['teika']:,}円の{round(x['ratio'] * 100)}%）" if x["teika"] else "") + "。1週間前比・1か月前比・買取店ごとの価格・抽選や再販の情報。"
-        page(f"{x['name']} 買取価格・定価・在庫/再販情報【{md}更新】｜{brand['name']}", desc,
+        # JANコードで検索する人が多い（Search Console 11/11）ので、説明の頭と題名の最後に JAN を入れる。
+        # 「買取」で検索する人のため、題名に最高買取価格も入れる。
+        desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、定価{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
+        page(f"{x['name']} 買取価格 最高{x['max']:,}円【{md}更新】定価・再販情報｜JAN {x['jan']}", desc,
              f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
