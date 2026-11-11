@@ -102,7 +102,7 @@ SETS = {
         "夢の一枚": ("PEB-01", "The Drawing of Your Dreams", "The Drawing of Your Dreams", "", ""),  # 新シリーズ「プレミアムエクストラブースター」第1弾。英語名は 11/10 英語版公式（en.onepiece-cardgame.com）で確認
         "応答せよ、世界": ("OP-19", "Come In, World", "Come In, World", "", ""),
         "EAST BLUE": ("EB-06", "EAST BLUE", "EAST BLUE", "", ""),
-        "神の支配": ("OP-18", "The Dominance of God", "The Dominance of God", "", ""),
+        "神の支配": ("OP-18", "The Dominance of God", "The Dominance of God", "神的支配", ""),  # 繁体字名は 11/11 アジア繁体字公式の商品ページ（asia-tc.onepiece-cardgame.com）を出典とする台湾メディア記事で確認
         "ヒロインズエディション vol.2": ("EB-05", "Heroines Edition vol.2", "Heroines Edition vol.2", "", ""),
         "HEROINES PRECIOUS BOX": ("", "HEROINES PRECIOUS BOX", "", "", ""),
         "世界最強の戦士": ("OP-17", "The World's Strongest Warriors", "The World's Strongest Warriors", "世界最強的戰士", ""),
