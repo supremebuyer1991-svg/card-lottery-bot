@@ -220,11 +220,18 @@ def update(settings, items, fetch=None, sleep=1.1):
     models = _models()
     t = now()
     todo, seen = [], set()
+    game_of = {}
+    # 名前で探すとき、ジャンルの言葉（hints）が楽天の商品名に入っていることを必ず確かめるジャンル（aff_strict: true）
+    # 11/11：お酒の「福みくじ」がナノブロックの「招福みくじ」に当てはまった。リンク先と違う商品を出さないため
+    import gamecats as _gc
+    _hints = _gc.hints()
+    strict = {c["id"] for c in _gc.categories(False) if c.get("aff_strict")}
     for i in sorted(items, key=lambda x: (x.get("end") or x.get("start") or "9999")):
         q = query_of(i, manual_of(i, models))
         if not q or q[0] in seen:
             continue
         seen.add(q[0])
+        game_of[q[0]] = i.get("game") or ""
         c = cache.get(q[0])
         if c and parse_dt(c.get("checkedAt")) and (t - parse_dt(c["checkedAt"])).total_seconds() < hours * 3600:
             continue
@@ -268,6 +275,9 @@ def update(settings, items, fetch=None, sleep=1.1):
         for it in found:
             if how == "name":
                 sc = match(it, word)
+                g_ = game_of.get(key, "")
+                if sc is not None and g_ in strict and g_ in _hints and not _hints[g_].search(it.get("itemName") or ""):
+                    sc = None
             else:   # JAN・商品ページのURLで探したものは、その商品そのもの（周辺機器・中古だけは外す）
                 sc = None if NG.search(it.get("itemName") or "") and how == "jan" else 0
             if sc is not None and (best is None or sc > best[0]):

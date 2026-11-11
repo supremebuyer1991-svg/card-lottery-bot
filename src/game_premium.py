@@ -285,6 +285,12 @@ def _chg(cur, old):
     return f'<span class="{cls}">{"+" if d > 0 else ""}{d:,}円（{"+" if d > 0 else ""}{round(d / old * 100, 1)}%）</span>'
 
 
+def _notice_p(text):
+    """カテゴリの注意書き（お酒の「20歳になってから」など）。無ければ空"""
+    return ('<p class="cat-notice" style="margin:8px 0;padding:8px 12px;border:1px solid #e0b4b4;background:#fff5f5;'
+            f'color:#7a1f1f;border-radius:8px;font-size:13px">🔞 {escape(text)}</p>') if text else ""
+
+
 def chart_svg(h, teika):
     """最高買取価格のチャート（直近90日・定価の線つき）"""
     pts = sorted(h.items())[-90:]
@@ -658,6 +664,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     for x in allx + revived:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
+        _ntc = (_cats.get(cat_of([x["name"]] + x.get("names", []))) or {}).get("notice")
+        if _ntc:   # お酒の「20歳になってから」など、カテゴリの注意書き（11/11）
+            intro = _notice_p(_ntc) + intro
         if x.get("stale"):
             sd = x["stale"]
             intro = (f'<p class="note">⚠ この商品は いま買取店の一覧に載っていません。下の買取価格は{int(sd[5:7])}/{int(sd[8:10])}時点のものです。</p>') + intro
@@ -722,7 +731,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         thin = sum(bool(v) for v in (price, r0.get("jan"), rk.get("img"), rd)) < 3   # 定価・JAN・写真・発売日のうち3つ以上そろうまでは検索に出さない
         page(f"{nm} 抽選・予約・再販と相場・定価【{md}更新】｜{brand['name']}",
              f"{nm}の抽選・予約・再販の受付状況、定価、相場（{souba}）、楽天・Amazonの販売ページ。販売開始はXで通知。",
-             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>{buy_box(r0.get("az") or "", rk.get("u") or "", nm)}'
+             f'<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a></p><h1>{escape(nm)}</h1>' + _notice_p((cats_by.get(r0.get("game")) or {}).get("notice")) + f'{buy_box(r0.get("az") or "", rk.get("u") or "", nm)}'
              f'<div class="pm-row">{img}<div><div>市場相場</div><div class="pm-big" style="font-size:20px">{escape(souba)}</div>'
              f'<div>{("定価 " + escape(str(price))) if price else ""}</div></div></div>{_av(next((r.get("avail") for r in rs if r.get("avail")), None))}{mercari_box(nm)}'
              f'{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{rel_html}<h2>商品情報</h2><table class="pm-t">{info_h}</table>{note}', f"item/{slug}/", img=rk.get("img") or "", noindex=thin)

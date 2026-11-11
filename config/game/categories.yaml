@@ -289,6 +289,7 @@ categories:
     name: お酒（山崎・響・白州・イチローズモルト・ニッカなどのジャパニーズウイスキー）の抽選・予約・再入荷
     short: お酒・ウイスキー
     slug: liquor
+    aff_strict: true      # 楽天の商品名にこのジャンルの言葉が入っているものだけ当てはめる（別の商品のリンクを出さない）
     hashtags: "#ウイスキー #山崎 #ウイスキー抽選"
     hints: "ウイスキー|ウィスキー|WHISKY|山崎 ?(NV|ノンエイジ|12年|18年|25年|リミテッド|LIMITED|Story|ストーリー)|サントリー ?(山崎|白州|響|知多|碧|AO)|響 ?(JAPANESE HARMONY|ジャパニーズ ?ハーモニー|BLOSSOM|ブロッサム|17年|21年|30年)|白州|イチローズ ?モルト|秩父 ?(蒸溜所|ザ・ファースト)|竹鶴|余市|宮城峡|フロム[・ ]?ザ[・ ]?バレル|ザ・?ニッカ|厚岸|駒ヶ岳|嘉之助|三郎丸|ジャパニーズ ?ウイスキー"
     strip_words: "ウイスキー|ウィスキー|シングルモルト|ピュアモルト|ブレンデッド|700ml|700ML|180ml|ml|ML|箱付き|カートン付き|化粧箱付|カートン|ギフトBOX|サントリー|ニッカ"
@@ -304,6 +305,7 @@ categories:
     name: POP MART（ポップマート）LABUBU（ラブブ）の抽選・予約・再入荷
     short: ラブブ
     slug: labubu
+    aff_strict: true      # 楽天の商品名にこのジャンルの言葉が入っているものだけ当てはめる（別の商品のリンクを出さない）
     hashtags: "#ラブブ #LABUBU #POPMART"
     hints: "LABUBU|ラブブ|POP ?MART|ポップ ?マート|THE MONSTERS"
     strip_words: "LABUBU|ラブブ|POP ?MART|ポップ ?マート|THE MONSTERS|シリーズ|ぬいぐるみ|ペンダント|フィギュア|ブラインドボックス|BOX"
@@ -317,6 +319,7 @@ categories:
     name: ボンボンドロップシール（ぷっくりシール）の抽選・予約・再入荷
     short: ボンボンドロップシール
     slug: bonbon-drop
+    aff_strict: true      # 楽天の商品名にこのジャンルの言葉が入っているものだけ当てはめる（別の商品のリンクを出さない）
     hashtags: "#ボンボンドロップシール #ボンドロ"
     hints: "ボンボンドロップ|ボンドロ|BONBON ?DROP"
     strip_words: "ボンボンドロップシール|ボンボンドロップ|ボンドロ|シール|BONBON ?DROP"
