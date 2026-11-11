@@ -3735,7 +3735,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     f'<link rel="alternate" hreflang="x-default" href="{site}/en/sets/{ss_}/">']
                 t_ = jp_.read_text(encoding="utf-8")
                 if 'hreflang="ja"' not in t_:
-                    jp_.write_text(t_.replace("</head>", "".join(tags_) + "</head>", 1), encoding="utf-8")
+                    t_ = t_.replace("</head>", "".join(tags_) + "</head>", 1)
+                    t_ = _lang_bar(t_, {L_: f"/{L_}/sets/{ss_}/" for _, L_ in HL_})
+                    jp_.write_text(t_, encoding="utf-8")
                 for L_ in {L_ for _, L_ in HL_}:
                     f_ = out / L_ / "sets" / ss_ / "index.html"
                     t_ = f_.read_text(encoding="utf-8")
@@ -3743,6 +3745,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                         f_.write_text(t_.replace('<link rel="alternate" hreflang="en"', tags_[0] + '<link rel="alternate" hreflang="en"', 1), encoding="utf-8")
                 n_hl += 1
         print(f"日本語⇔海外の弾ページを hreflang でつないだ: {n_hl}弾")
+        for p_ in ("index.html", "pokeka/index.html", "onepiece/index.html"):  # 日本語のトップ・ゲームのトップにも言語の案内
+            f_ = out / p_
+            if f_.exists():
+                f_.write_text(_lang_bar(f_.read_text(encoding="utf-8"), {"en": "/en/", "zh-tw": "/zh-tw/", "ko": "/ko/"}), encoding="utf-8")
         # 海外のトップ（/en/ /zh-tw/ /ko/）にも、日本語トップへの hreflang="ja" を足す（日本語トップからは出しているので、返しのリンクが要る）
         for L_ in ("en", "zh-tw", "ko"):
             f_ = out / L_ / "index.html"
@@ -3988,6 +3994,18 @@ def inject_pwa(out):
         p.write_text(h.replace("</head>", tag + "</head>", 1), encoding="utf-8")
         n += 1
     return n
+
+
+def _lang_bar(html, links):
+    """11/11：日本語のページに来た海外の人（GA4 で台湾・韓国・香港の人が日本語のページを読んでいた）を、英語・繁体字・韓国語のページへ案内する帯。
+    ブラウザの言語が日本語でない人にだけ見せる（日本の人には出さない）。リンク自体はHTMLにあるので検索エンジンにも伝わる"""
+    if 'id="langbar"' in html or "</h1>" not in html:
+        return html
+    names = {"en": "🌐 English", "zh-tw": "繁體中文", "ko": "한국어"}
+    a_ = "".join(f'<a href="{u}" hreflang="{ {"zh-tw": "zh-Hant"}.get(L, L) }">{names[L]}</a>' for L, u in links.items() if L in names)
+    bar = (f'<div id="langbar" class="langbar" hidden><span>Not Japanese? Read this page in:</span>{a_}</div>'
+           '<script>try{if(!/^ja/i.test(navigator.language||""))document.getElementById("langbar").hidden=false}catch(e){}</script>')
+    return html.replace("</h1>", "</h1>" + bar, 1)
 
 
 CARD_RAR = {  # 11/11：弾ごとに「収録カードの相場」を集めるレアリティ（スニダンの書き方）
