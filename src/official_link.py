@@ -141,6 +141,11 @@ def resolve(settings, lots, fetch):
         else:
             if left <= 0:
                 continue
+            from common import job_elapsed
+            if job_elapsed() > float(settings.get("official_until_sec", 280)):   # 5分の枠を超えないように、残りは次の回（11/11）
+                log("公式リンク探し：時間の上限なので次の回に")
+                left = 0
+                continue
             left -= 1
             off, real = find_official(u, it.get("product") or "", fetch)
             cache[u] = {"official": off, "article": real, "at": t.isoformat()}

@@ -240,6 +240,10 @@ def update(settings, items, fetch=None, sleep=1.1):
             params.update(keyword=word if how == "jan" else keyword(word), shopCode="book")
         if aff:
             params["affiliateId"] = aff
+        from common import job_elapsed
+        if job_elapsed() > float((settings or {}).get("rakuten_until_sec", 300)):   # 5分の枠を超えないように、残りは次の回（11/11）
+            log("楽天（ゲーム）：時間の上限なので次の回に")
+            break
         if called and sleep:
             time.sleep(sleep)   # 楽天は1秒に1回まで。失敗した後も必ず間をあける
         called += 1
