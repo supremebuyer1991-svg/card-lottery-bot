@@ -12484,10 +12484,11 @@
     "multi": false,
     "cls": "54ce0103e711",
     "hold_reason": "店名があいまい",
-    "page_checked_at": "2026-11-11T00:26:22.023371+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:45:41.210346+09:00",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "address": "埼玉県所沢市小手指台23-1",
+    "address_checked": true
   },
   "6cfd5392ff4c0dff": {
     "store": "東簗瀬",
@@ -12519,10 +12520,10 @@
     "multi": false,
     "cls": "26c91a996637",
     "issue": 594,
-    "page_checked_at": "2026-11-11T05:30:50.300759+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:45:45.616998+09:00",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "address_checked": true
   },
   "339623296248294b": {
     "store": "王の洞窟 岐南本店",
@@ -13216,7 +13217,7 @@
     "start": "2026-11-08T22:00:00+09:00",
     "multi": true,
     "cls": "814f7019c42c",
-    "page_checked_at": "2026-11-11T05:52:31.007362+09:00",
+    "page_checked_at": "2026-11-11T18:45:47.049604+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://dorasuta.membercard.jp/lottery"
   },
   "bed5b5503c2df198": {
@@ -13244,7 +13245,7 @@
     "key": "bed5b5503c2df198",
     "status": "approved",
     "found_at": "2026-11-09T11:04:51.278829+09:00",
-    "page_checked_at": "2026-11-10T10:51:19.094756+09:00",
+    "page_checked_at": "2026-11-11T18:45:47.099629+09:00",
     "address": "東京都豊島区東池袋１丁目５０-３５",
     "address_checked": true,
     "multi": false,
@@ -13331,7 +13332,7 @@
     "multi": false,
     "cls": "54758755bbd6",
     "start": "2026-11-09T10:00:00+09:00",
-    "page_checked_at": "2026-11-10T13:10:54.771168+09:00",
+    "page_checked_at": "2026-11-11T18:45:49.540839+09:00",
     "address": "福岡県筑紫野市原田836-6",
     "address_checked": true,
     "announce": "2026-11-18",
@@ -13648,7 +13649,7 @@
     "buy": "11/21(土)〜11/23(月)",
     "multi": true,
     "cls": "7aeb6ef95562",
-    "page_checked_at": "2026-11-11T05:52:31.178526+09:00",
+    "page_checked_at": "2026-11-11T18:45:51.970274+09:00",
     "page_err": "中身が空"
   },
   "17a6455a91d995a8": {
@@ -13680,7 +13681,7 @@
     "buy": "11/21(土)〜11/23(月)",
     "multi": true,
     "cls": "da7af4dd8c54",
-    "page_checked_at": "2026-11-11T05:52:31.178540+09:00",
+    "page_checked_at": "2026-11-11T18:45:51.970288+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://ryuunoshippo.membercard.jp/lottery"
   },
   "ba24ccd65ca43346": {
@@ -13736,13 +13737,12 @@
     "key": "7be52076433d3652",
     "status": "approved",
     "found_at": "2026-11-09T11:04:51.894350+09:00",
-    "page_checked_at": "2026-11-10T10:51:21.435324+09:00",
+    "page_checked_at": "2026-11-11T18:45:52.025990+09:00",
     "address": "千葉県千葉県浦安市北栄1-14-1",
     "address_checked": true,
     "multi": false,
     "cls": "fbe746a83711",
-    "start": "2026-11-09T10:00:00+09:00",
-    "page_err": "中身が空"
+    "start": "2026-11-09T10:00:00+09:00"
   },
   "4855a327b18ba483": {
     "store": "TSUTAYA積文館書店シュロアモール店",
@@ -14101,8 +14101,9 @@
     "found_at": "2026-11-09T11:04:51.894516+09:00",
     "multi": false,
     "cls": "9b9e2c97238d",
-    "page_checked_at": "2026-11-11T05:52:31.368029+09:00",
-    "page_err": "中身が空"
+    "page_checked_at": "2026-11-11T18:45:54.907133+09:00",
+    "address": "茨城県茨城県下妻市下妻戊115-1",
+    "address_checked": true
   },
   "312dde436633fb77": {
     "store": "トレカエース小名浜住吉店",
@@ -14157,9 +14158,10 @@
     "found_at": "2026-11-09T11:04:51.894538+09:00",
     "multi": false,
     "cls": "bfb4fef99fa5",
-    "page_checked_at": "2026-11-11T05:52:33.518676+09:00",
-    "page_err": "中身が空",
-    "start": "2026-11-09T10:00:00+09:00"
+    "page_checked_at": "2026-11-11T18:45:57.817675+09:00",
+    "start": "2026-11-09T10:00:00+09:00",
+    "address": "茨城県茨城県ひたちなか市大字東石川３６１４-１",
+    "address_checked": true
   },
   "919f4e6334dcc5cd": {
     "store": "トレカエースイオンタウン水戸南店",
@@ -14214,7 +14216,7 @@
     "key": "ae92ed9b2fb164c9",
     "status": "approved",
     "found_at": "2026-11-09T11:04:51.894562+09:00",
-    "page_checked_at": "2026-11-10T10:51:23.471097+09:00",
+    "page_checked_at": "2026-11-11T18:46:00.149394+09:00",
     "multi": false,
     "cls": "fc88df3d327a",
     "address_checked": true
@@ -14540,7 +14542,7 @@
     "tco_checked": true,
     "apply_url": "https://livepocket.jp/e/hloou",
     "end_from": "Xの告知と応募ページ（11/15(日)20:30〆）",
-    "page_checked_at": "2026-11-10T11:08:01.055654+09:00",
+    "page_checked_at": "2026-11-11T18:46:02.590712+09:00",
     "address_checked": true,
     "details_checked": true
   },
@@ -14834,12 +14836,12 @@
     "key": "a7fbd415a41d3d8e",
     "status": "approved",
     "found_at": "2026-11-09T11:48:13.297036+09:00",
-    "page_checked_at": "2026-11-11T05:52:35.587541+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:02.590814+09:00",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "a3af47ffdb97"
+    "cls": "a3af47ffdb97",
+    "address_checked": true
   },
   "9bbe4c8b6a8cbd02": {
     "store": "TSUTAYA北習志野駅前店",
@@ -15219,12 +15221,13 @@
     "key": "a1276933aa0242f3",
     "status": "approved",
     "found_at": "2026-11-09T12:31:36.390633+09:00",
-    "page_checked_at": "2026-11-11T05:52:37.672485+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:05.478517+09:00",
     "post_checked": true,
     "details_checked": true,
     "multi": false,
-    "cls": "5cff954c3239"
+    "cls": "5cff954c3239",
+    "address": "茨城県茨城県水戸市堀町1094-7",
+    "address_checked": true
   },
   "7bc4800da843a91c": {
     "store": "唐津",
@@ -15501,12 +15504,12 @@
     "key": "4e812d4c4e154d5b",
     "status": "approved",
     "found_at": "2026-11-09T12:31:36.391200+09:00",
-    "page_checked_at": "2026-11-11T05:52:39.829926+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:07.929242+09:00",
     "multi": false,
     "cls": "83ba15e48372",
     "post_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "address_checked": true
   },
   "f91b7a57b2ccbb7c": {
     "store": "トレカプロ",
@@ -15559,11 +15562,11 @@
     "key": "a02485bbaded814b",
     "status": "approved",
     "found_at": "2026-11-09T12:43:53.282510+09:00",
-    "page_checked_at": "2026-11-11T05:52:41.934026+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:10.766620+09:00",
     "multi": false,
     "cls": "4fa0b40331b8",
-    "start": "2026-11-09"
+    "start": "2026-11-09",
+    "address_checked": true
   },
   "53b55fda3bfa567c": {
     "store": "トレカの零式書店鈴鹿店",
@@ -15872,10 +15875,10 @@
     "key": "75573a14fd3e0ddf",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397256+09:00",
-    "page_checked_at": "2026-11-11T05:52:44.091964+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:13.364971+09:00",
     "multi": false,
-    "cls": "d1957045dffe"
+    "cls": "d1957045dffe",
+    "address_checked": true
   },
   "e112676cc7b78db4": {
     "store": "キデイランド 神戸店",
@@ -15902,10 +15905,10 @@
     "key": "e112676cc7b78db4",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397285+09:00",
-    "page_checked_at": "2026-11-11T05:52:46.285163+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:16.381825+09:00",
     "multi": false,
-    "cls": "91c83357101b"
+    "cls": "91c83357101b",
+    "address_checked": true
   },
   "23ebcab982792689": {
     "store": "キデイランド 浦和美園店",
@@ -15932,10 +15935,10 @@
     "key": "23ebcab982792689",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397315+09:00",
-    "page_checked_at": "2026-11-11T05:52:48.370072+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:20.331965+09:00",
     "multi": false,
-    "cls": "c3d2ac842ab8"
+    "cls": "c3d2ac842ab8",
+    "address_checked": true
   },
   "b5c924e04453a972": {
     "store": "キデイランド ららぽーと富士見店",
@@ -15962,10 +15965,10 @@
     "key": "b5c924e04453a972",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397345+09:00",
-    "page_checked_at": "2026-11-11T05:52:50.459548+09:00",
-    "page_err": "中身が空",
+    "page_checked_at": "2026-11-11T18:46:24.344816+09:00",
     "multi": false,
-    "cls": "912bd158b93e"
+    "cls": "912bd158b93e",
+    "address_checked": true
   },
   "c07c2d765dbd68ad": {
     "store": "TSUTAYA北習志野駅前店",
@@ -24470,7 +24473,7 @@
     "end": "2026-11-15T20:30:00+09:00",
     "url": "https://livepocket.jp/e/u85j9",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "北海道",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -24487,7 +24490,9 @@
     "no_quote": true,
     "key": "154cf6cd43deee8f",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782730+09:00"
+    "found_at": "2026-11-11T10:58:00.782730+09:00",
+    "multi": false,
+    "cls": "ffebc85471d6"
   },
   "de2fbfb39b2e11d5": {
     "store": "トレカエース植田店",
@@ -24496,7 +24501,7 @@
     "end": "2026-11-15T21:00:00+09:00",
     "url": "https://livepocket.jp/e/d3c2s",
     "x_post": "https://x.com/TCG_LP_Navi/status/2120273801867145452",
-    "channel": "online",
+    "channel": "store",
     "area": "福島県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -24514,7 +24519,9 @@
     "key": "de2fbfb39b2e11d5",
     "status": "approved",
     "found_at": "2026-11-11T10:58:00.782750+09:00",
-    "start": "2026-11-09T09:00:00+09:00"
+    "start": "2026-11-09T09:00:00+09:00",
+    "multi": false,
+    "cls": "a21db025d233"
   },
   "f73668045f32e919": {
     "store": "ブックエース坂東店",
@@ -24523,7 +24530,7 @@
     "end": "2026-11-15T21:00:00+09:00",
     "url": "https://livepocket.jp/e/gywmn",
     "x_post": "https://x.com/OnchainOutlaw/status/2120126863767191970",
-    "channel": "online",
+    "channel": "store",
     "area": "茨城県",
     "method": "オンライン",
     "conditions": "会員・本人確認",
@@ -24540,7 +24547,9 @@
     "no_quote": true,
     "key": "f73668045f32e919",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782769+09:00"
+    "found_at": "2026-11-11T10:58:00.782769+09:00",
+    "multi": false,
+    "cls": "a3b04dbb3d29"
   },
   "4f7ae73e625755a8": {
     "store": "フタバ図書TSUTAYA Alti福山店",
@@ -24565,7 +24574,9 @@
     "no_quote": true,
     "key": "4f7ae73e625755a8",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782789+09:00"
+    "found_at": "2026-11-11T10:58:00.782789+09:00",
+    "multi": false,
+    "cls": "583ddc471203"
   },
   "241f885444a37f6b": {
     "store": "勝木書店大野店",
@@ -24574,7 +24585,7 @@
     "end": "2026-11-15T23:00:00+09:00",
     "url": "https://shoplottery.e-starbox.com/lottery/entry?code=qFxRYho0jO",
     "x_post": null,
-    "channel": "online",
+    "channel": "store",
     "area": "福井県",
     "method": "オンライン",
     "conditions": "本人確認",
@@ -24590,7 +24601,9 @@
     "no_quote": true,
     "key": "241f885444a37f6b",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782825+09:00"
+    "found_at": "2026-11-11T10:58:00.782825+09:00",
+    "multi": false,
+    "cls": "bbbb8f90f075"
   },
   "6f5c07a929aea198": {
     "store": "プラネット西条中央店",
@@ -24615,7 +24628,9 @@
     "no_quote": true,
     "key": "6f5c07a929aea198",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782848+09:00"
+    "found_at": "2026-11-11T10:58:00.782848+09:00",
+    "multi": false,
+    "cls": "41cee9fd1ee3"
   },
   "67baec89222ed2a2": {
     "store": "ONE PIECEカードゲーム公式ショップ各店（ナムコパークス・デックススタジアム）",
@@ -24624,7 +24639,7 @@
     "end": "2026-11-15T23:59:00+09:00",
     "url": "https://bandainamco-am.co.jp/official_shop/onepiece-cardgame/news/important/20261110.html",
     "x_post": "https://x.com/Nchan_000/status/2120143185238233490",
-    "channel": "online",
+    "channel": "store",
     "area": null,
     "method": "オンライン",
     "conditions": "会員・本人確認 ／ 対象地域：北海道・宮城県・埼玉県・東京都・神奈川県・富山県・愛知県・岐阜県・京都府・大阪府・広島県・愛媛県・福岡県・熊本県・沖縄県",
@@ -24642,7 +24657,9 @@
     "key": "67baec89222ed2a2",
     "status": "approved",
     "found_at": "2026-11-11T10:58:00.782870+09:00",
-    "start": "2026-11-11T10:00:00+09:00"
+    "start": "2026-11-11T10:00:00+09:00",
+    "multi": true,
+    "cls": "8e5bede54ee2"
   },
   "96c9572057ffd94d": {
     "store": "トレカチャンピオンなんば日本橋店",
@@ -24668,7 +24685,9 @@
     "no_quote": true,
     "key": "96c9572057ffd94d",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782890+09:00"
+    "found_at": "2026-11-11T10:58:00.782890+09:00",
+    "multi": false,
+    "cls": "be72ec02d967"
   },
   "c6b740fc959d789d": {
     "store": "トレカエース常陸太田",
@@ -24694,7 +24713,9 @@
     "no_quote": true,
     "key": "c6b740fc959d789d",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782931+09:00"
+    "found_at": "2026-11-11T10:58:00.782931+09:00",
+    "multi": false,
+    "cls": "55f8339220e4"
   },
   "814da2e13f048bfc": {
     "store": "TSUTAYA鹿沼店",
@@ -24719,7 +24740,9 @@
     "no_quote": true,
     "key": "814da2e13f048bfc",
     "status": "approved",
-    "found_at": "2026-11-11T10:58:00.782961+09:00"
+    "found_at": "2026-11-11T10:58:00.782961+09:00",
+    "multi": false,
+    "cls": "2210e2dbb5f1"
   },
   "926ffe3b7d5c8ba8": {
     "store": "文教堂行徳店",
