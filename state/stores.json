@@ -68,7 +68,7 @@
   },
   "store/gemupuraza-302-fa481/": {
     "name": "ゲームプラザ元気302",
-    "last": "2026-11-10",
+    "last": "2026-11-12",
     "game": "pokemon",
     "area": "滋賀県",
     "address": "滋賀県大津市今堅田2丁目40-25"
@@ -774,7 +774,7 @@
   },
   "store/batoroco-a4a70/": {
     "name": "トーナメントセンターバトロコ 秋田駅前",
-    "last": "2026-10-27",
+    "last": "2026-11-12",
     "game": "onepiece",
     "area": "秋田県"
   },
@@ -1105,7 +1105,7 @@
   },
   "store/zesuto-toreka-badf8/": {
     "name": "ゼスト相模原店 トレカ館",
-    "last": "2026-11-11",
+    "last": "2026-11-12",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -2212,7 +2212,7 @@
   },
   "store/cardlabo-ed952/": {
     "name": "カードラボAKIHABARAゲーマーズB1店",
-    "last": "2026-11-08",
+    "last": "2026-11-12",
     "game": "pokemon",
     "keep": true,
     "area": "東京都"
@@ -2232,8 +2232,8 @@
     "area": "岐阜県"
   },
   "store/tsutaya-771dd/": {
-    "name": "TSUTAYA Trading Card府中駅前",
-    "last": "2026-11-05",
+    "name": "TSUTAYA Trading Card 府中駅前",
+    "last": "2026-11-12",
     "game": "pokemon",
     "keep": true,
     "area": "東京都"
@@ -2415,9 +2415,10 @@
   },
   "store/mint-cc0d6/": {
     "name": "ミント横浜店（スカイビル）",
-    "last": "2026-10-26",
+    "last": "2026-11-12",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "神奈川県"
   },
   "store/cardbox-0418b/": {
     "name": "CARDBOX ブックイン金進堂原田店",
@@ -2586,9 +2587,10 @@
   },
   "store/bookoff-d0897/": {
     "name": "ブックオフ秦野渋沢店／メディアポリス秦野渋沢店",
-    "last": "2026-08-17",
+    "last": "2026-11-12",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "神奈川県"
   },
   "store/shop-224fd/": {
     "name": "桃太郎王国 市原店",
@@ -2808,12 +2810,6 @@
     "game": "onepiece",
     "keep": true
   },
-  "store/batoroco-5427a/": {
-    "name": "バトロコ盛岡大通店",
-    "last": "2026-10-28",
-    "game": "onepiece",
-    "keep": true
-  },
   "store/yamada-17082/": {
     "name": "ヤマダデンキアプリ",
     "last": "2026-10-28",
@@ -3026,7 +3022,7 @@
     "game": "pokemon"
   },
   "store/tsutaya-0a53a/": {
-    "name": "TSUTAYA岡富店（延岡）",
+    "name": "TSUTAYA 岡富店（延岡）",
     "last": "2026-11-12",
     "game": "pokemon",
     "area": "宮崎県"
@@ -3152,7 +3148,7 @@
   },
   "store/furuichi-8251d/": {
     "name": "古本市場野口店",
-    "last": "2026-11-07",
+    "last": "2026-11-12",
     "game": "pokemon",
     "area": "兵庫県"
   },
@@ -3188,7 +3184,7 @@
   },
   "store/o-gurupu-0a945/": {
     "name": "お宝創庫グループ（お宝創庫／おじゃま館／メディオ！／プレイズ 各店）",
-    "last": "2026-11-08",
+    "last": "2026-11-12",
     "game": "pokemon"
   },
   "store/o-d23f3/": {
@@ -4298,7 +4294,7 @@
   },
   "store/sanyodo-3d780/": {
     "name": "三洋堂トレカ館 新開橋店",
-    "last": "2026-11-04",
+    "last": "2026-11-12",
     "game": "onepiece",
     "area": "愛知県"
   },
@@ -4383,7 +4379,7 @@
   },
   "store/torekashoppunakayoshi-8da85/": {
     "name": "トレカショップなかよし 久米川駅前",
-    "last": "2026-11-10",
+    "last": "2026-11-12",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -5261,7 +5257,7 @@
   },
   "store/furuichi-19787/": {
     "name": "古本市場 魚住店",
-    "last": "2026-11-11",
+    "last": "2026-11-12",
     "game": "onepiece",
     "area": "兵庫県"
   },
@@ -5754,8 +5750,8 @@
     "area": "宮城県"
   },
   "store/cardlabo-b6c50/": {
-    "name": "カードラボ千葉中央店",
-    "last": "2026-11-07",
+    "name": "カードラボ 千葉中央店",
+    "last": "2026-11-12",
     "game": "pokemon",
     "area": "千葉県"
   },
@@ -6469,7 +6465,7 @@
   },
   "store/tsutaya-9d186/": {
     "name": "TSUTAYA鳥栖店 トレカコーナー",
-    "last": "2026-11-09",
+    "last": "2026-11-12",
     "game": "pokemon",
     "area": "佐賀県"
   },
@@ -7374,5 +7370,40 @@
     "last": "2026-11-12",
     "game": "onepiece",
     "keep": true
+  },
+  "store/wattomanhobimaruifamiri-43c49/": {
+    "name": "ワットマン ホビー マルイファミリー海老名店",
+    "last": "2026-11-12",
+    "game": "pokemon",
+    "area": "神奈川県"
+  },
+  "store/tsutaya-37e78/": {
+    "name": "TSUTAYA宇都宮竹林店",
+    "last": "2026-11-12",
+    "game": "onepiece",
+    "area": "栃木県"
+  },
+  "store/bookoff-e96d5/": {
+    "name": "ブックオフ鈴鹿ハンター店",
+    "last": "2026-11-12",
+    "game": "onepiece",
+    "area": "三重県"
+  },
+  "store/onepiece-warasutoa-c99f8/": {
+    "name": "ONE PIECE 麦わらストア 各店（渋谷本店・池袋店・お台場店・MUGIWARA STORE HARAJUKU・東京駅店・名古屋店・あべの店・梅田店・福岡店・熊本店）",
+    "last": "2026-11-12",
+    "game": "onepiece"
+  },
+  "store/tsutaya-b8578/": {
+    "name": "TSUTAYA五所川原店",
+    "last": "2026-11-12",
+    "game": "onepiece",
+    "area": "青森県"
+  },
+  "store/warasutoa-054c1/": {
+    "name": "麦わらストア 池袋店",
+    "last": "2026-11-12",
+    "game": "onepiece",
+    "area": "東京都"
   }
 }
