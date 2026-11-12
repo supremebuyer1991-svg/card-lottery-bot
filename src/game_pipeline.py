@@ -135,6 +135,11 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
             import game_upcoming
             game_upcoming.update(s)   # 発売予定のゲーム（楽天ブックス・1日1回）
+            try:
+                import game_watchkw
+                game_watchkw.update(s)    # 言葉で楽天ブックスのおもちゃを探して見張りに足す（ベイブレードX など・1日1回。11/13）
+            except Exception as e:
+                log(f"見張りの言葉: スキップ {e}")
             try:   # 11/10：解説を先にすると40秒かかり、買取価格の更新がずっと時間切れで止まっていた → 買取価格のあと、残りの時間で
                 import game_aitext
                 game_aitext.update(s)     # 中身の少ない商品ページから順に解説を足す（前の回の測定を使う）
@@ -221,6 +226,11 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 import game_affi
                 from common import ROOT
                 wl = game_affi.watch_list(load_json("lotteries.json", {}), s)
+                try:
+                    import game_watchkw
+                    wl += game_watchkw.watch_items(s, {w_.get("rk") for w_ in wl if w_.get("rk")})
+                except Exception as e:
+                    log(f"見張り（言葉）: スキップ {e}")
                 try:   # 買取価格が分かる商品すべても見張る（JANで楽天・Amazonの商品ページを見張りの側で探す）
                     import re as _re
                     import game_premium

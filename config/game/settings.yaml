@@ -23,6 +23,8 @@ collect_time_budget: 150   # 情報集めは150秒まで。超えたら読んだ
 via_jp_hosts: ["geo-online.co.jp"]   # GitHubからは断られるので、日本の中継（Cloudflare Worker jp-fetch）経由で読むお店
 job_tail_sec: 160          # 抽選集めのあとに残しておく秒数（買取価格の読み取り・サイト作り・公開）
 rss_read_article: true       # ニュースのRSSは記事を開いて本文まで読む（締切・プレバンの商品ページなどの応募先を拾うため）
+watch_keywords:              # 楽天ブックスのおもちゃ売り場を言葉で探して、見張り（入荷・再販の速報）に足す（1日1回。11/13 ユーザー：入荷Nowにはベイブレードの速報が多いのにうちは無い）
+  - {q: "ベイブレードX", game: beyblade, pages: 3}
 x_min_buy_ratio: 0.8        # 買取価格が定価のこの割合より低い商品は、品薄・抽選でもXで速報しない（11/13 ユーザー「定価－20％くらいまでならいい」）
 collect_parallel: 6         # 情報元を同時にいくつ読むか（11/11：同じ60秒の枠でたくさん読むため。GitHubの使用時間は増えない）
 prefetch_host_parallel: {news.google.com: 8}   # Googleニュースの検索は8本ずつ同時に先読み（1本ずつだと44本で約2分40秒かかり、5分の枠を超えた）
