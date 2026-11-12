@@ -1306,7 +1306,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
-                 '<a href="/today/">今日締切（全タイトル）</a><a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/tousenritsu/">当選率</a><a href="/calendar/">発売日カレンダー</a><a href="/stats/">集計データ</a><a href="/mylist/">応募したリスト</a></div></section>')
+                 '<a href="/today/">今日締切（全タイトル）</a><a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/tousenritsu/">当選率</a><a href="/calendar/">発売日カレンダー</a><a href="/stats/">集計データ</a><a href="/about/">サイトについて</a><a href="/mylist/">応募したリスト</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -1843,7 +1843,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             ld.insert(0, bl)
         org = {"@type": "Organization", "@id": f"{site}/#organization", "name": "トレカ抽選ナビ", "url": f"{site}/",
                "logo": {"@type": "ImageObject", "url": f"{site}/apple-touch-icon.png"},
-               "alternateName": ["tcg-chusen.com", "トレカ抽選ナビ（tcg-chusen.com）"],  # 11/12：同じ名前のサイトがほかに3つあり、名前で検索すると2ページ目に。ドメインでも区別してもらう
+               "alternateName": ["tcg-chusen.com", "トレカ抽選ナビ（tcg-chusen.com）"], "foundingDate": "2026-10-26",  # 11/12：同じ名前のサイトがほかに3つあり、名前で検索すると2ページ目に。ドメインでも区別してもらう
                "sameAs": [f"https://x.com/{(s.get('x_account') or 'pokepi_tcg').lstrip('@')}", "https://www.youtube.com/@トレカ抽選ナビ"]}  # 11/8 Fable技術：公式Xとの結びつき（11/12 YouTube も）
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
@@ -1961,7 +1961,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                        desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピースカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
                             f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
                        summary=summary(items, "トレカの抽選"), faq=faq_for(items, "トレカの抽選"),
-                       h1="トレカの抽選情報まとめ",
+                       h1="トレカ抽選ナビ｜トレカの抽選情報まとめ",
                        lead="ポケカ・ワンピースカード・ドラゴンボール フュージョンワールドの抽選を、ネットと店頭（都道府県別）で"
                             "締切が近い順にまとめています。本人確認・会員カードの有無でも絞り込めます。")
             top["supply_bottom"] = _supply_ad(short, name, tag, raff, prices, g) + _upcoming([gg for gg in ("pokemon", "onepiece") if gg in games])
@@ -2940,6 +2940,36 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     "lead": "", "aff": body_, "links": _menu(items, games, games[0]), "root": "/"}, m_items,
                     [("トップ", ""), ("発売日カレンダー", "calendar/"), (f"{y_}年{mo_}月", f"calendar/{m_}/")])
 
+    try:  # 11/13：サイトについて（/about/）。同じ名前のサイトは運営者情報のページが「トレカ抽選ナビ」の検索で6位に出ている。こちらも名前・URL・運営・データの集め方をはっきり書く
+        n_act_a = len(items)
+        body_a = ('<div class="guide">'
+                  '<p><strong>トレカ抽選ナビ</strong>（<a href="https://tcg-chusen.com/">tcg-chusen.com</a>）は、ポケモンカード・ONE PIECEカード・ドラゴンボール フュージョンワールドの抽選販売の情報を、'
+                  'ネット抽選と店頭抽選（都道府県別）に分けて、締切が近い順にまとめている無料の情報サイトです。2026年10月26日に公開しました。</p>'
+                  '<h2>サイトの基本情報</h2><div class="tbl"><table class="stbl">'
+                  '<tr><td>サイト名</td><td>トレカ抽選ナビ</td></tr>'
+                  '<tr><td>URL</td><td>https://tcg-chusen.com/</td></tr>'
+                  '<tr><td>運営</td><td>個人運営</td></tr>'
+                  '<tr><td>公開日</td><td>2026年10月26日</td></tr>'
+                  f'<tr><td>いま受付中の抽選</td><td>{n_act_a}件（<a href="/stats/">集計データ</a>）</td></tr>'
+                  '<tr><td>更新</td><td>1日6回（自動）</td></tr>'
+                  '<tr><td>公式X</td><td><a href="https://x.com/pokepi_tcg" rel="me">@pokepi_tcg（ポケピ🐝トレカ抽選ナビ）</a></td></tr>'
+                  '<tr><td>公式YouTube</td><td><a href="https://www.youtube.com/@トレカ抽選ナビ" rel="me">@トレカ抽選ナビ</a></td></tr>'
+                  '<tr><td>お問い合わせ</td><td>公式XのDMでお願いします</td></tr></table></div>'
+                  '<h2>情報の集め方</h2><p>お店の公式サイト・公式SNS・応募ページ・抽選のまとめ情報などを1日6回自動で見回り、見つけた抽選の応募期間・応募方法・条件（本人確認・会員登録など）・受け取り方を読み取って掲載しています。'
+                  '同じ抽選を別の情報元から見つけたときは1件にまとめ、受付が終わった抽選は自動で「受付終了」にします。応募の前に、必ず各お店の公式の告知で内容を確かめてください。</p>'
+                  '<h2>ほかにまとめていること</h2><ul><li><a href="/souba/">BOXの相場</a>と、弾ごとの収録カードの相場</li><li><a href="/calendar/">発売日カレンダー</a></li><li><a href="/kekka/">抽選結果の発表日</a>と<a href="/tousenritsu/">当選率</a></li><li><a href="/stats/">集計データ</a>（お店別・都道府県別・締切の傾向）</li><li><a href="/en/">海外向けのページ（English・繁體中文・한국어）</a></li></ul>'
+                  '<h2>広告について</h2><p>当サイトは楽天アフィリエイト・Amazonアソシエイト・メルカリアンバサダーなどのアフィリエイト広告（PR）を利用しています。抽選の掲載順や内容は広告によって変えていません。</p>'
+                  '<h2>名前の似たサイトについて</h2><p>「トレカ抽選ナビ」という名前のサイトはほかにもありますが、当サイト（tcg-chusen.com）とは関係のない別のサイトです。</p>'
+                  '<p class="note">「ポケモンカードゲーム」は株式会社ポケモン、「ONE PIECEカードゲーム」「ドラゴンボールスーパーカードゲーム フュージョンワールド」は株式会社バンダイの商品です。当サイトは各社とは関係のない個人のサイトです。</p></div>')
+        write("about/", {"game": games[0], "subset": True}, {
+            "title": "トレカ抽選ナビ（tcg-chusen.com）について｜運営・情報の集め方・広告｜トレカ抽選ナビ",
+            "desc": "トレカ抽選ナビ（tcg-chusen.com）は、ポケカ・ワンピースカードの抽選販売を1日6回自動で集めて締切順にまとめる無料の情報サイトです。運営・情報の集め方・広告について。",
+            "summary": "", "faq": None, "h1": "トレカ抽選ナビ（tcg-chusen.com）について",
+            "lead": "", "aff": body_a, "links": _menu(items, games, games[0]), "root": "/"}, [],
+            [("トップ", ""), ("サイトについて", "about/")])
+    except Exception as e:
+        print("サイトについてのページを作れませんでした", e)
+
     try:  # 11/12：掲載データの集計（/stats/）。同じ名前のサイトに名前の検索で負けているので、引用されるデータページを作る
         import stats as _stats
         body_s, faq_s, lead_s, (n_all_s, n_act_s) = _stats.build(
@@ -3636,7 +3666,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         '<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:32px 16px;line-height:1.7;color:#222}a{color:#c8102e}</style></head>'
         '<body><h1>ページが見つかりません</h1><p>抽選の受付が終わり、ページを削除した可能性があります。</p>'
         '<p><a href="/">受付中の抽選一覧</a> ・ <a href="/pokeka/">ポケカ</a> ・ <a href="/onepiece/">ワンピースカード</a> ・ '
-        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a> ・ <a href="/stats/">集計データ</a></p>'
+        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a> ・ <a href="/stats/">集計データ</a> ・ <a href="/about/">サイトについて</a></p>'
         '<p id="nf-go" hidden>近いページへ移動しています… <a id="nf-a" href="/">こちら</a></p>'
         # 手打ちやAIが作った「ありそうなURL」用：親のページを順にさがして、近いページへ自動で移る（11/8）
         '<script>(function(){var p=location.pathname;if(/^\\/chain\\/?$/.test(p)){location.replace("/store/");return}'
