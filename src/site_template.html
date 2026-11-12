@@ -520,6 +520,16 @@ input[type="search"] { flex: 1 1 160px; }
 .guide ul, .guide ol { padding-left: 1.3em; margin: 6px 0; }
 .guide .note { font-size: 13px; color: var(--ink-2); }
 .guide a { color: var(--red); font-weight: 700; }
+.stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 12px 0 16px; }
+.stat-cards div { background: var(--navy-soft); border-radius: 12px; padding: 12px; text-align: center; }
+.stat-cards b { display: block; font-size: 24px; font-weight: 900; }
+.stat-cards span { font-size: 12px; color: var(--ink-2); }
+.stbl { width: 100%; font-size: 13px; border-collapse: collapse; margin: 6px 0 12px; }
+.stbl td { padding: 5px 6px; border-bottom: 1px solid var(--rule); }
+.stbl .rk { width: 22px; color: var(--ink-2); text-align: right; }
+.stbl .bar { width: 40%; }
+.stbl .bar span { display: block; height: 10px; border-radius: 5px; background: var(--navy, #1e3a8a); opacity: .75; }
+.stbl .num { text-align: right; white-space: nowrap; font-weight: 700; }
 .langbar { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin: 8px 0; padding: 8px 12px; border-radius: 10px; background: var(--navy-soft); font-size: 13px; }
 .langbar[hidden] { display: none; }
 .langbar span { color: var(--ink-2); }

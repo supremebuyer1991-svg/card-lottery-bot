@@ -1306,7 +1306,7 @@ def _menu(items, games, g, here=""):
                '</div></section>') if up else ""
     cond_html = up_html + ('<section class="m-sec"><h3>条件でさがす</h3><div class="m-area">' +
                  (f'<a href="/{slug}/no-id/">本人確認なし</a><a href="/{slug}/online/">ネット抽選</a><a href="/{slug}/today/">今日締切</a>' if gi else "") +
-                 '<a href="/today/">今日締切（全タイトル）</a><a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/tousenritsu/">当選率</a><a href="/calendar/">発売日カレンダー</a><a href="/mylist/">応募したリスト</a></div></section>')
+                 '<a href="/today/">今日締切（全タイトル）</a><a href="/guide/">抽選の当て方・コツ</a><a href="/souba/">BOXの相場</a><a href="/weekly/">今週のまとめ</a><a href="/kekka/">抽選結果</a><a href="/tousenritsu/">当選率</a><a href="/calendar/">発売日カレンダー</a><a href="/stats/">集計データ</a><a href="/mylist/">応募したリスト</a></div></section>')
     return (f'<nav class="menu" aria-label="抽選をさがす"><section class="m-sec"><h3>タイトルで選ぶ</h3>'
             f'<div class="m-games">{"".join(cards)}</div></section>{ser_html}{cond_html}{area_html}{store_html}</nav>')
 
@@ -2940,6 +2940,21 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     "lead": "", "aff": body_, "links": _menu(items, games, games[0]), "root": "/"}, m_items,
                     [("トップ", ""), ("発売日カレンダー", "calendar/"), (f"{y_}年{mo_}月", f"calendar/{m_}/")])
 
+    try:  # 11/12：掲載データの集計（/stats/）。同じ名前のサイトに名前の検索で負けているので、引用されるデータページを作る
+        import stats as _stats
+        body_s, faq_s, lead_s, (n_all_s, n_act_s) = _stats.build(
+            items, chain_of, lambda c: CHAIN[c][1] if c in CHAIN else c,
+            lambda c: f"/chain/{c}/" if c and (Path(out) / "chain" / c / "index.html").exists() else None,
+            lambda a: f"/pokeka/area/{PREF[a]}/" if a in PREF else None, escape)
+        write("stats/", {"game": games[0], "subset": True}, {
+            "title": f"トレカ抽選の集計データ｜掲載{n_all_s:,}件・受付中{n_act_s}件のお店別・都道府県別・締切の傾向【{now().month}/{now().day}更新】｜トレカ抽選ナビ",
+            "desc": lead_s[:120],
+            "summary": "", "faq": faq_s, "h1": "トレカ抽選の集計データ（トレカ抽選ナビ調べ）",
+            "lead": "", "aff": body_s, "links": _menu(items, games, games[0]), "root": "/"}, [],
+            [("トップ", ""), ("集計データ", "stats/")])
+    except Exception as e:
+        print("集計ページを作れませんでした", e)
+
     def _top_ad(sub):
         """お店・チェーンのページの広告（11/8 Fable：検索から来る人の多いページに広告が1つもなかった）。
         そのページでいちばん多い弾の商品と、定価・相場のものさし。弾ページと同じ見た目・PR表記"""
@@ -3621,7 +3636,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         '<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:32px 16px;line-height:1.7;color:#222}a{color:#c8102e}</style></head>'
         '<body><h1>ページが見つかりません</h1><p>抽選の受付が終わり、ページを削除した可能性があります。</p>'
         '<p><a href="/">受付中の抽選一覧</a> ・ <a href="/pokeka/">ポケカ</a> ・ <a href="/onepiece/">ワンピースカード</a> ・ '
-        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a></p>'
+        '<a href="/store/">店舗一覧</a> ・ <a href="/calendar/">発売日カレンダー</a> ・ <a href="/stats/">集計データ</a></p>'
         '<p id="nf-go" hidden>近いページへ移動しています… <a id="nf-a" href="/">こちら</a></p>'
         # 手打ちやAIが作った「ありそうなURL」用：親のページを順にさがして、近いページへ自動で移る（11/8）
         '<script>(function(){var p=location.pathname;if(/^\\/chain\\/?$/.test(p)){location.replace("/store/");return}'
