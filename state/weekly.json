@@ -19539,7 +19539,7 @@
       "store": "TSUTAYAトレカ大塚台",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "宮崎県",
       "found_at": "2026-11-12T12:04:52.355898+09:00",
       "chain": "tsutaya"
     },
@@ -19574,7 +19574,7 @@
       "game": "onepiece",
       "store": "カードラボ岐阜店",
       "series": "ヒロインズエディション vol.2",
-      "channel": "online",
+      "channel": "store",
       "area": "岐阜県",
       "found_at": "2026-11-12T12:04:53.382002+09:00",
       "chain": "cardlabo"
@@ -20432,6 +20432,33 @@
       "channel": "store",
       "area": "富山県",
       "found_at": "2026-11-13T01:28:35.606245+09:00",
+      "chain": null
+    },
+    "cc391ec4c3846c15": {
+      "game": "onepiece",
+      "store": "麦わらストア名古屋店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-13T05:52:03.746569+09:00",
+      "chain": null
+    },
+    "8e31c4a2918d1e60": {
+      "game": "onepiece",
+      "store": "麦わらストア あべの店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-13T05:52:03.746635+09:00",
+      "chain": null
+    },
+    "b2c80790b7edeb63": {
+      "game": "onepiece",
+      "store": "王の洞窟岐南本店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-13T05:52:03.746702+09:00",
       "chain": null
     }
   }

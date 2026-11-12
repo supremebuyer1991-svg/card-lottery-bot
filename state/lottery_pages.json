@@ -52008,7 +52008,7 @@
       "tags": [
         "本人確認"
       ],
-      "url": "https://x.com/ck_akihabara/status/2120108324150743198",
+      "url": "https://livepocket.jp/e/08pdi",
       "channel": "store",
       "area": "東京都",
       "id_check": true,
@@ -54319,6 +54319,7 @@
       ],
       "url": "https://x.com/T_OTSUKADAI_TCG/status/2120682994243621020",
       "channel": "store",
+      "area": "宮崎県",
       "id_check": false,
       "member": "card",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
@@ -54414,7 +54415,7 @@
         "本人確認"
       ],
       "url": "https://x.com/gifu_labo/status/2120493487498113256",
-      "channel": "online",
+      "channel": "store",
       "area": "岐阜県",
       "id_check": true,
       "member": "none",
@@ -54456,6 +54457,7 @@
       "store": "TSUTAYA姫路広峰店",
       "product": "ONE PIECEカードゲーム ブースターパック『世界最強の戦士』（11月再販分・お一人様1BOXまで）",
       "series": "世界最強の戦士",
+      "start": "2026-11-12",
       "end": "2026-11-13T23:59:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -54482,6 +54484,7 @@
       "store": "TSUTAYA姫路広峰店",
       "product": "ONE PIECEカードゲーム ブースターパック『決戦の刻』（11月再販分・お一人様1BOXまで）",
       "series": "決戦の刻",
+      "start": "2026-11-12",
       "end": "2026-11-13T23:59:00+09:00",
       "method": "店頭",
       "conditions": "会員・本人確認",
@@ -56667,6 +56670,7 @@
       "series": "神の支配",
       "end": "2026-11-17T20:00:00+09:00",
       "method": "Web",
+      "conditions": "1BOX購入権の抽選。2026-11-21〜23に店頭購入、テープカットでお渡し",
       "url": "https://livepocket.jp/e/gy0g3",
       "channel": "store",
       "area": "神奈川県",
@@ -56762,6 +56766,72 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/omochanobanbi-a8334/",
       "found_at": "2026-11-13T01:28:35.606245+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/cc391ec4c3/": {
+    "d": {
+      "key": "cc391ec4c3846c15",
+      "game": "onepiece",
+      "store": "麦わらストア名古屋店",
+      "product": "ワンピースカード 神の支配【OP-18】",
+      "series": "神の支配",
+      "start": "2026-11-13T00:00:00+09:00",
+      "end": "2026-11-15T23:59:00+09:00",
+      "method": "Web（LivePocket）",
+      "url": "https://livepocket.jp/e/6cez4",
+      "channel": "store",
+      "area": "愛知県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/warasutoa-5ba3a/",
+      "found_at": "2026-11-13T05:52:03.746569+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/8e31c4a291/": {
+    "d": {
+      "key": "8e31c4a2918d1e60",
+      "game": "onepiece",
+      "store": "麦わらストア あべの店",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "start": "2026-11-13T00:00:00+09:00",
+      "end": "2026-11-15T23:59:00+09:00",
+      "method": "Web（LivePocket）",
+      "conditions": "LivePocket会員登録が必要",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://www.mugiwara-store.com/news/3061/",
+      "channel": "store",
+      "area": "大阪府",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/warasutoaabeno-f6a8f/",
+      "found_at": "2026-11-13T05:52:03.746635+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/b2c80790b7/": {
+    "d": {
+      "key": "b2c80790b7edeb63",
+      "game": "onepiece",
+      "store": "王の洞窟岐南本店",
+      "product": "神の支配 OP-18",
+      "series": "神の支配",
+      "start": "2026-11-10T21:30:00+09:00",
+      "end": "2026-11-17T21:30:00+09:00",
+      "method": "Web",
+      "conditions": "1BOX購入権の抽選。2026-11-21〜23に店頭購入、シュリンク・箱を開封してお渡し",
+      "url": "https://livepocket.jp/e/k-c79",
+      "channel": "store",
+      "area": "岐阜県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/no-1b80e/",
+      "found_at": "2026-11-13T05:52:03.746702+09:00"
     },
     "last": "2026-11-13"
   }

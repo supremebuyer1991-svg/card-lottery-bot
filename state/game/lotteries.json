@@ -50,9 +50,9 @@
     "page_checked_at": "2026-11-12T05:21:22.545377+09:00",
     "area": null,
     "cls": "a91c0a86f864",
-    "amazon_asin": "B0HM3FKH8L",
     "closed_at": "2026-11-13T01:36:39.723693+09:00",
-    "closed_reason": "発売日・再販日を過ぎた"
+    "closed_reason": "発売日・再販日を過ぎた",
+    "amazon_asin": "B0HM3FKH8L"
   },
   "8bd0e4744c2b1117": {
     "game": "ps5",
@@ -1947,7 +1947,7 @@
     "deadline_checked_at": "2026-11-13T01:36:47.696943+09:00",
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
-    "page_checked_at": "2026-11-11T18:41:26.561858+09:00",
+    "page_checked_at": "2026-11-13T05:57:11.832921+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:33:34.947454+09:00",
     "before_verify": {
@@ -1985,7 +1985,7 @@
     "status": "approved",
     "found_at": "2026-11-10T10:45:59.975166+09:00",
     "cls": "526d3a6feebd",
-    "page_checked_at": "2026-11-11T18:41:29.033375+09:00",
+    "page_checked_at": "2026-11-13T05:57:14.733625+09:00",
     "page_err": "中身が空",
     "verified_at": "2026-11-10T12:25:26.404155+09:00",
     "before_verify": {
@@ -2030,7 +2030,7 @@
     "deadline_checked_at": "2026-11-13T01:36:47.696969+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
-    "page_checked_at": "2026-11-11T18:41:31.413854+09:00",
+    "page_checked_at": "2026-11-13T05:57:17.621912+09:00",
     "details_checked": true
   },
   "7e836f51c63fb79c": {
@@ -2061,9 +2061,9 @@
     "status": "pending",
     "cls": "04fc25b9d6ec",
     "issue": 646,
-    "page_checked_at": "2026-11-11T18:53:38.338762+09:00",
+    "page_checked_at": "2026-11-13T05:57:19.753191+09:00",
     "details_checked": true,
-    "deadline_checked_at": "2026-11-11T20:47:43.758405+09:00",
+    "deadline_checked_at": "2026-11-13T05:57:08.645824+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
@@ -2095,9 +2095,9 @@
     "status": "pending",
     "cls": "416fab590950",
     "issue": 647,
-    "page_checked_at": "2026-11-11T18:53:40.496140+09:00",
+    "page_checked_at": "2026-11-13T05:57:19.753213+09:00",
     "details_checked": true,
-    "deadline_checked_at": "2026-11-11T20:47:45.034742+09:00",
+    "deadline_checked_at": "2026-11-13T05:57:09.859251+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
@@ -2129,11 +2129,11 @@
     "status": "pending",
     "cls": "6a8d6f51cef2",
     "issue": 648,
-    "page_checked_at": "2026-11-11T18:53:40.496163+09:00",
+    "page_checked_at": "2026-11-13T05:57:19.753219+09:00",
     "details_checked": true,
-    "deadline_checked_at": "2026-11-11T21:02:08.186540+09:00",
+    "deadline_checked_at": "2026-11-13T05:57:10.806703+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・本文に応募期間の記載なし"
   },
   "0fe56bbeec9d50f9": {
     "store": "一番くじONLINE",
@@ -2843,38 +2843,6 @@
     "details_checked": true,
     "cls": "5294359c2e22",
     "issue": 673
-  },
-  "72cf8a493e267767": {
-    "store": "バンダイスピリッツ（プレミアムバンダイ）",
-    "product": "リック・ディアス（クワトロ機）",
-    "series": "リック・ディアス",
-    "kind": "restock",
-    "start": null,
-    "end": null,
-    "announce": null,
-    "method": "Web",
-    "conditions": null,
-    "price": null,
-    "round": null,
-    "url": "https://news.yahoo.co.jp/articles/d64d1195611f6edd04ae80e210875992b9f9ca07/images/000",
-    "x_post": null,
-    "game": "gunpla",
-    "channel": "online",
-    "area": null,
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.5,
-    "source": "Googleニュース「プレバン 抽選」",
-    "source_url": "https://news.yahoo.co.jp/articles/d64d1195611f6edd04ae80e210875992b9f9ca07/images/000",
-    "found_at": "2026-11-11T05:55:46.925467+09:00",
-    "key": "72cf8a493e267767",
-    "status": "duplicate",
-    "deadline_checked_at": "2026-11-11T05:57:13.462271+09:00",
-    "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・受付締切の記載なし",
-    "cls": "439ca19b0be3",
-    "duplicate_of": "1662bb140e18de0e"
   },
   "02615e3d1b9b7d97": {
     "store": "バンダイスピリッツ（プレミアムバンダイ）",
@@ -4325,7 +4293,7 @@
     "conditions": null,
     "price": null,
     "round": null,
-    "url": "https://gundam-official.com/news/szkd08d9vyl6ruf728ryvl5s",
+    "url": "https://www.gundam-base.net/",
     "x_post": null,
     "game": "gunpla",
     "channel": "store",
@@ -4340,7 +4308,8 @@
     "status": "listed",
     "found_at": "2026-11-11T18:51:17.184633+09:00",
     "multi": true,
-    "cls": "19775b55d116"
+    "cls": "19775b55d116",
+    "official_checked": true
   },
   "e6506aaa83511d9b": {
     "store": "BANDAI SPIRITS",
@@ -4354,7 +4323,7 @@
     "conditions": null,
     "price": null,
     "round": null,
-    "url": "https://gundam-official.com/news/c5y12b6ub1an1f8luxpolr1r",
+    "url": "https://p-bandai.jp/",
     "x_post": null,
     "game": "gunpla",
     "channel": "online",
@@ -4368,7 +4337,8 @@
     "key": "e6506aaa83511d9b",
     "status": "listed",
     "found_at": "2026-11-11T18:51:44.391778+09:00",
-    "cls": "7628ccf72a0a"
+    "cls": "7628ccf72a0a",
+    "official_checked": true
   },
   "c7cab6b6c3bc3ccd": {
     "store": "BANDAI SPIRITS",
@@ -4382,7 +4352,7 @@
     "conditions": null,
     "price": null,
     "round": null,
-    "url": "https://gundam-official.com/news/c5y12b6ub1an1f8luxpolr1r",
+    "url": "https://p-bandai.jp/",
     "x_post": null,
     "game": "gunpla",
     "channel": "online",
@@ -4396,7 +4366,8 @@
     "key": "c7cab6b6c3bc3ccd",
     "status": "listed",
     "found_at": "2026-11-11T18:51:44.391809+09:00",
-    "cls": "66c98097cea2"
+    "cls": "66c98097cea2",
+    "official_checked": true
   },
   "a04c85b1caaa525e": {
     "store": "Amazon",
@@ -4410,7 +4381,7 @@
     "conditions": null,
     "price": null,
     "round": null,
-    "url": "https://snkrdunk.com/articles/32425/",
+    "url": "https://www.amazon.co.jp/dp/B0GXCRBL5J?slide=modal",
     "x_post": null,
     "game": "pokemon",
     "channel": "online",
@@ -4426,7 +4397,8 @@
     "found_at": "2026-11-11T18:51:56.417421+09:00",
     "cls": "e25b4930744b",
     "verified_at": "2026-11-11T18:54:07.767949+09:00",
-    "verified": true
+    "verified": true,
+    "official_checked": true
   },
   "3bb67621a9100a06": {
     "store": "あみあみ",

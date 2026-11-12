@@ -1439,7 +1439,7 @@
         "g": "onepiece",
         "e": "2026-11-13T23:59",
         "f": "2026-11-12",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": true,
         "mem": "none",
@@ -32824,6 +32824,17 @@
   "store/no-1b80e/": {
     "name": "王の洞窟岐南本店",
     "items": {
+      "b2c80790b7edeb63": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-17T21:30",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
       "fa808c3090407d3a": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -37865,6 +37876,17 @@
         "id": null,
         "mem": null,
         "rq": []
+      },
+      "9a01600e66031c31": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
       }
     }
   },
@@ -38159,22 +38181,6 @@
       }
     }
   },
-  "store/ing-27d17/": {
-    "name": "遊ING（各店）",
-    "items": {
-      "9a01600e66031c31": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "",
-        "f": "2026-11-13",
-        "c": "store",
-        "m": "Web",
-        "id": null,
-        "mem": null,
-        "rq": []
-      }
-    }
-  },
   "store/aeon-ca2b0/": {
     "name": "イオン長崎店 ほか2店舗",
     "items": {
@@ -38213,6 +38219,54 @@
       "4a6ee5410a8e6437": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
+        "e": "",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/warasutoa-5ba3a/": {
+    "name": "麦わらストア名古屋店",
+    "items": {
+      "cc391ec4c3846c15": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      }
+    }
+  },
+  "store/warasutoaabeno-f6a8f/": {
+    "name": "麦わらストア あべの店",
+    "items": {
+      "8e31c4a2918d1e60": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/warasutoa-4eb4e/": {
+    "name": "麦わらストア",
+    "items": {
+      "7df06ee2fb5b5fa9": {
+        "p": "神の支配",
+        "g": "onepiece",
         "e": "",
         "f": "2026-11-13",
         "c": "store",

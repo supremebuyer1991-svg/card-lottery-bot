@@ -3019,7 +3019,8 @@
   "store/tsutaya-24086/": {
     "name": "TSUTAYAトレカ大塚台",
     "last": "2026-11-13",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "宮崎県"
   },
   "store/tsutaya-0a53a/": {
     "name": "TSUTAYA 岡富店（延岡）",
@@ -5857,7 +5858,7 @@
   },
   "store/no-1b80e/": {
     "name": "王の洞窟岐南本店",
-    "last": "2026-11-09",
+    "last": "2026-11-13",
     "game": "pokemon",
     "area": "岐阜県"
   },
@@ -7370,7 +7371,7 @@
   },
   "store/ing-8221a/": {
     "name": "遊ING",
-    "last": "2026-11-12",
+    "last": "2026-11-13",
     "game": "onepiece",
     "keep": true
   },
@@ -7473,12 +7474,6 @@
     "game": "pokemon",
     "area": "富山県"
   },
-  "store/ing-27d17/": {
-    "name": "遊ING（各店）",
-    "last": "2026-11-13",
-    "game": "pokemon",
-    "keep": true
-  },
   "store/aeon-ca2b0/": {
     "name": "イオン長崎店 ほか2店舗",
     "last": "2026-11-13",
@@ -7495,6 +7490,24 @@
     "name": "ドラゴンスターららぽーと甲子園店",
     "last": "2026-11-13",
     "game": "pokemon",
+    "keep": true
+  },
+  "store/warasutoa-5ba3a/": {
+    "name": "麦わらストア名古屋店",
+    "last": "2026-11-13",
+    "game": "onepiece",
+    "area": "愛知県"
+  },
+  "store/warasutoaabeno-f6a8f/": {
+    "name": "麦わらストア あべの店",
+    "last": "2026-11-13",
+    "game": "onepiece",
+    "area": "大阪府"
+  },
+  "store/warasutoa-4eb4e/": {
+    "name": "麦わらストア",
+    "last": "2026-11-13",
+    "game": "onepiece",
     "keep": true
   }
 }
