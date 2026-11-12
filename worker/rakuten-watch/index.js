@@ -89,9 +89,15 @@ async function run(env, { dry = false } = {}) {
   }
   const fresh = {};
   let changed = !st.init && Object.keys(found).length > 0;
+  // 11/12：楽天ブックスは抽選の準備でも「注文できる(1)」になる（ワンピ・ポケカ6商品を「販売開始」と誤って速報した）。
+  // 商品名・説明に「抽選」がある商品は、注文できる印が付いても「買える」にしない（抽選は別の予告・受付ポストで扱う）
+  const LOT = /抽選/;
+  st.lot = st.lot || {};
   for (const [code, it] of Object.entries(found)) {
     const prev = st.items[code];
-    const now = it.availability === 1 ? 1 : 0;
+    const isLot = LOT.test(`${it.itemName || ""} ${it.itemCaption || ""} ${it.catchcopy || ""}`);
+    if (isLot && !st.lot[code]) { st.lot[code] = 1; changed = true; }
+    const now = it.availability === 1 && !isLot ? 1 : 0;
     if (prev !== now) changed = true;
     if (st.init && prev === 0 && now === 1 && !(st.posted[code] && Date.now() - st.posted[code] < COOLDOWN)) {
       (fresh[it.game] = fresh[it.game] || []).push(it);
@@ -100,6 +106,18 @@ async function run(env, { dry = false } = {}) {
     // サイトの「いま買える」表示用に、名前とURLも覚えておく（新しい商品の時だけ＝保存回数は増えない）
     st.info = st.info || {};
     if (!st.info[code]) { st.info[code] = { n: shortName(it.itemName), u: it.itemUrl, g: it.game }; changed = true; }
+  }
+  // 速報を出す前に、商品ページを開いて抽選の受付ページになっていないか確かめる（新しく見つかったときだけ・数件）
+  for (const game of Object.keys(fresh)) {
+    const keep = [];
+    for (const it of fresh[game]) {
+      try {
+        const h = await (await fetch(it.itemUrl, { headers: { "User-Agent": "Mozilla/5.0", "Accept-Language": "ja" } })).text();
+        if (/抽選受付期間|抽選販売|抽選商品について|エントリー/.test(h)) { st.lot[it.itemCode] = 1; st.items[it.itemCode] = 0; log.push(`抽選のページなので速報しない: ${shortName(it.itemName)}`); continue; }
+      } catch (e) { log.push(`ページ確認できず: ${shortName(it.itemName)}`); continue; }  // 確かめられないときは出さない
+      keep.push(it);
+    }
+    if (keep.length) fresh[game] = keep; else delete fresh[game];
   }
   const out = [];
   for (const [game, items] of Object.entries(fresh)) {
