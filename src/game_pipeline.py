@@ -226,9 +226,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 import game_affi
                 from common import ROOT
                 wl = game_affi.watch_list(load_json("lotteries.json", {}), s)
+                _kw = []
                 try:
                     import game_watchkw
-                    wl += game_watchkw.watch_items(s, {w_.get("rk") for w_ in wl if w_.get("rk")})
+                    _kw = game_watchkw.watch_items(s, {w_.get("rk") for w_ in wl if w_.get("rk")})
                 except Exception as e:
                     log(f"見張り（言葉）: スキップ {e}")
                 try:   # 買取価格が分かる商品すべても見張る（JANで楽天・Amazonの商品ページを見張りの側で探す）
@@ -245,6 +246,11 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                                    "pm": (f"最高買取 {x['max']:,}円（定価比 +{round((x['ratio'] - 1) * 100)}%）" if x["ratio"] and x["ratio"] >= pmin else "")})
                 except Exception as e:
                     log(f"見張り（相場の商品）: スキップ {e}")
+                try:   # 言葉で見つけた商品（ベイブレードX など）。相場の商品と同じJANは足さない
+                    _have = {w_.get("jan") for w_ in wl if w_.get("jan")}
+                    wl += [w_ for w_ in _kw if not (w_.get("jan") and w_["jan"] in _have)]
+                except Exception as e:
+                    log(f"見張り（言葉）: スキップ {e}")
                 (ROOT / "site_game" / "watch.json").write_text(_json.dumps({"updated": now().isoformat(), "items": wl}, ensure_ascii=False), encoding="utf-8")
                 log(f"楽天・Amazonの見張り：{len(wl)}件")
             except Exception as e:

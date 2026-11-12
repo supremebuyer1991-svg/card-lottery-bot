@@ -16,12 +16,45 @@ NG = re.compile(r"中古|訳あり|ジャンク|コミック|漫画|攻略|ガ�
                 r"カードダス|トレカ|カレンダー|ポスター|Tシャツ|シール", re.I)
 
 
-def update(settings, fetch=None, sleep=time.sleep):
+BOOKS_TOTAL = ["https://openapi.rakuten.co.jp/services/api/BooksTotal/Search/20170404",
+               "https://openapi.rakuten.co.jp/booksms/api/BooksTotal/Search/20170404",
+               "https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404"]
+_ok = {}
+
+
+def books_search(q, page, settings):
+    """楽天ブックス総合検索（JANが返る）。新しいAPIの場所が分からないので、候補を順に試す"""
+    import os
+    import requests
+    site = (os.environ.get("RAKUTEN_REFERER") or os.environ.get("SITE_URL") or settings.get("site_public_url") or "").rstrip("/")
+    p = {"applicationId": os.environ.get("RAKUTEN_APP_ID", "").strip(), "accessKey": os.environ.get("RAKUTEN_ACCESS_KEY", "").strip(),
+         "format": "json", "formatVersion": 2, "hits": 30, "page": page, "keyword": q, "sort": "-releaseDate", "outOfStockFlag": 1}
+    if settings.get("rakuten_affiliate_id"):
+        pass
+    h = {"accessKey": p["accessKey"], "Referer": site + "/", "Origin": site, "User-Agent": "game-nyuka/1.0"}
+    err = None
+    for url in ([_ok["url"]] if _ok.get("url") else BOOKS_TOTAL):
+        try:
+            r = requests.get(url, params=p, headers=h, timeout=15)
+        except Exception as e:
+            err = e
+            continue
+        if r.status_code == 429:
+            time.sleep(2)
+            r = requests.get(url, params=p, headers=h, timeout=15)
+        if r.status_code == 200:
+            _ok["url"] = url
+            return [i.get("Item", i) for i in (r.json().get("Items") or [])]
+        err = f"{r.status_code} {r.text[:120]}"
+    raise RuntimeError(f"楽天ブックス総合検索 {err}")
+
+
+def update(settings, fetch=None, sleep=time.sleep, books=None):
     """1日1回、言葉ごとに楽天ブックスのおもちゃを探し直す。戻り値：state"""
     st = load_json(STATE, {})
     kws = settings.get("watch_keywords") or []
     t = now()
-    if not kws or (st.get("at") and parse_dt(st["at"]) and (t - parse_dt(st["at"])).total_seconds() < 20 * 3600):
+    if not kws or ("jans" in st and st.get("at") and parse_dt(st["at"]) and (t - parse_dt(st["at"])).total_seconds() < 20 * 3600):
         return st
     if fetch is None:
         import os
@@ -32,6 +65,7 @@ def update(settings, fetch=None, sleep=time.sleep):
     import gamecats
     hints = gamecats.hints()
     items = {}
+    jans = {}
     calls = 0
     for e in kws:
         q, game = e.get("q") or "", e.get("game") or ""
@@ -57,22 +91,56 @@ def update(settings, fetch=None, sleep=time.sleep):
                 items[code] = {"n": name[:60], "game": game, "url": (it.get("itemUrl") or "").split("?")[0]}
             if len(rows or []) < 30:
                 break
+        # JANも取る（11/13 ユーザー「Amazonも」）：楽天ブックスの本・ゲームの検索はJANを返すので、
+        # JANで見張りに入れると、見張りの側で楽天・Amazonの両方をJANで探す（AmazonはJANが一致するものだけ使う）
+        for page in range(1, int(e.get("pages", 2)) + 1):
+            if job_elapsed() > float(settings.get("kaitori_until_sec", 230)) + 30:
+                break
+            sleep(1.1)
+            calls += 1
+            try:
+                rows = books_search(q, page, settings) if books is None else books(q, page)
+            except Exception as ex:
+                log(f"見張りの言葉「{q}」（JAN）：失敗 {ex}")
+                break
+            for it in rows or []:
+                it = it.get("Item", it)
+                name = (it.get("title") or it.get("itemName") or "").strip()
+                jan = str(it.get("jan") or it.get("isbn") or "")
+                if not (jan.isdigit() and len(jan) == 13) or NG.search(name) or (hint and not hint.search(name)):
+                    continue
+                jans[jan] = {"n": name[:60], "game": game, "url": (it.get("itemUrl") or "").split("?")[0]}
+            if len(rows or []) < 30:
+                break
     if calls:
-        st = {"at": t.isoformat(), "items": items}
+        st = {"at": t.isoformat(), "items": items, "jans": jans}
         save_json(STATE, st)
-        log(f"見張りの言葉：楽天ブックスを{calls}回見て {len(items)}件")
+        log(f"見張りの言葉：楽天ブックスを{calls}回見て {len(items)}件（JANが分かったもの {len(jans)}件）")
     return st
 
 
-def watch_items(settings, have_codes=()):
-    """watch.json に足す分（すでに見張っている楽天の商品は除く）"""
+def watch_items(settings, have_codes=(), have_jans=()):
+    """watch.json に足す分（すでに見張っている楽天の商品・JANは除く）。
+    JANが分かる商品は JAN で（見張りの側で楽天・Amazonの両方を探す）、分からない商品は楽天の商品番号で"""
     import game_premium
     import gamecats
     cats = gamecats.by_id(False)
     ex = set(settings.get("x_exclude_games") or [])
     out = []
-    for code, v in (load_json(STATE, {}).get("items") or {}).items():
-        if code in have_codes:
+    st = load_json(STATE, {})
+    by_jan = st.get("jans") or {}
+    names_with_jan = {(v.get("n") or "")[:30] for v in by_jan.values()}
+    for jan, v in by_jan.items():
+        if jan in have_jans:
+            continue
+        g = v.get("game") or ""
+        out.append({"k": "j" + jan, "jan": jan, "n": v["n"][:40], "g": False, "rk": "", "asin": "",
+                    "nopost": g in ex,
+                    "hot": game_premium.premium_match(v["n"], settings) is not None,
+                    "neg": game_premium.below_teika(v["n"], settings),
+                    "tag": ((cats.get(g) or {}).get("hashtags") or "").split()[:1]})
+    for code, v in (st.get("items") or {}).items():
+        if code in have_codes or (v.get("n") or "")[:30] in names_with_jan:   # JANで見張る商品は、楽天の商品番号では見張らない（二重にしない）
             continue
         g = v.get("game") or ""
         out.append({"k": "kw" + code, "n": v["n"][:40], "g": False, "rk": code, "asin": "",
