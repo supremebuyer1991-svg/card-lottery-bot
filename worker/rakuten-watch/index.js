@@ -107,6 +107,17 @@ async function run(env, { dry = false } = {}) {
     st.info = st.info || {};
     if (!st.info[code]) { st.info[code] = { n: shortName(it.itemName), u: it.itemUrl, g: it.game }; changed = true; }
   }
+  // すでに「買える」になっている商品も、一度だけ商品ページで抽選でないか確かめる（11/12 の誤速報の6商品をサイトの「いま買える」から外すため。1回2件まで）
+  st.pchk = st.pchk || {};
+  let nchk = 0;
+  for (const [code, it] of Object.entries(found)) {
+    if (nchk >= 2 || st.items[code] !== 1 || st.pchk[code] || (fresh[it.game] || []).includes(it)) continue;
+    nchk++; st.pchk[code] = 1; changed = true;
+    try {
+      const h = await (await fetch(it.itemUrl, { headers: { "User-Agent": "Mozilla/5.0", "Accept-Language": "ja" } })).text();
+      if (/抽選受付期間|抽選販売|抽選商品について/.test(h)) { st.lot[code] = 1; st.items[code] = 0; log.push(`抽選のページだったので「買える」から外す: ${shortName(it.itemName)}`); }
+    } catch (e) { delete st.pchk[code]; }
+  }
   // 速報を出す前に、商品ページを開いて抽選の受付ページになっていないか確かめる（新しく見つかったときだけ・数件）
   for (const game of Object.keys(fresh)) {
     const keep = [];
@@ -345,7 +356,7 @@ export default {
     }
     if (u.pathname === "/stock") {  // サイト用：いま楽天ブックス・Amazon.co.jp本体で買える（または招待リクエスト受付中の）商品
       const st = (await env.STATE.get("state", "json")) || {}, az = (await env.STATE.get("amz", "json")) || {};
-      const rk = Object.entries(st.items || {}).filter(([, v]) => v === 1).map(([k]) => ({ ...(st.info || {})[k], a: "buy" })).filter((x) => x.n);
+      const rk = Object.entries(st.items || {}).filter(([k, v]) => v === 1 && !(st.lot || {})[k]).map(([k]) => ({ ...(st.info || {})[k], a: "buy" })).filter((x) => x.n);
       const am = Object.entries(az.items || {}).filter(([, v]) => v === "buy" || v === "invite").map(([k, v]) => ({ ...(az.info || {})[k], a: v })).filter((x) => x.n);
       return Response.json({ at: st.last?.at, amz_at: az.last?.at, rakuten: rk, amazon: am }, { headers: { "Cache-Control": "max-age=60" } });
     }
