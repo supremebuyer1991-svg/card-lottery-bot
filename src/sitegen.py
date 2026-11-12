@@ -2962,6 +2962,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                   '<h2>名前の似たサイトについて</h2><p>「トレカ抽選ナビ」という名前のサイトはほかにもありますが、当サイト（tcg-chusen.com）とは関係のない別のサイトです。</p>'
                   '<p class="note">「ポケモンカードゲーム」は株式会社ポケモン、「ONE PIECEカードゲーム」「ドラゴンボールスーパーカードゲーム フュージョンワールド」は株式会社バンダイの商品です。当サイトは各社とは関係のない個人のサイトです。</p></div>')
         write("about/", {"game": games[0], "subset": True}, {
+            "head_extra": ["<style>.filters,#list,.sortbar,.list-head{display:none!important}</style>"],  # 一覧の絞り込み・抽選の一覧は出さない（このページはデータ／説明だけ）
             "title": "トレカ抽選ナビ（tcg-chusen.com）について｜運営・情報の集め方・広告｜トレカ抽選ナビ",
             "desc": "トレカ抽選ナビ（tcg-chusen.com）は、ポケカ・ワンピースカードの抽選販売を1日6回自動で集めて締切順にまとめる無料の情報サイトです。運営・情報の集め方・広告について。",
             "summary": "", "faq": None, "h1": "トレカ抽選ナビ（tcg-chusen.com）について",
@@ -2977,6 +2978,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             lambda c: f"/chain/{c}/" if c and (Path(out) / "chain" / c / "index.html").exists() else None,
             lambda a: f"/pokeka/area/{PREF[a]}/" if a in PREF else None, escape)
         write("stats/", {"game": games[0], "subset": True}, {
+            "head_extra": ["<style>.filters,#list,.sortbar,.list-head{display:none!important}</style>"],  # 一覧の絞り込み・抽選の一覧は出さない（このページはデータ／説明だけ）
             "title": f"トレカ抽選の集計データ｜掲載{n_all_s:,}件・受付中{n_act_s}件のお店別・都道府県別・締切の傾向【{now().month}/{now().day}更新】｜トレカ抽選ナビ",
             "desc": lead_s[:120],
             "summary": "", "faq": faq_s, "h1": "トレカ抽選の集計データ（トレカ抽選ナビ調べ）",
