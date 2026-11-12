@@ -776,10 +776,34 @@ def premium_match(name, settings=None):
     return None
 
 
+def price_match(name, settings=None):
+    """商品名に当たる「買取価格が分かる商品」（定価以上かどうかに関係なく）。当たらなければ None"""
+    import official_link as ol
+    if "cat" not in _PM_CACHE:
+        try:
+            _PM_CACHE["cat"] = [x for x in catalog(settings or {}, watch_map_cached()) if x.get("teika")]
+        except Exception:
+            _PM_CACHE["cat"] = []
+    best = None
+    for x in _PM_CACHE["cat"]:
+        for n in [x["name"]] + x.get("names", [])[:3]:
+            sc = ol.same_item_score(name or "", n)
+            if sc >= 0.75 and (best is None or sc > best[0]):
+                best = (sc, x)
+    return best[1] if best else None
+
+
+def below_teika(name, settings=None):
+    """買取価格が定価より低い（＝買っても損する）と分かっている商品か（11/13 ユーザーの指摘：買取がマイナスの商品の速報が多い）"""
+    x = price_match(name, settings)
+    return bool(x and x.get("teika") and x["max"] < x["teika"])
+
+
 def worth_posting(it, settings=None):
-    """Xに出す価値があるか（11/9 ユーザーの指示）：定価以上で売れる商品か、品薄の商品（抽選・招待販売になっているもの）だけ"""
+    """Xに出す価値があるか（11/9 ユーザーの指示）：定価以上で売れる商品か、品薄の商品（抽選・招待販売になっているもの）だけ。
+    11/13：抽選・招待でも、買取価格が定価より低いと分かっている商品は出さない"""
     if it.get("kind") in ("lottery", "invite", "fukubukuro"):
-        return True
+        return not below_teika(it.get("product") or "", settings)
     return premium_match(it.get("product") or "", settings) is not None
 
 

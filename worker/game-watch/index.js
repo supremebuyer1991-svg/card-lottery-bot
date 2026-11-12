@@ -246,6 +246,8 @@ async function run(env, which, { dry = false } = {}) {
     // 速報するのは（11/9 ユーザーの指示）：定価以上で売れる商品（hot）か、売り切れが長く続いていた品薄の商品（3日以上）だけ
     const soldDays = so ? (Date.now() - so.since) / 86400e3 : 0;
     if (!(w.hot || soldDays >= SCARCE_DAYS)) continue;
+    // 11/13 ユーザーの指摘：買取価格が定価より低い商品（買っても損する）は、品薄でも速報しない
+    if (w.neg || (w.tk && w.mx && w.mx < w.tk)) { log.push(`買取が定価未満なので速報しない：${w.n}`); continue; }
     if (st.count >= PER_DAY || (!w.g && st.hobby >= HOBBY_PER_DAY)) { log.push("1日の上限"); continue; }
     w._days = soldDays;
     const text = compose(w, which, cur, url);
