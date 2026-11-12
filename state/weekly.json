@@ -18845,7 +18845,7 @@
       "game": "pokemon",
       "store": "ディセントゲーム新宿",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-11T18:17:10.771221+09:00",
       "chain": null
@@ -18882,7 +18882,7 @@
       "store": "トレカダンジョン稲沢本店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "愛知県",
       "found_at": "2026-11-11T18:17:10.771319+09:00",
       "chain": null
     },
@@ -19160,7 +19160,7 @@
       "game": "onepiece",
       "store": "バンダイナムコ",
       "series": "神の支配",
-      "channel": "store",
+      "channel": "online",
       "area": null,
       "found_at": "2026-11-11T20:39:50.493340+09:00",
       "chain": null
@@ -19403,7 +19403,7 @@
       "game": "pokemon",
       "store": "CARDBOX おもちゃのバンビ本郷店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "富山県",
       "found_at": "2026-11-12T12:04:52.355457+09:00",
       "chain": "cardbox"
@@ -19421,8 +19421,8 @@
       "game": "pokemon",
       "store": "HOBBY ONE（ホビーワン・西日暮里）",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "東京都",
       "found_at": "2026-11-12T12:04:52.355520+09:00",
       "chain": null
     },
@@ -20424,6 +20424,15 @@
       "area": "大阪府",
       "found_at": "2026-11-12T21:50:57.982799+09:00",
       "chain": "bookoff"
+    },
+    "64f5f9a939948a52": {
+      "game": "pokemon",
+      "store": "おもちゃのバンビ本郷（富山）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "富山県",
+      "found_at": "2026-11-13T01:28:35.606245+09:00",
+      "chain": null
     }
   }
 }
