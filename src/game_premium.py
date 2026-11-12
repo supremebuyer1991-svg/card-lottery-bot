@@ -794,9 +794,10 @@ def price_match(name, settings=None):
 
 
 def below_teika(name, settings=None):
-    """買取価格が定価より低い（＝買っても損する）と分かっている商品か（11/13 ユーザーの指摘：買取がマイナスの商品の速報が多い）"""
+    """買取価格が定価の8割（x_min_buy_ratio）より低いと分かっている商品か（11/13 ユーザーの指摘：買取がマイナスの商品の速報が多い）"""
     x = price_match(name, settings)
-    return bool(x and x.get("teika") and x["max"] < x["teika"])
+    r = float((settings or {}).get("x_min_buy_ratio", 0.8))   # 11/13 ユーザー：「定価－20％くらいまでならいい」
+    return bool(x and x.get("teika") and x["max"] < x["teika"] * r)
 
 
 def worth_posting(it, settings=None):
