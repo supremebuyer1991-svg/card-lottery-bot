@@ -1843,9 +1843,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             ld.insert(0, bl)
         org = {"@type": "Organization", "@id": f"{site}/#organization", "name": "トレカ抽選ナビ", "url": f"{site}/",
                "logo": {"@type": "ImageObject", "url": f"{site}/apple-touch-icon.png"},
-               "sameAs": [f"https://x.com/{(s.get('x_account') or 'pokepi_tcg').lstrip('@')}"]}  # 11/8 Fable技術：公式Xとの結びつき
+               "alternateName": ["tcg-chusen.com", "トレカ抽選ナビ（tcg-chusen.com）"],  # 11/12：同じ名前のサイトがほかに3つあり、名前で検索すると2ページ目に。ドメインでも区別してもらう
+               "sameAs": [f"https://x.com/{(s.get('x_account') or 'pokepi_tcg').lstrip('@')}", "https://www.youtube.com/@トレカ抽選ナビ"]}  # 11/8 Fable技術：公式Xとの結びつき（11/12 YouTube も）
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "@id": f"{site}/#website", "name": "トレカ抽選ナビ",
+                          "alternateName": ["tcg-chusen.com", "トレカ抽選ナビ（tcg-chusen.com）"],
                           "url": f"{site}/", "inLanguage": "ja", "description": meta["desc"], "publisher": org})
             if site:  # 11/8：海外ページ（/en/ /zh-tw/ /ko/）からの hreflang に日本語トップが返す（双方向でないと Google が無視する）。中国語の言語コードは intl.py と同じ3つ
                 meta["head_extra"] = [f'<link rel="alternate" hreflang="{hl}" href="{site}/{sub}">' for hl, sub in
