@@ -2152,5 +2152,82 @@
     "end": "2026-11-12T23:59:00+09:00",
     "seen": "2026-11-13",
     "ended": true
+  },
+  "deda3042a915b737": {
+    "snap": {
+      "key": "deda3042a915b737",
+      "game": "liquor",
+      "store": "Amazon.co.jp",
+      "product": "サントリーシングルモルトウイスキー白州12年",
+      "series": "白州12年",
+      "method": "Amazon商品ページの「招待をリクエストする」ボタン",
+      "conditions": "招待リクエスト後、招待メールが届いた人のみ購入可（招待から72時間以内）",
+      "url": "https://www.amazon.co.jp/dp/B08WGSM7P5?tag=impresswatch-41-22&ref=nosim",
+      "channel": "online",
+      "spath": "liquor/12-55b66/",
+      "found_at": "2026-11-11T18:39:28.084252+09:00",
+      "kind": "invite",
+      "price": "17,600円",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/deda3042a9/",
+    "end": null,
+    "seen": "2026-11-13",
+    "ended": false
+  },
+  "41e3f8e4fec71ac9": {
+    "snap": {
+      "key": "41e3f8e4fec71ac9",
+      "game": "liquor",
+      "store": "Amazon.co.jp",
+      "product": "サントリーシングルモルトウイスキー白州12年 700mL",
+      "series": "響 JAPANESE HARMONY",
+      "conditions": "「招待制抽選販売限定」と商品名に記載",
+      "url": "https://www.amazon.co.jp/dp/B00S7Z8426/ref=nosim?tag=impresswatch-41-22",
+      "channel": "online",
+      "spath": "liquor/japaneseharmony-2c62b/",
+      "found_at": "2026-11-11T18:39:28.084268+09:00",
+      "kind": "invite",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4%20700mL",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4%20700mL&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/41e3f8e4fe/",
+    "end": null,
+    "seen": "2026-11-13",
+    "ended": false
+  },
+  "85269413aa5f3330": {
+    "snap": {
+      "key": "85269413aa5f3330",
+      "game": "ps5",
+      "store": "ソニーストア",
+      "product": "PlayStation Portal プレーヤー ミッドナイト ブラック 日本語専用 CFIJ-18100",
+      "series": "PlayStation Portal",
+      "start": "2026-11-13T10:00:00+09:00",
+      "method": "Web",
+      "conditions": "PS Plus プレミアム1か月無料コード付属、日本のPlayStationアカウントで利用",
+      "tags": [
+        "PSN必須"
+      ],
+      "url": "https://kunkoku.jp/playstationportal-29.html",
+      "channel": "online",
+      "spath": "ps5/playstation-portal/",
+      "found_at": "2026-11-13T11:51:36.302066+09:00",
+      "kind": "preorder",
+      "price": "39,980円",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC",
+        "mc": "https://jp.mercari.com/search?keyword=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/85269413aa/",
+    "end": null,
+    "seen": "2026-11-13",
+    "ended": false
   }
 }
