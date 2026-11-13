@@ -56264,7 +56264,9 @@
       "game": "pokemon",
       "store": "楽天ブックス",
       "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "start": "2026-11-13T10:00:00+09:00",
       "end": "2026-11-18T23:59:00+09:00",
+      "announce": "販売開始日までにメールで連絡",
       "method": "オンライン",
       "conditions": "会員",
       "tags": [
@@ -57939,6 +57941,134 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/iforamu-da679/",
       "found_at": "2026-11-13T15:41:45.454269+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/4769d69ec2/": {
+    "d": {
+      "key": "4769d69ec2613130",
+      "game": "pokemon",
+      "store": "Bee本舗",
+      "product": "ポケモンカード ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T14:00:00+09:00",
+      "end": "2026-11-15T20:00:00+09:00",
+      "announce": "11月27日(金)",
+      "buy": "11/27(金)〜11/29(日)23:59",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeqszii9q7R_hP_QeErXpnx2ocz7W9ocCQOQELRSRWrbzY09A/viewform",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/bee-f2d74/",
+      "found_at": "2026-11-13T21:17:23.567169+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/7bfad3eb43/": {
+    "d": {
+      "key": "7bfad3eb435ed711",
+      "game": "pokemon",
+      "store": "TCGショップ193各店",
+      "product": "ポケモンカード ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T15:00:00+09:00",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScyVCz7XSzFQ8L4EWUXfMzbnjYKd2P3TCOXoAjrp3Wy0Md2ag/viewform",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tcgshoppu193-a8e49/",
+      "found_at": "2026-11-13T21:17:23.567225+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/20914c43c7/": {
+    "d": {
+      "key": "20914c43c78d1b97",
+      "game": "onepiece",
+      "store": "お宝創庫グループ（お宝創庫・おじゃま館・メディオ！・プレイズ 一部店舗）",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "end": "2026-11-15T23:45:00+09:00",
+      "method": "オンライン",
+      "conditions": "アプリ・本人確認",
+      "tags": [
+        "アプリ",
+        "本人確認"
+      ],
+      "url": "https://www.otakarasouko.com/information/108724612/",
+      "channel": "store",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/o-gurupu-8c670/",
+      "found_at": "2026-11-13T21:17:24.957331+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/e277d506da/": {
+    "d": {
+      "key": "e277d506da7c3776",
+      "game": "onepiece",
+      "store": "ジラフル各店",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "end": "2026-11-15T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/p/puf0p",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/jirafuru-f6c94/",
+      "found_at": "2026-11-13T21:17:24.957383+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/9431de8b4a/": {
+    "d": {
+      "key": "9431de8b4ab2c4cb",
+      "game": "onepiece",
+      "store": "フルコンプ 一部店舗",
+      "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】",
+      "series": "神の支配",
+      "end": "2026-11-15T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/k-m88",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/furukonpu-10949/",
+      "found_at": "2026-11-13T21:17:24.957409+09:00"
     },
     "last": "2026-11-13"
   }

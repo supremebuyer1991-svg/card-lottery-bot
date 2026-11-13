@@ -15887,6 +15887,17 @@
   "store/tcgshoppu193-a8e49/": {
     "name": "TCGショップ193",
     "items": {
+      "7bfad3eb435ed711": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "6f3e60b46bf83dcd": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -38691,10 +38702,21 @@
       }
     }
   },
-  "store/dragonstar-6dc40/": {
+  "store/dragonstar-b7143/": {
     "name": "ドラゴンスターららぽーと甲子園店",
     "items": {
       "4a6ee5410a8e6437": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "58ed68316a08d639": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
         "e": "",
@@ -38943,6 +38965,18 @@
         "mem": "account",
         "rq": [],
         "a": "2026-11-27"
+      },
+      "4769d69ec2613130": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-15T20:00",
+        "f": "2026-11-13",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-27"
       }
     }
   },
@@ -39028,18 +39062,52 @@
       }
     }
   },
-  "store/dragonstar-b7143/": {
-    "name": "ドラゴンスターららぽーと甲子園",
+  "store/o-gurupu-8c670/": {
+    "name": "お宝創庫グループ（お宝創庫・おじゃま館・メディオ！・プレイズ 一部店舗）",
     "items": {
-      "58ed68316a08d639": {
-        "p": "スペシャルデッキセットMEGA",
-        "g": "pokemon",
-        "e": "",
+      "20914c43c78d1b97": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:45",
         "f": "2026-11-13",
         "c": "store",
         "m": "Web",
-        "id": null,
-        "mem": null,
+        "id": true,
+        "mem": "none",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/jirafuru-f6c94/": {
+    "name": "ジラフル各店",
+    "items": {
+      "e277d506da7c3776": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/furukonpu-10949/": {
+    "name": "フルコンプ 一部店舗",
+    "items": {
+      "9431de8b4ab2c4cb": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-13",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       }
     }

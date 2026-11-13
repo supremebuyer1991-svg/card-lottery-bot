@@ -2782,7 +2782,7 @@
   },
   "store/tcgshoppu193-a8e49/": {
     "name": "TCGショップ193",
-    "last": "2026-11-04",
+    "last": "2026-11-13",
     "game": "pokemon",
     "keep": true
   },
@@ -5109,7 +5109,7 @@
     "area": "宮城県"
   },
   "store/iforamu-da679/": {
-    "name": "イーフォーラム 河内長野店",
+    "name": "イーフォーラム河内長野店",
     "last": "2026-11-13",
     "game": "onepiece",
     "area": "大阪府"
@@ -7488,12 +7488,6 @@
     "game": "pokemon",
     "keep": true
   },
-  "store/dragonstar-6dc40/": {
-    "name": "ドラゴンスターららぽーと甲子園店",
-    "last": "2026-11-13",
-    "game": "pokemon",
-    "keep": true
-  },
   "store/warasutoa-5ba3a/": {
     "name": "麦わらストア名古屋店",
     "last": "2026-11-13",
@@ -7599,5 +7593,20 @@
     "last": "2026-11-13",
     "game": "pokemon",
     "keep": true
+  },
+  "store/o-gurupu-8c670/": {
+    "name": "お宝創庫グループ（お宝創庫・おじゃま館・メディオ！・プレイズ 一部店舗）",
+    "last": "2026-11-13",
+    "game": "onepiece"
+  },
+  "store/jirafuru-f6c94/": {
+    "name": "ジラフル各店",
+    "last": "2026-11-13",
+    "game": "onepiece"
+  },
+  "store/furukonpu-10949/": {
+    "name": "フルコンプ 一部店舗",
+    "last": "2026-11-13",
+    "game": "onepiece"
   }
 }
