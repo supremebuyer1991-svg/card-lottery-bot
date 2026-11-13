@@ -20582,7 +20582,7 @@
       "game": "pokemon",
       "store": "蔦屋書店茂原店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-11-13T11:39:29.094132+09:00",
       "chain": "tsutaya"
@@ -20609,7 +20609,7 @@
       "game": "onepiece",
       "store": "イエローサブマリン各店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-13T11:39:29.871593+09:00",
       "chain": "yellowsubmarine"
@@ -20654,7 +20654,7 @@
       "game": "onepiece",
       "store": "ゲームワン",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "愛媛県",
       "found_at": "2026-11-13T11:39:29.871688+09:00",
       "chain": null
@@ -20672,7 +20672,7 @@
       "game": "onepiece",
       "store": "王の洞窟岐南本店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "岐阜県",
       "found_at": "2026-11-13T11:39:29.871715+09:00",
       "chain": null
@@ -20775,6 +20775,105 @@
       "area": "静岡県",
       "found_at": "2026-11-13T11:40:39.075349+09:00",
       "chain": "tsutaya"
+    },
+    "734a47920d1709f0": {
+      "game": "pokemon",
+      "store": "Bee本舗",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-13T15:40:40.926102+09:00",
+      "chain": null
+    },
+    "71fa0fc7d788e813": {
+      "game": "pokemon",
+      "store": "TCGshop193",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-13T15:40:40.926130+09:00",
+      "chain": null
+    },
+    "8accf3325ba5c9e1": {
+      "game": "pokemon",
+      "store": "ホビーステーション",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-13T15:40:40.926360+09:00",
+      "chain": "hobbystation"
+    },
+    "3b93c893b49c898f": {
+      "game": "pokemon",
+      "store": "イオン北海道（iAEONアプリ）",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": "北海道",
+      "found_at": "2026-11-13T15:40:41.610380+09:00",
+      "chain": "aeon"
+    },
+    "e47fda44202e781d": {
+      "game": "pokemon",
+      "store": "FEWMANY 新宿マルイアネックス店",
+      "series": "ストームエメラルダ",
+      "channel": "online",
+      "area": "東京都",
+      "found_at": "2026-11-13T15:40:41.610417+09:00",
+      "chain": null
+    },
+    "6256d191a39340ec": {
+      "game": "pokemon",
+      "store": "FEWMANY 新宿マルイアネックス店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-13T15:41:45.454102+09:00",
+      "chain": null
+    },
+    "18b07623bc08a288": {
+      "game": "onepiece",
+      "store": "プレイズ安城店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "愛知県",
+      "found_at": "2026-11-13T15:41:45.454126+09:00",
+      "chain": null
+    },
+    "214cff68ac88ab7a": {
+      "game": "pokemon",
+      "store": "Bee本舗通販サイト",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-13T15:41:45.454157+09:00",
+      "chain": null
+    },
+    "ff2b2b05b5756cc2": {
+      "game": "pokemon",
+      "store": "TSUTAYA",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-13T15:41:45.454175+09:00",
+      "chain": "tsutaya"
+    },
+    "bd3571936f6c3a10": {
+      "game": "pokemon",
+      "store": "カードショップ アンカー",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-13T15:41:45.454191+09:00",
+      "chain": null
+    },
+    "7908b2f77cad1926": {
+      "game": "pokemon",
+      "store": "イーフォーラム 河内長野店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-13T15:41:45.454269+09:00",
+      "chain": null
     }
   }
 }

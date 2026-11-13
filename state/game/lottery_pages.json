@@ -2229,5 +2229,56 @@
     "end": null,
     "seen": "2026-11-13",
     "ended": false
+  },
+  "4545a0183eb39fa3": {
+    "snap": {
+      "key": "4545a0183eb39fa3",
+      "game": "liquor",
+      "store": "Amazon.co.jp",
+      "product": "サントリーシングルモルトウイスキー山崎18年",
+      "series": "山崎18年",
+      "method": "Web（商品ページの「招待をリクエストする」ボタン）",
+      "conditions": "招待リクエスト後、登録メールアドレスに招待メールが届いた人のみ購入可能。招待メールは72時間以内であれば購入できる。",
+      "url": "https://www.amazon.co.jp/dp/B003848UCU?tag=impresswatch-41-22&ref=nosim",
+      "channel": "online",
+      "spath": "liquor/18-846c9/",
+      "found_at": "2026-11-11T18:39:05.390546+09:00",
+      "kind": "invite",
+      "price": "67,100円",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E5%B1%B1%E5%B4%8E18%E5%B9%B4",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E5%B1%B1%E5%B4%8E18%E5%B9%B4&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/4545a0183e/",
+    "end": null,
+    "seen": "2026-11-13",
+    "ended": false
+  },
+  "2dcbcd67238a5872": {
+    "snap": {
+      "key": "2dcbcd67238a5872",
+      "game": "liquor",
+      "store": "タチバナE酒販（アップライジング）",
+      "product": "福みくじ（466口限定）",
+      "series": "響・イチローズモルト",
+      "start": "2026-11-11",
+      "method": "Amazon.co.jp・楽天市場などでの予約販売",
+      "conditions": "1口6980円（送料無料）の抽選販売。466口限定で、なくなり次第終了。発送予定は2026年11月30日～12月2日（順次発送）。1等は響21年、2等は響 JAPANESE HARMONY、3等はイチローズモルト 20th アニバーサリー エディション など。",
+      "url": "https://gourmet.watch.impress.co.jp/docs/news/2155579.html",
+      "channel": "online",
+      "spath": "liquor/ichirozumoruto-fac12/",
+      "found_at": "2026-11-11T18:39:28.084217+09:00",
+      "kind": "lottery",
+      "price": "1口6980円（送料無料）",
+      "shop": {
+        "yh": "https://shopping.yahoo.co.jp/search?p=%E7%A6%8F%E3%81%BF%E3%81%8F%E3%81%98",
+        "mc": "https://jp.mercari.com/search?keyword=%E7%A6%8F%E3%81%BF%E3%81%8F%E3%81%98&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/2dcbcd6723/",
+    "end": null,
+    "seen": "2026-11-13",
+    "ended": false
   }
 }

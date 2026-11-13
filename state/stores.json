@@ -11,7 +11,7 @@
   },
   "store/hobbystation-af17c/": {
     "name": "ホビーステーション",
-    "last": "2026-11-12",
+    "last": "2026-11-13",
     "game": "pokemon",
     "area": "大阪府"
   },
@@ -1886,8 +1886,8 @@
     "area": "宮城県"
   },
   "store/tcgshop193-8f387/": {
-    "name": "TCGShop193",
-    "last": "2026-11-04",
+    "name": "TCGshop193",
+    "last": "2026-11-13",
     "game": "pokemon",
     "area": "東京都"
   },
@@ -3792,9 +3792,9 @@
   },
   "store/tsutaya-acb5a/": {
     "name": "TSUTAYA",
-    "last": "2026-11-08",
+    "last": "2026-11-13",
     "game": "onepiece",
-    "area": "東京都"
+    "area": "神奈川県"
   },
   "store/tsutaya-a5f11/": {
     "name": "TSUTAYA 中万々店",
@@ -5109,8 +5109,8 @@
     "area": "宮城県"
   },
   "store/iforamu-da679/": {
-    "name": "イーフォーラム河内長野店",
-    "last": "2026-11-12",
+    "name": "イーフォーラム 河内長野店",
+    "last": "2026-11-13",
     "game": "onepiece",
     "area": "大阪府"
   },
@@ -7527,12 +7527,14 @@
   "store/tsutaya-45cf3/": {
     "name": "蔦屋書店茂原店",
     "last": "2026-11-13",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "千葉県"
   },
   "store/gemuwan-e8948/": {
     "name": "ゲームワン",
     "last": "2026-11-13",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "愛媛県"
   },
   "store/fewmany-maruianekkusu-d7b7b/": {
     "name": "FEWMANY 新宿マルイアネックス店",
@@ -7554,6 +7556,46 @@
   },
   "store/pureizu-3be5a/": {
     "name": "プレイズ大阪日本橋本店",
+    "last": "2026-11-13",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/bee-f2d74/": {
+    "name": "Bee本舗",
+    "last": "2026-11-13",
+    "game": "pokemon"
+  },
+  "store/pureizu-0908d/": {
+    "name": "プレイズ安城店",
+    "last": "2026-11-13",
+    "game": "onepiece",
+    "area": "愛知県"
+  },
+  "store/bee-saito-c396c/": {
+    "name": "Bee本舗通販サイト",
+    "last": "2026-11-13",
+    "game": "pokemon"
+  },
+  "store/kadoshoppuanka-e41f6/": {
+    "name": "カードショップ アンカー",
+    "last": "2026-11-13",
+    "game": "pokemon",
+    "area": "兵庫県"
+  },
+  "store/supafurikusu-d54db/": {
+    "name": "スーパーフリークス岡山店",
+    "last": "2026-11-13",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/pureizu-aa3d1/": {
+    "name": "プレイズ京都駅前店",
+    "last": "2026-11-13",
+    "game": "pokemon",
+    "keep": true
+  },
+  "store/dragonstar-b7143/": {
+    "name": "ドラゴンスターららぽーと甲子園",
     "last": "2026-11-13",
     "game": "pokemon",
     "keep": true

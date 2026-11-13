@@ -57171,7 +57171,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/m0ix9",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "id_check": true,
       "member": "account",
@@ -57211,6 +57211,7 @@
       "store": "NカードLOOP なんば店",
       "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（7,200円・36名様）",
       "series": "30th CELEBRATION",
+      "start": "2026-11-12T00:00:00+09:00",
       "end": "2026-11-17T23:59:00+09:00",
       "method": "店頭",
       "conditions": "アプリ・会員・本人確認",
@@ -57247,7 +57248,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/bh-48",
-      "channel": "online",
+      "channel": "store",
       "id_check": true,
       "member": "account",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
@@ -57375,7 +57376,7 @@
         "本人確認"
       ],
       "url": "https://shoplottery.e-starbox.com/lottery/entry?code=4KER3iH2Nh",
-      "channel": "online",
+      "channel": "store",
       "area": "愛媛県",
       "id_check": true,
       "member": "none",
@@ -57428,7 +57429,7 @@
         "本人確認"
       ],
       "url": "https://livepocket.jp/e/k-c79",
-      "channel": "online",
+      "channel": "store",
       "area": "岐阜県",
       "id_check": true,
       "member": "account",
@@ -57690,6 +57691,254 @@
       "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "spath": "store/tsutaya-66810/",
       "found_at": "2026-11-13T11:40:39.075349+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/734a47920d/": {
+    "d": {
+      "key": "734a47920d1709f0",
+      "game": "pokemon",
+      "store": "Bee本舗",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T14:00:00+09:00",
+      "end": "2026-11-15T20:00:00+09:00",
+      "announce": "11月27日(金)",
+      "buy": "11/27(金)〜11/29(日)23:59",
+      "method": "WEB抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeqszii9q7R_hP_QeErXpnx2ocz7W9ocCQOQELRSRWrbzY09A/viewform",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/bee-f2d74/",
+      "found_at": "2026-11-13T15:40:40.926102+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/71fa0fc7d7/": {
+    "d": {
+      "key": "71fa0fc7d788e813",
+      "game": "pokemon",
+      "store": "TCGshop193",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T15:00:00+09:00",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "WEB抽選受付（当選者には店頭販売）",
+      "tags": [
+        "本人確認",
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScyVCz7XSzFQ8L4EWUXfMzbnjYKd2P3TCOXoAjrp3Wy0Md2ag/viewform",
+      "channel": "store",
+      "id_check": true,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tcgshop193-8f387/",
+      "found_at": "2026-11-13T15:40:40.926130+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/8accf3325b/": {
+    "d": {
+      "key": "8accf3325ba5c9e1",
+      "game": "pokemon",
+      "store": "ホビーステーション",
+      "product": "ストームエメラルダ",
+      "series": "ストームエメラルダ",
+      "start": "2026-11-13T12:00:00+09:00",
+      "end": "2026-11-15T23:59:00+09:00",
+      "announce": "2026年11月26日(木)予定",
+      "buy": "11/30(月)〜12/6(日)",
+      "method": "WEB抽選受付（当選者には店頭販売）",
+      "tags": [
+        "本人確認",
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/jy-cp",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/hobbystation-af17c/",
+      "found_at": "2026-11-13T15:40:40.926360+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/3b93c893b4/": {
+    "d": {
+      "key": "3b93c893b49c898f",
+      "game": "pokemon",
+      "store": "イオン北海道（iAEONアプリ）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T08:00:00+09:00",
+      "end": "2026-11-15T23:59:00+09:00",
+      "announce": "11月26日(木)8:00以降順次（当選者のみアプリ内でお知らせ）",
+      "method": "オンライン",
+      "conditions": "アプリ・会員",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.aeon-hokkaido.jp/iaeonapp/campaign/2611_poketcg/",
+      "channel": "online",
+      "area": "北海道",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/aeon-63e1d/",
+      "found_at": "2026-11-13T15:40:41.610380+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/e47fda4420/": {
+    "d": {
+      "key": "e47fda44202e781d",
+      "game": "pokemon",
+      "store": "FEWMANY 新宿マルイアネックス店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」",
+      "series": "ストームエメラルダ",
+      "start": "2026-11-14T11:00:00+09:00",
+      "end": "2026-11-14T20:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/bb1am",
+      "channel": "online",
+      "area": "東京都",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/fewmany-maruianekkusu-d7b7b/",
+      "found_at": "2026-11-13T15:40:41.610417+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/6256d191a3/": {
+    "d": {
+      "key": "6256d191a39340ec",
+      "game": "pokemon",
+      "store": "FEWMANY 新宿マルイアネックス店",
+      "product": "ポケモンカード30thカードセット9種",
+      "series": "30th CELEBRATION",
+      "start": "2026-11-14T11:00:00+09:00",
+      "end": "2026-11-14T20:00:00+09:00",
+      "url": "https://x.com/gamegetnavi/status/2121120121838326179",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/fewmany-maruianekkusu-d7b7b/",
+      "found_at": "2026-11-13T15:41:45.454102+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/18b07623bc/": {
+    "d": {
+      "key": "18b07623bc08a288",
+      "game": "onepiece",
+      "store": "プレイズ安城店",
+      "product": "OP-17 世界最強の戦士",
+      "series": "世界最強の戦士",
+      "end": "2026-11-15T23:45:00+09:00",
+      "url": "https://x.com/tcgradar777/status/2121117188631531931",
+      "channel": "store",
+      "area": "愛知県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
+      "spath": "store/pureizu-0908d/",
+      "found_at": "2026-11-13T15:41:45.454126+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/214cff68ac/": {
+    "d": {
+      "key": "214cff68ac88ab7a",
+      "game": "pokemon",
+      "store": "Bee本舗通販サイト",
+      "product": "拡張パック「ハドウシーカー」1BOX(30パック)",
+      "series": "ハドウシーカー",
+      "end": "2026-11-15T20:00:00+09:00",
+      "method": "Web",
+      "url": "https://www.bee-honpo.co",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/bee-saito-c396c/",
+      "found_at": "2026-11-13T15:41:45.454157+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/ff2b2b05b5/": {
+    "d": {
+      "key": "ff2b2b05b5756cc2",
+      "game": "pokemon",
+      "store": "TSUTAYA",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "end": "2026-11-19",
+      "announce": "2026-11-23",
+      "conditions": "愛知・岐阜・三重の複数店で実施。詳細な店舗と応募方法はリンク先で確認",
+      "url": "https://x.com/TsutayaT6817/status/2119581987036090815?a=oPJubVScGLLj3e8jqgs&s=20",
+      "channel": "store",
+      "area": "神奈川県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-acb5a/",
+      "found_at": "2026-11-13T15:41:45.454175+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/bd3571936f/": {
+    "d": {
+      "key": "bd3571936f6c3a10",
+      "game": "pokemon",
+      "store": "カードショップ アンカー",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "start": "2026-11-12",
+      "end": "2026-11-22",
+      "method": "店頭",
+      "conditions": "閉店まで受付",
+      "url": "https://x.com/cardshop_anchor/status/2120757560429203916",
+      "channel": "store",
+      "area": "兵庫県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kadoshoppuanka-e41f6/",
+      "found_at": "2026-11-13T15:41:45.454191+09:00"
+    },
+    "last": "2026-11-13"
+  },
+  "l/7908b2f77c/": {
+    "d": {
+      "key": "7908b2f77cad1926",
+      "game": "pokemon",
+      "store": "イーフォーラム 河内長野店",
+      "product": "ハドウシーカー 1BOX",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13",
+      "end": "2026-11-19T22:00:00+09:00",
+      "method": "Livepocket",
+      "conditions": "店頭でシリアルコード付き抽選券を受け取り、Livepocketで応募。購入期間は11/27(金)〜11/29(日)",
+      "url": "https://x.com/eforum_staff/status/2121075797075345673",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/iforamu-da679/",
+      "found_at": "2026-11-13T15:41:45.454269+09:00"
     },
     "last": "2026-11-13"
   }
