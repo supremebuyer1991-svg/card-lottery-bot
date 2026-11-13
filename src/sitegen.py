@@ -3737,6 +3737,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         save_json("store_moves.json", mv)
         olds.update(mv)
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
+        # ゲームを取り違えて一時公開していた弾ページ（11/13 Search Console の404）
+        olds["/onepiece/brightness-of-hope/"] = "/fusionworld/brightness-of-hope/"
         # 自動で見つけた弾の仮アドレス（/onepiece/op19/ など）→ あとで決めた読めるアドレス（11/8）
         for g_, m_ in ((load_json("newsets.json", {}) or {}).get("series") or {}).items():
             if g_ not in GAME_SLUG:
