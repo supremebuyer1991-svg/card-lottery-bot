@@ -569,10 +569,10 @@ OP_NEW_T = {
     },
 }
 
-BUY = {  # 日本での買い方ガイド（固定の文章）。2026/11/1 からの免税制度の変更も反映
+BUY = {  # 日本での買い方ガイド（固定の文章）。2026/11/1 からの免税制度の変更も反映。11/13 ポケセンオンライン抽選の本人認証枠（デジタル認証アプリ。30th CELEBRATION・ハドウシーカーの抽選で確認）を追記
     "en": [
         ("When do new Japanese sets come out?", "Japanese Pokémon sets are usually released on a Friday, and ONE PIECE sets on a Saturday. Check the release calendar on this site — Japanese Pokémon sets usually come out 2–4 months before the English set with the same cards, while ONE PIECE sets now release in Japan and English within days of each other."),
-        ("Pokémon Center stores", "The official Pokémon Center stores (Tokyo, Osaka, Kyoto and more) sell new sets on release day, but popular sets often sell out within hours or are sold only by lottery (抽選) to members with a Japanese address and phone number. Check the store's official X account the day before."),
+        ("Pokémon Center stores", "The official Pokémon Center stores (Tokyo, Osaka, Kyoto and more) sell new sets on release day, but popular sets often sell out within hours or are sold only by lottery (抽選) to members with a Japanese address and phone number. Pokémon Center Online lotteries for popular sets now give most winning spots to members who have verified their identity in the Players Club with Japan's government Digital Authentication App (using a My Number Card), which visitors from abroad cannot get. Check the store's official X account the day before."),
         ("Electronics stores, convenience stores and bookstores", "Yodobashi, Bic Camera, Yamada and bookstores sell new sets at MSRP, but in-demand products are mostly sold by lottery. Convenience stores (7-Eleven, FamilyMart, Lawson) sometimes have packs on release day, usually limited to a few packs per person."),
         ("Card shops in Akihabara, Nipponbashi and Nakano", "Specialist card shops sell singles and sealed boxes, usually above MSRP for popular sets. Compare shops — the box price table on this site shows what boxes actually sell for in Japan, so you can tell a fair price."),
         ("Tax-free shopping changed on November 1, 2026", "Japan switched to a refund system: you pay the full price including tax in the store, and the tax is refunded when you leave Japan after customs confirms your purchases (scan your passport at the tax-free terminal before check-in). You need to spend at least ¥5,000 (before tax) per store per day, keep the items unopened, and complete it within 90 days."),
@@ -581,7 +581,7 @@ BUY = {  # 日本での買い方ガイド（固定の文章）。2026/11/1 か�
     ],
     "zh-tw": [
         ("日版新彈什麼時候發售？", "日版寶可夢卡牌新彈通常在星期五發售，航海王卡牌通常在星期六。繁中版通常晚日版1～2週。請參考本站的發售日曆。"),
-        ("寶可夢中心", "官方寶可夢中心（東京、大阪、京都等）會在發售日販售新彈，但熱門系列常在幾小時內售完，或只以抽選方式賣給有日本地址與電話的會員。建議前一天先看各店的官方X帳號。"),
+        ("寶可夢中心", "官方寶可夢中心（東京、大阪、京都等）會在發售日販售新彈，但熱門系列常在幾小時內售完，或只以抽選方式賣給有日本地址與電話的會員。現在寶可夢中心線上商店熱門系列的抽選，大部分中選名額保留給在Players Club用日本政府「數位認證App」（需個人編號卡）完成本人認證的會員，海外旅客無法辦理。建議前一天先看各店的官方X帳號。"),
         ("電器行、超商、書店", "Yodobashi、Bic Camera、Yamada等電器行與書店以原價販售新彈，但熱門商品大多是抽選。7-ELEVEN、全家、LAWSON等超商發售日偶爾會有卡包，通常每人限購數包。"),
         ("秋葉原、日本橋、中野的卡牌專賣店", "專賣店有單卡與未拆封卡盒，熱門系列多半高於建議售價。可以多比較幾家，本站的卡盒價格表是日本的實際成交價，可以判斷價格是否合理。"),
         ("2026年11月1日起免稅改為「退稅制」", "日本的免稅制度改為先付含稅價格、出境時退稅：在店裡照含稅價付款，離境時在機場報到前用護照在免稅手續機器完成海關確認後退還消費稅。同一家店同一天需購買稅前5,000日圓以上，商品不可拆封使用，並須在購買後90天內辦理。"),
@@ -590,7 +590,7 @@ BUY = {  # 日本での買い方ガイド（固定の文章）。2026/11/1 か�
     ],
     "ko": [
         ("일판 신규 세트는 언제 나오나요?", "일판 포켓몬 카드는 보통 금요일, 원피스 카드는 보통 토요일에 발매됩니다. 한글판은 보통 일판보다 3주~2개월 뒤에 나옵니다. 이 사이트의 발매일 캘린더를 확인하세요."),
-        ("포켓몬센터", "공식 포켓몬센터(도쿄, 오사카, 교토 등)에서 발매일에 신규 세트를 판매하지만, 인기 세트는 몇 시간 만에 품절되거나 일본 주소와 전화번호가 있는 회원 대상 추첨으로만 판매되는 경우가 많습니다. 전날 각 매장의 공식 X 계정을 확인하세요."),
+        ("포켓몬센터", "공식 포켓몬센터(도쿄, 오사카, 교토 등)에서 발매일에 신규 세트를 판매하지만, 인기 세트는 몇 시간 만에 품절되거나 일본 주소와 전화번호가 있는 회원 대상 추첨으로만 판매되는 경우가 많습니다. 현재 포켓몬센터 온라인의 인기 세트 추첨은 당첨 몫 대부분이 플레이어즈 클럽에서 일본 정부의 '디지털 인증 앱'(마이넘버 카드 필요)으로 본인 인증을 마친 회원에게 배정되며, 해외 방문객은 이용할 수 없습니다. 전날 각 매장의 공식 X 계정을 확인하세요."),
         ("가전 양판점·편의점·서점", "요도바시, 빅카메라, 야마다 등 가전 양판점과 서점은 정가로 판매하지만, 인기 상품은 대부분 추첨입니다. 세븐일레븐, 패밀리마트, 로손 등 편의점에도 발매일에 팩이 들어오기도 하며, 보통 1인당 몇 팩으로 제한됩니다."),
         ("아키하바라·닛폰바시·나카노의 카드 전문점", "전문점에서는 싱글 카드와 미개봉 박스를 판매하며, 인기 세트는 보통 정가보다 비쌉니다. 여러 매장을 비교해 보세요. 이 사이트의 박스 시세표는 일본 실거래가라서 적정 가격을 판단할 수 있습니다."),
         ("2026년 11월 1일부터 면세가 '환급 방식'으로 변경", "일본의 면세 제도가 바뀌어, 매장에서는 세금 포함 가격을 내고 출국할 때 환급받습니다. 공항에서 체크인 전에 면세 절차 단말기에 여권을 스캔해 세관 확인을 받으면 소비세가 환급됩니다. 같은 매장에서 하루 5,000엔(세전) 이상 구매해야 하며, 상품은 개봉하지 말고 구매 후 90일 이내에 절차를 마쳐야 합니다."),
