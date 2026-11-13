@@ -257,6 +257,10 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
         title = f"【受付終了】{store_t}の{gshort}{kw}「{tname}」" + (f"（{end_s}締切）" if end_s else "") + f"｜{brand_name}"
         if canon_to:  # 11/11：終わった抽選のページが「古本市場 ワンピースカード 抽選」などで週650回出ていたのにクリック1%。お店の名前と「次の抽選・受付中の一覧」を先に出す
             title = f"{store_t}の{gshort}{kw}｜受付中の一覧・次の抽選（「{tname}」は受付終了）｜{brand_name}"
+            # 11/13：受付中の件数もタイトルの前のほうに（検索で「いま応募できる」が伝わるように。0件のときは出さない）
+            _n = re.search(r"（(\d+)件）", next_link[0]) if next_link and next_link[1] == canon_to else None
+            if _n and int(_n.group(1)) > 0:
+                title = f"{store_t}の{gshort}{kw} 受付中{_n.group(1)}件｜次の抽選・一覧（「{tname}」は受付終了）｜{brand_name}"
         desc = (f"{store}の{gshort}の{kw}「{name}」は受付を終了しました。" +
                 (f"{next_link[0].replace('を見る', '')}。" if next_link else "いま受付中の抽選は一覧からさがせます。"))
 
