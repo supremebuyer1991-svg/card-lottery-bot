@@ -253,3 +253,14 @@ else:
     jsp.write_text(re.findall(r"<script>(.*?)</script>", top3, re.S)[-1], encoding="utf-8")
     assert subprocess.run(["node", "--check", str(jsp)]).returncode == 0
     print("AFFILIATE OK")
+
+    # 無くなったページだけを、いちばん近い上の階層（無ければトップ）へ転送する（11/13）
+    import sitegen_game as _g
+    _gd = Path(tempfile.mkdtemp())
+    for _p in ["", "ps5", "ps5/ps5-midnight-black"]:
+        (_gd / _p).mkdir(parents=True, exist_ok=True)
+        (_gd / _p / "index.html").write_text("x")
+    _pm = {"": ["a", "2026-11-13", "x"], "ps5/ps5-midnight-black/": ["a", "2026-11-13", "x"],
+           "ps5/old-1/": ["a", "2026-11-10", "x"], "premium/4900000000000/": ["a", "2026-11-12", "x"]}
+    assert _g._gone_redirects(_gd, _pm).splitlines() == ["/premium/4900000000000/ / 301", "/ps5/old-1/ /ps5/ 301"]
+    print("OK")

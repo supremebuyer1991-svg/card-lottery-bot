@@ -479,6 +479,27 @@ def _phase(i, t):
 PH_LABEL = {"open": "受付中", "upcoming": "予告", "waiting": "結果待ち", "restock": "再入荷・先着", "announced": "発売・再販", "ended": "終了"}
 
 
+def _gone_redirects(out, pmod, limit=1800):
+    """前に出していたのに今回は無くなったページ（受付が全部終わった商品のまとめ・プレミア一覧から外れた商品など）を、
+    いちばん近い上の階層のページ（無ければトップ）へ 301 で転送する行。検索やXの古いリンクから来た人が「見つかりません」にならないように（11/13）。
+    今あるページは転送しない（Cloudflare Pages は _redirects をファイルより先に使うため）。行数は Cloudflare の上限（2,000）より少なく。"""
+    rows = []
+    for path, v in pmod.items():
+        p = str(path or "").strip("/")
+        if not p or not re.fullmatch(r"[A-Za-z0-9._/-]+", p) or (out / p / "index.html").exists():
+            continue
+        parts = p.split("/")[:-1]
+        while parts and not (out / "/".join(parts) / "index.html").exists():
+            parts.pop()
+        to = "/" + "/".join(parts) + "/" if parts else "/"
+        if to == "/premium/":
+            to = "/"
+        last = str(v[1] or "") if isinstance(v, list) and len(v) > 1 else ""
+        rows.append((last, f"/{p}/ {to} 301"))
+    rows.sort(key=lambda r: r[0], reverse=True)   # 新しく消えたものを優先
+    return "".join(line + "\n" for _, line in rows[:limit])
+
+
 def build(settings=None, out_dir=None, force=False):
     from common import load_settings
     s = settings or load_settings()
@@ -924,7 +945,7 @@ def build(settings=None, out_dir=None, force=False):
             shutil.copy(f, out / f.name)
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
-    (out / "_redirects").write_text("/premium /  301\n/premium/ /  301\n", encoding="utf-8")   # 「定価以上で売れる」はトップに移した（11/9）
+    (out / "_redirects").write_text("/premium /  301\n/premium/ /  301\n" + _gone_redirects(out, pmod), encoding="utf-8")   # 「定価以上で売れる」はトップに移した（11/9）
     (out / "_headers").write_text("/og.png\n  Cache-Control: public, max-age=3600\n", encoding="utf-8")
     if site:
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
