@@ -23,10 +23,11 @@ const COOLDOWN = 6 * 3600e3, PER_DAY = 6;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function search(env, kw) {
-  const p = new URLSearchParams({ applicationId: env.RAKUTEN_APP_ID, keyword: kw, shopCode: "book", format: "json",
+  const p = new URLSearchParams({ applicationId: env.RAKUTEN_APP_ID, keyword: kw.replace(/^\u0000/, ""), shopCode: "book", format: "json",
     formatVersion: "2", hits: "30", availability: "0", sort: "-updateTimestamp" });
   const r = await fetch(`${ENDPOINT}?${p}`, { headers: { accessKey: env.RAKUTEN_ACCESS_KEY, Referer: REFERER,
     Origin: REFERER.slice(0, -1), "User-Agent": "toreca-chusen-navi/1.0" } });
+  if (r.status === 429 && !kw.startsWith("\u0000")) { await sleep(2500); return search(env, "\u0000" + kw); }  // 11/13：回数オーバーは2.5秒待って1回だけやり直す
   if (!r.ok) throw new Error(`楽天API ${r.status} ${(await r.text()).slice(0, 120)}`);
   const j = await r.json();
   if (!j.Items) throw new Error(`楽天API 結果なし ${JSON.stringify(j).slice(0, 160)}`);
@@ -85,7 +86,7 @@ async function run(env, { dry = false } = {}) {
         found[it.itemCode] = { ...it, game };
       }
     } catch (e) { log.push(String(e)); }
-    await sleep(1300);
+    await sleep(2200);  // 11/13 楽天の回数オーバー（429）を減らすため間をあける
   }
   const fresh = {};
   let changed = !st.init && Object.keys(found).length > 0;
@@ -145,7 +146,10 @@ async function run(env, { dry = false } = {}) {
   if (Object.keys(found).length) st.init = true;
   st.last = { at: new Date().toISOString(), found: Object.keys(found).length, avail: Object.values(found).filter((i) => i.availability === 1).length, out, log };
   // KVの保存は無料だと1日1,000回まで。1分おきに動くので、在庫が変わった・投稿した・エラーのときだけ保存する
-  if (!dry && (changed || log.length)) await env.STATE.put("state", JSON.stringify(st));
+  // 11/13：KV の書き込みの無料枠（1日1,000回）を、エラーの記録だけで使い切っていた（楽天の429が毎分→毎分保存）。エラーだけの回は1時間に1回まで
+  const errSave = log.length && Date.now() - (st.errAt || 0) > 3600e3;
+  if (errSave) st.errAt = Date.now();
+  if (!dry && (changed || errSave)) await env.STATE.put("state", JSON.stringify(st));
   return st.last;
 }
 
@@ -280,7 +284,10 @@ async function runAmazon(env, { dry = false } = {}) {
   if (Object.keys(found).length) st.init = true;
   const cnt = (x) => Object.values(st.items).filter((v) => v === x).length;
   st.last = { at: new Date().toISOString(), found: Object.keys(found).length, buy: cnt("buy"), invite: cnt("invite"), out, log };
-  if (!dry && (changed || log.length)) await env.STATE.put("amz", JSON.stringify(st));
+  // 11/13：KV の書き込みの無料枠（1日1,000回）を、エラーの記録だけで使い切っていた（楽天の429が毎分→毎分保存）。エラーだけの回は1時間に1回まで
+  const errSave = log.length && Date.now() - (st.errAt || 0) > 3600e3;
+  if (errSave) st.errAt = Date.now();
+  if (!dry && (changed || errSave)) await env.STATE.put("amz", JSON.stringify(st));
   return st.last;
 }
 
