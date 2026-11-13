@@ -3236,7 +3236,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "faq": faq_s or None,
             "links": links, "root": "/",
             # 11/8 Fable技術：地名だけの店名（「岡南」「西大寺」など。チェーン名が読み取れなかった）は中身が薄いので検索に出さない
-            "noindex": (not si and len(past) < 3 and not _recent60(past)) or bool(re.fullmatch(r"[一-龯]{1,4}店?", re.sub(r"[（(].*?[）)]", "", r.get("name") or "").strip())) and not c},
+            "noindex": (not si and len(past) < 5) or bool(re.fullmatch(r"[一-龯]{1,4}店?", re.sub(r"[（(].*?[）)]", "", r.get("name") or "").strip())) and not c},
             si,  # 受付中なし・過去2件以下・60日以上抽選なしのお店だけ検索に出さない（11/7。平和堂などを巻き添えにしない）
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
@@ -3618,7 +3618,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         l_index = d.get("channel") != "store" or bool(c_ and CHAIN[c_][3])
         nxt = None
         canon_to = None
-        if not active and l_index and c_ and (out / _cgp(c_, g).strip("/") / "index.html").exists():
+        if False and not active and l_index and c_ and (out / _cgp(c_, g).strip("/") / "index.html").exists():
+            # 11/13：コアアップデートで順位が全体に落ちた。受付が終わった抽選のページ（中身が薄い）は検索に出さない（noindex）に戻す
             canon_to = _cgp(c_, g)
         if not active:
             if c_ and _chain_ng.get((c_, g)) and (out / _cgp(c_, g).strip("/") / "index.html").exists():
@@ -3823,6 +3824,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             return "main"
         groups = {}
         for u, lm_ in dict(urls).items():
+            if re.search(r"/(en|zh-tw|ko)/cards/[^/]+/$", u):  # 11/13：海外向けのカード1枚ずつのページは検索に出さない（noindex）ので、サイトマップにも入れない
+                continue
             groups.setdefault(_kind(u), []).append((u, lm_))
         idx_ = []
         for k_, lst_ in sorted(groups.items()):
