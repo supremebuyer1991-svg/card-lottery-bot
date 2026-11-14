@@ -95,3 +95,17 @@ def test_az_photo_update_needs_same_ean(monkeypatch):
     ph = gp.az_photo_update({"amazon_tag": "t-22"}, search=search, sleep=lambda s: None)
     assert ph["4548736000001"]["az"]["img"] == "https://m.media-amazon.com/a.jpg" and ph["4548736000001"]["at"]
     assert "img" not in ph["4548736000002"]["az"]   # JANが違う商品は使わない
+
+
+def test_az_photo_lots_name_match(monkeypatch):
+    import game_affi as ga
+    monkeypatch.setattr(ga, "save_json", lambda n, d: None)
+    monkeypatch.setattr(ga, "_models", lambda: {})
+    items = [{"game": "figure", "product": "S.H.Figuarts 仮面ライダークウガ マイティフォーム"}]
+    def search(word, tag):
+        return [{"asin": "B1", "detailPageURL": "https://www.amazon.co.jp/dp/B1?tag=t", "itemInfo": {"title": {"displayValue": "S.H.Figuarts 仮面ライダークウガ マイティフォーム フィギュア"}},
+                 "images": {"primary": {"large": {"url": "https://m.media-amazon.com/k.jpg"}}}}]
+    c = ga.az_photo_lots({}, items, cache={}, search=search, sleep=0, limit=5, no_time_limit=True)
+    k = [x for x in c if x.startswith("azphoto:")][0]
+    assert c[k]["img"] == "https://m.media-amazon.com/k.jpg"
+    assert ga.photo_for(items[0], c, {})["u"].startswith("https://www.amazon.co.jp/dp/B1")

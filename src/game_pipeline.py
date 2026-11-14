@@ -142,6 +142,11 @@ def _import_tcg(lots):
             ph = photos.get(f"{it.get('game')}|{it.get('series')}") or {}
             if ph.get("image") and ph.get("url"):
                 it["photo"] = {"u": ph["url"], "img": ph["image"]}
+    from approve import AD_ITEM as _ADI, AD_HOST as _ADH
+    for it in lots.values():   # 広告だったもの（前に載せてしまったもの）は「終了」にも残さない
+        if it.get("from_tcg") and it.get("status") != "rejected" and (_ADI.search(it.get("product") or "") or _ADH.search(it.get("url") or "")):
+            it["status"] = "rejected"
+            it["reject_reason"] = "情報元のサイトの広告"
     for k, it in lots.items():
         if it.get("from_tcg") and k not in want and it.get("status") in ("approved", "posted", "listed", "pending"):
             it["status"] = "expired"
@@ -319,7 +324,8 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             _live = [i for i in lots.values() if i.get("status") in ("approved", "posted", "listed")
                      and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t) and not i.get("from_tcg")]   # トレカ抽選ナビから載せたものは向こうの写真を使う
             _c = game_affi.update(s, _live)
-            game_affi.photo_update(s, _live, cache=_c)   # 楽天ブックスに無い商品の写真を楽天市場から（11/14）
+            _c = game_affi.az_photo_lots(s, _live, cache=_c)   # 楽天ブックスに無い商品の写真をAmazonから商品名で（11/14）
+            game_affi.photo_update(s, _live, cache=_c)   # Amazonにも無ければ楽天市場から（11/14）
         except Exception as e:
             log(f"楽天の商品写真: スキップ {e}")
         if out_dir is None:

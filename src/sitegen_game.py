@@ -954,6 +954,14 @@ def build(settings=None, out_dir=None, force=False):
         if av:
             row["avail"] = av   # いま楽天・Amazonで予約受付中・販売中（見張りが見た状態）→ カード・個別ページの目立つところに
         items.append(row)
+    # ポケカ・ワンピ：写真の無い抽選は、同じ弾のほかの抽選の写真を使う（弾の名前をそろえてあるので同じ商品。11/14 ユーザー：写真を埋めて）
+    _setph = {}
+    for r_ in items:
+        if r_.get("series") and (r_.get("rk") or {}).get("img") and not (r_.get("rk") or {}).get("search"):
+            _setph.setdefault((r_["game"], r_["series"]), r_["rk"])
+    for r_ in items:
+        if not (r_.get("rk") or {}).get("img") and (r_.get("game"), r_.get("series")) in _setph and (cat_by.get(r_["game"]) or {}).get("sets"):
+            r_["rk"] = dict(_setph[(r_["game"], r_["series"])])
     live = [i for i in items if i["ph"] != "ended"]
     import game_premium
     try:   # カテゴリごとの商品一覧（買取相場の商品＋抽選・発売の商品）→ 左メニューの数・カテゴリページ

@@ -12,5 +12,14 @@ before = sum(1 for x in gp.catalog(s, gp.watch_map_cached()) if not x.get("img")
 log(f"写真の無い商品：{before}件")
 gp.az_photo_update(s, limit=2000, no_time_limit=True)
 gp.photo_update(s, limit=2000, no_time_limit=True)
+# 抽選・発売の商品（11/14 追加）：Amazon（商品名）→ 楽天市場（商品名）
+import game_affi  # noqa: E402
+from common import load_json, now, parse_dt  # noqa: E402
+_t = now()
+live = [i for i in load_json("lotteries.json", {}).values() if i.get("status") in ("approved", "posted", "listed")
+        and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < _t) and not i.get("from_tcg")]
+c = game_affi.az_photo_lots(s, live, limit=500, no_time_limit=True)
+s2 = dict(s, rakuten_photo_calls_per_run=500, rakuten_until_sec=100000)
+game_affi.photo_update(s2, live, cache=c)
 after = sum(1 for x in gp.catalog(s, gp.watch_map_cached()) if not x.get("img"))
 log(f"写真の無い商品：{before}件 → {after}件")

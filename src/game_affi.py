@@ -350,6 +350,8 @@ def photo_update(settings, items, cache=None, fetch=None, sleep=1.1):
         c = cache.get(q[0]) or {}
         if not c.get("checkedAt") or c.get("imageUrl"):
             continue   # まだ楽天ブックスで探していない／楽天ブックスに写真がある
+        if (cache.get("azphoto:" + q[0]) or {}).get("img"):
+            continue   # Amazonで写真が見つかった
         p = cache.get("photo:" + q[0])
         if p and parse_dt(p.get("checkedAt")) and (t - parse_dt(p["checkedAt"])).total_seconds() < days * 86400:
             continue
@@ -395,10 +397,83 @@ def photo_update(settings, items, cache=None, fetch=None, sleep=1.1):
     return cache
 
 
+def az_photo_lots(settings, items, cache=None, search=None, sleep=1.1, limit=None, no_time_limit=False):
+    """抽選・発売の商品で写真が無いものを、Amazonで商品名を使って探す（11/14 ユーザー：写真を埋めて）。
+    楽天と同じ照合（match：大事な語が全部入っている・中古や周辺機器は外す）で合ったものだけ。キャッシュのキーは "azphoto:" ＋ 楽天のときと同じキー"""
+    cache = cache if cache is not None else load_json(CACHE, {})
+    if search is None:
+        if not (os.environ.get("AMAZON_CREDENTIAL_ID") and os.environ.get("AMAZON_CREDENTIAL_SECRET")):
+            return cache
+        import game_premium
+        tok = {}
+
+        def search(word, tag):
+            if "t" not in tok:
+                tok["t"] = game_premium._amz_token()
+            return game_premium._amz_search(word, tag, tok["t"])
+    tag = amazon_tag(settings)
+    models = _models()
+    import gamecats as _gc
+    _hints = _gc.hints()
+    strict = {c["id"] for c in _gc.categories(False) if c.get("aff_strict")}
+    t = now()
+    left = limit if limit is not None else int(settings.get("az_lot_photo_per_run", 10))
+    seen = set()
+    from common import job_elapsed
+    called = 0
+    for i in items:
+        q = query_of(i, manual_of(i, models))
+        if not q or q[1] != "name" or q[0] in seen:
+            continue
+        seen.add(q[0])
+        if (cache.get(q[0]) or {}).get("imageUrl") or (cache.get("photo:" + q[0]) or {}).get("imageUrl"):
+            continue
+        p = cache.get("azphoto:" + q[0])
+        if p and (p.get("img") or (parse_dt(p.get("checkedAt")) and (t - parse_dt(p["checkedAt"])).total_seconds() < 7 * 86400)):
+            continue
+        if left <= 0 or (not no_time_limit and job_elapsed() > float(settings.get("rakuten_until_sec", 300))):
+            break
+        left -= 1
+        if called and sleep:
+            time.sleep(sleep)
+        called += 1
+        try:
+            found = search(keyword(q[2]), tag)
+        except Exception as e:
+            log(f"Amazonの写真（抽選）: {q[2][:30]} 取得失敗 {e}")
+            if "401" in str(e) or "403" in str(e):
+                break
+            continue
+        best = None
+        g_ = i.get("game") or ""
+        for it in found or []:
+            title = (((it.get("itemInfo") or {}).get("title") or {}).get("displayValue") or "")
+            img = ((((it.get("images") or {}).get("primary") or {}).get("large") or {}).get("url") or
+                   (((it.get("images") or {}).get("primary") or {}).get("medium") or {}).get("url"))
+            sc = match({"itemName": title}, q[2]) if img else None
+            if sc is not None and g_ in strict and g_ in _hints and not _hints[g_].search(title):
+                sc = None
+            if sc is not None and (best is None or sc > best[0]):
+                best = (sc, it, img, title)
+        if best:
+            _, it, img, title = best
+            cache["azphoto:" + q[0]] = {"img": img, "url": it.get("detailPageURL") or f"https://www.amazon.co.jp/dp/{it.get('asin')}?tag={tag}",
+                                        "title": title[:80], "checkedAt": t.isoformat()}
+            log(f"Amazonの写真（抽選）: {q[2][:30]} → {title[:40]}")
+        else:
+            cache["azphoto:" + q[0]] = {"checkedAt": t.isoformat()}
+    if called:
+        save_json(CACHE, cache)
+    return cache
+
+
 def photo_for(i, cache, settings, models=None):
     """写真の無い行に使う {"u": 楽天の商品ページ（アフィリエイト）, "img": 写真}（photo_update で見つけたもの）か None"""
     q = query_of(i, manual_of(i, models))
     p = (cache or {}).get("photo:" + q[0]) if q else None
+    a = (cache or {}).get("azphoto:" + q[0]) if q else None
+    if a and a.get("img") and a.get("url"):   # Amazonの写真（Amazonの商品ページへ。楽天ブックス→Amazon→楽天市場の順）
+        return {"u": a["url"], "img": a["img"]}
     if p and p.get("imageUrl") and item_page_ok(p.get("itemUrl")):
         return {"u": rakuten_link(p["itemUrl"], affiliate_id(settings)), "img": thumb(p["imageUrl"])}
     return None
