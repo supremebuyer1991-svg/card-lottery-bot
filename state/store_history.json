@@ -1920,6 +1920,17 @@
         "mem": "none",
         "rq": []
       },
+      "0f84f23e404f1857": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-17T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "d13665ae2bd11ba1": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -2592,6 +2603,17 @@
         "e": "2026-11-15T22:00",
         "f": "2026-11-09",
         "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "26ffe31f839d6360": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-15T22:00",
+        "f": "2026-11-14",
+        "c": "online",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -8691,6 +8713,17 @@
   "store/batoroco-a508a/": {
     "name": "TCバトロコ渋谷センター街",
     "items": {
+      "846b917b31237648": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-17T23:00",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "070a9541e0fd2102": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -8751,6 +8784,17 @@
   "store/kabos-geo-cdc41/": {
     "name": "KaBoS＋GEO藤沢店",
     "items": {
+      "19a86fcb59e4db28": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-23T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "08dcef7adfbe8cd1": {
         "p": "神の支配",
         "g": "onepiece",
@@ -10311,6 +10355,17 @@
   "store/kadosutajiamu-f57b0/": {
     "name": "カードスタジアム小禄店",
     "items": {
+      "cb155b35f9fc9db9": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "b53c658c961efe55": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -11370,6 +11425,17 @@
   "store/torekapuraza55-ccb1e/": {
     "name": "トレカプラザ55豊田店",
     "items": {
+      "f64c889c456c3097": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-18T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "ef481b16fd4970fe": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -17094,6 +17160,17 @@
   "store/tsutaya-d5727/": {
     "name": "TSUTAYA積文館書店 鹿島店",
     "items": {
+      "e0cff56b69104fc8": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-20T20:00",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "26b844f55414cc8b": {
         "p": "神の支配",
         "g": "onepiece",
@@ -29999,6 +30076,17 @@
         "mem": "none",
         "rq": []
       },
+      "2525021c0787ee77": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T21:00",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "3284a57a0f10c251": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -41326,6 +41414,38 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-9c7b2/": {
+    "name": "TSUTAYA福岡西新店",
+    "items": {
+      "e400b453b7f1f88d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-16T22:00",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/bookoff-a6bff/": {
+    "name": "ブックオフプラス浜北店",
+    "items": {
+      "4088e5b0b898ed8b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T21:00",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
         "rq": []
       }
     }

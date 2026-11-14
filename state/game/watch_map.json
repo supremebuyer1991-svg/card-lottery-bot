@@ -5516,9 +5516,9 @@
     },
     "j4902370551136": {
       "s": "buy",
-      "p": 8080,
-      "u": "https://www.amazon.co.jp/dp/B0C6X2PYBH?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-      "at": "2026-11-10T04:46:39.198Z"
+      "p": 8070,
+      "u": "https://www.amazon.co.jp/dp/B0C6X2PYBH?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+      "at": "2026-11-14T08:26:38.288Z"
     },
     "j4902370544060": {
       "s": "buy",
@@ -9241,10 +9241,10 @@
       "at": "2026-11-09T09:24:41.385Z"
     },
     "j4988755071260": {
-      "s": "none",
-      "p": 0,
+      "s": "buy",
+      "p": 158391,
       "u": "https://www.amazon.co.jp/dp/B0F11VB65S?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
-      "at": "2026-11-13T09:30:38.509Z"
+      "at": "2026-11-14T08:44:39.200Z"
     },
     "j4549576241692": {
       "s": "none",
@@ -15876,10 +15876,10 @@
         "at": "2026-11-12T20:48:39.912Z"
       },
       "j4988755071260": {
-        "s": "none",
-        "p": 0,
+        "s": "buy",
+        "p": 158391,
         "u": "https://www.amazon.co.jp/dp/B0F11VB65S?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
-        "at": "2026-11-13T09:30:38.509Z"
+        "at": "2026-11-14T08:44:39.200Z"
       },
       "j4974365870676": {
         "s": "buy",
@@ -16711,9 +16711,9 @@
       },
       "j4902370551136": {
         "s": "buy",
-        "p": 8080,
-        "u": "https://www.amazon.co.jp/dp/B0C6X2PYBH?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-        "at": "2026-11-10T04:46:39.198Z"
+        "p": 8070,
+        "u": "https://www.amazon.co.jp/dp/B0C6X2PYBH?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+        "at": "2026-11-14T08:26:38.288Z"
       },
       "j4995364310673": {
         "s": "buy",
@@ -22144,6 +22144,11 @@
         }
       ],
       "j4988755071260": [
+        {
+          "t": "2026-11-14T08:44:39.200Z",
+          "s": "buy",
+          "p": 158391
+        },
         {
           "t": "2026-11-13T09:30:38.509Z",
           "s": "none",
