@@ -51,7 +51,7 @@ PROMPT_L = """あなたはゲーム機・ホビーの抽選・予約・再入荷
 {data}"""
 
 
-PROMPT_S = """あなたはゲーム機・ホビーの抽選・予約・再入荷の情報サイトの編集者です。次の「ひとつの商品（弾・シリーズ）についての受付のまとめ」のデータ「だけ」を使って、このまとめページに載せる解説を日本語で書いてください。
+PROMPT_S = """あなたはゲーム機・ホビーの抽選・予約・再入荷の情報サイトの編集者です。次の「ひとつの商品（弾・シリーズ）またはひとつのお店についての受付のまとめ」のデータ「だけ」を使って、このまとめページに載せる解説を日本語で書いてください。
 
 ルール：
 ・データに無い事実（応募条件、当選人数、倍率、商品の仕様の数字、在庫状況、発売日など）は書かない。推測は「〜とみられます」とも書かない
@@ -139,7 +139,7 @@ def _lot_data(snap, settings):
     return {k: v for k, v in d.items() if v not in ("", None)}
 
 
-def _series_data(name, recs, settings):
+def _series_data(name, recs, settings, label="商品（弾・シリーズ）"):
     """商品（弾・シリーズ）のまとめページ（/<ジャンル>/<商品>/）の解説の材料：受付中・これまでの受付の一覧と買取相場（11/14 ユーザー：1ページごとの中身も充実させて）"""
     from collections import Counter
     from detail import fmt
@@ -152,7 +152,7 @@ def _series_data(name, recs, settings):
                                   "受付開始": fmt(snap["start"]) if snap.get("start") else "", "締切": fmt(snap["end"]) if snap.get("end") else "",
                                   "条件": re.sub(r"\s+", " ", str(snap.get("conditions") or ""))[:80]}.items() if v}
     live.sort(key=lambda r: r[0].get("end") or "9999")
-    d = {"_kind": "series_page", "商品（弾・シリーズ）": name,
+    d = {"_kind": "series_page", label: name,
          "いま載っている受付の数": len(live), "いま載っている受付（締切の早い順・最大15件）": [row(s_) for s_, _ in live[:15]],
          "受付の種類の内訳": dict(Counter(KIND_JA.get(s_.get("kind") or "lottery", "受付") for s_, _ in live)),
          "店頭とネットの内訳": dict(Counter({"store": "店頭", "online": "ネット"}.get(s_.get("channel") or "", "不明") for s_, _ in live)),
@@ -161,7 +161,7 @@ def _series_data(name, recs, settings):
          "これまでに受付があったお店（終わったものを含む）": list(dict.fromkeys(s_.get("store") for s_, _ in recs if s_.get("store")))[:15]}
     try:
         import game_premium
-        x = game_premium.price_match(name, settings) or game_premium.price_match((recs[0][0].get("product") or ""), settings)
+        x = (game_premium.price_match(name, settings) or game_premium.price_match((recs[0][0].get("product") or ""), settings)) if label.startswith("商品") else None
     except Exception:
         x = None
     if x:
@@ -222,12 +222,35 @@ def update(settings, ai=None, limit=None, no_time_limit=False):
         if sp:
             by_sp.setdefault(sp, []).append(((rec.get("snap") or {}), rec))
     old_s = (t - timedelta(days=float(settings.get("aitext_series_refresh_days", 7)))).isoformat()
+    # お店のチェーンのページ（/chain/<チェーン>/・/chain/<チェーン>/<ジャンル>/）も同じ形で（11/14 ユーザー：もっと減らしたい）
+    try:
+        import gamecats
+        import sitegen_game as _sg
+        slug = {c["id"]: c["slug"] for c in gamecats.categories(False)}
+        short = {c["id"]: c["short"] for c in gamecats.categories(False)}
+        chain_lbl = {}
+        for k, rec in lp.items():
+            sn = rec.get("snap") or {}
+            ch = _sg.chain_of(sn.get("store") or "")
+            if not ch:
+                continue
+            for pth, lbl in ((f"chain/{ch}/", _sg.CHAIN[ch][1]), (f"chain/{ch}/{slug.get(sn.get('game'), '')}/", f"{_sg.CHAIN[ch][1]}（{short.get(sn.get('game'), '')}）")):
+                if pth.endswith("//"):
+                    continue
+                by_sp.setdefault(pth, []).append((sn, rec))
+                chain_lbl[pth] = lbl
+    except Exception as e:
+        chain_lbl = {}
+        log(f"解説：チェーンのページ スキップ {e}")
     for path, (total, uniq) in vol.items():
         recs = by_sp.get(path)
-        if not recs or uniq >= target + 600 or not any(not r.get("ended") for _, r in recs):
+        if not recs or uniq >= target + 600:   # 受付が終わったものだけのまとめページも、これまでの記録から作る（11/14）
             continue
         key = "s:" + path
         if st.get(key) and st[key].get("at", "") > old_s:
+            continue
+        if path in chain_lbl:
+            cands.append((False, uniq, 0, key, _series_data(chain_lbl[path], recs, settings, label="お店")))
             continue
         name = recs[0][0].get("series") or ""
         if not name:

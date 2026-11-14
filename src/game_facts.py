@@ -207,6 +207,15 @@ def get(jan):
     if "st" not in _cache:
         _cache["st"] = load_json(STATE, {}) or {}
     rec = _cache["st"].get(jan) or {}
+    if not rec.get("facts"):   # 自動で取れなかった商品は、手で調べて書いたもの（premium_overrides.yaml の facts・facts_src）を使う（11/14）
+        try:
+            import game_premium
+            ov = game_premium.overrides().get(str(jan)) or {}
+        except Exception:
+            ov = {}
+        if ov.get("facts") and ov.get("facts_src"):
+            return {"facts": list(ov["facts"]), "src": ov["facts_src"], "src_title": ov.get("facts_src_title") or "", "official": False,
+                    "msrp": ov.get("teika"), "name": ov.get("name") or ""}
     return rec if rec.get("facts") else None
 
 
