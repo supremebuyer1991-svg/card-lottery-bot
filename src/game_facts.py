@@ -129,7 +129,7 @@ _th = {}
 _lock = threading.Lock()
 
 
-def update(settings, call=None):
+def update(settings, call=None, limit=None, only=None):
     """事実がまだ無い商品から順に取る（1件ずつ保存）。戻り値：取れた件数"""
     if not (call or os.environ.get("ANTHROPIC_API_KEY")) or not settings.get("product_facts_per_run", 0):
         return 0
@@ -144,8 +144,10 @@ def update(settings, call=None):
         rec = st.get(x["jan"])
         if rec and rec.get("at", "") > (refresh if rec.get("facts") else retry):
             continue
+        if only and not only(x):
+            continue
         cands.append(x)
-    todo = cands[:int(settings["product_facts_per_run"])]
+    todo = cands[:limit if limit is not None else int(settings["product_facts_per_run"])]
     if not todo:
         return 0
     got = [0]
