@@ -3452,7 +3452,16 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし（なくなり次第終了）",
     "page_checked_at": "2026-11-14T15:26:49.675949+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "1口6980円（送料無料）の抽選販売",
+      "Amazon.co.jpや楽天市場などで販売",
+      "1等は響21年、定価6万7100円（メーカー希望小売価格）",
+      "2等は響 JAPANESE HARMONYが5口、3等はイチローズモルト 20th アニバーサリー エディションが8口",
+      "発送予定は2026年11月30日～12月2日（順次発送）",
+      "466口限定で、なくなり次第終了"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155579.html"
   },
   "deda3042a915b737": {
     "store": "Amazon.co.jp",
@@ -3483,7 +3492,15 @@
     "cls": "63375c8aeaff",
     "official_checked": true,
     "verified_at": "2026-11-13T11:53:38.219747+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "当選者への販売価格は1万7600円（メーカー希望小売価格の税込価格）",
+      "商品ページの注意事項を確認し「招待をリクエストする」ボタンで応募",
+      "招待メールが届いた人のみ購入できる",
+      "招待メール受信後72時間以内であれば購入可能",
+      "招待制以外の出品価格は配送料込み2万4950円（箱なし）から（価格は執筆時点）"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155231.html"
   },
   "41e3f8e4fec71ac9": {
     "store": "Amazon.co.jp",
@@ -3517,7 +3534,14 @@
       "product": "Hibiki サントリーウイスキー 響 JAPANESE HARMONY 700ml"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：product"
+    "verify_note": "記事に合わせて直した：product",
+    "facts": [
+      "招待制の抽選販売。商品ページの「招待をリクエスト」ボタンで応募する",
+      "当選者の販売価格は1万7600円（税込、希望小売価格と同額）",
+      "登録メールに招待メールが届いた人のみ購入できる",
+      "招待メール受信から72時間以内に購入する必要がある"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155231.html"
   },
   "9428249be9d116bc": {
     "store": "ガンダムベース（一部店舗）",
@@ -3645,7 +3669,14 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
-    }
+    },
+    "facts": [
+      "招待リクエストを受け付け中と記載",
+      "抽選期間・当選発表日は「-」で記載なし",
+      "「現在予約・抽選受付中の店舗」欄に掲載",
+      "商品の発売日は2026年9月16日(水)、世界同時発売"
+    ],
+    "facts_src": "https://snkrdunk.com/articles/32425/"
   },
   "3bb67621a9100a06": {
     "store": "あみあみ",
@@ -4264,7 +4295,7 @@
     "source_url": "https://nyuka-now.com/archives/162248",
     "no_quote": true,
     "key": "fcf6f533563e3502",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-12T15:26:38.174804+09:00",
     "kind": "lottery",
     "product_short": "ハドウシーカー",
@@ -4286,7 +4317,8 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
-    }
+    },
+    "duplicate_of": "6e663c01f393190c"
   },
   "3749958f53f8096f": {
     "store": "楽天ブックス",
@@ -4300,8 +4332,11 @@
     "game": "pokemon",
     "channel": "online",
     "id_check": null,
-    "member": null,
-    "tags": [],
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
     "confidence": 0.9,
     "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
     "series": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
@@ -4315,7 +4350,8 @@
     "product_short": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
     "area": null,
     "cls": "1f0399aab08a",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。"
   },
   "72d2665f872e1054": {
     "store": "楽天ブックス",
@@ -6273,7 +6309,9 @@
     ],
     "facts_src": "https://hobby.watch.impress.co.jp/docs/news/2156412.html",
     "verified_at": "2026-11-14T15:48:44.778316+09:00",
-    "verified": true
+    "verified": true,
+    "page_checked_at": "2026-11-14T17:24:46.757965+09:00",
+    "page_err": "中身が空"
   },
   "42fbbdcdf85ee122": {
     "store": "プレミアムバンダイ",
@@ -6305,7 +6343,9 @@
     "issue": 750,
     "deadline_checked_at": "2026-11-14T16:19:59.160327+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・キュリオス11月14日17時より開始"
+    "deadline_note": "画像0/0枚読込・キュリオス11月14日17時より開始",
+    "page_checked_at": "2026-11-14T17:24:49.562631+09:00",
+    "details_checked": true
   },
   "8dbd9d77a4256824": {
     "store": "BANDAI SPIRITS",
@@ -6335,7 +6375,9 @@
     "found_at": "2026-11-14T16:01:24.707255+09:00",
     "multi": false,
     "cls": "eeb02f1b1b33",
-    "issue": 751
+    "issue": 751,
+    "page_checked_at": "2026-11-14T17:24:57.531030+09:00",
+    "page_err": "中身が空"
   },
   "f886129b638ed1f6": {
     "store": "BANDAI SPIRITS",
@@ -6346,7 +6388,7 @@
     "end": "2026-11-20T23:59:00+09:00",
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "本文に「エールストライク」の抽選の応募・購入条件は書かれていません。",
     "price": null,
     "round": null,
     "url": "https://news.infoseek.co.jp/article/inside_190902/",
@@ -6365,7 +6407,10 @@
     "found_at": "2026-11-14T16:01:24.707289+09:00",
     "multi": false,
     "cls": "5b32b4fca38f",
-    "issue": 752
+    "issue": 752,
+    "page_checked_at": "2026-11-14T17:25:00.296562+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "7d04d9e3b573c9d2": {
     "store": "バンダイ",
@@ -6376,7 +6421,7 @@
     "end": null,
     "announce": null,
     "method": null,
-    "conditions": null,
+    "conditions": "ページに応募・購入条件の記載はありません。価格は500円（税込）のみ書かれています。",
     "price": "500円（税込）",
     "round": null,
     "url": "http://www.inside-games.jp/article/2026/11/14/190939.html",
@@ -6398,7 +6443,11 @@
     "issue": 753,
     "deadline_checked_at": "2026-11-14T16:42:35.946408+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・抽選の記載なし（ガシャポン再販）"
+    "deadline_note": "画像0/0枚読込・抽選の記載なし（ガシャポン再販）",
+    "page_checked_at": "2026-11-14T17:25:05.244973+09:00",
+    "address_checked": true,
+    "details_checked": true,
+    "buy": "2026年11月第3週（再販予定）"
   },
   "ed0eb35fa98d34a1": {
     "store": "プレミアムバンダイ",
@@ -6461,7 +6510,9 @@
     "status": "pending",
     "found_at": "2026-11-14T16:01:48.873169+09:00",
     "cls": "22ce885c184c",
-    "issue": 755
+    "issue": 755,
+    "page_checked_at": "2026-11-14T17:25:14.036040+09:00",
+    "details_checked": true
   },
   "ee0fc2e3b8858668": {
     "store": "DMM通販",
@@ -6554,7 +6605,10 @@
     "status": "pending",
     "found_at": "2026-11-14T16:02:13.648132+09:00",
     "cls": "7016df4586d3",
-    "issue": 758
+    "issue": 758,
+    "deadline_checked_at": "2026-11-14T17:24:43.034857+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし"
   },
   "tc9d92fc519c9497f3": {
     "store": "るるなカード（Luruna Card）オンラインショップ",
@@ -6620,7 +6674,7 @@
     },
     "area": null,
     "cls": "acbbffc08b9f",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc905e7298a12da0bb": {
     "store": "秋葉原チェルモ",
@@ -6651,7 +6705,7 @@
     },
     "area": null,
     "cls": "7b914b2ca3d1",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc4930d9f2f23e92a3": {
     "store": "トレカSHOPあんりみてっど",
@@ -6680,7 +6734,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "area": null,
     "cls": "6c04b3a824fb"
   },
@@ -6885,7 +6939,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc265bfedae079b73c",
     "area": null,
     "cls": "45412fb04ded"
   },
@@ -6951,7 +7005,7 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
     "product_short": "ハドウシーカー",
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "area": null,
     "cls": "38388e46a930"
   },
@@ -6983,7 +7037,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc265bfedae079b73c",
     "area": null,
     "cls": "f8266af8509a"
   },
@@ -7149,7 +7203,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "dc9d738d2eba"
   },
@@ -7182,7 +7236,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc265bfedae079b73c",
     "multi": false,
     "cls": "c09cd4c9f318"
   },
@@ -7215,7 +7269,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc265bfedae079b73c",
     "area": null,
     "cls": "172f1be000c7"
   },
@@ -7403,7 +7457,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "917f86464e7f"
   },
@@ -7437,7 +7491,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "ca8f4539b436"
   },
@@ -7612,7 +7666,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "f5ca69d5be0f"
   },
@@ -7644,7 +7698,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "b524740dcaa1"
   },
@@ -7676,7 +7730,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc8ecac05d49e13817",
     "multi": false,
     "cls": "55b28291a0e9"
   },
@@ -7709,7 +7763,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502",
+    "dup_of": "tc265bfedae079b73c",
     "multi": false,
     "cls": "5f28b19c0c43"
   },
@@ -8039,7 +8093,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcf91b7a57b2ccbb7c": {
     "store": "トレカプロ",
@@ -8093,7 +8147,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc363306a4c063219f": {
     "store": "カードボックスイオンモール姫路店",
@@ -8185,7 +8239,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcc24e64fc1229170a": {
     "store": "TSUTAYA別府上人ヶ浜店",
@@ -8215,7 +8269,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc99e37a5c072120c6": {
     "store": "TSUTAYA別府上人ヶ浜店",
@@ -8851,7 +8905,7 @@
     },
     "multi": false,
     "cls": "11d927fef70a",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc132f81c779a136a0": {
     "store": "福福トレカ 通販シングル専門店",
@@ -8915,7 +8969,7 @@
     },
     "multi": false,
     "cls": "785854ec1a1d",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcdd0d71ab9e035e80": {
     "store": "るるなカード（Luruna Card）オンラインショップ",
@@ -8948,7 +9002,7 @@
     },
     "area": null,
     "cls": "bb7b82711ef0",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcd7f614f6fafd6a5d": {
     "store": "TSUTAYA積文館書店八女店",
@@ -8981,7 +9035,7 @@
     },
     "multi": false,
     "cls": "60bbad868e13",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc4f7ae73e625755a8": {
     "store": "フタバ図書TSUTAYA Alti福山店",
@@ -9112,7 +9166,7 @@
     },
     "multi": false,
     "cls": "1748240e50df",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc6d4d2a7bf2dd5c60": {
     "store": "ビックカメラ広島駅前店",
@@ -9294,7 +9348,7 @@
     },
     "area": null,
     "cls": "d391616c8181",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc18837c056a31656c": {
     "store": "TSUTAYA加須店",
@@ -9327,7 +9381,7 @@
     },
     "multi": false,
     "cls": "95244b324f3f",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc4ea7d1decf2a49e3": {
     "store": "TSUTAYA岡富店（延岡）",
@@ -9359,7 +9413,7 @@
     },
     "multi": false,
     "cls": "e5fd7845e427",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tccff411bf3547ef10": {
     "store": "TSUTAYA田崎店",
@@ -9391,7 +9445,7 @@
     },
     "multi": false,
     "cls": "e0bc8b82ced3",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc6f6967e5dcd89afd": {
     "store": "TSUTAYA AVクラブ太宰府店",
@@ -9423,7 +9477,7 @@
     },
     "multi": false,
     "cls": "b6ca942cef7a",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc170ce059841a099e": {
     "store": "TSUTAYA AVクラブ大津店",
@@ -9455,7 +9509,7 @@
     },
     "multi": false,
     "cls": "0fa5bfb92be7",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcfbcaf3004b9fb2e6": {
     "store": "TSUTAYA AVクラブ御領店",
@@ -9487,7 +9541,7 @@
     },
     "multi": false,
     "cls": "fce149704af2",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc3cd87baf86bfe454": {
     "store": "TSUTAYA AVクラブ玉名店",
@@ -9519,7 +9573,7 @@
     },
     "multi": false,
     "cls": "093e8d9d8620",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc996ca7f5a4cdac90": {
     "store": "TSUTAYAトレカ大塚台",
@@ -9551,7 +9605,7 @@
     },
     "multi": false,
     "cls": "609e23cd4735",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc614ff1027d70f0a4": {
     "store": "TSUTAYA BOOKSTORE宮交シティ",
@@ -9583,7 +9637,7 @@
     },
     "multi": false,
     "cls": "701d4cdbb283",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc8654a599e47e1227": {
     "store": "TSUTAYA 流山おおたかの森駅前店",
@@ -9966,7 +10020,7 @@
     },
     "multi": false,
     "cls": "6f2b2cf5ac79",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcce1438c3901a3826": {
     "store": "TSUTAYA宇都宮竹林店",
@@ -10095,7 +10149,7 @@
     },
     "multi": false,
     "cls": "a4ab5b798170",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcfcc64e227400e43b": {
     "store": "カードボックス通販／買取【CBトレコロ】",
@@ -10191,7 +10245,7 @@
     },
     "area": null,
     "cls": "4db3e9c6b44f",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcaa4dfcf9fa5718c7": {
     "store": "カードボックス通販／買取【CBトレコロ】",
@@ -10223,7 +10277,7 @@
     },
     "area": null,
     "cls": "630523b3ac29",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcb03578ef52d2bb08": {
     "store": "COLLECTOR'S SHOP LIT（天神店・小倉店）",
@@ -10254,7 +10308,7 @@
     },
     "area": null,
     "cls": "9ee7ec87eae8",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc00b48b88704debfa": {
     "store": "カードボックス通販／買取【CBトレコロ】",
@@ -10627,7 +10681,7 @@
     },
     "area": null,
     "cls": "814f9bed5a5b",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc1719e3c1f2ded157": {
     "store": "トレカオーシャン",
@@ -10690,7 +10744,7 @@
     },
     "area": null,
     "cls": "8dc26edafa63",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc45135fc0392ba136": {
     "store": "TSUTAYA武雄店",
@@ -10723,7 +10777,7 @@
     },
     "multi": false,
     "cls": "d95f2ff71799",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc1dc31cee0d634458": {
     "store": "TSUTAYA武雄店",
@@ -11064,7 +11118,7 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
     "cls": "cd2abb5ec41d",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tce47fda44202e781d": {
     "store": "FEWMANY 新宿マルイアネックス店",
@@ -11097,7 +11151,7 @@
     },
     "multi": false,
     "cls": "deccd641f94d",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc214cff68ac88ab7a": {
     "store": "Bee本舗通販サイト",
@@ -11187,7 +11241,7 @@
     },
     "multi": false,
     "cls": "64d0f4cdf8c0",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tce9f8a11ee8a11f98": {
     "store": "TSUTAYA BOOKSTORE 水口",
@@ -11220,7 +11274,7 @@
     },
     "multi": false,
     "cls": "efa7b90558b2",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "62dd0611eb2dd423"
   },
   "tce68484661e7af195": {
     "store": "TSUTAYA六高台店",
@@ -11253,7 +11307,7 @@
     },
     "multi": false,
     "cls": "d36cf47a60aa",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc44a1d7eeecc28314": {
     "store": "TSUTAYA仙台荒井店",
@@ -11284,7 +11338,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcaedcf1ee16a3c6f7": {
     "store": "TSUTAYA富士八幡町店",
@@ -11315,7 +11369,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tccc7afe0163a47b71": {
     "store": "TSUTAYA真岡店",
@@ -11372,7 +11426,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcdc862a38f780ab2e": {
     "store": "駿河屋 新天町店トレカ館",
@@ -11403,7 +11457,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcd6743f00e50ba6e8": {
     "store": "駿河屋 新天町店トレカ館",
@@ -11434,7 +11488,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc60b7bba66445e659": {
     "store": "こどもや 各店ほか（リブ総社店・岡南店・平島店・倉敷店・原尾島店・ABCパレード宇多津店・いろは堂本店）",
@@ -11463,7 +11517,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc00e6900cb4f3d73d": {
     "store": "トレカスタイル（トレカショップDANDAN BASE店）",
@@ -11581,7 +11635,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcafe45a3975f338f3": {
     "store": "北国書林松任店",
@@ -11611,7 +11665,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc82c0a320f86f04da": {
     "store": "カードショップ＠ほ～む。熊本店",
@@ -11641,7 +11695,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc7afdc63be2407eb6": {
     "store": "TSUTAYA Trading Card 戸塚",
@@ -11671,7 +11725,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc5019470319e6ed64": {
     "store": "TSUTAYA八戸ニュータウン店",
@@ -11702,7 +11756,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc97925c6d0f57304f": {
     "store": "SuperKaBoS+ゲオwasse店",
@@ -11732,7 +11786,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcf6e904478d6254ae": {
     "store": "TSUTAYA BOOKSTORE川崎駅前店",
@@ -11763,7 +11817,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc92759b3b6ee60067": {
     "store": "TSUTAYA宇多津店",
@@ -11793,7 +11847,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tcb0235d051fbb2fdb": {
     "store": "TSUTAYA函南店",
@@ -11824,7 +11878,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc808ba5fa083bf601": {
     "store": "TSUTAYA追浜店",
@@ -11855,7 +11909,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc243b9d6020b8aa85": {
     "store": "TSUTAYA瀬戸店",
@@ -11886,7 +11940,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tc32d973cf0588dd6c": {
     "store": "TSUTAYA鈴鹿中央通店",
@@ -11917,7 +11971,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc8ecac05d49e13817"
   },
   "tca51135e74d46bcd7": {
     "store": "TSUTAYAウイングタウン岡崎店",
@@ -11948,7 +12002,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcca8eb36dd0d01002": {
     "store": "MINT GAMES 心斎橋アメリカ村店",
@@ -13157,7 +13211,7 @@
     },
     "multi": false,
     "cls": "469b7f8d7d23",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tceb193d15abe25601": {
     "store": "TSUTAYA福井高柳店",
@@ -13190,7 +13244,7 @@
     },
     "multi": false,
     "cls": "60930e0b1360",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tcd675d7077f3bdf82": {
     "store": "CARDWINGS秋葉原駅前店",
@@ -13416,7 +13470,7 @@
     },
     "multi": false,
     "cls": "1056ea9500e3",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc6eae5a6857b29488": {
     "store": "ふるいちイオンモール甲府昭和店",
@@ -13479,7 +13533,10 @@
     "found_at": "2026-11-14T16:18:54.769411+09:00",
     "issue": 759,
     "multi": false,
-    "cls": "adc798d75833"
+    "cls": "adc798d75833",
+    "deadline_checked_at": "2026-11-14T17:24:44.978834+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし（開催日のみ）"
   },
   "e97337e3256a798e": {
     "store": "キデイランド",
@@ -14008,7 +14065,7 @@
     },
     "area": null,
     "cls": "a2da5daad9fe",
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "tc265bfedae079b73c"
   },
   "tc0fe52bf6a5d27230": {
     "store": "フタバ図書TSUTAYA GIGAフレスタモールカジル岩国店",
@@ -14042,5 +14099,409 @@
     "multi": false,
     "cls": "b81a545a7317",
     "dup_of": "tc0422b1a04600b858"
+  },
+  "62dd0611eb2dd423": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18664603/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "62dd0611eb2dd423",
+    "status": "listed",
+    "found_at": "2026-11-14T17:23:55.160503+09:00",
+    "product_short": "拡張パック ハドウシーカー",
+    "facts": [
+      "当選者のみ購入できる。購入期間は11月29日10時～12月3日23時59分",
+      "当選は1人1点まで。複数応募しても1点に制限",
+      "応募には楽天会員の住所登録が必須。未登録は抽選無効",
+      "当選後の配送先変更は不可（登録住所と異なる住所への変更不可）",
+      "支払いはクレジットカード決済のみ",
+      "配送は宅配またはポスト投函のみ。代引き・コンビニ・郵便局受取は不可"
+    ],
+    "facts_src": "https://www.famitsu.com/article/202611/93883",
+    "verified_at": "2026-11-14T17:26:18.311196+09:00",
+    "verified": true
+  },
+  "e77c5bc541326dcc": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック 30th CELEBRATION/ストームエメラルダ",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18595282/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "e77c5bc541326dcc",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160566+09:00",
+    "product_short": "拡張パック 30th CELEBRATION",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "bdc9ba487f1a0872": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 30th CELEBRATION カードセット 9種セット",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18595457/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "bdc9ba487f1a0872",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160597+09:00",
+    "product_short": "30th CELEBRATION カードセット 9種",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "2abcec5a62b92380": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック ストームエメラルダ",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18537078/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "2abcec5a62b92380",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160627+09:00",
+    "product_short": "拡張パック ストームエメラルダ",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "ce7c3a780ed94be3": {
+    "store": "楽天ブックス",
+    "product": "スターターセットex イーブイex",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18537143/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "ce7c3a780ed94be3",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160654+09:00",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "6a0b0a58a0748456": {
+    "store": "楽天ブックス",
+    "product": "スターターセットex 3種（イーブイex+ゾロア＆ゾロアークex+ニャオハ＆マスカーニャex）",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18596838/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "6a0b0a58a0748456",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160684+09:00",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "3f853a62a785324d": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック メガシンフォニア",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18182238/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "3f853a62a785324d",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160725+09:00",
+    "product_short": "拡張パック メガシンフォニア",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "7d4e2a4d3cab202c": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック メガブレイブ",
+    "series": "ポケモンカードゲームMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
+    "price": null,
+    "round": null,
+    "url": "https://hb.afl.rakuten.co.jp/hgc/3d481303.1f3ba8a5.3d481304.53152ad8/_RTfami93883?pc=https://books.rakuten.co.jp/rb/18182237/",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.famitsu.com/article/202611/93883",
+    "key": "7d4e2a4d3cab202c",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160753+09:00",
+    "product_short": "拡張パック メガブレイブ",
+    "duplicate_of": "62dd0611eb2dd423"
+  },
+  "6e663c01f393190c": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+    "series": "ハドウシーカー",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": "販売開始日までにメールで連絡",
+    "method": "Web",
+    "conditions": "楽天会員、商品別Web抽選・配送",
+    "price": null,
+    "round": null,
+    "url": "https://goal.com/jp/ニュース/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.8,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "key": "6e663c01f393190c",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160782+09:00",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+    },
+    "product_short": "ハドウシーカー BOX",
+    "duplicate_of": "5d485fe8947f4481"
+  },
+  "d8087ade3cd24c29": {
+    "store": "楽天ブックス",
+    "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+    "series": "スペシャルデッキセットMEGA",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-18T23:59:00+09:00",
+    "announce": null,
+    "method": "Web",
+    "conditions": "楽天会員、商品別Web抽選・配送",
+    "price": "5,500円",
+    "round": null,
+    "url": "https://goal.com/jp/ニュース/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.8,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "key": "d8087ade3cd24c29",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160808+09:00",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300"
+    },
+    "product_short": "スペシャルデッキセットMEGA",
+    "dup_of": "tc5b8942fa63af47a4"
+  },
+  "5d485fe8947f4481": {
+    "store": "エディオン・トレカキャピタル",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+    "series": "ハドウシーカー",
+    "kind": "lottery",
+    "start": "2026-11-13T10:00:00+09:00",
+    "end": "2026-11-15T23:59:00+09:00",
+    "announce": "販売開始日までにメールで連絡",
+    "method": "Web",
+    "conditions": "対象会員限定・SMS認証、Web抽選・店舗などで購入",
+    "price": null,
+    "round": null,
+    "url": "https://goal.com/jp/ニュース/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員"
+    ],
+    "confidence": 0.7,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "key": "5d485fe8947f4481",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160832+09:00",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+    },
+    "product_short": "ハドウシーカー BOX",
+    "dup_of": "tc265bfedae079b73c"
+  },
+  "e4a891bc46d44796": {
+    "store": "イオン北海道",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX",
+    "series": "ハドウシーカー",
+    "kind": "lottery",
+    "start": "2026-11-13T08:00:00+09:00",
+    "end": "2026-11-15T23:59:00+09:00",
+    "announce": null,
+    "method": "アプリ",
+    "conditions": "iAEONアプリ・イオンカード連携、北海道の対象店舗で購入",
+    "price": null,
+    "round": null,
+    "url": "https://goal.com/jp/ニュース/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "area": "北海道",
+    "id_check": null,
+    "member": null,
+    "tags": [
+      "アプリ"
+    ],
+    "confidence": 0.7,
+    "source": "Googleニュース「楽天ブックス 抽選販売」",
+    "source_url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/pokemon-card-lottery-information-2026/blt9aa2212834fd35bf",
+    "key": "e4a891bc46d44796",
+    "status": "duplicate",
+    "found_at": "2026-11-14T17:23:55.160857+09:00",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+    },
+    "product_short": "ハドウシーカー BOX",
+    "duplicate_of": "tc3b93c893b49c898f"
   }
 }
