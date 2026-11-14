@@ -38,7 +38,8 @@ JANコード：{jan}
 ・この商品のページが見つからない・自信がないときは found を false にする
 
 答えは最後にJSONだけ：
-{{"found": true/false, "src": "事実を取ったページのURL", "src_title": "そのページの題名", "official": true/false（メーカー公式か）, "facts": ["…", "…"]}}"""
+{{"found": true/false, "src": "事実を取ったページのURL", "src_title": "そのページの題名", "official": true/false（メーカー公式か）, "facts": ["…", "…"],
+  "msrp": メーカー希望小売価格（税込・円の数字だけ。メーカーが「希望小売価格」「メーカー価格」「価格（税込）」として示しているときだけ。お店の販売価格・セール価格・税抜の価格は入れない。無ければ null）}}"""
 
 
 def _call(name, jan, names, settings):
@@ -96,7 +97,32 @@ def check(res, seen_urls):
     facts = [f for f in facts if not re.search(r"大人気|おすすめ|オススメ|お得|狙い目|転売|プレ値|相場", f)][:8]
     if len(facts) < 2:
         return None
-    return facts, src, str(res.get("src_title") or "")[:80], bool(res.get("official"))
+    official = bool(res.get("official"))
+    return facts, src, str(res.get("src_title") or "")[:80], official, (_int(res.get("msrp")) if official else None)
+
+
+def _int(v):
+    try:
+        n = int(re.sub(r"[^\d]", "", str(v))) if v not in (None, "", "null") else 0
+    except ValueError:
+        return None
+    return n if 100 <= n <= 2_000_000 else None
+
+
+def msrp_of(rec):
+    """メーカー公式のページから取った希望小売価格（税込・円）。公式でない・分からなければ None。
+    11/14：前に取った分は msrp が無いので、要点の文（「税込5,700円」など）から読む"""
+    if not rec or not rec.get("official"):
+        return None
+    if rec.get("msrp"):
+        return int(rec["msrp"])
+    if "msrp" in rec:
+        return None
+    for f in rec.get("facts") or []:
+        m = re.search(r"(?:希望小売価格|メーカー価格|価格)[^0-9０-９]{0,15}?(?:税込)?[^0-9]{0,4}([\d,]{3,9})円", f)
+        if m and ("税込" in f or "希望小売" in f):
+            return _int(m.group(1))
+    return None
 
 
 _th = {}
@@ -134,8 +160,8 @@ def update(settings, call=None):
         with _lock:
             cur = load_json(STATE, {})
             if ok:
-                facts, src, title, official = ok
-                cur[x["jan"]] = {"at": now().isoformat(), "facts": facts, "src": src, "src_title": title, "official": official, "name": x["name"]}
+                facts, src, title, official, msrp = ok
+                cur[x["jan"]] = {"at": now().isoformat(), "facts": facts, "src": src, "src_title": title, "official": official, "name": x["name"], "msrp": msrp}
                 got[0] += 1
             else:
                 cur[x["jan"]] = {"at": now().isoformat(), "facts": [], "name": x["name"]}

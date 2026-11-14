@@ -239,16 +239,32 @@ def catalog(settings=None, wmap=None):
     model = re.compile(r"[A-Z]{2,}-?[A-Z0-9]{3,}")
     out = []
     ov_all = overrides()
+    try:
+        import game_facts as _gf
+    except Exception:
+        _gf = None
     for jan, x in g.items():
         tk = dict(teika.get(jan) or {})
         wm = wmap.get(jan) or {}
         ov = ov_all.get(jan) or {}
-        if ov.get("teika") and not tk.get("list_price") and not tk.get("price"):
-            tk["price"] = int(ov["teika"])   # 手で調べた定価（楽天ブックスに無い商品。Amazonデバイスなど）
-        if tk.get("list_price"):
-            tk["price"] = tk["list_price"]   # 楽天ブックスの「定価」があればそれ（販売価格より正確）
-        if not tk.get("price") and wm.get("rkPrice"):
-            tk["price"] = int(wm["rkPrice"])   # 見張り（Cloudflare）がJANで見た楽天ブックスの値段（GitHubの時間を使わずに定価がそろう）
+        # 定価の決め方（11/14：楽天ブックスの「販売価格」は割引後のことがあり、定価として出すとプレ値が大きく見えていた。
+        # タカラトミー公式では UX-10 は税込5,700円なのに、サイトは楽天ブックスの4,579円を「定価」にしていた）
+        #   1. 手で調べた定価（premium_overrides.yaml）
+        #   2. メーカー公式ページの希望小売価格（game_facts が取ったもの）
+        #   3. 楽天ブックスの「定価」（listPrice）
+        #   4. 楽天ブックスの販売価格・見張りが見た楽天ブックスの値段 →「楽天ブックスの販売価格」と書く
+        tnote = ""
+        msrp = _gf.msrp_of(_gf.get(jan)) if _gf else None
+        if ov.get("teika"):
+            tk["price"], tnote = int(ov["teika"]), ov.get("teika_note", "")
+        elif msrp:
+            tk["price"], tnote = msrp, "メーカー希望小売価格（公式）"
+        elif tk.get("list_price"):
+            tk["price"] = tk["list_price"]
+        elif tk.get("price"):
+            tnote = "楽天ブックスの販売価格"
+        elif wm.get("rkPrice"):
+            tk["price"], tnote = int(wm["rkPrice"]), "楽天ブックスの販売価格"
         price = tk.get("price")
         r = x["max"] / price if price else None
         h = hist.get(jan, {})
@@ -265,7 +281,7 @@ def catalog(settings=None, wmap=None):
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
                     "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", ""), "azUrl": wm.get("azUrl", ""),
                     "img": tk.get("img") or wm.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
-                    "teika_note": ov.get("teika_note", "") if ov.get("teika") and price == int(ov["teika"]) else "",
+                    "teika_note": tnote,
                     "sales_date": tk.get("sales_date", "") or ov.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
     out.sort(key=lambda x: (x["ratio"] is None, -(x["ratio"] or 0), -x["max"]))
     return out
@@ -463,15 +479,17 @@ def seo_parts(x, allx, site, cats_by, md):
     lo = min((p for _, p in prices), default=0)
     teika = x.get("teika") or 0
     diff = x["max"] - teika if teika else 0
-    tkn = ("・" + x["teika_note"]) if x.get("teika_note") else ""
+    _rb = x.get("teika_note") == "楽天ブックスの販売価格"
+    tw = "楽天ブックスの販売価格" if _rb else "定価"   # 定価が分からないときは「定価」と書かない（11/14）
+    tkn = ("・" + x["teika_note"]) if x.get("teika_note") and not _rb else ""
     # まとめの文（検索結果の説明にもなる、商品のことが一目で分かる文）
     s1 = (f"{name}（JANコード {jan}）は" + (f"{x['maker']}の" if x.get("maker") else "") + f"{cat}の商品です。") if (cat or x.get("maker")) else \
         f"{name}のJANコードは {jan} です。"   # メーカーもカテゴリも分からないとき「〜は商品です。」と出ていた（11/11）
     if x.get("sales_date"):
         s1 += f"発売日は{x['sales_date']}"
-        s1 += f"、定価は{teika:,}円（税込{tkn}）です。" if teika else "です。"
+        s1 += f"、{tw}は{teika:,}円（税込{tkn}）です。" if teika else "です。"
     elif teika:
-        s1 += f"定価は{teika:,}円（税込{tkn}）です。"
+        s1 += f"{tw}は{teika:,}円（税込{tkn}）です。"
     s2 = f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円"
     if teika:
         s2 += f"で、定価より{abs(diff):,}円{'高く' if diff >= 0 else '安く'}売れる（定価比 {'+' if diff >= 0 else ''}{round((x['ratio'] - 1) * 100)}%）状態です。"
@@ -497,7 +515,7 @@ def seo_parts(x, allx, site, cats_by, md):
         secs += "<h2>この商品の別の呼び方・表記</h2><ul>" + "".join(f"<li>{escape(a)}</li>" for a in alias) + "</ul>"
     # よくある質問（データから作る。構造化データにも入れる）
     faq = []
-    faq.append((f"{name}の定価はいくら？", f"定価は{teika:,}円（税込{tkn}）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
+    faq.append((f"{name}の定価はいくら？", f"{tw}は{teika:,}円（税込{tkn}）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
     faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "") + CHANGE_NOTE))
     if teika:
         faq.append((f"{name}は定価以上で売れる？（プレ値？）",
@@ -576,7 +594,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     md = f"{upd.month}/{upd.day}"
     paths = []
     note = ('<p class="note">買取価格は各買取店が公開している新品（未開封）の買取価格を毎日読み取ったものです（店の条件で変わることがあります）。' + CHANGE_NOTE +
-            '定価は楽天ブックスの定価・販売価格です。転売を勧めるものではありません。リンクの一部は広告（PR）です。</p>')
+            '定価はメーカー公式の希望小売価格、分からなければ楽天ブックスの定価（定価が無い商品は楽天ブックスの販売価格で、そう書いています）です。転売を勧めるものではありません。リンクの一部は広告（PR）です。</p>')
 
     def page(title, desc, body, path, img="", noindex=False):
         """1ページ書く。img＝Xなどで共有したときのカードの画像（無ければサイトの共通画像）。noindex＝検索に出さない（情報が少ないページ）"""
@@ -686,7 +704,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
-        tk = (f'定価 {x["teika"]:,}円' + (f'<small>（{escape(x["teika_note"])}）</small>' if x.get("teika_note") else "") + f'（{_ratio_html(x)}）') if x["teika"] else "定価：確認中"
+        _rb = x.get("teika_note") == "楽天ブックスの販売価格"   # 定価が分からず、楽天ブックスの販売価格を使っているとき（11/14）
+        tk = ((f'楽天ブックスの販売価格 {x["teika"]:,}円' if _rb else f'定価 {x["teika"]:,}円' + (f'<small>（{escape(x["teika_note"])}）</small>' if x.get("teika_note") else ""))
+              + f'（{_ratio_html(x)}）') if x["teika"] else "定価：確認中"
         # JANコードで検索する人が多い（Search Console 11/11）ので、説明の頭と題名の最後に JAN を入れる。
         # 「買取」で検索する人のため、題名に最高買取価格も入れる。
         desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、定価{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"

@@ -11,7 +11,16 @@ import game_premium
 seen = {"https://www.takaratomy.co.jp/products/beyblade/ux10/"}
 ok = gf.check({"found": True, "src": "https://www.takaratomy.co.jp/products/beyblade/ux10/?x=1", "official": True,
                "facts": ["2025年3月発売", "対象年齢6歳以上", "大人気のセット", " ランチャー同梱 "]}, seen)
-assert ok and ok[0] == ["2025年3月発売", "対象年齢6歳以上", "ランチャー同梱"] and ok[3] is True, ok   # 宣伝の言葉は外す
+assert ok and ok[0] == ["2025年3月発売", "対象年齢6歳以上", "ランチャー同梱"] and ok[3] is True and ok[4] is None, ok   # 宣伝の言葉は外す
+ok2 = gf.check({"found": True, "src": "https://www.takaratomy.co.jp/products/beyblade/ux10/", "official": True, "msrp": "5,700", "facts": ["a", "b"]}, seen)
+assert ok2[4] == 5700
+ok3 = gf.check({"found": True, "src": "https://www.takaratomy.co.jp/products/beyblade/ux10/", "official": False, "msrp": 5700, "facts": ["a", "b"]}, seen)
+assert ok3[4] is None   # 公式でないページの値段は希望小売価格として使わない
+# 前に取った分（msrp が無い）は要点の文から読む
+assert gf.msrp_of({"official": True, "facts": ["価格は税込5,700円と表示されている"]}) == 5700
+assert gf.msrp_of({"official": False, "facts": ["価格は税込5,700円"]}) is None
+assert gf.msrp_of({"official": True, "msrp": None, "facts": ["価格は税込5,700円"]}) is None   # 新しく取って無かったもの
+assert gf.msrp_of({"official": True, "facts": ["メーカー希望小売価格 6,600円（税込）"]}) == 6600
 assert gf.check({"found": True, "src": "https://made-up.example/x", "facts": ["a", "b"]}, seen) is None   # 見ていないURLは使わない
 assert gf.check({"found": False}, seen) is None
 assert gf.check({"found": True, "src": "https://jp.mercari.com/item/1", "facts": ["a", "b"]}, {"https://jp.mercari.com/item/1"}) is None
