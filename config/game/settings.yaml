@@ -70,6 +70,8 @@ site_url: ""                # WordPress は使わない（空のまま）
 # アフィリエイト
 amazon_tag: "gamenyuka-22"  # ゲーム・ホビー入荷速報専用のトラッキングID（2026-11-10作成）
 rakuten_affiliate_id: ""    # 楽天アフィリエイトID（このサイトをサイト登録してから）   # TODO: オーナーが確認
+vc_yahoo_sid: "3787021"     # バリューコマース：このサイトのサイトID（11/14 ユーザーから）
+vc_yahoo_pid: "892747824"   # バリューコマース：Yahoo!ショッピングの広告のプログラムID（11/14 ユーザーから）
                             # ※空なら GitHub の Variable「RAKUTEN_AFFILIATE_ID_GAME」→ トレカと同じ「RAKUTEN_AFFILIATE_ID」を使う
                             # ※amazon_tag も空なら「AMAZON_TAG_GAME」→ トレカと同じ「AMAZON_TAG」を使う
 # カードの商品写真と「楽天で見る」（楽天ブックスのその商品のページ。売り切れでも入荷お知らせを登録できる）

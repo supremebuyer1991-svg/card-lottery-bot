@@ -136,6 +136,24 @@ def rakuten_link(url, aff):
     return item_link(url, aff) if url else ""
 
 
+_VC = {}
+
+
+def yahoo_link(url, settings=None):
+    """Yahoo!ショッピングのページ → バリューコマースのアフィリンク（settings の vc_yahoo_sid・vc_yahoo_pid があるとき。11/14 ユーザーから受け取った番号）"""
+    from urllib.parse import quote
+    if settings is None:   # 設定を渡されなかったときは1回だけ読んで覚えておく
+        if "s" not in _VC:
+            from common import load_settings
+            _VC["s"] = {k: load_settings().get(k) for k in ("vc_yahoo_sid", "vc_yahoo_pid")}
+        settings = _VC["s"]
+    s = settings or {}
+    sid, pid = str(s.get("vc_yahoo_sid") or "").strip(), str(s.get("vc_yahoo_pid") or "").strip()
+    if not (url and sid.isdigit() and pid.isdigit()) or "valuecommerce.com" in url:
+        return url
+    return f"https://ck.jp.ap.valuecommerce.com/servlet/referral?sid={sid}&pid={pid}&vc_url={quote(url, safe='')}"
+
+
 def amazon_link(asin, tag):
     asin = (asin or "").strip().upper()
     if not (tag and re.fullmatch(r"[A-Z0-9]{10}", asin)):
@@ -414,7 +432,7 @@ def links_for(i, cache, settings, models=None):
             out["az"] = f"https://www.amazon.co.jp/s?k={quote(q)}&tag={amazon_tag(settings)}"
     yh = (man.get("yahoo_url") or "").strip()
     if yh or q:
-        out["yh"] = yh or f"https://shopping.yahoo.co.jp/search?p={quote(q)}"
+        out["yh"] = yahoo_link(yh or f"https://shopping.yahoo.co.jp/search?p={quote(q)}", settings)
     if q:
         out["mc"] = f"https://jp.mercari.com/search?keyword={quote(q)}&status=on_sale&afid=1350793153"   # メルカリのアフィリエイト（ユーザーのID）
     return out

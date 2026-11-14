@@ -526,7 +526,7 @@ def _shop_detail(html, snap):
     if snap.get("avail"):   # いま予約・販売しているお店をいちばん目立つところ（見出しのすぐ下）に
         html = html.replace("</style>", AV_CSS + "</style>", 1)
         html = re.sub(r"(</h1>)", lambda m: m.group(1) + avail_html(snap["avail"]), html, count=1)
-    b = shop_buttons(sh.get("rk"), sh.get("az"), yh=sh.get("yh", ""), mc=sh.get("mc", ""))
+    b = shop_buttons(sh.get("rk"), sh.get("az"), yh=game_affi.yahoo_link(sh.get("yh", "")), mc=sh.get("mc", ""))   # 前に保存したリンクもアフィリンクに
     if b:
         html = html.replace('<div class="sub-acts">', f'<div class="shopb">{b}</div><div class="sub-acts">', 1)
     if snap.get("image"):

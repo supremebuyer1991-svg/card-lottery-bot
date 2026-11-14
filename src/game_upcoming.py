@@ -131,7 +131,7 @@ def write_pages(out, cats, site, brand, settings, page, aff_id, have_jans):
         st_ = AVAIL.get(x.get("avail"), "")
         shops = (f'<a class="btn btn-rk" href="{escape(rk)}" target="_blank" rel="nofollow sponsored noopener">楽天で{"予約" if before else "見る"}</a>' if rk else "") + \
             f'<a class="btn btn-az" href="{escape(az)}" target="_blank" rel="nofollow sponsored noopener">Amazonで{"予約" if before else "見る"}</a>' + \
-            f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={jan}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
+            f'<a class="btn btn-yh" href="{escape(__import__("game_affi").yahoo_link("https://shopping.yahoo.co.jp/search?p=" + str(jan)))}" target="_blank" rel="nofollow sponsored noopener">Yahoo!で見る</a>' + \
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         img = f'<img src="{escape(x["img"])}" alt="{escape(nm)}" width="120" height="120" loading="lazy">' if x.get("img") else ""
         price = f'{x["price"]:,}円' if x.get("price") else "確認中"

@@ -910,7 +910,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
                  f'<a class="btn btn-rk" href="{escape(rakuten_link("https://search.rakuten.co.jp/search/mall/" + _sq + "/", aff_id))}" target="_blank" rel="nofollow sponsored noopener">楽天で探す</a>') + \
             (f'<a class="btn btn-az" href="{escape(x["azUrl"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if x.get("azUrl") else
              f'<a class="btn btn-az" href="https://www.amazon.co.jp/s?k={_sq}&amp;tag={escape(_gaf.amazon_tag(settings or {}))}" target="_blank" rel="nofollow sponsored noopener">Amazonで探す</a>') + \
-            f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
+            f'<a class="btn btn-yh" href="{escape(__import__("game_affi").yahoo_link("https://shopping.yahoo.co.jp/search?p=" + str(q)))}" target="_blank" rel="nofollow sponsored noopener">Yahoo!で見る</a>' + \
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
@@ -970,7 +970,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         rk = (r0.get("rk") or {})
         shops = (f'<a class="btn btn-rk" href="{escape(rk["u"])}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if rk.get("u") else "") + \
             (f'<a class="btn btn-az" href="{escape(r0["az"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if r0.get("az") else "") + \
-            f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
+            f'<a class="btn btn-yh" href="{escape(__import__("game_affi").yahoo_link("https://shopping.yahoo.co.jp/search?p=" + str(q)))}" target="_blank" rel="nofollow sponsored noopener">Yahoo!で見る</a>' + \
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         img = f'<img src="{escape(rk["img"])}" alt="{escape(nm)}" width="120" height="120" loading="lazy">' if rk.get("img") else ""
         cat = (cats_by.get(r0.get("game")) or {}).get("short", "")
