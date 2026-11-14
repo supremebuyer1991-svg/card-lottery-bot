@@ -366,7 +366,7 @@
     "confidence": 1.0,
     "page_checked_at": "2026-11-14T11:40:38.030022+09:00",
     "area": null,
-    "cls": "891a1b22f087",
+    "cls": "8e30d0f3542e",
     "tags": [],
     "source_url": "https://blog.ja.playstation.com/2026/11/09/20261109-playstation-portal-announcement-o/",
     "official_checked": true,
@@ -5178,7 +5178,8 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "series_raw": "ハドウシーカー"
+    "series_raw": "ハドウシーカー",
+    "area": "東京都"
   },
   "71fa0fc7d788e813": {
     "store": "TCGshop193",
@@ -13720,7 +13721,9 @@
     "key": "tc260e280dccc39e14",
     "multi": false,
     "cls": "f30f0b76a4dd",
-    "series_raw": "ヒロインズエディション vol.2"
+    "series_raw": "ヒロインズエディション vol.2",
+    "page_checked_at": "2026-11-14T20:36:43.101206+09:00",
+    "page_err": "中身が空"
   },
   "tc49217b686bd33e1c": {
     "store": "TSUTAYA福井高柳店",
@@ -13867,14 +13870,14 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": null,
+    "conditions": "本文には応募や購入の条件の記載がない。2026/11/27(金)から東京駅一番街などで開催され、第1弾グッズが発売されることだけが書かれている。",
     "price": null,
     "round": null,
     "url": "https://chiikawa-info.jp/p26/chiikawaclinic",
     "x_post": null,
     "game": "chiikawa",
     "channel": "store",
-    "area": null,
+    "area": "東京都",
     "id_check": null,
     "member": null,
     "tags": [],
@@ -13885,11 +13888,14 @@
     "status": "pending",
     "found_at": "2026-11-14T16:18:54.769411+09:00",
     "issue": 759,
-    "multi": false,
-    "cls": "adc798d75833",
+    "multi": true,
+    "cls": "53bc2737260f",
     "deadline_checked_at": "2026-11-14T17:24:44.978834+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし（開催日のみ）"
+    "deadline_note": "画像0/0枚読込・締切の記載なし（開催日のみ）",
+    "page_checked_at": "2026-11-14T20:36:45.123935+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "e97337e3256a798e": {
     "store": "キデイランド",
@@ -13907,7 +13913,7 @@
     "x_post": null,
     "game": "chiikawa",
     "channel": "store",
-    "area": null,
+    "area": "東京都",
     "id_check": null,
     "member": null,
     "tags": [],
@@ -13935,7 +13941,7 @@
     "x_post": null,
     "game": "chiikawa",
     "channel": "store",
-    "area": null,
+    "area": "東京都",
     "id_check": null,
     "member": null,
     "tags": [],
@@ -13950,7 +13956,10 @@
     "cls": "c3b8c40b5b63",
     "deadline_checked_at": "2026-11-14T17:44:49.657560+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・11月13日から抽選申込スタート"
+    "deadline_note": "画像0/0枚読込・11月13日から抽選申込スタート",
+    "page_checked_at": "2026-11-14T20:36:50.356231+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "94a0b998d557e5b7": {
     "store": "ちいかわクリニック",
@@ -13983,7 +13992,10 @@
     "cls": "e39a4ff54431",
     "deadline_checked_at": "2026-11-14T17:44:51.757720+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-14T20:36:57.180151+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "86f127c1cd9061ba": {
     "store": "CDG（コム デ ギャルソン）",
@@ -14013,7 +14025,10 @@
     "found_at": "2026-11-14T16:19:17.903936+09:00",
     "issue": 762,
     "multi": false,
-    "cls": "4bc969fadeeb"
+    "cls": "4bc969fadeeb",
+    "page_checked_at": "2026-11-14T20:37:01.107890+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "8d088b8f1cbb55cc": {
     "store": "楽天",
@@ -14042,7 +14057,9 @@
     "status": "pending",
     "found_at": "2026-11-14T16:19:31.064273+09:00",
     "hold_reason": "店名があいまい",
-    "cls": "2cce4bfe99ef"
+    "cls": "2cce4bfe99ef",
+    "page_checked_at": "2026-11-14T20:37:05.286634+09:00",
+    "details_checked": true
   },
   "ae0fc439c984a415": {
     "store": "楽天",
