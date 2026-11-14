@@ -1199,9 +1199,13 @@ def split_subgenres(prods, rules):
     return sorted(out, key=lambda g: (pri.get(g[0], 3), [x[0] for x in out].index(g[0])))
 
 
-SG_CSS = (".sgmenu{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;padding:0;list-style:none}"
-          ".sgmenu a{display:inline-block;padding:6px 12px;border:1px solid var(--line,#ccc);border-radius:999px;font-size:14px;text-decoration:none;color:inherit;background:var(--card,#fff)}"
-          ".sgmenu a small{margin-left:4px;opacity:.7}.sgmenu a:hover{border-color:currentColor}.pm-list h3{margin:18px 0 6px;font-size:17px}")
+SG_CSS = (".sgmenu{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px;padding:0;list-style:none}"   # サイトの色（濃い紺に黄色）に合わせる（11/14 ユーザー：白にグレーは醜い）
+          ".sgmenu a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid #ffd23f;border-radius:999px;font-size:14px;font-weight:700;"
+          "text-decoration:none;color:#ffd23f;background:#141823;transition:background .15s,color .15s}"
+          ".sgmenu a small{display:inline-block;min-width:22px;padding:1px 7px;border-radius:999px;background:#ffd23f;color:#0b0d12;font-size:12px;font-weight:800;text-align:center}"
+          ".sgmenu a:hover{background:#ffd23f;color:#0b0d12}.sgmenu a:hover small{background:#0b0d12;color:#ffd23f}"
+          ".sgmenu a.sg-lot{background:#ffd23f;color:#0b0d12}.sgmenu a.sg-lot:hover{background:#ffe27a}"
+          ".pm-list h3{margin:22px 0 8px;padding-left:10px;border-left:4px solid #ffd23f;font-size:17px;color:#e9edf5}")
 
 
 def cat_products_html(prods, short, subgenres=None, has_list=False):
@@ -1215,6 +1219,6 @@ def cat_products_html(prods, short, subgenres=None, has_list=False):
         return head + f'{plist_html(prods)}</section>'
     menu = "".join(f'<li><a href="#sg{k}">{escape(n)}<small>{len(lst)}</small></a></li>' for k, (n, lst) in enumerate(groups, 1))
     if has_list:
-        menu += '<li><a href="#list">抽選・予約・再販の受付</a></li>'
+        menu += '<li><a class="sg-lot" href="#list">抽選・予約・再販の受付</a></li>'
     body = "".join(f'<h3 id="sg{k}">{escape(short)}の{escape(n)}（{len(lst)}件）</h3>{plist_html(lst)}' for k, (n, lst) in enumerate(groups, 1))
     return (f'<style>{SG_CSS}</style>' + head + f'<nav aria-label="{escape(short)}のジャンル"><ul class="sgmenu">{menu}</ul></nav>' + body + '</section>')
