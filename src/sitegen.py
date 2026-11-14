@@ -2258,6 +2258,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             near_html = _links(f"{a}の近くの県の{short}抽選", near_l)
             write(f"{slug}/area/{PREF[a]}/", {"game": g, "channel": "store", "area": a}, {
                 "topsq": line_box(a),
+                "trend_html": _trend_area(g, a),  # 11/14：この地域の店頭抽選の傾向（一覧のあと・たたんで表示）
                 "info_html": area_html + (near_html if ai else ""),
                 "title": f"{short} 抽選 {a}｜{a}の店頭抽選" + (f" 受付中{len(ai)}件" if ai else "") + f"【{md}更新】｜トレカ抽選ナビ",
                 "desc": f"【{md}更新】{short}{f'（{name}）' if short != name else ''}の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
@@ -4079,6 +4080,15 @@ def _trend_chain(slug, name, game=None):
         return trends.chain_html(chain_of, slug, name, escape, game)
     except Exception as e:
         print("お店の傾向", slug, e)
+        return ""
+
+
+def _trend_area(g, a):
+    try:
+        import trends
+        return trends.area_html(chain_of, lambda c: CHAIN[c][1] if c in CHAIN else c, g, a, escape)
+    except Exception as e:
+        print("地域の傾向", a, e)
         return ""
 
 

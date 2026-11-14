@@ -71,7 +71,7 @@ def _common(ds, esc, who):
     st = n - on
     lines = []
     games = Counter(d.get("game") for d in ds)
-    lines.append(f"<li>これまでに掲載した{who}の抽選は<b>{n:,}件</b>（" + "・".join(f"{GS.get(g, g)}{c:,}件" for g, c in games.most_common()) + "）。</li>")
+    lines.append(f"<li>これまでに掲載した{who}の抽選は<b>{n:,}件</b>" + ("（" + "・".join(f"{GS.get(g, g)}{c:,}件" for g, c in games.most_common()) + "）" if len(games) > 1 else "") + "。</li>")
     lines.append(f"<li>店頭で受け取る抽選が<b>{_pct(st, n)}</b>、自宅に届くネット抽選が{_pct(on, n)}。</li>")
     idk = [d.get("id_check") for d in ds if d.get("id_check") is not None]
     if len(idk) >= 5:
@@ -146,4 +146,27 @@ def series_html(chain_of, chain_name, g, x, esc):
         body += "<h3>1週間ごとに見つかった抽選</h3>" + _rows(
             [(f"{date.fromordinal(k).month}/{date.fromordinal(k).day}の週", v) for k, v in sorted(wk.items())][-8:], esc)
     return (f'<section class="sinfo trend"><details><summary><h2>📊 「{esc(x)}」の抽選の動き（これまでの{len(ds):,}件から）</h2></summary>'
+            + body + '<p class="note">トレカ抽選ナビが自動で集めて掲載した抽選の集計です（<a href="/stats/">集計データ</a>）。すべての抽選を網羅するものではありません。</p></details></section>')
+
+
+def area_html(chain_of, chain_name, g, a, esc):
+    """都道府県のページ（店頭抽選）の下に出す「〇〇県の店頭抽選の傾向」（11/14）"""
+    ds = [d for d in _all() if d.get("game") == g and d.get("area") == a and d.get("channel") == "store"]
+    if len(ds) < 5:
+        return ""
+    who = f"{a}の{GS.get(g, '')}の店頭"
+    lines, meth, wd, ne = _common(ds, esc, who)
+    lines = lines[:1] + lines[2:]  # 店頭だけなので「店頭○%」の行は出さない
+    stores = len({re.sub(r"\s+", "", d["store"]) for d in ds})
+    lines.append(f"<li>抽選があったお店は<b>{stores}店</b>。</li>")
+    se = Counter(d.get("series") for d in ds if d.get("series"))
+    if se:
+        lines.append("<li>抽選が多かった商品：" + "、".join(f"「{esc(s)}」{c}件" for s, c in se.most_common(3)) + "。</li>")
+    ch = Counter(chain_name(c) for c in (chain_of(d["store"]) for d in ds) if c)
+    body = "<ul>" + "".join(lines) + "</ul>"
+    if ch:
+        body += f"<h3>{esc(a)}で抽選が多いお店（チェーン）</h3>" + _rows(ch.most_common(6), esc)
+    if meth:
+        body += "<h3>応募のしかた</h3>" + _rows(meth.most_common(4), esc)
+    return (f'<section class="sinfo trend"><details><summary><h2>📊 {esc(a)}の店頭抽選の傾向（これまでの{len(ds):,}件から）</h2></summary>'
             + body + '<p class="note">トレカ抽選ナビが自動で集めて掲載した抽選の集計です（<a href="/stats/">集計データ</a>）。すべての抽選を網羅するものではありません。</p></details></section>')
