@@ -3642,9 +3642,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 nxt = (f"「{d['series']}」のいま受付中の抽選を見る（{_ser_n[(g, d['series'])]}件）", "/" + series_path(g, d["series"]))
             else:
                 nxt = (f"いま受付中の{short}の抽選を見る", f"/{GAME_SLUG[g]}/")
+        gl_ = []
+        if active:  # 11/14：抽選ページ → お店のガイド・やり方ガイドへの内部リンク（最大3つ）
+            _gb = {gd["slug"]: gd for gd in _guides}
+            _gc = next((gd for gd in _guides if gd.get("kind") != "howto" and re.search(gd["store_re"], d.get("store") or "", re.I)), None)
+            _sl = ([_gc["slug"]] if _gc else []) + (["livepocket"] if "livepocket" in (d.get("url") or "").lower() else []) \
+                + (["id-check"] if d.get("id_check") is True or d.get("member") in ("card", "account") else []) + ["howto-apply", "after-win"]
+            for _s in _sl:
+                if _s in _gb and len(gl_) < 3 and (out / "guide" / _s / "index.html").exists():
+                    gl_.append((_gb[_s].get("short") or _gb[_s]["h1"], f"/guide/{_s}/"))
         p.write_text(detail.render(d, site=site, path=lp, verify=verify, now_dt=now(), ended=not active,
                                    redirect=redirect, aff=aff, related=rel, updated=updated, souba=sbx, noindex=not l_index,
-                                   next_link=nxt, canon_to=canon_to), encoding="utf-8")
+                                   next_link=nxt, canon_to=canon_to, guides=gl_), encoding="utf-8")
         if active and l_index:
             urls.append((f"{site}/{lp}", (d.get("found_at") or updated)[:10]))
         if active:

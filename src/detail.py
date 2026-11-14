@@ -223,7 +223,7 @@ def _cal_links(i, store, name, canon):
 
 
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None, noindex=False, next_link=None,
-           brand=None, games=None, canon_to=None):
+           brand=None, games=None, canon_to=None, guides=()):
     """1件分のHTML。i は sitegen の row（＋products / start / announce / buy）
     brand … サイトの名前・色など（省略＝トレカ抽選ナビ）。games … {game: (短い名前, ページのslug)}（省略＝トレカの3つ）"""
     b = brand or BRAND
@@ -342,6 +342,9 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
 
     rel = "".join(f'<a href="{escape(h)}">{escape(t)}</a>' for t, h in related)
     rel_html = f'<nav class="more" aria-label="関連ページ"><h2>ほかの抽選もチェック</h2>{rel}</nav>' if rel else ""
+    # 11/14：応募のしかた・お店ごとのガイドへの内部リンク（ガイドが孤立しないように。受付中のページだけ）
+    gd_html = ('<nav class="more" aria-label="応募のしかた"><h2>📘 応募の前に読む</h2>'
+               + "".join(f'<a href="{escape(h)}">{escape(t)}</a>' for t, h in guides) + "</nav>") if guides and not is_end else ""
     mid = (f"{gshort}の抽選" if not b.get("kinds") else f"{gshort}", f"{gslug_map.get(g, '')}/")
     if i.get("channel") == "store" and i.get("area") and gslug_map.get(g, "") in ("pokeka", "onepiece"):
         try:
@@ -397,7 +400,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             f'{b["logo"]}</a></div></header>'
             f'<main class="wrap">{crumbs}{ended_note}{aff if is_end else ""}<article class="tk"><div class="tk-h"><div class="chips">{"".join(chips)}</div>'
             f'<h1>{escape(name)}</h1><p class="store">{escape(store)}</p>{_pics(i, name)}{_sq(souba)}{cd_html}{top_go}{rel_chips}</div>'
-            f'<dl>{"".join(rows)}</dl>{acts}</article>{"" if is_end else aff}{rel_html}'  # 11/8 Fable：終了ページは「まだ買える方法」を先に
+            f'<dl>{"".join(rows)}</dl>{acts}</article>{gd_html}{"" if is_end else aff}{rel_html}'  # 11/8 Fable：終了ページは「まだ買える方法」を先に
             f'<footer>{escape(foot)}　{b["footer"]}　<a href="/privacy.html">プライバシーポリシー</a></footer></main>'
             f'<script>{JS if b.get("mylist", True) else JS.split("(function(){var b=document.getElementById(\"ap\")")[0]}</script></body></html>')
 
