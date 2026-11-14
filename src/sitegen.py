@@ -241,6 +241,17 @@ def update_store_alias(names_count):
     return al
 
 
+def _load_gsc_keep():
+    """11/14：検索で実際に使われていた店舗ページ（config/gsc_keep_store.txt）。noindex にしない"""
+    p = Path(__file__).resolve().parent.parent / "config" / "gsc_keep_store.txt"
+    if not p.exists():
+        return set()
+    return {w for ln in p.read_text(encoding="utf-8").splitlines() if not ln.startswith("#") for w in ln.split()}
+
+
+_gsc_keep = _load_gsc_keep()
+
+
 def store_path(store):
     """お店ごとのページ。店名（チェーン名）＋短い記号で読めるアドレスに（同じ店は同じページ）"""
     store = _alias_of(store)
@@ -3246,7 +3257,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "faq": faq_s or None,
             "links": links, "root": "/",
             # 11/8 Fable技術：地名だけの店名（「岡南」「西大寺」など。チェーン名が読み取れなかった）は中身が薄いので検索に出さない
-            "noindex": (not si and len(past) < 5) or bool(re.fullmatch(r"[一-龯]{1,4}店?", re.sub(r"[（(].*?[）)]", "", r.get("name") or "").strip())) and not c},
+            "noindex": path.strip("/").split("/")[-1] not in _gsc_keep and (not si and len(past) < 5) or path.strip("/").split("/")[-1] not in _gsc_keep and bool(re.fullmatch(r"[一-龯]{1,4}店?", re.sub(r"[（(].*?[）)]", "", r.get("name") or "").strip())) and not c},
             si,  # 受付中なし・過去2件以下・60日以上抽選なしのお店だけ検索に出さない（11/7。平和堂などを巻き添えにしない）
             [("トップ", ""), ("店舗一覧", "store/"), (name, path)])
 
@@ -3761,6 +3772,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
         # ゲームを取り違えて一時公開していた弾ページ（11/13 Search Console の404）
         olds["/onepiece/brightness-of-hope/"] = "/fusionworld/brightness-of-hope/"
+        # 11/14：検索でクリックがあったのに404になっていた前のアドレス（10/30より後に見つかったお店で、上の自動転送から外れていた）
+        olds["/store/443d9a38/"] = "/" + store_path("おもちゃのペリカン各店")
+        olds["/store/2c76d793/"] = "/store/furuichi-2c76d/"
         # 自動で見つけた弾の仮アドレス（/onepiece/op19/ など）→ あとで決めた読めるアドレス（11/8）
         for g_, m_ in ((load_json("newsets.json", {}) or {}).get("series") or {}).items():
             if g_ not in GAME_SLUG:
