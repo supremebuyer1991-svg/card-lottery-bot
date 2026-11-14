@@ -20942,7 +20942,7 @@
       "game": "pokemon",
       "store": "FEWMANY 新宿マルイアネックス店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-14T13:28:55.966918+09:00",
       "chain": null
@@ -20951,7 +20951,7 @@
       "game": "pokemon",
       "store": "FEWMANY 新宿マルイアネックス店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-14T13:28:55.966980+09:00",
       "chain": null
@@ -20960,7 +20960,7 @@
       "game": "pokemon",
       "store": "MINT GAMES 心斎橋アメリカ村店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "found_at": "2026-11-14T13:28:55.967015+09:00",
       "chain": "mint"
@@ -20988,7 +20988,7 @@
       "store": "TSUTAYA六高台店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "宮城県",
       "found_at": "2026-11-14T13:28:55.967161+09:00",
       "chain": "tsutaya"
     },
@@ -20997,7 +20997,7 @@
       "store": "TSUTAYA仙台荒井店",
       "series": "30th CELEBRATION",
       "channel": "store",
-      "area": null,
+      "area": "宮城県",
       "found_at": "2026-11-14T13:28:55.967196+09:00",
       "chain": "tsutaya"
     },
@@ -21699,7 +21699,7 @@
       "store": "TSUTAYA仙台荒井店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "宮城県",
       "found_at": "2026-11-14T13:28:57.435288+09:00",
       "chain": "tsutaya"
     },
@@ -21995,8 +21995,8 @@
       "game": "onepiece",
       "store": "シーガル各店（仙台駅前店を除く）",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "宮城県",
       "found_at": "2026-11-14T13:28:57.436169+09:00",
       "chain": null
     },
@@ -22023,7 +22023,7 @@
       "store": "CARDBOX ブックイン金進堂長者原店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "福岡県",
       "found_at": "2026-11-14T13:28:57.436232+09:00",
       "chain": "cardbox"
     },
@@ -22058,8 +22058,8 @@
       "game": "onepiece",
       "store": "お宝市番館三重本店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "三重県",
       "found_at": "2026-11-14T13:28:57.436319+09:00",
       "chain": null
     },
@@ -22067,7 +22067,7 @@
       "game": "onepiece",
       "store": "カードボックス船橋駅前店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-11-14T13:28:57.436335+09:00",
       "chain": "cardbox"
@@ -22103,8 +22103,8 @@
       "game": "onepiece",
       "store": "リバティ鑑定倶楽部王子店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "東京都",
       "found_at": "2026-11-14T13:28:57.436458+09:00",
       "chain": null
     },
@@ -22121,7 +22121,7 @@
       "game": "onepiece",
       "store": "ときわ書房本八幡スクエア店",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-11-14T13:28:57.436505+09:00",
       "chain": null
@@ -22148,7 +22148,7 @@
       "game": "onepiece",
       "store": "ミント名古屋店（アルペンナゴヤ6F）",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "found_at": "2026-11-14T13:28:57.436578+09:00",
       "chain": "mint"
@@ -22278,6 +22278,96 @@
       "area": null,
       "found_at": "2026-11-14T13:28:57.592632+09:00",
       "chain": "aeon"
+    },
+    "0b3eb9ed110d7515": {
+      "game": "pokemon",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-14T15:19:39.696264+09:00",
+      "chain": "aeon"
+    },
+    "3054d30144d92bae": {
+      "game": "pokemon",
+      "store": "谷島屋 磐田店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:19:39.696300+09:00",
+      "chain": null
+    },
+    "eb193d15abe25601": {
+      "game": "pokemon",
+      "store": "TSUTAYA福井高柳店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-14T15:19:39.696327+09:00",
+      "chain": "tsutaya"
+    },
+    "d675d7077f3bdf82": {
+      "game": "onepiece",
+      "store": "CARDWINGS秋葉原駅前店",
+      "series": "神の支配",
+      "channel": "online",
+      "area": "東京都",
+      "found_at": "2026-11-14T15:19:40.824756+09:00",
+      "chain": "cardwings"
+    },
+    "1d1282529eb9f960": {
+      "game": "onepiece",
+      "store": "フタバ図書TSUTAYA 広店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:19:40.824792+09:00",
+      "chain": "tsutaya"
+    },
+    "c5379968c41dba8f": {
+      "game": "onepiece",
+      "store": "TSUTAYA Trading Card 松戸",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-14T15:19:40.824817+09:00",
+      "chain": "tsutaya"
+    },
+    "1d36be43bf4f1eb0": {
+      "game": "onepiece",
+      "store": "TC バトロコ高崎駅前",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:19:40.824839+09:00",
+      "chain": "batoroco"
+    },
+    "260e280dccc39e14": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール神戸北店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-14T15:19:40.824859+09:00",
+      "chain": "aeon"
+    },
+    "49217b686bd33e1c": {
+      "game": "onepiece",
+      "store": "TSUTAYA福井高柳店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-14T15:19:40.824877+09:00",
+      "chain": "tsutaya"
+    },
+    "f154328372084805": {
+      "game": "onepiece",
+      "store": "TSUTAYA鹿嶋南店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "茨城県",
+      "found_at": "2026-11-14T15:19:40.824899+09:00",
+      "chain": "tsutaya"
     }
   }
 }

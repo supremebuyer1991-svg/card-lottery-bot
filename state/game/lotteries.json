@@ -3236,7 +3236,7 @@
     "deadline_checked_at": "2026-11-14T11:40:34.098737+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始",
-    "page_checked_at": "2026-11-11T21:02:28.533934+09:00",
+    "page_checked_at": "2026-11-14T15:26:41.036394+09:00",
     "address_checked": true,
     "details_checked": true
   },
@@ -3305,7 +3305,10 @@
     "found_at": "2026-11-11T18:29:00.457832+09:00",
     "multi": false,
     "cls": "52cbf03c7b4c",
-    "issue": 687
+    "issue": 687,
+    "page_checked_at": "2026-11-14T15:26:43.404745+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "8e193d6b846429b7": {
     "store": "フルコンプ",
@@ -3431,7 +3434,9 @@
     "verify_note": "記事に合わせて直した：price",
     "deadline_checked_at": "2026-11-14T11:40:36.025468+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし（なくなり次第終了）"
+    "deadline_note": "画像0/0枚読込・締切の記載なし（なくなり次第終了）",
+    "page_checked_at": "2026-11-14T15:26:49.675949+09:00",
+    "details_checked": true
   },
   "deda3042a915b737": {
     "store": "Amazon.co.jp",
@@ -3651,7 +3656,9 @@
     "cls": "25e1c035d6fc",
     "deadline_checked_at": "2026-11-14T13:40:00.325084+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-14T15:26:55.652240+09:00",
+    "details_checked": true
   },
   "b6634d08cfba2f6d": {
     "store": "Amazon",
@@ -3714,7 +3721,10 @@
     "cls": "0065171f1fb1",
     "deadline_checked_at": "2026-11-14T13:40:02.087645+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし"
+    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "page_checked_at": "2026-11-14T15:27:00.666920+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "0fb00fdffc493db0": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -3747,7 +3757,10 @@
     "verified_at": "2026-11-12T12:19:48.928833+09:00",
     "verified": false,
     "verify_note": "記事と合わない：store・kind・end 国内予約受付の記事で、kindは発売情報ではなく予約受付。受付先は『全国のPlayStation取扱店』で、SIEは発表元。2027年2月4日は発売予定日であり予約締切ではなく、23:59という時刻も記事にない。開始日2026-11-10は記事と一致。",
-    "official_checked": true
+    "official_checked": true,
+    "page_checked_at": "2026-11-14T15:27:04.487816+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "8bcb38065a4c5714": {
     "store": "本坊酒造",
@@ -4119,7 +4132,15 @@
     "multi": true,
     "cls": "40fe481e5144",
     "verified_at": "2026-11-12T15:28:14.439493+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "税込6,138円（本体5,580円）",
+      "イオンお買物アプリの登録が必要",
+      "イオン南関東店舗限定の抽選",
+      "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外店舗あり）",
+      "当選発表は12/12(金)13:00～17:00"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/97230"
   },
   "fcf6f533563e3502": {
     "store": "楽天ブックス",
@@ -4149,7 +4170,16 @@
     "area": null,
     "cls": "d02bd7571d81",
     "verified_at": "2026-11-12T15:28:13.937723+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "当選者の購入期間は11/29(日)10:00〜12/3(木)23:59",
+      "11月下旬発送予定",
+      "複数商品に応募できるが、当選は1商品のみ",
+      "1世帯1名まで",
+      "対象商品を過去に楽天ブックスで購入していると無効",
+      "支払いはクレジットカード決済のみ"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162248"
   },
   "3749958f53f8096f": {
     "store": "楽天ブックス",
@@ -4479,7 +4509,16 @@
     "official_checked": true,
     "deadline_checked_at": "2026-11-14T14:18:39.009066+09:00",
     "deadline_v": 5,
-    "deadline_note": "応募ページを読めず（HTTPSConnectionPool(host='store.sony.jp'）"
+    "deadline_note": "応募ページを読めず（HTTPSConnectionPool(host='store.sony.jp'）",
+    "facts": [
+      "価格は39,980円（税込）で現行モデルと同じ",
+      "本体言語は日本語のみ、アカウントの「国/地域」は日本のみ",
+      "PS Plus プレミアム1か月無料コードが付属",
+      "本体ストレージを搭載（用途は今後発表）",
+      "提携カード決済で3%OFF",
+      "納期は2026年12月10日頃お届け予定"
+    ],
+    "facts_src": "https://kunkoku.jp/playstationportal-29.html"
   },
   "c08d5914adcbad53": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -5050,7 +5089,10 @@
     "status": "pending",
     "found_at": "2026-11-14T05:35:50.691650+09:00",
     "cls": "b0c496562245",
-    "issue": 734
+    "issue": 734,
+    "deadline_checked_at": "2026-11-14T15:26:35.476850+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・告知に日時の記載なし"
   },
   "f2075585f8831a68": {
     "store": "オーケーストア 関西店舗",
@@ -5087,7 +5129,16 @@
     "multi": true,
     "cls": "d111ea64c792",
     "verified_at": "2026-11-14T13:40:48.752224+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "関西店舗限定で、オーケークラブ会員カードアプリ限定の応募",
+      "オーケーカードで一定以上の買い物実績（回数と金額）がある人が対象",
+      "お一人様いずれか1点まで",
+      "当選発表は11月26日(木)",
+      "山崎・白州・響は12月9日(水)〜12日(土)に受け取り",
+      "竹鶴ピュアモルト・フロムザバレルは12月2日(水)〜5日(土)に受け取り"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162385"
   },
   "c333f96cc36efef0": {
     "store": "オーケーストア 関西店舗",
@@ -5364,8 +5415,8 @@
     "product": "山崎 2025",
     "series": "山崎",
     "kind": "lottery",
-    "start": null,
-    "end": null,
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -5386,15 +5437,19 @@
     "status": "pending",
     "found_at": "2026-11-14T14:16:33.650596+09:00",
     "cls": "2946889dcf99",
-    "issue": 740
+    "issue": 740,
+    "deadline_checked_at": "2026-11-14T15:26:36.924143+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・受付期間：11日12時～15日11時59分",
+    "end_from": "応募ページ（受付期間：11日12時～15日11時59）"
   },
   "1237383f30ffbce6": {
     "store": "イトーヨーカドー",
     "product": "白州 2025",
     "series": "白州",
     "kind": "lottery",
-    "start": null,
-    "end": null,
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -5415,7 +5470,11 @@
     "status": "pending",
     "found_at": "2026-11-14T14:16:33.650635+09:00",
     "cls": "e751ca5e621a",
-    "issue": 741
+    "issue": 741,
+    "deadline_checked_at": "2026-11-14T15:26:39.044678+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・11日12時～15日11時59分（午前）",
+    "end_from": "応募ページ（11日12時～15日11時59分（午前））"
   },
   "c1c8aabb7d51920d": {
     "store": "イトーヨーカドー",
@@ -5423,7 +5482,7 @@
     "series": "響",
     "kind": "lottery",
     "start": null,
-    "end": null,
+    "end": "2026-11-15T11:59:00+09:00",
     "announce": null,
     "method": null,
     "conditions": null,
@@ -5444,7 +5503,8 @@
     "status": "pending",
     "found_at": "2026-11-14T14:16:33.650655+09:00",
     "cls": "4cb23af2a6bf",
-    "issue": 742
+    "issue": 742,
+    "end_from": "同じ告知の別の商品から"
   },
   "216addb02501b26d": {
     "store": "イトーヨーカドーネット通販",
@@ -5475,7 +5535,7 @@
     "key": "216addb02501b26d",
     "status": "approved",
     "found_at": "2026-11-14T14:16:33.650682+09:00",
-    "cls": "afcee0900db5",
+    "cls": "775b2c943b7a",
     "facts": [
       "山崎2025・白州2025の当選者価格は各1万6500円",
       "送料660円（沖縄県は2200円）",
@@ -5520,9 +5580,9 @@
     "source": "Googleニュース「山崎 抽選」",
     "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
     "key": "53ea76cf43273a9c",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-14T14:16:33.650703+09:00",
-    "cls": "12c709d7f3ae",
+    "cls": "197c7dfa9214",
     "facts": [
       "応募は2025年11月1日～2026年10月31日に税込500円以上を受け取った人",
       "期間中の支払い合計額で判定（1回の注文額ではない）",
@@ -5538,7 +5598,8 @@
       "price": "16,500円"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：product・price"
+    "verify_note": "記事に合わせて直した：product・price",
+    "duplicate_of": "216addb02501b26d"
   },
   "cddc4cd9395d45eb": {
     "store": "イトーヨーカドーネット通販",
@@ -5567,9 +5628,9 @@
     "source": "Googleニュース「山崎 抽選」",
     "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
     "key": "cddc4cd9395d45eb",
-    "status": "approved",
+    "status": "duplicate",
     "found_at": "2026-11-14T14:16:33.650722+09:00",
-    "cls": "b86d345d1851",
+    "cls": "54b3ba5f5d65",
     "facts": [
       "応募は2025年11月1日～2026年10月31日に税込500円以上の注文を受け取っていることが条件（期間中の合計額）",
       "申し込みは1商品につき1人1回まで。7iDでのログインが必要",
@@ -5585,7 +5646,8 @@
       "price": "16,500円"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：product・price"
+    "verify_note": "記事に合わせて直した：product・price",
+    "duplicate_of": "216addb02501b26d"
   },
   "7e578d38fa6521bd": {
     "store": "イトーヨーカドー",
@@ -5769,5 +5831,93 @@
     "found_at": "2026-11-14T14:17:05.270094+09:00",
     "cls": "59f5e41d964e",
     "duplicate_of": "cddc4cd9395d45eb"
+  },
+  "7caa0535e9a49c45": {
+    "store": "堅展実業厚岸蒸溜所",
+    "product": "厚岸シングルモルトジャパニーズウイスキー「未（ひつじ）」",
+    "series": "未（ひつじ）",
+    "kind": "lottery",
+    "start": "2026-11-14",
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": "町内3カ所で本数を限定した抽選販売（応募受付は本日から）。詳細は記事が会員限定のため未確認",
+    "price": null,
+    "round": null,
+    "url": "https://kushironews.jp/2026/11/14/717717/",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "store",
+    "area": "北海道",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ウイスキー 抽選 販売」",
+    "source_url": "https://kushironews.jp/2026/11/14/717717/",
+    "key": "7caa0535e9a49c45",
+    "status": "pending",
+    "found_at": "2026-11-14T15:25:17.223615+09:00",
+    "multi": true,
+    "cls": "bccd59167cff",
+    "issue": 743
+  },
+  "aaf91112c5f02ceb": {
+    "store": "三郎丸蒸留所",
+    "product": "シングルモルト三郎丸 IX（ナインス）THE HERMIT（ザ・ハーミット）",
+    "series": "三郎丸IX",
+    "kind": "release",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE05UHRBUDRQc3d0U2p5V1hYd3RTR1lvTlQwV29kRmRuZkxnMmNXSnF0UTE0YTljeGNTMk9FTk5TRFh6Q1RSRkZKS21HejlrRmhGaEp0Y1oydl9GYzZhbjhqbzR4RVI0WXlTLW9KWFI0SDJ1Zw?oc=5",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.3,
+    "source": "Googleニュース「ウイスキー 抽選 販売」",
+    "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE05UHRBUDRQc3d0U2p5V1hYd3RTR1lvTlQwV29kRmRuZkxnMmNXSnF0UTE0YTljeGNTMk9FTk5TRFh6Q1RSRkZKS21HejlrRmhGaEp0Y1oydl9GYzZhbjhqbzR4RVI0WXlTLW9KWFI0SDJ1Zw?oc=5",
+    "key": "aaf91112c5f02ceb",
+    "status": "pending",
+    "found_at": "2026-11-14T15:25:17.223729+09:00",
+    "cls": "c5127ee8641f",
+    "issue": 744
+  },
+  "436bd0afc7c65290": {
+    "store": "Amazon",
+    "product": "Nintendo Switch 2 ゼルダの伝説 40周年 アニバーサリーエディション 本体",
+    "series": "Nintendo Switch 2 ゼルダの伝説 40周年 アニバーサリーエディション",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE44elpDVElZOFllMC10YjdCcTlObUF1VG5sdU92ME9ZZk1YMVgtb1JXeVZIS0IzUkRHNVJHUWZ6SG1KVVJXcmk5RXc2TXhtX0Fab0tQYWJPNmVzVnFIckJJNXhDbEowR2dTdWlXWFkzLWFabFJzd05tUg?oc=5",
+    "x_post": null,
+    "game": "switch2",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「Switch2 在庫 販売」",
+    "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE44elpDVElZOFllMC10YjdCcTlObUF1VG5sdU92ME9ZZk1YMVgtb1JXeVZIS0IzUkRHNVJHUWZ6SG1KVVJXcmk5RXc2TXhtX0Fab0tQYWJPNmVzVnFIckJJNXhDbEowR2dTdWlXWFkzLWFabFJzd05tUg?oc=5",
+    "found_at": "2026-11-14T15:25:36.682231+09:00",
+    "key": "436bd0afc7c65290",
+    "status": "duplicate",
+    "cls": "69425480dd08",
+    "duplicate_of": "8b21f9c49de91cbd"
   }
 }

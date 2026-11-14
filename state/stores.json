@@ -81,7 +81,7 @@
   },
   "store/tsutaya-e0dc6/": {
     "name": "TSUTAYA福井高柳店",
-    "last": "2026-11-08",
+    "last": "2026-11-14",
     "game": "pokemon",
     "area": "福井県"
   },
@@ -1551,8 +1551,8 @@
     "game": "pokemon"
   },
   "store/cardwings-89791/": {
-    "name": "CARD WINGS秋葉原駅前店",
-    "last": "2026-11-09",
+    "name": "CARDWINGS秋葉原駅前店",
+    "last": "2026-11-14",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -2147,7 +2147,7 @@
   },
   "store/aeon-85100/": {
     "name": "ふるいちイオンモール神戸北店",
-    "last": "2026-11-09",
+    "last": "2026-11-14",
     "game": "pokemon",
     "keep": true,
     "area": "兵庫県"
@@ -2436,7 +2436,7 @@
   },
   "store/tsutaya-6b16b/": {
     "name": "TSUTAYA鹿嶋南店",
-    "last": "2026-11-08",
+    "last": "2026-11-14",
     "game": "onepiece",
     "keep": true,
     "area": "茨城県"
@@ -2459,7 +2459,8 @@
     "name": "CARDBOX ブックイン金進堂長者原店",
     "last": "2026-11-14",
     "game": "onepiece",
-    "keep": true
+    "keep": true,
+    "area": "福岡県"
   },
   "store/bookoff-9c900/": {
     "name": "ブックオフ沼津リコー通り店・メディアポリス沼津リコー通り店",
@@ -5289,7 +5290,7 @@
   },
   "store/tsutaya-fd7e0/": {
     "name": "フタバ図書 TSUTAYA 広店",
-    "last": "2026-11-09",
+    "last": "2026-11-14",
     "game": "pokemon",
     "area": "広島県"
   },
@@ -6412,7 +6413,7 @@
     "name": "TSUTAYA六高台店",
     "last": "2026-11-14",
     "game": "onepiece",
-    "area": "千葉県"
+    "area": "宮城県"
   },
   "store/tsutaya-73a8f/": {
     "name": "TSUTAYA BOOKSTORE 川崎駅前店",
@@ -6516,8 +6517,8 @@
     "game": "pokemon"
   },
   "store/shop-e1537/": {
-    "name": "谷島屋磐田店",
-    "last": "2026-11-08",
+    "name": "谷島屋 磐田店",
+    "last": "2026-11-14",
     "game": "pokemon",
     "area": "静岡県"
   },
@@ -7727,7 +7728,8 @@
   "store/ribati-7b45c/": {
     "name": "リバティ鑑定倶楽部王子店",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "東京都"
   },
   "store/toreka-vidaway-c00f4/": {
     "name": "トレカ専門店Vidaway白河立石店（TSUTAYA白河立石店内）",
@@ -7740,5 +7742,10 @@
     "last": "2026-11-14",
     "game": "onepiece",
     "area": "神奈川県"
+  },
+  "store/batoroco-8fd2d/": {
+    "name": "TC バトロコ高崎駅前",
+    "last": "2026-11-14",
+    "game": "onepiece"
   }
 }
