@@ -35,9 +35,8 @@ def _pct(a, b):
 
 def build(items, chain_of, chain_name, chain_link, pref_link, esc):
     """→ (本文HTML, FAQ, 説明文, 見出しの数字)"""
-    lp = load_json("lottery_pages.json", {})
-    allv = [v.get("d") or {} for v in lp.values() if isinstance(v, dict)]
-    allv = [d for d in allv if d.get("store")]
+    import trends  # 11/14：弾・お店のページの「抽選の動き」と同じ数え方（重複・却下をのぞく）にそろえる
+    allv = list(trends._all())
     t = now()
     first = min((d.get("found_at") or d.get("start") or "9999")[:10] for d in allv) if allv else t.date().isoformat()
     n_all = len(allv)

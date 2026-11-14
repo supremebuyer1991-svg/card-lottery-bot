@@ -1307,7 +1307,9 @@ def _menu(items, games, g, here=""):
     top = sorted(ccnt, key=lambda c: (not CHAIN[c][3], -ccnt[c]))[:10]
     store_html = ('<section class="m-sec"><h3>お店からさがす<small>★＝大手・おすすめ</small></h3>'
                   '<div class="m-area"><a href="/store/">店舗一覧（都道府県別）</a>' +
-                  "".join(f'<a href="{_cgp(c, g)}">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}<span>{ccnt[c]}</span></a>' for c in top) +
+                  # 11/14 Fable：リンク先がゲーム別のページなら、件数もそのゲームだけで数える（全ゲームの合計を出していた）
+                  "".join(f'<a href="{_cgp(c, g)}">{"★" if CHAIN[c][3] else ""}{escape(CHAIN[c][1])}'
+                          f'<span>{sum(1 for i in gi if i.get("chain") == c) if _cgp(c, g) != f"/chain/{c}/" else ccnt[c]}</span></a>' for c in top) +
                   '</div></section>')
     today_d = now().date().isoformat()
     up = sorted([(inf.get("release"), x) for x, inf in (_ser_cfg()["info"].get(g) or {}).items()
@@ -1752,7 +1754,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             if i.get("channel") == "store" and i.get("area"):
                 cnt[i["area"]] = cnt.get(i["area"], 0) + 1
         top3 = sorted(cnt, key=lambda a: -cnt[a])[:3]
-        if top3:
+        if len(top3) >= 2:  # 11/14 Fable：1店舗だけのページで「多い地域は埼玉県（1件）」は意味がない
             txt += "店頭抽選が多い地域は" + "・".join(f"{a}（{cnt[a]}件）" for a in top3) + "です。"
         return txt
 
@@ -1848,6 +1850,10 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         meta["site"], meta["verify"] = site, verify
         meta.setdefault("upd", ("更新 ", updated))  # 11/8 Fable：文字列を入れていて画面の更新時刻が「11/1 00:00」になっていた
         meta["prerender"] = prerender(subset)
+        if not subset and path.split("/")[0] in ("guide", "calendar", "stats", "about"):
+            # 11/14 Fable：一覧のない説明・データのページに「現在受付中の抽選はありません。」と絞り込みが残っていた（上の本文の件数と矛盾）
+            meta["prerender"] = ""
+            meta["head_extra"] = (meta.get("head_extra") or []) + ["<style>.filters,#list,.sortbar,.list-head{display:none!important}</style>"]
         ld = []  # ItemList は外部の応募ページを含みリッチリザルトの対象外なので出さない（11/7 監査）
         if trail:
             meta["crumbs"], bl = crumbs(trail)
@@ -2174,7 +2180,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             quick_html = ('<div class="squick">' + "".join(
                 (f'<a href="{h}">' if h else "<div>") + f"<span>{escape(a)}</span><b>{b}</b>" + ("<i>相場を見る ›</i>" if h == "#souba" else "")
                 + ("</a>" if h else "</div>") for a, b, h in q_) + "</div>") if len(q_) > 1 else ""
-            stat_html = _series_stats(g, x, raw_lots if sample is None else {}, short)
+            # 11/14 Fable：「数字で見る」（lotteries.json＝古い分は消える）と下の「抽選の動き」（掲載ページ全部）で累計が食い違っていた。
+            # 「抽選の動き」が出る弾はそちらに一本化する
+            stat_html = "" if _trend_series(g, x) else _series_stats(g, x, raw_lots if sample is None else {}, short)
             og_rel = "og/" + series_path(g, x).rstrip("/").replace("/", "-") + ".png"
             og_rows = [("いま受付中の抽選", f"{len(si)}件" if si else "これから", True)]
             if info.get("release"):
@@ -2518,7 +2526,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             g0 = gd.get("game") or games[0]
             write(f"guide/{gd['slug']}/", {"game": g0}, {
                 "title": gd["title"] + "｜トレカ抽選ナビ", "desc": gd["desc"],
-                "summary": summary([i for i in sub if i["game"] == g0] or [i for i in items if i["game"] == g0], gd["name"] + "の抽選"),
+                # 11/14 Fable：ゲームで絞った件数・ゲーム全体の件数を出していて、下の「いま受付中◯件」と食い違っていた。同じ sub で数える
+                "summary": summary(sub, gd["name"] + "の抽選") if sub else "",
                 "faq": [tuple(q) for q in gd.get("faq") or []], "h1": gd["h1"],
                 "lead": gd.get("lead") or "", "aff": art, "links": _menu(items, games, g0), "root": "/"},
                 sub, [("トップ", ""), ("抽選の当て方", "guide/"), (gd["name"], f"guide/{gd['slug']}/")])
@@ -3243,6 +3252,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 lead += f"前回は{_d(p0)}締切の「{p0['p']}」の抽選でした。"
         elif ann_li:
             hist_html = f'<section class="hist"><h2>{escape(name)}の抽選結果の発表</h2>{ann_li}</section>'
+        if not si and past:  # 11/14 Fable：受付中がないとき、タイトルのゲーム名は前回までの抽選に合わせる（「ワンピースカード抽選｜前回『ハドウシーカー』」になっていた）
+            words = "・".join(dict.fromkeys(GAME_SHORT[p_["g"]] for p_ in past if p_.get("g") in GAME_SHORT)) or words
         write(path, {"game": g0, "store": path, "channel": ch}, {
             "title": (f"{name}の{words}抽選 受付中{len(si)}件【{md}更新】" + (f"締切{_fmt(min(si, key=lambda i: i.get('end') or '9')['end'])}" if any(i.get("end") for i in si) else "")
                       if si else f"{name}の{words}抽選｜" + (f"前回{_d(past[0])}締切「{past[0]['p']}」・" if past else "") + "応募方法") + "｜トレカ抽選ナビ",

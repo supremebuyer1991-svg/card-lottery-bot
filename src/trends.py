@@ -18,7 +18,20 @@ _CACHE = {}
 def _all():
     if "v" not in _CACHE:
         lp = load_json("lottery_pages.json", {})
-        _CACHE["v"] = [v.get("d") or {} for v in lp.values() if isinstance(v, dict) and (v.get("d") or {}).get("store")]
+        # 11/14 Fable：あとで「重複」「却下」になった抽選のページも数えていた（注記「重複はのぞいています」と合わない）
+        raw = load_json("lotteries.json", {}) or {}
+        ng = {k for k, v in raw.items() if isinstance(v, dict) and v.get("status") in ("duplicate", "rejected")}
+        out, seen = [], set()
+        for v in lp.values():
+            d = (v.get("d") or {}) if isinstance(v, dict) else {}
+            if not d.get("store") or d.get("key") in ng:
+                continue
+            sig = (d.get("game"), d.get("store"), d.get("product"), (d.get("end") or "")[:10])
+            if sig in seen:
+                continue
+            seen.add(sig)
+            out.append(d)
+        _CACHE["v"] = out
     return _CACHE["v"]
 
 
