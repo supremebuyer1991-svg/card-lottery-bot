@@ -21023,7 +21023,7 @@
       "game": "pokemon",
       "store": "カードボックスヨコハマ本店",
       "series": "30th CELEBRATION",
-      "channel": "online",
+      "channel": "store",
       "area": "神奈川県",
       "found_at": "2026-11-14T13:28:55.967303+09:00",
       "chain": "cardbox"
@@ -21041,7 +21041,7 @@
       "game": "pokemon",
       "store": "キデイランド浦和美園店",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "埼玉県",
       "found_at": "2026-11-14T13:28:55.967399+09:00",
       "chain": "kiddyland"
@@ -21050,8 +21050,8 @@
       "game": "pokemon",
       "store": "ホビーステーション各店",
       "series": "ストームエメラルダ",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "大阪府",
       "found_at": "2026-11-14T13:28:55.967435+09:00",
       "chain": "hobbystation"
     },
@@ -22368,6 +22368,105 @@
       "area": "茨城県",
       "found_at": "2026-11-14T15:19:40.824899+09:00",
       "chain": "tsutaya"
+    },
+    "0d32995bdeef96d5": {
+      "game": "pokemon",
+      "store": "TSUTAYA枚方ベルパルレ店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-14T15:41:17.229042+09:00",
+      "chain": "tsutaya"
+    },
+    "20203878d7838f59": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-14T15:41:17.229102+09:00",
+      "chain": "kiddyland"
+    },
+    "ef8ebe3dc2d07d52": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-14T15:41:17.229131+09:00",
+      "chain": "kiddyland"
+    },
+    "6a5f8c824571adcf": {
+      "game": "pokemon",
+      "store": "バトロコsatellite札幌駅北口",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-14T15:41:17.229161+09:00",
+      "chain": "batoroco"
+    },
+    "8fdabc627ce42ade": {
+      "game": "pokemon",
+      "store": "文真堂トレカ丸倉賀野店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "群馬県",
+      "found_at": "2026-11-14T15:41:17.229226+09:00",
+      "chain": null
+    },
+    "8798135cb67b777e": {
+      "game": "pokemon",
+      "store": "文真堂トレカ丸幸手店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "埼玉県",
+      "found_at": "2026-11-14T15:41:17.229256+09:00",
+      "chain": null
+    },
+    "14cb0b7652d298a5": {
+      "game": "pokemon",
+      "store": "文真堂トレカ丸新井店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:41:17.229281+09:00",
+      "chain": null
+    },
+    "dafff4e352970b63": {
+      "game": "pokemon",
+      "store": "文真堂トレカ丸葉鹿店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:41:17.229303+09:00",
+      "chain": null
+    },
+    "37f17aaf93aab4b5": {
+      "game": "pokemon",
+      "store": "文真堂書店上原店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-14T15:41:17.229324+09:00",
+      "chain": null
+    },
+    "6eae5a6857b29488": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール甲府昭和店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "山梨県",
+      "found_at": "2026-11-14T15:41:18.625306+09:00",
+      "chain": "aeon"
+    },
+    "8509b66909909a5e": {
+      "game": "onepiece",
+      "store": "駿河屋 高崎OPA店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "群馬県",
+      "found_at": "2026-11-14T15:41:18.625342+09:00",
+      "chain": "surugaya"
     }
   }
 }
