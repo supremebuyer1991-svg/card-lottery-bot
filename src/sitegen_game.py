@@ -1281,6 +1281,10 @@ def build(settings=None, out_dir=None, force=False):
     for k, rec in list(pages.items()):
         snap = dict(rec["snap"])
         snap.setdefault("kind", "lottery")
+        from approve import AD_ITEM as _ADI, AD_HOST as _ADH
+        if (raw.get(k) or {}).get("status") == "rejected" or _ADI.search(snap.get("product") or "") or _ADH.search(snap.get("url") or ""):
+            del pages[k]   # 外した抽選（情報元の広告など）は個別ページも消す（11/14 ユーザー指摘：ポケパ365のページがまだあった）
+            continue
         e = parse_dt(snap.get("end"))
         ended = rec.get("ended") or (e is not None and e < t) or (k not in {i["key"] for i in items} and (t - (parse_dt(rec.get("seen") + "T00:00") or t)).days >= 1)
         if ended and (t - (parse_dt(rec.get("seen") + "T00:00") or t)).days > 45:
