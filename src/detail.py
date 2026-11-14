@@ -19,7 +19,7 @@ GAME_SLUG = {"pokemon": "pokeka", "onepiece": "onepiece", "dragonball": "fusionw
 BRAND = {
     "name": "トレカ抽選ナビ", "domain": "tcg-chusen.com", "color": "#c8102e",
     "logo": '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span>',
-    "logo_font": '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93">',
+    "logo_font": "<link rel=\"preload\" as=\"style\" href=\"https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93\"></noscript>",
     "footer": "トレカ抽選ナビは抽選情報をまとめているサイトです。応募・購入は各店舗のページで行われます。",
     "online": "ネット抽選（当選後に購入・発送）", "store": "店頭抽選（店頭で受け取り）",
     "chip_online": "ネット抽選", "chip_store": "店頭抽選",
@@ -537,7 +537,7 @@ def mylist_page(site="", raff="", tag="", souba=None):
             '<title>応募したリスト｜トレカ抽選ナビ</title><meta name="robots" content="noindex">'
             '<link rel="preconnect" href="https://fonts.googleapis.com">'
             '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap"></noscript>'
-            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93">'
+            "<link rel=\"preload\" as=\"style\" href=\"https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap&text=%E3%83%88%E3%83%AC%E3%82%AB%E6%8A%BD%E9%81%B8%E3%83%8A%E3%83%93\"></noscript>"
             f'<style>{css}</style></head><body><header><div class="wrap"><a href="/" class="logo" aria-label="トレカ抽選ナビ トップへ">'
             '<small>TORECA LOTTERY NAVI</small><span class="w">トレカ<span class="t">抽選</span>ナビ</span></a></div></header>'
             '<main class="wrap ml"><h1>応募したリスト（<span id="mln">0</span>件）</h1>'
