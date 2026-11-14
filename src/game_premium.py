@@ -314,7 +314,7 @@ def chart_svg(h, teika):
             f'<text x="{P}" y="{H - 8}" class="ax">{pts[0][0][5:].replace("-", "/")}</text><text x="{W - P}" y="{H - 8}" text-anchor="end" class="ax">{pts[-1][0][5:].replace("-", "/")}</text></svg>')
 
 
-CSS = (".sellb{display:inline-block;margin-top:6px;font-size:13px;color:#8a93a6!important}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+CSS = (".pm-facts ul{padding-left:1.2em;line-height:1.85;color:#cfd5e1}.pm-facts .note{font-size:12px}.sellb{display:inline-block;margin-top:6px;font-size:13px;color:#8a93a6!important}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
        ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
@@ -664,6 +664,11 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     for x in allx + revived:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
+        try:   # メーカー公式などから取った商品の事実（出典つき。game_facts）
+            import game_facts
+            extra = game_facts.html_for(x["jan"], x["name"]) + extra
+        except Exception:
+            pass
         _ntc = (_cats.get(cat_of([x["name"]] + x.get("names", []))) or {}).get("notice")
         if _ntc:   # お酒の「20歳になってから」など、カテゴリの注意書き（11/11）
             intro = _notice_p(_ntc) + intro

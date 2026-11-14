@@ -117,6 +117,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         os.environ["JOB_T0"] = str(int(time.time()) - int(s.get("game_job_offset_sec", 90)))
     from collect import collect, sync_manual
     sync_manual()  # 自分で追加した抽選（config/game/manual.yaml）
+    if step == "all" and fetcher is None and sources is None and extractor is None:
+        try:   # 商品ページに足す商品の事実（メーカー公式など）を、情報集めの間に裏で取る（時間を延ばさない。11/14）
+            import game_facts
+            game_facts.start(s)
+        except Exception as e:
+            log(f"商品の事実: スキップ {e}")
     if step in ("all", "collect"):
         srcs = sources if sources is not None else load_sources()
         kw = {}
@@ -142,6 +148,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                 log(f"見張りの言葉: スキップ {e}")
             try:   # 11/10：解説を先にすると40秒かかり、買取価格の更新がずっと時間切れで止まっていた → 買取価格のあと、残りの時間で
                 import game_aitext
+                try:
+                    import game_facts
+                    from common import job_elapsed as _je
+                    game_facts.wait(float(s.get("product_facts_until_sec", 200)) - _je())   # 裏で取っていた商品の事実を待つ（上限つき）
+                except Exception as e:
+                    log(f"商品の事実: スキップ {e}")
                 game_aitext.update(s)     # 中身の少ない商品ページから順に解説を足す（前の回の測定を使う）
             except Exception as e:
                 log(f"解説: スキップ {e}")

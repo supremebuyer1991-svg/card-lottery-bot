@@ -80,6 +80,13 @@ def _premium_data(x):
          "1週間前の最高買取（円）": x.get("w1") or "記録なし", "1か月前の最高買取（円）": x.get("m1") or "記録なし",
          "記録した期間の最高値・最安値（円）": [max(vals), min(vals)] if vals else "記録なし", "記録の日数": len(vals),
          "楽天ブックスの商品説明（抜粋）": re.sub(r"\s+", " ", x.get("caption") or "")[:600]}
+    try:
+        import game_facts
+        fr = game_facts.get(x["jan"])
+        if fr:
+            d["メーカー公式などに書かれている商品の事実"] = fr["facts"]
+    except Exception:
+        pass
     if x.get("teika"):
         d["定価との差（円）"] = x["max"] - x["teika"]
     return d
@@ -135,7 +142,8 @@ def update(settings, ai=None):
             continue
         key = m.group(2) if m.group(1) == "premium" else "new:" + m.group(2)
         rec = st.get(key)
-        if rec and rec.get("at", "") > old:
+        _has_facts = m.group(1) == "premium" and __import__("game_facts").get(m.group(2)) is not None
+        if rec and rec.get("at", "") > old and (rec.get("facts") or not _has_facts):   # 商品の事実があとから取れたら1回作り直す
             continue
         if m.group(1) == "premium" and m.group(2) in cat:
             x = cat[m.group(2)]
@@ -177,7 +185,7 @@ def update(settings, ai=None):
                 continue
             if text:
                 st[c[3]] = {"at": t.isoformat(), "text": text}
-                if c[4].get("お店の告知に書かれていた要点"):
+                if c[4].get("お店の告知に書かれていた要点") or c[4].get("メーカー公式などに書かれている商品の事実"):
                     st[c[3]]["facts"] = True
                 made += 1
     live_keys = {"l:" + k for k in lp}
