@@ -245,6 +245,178 @@ def _release_detail(html, snap):
     return html
 
 
+KIND_JA = {"lottery": "抽選", "invite": "招待販売", "preorder": "予約", "restock": "再入荷", "first_come": "先着販売",
+           "release": "発売", "fukubukuro": "福袋"}
+
+
+def _nm_key(s):
+    """同じ商品かどうかを見るための名前（かっこ・空白・記号を外す）"""
+    s = re.sub(r"[（(【\[][^）)】\]]*[）)】\]]", "", s or "")
+    return re.sub(r"[\s　・\-‐ー/／!！?？、。,.「」『』]", "", s).lower()[:40]
+
+
+def _md_range(snap):
+    from detail import fmt
+    a, b = snap.get("start"), snap.get("end")
+    if a and b:
+        return f"{fmt(a)}〜{fmt(b)}"
+    return f"〜{fmt(b)}" if b else (f"{fmt(a)}〜" if a else "日時未定")
+
+
+def _price_sec(product, name, s):
+    """この商品の買取相場と定価の欄（買取店の価格が分かるときだけ）→ (HTML, よくある質問)"""
+    try:
+        import game_premium
+        x = game_premium.price_match(product, s)
+    except Exception:
+        return "", []
+    if not x:
+        return "", []
+    faq = []
+    ratio = f"（定価の{round(x['ratio'] * 100)}%）" if x.get("ratio") else ""
+    top = "".join(f"<tr><td>{escape(st)}</td><td>{v:,}円</td></tr>" for st, v in (x.get("prices") or [])[:5])
+    info = []
+    if x.get("sales_date"):
+        info.append(f"発売日：{escape(x['sales_date'])}")
+    if x.get("maker"):
+        info.append(f"メーカー：{escape(x['maker'])}")
+    if x.get("teika"):
+        info.append(f"定価：{x['teika']:,}円（税込）")
+    info.append(f"JANコード：{escape(x['jan'])}")
+    sec = (f'<section class="xsec"><h2>「{escape(name)}」の買取相場と定価</h2>'
+                f'<p>買取店の新品の最高買取価格は<b>{x["max"]:,}円</b>（{escape(x["store"])}）{ratio}です。'
+                f'{escape(game_premium.CHANGE_NOTE)}</p>'
+                + (f'<div class="xtbl"><table><thead><tr><th>買取店</th><th>新品の買取価格</th></tr></thead><tbody>{top}</tbody></table></div>' if top else "")
+                + f'<p class="note">{"・".join(info)}</p>'
+                f'<p><a href="/premium/{escape(x["jan"])}/">買取価格の推移・お店ごとの比較を見る →</a></p></section>')
+    faq.append((f"{name}の買取価格は？", f"買取店の新品の最高買取価格は{x['max']:,}円（{x['store']}）{ratio}です。{game_premium.CHANGE_NOTE}"))
+    if x.get("teika"):
+        faq.append((f"{name}の定価は？", f"{x['teika']:,}円（税込）です。"))
+    return sec, faq
+
+
+def _series_extra(x, path, lst, pages, s):
+    """商品ごとのまとめページ（/<ジャンル>/<商品>/）に足す欄 → (HTML, よくある質問)。
+    これまでの受付の記録（終わったものも）・買取相場と定価・お店の数などデータから作る質問"""
+    from detail import fmt
+    secs, faq = [], []
+    live_keys = {i.get("key") for i in lst}
+    past = [(rec.get("snap") or {}, rec) for k, rec in pages.items() if (rec.get("snap") or {}).get("spath") == path and k not in live_keys]
+    past.sort(key=lambda r: (r[0].get("end") or ""), reverse=True)
+    if past:
+        rows = "".join(f'<tr><td>{escape(o.get("store") or "")}</td><td>{escape(KIND_JA.get(o.get("kind") or "lottery", "受付"))}</td><td>{escape(_md_range(o))}</td></tr>'
+                       for o, rec in past[:15])
+        secs.append(f'<section class="xsec"><h2>「{escape(x)}」のこれまでの受付</h2>'
+                    f'<p>受付が終わったものも含めて、これまでに見つけた「{escape(x)}」の抽選・予約・販売の記録です（{len(past)}件）。'
+                    'お店や時期の傾向を見ておくと、次の受付を見つけやすくなります。</p>'
+                    f'<div class="xtbl"><table><thead><tr><th>お店</th><th>種類</th><th>期間</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+        stores = list(dict.fromkeys(o.get("store") for o, _ in past if o.get("store")))
+        faq.append((f"{x}はこれまでどこで受付がありましたか？", "・".join(stores[:10]) + "などで受付がありました（受付が終わったものを含む）。"))
+    kinds = [KIND_JA.get(i.get("kind") or "lottery", "受付") for i in lst]
+    if kinds:
+        from collections import Counter
+        cnt = "・".join(f"{k}{n}件" for k, n in Counter(kinds).most_common())
+        faq.append((f"{x}の受付はどんな種類がありますか？", f"いま載せている{len(lst)}件の内訳は {cnt} です。"))
+    ends = sorted(i["end"] for i in lst if i.get("end") and i.get("ph") == "open" and i.get("kind") != "release")
+    if ends:
+        faq.append((f"{x}でいちばん早く締め切る受付は？", f"{fmt(ends[0])}締切のものです（一覧の上から締切の早い順）。"))
+    ph, pf = _price_sec(x, x, s)
+    if ph:
+        secs.append(ph)
+        faq += pf
+    css = ('<style>.xsec{margin:18px 0}.xsec h2{font-size:17px;margin:0 0 8px}.xsec p{font-size:14px;line-height:1.75}'
+           '.xtbl{overflow-x:auto}.xtbl table{border-collapse:collapse;width:100%;font-size:13px}.xtbl th,.xtbl td{border-bottom:1px solid #ddd;padding:6px 4px;text-align:left}</style>')
+    return (css + "".join(secs)) if secs else "", faq
+
+
+def _extra_detail(html, snap, me_key, recs, live, cat_by, s, t):
+    """抽選の個別ページの中身を、手元にある事実のデータで増やす（11/14 ユーザー：1ページあたりのボリュームを増やしてSEOを強く）。
+    ・この商品の受付の記録（ほかのお店・前の回。終わったものも45日分）
+    ・このお店でいま受付中のほかの商品
+    ・この商品の買取相場と定価（買取店の価格が分かるときだけ）
+    ・よくある質問（データから作る。分からないことは書かない）"""
+    from detail import fmt, short_name
+    name = short_name(snap)
+    store = snap.get("store") or ""
+    g = snap.get("game")
+    cshort = (cat_by.get(g) or {}).get("short", "")
+    key_n = _nm_key(snap.get("series") or snap.get("product"))
+    sp = snap.get("spath")
+    secs = []
+    # 1) 同じ商品の受付の記録
+    same = []
+    for k, rec in recs.items():
+        if k == me_key:
+            continue
+        o = rec.get("snap") or {}
+        if o.get("game") != g:
+            continue
+        if (sp and o.get("spath") == sp) or (key_n and len(key_n) >= 4 and _nm_key(o.get("series") or o.get("product")) == key_n):
+            same.append((o, rec))
+    if same:
+        same.sort(key=lambda x: (x[1].get("ended", False), x[0].get("end") or "9999"))
+        rows = "".join(
+            f'<tr><td><a href="/{escape(rec["path"])}">{escape(o.get("store") or "")}</a></td><td>{escape(KIND_JA.get(o.get("kind") or "lottery", "受付"))}</td>'
+            f'<td>{escape(_md_range(o))}</td><td>{"終了" if rec.get("ended") else "<b>受付中</b>"}</td></tr>' for o, rec in same[:12])
+        n_open = sum(1 for o, r in same if not r.get("ended") and o.get("kind") != "release")
+        tip = "お店ごとに期間や条件がちがうので、いくつか応募すると当たる機会が増えます。" if n_open else "いま受付中のものが無くても、再販や次の抽選が始まることがあります。"
+        secs.append(f'<section class="xsec"><h2>「{escape(name)}」のほかの受付・これまでの記録</h2>'
+                    f'<p>このページのほかに、「{escape(name)}」の情報を{len(same)}件見つけています（いま受付中の抽選・販売 {n_open}件）。{tip}</p>'
+                    f'<div class="xtbl"><table><thead><tr><th>お店</th><th>種類</th><th>期間</th><th>状態</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+    # 2) このお店のほかの受付中
+    others = [i for i in live if (i.get("store") == store) and i.get("key") != me_key and _nm_key(i.get("series") or i.get("product")) != key_n][:8]
+    if others:
+        secs.append(f'<section class="xsec"><h2>{escape(store)}でいま受付中のほかの商品</h2><ul>' + "".join(
+            f'<li><a href="/{escape(i["lpath"])}">{escape(short_name(i))}</a>（{escape(KIND_JA.get(i.get("kind") or "lottery", "受付"))}・{escape(_md_range(i))}）</li>'
+            for i in others if i.get("lpath")) + "</ul></section>")
+    # 3) 買取相場と定価
+    ph, faq = _price_sec(snap.get("product") or name, name, s)
+    if ph:
+        secs.append(ph)
+    # 4) よくある質問（データから）
+    kind = KIND_JA.get(snap.get("kind") or "lottery", "受付")
+    if snap.get("end") and snap.get("kind") != "release":
+        faq.insert(0, (f"{store}の「{name}」の{kind}の締切はいつ？", f"{fmt(snap['end'])}までです（{_md_range(snap)}）。締切は早まることがあるので、応募ページでご確認ください。"))
+    if snap.get("announce"):
+        faq.append((f"当選発表はいつ？", f"{snap['announce']}の予定です（お店の告知より）。"))
+    ch = snap.get("channel")
+    if snap.get("kind") == "release":
+        pass
+    elif ch == "store":
+        faq.append(("応募はどこでする？", f"{store}の店頭での受付です" + (f"（{snap['area']}）" if snap.get("area") else "") + "。対象の店舗はお店の告知でご確認ください。"))
+    elif snap.get("url"):
+        from urllib.parse import urlparse
+        faq.append(("応募はどこでする？", f"ネットで受け付けています（{urlparse(snap['url']).netloc}）。このページの「応募ページを開く」から進めます。"))
+    if snap.get("conditions"):
+        faq.append(("応募の条件は？", re.sub(r"\s+", " ", str(snap["conditions"]))[:200]))
+    if same:
+        stores_ = list(dict.fromkeys(o.get("store") for o, r in same if not r.get("ended") and o.get("store") and o.get("kind") != "release"))
+        if stores_:
+            faq.append((f"ほかに「{name}」を受け付けているお店は？", "・".join(stores_[:8]) + "でも受け付けています（上の表）。"))
+    if faq:
+        secs.append('<section class="xsec"><h2>よくある質問</h2><dl class="xfaq">' + "".join(
+            f"<dt>{escape(q)}</dt><dd>{escape(a)}</dd>" for q, a in faq) + "</dl></section>")
+        ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+        html = html.replace("</head>", '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script></head>", 1)
+    try:   # AIの解説（受付のデータだけから作ったもの。game_aitext）を、いちばん上に
+        import game_aitext
+        ai_h = game_aitext.html_for("l:" + me_key)
+        if ai_h:
+            secs.insert(0, f'<section class="xsec xai">{ai_h}</section>')
+    except Exception:
+        pass
+    if not secs:
+        return html
+    css = ('<style>.xai h2{font-size:16px;margin:14px 0 6px}.xai .note{font-size:12px;color:#666}.xsec{margin:18px 0}.xsec h2{font-size:17px;margin:0 0 8px}.xsec p{font-size:14px;line-height:1.75}'
+           '.xtbl{overflow-x:auto}.xtbl table{border-collapse:collapse;width:100%;font-size:13px}.xtbl th,.xtbl td{border-bottom:1px solid var(--rule,#ddd);padding:6px 4px;text-align:left}'
+           '.xsec ul{padding-left:1.2em;font-size:14px;line-height:1.8}.xfaq dt{font-weight:700;margin-top:10px;font-size:14px}.xfaq dd{margin:4px 0 0;font-size:14px;line-height:1.7}</style>')
+    block = css + "".join(secs)
+    if '<nav class="more"' in html:
+        return html.replace('<nav class="more"', block + '<nav class="more"', 1)
+    return html.replace("<footer>", block + "<footer>", 1)
+
+
 def _shop_detail(html, snap):
     """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
     sh = snap.get("shop") or {}
@@ -815,15 +987,18 @@ def build(settings=None, out_dir=None, force=False):
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
               body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
               body_bottom=ser_links)
+        _prev_pages = load_json("lottery_pages.json", {}) or {}
         for x, lst in sers.items():
             path = lst[0]["spath"]
             no = sum(1 for i in lst if i["ph"] == "open")
+            # 11/14 ユーザー：1ページあたりのボリュームを増やす → これまでの受付の記録・買取相場・データから作るよくある質問
+            _xb, _xf = _series_extra(x, path, lst, _prev_pages, s)
             write(path, {"title": f"{x} 抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
                          "desc": f"{x}（{c['short']}）の抽選・予約・再入荷の受付情報。いま受付中{no}件。各店の締切・条件・定価をまとめています。",
                          "h1": f"{x}の抽選・予約・再入荷", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{x}」の情報だけを並べています。",
                          "summary": summary(lst, f"「{x}」の受付"), "links": lk, "og": og_u,
-                         "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))]},
-                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g})
+                         "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _xf},
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g}, body_bottom=_xb)
         by_chain = {}
         for i in sub:
             if i.get("chain"):
@@ -874,6 +1049,10 @@ def build(settings=None, out_dir=None, force=False):
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
                              next_link=nxt, brand=dbrand, games=games_map)
         html = _theme_detail(_shop_detail(_release_detail(html, snap), snap), side_html(cats, g, counts=False))
+        try:
+            html = _extra_detail(html, snap, k, pages, live, cat_by, s, t)
+        except Exception as e:
+            log(f"個別ページの中身を足す: スキップ {k} {e}")
         if cat_by[g].get("notice"):   # お酒の「20歳になってから」など、カテゴリの注意書き（h1 のすぐ下）
             html = re.sub(r"(</h1>)", lambda m: m.group(1) + _notice_html(cat_by[g]["notice"]), html, count=1)
         p = out / rec["path"] / "index.html"
