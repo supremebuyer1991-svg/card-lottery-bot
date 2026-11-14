@@ -187,7 +187,7 @@ def update(settings, fetch=None, sleep=None):
     return g
 
 
-def photo_update(settings, fetch=None, sleep=None):
+def photo_update(settings, fetch=None, sleep=None, limit=None, no_time_limit=False):
     """買取相場の商品のうち写真が無いもの（家電・カメラなど楽天ブックスに無いもの）を、楽天市場でJANを使って探す
     （11/14 ユーザー：家電やカメラも写真の無い商品はアフィリンク付きで写真を載せて）。
     JANが商品名か説明に入っている商品だけ使う。1回 premium_photo_per_run 件・見つからなかったものは14日後にもう一度"""
@@ -205,11 +205,13 @@ def photo_update(settings, fetch=None, sleep=None):
     aff = game_affi.affiliate_id(settings)
     todo = [x for x in catalog(settings, watch_map_cached()) if not x.get("img")]
     todo.sort(key=lambda x: -(x.get("max") or 0))
-    left = int(settings.get("premium_photo_per_run", 10))
+    left = limit if limit is not None else int(settings.get("premium_photo_per_run", 10))
     for x in todo:
-        if left <= 0 or job_elapsed() > float(settings.get("rakuten_until_sec", 300)):
+        if left <= 0 or (not no_time_limit and job_elapsed() > float(settings.get("rakuten_until_sec", 300))):
             break
         c = ph.get(x["jan"])
+        if ((c or {}).get("az") or {}).get("img"):
+            continue   # Amazonで写真が見つかった商品は楽天市場では探さない（順番：楽天ブックス→Amazon→楽天市場）
         if c and (c.get("img") or (parse_dt(c.get("at")) and (t - parse_dt(c["at"])).total_seconds() < 14 * 86400)):
             continue
         left -= 1
@@ -269,7 +271,7 @@ def _amz_search(jan, tag, tok):
     return (r.json().get("searchResult") or {}).get("items") or []
 
 
-def az_photo_update(settings, search=None, sleep=None):
+def az_photo_update(settings, search=None, sleep=None, limit=None, no_time_limit=False):
     """楽天でも写真が見つからなかった商品の写真を、AmazonでJANを使って探す（11/14 ユーザー：Amazonからも写真とってきたらええやん）。
     AmazonのJAN（EAN）がこちらのJANと同じ商品だけ使う。写真はAmazonの商品ページ（アフィリエイト）に飛ばす（Amazonの決まり）。
     1回 premium_az_photo_per_run 件・見つからなかったものは14日後にもう一度"""
@@ -292,9 +294,9 @@ def az_photo_update(settings, search=None, sleep=None):
     tag = game_affi.amazon_tag(settings)
     todo = [x for x in catalog(settings, watch_map_cached()) if not x.get("img")]
     todo.sort(key=lambda x: -(x.get("max") or 0))
-    left = int(settings.get("premium_az_photo_per_run", 15))
+    left = limit if limit is not None else int(settings.get("premium_az_photo_per_run", 15))
     for x in todo:
-        if left <= 0 or job_elapsed() > float(settings.get("rakuten_until_sec", 300)):
+        if left <= 0 or (not no_time_limit and job_elapsed() > float(settings.get("rakuten_until_sec", 300))):
             break
         c = (ph.get(x["jan"]) or {}).get("az")
         if c and (c.get("img") or (parse_dt(c.get("at")) and (t - parse_dt(c["at"])).total_seconds() < 14 * 86400)):
@@ -425,10 +427,11 @@ def catalog(settings=None, wmap=None):
         _az = _ph.get("az") or {}      # それでも無ければAmazonの写真（az_photo_update）
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": price, "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
+                    # 写真の順（11/14 ユーザー）：楽天ブックス → Amazon → 楽天市場
                     "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", "") or (_ph.get("itemUrl", "") if _ph.get("img") else ""),
                     "azUrl": wm.get("azUrl", "") or _az.get("url", ""),
-                    "img": tk.get("img") or wm.get("img", "") or _ph.get("img", "") or _az.get("img", ""),
-                    "img_az": not (tk.get("img") or wm.get("img") or _ph.get("img")) and bool(_az.get("img")),   # Amazonの写真（Amazonの商品ページに飛ばす）
+                    "img": tk.get("img") or wm.get("img", "") or _az.get("img", "") or _ph.get("img", ""),
+                    "img_az": not (tk.get("img") or wm.get("img")) and bool(_az.get("img")),   # Amazonの写真（Amazonの商品ページに飛ばす）
                     "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
                     "teika_note": tnote,
                     "sales_date": tk.get("sales_date", "") or ov.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})

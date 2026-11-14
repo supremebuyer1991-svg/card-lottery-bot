@@ -1,0 +1,36 @@
+name: game-photos
+# 写真の無い買取相場の商品の写真を、いっぺんに全部探す（手で動かす時だけ。11/14）
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bot   # 普段の実行（run.yml）と同時に動かない（状態のファイルを上書きし合わないように）
+  cancel-in-progress: false
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - env:
+          SITE: game
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
+          AMAZON_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREDENTIAL_VERSION }}
+          AMAZON_TAG_GAME: ${{ vars.AMAZON_TAG_GAME }}
+          AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ vars.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_AFFILIATE_ID_GAME: ${{ vars.RAKUTEN_AFFILIATE_ID_GAME }}
+          RAKUTEN_REFERER: ${{ vars.SITE_URL }}
+        run: python tools/game_photos_all.py
+      - run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add state/game/premium_photo.json; git commit -m "写真をまとめて探した" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase origin main && git push && exit 0; sleep 10; done

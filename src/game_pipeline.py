@@ -201,8 +201,8 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             game_kaitori.update(s)
             game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
             try:
-                game_premium.photo_update(s)   # 写真の無い商品（家電・カメラなど）の写真を楽天市場からJANで（11/14）
-                game_premium.az_photo_update(s)   # 楽天にも無ければAmazonからJANで（11/14）
+                game_premium.az_photo_update(s)   # 写真の無い商品（家電・カメラなど）の写真をAmazonからJANで（11/14）
+                game_premium.photo_update(s)      # Amazonにも無ければ楽天市場からJANで（順番：楽天ブックス→Amazon→楽天市場）
             except Exception as e:
                 log(f"相場の写真: スキップ {e}")
             import game_upcoming
