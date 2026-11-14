@@ -106,14 +106,19 @@ def thumb(url, px=300):
     return url
 
 
+_TCG_CFG = {}
+
+
 def _tcg_setting(key):
     """トレカ側の設定（config/settings.yaml）の値。楽天・Amazonのアフィリエイトの番号は人ごとに1つなので、
-    ゲーム側に入っていなければトレカ側と同じものを使う"""
-    try:
-        import yaml
-        return str((yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8")) or {}).get(key) or "")
-    except Exception:
-        return ""
+    ゲーム側に入っていなければトレカ側と同じものを使う（読むのは1回だけ。11/14：毎回読むと1回のサイト作りで90秒かかっていた）"""
+    if "v" not in _TCG_CFG:
+        try:
+            import yaml
+            _TCG_CFG["v"] = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8")) or {}
+        except Exception:
+            _TCG_CFG["v"] = {}
+    return str(_TCG_CFG["v"].get(key) or "")
 
 
 def affiliate_id(settings):

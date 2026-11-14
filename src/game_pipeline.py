@@ -133,6 +133,11 @@ def _import_tcg(lots):
         if k not in lots:
             n += 1
         lots[k] = {**lots.get(k, {}), **it}
+    for it in lots.values():   # 入荷Nowなどから入ったポケカ・ワンピの抽選にも、トレカ抽選ナビの写真を付ける
+        if it.get("game") in BIG_TCG and not it.get("from_tcg"):
+            ph = photos.get(f"{it.get('game')}|{it.get('series')}") or {}
+            if ph.get("image") and ph.get("url"):
+                it["photo"] = {"u": ph["url"], "img": ph["image"]}
     for k, it in lots.items():
         if it.get("from_tcg") and k not in want and it.get("status") in ("approved", "posted", "listed", "pending"):
             it["status"] = "expired"

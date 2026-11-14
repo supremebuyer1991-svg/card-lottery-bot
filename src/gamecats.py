@@ -57,13 +57,17 @@ def groups():
     return load()["groups"]
 
 
+_HINTS = {}
+
+
 def hints():
-    """{カテゴリid: 正規表現}（有効なカテゴリだけ）"""
-    out = {}
-    for c in categories():
-        if c.get("hints"):
-            out[c["id"]] = re.compile(c["hints"], re.I)
-    return out
+    """{カテゴリid: 正規表現}（有効なカテゴリだけ）。同じ設定なら作り直さない（11/14 速さのため）"""
+    cats = categories()
+    sig = tuple((c["id"], c.get("hints")) for c in cats)
+    if _HINTS.get("sig") != sig:
+        _HINTS["sig"] = sig
+        _HINTS["v"] = {c["id"]: re.compile(c["hints"], re.I) for c in cats if c.get("hints")}
+    return dict(_HINTS["v"])
 
 
 def strip_words():

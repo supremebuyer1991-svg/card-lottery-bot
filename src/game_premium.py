@@ -490,6 +490,9 @@ def tword(x, short=False):
     return "定価"
 
 
+_REL_CAT = {}
+
+
 def _related(x, allx, cid, k=8):
     """同じカテゴリのほかの商品（11/14 Fable：全ページが同じ先頭8件で、381ページはリンクが1本以下・113ページは0本だった）。
     名前の共通の語が多い順 → 買取価格が近い順。同点はJANで開始位置をずらして、リンクがいろいろな商品に回るように"""
@@ -499,7 +502,12 @@ def _related(x, allx, cid, k=8):
     def toks(n):
         return {w for w in re.split(r"[\s　/／()（）\[\]【】・,、\-]+", (n or "").lower()) if len(w) >= 2}
     me = toks(x["name"])
-    cand = [y for y in allx if y["jan"] != x["jan"] and cat_of([y["name"]] + y.get("names", []) + [y.get("hardware") or ""]) == cid]
+    def ycat(y):   # 1回のサイト作りで同じ商品を何百回も調べないように覚えておく（11/14 速さ）
+        kk = (y["jan"], y["name"], y.get("hardware") or "")
+        if kk not in _REL_CAT:
+            _REL_CAT[kk] = cat_of([y["name"]] + y.get("names", []) + [y.get("hardware") or ""])
+        return _REL_CAT[kk]
+    cand = [y for y in allx if y["jan"] != x["jan"] and ycat(y) == cid]
     if not cand:
         return []
     off = int(hashlib.md5(x["jan"].encode()).hexdigest(), 16) % len(cand)

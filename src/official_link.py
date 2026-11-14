@@ -6,6 +6,7 @@
 元の記事は source_url に残す（出典）。同じ公式ページになった抽選は1つにまとめる。
 1回に調べる数は official_link_per_run まで。調べた結果は state/game/official_links.json に残す（同じ記事は二度調べない）。
 """
+import functools
 import re
 import unicodedata
 from urllib.parse import urlparse, urljoin
@@ -53,7 +54,16 @@ def store_top(store):
     return ""
 
 
+@functools.lru_cache(maxsize=50000)
+def _tokens_c(s):
+    return frozenset(_tokens_raw(s))
+
+
 def _tokens(s):
+    return set(_tokens_c(s or ""))   # 同じ名前は何千回も調べるので覚えておく（11/14 速さ）
+
+
+def _tokens_raw(s):
     s = unicodedata.normalize("NFKC", s or "").lower()
     s = re.sub(r"[（(][^）)]*[）)]|【[^】]*】|＜[^＞]*＞|<[^>]*>", " ", s)
     return {t for t in re.split(r"[\s・:：/／\-～〜!！?？「」『』、,]+", s) if len(t) >= 2}
@@ -61,9 +71,14 @@ def _tokens(s):
 
 def num_set(s):
     """商品名の中の数字（かっこの中は除く）。「Switch 2」と「Switch」のように、数字が違えば別の商品"""
+    return set(_num_c(s or ""))
+
+
+@functools.lru_cache(maxsize=50000)
+def _num_c(s):
     s = unicodedata.normalize("NFKC", s or "").lower()
     s = re.sub(r"[（(][^）)]*[）)]|【[^】]*】|＜[^＞]*＞|<[^>]*>", " ", s)
-    return set(re.findall(r"\d+", s))
+    return frozenset(re.findall(r"\d+", s))
 
 
 def same_item_score(a, b):
