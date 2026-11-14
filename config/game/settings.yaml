@@ -114,8 +114,8 @@ kaitori_urls_per_run: 20
 # 買取価格・定価を調べるのは実行開始から何秒まで（全体を5分前後に収める）
 kaitori_until_sec: 230
 aitext_until_sec: 240      # 解説は買取価格のあと。実行開始（の扱い）から240秒をすぎたら次の回に
-product_facts_per_run: 4    # 商品ページに足す商品の事実（メーカー公式などをAIがウェブ検索して要約。出典つき）を1回に取る数（11/14）
-product_facts_parallel: 4
+product_facts_per_run: 12   # 商品ページに足す商品の事実（メーカー公式などをAIがウェブ検索して要約。出典つき）を1回に取る数（11/14：4→12。ユーザー「APIクレジット200ドルもらったしええよ」）
+product_facts_parallel: 6
 product_facts_until_sec: 200  # 裏で取っている事実を、解説の前にここまで待つ
 product_facts_model: claude-haiku-5-5
 aitext_per_run: 8          # 11/14：抽選の個別ページ（/l/）も対象にしたので4→8（同時に作るので時間はほぼ同じ）
