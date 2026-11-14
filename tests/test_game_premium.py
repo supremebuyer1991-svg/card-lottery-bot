@@ -59,3 +59,22 @@ def test_split_subgenres():
     h = gp.cat_products_html([dict(p, url="/x/", jan="1") for p in ps], "Switch 2", rules, has_list=True)
     assert 'href="#sg1"' in h and 'href="#list"' in h and 'id="sg4"' in h
     assert "sgmenu" not in gp.cat_products_html([dict(ps[0], url="/x/", jan="1")], "Switch 2", rules)
+
+
+def test_photo_update_needs_jan(tmp_path, monkeypatch):
+    import common, game_premium as gp
+    monkeypatch.setattr(common, "STATE_DIR", tmp_path, raising=False)
+    saved = {}
+    monkeypatch.setattr(gp, "save_json", lambda n, d: saved.update({n: d}))
+    monkeypatch.setattr(gp, "load_json", lambda n, d: {})
+    monkeypatch.setattr(gp, "catalog", lambda s, w: [{"jan": "4548736000001", "name": "α7 V", "max": 300000, "img": ""},
+                                                       {"jan": "4548736000002", "name": "α7C", "max": 200000, "img": ""}])
+    monkeypatch.setattr(gp, "watch_map_cached", lambda: {})
+    def fetch(p):
+        if p["keyword"].endswith("1"):
+            return [{"itemName": "中古 α7 V", "itemUrl": "https://item.rakuten.co.jp/a/1/", "mediumImageUrls": ["https://x/1.jpg"]},
+                    {"itemName": "ソニー α7 V ボディ 4548736000001", "itemUrl": "https://item.rakuten.co.jp/b/2/?x=1", "mediumImageUrls": ["https://x/2.jpg?_ex=128x128"]}]
+        return [{"itemName": "別の商品", "itemCaption": "JANなし", "itemUrl": "https://item.rakuten.co.jp/c/3/", "mediumImageUrls": ["https://x/3.jpg"]}]
+    ph = gp.photo_update({}, fetch=fetch, sleep=lambda s: None)
+    assert ph["4548736000001"]["itemUrl"] == "https://item.rakuten.co.jp/b/2/" and ph["4548736000001"]["img"] == "https://x/2.jpg"
+    assert "img" not in ph["4548736000002"]

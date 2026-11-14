@@ -14,6 +14,7 @@ from common import parse_dt as _pd
 
 HIST = "premium_hist.json"
 TEIKA = "premium_teika.json"
+PHOTO = "premium_photo.json"   # 楽天ブックスに無い商品の写真と商品ページ（楽天市場をJANで探したもの。11/14）
 
 
 # ゲーム・ホビー以外（カメラ・スマホ・家電・お酒など）は載せない（買取店の一覧に混ざってくるため・11/9）
@@ -186,6 +187,66 @@ def update(settings, fetch=None, sleep=None):
     return g
 
 
+def photo_update(settings, fetch=None, sleep=None):
+    """買取相場の商品のうち写真が無いもの（家電・カメラなど楽天ブックスに無いもの）を、楽天市場でJANを使って探す
+    （11/14 ユーザー：家電やカメラも写真の無い商品はアフィリンク付きで写真を載せて）。
+    JANが商品名か説明に入っている商品だけ使う。1回 premium_photo_per_run 件・見つからなかったものは14日後にもう一度"""
+    import os
+    import time
+    import game_affi
+    sleep = sleep if sleep is not None else time.sleep
+    if fetch is None:
+        if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
+            return {}
+        fetch = lambda p: game_affi.http_fetch(p, settings)  # noqa: E731
+    from common import job_elapsed
+    ph = load_json(PHOTO, {})
+    t = now()
+    aff = game_affi.affiliate_id(settings)
+    todo = [x for x in catalog(settings, watch_map_cached()) if not x.get("img")]
+    todo.sort(key=lambda x: -(x.get("max") or 0))
+    left = int(settings.get("premium_photo_per_run", 10))
+    for x in todo:
+        if left <= 0 or job_elapsed() > float(settings.get("rakuten_until_sec", 300)):
+            break
+        c = ph.get(x["jan"])
+        if c and (c.get("img") or (parse_dt(c.get("at")) and (t - parse_dt(c["at"])).total_seconds() < 14 * 86400)):
+            continue
+        left -= 1
+        try:
+            p = {"keyword": x["jan"], "hits": 20, "availability": 0, "imageFlag": 1}
+            if aff:
+                p["affiliateId"] = aff
+            items = fetch(p)
+        except Exception as e:
+            log(f"相場の写真: {x['jan']} 取得失敗 {e}")
+            if "401" in str(e) or "403" in str(e):
+                break
+            sleep(1.2)
+            continue
+        best = None
+        for it in items or []:
+            nm = it.get("itemName") or ""
+            if game_affi.NG.search(nm) or not game_affi._image(it):
+                continue
+            if x["jan"] not in nm + " " + (it.get("itemCaption") or ""):
+                continue   # JANが書いてない商品は、別の商品かもしれないので使わない
+            best = it
+            break
+        if best:
+            url = (best.get("itemUrl") or "").split("?")[0]
+            if "hb.afl.rakuten.co.jp" in url:
+                from urllib.parse import parse_qs, urlparse
+                url = (parse_qs(urlparse(best.get("itemUrl")).query).get("pc") or [url])[0].split("?")[0]
+            ph[x["jan"]] = {"img": game_affi._image(best), "itemUrl": url, "title": best.get("itemName") or "", "at": t.isoformat()}
+            log(f"相場の写真: {x['name'][:30]} → {(best.get('itemName') or '')[:30]}")
+        else:
+            ph[x["jan"]] = {"at": t.isoformat()}
+        sleep(1.2)
+    save_json(PHOTO, ph)
+    return ph
+
+
 def _ago(h, days, today):
     d0 = (today - timedelta(days=days)).isoformat()
     ks = [k for k in sorted(h) if k <= d0]
@@ -234,6 +295,7 @@ def catalog(settings=None, wmap=None):
     g = groups()
     teika = load_json(TEIKA, {})
     hist = load_json(HIST, {})
+    _photos = load_json(PHOTO, {})
     wmap = wmap if wmap is not None else load_json("watch_map.json", {})
     today = now().date()
     model = re.compile(r"[A-Z]{2,}-?[A-Z0-9]{3,}")
@@ -277,10 +339,11 @@ def catalog(settings=None, wmap=None):
                 name = _clean(withm[0])
         if NOT_HOBBY.search(" ".join([name, tk.get("title") or "", (tk.get("caption") or "")[:200]] + x["names"])):   # 楽天の商品名・説明で分かるトレカ・家電も外す
             continue
+        _ph = _photos.get(jan) or {}   # 写真が無ければ楽天市場で見つけた写真と商品ページ（photo_update）
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": price, "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
-                    "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", ""), "azUrl": wm.get("azUrl", ""),
-                    "img": tk.get("img") or wm.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
+                    "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", "") or (_ph.get("itemUrl", "") if _ph.get("img") else ""), "azUrl": wm.get("azUrl", ""),
+                    "img": tk.get("img") or wm.get("img", "") or _ph.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
                     "teika_note": tnote,
                     "sales_date": tk.get("sales_date", "") or ov.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
     out.sort(key=lambda x: (x["ratio"] is None, -(x["ratio"] or 0), -x["max"]))
@@ -765,6 +828,8 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
+        if img and x.get("itemUrl"):   # 写真から楽天の商品ページへ（アフィリエイト。11/14）
+            img = f'<a href="{escape(rakuten_link(x["itemUrl"], aff_id))}" target="_blank" rel="nofollow sponsored noopener">{img}</a>'
         _rb = x.get("teika_note") == "楽天ブックスの販売価格"   # 定価が分からず、楽天ブックスの販売価格を使っているとき（11/14）
         tk = ((f'楽天ブックスの販売価格 {x["teika"]:,}円' if _rb else f'定価 {x["teika"]:,}円' + (f'<small>（{escape(x["teika_note"])}）</small>' if x.get("teika_note") else ""))
               + f'（{_ratio_html(x)}）') if x["teika"] else "定価：確認中"
@@ -991,7 +1056,7 @@ def plist_html(prods):
     """商品のカード一覧（写真・商品名・定価・最高買取・定価比・楽天/Amazon/詳細を見る）。スマホでは1商品ずつ大きめのカードで、ボタンは下に横並び"""
     out = []
     for p in prods:
-        img = (f'<a class="pc-img" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
+        img = (f'<a class="pc-img" href="{escape(p.get("rk") or p["url"])}"{" target=_blank rel=\"nofollow sponsored noopener\"" if p.get("rk") else ""} tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
                if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
         nums = [f'<div><small>{tword(p, True)}</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
         if p.get("max"):

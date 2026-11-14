@@ -200,6 +200,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             import game_kaitori
             game_kaitori.update(s)
             game_premium.update(s)    # 定価以上で売れる商品：毎日の最高買取価格の記録と、楽天ブックスの定価
+            try:
+                game_premium.photo_update(s)   # 写真の無い商品（家電・カメラなど）の写真を楽天市場からJANで（11/14）
+            except Exception as e:
+                log(f"相場の写真: スキップ {e}")
             import game_upcoming
             game_upcoming.update(s)   # 発売予定のゲーム（楽天ブックス・1日1回）
             try:
