@@ -1551,7 +1551,7 @@
     "game": "pokemon"
   },
   "store/cardwings-89791/": {
-    "name": "CARDWINGS秋葉原駅前店",
+    "name": "CARD WINGS秋葉原駅前店",
     "last": "2026-11-14",
     "game": "onepiece",
     "area": "東京都"
@@ -6517,7 +6517,7 @@
     "game": "pokemon"
   },
   "store/shop-e1537/": {
-    "name": "谷島屋 磐田店",
+    "name": "谷島屋磐田店",
     "last": "2026-11-14",
     "game": "pokemon",
     "area": "静岡県"
@@ -7209,7 +7209,8 @@
     "name": "ディセントゲーム新宿",
     "last": "2026-11-14",
     "game": "pokemon",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都新宿区舟町7-43"
   },
   "store/torekadanjonlite-4d4ec/": {
     "name": "トレカダンジョンLite大須店",
@@ -7245,7 +7246,8 @@
     "name": "MINT吉祥寺店",
     "last": "2026-11-14",
     "game": "onepiece",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都武蔵野市吉祥寺本町1-5-1"
   },
   "store/bookoff-93ca5/": {
     "name": "ブックオフタイヨー小松台店",
@@ -7746,6 +7748,7 @@
   "store/batoroco-8fd2d/": {
     "name": "TC バトロコ高崎駅前",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "群馬県"
   }
 }
