@@ -542,6 +542,14 @@ input[type="search"] { flex: 1 1 160px; }
 .stbl .bar { width: 40%; }
 .stbl .bar span { display: block; height: 10px; border-radius: 5px; background: var(--navy, #1e3a8a); opacity: .75; }
 .stbl .num { text-align: right; white-space: nowrap; font-weight: 700; }
+.trend details > summary { cursor: pointer; list-style: none; }
+.trend details > summary::-webkit-details-marker { display: none; }
+.trend details > summary h2 { display: inline; font-size: 16px; }
+.trend details > summary::after { content: " ▼ 開く"; font-size: 12px; color: var(--ink-2); font-weight: 700; }
+.trend details[open] > summary::after { content: " ▲ 閉じる"; }
+.trend ul { padding-left: 1.2em; margin: 10px 0; }
+.trend li { margin: 4px 0; }
+.trend h3 { font-size: 14px; margin: 12px 0 4px; }
 .langbar { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin: 8px 0; padding: 8px 12px; border-radius: 10px; background: var(--navy-soft); font-size: 13px; }
 .langbar[hidden] { display: none; }
 .langbar span { color: var(--ink-2); }

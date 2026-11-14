@@ -1870,11 +1870,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if meta.get("faq"):
             ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
                 {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in meta["faq"]]})
-            meta["faq_html"] = (meta.get("info_html", "") + '<section class="faq" aria-label="よくある質問"><h2>よくある質問</h2>' +
+            meta["faq_html"] = (meta.get("info_html", "") + meta.get("trend_html", "") + '<section class="faq" aria-label="よくある質問"><h2>よくある質問</h2>' +
                                 "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in meta["faq"]) +
                                 "</section>")
         else:
-            meta["faq_html"] = meta.get("info_html", "")
+            meta["faq_html"] = meta.get("info_html", "") + meta.get("trend_html", "")
         meta["ld"] = ld
         # ページを軽くする：そのページのゲームの抽選だけを埋め込む（トップは最初のゲームだけ。ほかのゲームはタブで移動）
         g0 = lock.get("game") or games[0]
@@ -2211,6 +2211,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                           f"スニダンで{_md(sm['date'])}に成立した1個の取引の平均は{_yen(sm['price'])}です" +
                           (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
                           "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
+                "trend_html": _trend_series(g, x) if sample is None else "",  # 11/14：この弾の抽選の動き（一覧のあと・たたんで表示）
                 "info_html": (about_html + info_html + clist_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
                 "h1": f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ",
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
@@ -3480,6 +3481,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "summary": summary(cig, f"{cname}の{sh}の抽選"), "h1": f"{cname}の{sh}抽選情報", "lead": lead_g,
                 "aff": ctabs(g) + _cs_chips(slug, g, cig) + (_rec_note(cname) if big else "") + (_ymall_box(s) if slug == "yamada" else "") + ("" if cig else gguide + chist_g),
                 "supply_bottom": _top_ad(cig) + _supply_ad(sh, s["game_names"][g], tag, raff, prices, g),  # サプライの広告は一覧の後へ（11/7 Fable：まず中身）
+                "trend_html": _trend_chain(slug, cname, g),  # 11/14：このお店の抽選の傾向（一覧のあと・たたんで表示）
                 "info_html": (gguide + chist_g) if cig else "",
                 "faq": [(q.replace("ポケカ・ワンピースカード", sh), a) for q, a in gfaq] or None,
                 "links": _menu(items, games, g) + stl, "root": "/"}, cig,
@@ -3499,6 +3501,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             if x_l:
                 lose_c = _after_lose_ad(x_l, s["game_names"][g_l], souba_sm.get(f"{g_l}|{x_l}"), tag, raff, None, g_l)
         write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
+            "trend_html": _trend_chain(slug, cname),
             "title": (f"{cname}の{words_c}抽選 受付中{len(ci)}件【{md}更新】" + (f"店舗一覧（{len(sts)}店舗）・締切順" if len(sts) >= 5 else "店舗別・締切順") if ci else
                       f"{cname}の{words_c}抽選｜" + (f"前回{_cd(cpast[0][0])}締切「{_cp(cpast[0][0])}」・" if cpast else "") + "応募方法・結果発表") + "｜トレカ抽選ナビ",
             "desc": (f"【{md}更新】" + summary(ci, f"{cname}の{words_c}の抽選").replace("現在受付中の", "いま受付中の") + "店舗別・締切順に、応募方法と本人確認・会員の条件もまとめています。" if ci else
@@ -4060,6 +4063,24 @@ def _lang_bar(html, links):
     bar = (f'<div id="langbar" class="langbar" hidden><span>Not Japanese? Read this page in:</span>{a_}</div>'
            '<script>try{if(!/^ja/i.test(navigator.language||""))document.getElementById("langbar").hidden=false}catch(e){}</script>')
     return html.replace("</h1>", "</h1>" + bar, 1)
+
+
+def _trend_chain(slug, name, game=None):
+    try:
+        import trends
+        return trends.chain_html(chain_of, slug, name, escape, game)
+    except Exception as e:
+        print("お店の傾向", slug, e)
+        return ""
+
+
+def _trend_series(g, x):
+    try:
+        import trends
+        return trends.series_html(chain_of, lambda c: CHAIN[c][1] if c in CHAIN else c, g, x, escape)
+    except Exception as e:
+        print("弾の傾向", x, e)
+        return ""
 
 
 CARD_RAR = {  # 11/11：弾ごとに「収録カードの相場」を集めるレアリティ（スニダンの書き方）
