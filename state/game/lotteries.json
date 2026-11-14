@@ -237,7 +237,16 @@
     "cls": "771ffff9f0d4",
     "official_checked": true,
     "verified_at": "2026-11-11T05:35:48.654107+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "1次予約分は完売し、2次予約分が抽選販売",
+      "抽選結果は2027年3月上旬に発表",
+      "2027年7月に発送予定",
+      "全高は約24.5センチ",
+      "ワイヤ入り布製マントパーツと、グラグラの実の能力を再現したエフェクトパーツが付属",
+      "価格は2万8600円"
+    ],
+    "facts_src": "https://mantan-web.jp/article/20261105dog00m200001000a.html"
   },
   "98b34a6a1791d2de": {
     "store": "プレミアムバンダイ",
@@ -4387,7 +4396,11 @@
     "cls": "1f0399aab08a",
     "dup_of": "fcf6f533563e3502",
     "conditions": "楽天会員の住所登録が必須。当選は1人1点まで。当選者のみ購入可能。販売期間は2026-11-29T10:00〜2026-12-03T23:59。支払いはクレジットカード決済のみ。",
-    "series_raw": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー"
+    "series_raw": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300"
+    }
   },
   "72d2665f872e1054": {
     "store": "楽天ブックス",
@@ -4579,7 +4592,11 @@
     "verified_at": "2026-11-12T15:28:13.937652+09:00",
     "verified": true,
     "closed_at": "2026-11-12T22:00:18.285130+09:00",
-    "series_raw": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー"
+    "series_raw": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs725%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/725.jpg?_ex=300x300"
+    }
   },
   "1ddaa4171b00e1d9": {
     "store": "Amazon.co.jp",
@@ -6974,13 +6991,14 @@
     "source": "カード抽選まとめ ポケカ",
     "source_url": "https://cardchusen.com/pokeka",
     "found_at": "2026-11-03T10:45:26.813602+09:00",
-    "status": "expired",
+    "status": "rejected",
     "kind": "lottery",
     "from_tcg": true,
     "verified": true,
     "key": "tceb482ed0b191b26a",
     "area": null,
-    "cls": "08bed7d28779"
+    "cls": "08bed7d28779",
+    "reject_reason": "情報元のサイトの広告"
   },
   "tc82c89e4284dd1c7f": {
     "store": "三洋堂書店",
@@ -8252,11 +8270,12 @@
     "source": "カード抽選まとめ ポケカ",
     "source_url": "https://cardchusen.com/pokeka",
     "found_at": "2026-11-09T12:43:53.282456+09:00",
-    "status": "expired",
+    "status": "rejected",
     "kind": "lottery",
     "from_tcg": true,
     "verified": true,
-    "key": "tcf91b7a57b2ccbb7c"
+    "key": "tcf91b7a57b2ccbb7c",
+    "reject_reason": "情報元のサイトの広告"
   },
   "tcfc59a58b36f563ce": {
     "store": "TSUTAYA 合川店",
@@ -8641,7 +8660,7 @@
     "product": "世界最強の戦士／Heroines Edition vol.2",
     "start": "2026-11-09T16:00:00+09:00",
     "end": "2026-11-15T23:59:00+09:00",
-    "url": "https://shoplottery.e-starbox.com/lottery/entry?code=SfzxlhsBrn",
+    "url": "https://x.com/PG19772335/status/2119688339226026082",
     "channel": "store",
     "area": "福井県",
     "conditions": "応募した店舗で購入（受け取り）できる人のみ",
@@ -10609,7 +10628,8 @@
     },
     "area": null,
     "cls": "30c6024ae71d",
-    "series_raw": "30周年パック"
+    "series_raw": "30周年パック",
+    "page_checked_at": "2026-11-14T18:39:17.723858+09:00"
   },
   "tc8ecac05d49e13817": {
     "store": "楽天ブックス",
@@ -10642,7 +10662,8 @@
     },
     "area": null,
     "cls": "0b344b72737c",
-    "series_raw": "ストームエメラルダ"
+    "series_raw": "ストームエメラルダ",
+    "page_checked_at": "2026-11-14T18:39:40.290037+09:00"
   },
   "tc8ebc1d4fb956424a": {
     "store": "楽天ブックス",
@@ -10675,7 +10696,8 @@
     },
     "area": null,
     "cls": "3e22bb39a532",
-    "series_raw": "メガブレイブ"
+    "series_raw": "メガブレイブ",
+    "page_checked_at": "2026-11-14T18:40:02.638984+09:00"
   },
   "tca80973996920da81": {
     "store": "楽天ブックス",
@@ -10708,7 +10730,8 @@
     },
     "area": null,
     "cls": "885f3d393f8c",
-    "series_raw": "メガシンフォニア"
+    "series_raw": "メガシンフォニア",
+    "page_checked_at": "2026-11-14T18:40:25.082459+09:00"
   },
   "tc7ed9a0fca0b24d70": {
     "store": "楽天ブックス",
@@ -10741,7 +10764,8 @@
     },
     "area": null,
     "cls": "66ef94bb7519",
-    "series_raw": "スターターセットex"
+    "series_raw": "スターターセットex",
+    "page_checked_at": "2026-11-14T18:40:47.456238+09:00"
   },
   "tc5b8942fa63af47a4": {
     "store": "楽天ブックス",
@@ -10770,7 +10794,8 @@
     "area": null,
     "cls": "340e750aedd3",
     "series_raw": null,
-    "series": "スペシャルデッキセットMEGA"
+    "series": "スペシャルデッキセットMEGA",
+    "page_checked_at": "2026-11-14T18:41:09.856937+09:00"
   },
   "tc0ba6a6b1a8042f32": {
     "store": "楽天ブックス",
@@ -12306,7 +12331,7 @@
     "series": "ブースターパック「神の支配」【OP-18】",
     "end": "2026-11-15T19:59:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSenc65Nxm8TDqIRbdohx8hxVLNxTH1spPT0_z_UdMkbPYIcPg/viewform",
-    "channel": "store",
+    "channel": "online",
     "area": "大阪府",
     "method": "オンライン",
     "conditions": "本人確認",
@@ -12369,7 +12394,7 @@
     "series": "ブースターパック「神の支配」【OP-18】",
     "end": "2026-11-15T20:00:00+09:00",
     "url": "https://x.com/LepTorekaita1/status/2121171449838764230",
-    "channel": "store",
+    "channel": "online",
     "area": "広島県",
     "method": "オンライン",
     "conditions": "アプリ・会員",
@@ -12465,7 +12490,7 @@
     "series": "ブースターパック「神の支配」【OP-18】",
     "end": "2026-11-15T20:59:00+09:00",
     "url": "https://livepocket.jp/e/sxw9x",
-    "channel": "store",
+    "channel": "online",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -12528,7 +12553,7 @@
     "series": "ブースターパック「神の支配」【OP-18】",
     "end": "2026-11-15T21:00:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSe2xK21y__MOGpGT7-iXZhpNLheRwsIV524h682xHxZARPWuw/viewform",
-    "channel": "store",
+    "channel": "online",
     "area": "大阪府",
     "method": "オンライン",
     "conditions": "本人確認",
@@ -15486,7 +15511,7 @@
     "series": "拡張パック「ストームエメラルダ」",
     "end": "2026-11-15T22:00:00+09:00",
     "url": "https://livepocket.jp/e/gr1sc",
-    "channel": "store",
+    "channel": "online",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -15665,7 +15690,7 @@
     "deadline_checked_at": "2026-11-14T18:27:20.673867+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・抽選の応募締切の記載なし",
-    "cls": "d34178197560",
+    "cls": "f86a8a604261",
     "facts": [
       "店頭販売は2026年11月13日(金)より順次発売予定",
       "2026年11月発売の一覧に掲載"
@@ -15704,7 +15729,7 @@
     "found_at": "2026-11-14T17:52:56.034858+09:00",
     "key": "25a12a4dd3851419",
     "status": "approved",
-    "cls": "cf2a70552d33",
+    "cls": "67a2f6e3b56d",
     "facts": [
       "店頭販売は2026年11月14日(土)より発売予定",
       "店頭は全国のコンビニ・書店・ホビーショップなどで販売",
@@ -15717,7 +15742,10 @@
       "store": "BANDAI SPIRITS（一番くじONLINE）"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：store"
+    "verify_note": "記事に合わせて直した：store",
+    "deadline_checked_at": "2026-11-14T18:39:15.760489+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし"
   },
   "d0c2821a15ce5e3f": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
