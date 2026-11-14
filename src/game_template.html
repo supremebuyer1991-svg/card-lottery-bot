@@ -210,7 +210,10 @@ __SIDEBAR__
   // 残り時間（1日未満は 時:分:秒、それより長いと 日 時:分）
   function cdText(t) { if (t < 0) t = 0; var d = Math.floor(t / 864e5), h = Math.floor(t % 864e5 / 36e5), m = Math.floor(t % 36e5 / 6e4), s = Math.floor(t % 6e4 / 1e3); return d > 0 ? d + "日 " + two(h) + ":" + two(m) : two(h) + ":" + two(m) + ":" + two(s); }
   function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
-  function nm(i) { return i.series && i.product && i.product.indexOf(i.series) < 0 ? i.series + "　" + i.product : i.product || i.series || ""; }
+  function nm(i) {
+    // ポケカ・ワンピ（sf）：同じ弾の抽選がたくさん並ぶので「お店の名前｜弾」で見分けやすく（11/14 ユーザー：どこの店の抽選か分からん）
+    if ((CATS[i.game] || {}).sf && i.store) return i.store + "｜" + (i.series || i.product || "");
+    return i.series && i.product && i.product.indexOf(i.series) < 0 ? i.series + "　" + i.product : i.product || i.series || ""; }
   function short(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n) + "…" : s; }
   function href(i) { return i.lpath ? "/" + i.lpath : (i.url || "#"); }
   // 受付状況はページを開いた「今」で計算する（公開が止まっていても古い状態を見せない）

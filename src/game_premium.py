@@ -1106,6 +1106,8 @@ def product_index(settings, live_rows):
                                         "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "tn": x.get("teika_note", ""),
                                         "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", ""),
                                         "imgu": x.get("azUrl", "") if x.get("img_az") else ""})
+    import gamecats
+    _sets_games = {c["id"] for c in gamecats.categories(False) if c.get("sets")}
     seen = set()
     from dedupe import norm_product
     for r in live_rows:
@@ -1113,6 +1115,8 @@ def product_index(settings, live_rows):
         k = norm_product(nm)
         if not nm or k in seen or r.get("game") is None:
             continue
+        if r.get("game") in _sets_games:
+            continue   # ポケカ・ワンピは弾ごとにまとめて出す（カテゴリページの「弾ごとの抽選」。11/14 ユーザー：言い方の違う同じ弾が何個もある）
         if any(ol.same_item_score(nm, x["name"]) >= 0.75 for x in allx):
             continue
         seen.add(k)

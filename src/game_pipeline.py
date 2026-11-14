@@ -128,7 +128,8 @@ def _import_tcg(lots):
         it = {f: v.get(f) for f in ("store", "product", "series", "start", "end", "announce", "url", "channel", "area", "method",
                                     "conditions", "tags", "id_check", "member", "game", "source", "source_url", "found_at", "price")
               if v.get(f) is not None}
-        it.update({"status": lots.get(k, {}).get("status", "approved") if lots.get(k, {}).get("status") in ("approved", "posted", "listed") else "approved",
+        _old = lots.get(k, {}).get("status")
+        it.update({"status": _old if _old in ("approved", "posted", "listed", "duplicate", "rejected") else "approved",   # 重複・外したものは戻さない
                    "kind": "lottery", "from_tcg": True, "verified": True, "key": k})
         ph = photos.get(f"{v.get('game')}|{v.get('series')}") or {}
         if ph.get("image") and ph.get("url"):
@@ -144,6 +145,31 @@ def _import_tcg(lots):
     for k, it in lots.items():
         if it.get("from_tcg") and k not in want and it.get("status") in ("approved", "posted", "listed", "pending"):
             it["status"] = "expired"
+    return n
+
+
+def set_of(game, text):
+    """ポケカ・ワンピカードの弾の名前（categories.yaml の sets）。当たらなければ None"""
+    import gamecats
+    c = gamecats.by_id(False).get(game) or {}
+    for r in c.get("sets") or []:
+        if re.search(r["re"], text or "", re.I):
+            return r["name"]
+    return None
+
+
+def _tcg_sets(lots):
+    """ポケカ・ワンピの抽選のシリーズ（弾）を同じ名前にそろえる（11/14 ユーザー：言い方の違う同じ弾が何個もある）。元の名前は series_raw に"""
+    n = 0
+    for it in lots.values():
+        if it.get("game") not in BIG_TCG:
+            continue
+        raw = it.get("series_raw", it.get("series"))
+        nm = set_of(it["game"], f'{raw or ""} {it.get("product") or ""}')
+        if nm and it.get("series") != nm:
+            it["series_raw"] = raw
+            it["series"] = nm
+            n += 1
     return n
 
 
@@ -242,6 +268,7 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         except Exception as e:
             log(f"トレカ抽選ナビの取り込み: スキップ {e}")
         nt = _drop_other_games(lots)
+        _tcg_sets(lots)
         _tcg_full_names(lots)
         if nt:
             log(f"このサイトのカテゴリ以外（トレカなど）{nt}件を外しました")

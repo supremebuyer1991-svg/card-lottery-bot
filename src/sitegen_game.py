@@ -767,6 +767,36 @@ def _top_blocks(allx, wmap, cats, counts, s):
     return top, bottom
 
 
+SETS_CSS = (".st-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}"
+            ".st-i{display:block;padding:12px 14px;border:1px solid #262c3a;border-radius:12px;background:#141823;color:#e9edf5;text-decoration:none}"
+            ".st-i:hover{border-color:#ffd23f}.st-i b{display:block;font-size:15px;line-height:1.4}"
+            ".st-n{display:inline-block;margin:6px 6px 4px 0;padding:1px 9px;border-radius:999px;background:#ffd23f;color:#0b0d12;font-size:12px;font-weight:800}"
+            ".st-d{font-size:12px;color:#ff8a95;font-weight:700}.st-s{display:block;font-size:12.5px;color:#aab2c3;line-height:1.6}")
+
+
+def _sets_html(c, sub):
+    """ポケカ・ワンピのカテゴリページの「弾ごとの抽選」：弾ごとに、受付中・予告の数・やっているお店・いちばん近い締切（11/14 ユーザー）"""
+    by = {}
+    for i in sub:
+        if i["ph"] in ("open", "upcoming"):
+            by.setdefault(i.get("series") or "そのほか", []).append(i)
+    if not by:
+        return ""
+    cards = []
+    for nm, lst in sorted(by.items(), key=lambda kv: -len(kv[1])):
+        stores = list(dict.fromkeys(i["store"] for i in sorted(lst, key=lambda i: i.get("end") or "9999") if i.get("store")))
+        ends = sorted(i["end"] for i in lst if i["ph"] == "open" and i.get("end"))
+        no = sum(1 for i in lst if i["ph"] == "open")
+        path = lst[0].get("spath") or f'{c["slug"]}/'
+        cards.append(f'<a class="st-i" href="/{escape(path)}"><b>{escape(nm)}</b>'
+                     f'<span class="st-n">受付中 {no}件</span>' + (f'<span class="st-n" style="background:#5ee0ff">予告 {len(lst) - no}件</span>' if len(lst) > no else "")
+                     + (f'<span class="st-d">いちばん近い締切 {escape(_fmt(ends[0]))}</span>' if ends else "")
+                     + f'<span class="st-s">{escape("・".join(stores[:8]))}{f" ほか{len(stores) - 8}店" if len(stores) > 8 else ""}</span></a>')
+    return (f'<style>{SETS_CSS}</style><section class="sec"><h2>{escape(c["short"])}の弾ごとの抽選（{len(by)}種類）</h2>'
+            '<p class="note">同じ弾の抽選をまとめています。押すと、その弾の抽選をやっているお店の一覧が見られます。</p>'
+            f'<div class="st-l">{"".join(cards)}</div></section>')
+
+
 def _simple_page(cats, html):
     """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
     css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
@@ -951,7 +981,7 @@ def build(settings=None, out_dir=None, force=False):
     pmod = load_json("page_lastmod.json", {})
     today_iso = t.date().isoformat()
 
-    cats_js = {c["id"]: {"short": c["short"], "slug": c["slug"], "color": c.get("color") or "#1b3a5c", "group": c["group"]} for c in cats}
+    cats_js = {c["id"]: {"short": c["short"], "slug": c["slug"], "color": c.get("color") or "#1b3a5c", "group": c["group"], "sf": 1 if c.get("sets") else 0} for c in cats}   # sf：一覧でお店の名前を先に出す（ポケカ・ワンピ）
     # 左のメニューのカテゴリ別の件数用（受付状況はブラウザで今の時刻から数える）：[カテゴリ, 開始, 締切, 種類, 発表日]（日時は1970年からの分）
     _mins = lambda x: int(x.timestamp() // 60) if x else 0
     cc = [[i["game"], _mins(parse_dt(i.get("start"))), _mins(parse_dt(i.get("end"))), i["kind"],
@@ -1166,9 +1196,10 @@ def build(settings=None, out_dir=None, force=False):
         npd = len(pidx.get(g, []))
         write(f"{c['slug']}/", {"title": f"{c['short']} 商品一覧・定価・買取相場と発売・再販情報【{md}更新】｜{brand['name']}",
                                  "desc": (f"{c['name']}の商品{npd}件の最高買取価格（買取相場）と、" if npd else f"{c['name']}の") + "発売・予約・再販・抽選の情報。楽天・Amazonで売り出されたらXで通知します。",
-                                 "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": f"商品{npd}件・いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
+                                 "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": (f"いま受付中{n}件。弾ごとにまとめています。" if c.get("sets") else f"商品{npd}件・いま受付中{n}件。"), "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
-              body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub)),
+              body_top=_notice_html(c.get("notice")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
+                       f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))),
               body_bottom=ser_links, noindex=(npd == 0 and not sub))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}
