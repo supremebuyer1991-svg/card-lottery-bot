@@ -2749,36 +2749,6 @@
     "cls": "8daa1c28e4a0",
     "duplicate_of": "33105313c551b3fd"
   },
-  "cbe165aa99781dda": {
-    "store": "ゲオ（アプリ）",
-    "start": "2026-11-09T11:00:00+09:00",
-    "end": "2026-11-12T17:59:00+09:00",
-    "announce": null,
-    "buy": null,
-    "method": "WEB抽選受付（当選者には店頭販売）",
-    "url": "https://geo-online.co.jp/news/789",
-    "x_post": null,
-    "game": "pokemon",
-    "channel": "store",
-    "id_check": null,
-    "member": "account",
-    "tags": [
-      "アプリ",
-      "会員"
-    ],
-    "confidence": 0.9,
-    "product": "ハドウシーカー",
-    "series": "ハドウシーカー",
-    "source": "入荷Now 入荷情報",
-    "source_url": "https://nyuka-now.com/archives/162248",
-    "no_quote": true,
-    "key": "cbe165aa99781dda",
-    "status": "duplicate",
-    "found_at": "2026-11-06T12:59:03.844315+09:00",
-    "multi": false,
-    "cls": "f831f51feccd",
-    "duplicate_of": "03a0e76010fe2b80"
-  },
   "cc81610f2587f0d9": {
     "store": "ゲオ（アプリ）",
     "start": "2026-11-09T11:00:00+09:00",
@@ -12607,32 +12577,6 @@
     "cls": "4f9be14e1063",
     "issue": 671,
     "closed_at": "2026-11-13T01:31:52.842148+09:00"
-  },
-  "2a4664d452bcad94": {
-    "store": "ゲオ",
-    "product": "ポケモンカード「30th CELEBRATION」",
-    "series": "30th CELEBRATION",
-    "start": null,
-    "end": "2026-11-12T17:59:00+09:00",
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://toreca-entry.com/pack/30th-celebration/",
-    "x_post": "https://x.com/toreca_entry/status/2120079086261575850",
-    "game": "pokemon",
-    "channel": "online",
-    "area": null,
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.6,
-    "source": "X 実店舗抽選「ポケカ」",
-    "source_url": "https://x.com/",
-    "key": "2a4664d452bcad94",
-    "status": "duplicate",
-    "found_at": "2026-11-11T05:30:18.189665+09:00",
-    "cls": "22907c226a2c",
-    "duplicate_of": "cc81610f2587f0d9"
   },
   "a4e2038bfac6a2ad": {
     "store": "トレカエース勝田東石川店",
@@ -26608,7 +26552,8 @@
     "no_quote": true,
     "key": "ca8eb36dd0d01002",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.434844+09:00"
+    "found_at": "2026-11-14T13:28:57.434844+09:00",
+    "page_checked_at": "2026-11-14T18:14:50.149029+09:00"
   },
   "e18e8f57deaad14a": {
     "store": "TSUTAYA秩父店",
@@ -26634,7 +26579,9 @@
     "no_quote": true,
     "key": "e18e8f57deaad14a",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.434868+09:00"
+    "found_at": "2026-11-14T13:28:57.434868+09:00",
+    "page_checked_at": "2026-11-14T18:14:52.470801+09:00",
+    "page_err": "中身が空"
   },
   "c02210e3b8e88ded": {
     "store": "レプトン各店（レプトン会員アプリ）",
@@ -26686,7 +26633,9 @@
     "no_quote": true,
     "key": "6caf0b1ac6dd43bf",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.434956+09:00"
+    "found_at": "2026-11-14T13:28:57.434956+09:00",
+    "page_checked_at": "2026-11-14T18:14:54.521986+09:00",
+    "page_err": "中身が空"
   },
   "8045ae89500d0e05": {
     "store": "TSUTAYA Trading Card 北千住",
@@ -26764,7 +26713,9 @@
     "no_quote": true,
     "key": "fbf7b7a9711f813b",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.435054+09:00"
+    "found_at": "2026-11-14T13:28:57.435054+09:00",
+    "page_checked_at": "2026-11-14T18:14:56.575865+09:00",
+    "page_err": "中身が空"
   },
   "1e2c80f30c666387": {
     "store": "フタバ図書TSUTAYA GIGA祇園店",
@@ -26790,7 +26741,9 @@
     "no_quote": true,
     "key": "1e2c80f30c666387",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.435082+09:00"
+    "found_at": "2026-11-14T13:28:57.435082+09:00",
+    "page_checked_at": "2026-11-14T18:14:58.617005+09:00",
+    "page_err": "中身が空"
   },
   "17d7eb6c5996def6": {
     "store": "ミント梅田店",
@@ -26815,7 +26768,8 @@
     "no_quote": true,
     "key": "17d7eb6c5996def6",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.435109+09:00"
+    "found_at": "2026-11-14T13:28:57.435109+09:00",
+    "page_checked_at": "2026-11-14T18:15:00.665813+09:00"
   },
   "036e4452f2cfd03f": {
     "store": "フタバ図書TSUTAYA MEGA中筋店",
@@ -26841,7 +26795,9 @@
     "no_quote": true,
     "key": "036e4452f2cfd03f",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.435136+09:00"
+    "found_at": "2026-11-14T13:28:57.435136+09:00",
+    "page_checked_at": "2026-11-14T18:15:03.129583+09:00",
+    "page_err": "中身が空"
   },
   "4264124035081ba4": {
     "store": "TSUTAYA利府店",
@@ -26896,7 +26852,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435186+09:00",
     "multi": false,
-    "cls": "a44311f626a7"
+    "cls": "a44311f626a7",
+    "page_checked_at": "2026-11-14T18:15:05.200465+09:00",
+    "page_err": "中身が空"
   },
   "89f9d74319714e7e": {
     "store": "TSUTAYA籠原店",
@@ -26924,7 +26882,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435211+09:00",
     "multi": false,
-    "cls": "61fa1e0d921c"
+    "cls": "61fa1e0d921c",
+    "page_checked_at": "2026-11-14T18:15:07.254387+09:00",
+    "page_err": "中身が空"
   },
   "d994b9106aa96edb": {
     "store": "TSUTAYA二十世紀が丘店",
@@ -26952,7 +26912,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435236+09:00",
     "multi": false,
-    "cls": "a777083fcced"
+    "cls": "a777083fcced",
+    "page_checked_at": "2026-11-14T18:15:09.307156+09:00",
+    "page_err": "中身が空"
   },
   "443843682f325a89": {
     "store": "TSUTAYA宇都宮南店",
@@ -26980,7 +26942,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435263+09:00",
     "multi": false,
-    "cls": "8bdb8693e4f4"
+    "cls": "8bdb8693e4f4",
+    "page_checked_at": "2026-11-14T18:15:11.345040+09:00",
+    "page_err": "中身が空"
   },
   "db19c535c402c57d": {
     "store": "TSUTAYA仙台荒井店",
@@ -27008,7 +26972,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435288+09:00",
     "multi": false,
-    "cls": "bcbd16784b2b"
+    "cls": "bcbd16784b2b",
+    "page_checked_at": "2026-11-14T18:15:13.450315+09:00",
+    "page_err": "中身が空"
   },
   "3fcc481a8e5f91a3": {
     "store": "古本市場京山店",
@@ -27036,7 +27002,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435315+09:00",
     "multi": false,
-    "cls": "ac20095cde9e"
+    "cls": "ac20095cde9e",
+    "page_checked_at": "2026-11-14T18:15:15.489485+09:00",
+    "page_err": "中身が空"
   },
   "b58ee5805791a8c9": {
     "store": "古本市場京山店",
@@ -27064,7 +27032,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435358+09:00",
     "multi": false,
-    "cls": "d9120845ddeb"
+    "cls": "d9120845ddeb",
+    "page_checked_at": "2026-11-14T18:15:17.526580+09:00",
+    "page_err": "中身が空"
   },
   "ecbd7bdc46eb8877": {
     "store": "TSUTAYA御座店",
@@ -27092,7 +27062,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435387+09:00",
     "multi": false,
-    "cls": "1af7b9788bd9"
+    "cls": "1af7b9788bd9",
+    "page_checked_at": "2026-11-14T18:15:19.564442+09:00",
+    "page_err": "中身が空"
   },
   "b2e87e9c2ca6f7cc": {
     "store": "ビッグワンTSUTAYA さくら店",
@@ -27119,7 +27091,9 @@
     "key": "b2e87e9c2ca6f7cc",
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435413+09:00",
-    "cls": "504019edf8d8"
+    "cls": "504019edf8d8",
+    "page_checked_at": "2026-11-14T18:15:21.616977+09:00",
+    "page_err": "中身が空"
   },
   "d81b805e53e40232": {
     "store": "TSUTAYA400号西那須野店トレカ売場",
@@ -27174,7 +27148,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435466+09:00",
     "multi": false,
-    "cls": "8e7d384fc3dc"
+    "cls": "8e7d384fc3dc",
+    "page_checked_at": "2026-11-14T18:15:23.655792+09:00",
+    "page_err": "中身が空"
   },
   "675d8a9030649b15": {
     "store": "ビデオ100 徳島藍住店",
@@ -27202,7 +27178,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435491+09:00",
     "multi": false,
-    "cls": "671f1e9cc04a"
+    "cls": "671f1e9cc04a",
+    "page_checked_at": "2026-11-14T18:15:25.704005+09:00",
+    "page_err": "中身が空"
   },
   "30e1bfd9b5befa8b": {
     "store": "ヤマト屋書店TSUTAYA BOOKSTORE仙台長命ヶ丘店",
@@ -27230,7 +27208,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435519+09:00",
     "multi": false,
-    "cls": "de360e8d2ac3"
+    "cls": "de360e8d2ac3",
+    "page_checked_at": "2026-11-14T18:15:27.741555+09:00",
+    "page_err": "中身が空"
   },
   "436f0d432218d9dd": {
     "store": "カードラボなんば店",
@@ -27257,7 +27237,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:57.435547+09:00",
     "multi": false,
-    "cls": "f0bfa43c80da"
+    "cls": "f0bfa43c80da",
+    "page_checked_at": "2026-11-14T18:15:29.945589+09:00",
+    "address_checked": true
   },
   "dc410b0112dca6ce": {
     "store": "カードラボ熊本店",

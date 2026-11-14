@@ -677,46 +677,6 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     }
   },
-  "cbe165aa99781dda": {
-    "store": "ゲオ（アプリ）",
-    "start": "2026-11-09T11:00:00+09:00",
-    "end": "2026-11-12T17:59:00+09:00",
-    "announce": null,
-    "buy": null,
-    "method": "WEB抽選受付（当選者には店頭販売）",
-    "url": "https://geo-online.co.jp/news/789",
-    "x_post": null,
-    "game": "pokemon",
-    "channel": "store",
-    "id_check": null,
-    "member": "account",
-    "tags": [
-      "アプリ",
-      "会員"
-    ],
-    "confidence": 0.9,
-    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
-    "series": "ハドウシーカー",
-    "source": "入荷Now 抽選情報",
-    "source_url": "https://nyuka-now.com/archives/162248",
-    "no_quote": true,
-    "key": "cbe165aa99781dda",
-    "status": "duplicate",
-    "found_at": "2026-11-09T14:26:44.932436+09:00",
-    "kind": "lottery",
-    "multi": false,
-    "cls": "a854d1d19ea3",
-    "page_checked_at": "2026-11-12T15:27:47.837067+09:00",
-    "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/789",
-    "product_short": "ハドウシーカー",
-    "verified_at": "2026-11-10T13:15:13.922407+09:00",
-    "verified": true,
-    "dup_of": "fcf6f533563e3502",
-    "photo": {
-      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
-      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
-    }
-  },
   "cc81610f2587f0d9": {
     "store": "ゲオ（アプリ）",
     "start": "2026-11-09T11:00:00+09:00",
@@ -1867,7 +1827,12 @@
     "verify_note": "記事に合わせて直した：end",
     "page_checked_at": "2026-11-14T13:40:03.874831+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "店頭では2026年11月18日(水)から順次発売予定",
+      "店頭とオンラインの両方で販売予定と記載されている"
+    ],
+    "facts_src": "https://1kuji.com/products"
   },
   "c86c90468b5e2a1c": {
     "store": "BANDAI SPIRITS",
@@ -2576,7 +2541,16 @@
     "cls": "dbe6dd862210",
     "official_checked": true,
     "verified_at": "2026-11-11T11:10:29.379895+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "当選発表は4種セットが11月18日、単体商品が11月19日",
+      "各商品1人1点まで。4種セットに当選した場合は単品は当選しない",
+      "応募には会員登録とLINE公式アカウントの友だち登録が必要",
+      "応募時に位置情報を取得し、ベルサール秋葉原から半径約1km以内が条件",
+      "会場での受け渡しはなく、当選者への発送は2026年12月予定",
+      "決済はクレジットカード前払い、プレバンPay（応募時支払い）、ペイディ"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "9386bf55cdf56fa8": {
     "store": "プレミアムバンダイ",
@@ -2740,7 +2714,14 @@
     "verified_at": "2026-11-11T08:08:22.292413+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T13:40:20.086515+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "会場では販売せず、すべて後日配送",
+      "全6種の開催記念商品のうちの1つ",
+      "11月27日10時～11月30日23時はどなたでも応募可能",
+      "詳細は魂ウェブ商店の開催記念商品ページで確認"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "4d55e79d42b18ae2": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -2775,7 +2756,15 @@
     "verified_at": "2026-11-11T08:08:21.244527+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T14:18:42.442185+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "TAMASHII NATION 2026開催記念の全6種のうちの1つ",
+      "会場では販売せず、すべて後日配送",
+      "CLUB TAMASHII MEMBERS全会員は11月13日10時〜11月23日23時に応募可能",
+      "一般（どなたでも応募可）は11月27日10時〜11月30日23時に応募可能",
+      "詳細は魂ウェブ商店の開催記念商品ページで確認できる"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "8f67ee9a88297337": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -7251,7 +7240,9 @@
     },
     "dup_of": "tc8ecac05d49e13817",
     "multi": false,
-    "cls": "dc9d738d2eba"
+    "cls": "dc9d738d2eba",
+    "page_checked_at": "2026-11-14T18:19:01.535558+09:00",
+    "page_err": "中身が空"
   },
   "tc2966351e13d98bcb": {
     "store": "TSUTAYA大安寺店",
@@ -7284,7 +7275,9 @@
     },
     "dup_of": "tc265bfedae079b73c",
     "multi": false,
-    "cls": "c09cd4c9f318"
+    "cls": "c09cd4c9f318",
+    "page_checked_at": "2026-11-14T18:19:03.585142+09:00",
+    "page_err": "中身が空"
   },
   "tce5dcafb1de93e4d0": {
     "store": "るるなカード（Luruna Card）オンラインショップ",
@@ -7317,7 +7310,8 @@
     },
     "dup_of": "tc265bfedae079b73c",
     "area": null,
-    "cls": "172f1be000c7"
+    "cls": "172f1be000c7",
+    "page_checked_at": "2026-11-14T18:19:05.622097+09:00"
   },
   "tcd33f62662891f62e": {
     "store": "TSUTAYA AZ岡南店",
@@ -7351,7 +7345,9 @@
     },
     "dup_of": "tc0422b1a04600b858",
     "multi": false,
-    "cls": "2f22c5f3e3a7"
+    "cls": "2f22c5f3e3a7",
+    "page_checked_at": "2026-11-14T18:19:10.429643+09:00",
+    "page_err": "中身が空"
   },
   "tcf122c52c9c362d7d": {
     "store": "TSUTAYA鎌ケ谷店",
@@ -7384,7 +7380,9 @@
     },
     "dup_of": "tc0422b1a04600b858",
     "multi": false,
-    "cls": "a89f0feaf39c"
+    "cls": "a89f0feaf39c",
+    "page_checked_at": "2026-11-14T18:19:12.545167+09:00",
+    "page_err": "中身が空"
   },
   "tcb72324522e67de0b": {
     "store": "TSUTAYA大安寺店",
@@ -7417,7 +7415,9 @@
     },
     "dup_of": "tc0422b1a04600b858",
     "multi": false,
-    "cls": "5b6e9198db2f"
+    "cls": "5b6e9198db2f",
+    "page_checked_at": "2026-11-14T18:19:14.647198+09:00",
+    "page_err": "中身が空"
   },
   "tcec31b24276d802c5": {
     "store": "［トレカ・ゲーム］GIGA防府店（フタバ図書TSUTAYA）",
@@ -11849,7 +11849,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "07e817a2f9f9"
   },
   "tcf6e904478d6254ae": {
     "store": "TSUTAYA BOOKSTORE川崎駅前店",
@@ -11883,7 +11885,9 @@
     "dup_of": "tc8ecac05d49e13817",
     "x_post": "https://x.com/tbs_kwskT/status/2121407236996206964?s=20&slide=modal",
     "announce": "2026-11-24T17:00:00+09:00",
-    "start": "2026-11-14T09:00:00+09:00"
+    "start": "2026-11-14T09:00:00+09:00",
+    "multi": false,
+    "cls": "41a0c32440bd"
   },
   "tc92759b3b6ee60067": {
     "store": "TSUTAYA宇多津店",
@@ -11913,7 +11917,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "a20f74687f85"
   },
   "tcb0235d051fbb2fdb": {
     "store": "TSUTAYA函南店",
@@ -11944,7 +11950,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc265bfedae079b73c"
+    "dup_of": "tc265bfedae079b73c",
+    "multi": false,
+    "cls": "346e410a03c1"
   },
   "tc808ba5fa083bf601": {
     "store": "TSUTAYA追浜店",
@@ -11975,7 +11983,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "2fcd9912c201"
   },
   "tc243b9d6020b8aa85": {
     "store": "TSUTAYA瀬戸店",
@@ -12006,7 +12016,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "7d61ac181f8d"
   },
   "tc32d973cf0588dd6c": {
     "store": "TSUTAYA鈴鹿中央通店",
@@ -12037,7 +12049,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "91a1b068650f"
   },
   "tca51135e74d46bcd7": {
     "store": "TSUTAYAウイングタウン岡崎店",
@@ -12068,7 +12082,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc265bfedae079b73c"
+    "dup_of": "tc265bfedae079b73c",
+    "multi": false,
+    "cls": "b555af9ac0cb"
   },
   "tcca8eb36dd0d01002": {
     "store": "MINT GAMES 心斎橋アメリカ村店",
@@ -12076,7 +12092,7 @@
     "series": "神の支配",
     "end": "2026-11-15T19:59:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSenc65Nxm8TDqIRbdohx8hxVLNxTH1spPT0_z_UdMkbPYIcPg/viewform",
-    "channel": "online",
+    "channel": "store",
     "area": "大阪府",
     "method": "オンライン",
     "conditions": "本人確認",
@@ -12098,7 +12114,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "07827af37299"
   },
   "tce18e8f57deaad14a": {
     "store": "TSUTAYA秩父店",
@@ -12129,7 +12147,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "ee5e4aeb92a8"
   },
   "tcc02210e3b8e88ded": {
     "store": "レプトン各店（レプトン会員アプリ）",
@@ -12137,7 +12157,7 @@
     "series": "神の支配",
     "end": "2026-11-15T20:00:00+09:00",
     "url": "https://x.com/LepTorekaita1/status/2121171449838764230",
-    "channel": "online",
+    "channel": "store",
     "area": "広島県",
     "method": "オンライン",
     "conditions": "アプリ・会員",
@@ -12160,7 +12180,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": true,
+    "cls": "e42bec4dcb4f"
   },
   "tc6caf0b1ac6dd43bf": {
     "store": "TSUTAYA BOOKSTORE ビバモール寝屋川",
@@ -12191,7 +12213,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "2ddf995323a6"
   },
   "tc8045ae89500d0e05": {
     "store": "TSUTAYA Trading Card 北千住",
@@ -12222,7 +12246,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "168d7e6bfab4"
   },
   "tcfbf7b7a9711f813b": {
     "store": "HMVトレカショップ・HMVトレカ取扱店舗",
@@ -12230,7 +12256,7 @@
     "series": "神の支配",
     "end": "2026-11-15T20:59:00+09:00",
     "url": "https://livepocket.jp/e/sxw9x",
-    "channel": "online",
+    "channel": "store",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -12252,7 +12278,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": true,
+    "cls": "6750fba02c9d"
   },
   "tc1e2c80f30c666387": {
     "store": "フタバ図書TSUTAYA GIGA祇園店",
@@ -12283,7 +12311,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "53e1480da4d1"
   },
   "tc17d7eb6c5996def6": {
     "store": "ミント梅田店",
@@ -12291,7 +12321,7 @@
     "series": "神の支配",
     "end": "2026-11-15T21:00:00+09:00",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSe2xK21y__MOGpGT7-iXZhpNLheRwsIV524h682xHxZARPWuw/viewform",
-    "channel": "online",
+    "channel": "store",
     "area": "大阪府",
     "method": "オンライン",
     "conditions": "本人確認",
@@ -12313,7 +12343,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "513b0494e937"
   },
   "tc036e4452f2cfd03f": {
     "store": "フタバ図書TSUTAYA MEGA中筋店",
@@ -12343,7 +12375,9 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
-    }
+    },
+    "multi": false,
+    "cls": "b25b0e69a57b"
   },
   "tc4264124035081ba4": {
     "store": "TSUTAYA利府店",
@@ -13937,7 +13971,10 @@
     "key": "c4700e875e528bf6",
     "status": "pending",
     "cls": "3be7a3055218",
-    "issue": 766
+    "issue": 766,
+    "deadline_checked_at": "2026-11-14T18:18:56.955409+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・応募締切の記載なし"
   },
   "5d87c54ca31e7089": {
     "store": "楽天モバイル",
@@ -14218,7 +14255,8 @@
     ],
     "facts_src": "https://www.famitsu.com/article/202611/93883",
     "verified_at": "2026-11-14T17:26:18.311196+09:00",
-    "verified": true
+    "verified": true,
+    "cls": "ecccd659466c"
   },
   "e77c5bc541326dcc": {
     "store": "楽天ブックス",
@@ -15171,7 +15209,7 @@
     "series": "ストームエメラルダ",
     "end": "2026-11-15T22:00:00+09:00",
     "url": "https://livepocket.jp/e/gr1sc",
-    "channel": "online",
+    "channel": "store",
     "method": "オンライン",
     "conditions": "会員・本人確認",
     "tags": [
@@ -15193,7 +15231,10 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "area": "埼玉県",
+    "multi": false,
+    "cls": "cfb173ec8274"
   },
   "tc19a86fcb59e4db28": {
     "store": "KaBoS＋GEO藤沢店",
@@ -15221,7 +15262,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "00d6ea48d1e7"
   },
   "tce0cff56b69104fc8": {
     "store": "TSUTAYA積文館書店 鹿島店",
@@ -15252,7 +15295,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "tc8ecac05d49e13817"
+    "dup_of": "tc8ecac05d49e13817",
+    "multi": false,
+    "cls": "18ecc7d39c5c"
   },
   "tce400b453b7f1f88d": {
     "store": "TSUTAYA福岡西新店",
@@ -15282,7 +15327,9 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
-    }
+    },
+    "multi": false,
+    "cls": "56250b90bd89"
   },
   "tc2525021c0787ee77": {
     "store": "TSUTAYA白河店（みどり書房白河店）",
@@ -15312,7 +15359,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "413c7274d4b0"
   },
   "ff180ec59ccc8a64": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15339,10 +15388,23 @@
     "source_url": "https://1kuji.com/products",
     "found_at": "2026-11-14T17:52:56.034813+09:00",
     "key": "ff180ec59ccc8a64",
-    "status": "approved"
+    "status": "approved",
+    "deadline_checked_at": "2026-11-14T18:18:59.154161+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・応募受付期間の記載なし",
+    "cls": "d34178197560",
+    "facts": [
+      "店頭販売は2026年11月13日(金)より順次発売予定",
+      "一番くじはハズレなしで、必ずいずれかの商品が手に入る",
+      "お店で最後のくじを引くと特別なラストワン賞が手に入る"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T18:20:41.517654+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：store・kind 商品名、開始日時（2026-11-16 17:00）、channelのonlineは記事と一致します。storeの「一番くじONLINE」は記事に書かれていません。kindの先着販売も記事に明記がなく、販売方法は確認できません。"
   },
   "25a12a4dd3851419": {
-    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "store": "BANDAI SPIRITS",
     "product": "一番くじ ワンピース～あにまる大集合！～",
     "series": "ワンピース",
     "kind": "first_come",
@@ -15366,7 +15428,20 @@
     "source_url": "https://1kuji.com/products",
     "found_at": "2026-11-14T17:52:56.034858+09:00",
     "key": "25a12a4dd3851419",
-    "status": "approved"
+    "status": "approved",
+    "cls": "cf2a70552d33",
+    "facts": [
+      "店頭販売は2026年11月14日(土)より順次発売予定",
+      "オンライン販売は店頭販売より後の2026年12月7日(月)11:00から開始予定",
+      "2026年11月発売のラインナップに掲載"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T18:20:41.517597+09:00",
+    "before_verify": {
+      "store": "BANDAI SPIRITS（一番くじONLINE）"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：store"
   },
   "d0c2821a15ce5e3f": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15449,7 +15524,20 @@
     "source_url": "https://1kuji.com/products",
     "key": "ca74a523c54cba9b",
     "status": "approved",
-    "found_at": "2026-11-14T17:52:56.034936+09:00"
+    "found_at": "2026-11-14T17:52:56.034936+09:00",
+    "multi": false,
+    "cls": "25845f095f21",
+    "facts": [
+      "店頭販売は2026年11月20日(金)から順次発売予定",
+      "オンライン販売は2026年11月20日(金)17:00から販売開始予定",
+      "日本全国のコンビニ・書店・ホビーショップなどで販売（シリーズ全般の説明）",
+      "ハズレなしで必ず何らかの商品が手に入る（シリーズ全般の説明）",
+      "店頭でラストワン賞が手に入る（シリーズ全般の説明）"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T18:20:41.517512+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：kind・start・end 記事は「一番くじ にゃんこ大戦争 ～みんなでペリペリするにゃ～（再販売）」で、種類は再販売(restock)。店頭販売は「2026年11月20日(金)より順次発売予定」で時刻の記載はなく、17:00はオンライン販売の開始時刻。end(23:59)は記事にない時刻。chann"
   },
   "4db7daa59d932e86": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15516,7 +15604,9 @@
       "end": "2026-11-21T23:59:00+09:00"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：end"
+    "verify_note": "記事に合わせて直した：end",
+    "multi": false,
+    "cls": "8019ca31c714"
   },
   "7d952f4e71e65f64": {
     "store": "BANDAI SPIRITS",
@@ -15553,7 +15643,9 @@
     "facts_src": "https://1kuji.com/products",
     "verified_at": "2026-11-14T17:55:30.821341+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：store・start・end 記事のジョジョ項目は店頭が2026年11月21日(土)より順次発売予定、オンラインが2026年11月25日(水)17:00より販売開始予定です。店頭の販売時刻は記事に無く、23:59は作り物です。販売店としてBANDAI SPIRITSは書かれておらず、店舗は全国のコンビ"
+    "verify_note": "記事と合わない：store・start・end 記事のジョジョ項目は店頭が2026年11月21日(土)より順次発売予定、オンラインが2026年11月25日(水)17:00より販売開始予定です。店頭の販売時刻は記事に無く、23:59は作り物です。販売店としてBANDAI SPIRITSは書かれておらず、店舗は全国のコンビ",
+    "multi": false,
+    "cls": "4f6e81eb6666"
   },
   "bd890dbe828a3c75": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15618,7 +15710,9 @@
     "facts_src": "https://1kuji.com/products",
     "verified_at": "2026-11-14T17:55:30.376636+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：start・end 店頭販売は2026年11月27日(金)より順次発売予定と書かれているだけで時刻はありません。15:00は『オンライン販売』の販売開始時刻なので、店頭の開始日時として使うのは誤りです。endの23:59も記事にない時刻です。"
+    "verify_note": "記事と合わない：start・end 店頭販売は2026年11月27日(金)より順次発売予定と書かれているだけで時刻はありません。15:00は『オンライン販売』の販売開始時刻なので、店頭の開始日時として使うのは誤りです。endの23:59も記事にない時刻です。",
+    "multi": false,
+    "cls": "8cd94fcd249b"
   },
   "ba2bc8d5ee67ca52": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
