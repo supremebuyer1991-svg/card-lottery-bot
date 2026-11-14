@@ -387,7 +387,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-13T11:53:03.247568+09:00",
+    "page_checked_at": "2026-11-14T11:40:38.030022+09:00",
     "area": null,
     "cls": "891a1b22f087",
     "tags": [],
@@ -411,7 +411,7 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "page_checked_at": "2026-11-13T11:53:05.579443+09:00",
+    "page_checked_at": "2026-11-14T11:40:40.189927+09:00",
     "area": null,
     "cls": "a2e4fac80c27",
     "tags": [],
@@ -603,7 +603,7 @@
     "key": "a2597a3a24dcf7c2",
     "status": "approved",
     "found_at": "2026-11-09T13:23:12.072088+09:00",
-    "page_checked_at": "2026-11-13T11:53:08.341882+09:00",
+    "page_checked_at": "2026-11-14T11:40:40.190220+09:00",
     "details_checked": true,
     "cls": "6ca0a4981e7b",
     "official_checked": true,
@@ -1139,7 +1139,7 @@
     "key": "cbcf6c062e1fa005",
     "status": "approved",
     "found_at": "2026-11-09T15:09:22.687472+09:00",
-    "page_checked_at": "2026-11-13T11:53:11.830611+09:00",
+    "page_checked_at": "2026-11-14T11:40:43.023723+09:00",
     "details_checked": true,
     "cls": "138f0adee141",
     "official_checked": true,
@@ -1249,7 +1249,7 @@
     "found_at": "2026-11-09T15:09:22.687730+09:00",
     "cls": "4a07a6dd2ed8",
     "issue": 626,
-    "page_checked_at": "2026-11-13T11:53:14.410216+09:00",
+    "page_checked_at": "2026-11-14T11:40:45.919811+09:00",
     "details_checked": true
   },
   "7fa6861fd8663899": {
@@ -2581,14 +2581,16 @@
     "source_url": "https://news.yahoo.co.jp/articles/d64d1195611f6edd04ae80e210875992b9f9ca07/images/000",
     "found_at": "2026-11-11T05:55:46.925428+09:00",
     "key": "1662bb140e18de0e",
-    "status": "pending",
+    "status": "expired",
     "deadline_checked_at": "2026-11-13T21:28:17.224947+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-14T05:37:51.622921+09:00",
     "details_checked": true,
     "cls": "5294359c2e22",
-    "issue": 673
+    "issue": 673,
+    "closed_at": "2026-11-14T11:40:57.630857+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "02615e3d1b9b7d97": {
     "store": "バンダイスピリッツ（プレミアムバンダイ）",
@@ -2615,14 +2617,16 @@
     "source_url": "https://news.yahoo.co.jp/articles/d64d1195611f6edd04ae80e210875992b9f9ca07/images/000",
     "found_at": "2026-11-11T05:55:46.925496+09:00",
     "key": "02615e3d1b9b7d97",
-    "status": "pending",
+    "status": "expired",
     "cls": "e42f4736e3f9",
     "issue": 674,
     "deadline_checked_at": "2026-11-14T05:37:31.298554+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・イフリートの受付期間の記載なし",
-    "page_checked_at": "2026-11-11T06:12:04.811261+09:00",
-    "details_checked": true
+    "page_checked_at": "2026-11-14T11:40:48.065899+09:00",
+    "details_checked": true,
+    "closed_at": "2026-11-14T11:40:57.630891+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "1d771e4bf529c746": {
     "store": "バンダイスピリッツ（プレミアムバンダイ）",
@@ -2649,14 +2653,16 @@
     "source_url": "https://news.yahoo.co.jp/articles/d64d1195611f6edd04ae80e210875992b9f9ca07/images/000",
     "found_at": "2026-11-11T05:55:46.925521+09:00",
     "key": "1d771e4bf529c746",
-    "status": "pending",
+    "status": "expired",
     "cls": "94240be8f703",
     "issue": 675,
     "deadline_checked_at": "2026-11-14T05:37:33.683310+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-11T06:12:09.491236+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-14T11:40:57.630918+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "62814caca2bd2020": {
     "store": "BANDAI SPIRITS",
@@ -2990,9 +2996,9 @@
     "multi": false,
     "cls": "7d1086f97386",
     "issue": 677,
-    "deadline_checked_at": "2026-11-11T07:53:12.825083+09:00",
+    "deadline_checked_at": "2026-11-14T11:40:32.354066+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし",
+    "deadline_note": "画像0/0枚読込・告知に締切の記載なし",
     "page_checked_at": "2026-11-11T21:02:13.943148+09:00",
     "address_checked": true,
     "details_checked": true
@@ -3385,9 +3391,9 @@
     "multi": false,
     "cls": "29ecbdca44eb",
     "issue": 680,
-    "deadline_checked_at": "2026-11-11T08:07:45.956620+09:00",
+    "deadline_checked_at": "2026-11-14T11:40:34.098737+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始（締切記載なし）",
+    "deadline_note": "画像0/0枚読込・11/11抽選販売応募開始",
     "page_checked_at": "2026-11-11T21:02:28.533934+09:00",
     "address_checked": true,
     "details_checked": true
@@ -3616,7 +3622,10 @@
       "price": null
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：price"
+    "verify_note": "記事に合わせて直した：price",
+    "deadline_checked_at": "2026-11-14T11:40:36.025468+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし（なくなり次第終了）"
   },
   "deda3042a915b737": {
     "store": "Amazon.co.jp",
@@ -3907,7 +3916,7 @@
     "conditions": "全国のPlayStation取扱店で順次予約受付。米国・欧州10市場では直販でも予約受付",
     "price": null,
     "round": null,
-    "url": "https://www.zaikei.co.jp/article/20261111/877137.html",
+    "url": "https://www.playstation.com/ja-jp/",
     "x_post": null,
     "game": "ps5",
     "channel": "store",
@@ -3925,7 +3934,8 @@
     "multi": true,
     "verified_at": "2026-11-12T12:19:48.928833+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：store・kind・end 国内予約受付の記事で、kindは発売情報ではなく予約受付。受付先は『全国のPlayStation取扱店』で、SIEは発表元。2027年2月4日は発売予定日であり予約締切ではなく、23:59という時刻も記事にない。開始日2026-11-10は記事と一致。"
+    "verify_note": "記事と合わない：store・kind・end 国内予約受付の記事で、kindは発売情報ではなく予約受付。受付先は『全国のPlayStation取扱店』で、SIEは発表元。2027年2月4日は発売予定日であり予約締切ではなく、23:59という時刻も記事にない。開始日2026-11-10は記事と一致。",
+    "official_checked": true
   },
   "cb3d6e968aae3251": {
     "store": "PlayStation取扱店（全国）",
@@ -4815,7 +4825,7 @@
     "conditions": "PS Plus プレミアム1か月無料コード付属、日本のPlayStationアカウントで利用",
     "price": "39,980円",
     "round": null,
-    "url": "https://kunkoku.jp/playstationportal-29.html",
+    "url": "https://store.sony.jp/",
     "x_post": null,
     "game": "ps5",
     "channel": "online",
@@ -4833,7 +4843,8 @@
     "found_at": "2026-11-13T11:51:36.302066+09:00",
     "cls": "521b10622da4",
     "verified_at": "2026-11-13T11:53:34.094843+09:00",
-    "verified": true
+    "verified": true,
+    "official_checked": true
   },
   "c08d5914adcbad53": {
     "store": "ソニー・インタラクティブエンタテインメント",
