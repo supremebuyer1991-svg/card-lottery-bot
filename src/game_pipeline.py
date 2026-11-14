@@ -83,6 +83,62 @@ def _tcg_full_names(lots):
     return n
 
 
+def _import_tcg(lots):
+    """トレカ抽選ナビ（state/lotteries.json）のポケカ・ワンピースカードの受付中の抽選を、このサイトにも載せる
+    （11/14 ユーザー：「ポケモンもワンピースも抽選やってるやろ、俺のトレカ抽選ナビに書いてるで」）。
+    載せるのは大手のお店とネットの抽選（BIG_STORES か channel=online）。トレカ抽選ナビで確かめ済みなのでここで確かめ直さない。
+    Xの速報・投稿の候補には入れない（from_tcg）。トレカ抽選ナビで終わった・消えたものはこちらも終わりにする"""
+    import json
+    from datetime import datetime
+    from common import ROOT, now as now_jst
+    try:
+        tcg = json.loads((ROOT / "state" / "lotteries.json").read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+    now = now_jst()
+
+    def live(v):
+        try:
+            return v.get("status") in ("approved", "posted", "listed") and v.get("end") and datetime.fromisoformat(v["end"]) > now
+        except Exception:
+            return False
+    try:   # トレカ抽選ナビの楽天の写真・商品ページ（キー：ゲーム|シリーズ）
+        photos = json.loads((ROOT / "state" / "rakuten.json").read_text(encoding="utf-8"))
+    except Exception:
+        photos = {}
+    want = {}
+    for k, v in tcg.items():
+        if v.get("game") not in BIG_TCG or not live(v):
+            continue
+        if not (v.get("channel") == "online" or BIG_STORES.search(v.get("store") or "")):
+            continue
+        want["tc" + (v.get("key") or k)] = v
+    # もうこのサイトにある同じお店・同じ商品の抽選（入荷Nowなどから入ったもの）は重ねない
+    def nk(store, prod):
+        return (re.sub(r"\s", "", store or ""), re.sub(r"\s|1?BOX|ボックス|[「」『』【】()（）]", "", prod or ""))
+    have = {nk(it.get("store"), it.get("product")) for kk, it in lots.items()
+            if not it.get("from_tcg") and it.get("status") in ("approved", "posted", "listed", "pending")}
+    n = 0
+    for k, v in want.items():
+        if nk(v.get("store"), v.get("product")) in have:
+            continue
+        it = {f: v.get(f) for f in ("store", "product", "series", "start", "end", "announce", "url", "channel", "area", "method",
+                                    "conditions", "tags", "id_check", "member", "game", "source", "source_url", "found_at", "price")
+              if v.get(f) is not None}
+        it.update({"status": lots.get(k, {}).get("status", "approved") if lots.get(k, {}).get("status") in ("approved", "posted", "listed") else "approved",
+                   "kind": "lottery", "from_tcg": True, "verified": True, "key": k})
+        ph = photos.get(f"{v.get('game')}|{v.get('series')}") or {}
+        if ph.get("image") and ph.get("url"):
+            it["photo"] = {"u": ph["url"], "img": ph["image"]}
+        if k not in lots:
+            n += 1
+        lots[k] = {**lots.get(k, {}), **it}
+    for k, it in lots.items():
+        if it.get("from_tcg") and k not in want and it.get("status") in ("approved", "posted", "listed", "pending"):
+            it["status"] = "expired"
+    return n
+
+
 def _drop_other_games(lots):
     """このサイトのカテゴリ（config/game/categories.yaml）に無いもの・トレカは載せない・投稿しない
     11/10 ユーザー指摘：入荷Nowの抽選情報からポケカ「ハドウシーカー」が入り、ゲームのXアカウントにAPIで投稿された
@@ -96,7 +152,7 @@ def _drop_other_games(lots):
             it["status"] = "approved"   # 前に外した大手のポケカを戻す
             it.pop("reject_reason", None)
             continue
-        if it.get("status") in ("rejected", "expired") or big_poke:
+        if it.get("status") in ("rejected", "expired") or big_poke or it.get("from_tcg"):
             continue
         text = " ".join(str(it.get(k) or "") for k in ("product", "title", "summary"))
         if (it.get("game") and it["game"] not in ok) or it.get("game") in BIG_TCG or TCG.search(text):
@@ -166,6 +222,12 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
         for it in lots.values():
             if re.search(r"本文|記載はありません|記載がありません|書かれていません|明記されていません", it.get("conditions") or ""):
                 it["conditions"] = None
+        try:
+            ni = _import_tcg(lots)
+            if ni:
+                log(f"トレカ抽選ナビのポケカ・ワンピースカードの抽選 {ni}件を載せました")
+        except Exception as e:
+            log(f"トレカ抽選ナビの取り込み: スキップ {e}")
         nt = _drop_other_games(lots)
         _tcg_full_names(lots)
         if nt:
@@ -214,8 +276,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
             import game_affi
             lots = load_json("lotteries.json", {})
             t = now()
-            game_affi.update(s, [i for i in lots.values() if i.get("status") in ("approved", "posted", "listed")
-                                 and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t)])
+            _live = [i for i in lots.values() if i.get("status") in ("approved", "posted", "listed")
+                     and not (parse_dt(i.get("end")) and parse_dt(i["end"]) < t) and not i.get("from_tcg")]   # トレカ抽選ナビから載せたものは向こうの写真を使う
+            _c = game_affi.update(s, _live)
+            game_affi.photo_update(s, _live, cache=_c)   # 楽天ブックスに無い商品の写真を楽天市場から（11/14）
         except Exception as e:
             log(f"楽天の商品写真: スキップ {e}")
         if out_dir is None:

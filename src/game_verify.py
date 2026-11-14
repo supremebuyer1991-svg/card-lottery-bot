@@ -91,7 +91,7 @@ def verify(settings, ai=None, fetcher=None):
     # 11/14：前に確かめた受付中の項目のうち、要点（facts）がまだ無いものも、空いた枠で記事を読み直して要点だけ取る
     # （抽選の個別ページの中身を増やすため。確かめた結果 verified は変えない）
     back = [(k, it) for k, it in lots.items() if it.get("status") in ACTIVE and it.get("verified") is True and "facts" not in it
-            and not it.get("manual") and (it.get("source_url") or it.get("url"))]
+            and not it.get("manual") and not it.get("from_tcg") and (it.get("source_url") or it.get("url"))]
     back.sort(key=lambda kv: kv[1].get("found_at") or "", reverse=True)
     back_keys = {k for k, _ in back[:max(0, int(settings.get("verify_facts_backfill", 4)))]}
     todo += [kv for kv in back if kv[0] in back_keys]

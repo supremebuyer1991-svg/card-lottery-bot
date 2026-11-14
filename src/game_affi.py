@@ -300,6 +300,87 @@ def update(settings, items, fetch=None, sleep=1.1):
     return cache
 
 
+def photo_update(settings, items, cache=None, fetch=None, sleep=1.1):
+    """楽天ブックスに無かった商品の「写真」だけを楽天市場（全部のお店）から探す（11/14 ユーザー：写真を楽天かAmazonから埋めれるやつは埋めて）。
+    キャッシュのキーは "photo:" ＋ 楽天ブックスのときと同じキー。商品ページ（itemUrl）とは別にしておく
+    ＝見張り（watch_list）・入荷速報には使わない（楽天市場の転売のお店は、いつも在庫ありに見えるため）。
+    1回 rakuten_photo_calls_per_run 回まで・同じ商品は rakuten_photo_refresh_days 日に1回"""
+    cache = cache if cache is not None else load_json(CACHE, {})
+    if fetch is None:
+        if not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
+            return cache
+        fetch = lambda p: http_fetch(p, settings)  # noqa: E731
+    budget = int(settings.get("rakuten_photo_calls_per_run", 6))
+    days = float(settings.get("rakuten_photo_refresh_days", 7))
+    aff = affiliate_id(settings)
+    models = _models()
+    import gamecats as _gc
+    _hints = _gc.hints()
+    strict = {c["id"] for c in _gc.categories(False) if c.get("aff_strict")}
+    t = now()
+    todo, seen = [], set()
+    for i in sorted(items, key=lambda x: (x.get("end") or x.get("start") or "9999")):
+        q = query_of(i, manual_of(i, models))
+        if not q or q[1] != "name" or q[0] in seen:
+            continue
+        seen.add(q[0])
+        c = cache.get(q[0]) or {}
+        if not c.get("checkedAt") or c.get("imageUrl"):
+            continue   # まだ楽天ブックスで探していない／楽天ブックスに写真がある
+        p = cache.get("photo:" + q[0])
+        if p and parse_dt(p.get("checkedAt")) and (t - parse_dt(p["checkedAt"])).total_seconds() < days * 86400:
+            continue
+        todo.append((q[0], q[2], i.get("game") or ""))
+    called = 0
+    from common import job_elapsed
+    for key, word, g_ in todo:
+        if called >= budget or job_elapsed() > float(settings.get("rakuten_until_sec", 300)):
+            break
+        if called and sleep:
+            time.sleep(sleep)
+        called += 1
+        params = {"hits": 30, "availability": 0, "imageFlag": 1, "keyword": keyword(word)}
+        if aff:
+            params["affiliateId"] = aff
+        try:
+            found = fetch(params)
+        except Exception as e:
+            log(f"楽天の写真（市場）: {word[:30]} 取得失敗 {e}")
+            if "401" in str(e) or "403" in str(e):
+                break
+            continue
+        best = None
+        for it in found:
+            sc = match(it, word)
+            if sc is not None and g_ in strict and g_ in _hints and not _hints[g_].search(it.get("itemName") or ""):
+                sc = None
+            if sc is not None and _image(it) and (best is None or sc > best[0]):
+                best = (sc, it)
+        if best:
+            it = best[1]
+            url = it.get("itemUrl") or ""
+            if "hb.afl.rakuten.co.jp" in url:
+                from urllib.parse import parse_qs
+                url = (parse_qs(urlparse(url).query).get("pc") or [url])[0]
+            url = url.split("?")[0]
+            cache["photo:" + key] = {"itemUrl": url, "imageUrl": _image(it), "title": it.get("itemName") or "", "checkedAt": t.isoformat()}
+            log(f"楽天の写真（市場）: {word[:30]} → {(it.get('itemName') or '')[:40]}")
+        else:
+            cache["photo:" + key] = {"itemUrl": "", "checkedAt": t.isoformat()}
+    if called:
+        save_json(CACHE, cache)
+    return cache
+
+
+def photo_for(i, cache, settings, models=None):
+    """写真の無い行に使う {"u": 楽天の商品ページ（アフィリエイト）, "img": 写真}（photo_update で見つけたもの）か None"""
+    q = query_of(i, manual_of(i, models))
+    p = (cache or {}).get("photo:" + q[0]) if q else None
+    if p and p.get("imageUrl") and item_page_ok(p.get("itemUrl")):
+        return {"u": rakuten_link(p["itemUrl"], affiliate_id(settings)), "img": thumb(p["imageUrl"])}
+    return None
+
+
 def links_for(i, cache, settings, models=None):
     """1件分の {"rk": {"u": 楽天の商品ページ（アフィリエイト）, "img": 写真}, "az": Amazonの商品ページ}（無いものは入れない）"""
     man = manual_of(i, models)

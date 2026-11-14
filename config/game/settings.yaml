@@ -75,6 +75,8 @@ rakuten_affiliate_id: ""    # 楽天アフィリエイトID（このサイトを
 # カードの商品写真と「楽天で見る」（楽天ブックスのその商品のページ。売り切れでも入荷お知らせを登録できる）
 # 自動で楽天ブックスを探す。手で決めたいときは manual.yaml の1件ごと／models.yaml の series_shop に rakuten_url・amazon_asin を書く
 rakuten_max_calls_per_run: 15   # 1回の実行で楽天APIを呼ぶ回数の上限（Actions の時間を短く）
+rakuten_photo_calls_per_run: 6   # 楽天ブックスに無い商品の写真を楽天市場から探す回数（1回の実行で。11/14）
+rakuten_photo_refresh_days: 7   # 同じ商品の写真を探し直すのは7日に1回
 rakuten_refresh_hours: 24       # 同じ商品を探し直すのは24時間に1回まで（見つからなかったものも）
 amazon_invite:              # トップの一番上に固定で出す「Amazonの招待リクエスト」の案内（url が空なら出さない）
   enabled: false

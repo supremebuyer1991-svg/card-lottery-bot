@@ -493,6 +493,33 @@ def _extra_detail(html, snap, me_key, recs, live, cat_by, s, t):
     return html.replace("<footer>", block + "<footer>", 1)
 
 
+_UPC = {}
+
+
+def _photo_for(product, s):
+    """商品名に当たる楽天ブックスの商品の写真と商品ページ（アフィリエイト）→ {"u", "img"} か None。
+    買取相場の商品（楽天ブックスの商品ページと写真が分かるもの）→ 発売予定のゲーム（楽天ブックス）の順に探す。名前がよく合うものだけ"""
+    import game_affi
+    import game_premium
+    import official_link as ol
+    if not product:
+        return None
+    x = game_premium.price_match(product, s)
+    if x and x.get("img") and x.get("itemUrl"):
+        return {"u": game_affi.rakuten_link(x["itemUrl"], game_affi.affiliate_id(s)), "img": game_affi.thumb(x["img"])}
+    if "u" not in _UPC:
+        import game_upcoming
+        _UPC["u"] = [v for v in ((load_json(game_upcoming.STATE, {}) or {}).get("items") or {}).values() if v.get("img") and v.get("url")]
+    best = None
+    for v in _UPC["u"]:
+        sc = ol.same_item_score(product, v.get("title") or "")
+        if sc >= 0.75 and (best is None or sc > best[0]):
+            best = (sc, v)
+    if best:
+        return {"u": game_affi.rakuten_link(best[1]["url"], game_affi.affiliate_id(s)), "img": game_affi.thumb(best[1]["img"])}
+    return None
+
+
 def _shop_detail(html, snap):
     """個別ページ：応募ボタンの下に「楽天で見る」「Amazonで見る」、写真に大きさ、下に写真の出どころ（detail.py は変えない）"""
     sh = snap.get("shop") or {}
@@ -639,7 +666,7 @@ def _write_x_queue(out, items, site, t=None):
     t = t or now()
     q = []
     pk = [i for i in items if i.get("game") in ("pokemon", "onepiece") and i.get("ph") != "ended" and i.get("lpath")
-          and i.get("verified") is True]   # 元の記事で確かめたものだけ予約投稿する
+          and i.get("verified") is True and not i.get("from_tcg")]   # 元の記事で確かめたものだけ予約投稿する（トレカ抽選ナビから載せたものは投稿しない 11/14）
     fresh = sorted([i for i in pk if parse_dt(i.get("found_at")) and parse_dt(i["found_at"]) > t - _td(hours=12)],
                    key=lambda i: i.get("end") or "9999")[:6]
     for i in fresh:
@@ -785,6 +812,7 @@ def build(settings=None, out_dir=None, force=False):
             continue   # 元の記事と合わなかった・まだ確かめていない新着（game_verify）はサイトに出さない
         row = {k: i.get(k) for k in FIELDS}
         row["verified"] = i.get("verified")
+        row["from_tcg"] = bool(i.get("from_tcg"))   # トレカ抽選ナビから載せた抽選（X投稿しない）
         row["kind"] = row.get("kind") or "lottery"
         row["lpath"] = detail.lottery_path(i)
         try:
@@ -813,6 +841,13 @@ def build(settings=None, out_dir=None, force=False):
                 row["rec"] = bool(CHAIN[ch][3])
         row["ph"] = _phase(row, t)
         row.update(game_affi.links_for(i, rk_cache, s, shop_models))   # rk（楽天の商品ページ・写真）・az（Amazonの商品ページ）
+        if not (row.get("rk") or {}).get("img"):   # 写真が無い行は、買取相場・発売予定の商品（楽天ブックス）の写真と商品ページで補う（11/14 ユーザー：抽選一覧に写真をアフィリンク付きで）
+            try:
+                _ph = i.get("photo") or game_affi.photo_for(i, rk_cache, s, shop_models) or _photo_for(i.get("product") or "", s)
+                if _ph:
+                    row["rk"] = _ph
+            except Exception:
+                pass
         av = avail_of(row, watch_status)
         if av:
             row["avail"] = av   # いま楽天・Amazonで予約受付中・販売中（見張りが見た状態）→ カード・個別ページの目立つところに
