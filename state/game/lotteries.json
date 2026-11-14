@@ -16112,7 +16112,10 @@
     "facts_src": "https://1kuji.com/products",
     "verified_at": "2026-11-14T17:55:29.359456+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：start・end 記事では店頭販売は2026年11月28日(土)から順次発売、オンライン販売は2026年12月01日(火)17:00から販売開始。読み取りのstartの11:00は記事になく、endの23:59も記事に時刻の記載はない。"
+    "verify_note": "記事と合わない：start・end 記事では店頭販売は2026年11月28日(土)から順次発売、オンライン販売は2026年12月01日(火)17:00から販売開始。読み取りのstartの11:00は記事になく、endの23:59も記事に時刻の記載はない。",
+    "page_checked_at": "2026-11-14T21:24:15.410533+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "84d8610949e40aaa": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -16179,7 +16182,10 @@
     "facts_src": "https://1kuji.com/products",
     "verified_at": "2026-11-14T17:55:29.359021+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：store・end 発売情報としては合っています。店頭販売は2026年11月28日(土)より順次発売予定と記事にありますが、時刻の記載はありません。end の23:59は記事にない時刻です。store も記事では BANDAI SPIRITS ではなく全国の店舗での店頭販売とされています。product"
+    "verify_note": "記事と合わない：store・end 発売情報としては合っています。店頭販売は2026年11月28日(土)より順次発売予定と記事にありますが、時刻の記載はありません。end の23:59は記事にない時刻です。store も記事では BANDAI SPIRITS ではなく全国の店舗での店頭販売とされています。product",
+    "page_checked_at": "2026-11-14T21:24:21.582896+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "e2368c03070913e2": {
     "store": "ソニーストア",
@@ -16211,7 +16217,9 @@
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・プリズム抽選の締切の記載なし",
     "cls": "6e23dd8f362f",
-    "issue": 767
+    "issue": 767,
+    "page_checked_at": "2026-11-14T21:24:27.594250+09:00",
+    "details_checked": true
   },
   "cde3b5eceeded8f3": {
     "store": "Amazon",
@@ -16269,7 +16277,9 @@
     "status": "pending",
     "found_at": "2026-11-14T19:59:13.658215+09:00",
     "cls": "8d5859112785",
-    "issue": 768
+    "issue": 768,
+    "page_checked_at": "2026-11-14T21:24:35.905153+09:00",
+    "details_checked": true
   },
   "da0630a8b5863b3d": {
     "store": "PlayStation取扱店・ECサイト",
