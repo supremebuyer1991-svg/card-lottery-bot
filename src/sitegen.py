@@ -3937,6 +3937,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     except Exception as e:
         print("Impact の確認タグ", e)
 
+    # 11/14：Amazon の在庫・招待リクエストのリンクは Worker（ほかのサイトと共通）が st9994ststst-22 で作っている。
+    # 同じアカウントのIDだが、サイト別の売上が見えるようにトレカ抽選ナビ用（amazon_tag）にそろえる
+    try:
+        at = s.get("amazon_tag")
+        if at and at != "st9994ststst-22":
+            for hp in Path(out).rglob("*.html"):
+                h = hp.read_text(encoding="utf-8")
+                if "st9994ststst-22" in h:
+                    hp.write_text(h.replace("st9994ststst-22", at), encoding="utf-8")
+    except Exception as e:
+        print("Amazonのタグ", e)
+
     if sample is None:
         save_json("site_meta.json", {"digest": digest, "updated": updated})
         save_json("page_lastmod.json", pmod)
