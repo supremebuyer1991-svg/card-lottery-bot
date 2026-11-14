@@ -14128,7 +14128,7 @@
     "end": null,
     "announce": null,
     "method": "招待リクエスト",
-    "conditions": "抽選は「招待リクエスト」形式とだけ書かれている。応募や購入の条件、会員登録の要否、本人確認、購入個数の上限、価格などは本文に記載がない。",
+    "conditions": null,
     "price": null,
     "round": null,
     "url": "https://snkrdunk.com/articles/32599/",
@@ -14149,7 +14149,7 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300"
     },
-    "cls": "93fec86095fc",
+    "cls": "ab7acabe3ba9",
     "issue": 763,
     "series_raw": "世界最強の戦士",
     "page_checked_at": "2026-11-14T21:06:14.474018+09:00",
@@ -15715,7 +15715,9 @@
       "store": "BANDAI SPIRITS（一番くじONLINE）"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：store"
+    "verify_note": "記事に合わせて直した：store",
+    "page_checked_at": "2026-11-14T21:16:31.461099+09:00",
+    "details_checked": true
   },
   "25a12a4dd3851419": {
     "store": "BANDAI SPIRITS",
@@ -15759,7 +15761,9 @@
     "verify_note": "記事に合わせて直した：store",
     "deadline_checked_at": "2026-11-14T18:39:15.760489+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし"
+    "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし",
+    "page_checked_at": "2026-11-14T21:16:37.774938+09:00",
+    "details_checked": true
   },
   "d0c2821a15ce5e3f": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15853,7 +15857,10 @@
     "facts_src": "https://1kuji.com/products",
     "verified_at": "2026-11-14T18:28:30.147203+09:00",
     "verified": false,
-    "verify_note": "記事と合わない：start・end・kind 記事では、この商品は店頭販売のみで2026年11月21日(土)より発売予定です。17:00の販売開始は、直前の『ちょこっと ホイッピ＆ラッピ』の行の日時で、この商品のものではありません。時刻の記載もないため、start・endはnullです。商品名に（再販売）とあるため、k"
+    "verify_note": "記事と合わない：start・end・kind 記事では、この商品は店頭販売のみで2026年11月21日(土)より発売予定です。17:00の販売開始は、直前の『ちょこっと ホイッピ＆ラッピ』の行の日時で、この商品のものではありません。時刻の記載もないため、start・endはnullです。商品名に（再販売）とあるため、k",
+    "page_checked_at": "2026-11-14T21:16:44.039955+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "4db7daa59d932e86": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -15922,7 +15929,10 @@
     "verified": true,
     "verify_note": "記事に合わせて直した：end",
     "multi": false,
-    "cls": "8019ca31c714"
+    "cls": "8019ca31c714",
+    "page_checked_at": "2026-11-14T21:16:50.639003+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "7d952f4e71e65f64": {
     "store": "BANDAI SPIRITS",
@@ -15961,7 +15971,10 @@
     "verified": false,
     "verify_note": "記事と合わない：store・start・end 記事のジョジョ項目は店頭が2026年11月21日(土)より順次発売予定、オンラインが2026年11月25日(水)17:00より販売開始予定です。店頭の販売時刻は記事に無く、23:59は作り物です。販売店としてBANDAI SPIRITSは書かれておらず、店舗は全国のコンビ",
     "multi": false,
-    "cls": "4f6e81eb6666"
+    "cls": "4f6e81eb6666",
+    "page_checked_at": "2026-11-14T21:16:56.892202+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "bd890dbe828a3c75": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",
@@ -16028,7 +16041,10 @@
     "verified": false,
     "verify_note": "記事と合わない：start・end 店頭販売は2026年11月27日(金)より順次発売予定と書かれているだけで時刻はありません。15:00は『オンライン販売』の販売開始時刻なので、店頭の開始日時として使うのは誤りです。endの23:59も記事にない時刻です。",
     "multi": false,
-    "cls": "8cd94fcd249b"
+    "cls": "8cd94fcd249b",
+    "page_checked_at": "2026-11-14T21:17:03.350435+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "ba2bc8d5ee67ca52": {
     "store": "BANDAI SPIRITS（一番くじONLINE）",

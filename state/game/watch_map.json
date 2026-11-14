@@ -5189,6 +5189,11 @@
     "azUrl": "https://www.amazon.co.jp/dp/B0DX7GZK1K?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
     "t": "MSI GeForce RTX 5070 12G GAMING TRIO OC WHITE グラフィックスボード VD9067"
   },
+  "4904810941576": {
+    "asin": "B0H1GWGDKW",
+    "azUrl": "https://www.amazon.co.jp/dp/B0H1GWGDKW?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+    "t": "ベイブレードX BX-00 コバルトドラグーン2-60C メタルコート：ブラック B4ストア限定"
+  },
   "_status": {
     "j4948872416504": {
       "s": "none",
@@ -9770,9 +9775,9 @@
     },
     "j4548736141797": {
       "s": "buy",
-      "p": 397200,
-      "u": "https://www.amazon.co.jp/dp/B0BH8NHJFR?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-      "at": "2026-11-10T06:46:39.243Z"
+      "p": 397191,
+      "u": "https://www.amazon.co.jp/dp/B0BH8NHJFR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+      "at": "2026-11-14T12:12:38.716Z"
     },
     "j4545350056452": {
       "s": "none",
@@ -10247,6 +10252,12 @@
       "p": 0,
       "u": "https://www.amazon.co.jp/dp/B0DX7GZK1K?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
       "at": "2026-11-12T14:00:39.062Z"
+    },
+    "j4904810941576": {
+      "s": "none",
+      "p": 0,
+      "u": "https://www.amazon.co.jp/dp/B0H1GWGDKW?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+      "at": "2026-11-14T12:12:39.030Z"
     }
   },
   "_st2": {
@@ -17005,9 +17016,9 @@
       },
       "j4548736141797": {
         "s": "buy",
-        "p": 397200,
-        "u": "https://www.amazon.co.jp/dp/B0BH8NHJFR?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
-        "at": "2026-11-10T06:46:39.243Z"
+        "p": 397191,
+        "u": "https://www.amazon.co.jp/dp/B0BH8NHJFR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+        "at": "2026-11-14T12:12:38.716Z"
       },
       "j4948872417655": {
         "s": "pre",
@@ -18526,6 +18537,12 @@
         "p": 63980,
         "u": "https://www.amazon.co.jp/dp/B0HM3FKH8L?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
         "at": "2026-11-14T04:02:39.650Z"
+      },
+      "j4904810941576": {
+        "s": "none",
+        "p": 0,
+        "u": "https://www.amazon.co.jp/dp/B0H1GWGDKW?tag=st9994ststst-22&linkCode=osi&th=1&psc=1",
+        "at": "2026-11-14T12:12:39.030Z"
       }
     }
   },
@@ -26122,6 +26139,13 @@
           "t": "2026-11-14T04:02:39.650Z",
           "s": "buy",
           "p": 63980
+        }
+      ],
+      "j4904810941576": [
+        {
+          "t": "2026-11-14T12:12:39.030Z",
+          "s": "none",
+          "p": 0
         }
       ]
     }
