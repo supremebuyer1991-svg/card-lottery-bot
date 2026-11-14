@@ -20044,7 +20044,8 @@
     "found_at": "2026-11-12T21:48:12.101008+09:00",
     "cls": "66ef94bb7519",
     "announce": "販売開始日までにメールで連絡",
-    "start": "2026-11-13T10:00:00+09:00"
+    "start": "2026-11-13T10:00:00+09:00",
+    "page_checked_at": "2026-11-14T16:36:27.295742+09:00"
   },
   "5b8942fa63af47a4": {
     "store": "楽天ブックス",
@@ -20072,7 +20073,8 @@
     "found_at": "2026-11-12T21:48:12.101021+09:00",
     "cls": "340e750aedd3",
     "announce": "販売開始日までにメールで連絡",
-    "start": "2026-11-13T10:00:00+09:00"
+    "start": "2026-11-13T10:00:00+09:00",
+    "page_checked_at": "2026-11-14T16:36:49.689664+09:00"
   },
   "0ba6a6b1a8042f32": {
     "store": "楽天ブックス",
@@ -20100,7 +20102,8 @@
     "found_at": "2026-11-12T21:48:12.101036+09:00",
     "cls": "ff85246c84aa",
     "announce": "販売開始日までにメールで連絡",
-    "start": "2026-11-13T10:00:00+09:00"
+    "start": "2026-11-13T10:00:00+09:00",
+    "page_checked_at": "2026-11-14T16:37:01.999253+09:00"
   },
   "62fd026b34ff1cb6": {
     "store": "ミント横浜ビブレ店",
@@ -20402,7 +20405,9 @@
     "status": "approved",
     "found_at": "2026-11-12T21:48:12.873700+09:00",
     "multi": true,
-    "cls": "e4f96b73efae"
+    "cls": "e4f96b73efae",
+    "page_checked_at": "2026-11-14T16:37:24.319046+09:00",
+    "address_checked": true
   },
   "d3d2551d20a91c28": {
     "store": "ブックオフ ドン・キホーテ秋田店",
@@ -20621,7 +20626,9 @@
     "found_at": "2026-11-12T21:48:53.531836+09:00",
     "multi": false,
     "cls": "ed590b651e0f",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-14T16:37:26.932258+09:00",
+    "page_err": "中身が空"
   },
   "e25c02609f0b0403": {
     "store": "TSUTAYA 流山おおたかの森駅前店",
@@ -20952,7 +20959,10 @@
     "status": "approved",
     "found_at": "2026-11-12T21:49:46.584368+09:00",
     "multi": false,
-    "cls": "393be7b85dbd"
+    "cls": "393be7b85dbd",
+    "page_checked_at": "2026-11-14T16:37:29.070557+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "082ee36185675789": {
     "store": "カードラボ 札幌店",
@@ -21278,7 +21288,11 @@
     "multi": false,
     "cls": "cc7bb392959f",
     "issue": 703,
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-14T16:37:33.762283+09:00",
+    "address": "東京都渋谷区神南1-11-4FPG",
+    "address_checked": true,
+    "details_checked": true
   },
   "f48eaf6760e62358": {
     "store": "ティアワン静岡",
@@ -21367,7 +21381,9 @@
     "tco_checked": true,
     "deadline_checked_at": "2026-11-13T01:29:34.622092+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像1/1枚読込・熊本の締切記載なし"
+    "deadline_note": "画像1/1枚読込・熊本の締切記載なし",
+    "page_checked_at": "2026-11-14T16:37:39.704571+09:00",
+    "page_err": "中身が空"
   },
   "0f626efc426b9ce1": {
     "store": "Amazon（リンク先から推定）",
@@ -21585,7 +21601,9 @@
     "deadline_v": 5,
     "deadline_note": "応募ページの中身が空",
     "issue": 706,
-    "cls": "26da6e16c25a"
+    "cls": "26da6e16c25a",
+    "page_checked_at": "2026-11-14T16:37:41.740456+09:00",
+    "page_err": "中身が空"
   },
   "d839f269dcbb3bfa": {
     "store": "オレタン福岡天神",
@@ -21706,7 +21724,7 @@
     "end": "2026-11-25T22:00:00+09:00",
     "announce": null,
     "method": "Web（フォーム入力）",
-    "conditions": null,
+    "conditions": "お一人様1BOXまで。応募受付は2026/11/25(水)22:00まで。発売日は11/27(金)。注意事項を読んでから応募するよう案内あり。",
     "url": "https://cardbox.online/news/detail/?id=1024",
     "x_post": "https://x.com/pachinker_m/status/2120899054548975619",
     "game": "pokemon",
@@ -21726,7 +21744,10 @@
     "deadline_note": "画像0/0枚読込・抽選受付期間：2026/11/25(水)22:00まで",
     "end_from": "応募ページ（抽選受付期間：2026/11/25(水)）",
     "multi": false,
-    "cls": "53c028de4a19"
+    "cls": "53c028de4a19",
+    "page_checked_at": "2026-11-14T16:37:44.167944+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "38c88e72c570b271": {
     "store": "ディセントゲーム新宿",
@@ -21785,7 +21806,9 @@
     "deadline_note": "画像0/0枚読込・本文に日時の記載なし",
     "issue": 707,
     "multi": true,
-    "cls": "99b99dfd2545"
+    "cls": "99b99dfd2545",
+    "page_checked_at": "2026-11-14T16:37:50.059437+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://youing-toreka.membercard.jp/lottery"
   },
   "0a7469164ace7e53": {
     "store": "ゲームプラザ元気（滋賀）",
@@ -22062,7 +22085,9 @@
     "found_at": "2026-11-13T05:52:03.746569+09:00",
     "multi": false,
     "cls": "e83bdfeeb457",
-    "tco_checked": true
+    "tco_checked": true,
+    "page_checked_at": "2026-11-14T16:37:50.095140+09:00",
+    "page_err": "中身が空"
   },
   "605434227b39807f": {
     "store": "麦わらストア8店（関西以外）",
@@ -22117,7 +22142,10 @@
     "status": "approved",
     "found_at": "2026-11-13T05:52:03.746635+09:00",
     "multi": false,
-    "cls": "217e8df6b346"
+    "cls": "217e8df6b346",
+    "page_checked_at": "2026-11-14T16:37:52.154149+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "598286a2bab03251": {
     "store": "麦わらストア 梅田店",
@@ -22177,7 +22205,9 @@
     "deadline_note": "画像0/0枚読込・締切：各店舗の応募ページで確認",
     "multi": true,
     "cls": "2361f431e1e2",
-    "issue": 713
+    "issue": 713,
+    "page_checked_at": "2026-11-14T16:37:58.186111+09:00",
+    "page_err": "中身が空"
   },
   "b2c80790b7edeb63": {
     "store": "王の洞窟岐南本店",
@@ -22429,7 +22459,9 @@
     "status": "pending",
     "found_at": "2026-11-13T11:39:19.334032+09:00",
     "cls": "e9d4e7835d70",
-    "hold_reason": "店名があいまい"
+    "hold_reason": "店名があいまい",
+    "page_checked_at": "2026-11-14T16:38:00.358318+09:00",
+    "details_checked": true
   },
   "f395c28e558903ed": {
     "store": "楽天ブックス",
@@ -22684,7 +22716,9 @@
     "found_at": "2026-11-13T11:39:29.093988+09:00",
     "multi": true,
     "cls": "ed727f49d453",
-    "start": "2026-11-13T10:00:00+09:00"
+    "start": "2026-11-13T10:00:00+09:00",
+    "page_checked_at": "2026-11-14T16:38:03.640304+09:00",
+    "address_checked": true
   },
   "146b3b922a84c708": {
     "store": "エディオン各店・エディオンネットショップ",
@@ -22714,7 +22748,8 @@
     "cls": "814f9bed5a5b",
     "announce": "11月26日(木)",
     "buy": "11/27(金)",
-    "start": "2026-11-13T10:00:00+09:00"
+    "start": "2026-11-13T10:00:00+09:00",
+    "page_checked_at": "2026-11-14T16:38:06.231759+09:00"
   },
   "1719e3c1f2ded157": {
     "store": "トレカオーシャン",
@@ -22741,7 +22776,9 @@
     "key": "1719e3c1f2ded157",
     "status": "approved",
     "found_at": "2026-11-13T11:39:29.094022+09:00",
-    "cls": "4dc03505d27e"
+    "cls": "4dc03505d27e",
+    "page_checked_at": "2026-11-14T16:38:08.840335+09:00",
+    "page_err": "中身が空"
   },
   "268094a071b6f0b4": {
     "store": "コーギーアール名古屋店",
@@ -22794,7 +22831,8 @@
     "key": "9033592e869bf647",
     "status": "approved",
     "found_at": "2026-11-13T11:39:29.094055+09:00",
-    "cls": "8dc26edafa63"
+    "cls": "8dc26edafa63",
+    "page_checked_at": "2026-11-14T16:38:10.976273+09:00"
   },
   "410df321646935dc": {
     "store": "トレカショップ カドデ（岐阜県各務原市・2027年1月2日オープン）",
@@ -22932,7 +22970,9 @@
     "status": "approved",
     "found_at": "2026-11-13T11:39:29.094132+09:00",
     "multi": false,
-    "cls": "2a92af6e68b9"
+    "cls": "2a92af6e68b9",
+    "page_checked_at": "2026-11-14T16:38:13.646012+09:00",
+    "page_err": "中身が空"
   },
   "5f812558d53dc9b4": {
     "store": "お宝あっとマーケットmini 千葉ニュータウン店",
@@ -26725,7 +26765,7 @@
     "url": "https://livepocket.jp/e/1h168",
     "x_post": null,
     "channel": "store",
-    "area": null,
+    "area": "神奈川県",
     "method": "店頭",
     "conditions": "会員・本人確認",
     "tags": [
@@ -26741,7 +26781,9 @@
     "no_quote": true,
     "key": "a4ef38efebe39182",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.435186+09:00"
+    "found_at": "2026-11-14T13:28:57.435186+09:00",
+    "multi": false,
+    "cls": "a44311f626a7"
   },
   "89f9d74319714e7e": {
     "store": "TSUTAYA籠原店",

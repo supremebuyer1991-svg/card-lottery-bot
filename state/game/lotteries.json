@@ -3709,7 +3709,16 @@
     "cls": "d9748a15eae4",
     "official_checked": true,
     "verified_at": "2026-11-13T21:29:03.356967+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "Amazon.co.jpで予約受付中",
+      "Amazon.co.jpでの販売価格は6,780円（税込）",
+      "表情パーツは「ぼんやり顔」「笑顔」「鼻血顔」",
+      "学生カバン、目安箱、絆創膏シールなどが付属",
+      "プラスチック製塗装済み可動、ノンスケール、全高約100mm",
+      "2027年5月31日発売予定"
+    ],
+    "facts_src": "https://hobby.dengeki.com/news/3225734/"
   },
   "ee5e342ae40428d7": {
     "store": "郵便局",
@@ -3813,7 +3822,12 @@
     "verified_at": "2026-11-12T22:00:32.740328+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T15:48:12.661656+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "記事の「抽選・予約応募受付中」欄に掲載",
+      "応募は本坊酒造の応募ページ（shop-hombo.jp）から行う"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/97230"
   },
   "ae9780529849aca9": {
     "store": "MrMax（アプリ）",
@@ -3886,7 +3900,14 @@
     "verified_at": "2026-11-12T22:00:27.102333+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T15:48:19.877384+09:00",
-    "page_err": "404 Client Error: Not Found for url: https://whiskymew.jp/items/2182192200101.html"
+    "page_err": "404 Client Error: Not Found for url: https://whiskymew.jp/items/2182192200101.html",
+    "facts": [
+      "対象は3種類で、初号機ラベル／スプリングバンク2000は154,000円",
+      "弐号機ラベル／グレンエルギン2009は19,800円",
+      "零号機ラベル／シークレットスペイサイド2007は18,700円",
+      "当選数はおひとり様2本まで"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/97230"
   },
   "eb6817e12031e86e": {
     "store": "イオン南関東店舗",
@@ -3922,7 +3943,15 @@
     "verified_at": "2026-11-12T22:00:27.102313+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T15:48:20.805394+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "facts": [
+      "税込7,700円（本体価格7,000円）",
+      "当選発表は12/12(金)13:00～17:00",
+      "応募にはイオンお買物アプリの登録が必要",
+      "応募はイオン南関東店舗限定",
+      "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外あり）"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/97230"
   },
   "64b7bb0c6b08af46": {
     "store": "イオン南関東店舗",
@@ -5316,7 +5345,9 @@
       "竹鶴ピュアモルト・フロムザバレルは12月2日(水)〜5日(土)に受け取り",
       "山崎・白州・響 JAPANESE HARMONYは12月9日(水)〜12日(土)に受け取り"
     ],
-    "facts_src": "https://nyuka-now.com/archives/162385"
+    "facts_src": "https://nyuka-now.com/archives/162385",
+    "page_checked_at": "2026-11-14T16:42:40.430980+09:00",
+    "address_checked": true
   },
   "ed7f8e09db9503be": {
     "store": "オーケーストア 関西店舗",
@@ -5361,7 +5392,9 @@
       "当選発表は11月26日(木)",
       "響の受け取りは12月9日(水)〜12日(土)"
     ],
-    "facts_src": "https://nyuka-now.com/archives/162385"
+    "facts_src": "https://nyuka-now.com/archives/162385",
+    "page_checked_at": "2026-11-14T16:42:43.125144+09:00",
+    "address_checked": true
   },
   "d6fb05c5ceed3e8d": {
     "store": "オーケーストア 関西店舗",
@@ -5406,7 +5439,9 @@
       "当選発表は11月26日(木)",
       "竹鶴ピュアモルトの受け取りは12月2日(水)〜5日(土)"
     ],
-    "facts_src": "https://nyuka-now.com/archives/162385"
+    "facts_src": "https://nyuka-now.com/archives/162385",
+    "page_checked_at": "2026-11-14T16:42:43.125368+09:00",
+    "address_checked": true
   },
   "a17de5d1eb20f2fe": {
     "store": "オーケーストア 関西店舗",
@@ -5452,7 +5487,9 @@
       "フロム ザ バレルの受け取りは12月2日(水)〜5日(土)",
       "山崎・白州・響 JAPANESE HARMONYは12月9日(水)〜12日(土)に受け取り"
     ],
-    "facts_src": "https://nyuka-now.com/archives/162385"
+    "facts_src": "https://nyuka-now.com/archives/162385",
+    "page_checked_at": "2026-11-14T16:42:43.125593+09:00",
+    "address_checked": true
   },
   "067d67286b4bb5c3": {
     "store": "フルコンプ",
@@ -5581,7 +5618,9 @@
     "deadline_checked_at": "2026-11-14T15:26:36.924143+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・受付期間：11日12時～15日11時59分",
-    "end_from": "応募ページ（受付期間：11日12時～15日11時59）"
+    "end_from": "応募ページ（受付期間：11日12時～15日11時59）",
+    "page_checked_at": "2026-11-14T16:42:43.125802+09:00",
+    "details_checked": true
   },
   "1237383f30ffbce6": {
     "store": "イトーヨーカドー",
@@ -5614,7 +5653,9 @@
     "deadline_checked_at": "2026-11-14T15:26:39.044678+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・11日12時～15日11時59分（午前）",
-    "end_from": "応募ページ（11日12時～15日11時59分（午前））"
+    "end_from": "応募ページ（11日12時～15日11時59分（午前））",
+    "page_checked_at": "2026-11-14T16:42:49.408346+09:00",
+    "details_checked": true
   },
   "c1c8aabb7d51920d": {
     "store": "イトーヨーカドー",
@@ -6342,15 +6383,18 @@
     "found_at": "2026-11-14T16:01:48.873104+09:00",
     "multi": false,
     "cls": "f9e17b1c773f",
-    "issue": 753
+    "issue": 753,
+    "deadline_checked_at": "2026-11-14T16:42:35.946408+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の記載なし（ガシャポン再販）"
   },
   "ed0eb35fa98d34a1": {
     "store": "プレミアムバンダイ",
     "product": "HG 1/144 ガンダムヴァサーゴ",
     "series": "ガンダムヴァサーゴ",
     "kind": "lottery",
-    "start": null,
-    "end": null,
+    "start": "2026-11-02T12:00:00+09:00",
+    "end": "2026-11-09T15:00:00+09:00",
     "announce": null,
     "method": "Web",
     "conditions": null,
@@ -6368,10 +6412,15 @@
     "source": "Googleニュース「ガンプラ 再販 予定」",
     "source_url": "https://topics.smt.docomo.ne.jp/amp/article/insidegames/trend/insidegames-190939",
     "key": "ed0eb35fa98d34a1",
-    "status": "pending",
+    "status": "expired",
     "found_at": "2026-11-14T16:01:48.873135+09:00",
     "cls": "91e882e4aac6",
-    "issue": 754
+    "issue": 754,
+    "deadline_checked_at": "2026-11-14T16:42:38.310307+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・11月2日12時～11月9日15時まで",
+    "end_from": "応募ページ（11月2日12時～11月9日15時まで）",
+    "closed_at": "2026-11-14T16:43:52.590165+09:00"
   },
   "58655ab66155fe3e": {
     "store": "バンダイ",
@@ -6622,7 +6671,7 @@
     "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】＋ エクストラブースター「ONE PIECE Heroines Edition vol.2」【EB-05】 各1BOXの2箱セット（24名様・11,520円／送料着払）",
     "end": "2026-11-18T23:59:00+09:00",
     "url": "https://x.com/cherumo2010/status/2114642094862242267",
-    "channel": "store",
+    "channel": "online",
     "method": "SNS応募",
     "conditions": "SNS応募",
     "tags": [
@@ -12156,7 +12205,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "6ab8253c3aa8"
   },
   "tca4ef38efebe39182": {
     "store": "フタバ図書TSUTAYA GIGA上安店",
@@ -12185,7 +12236,10 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
-    }
+    },
+    "area": "神奈川県",
+    "multi": false,
+    "cls": "a44311f626a7"
   },
   "tc89f9d74319714e7e": {
     "store": "TSUTAYA籠原店",
@@ -12216,7 +12270,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "61fa1e0d921c"
   },
   "tcd994b9106aa96edb": {
     "store": "TSUTAYA二十世紀が丘店",
@@ -12247,7 +12303,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "a777083fcced"
   },
   "tc443843682f325a89": {
     "store": "TSUTAYA宇都宮南店",
@@ -12278,7 +12336,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "8bdb8693e4f4"
   },
   "tcdb19c535c402c57d": {
     "store": "TSUTAYA仙台荒井店",
@@ -12309,7 +12369,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "bcbd16784b2b"
   },
   "tcecbd7bdc46eb8877": {
     "store": "TSUTAYA御座店",
@@ -12340,7 +12402,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "1af7b9788bd9"
   },
   "tcb2e87e9c2ca6f7cc": {
     "store": "ビッグワンTSUTAYA さくら店",
@@ -12369,7 +12433,10 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
-    }
+    },
+    "area": "栃木県",
+    "multi": false,
+    "cls": "504019edf8d8"
   },
   "tcd81b805e53e40232": {
     "store": "TSUTAYA400号西那須野店トレカ売場",
@@ -13362,7 +13429,9 @@
     "key": "67c3fa1ffa99847b",
     "status": "pending",
     "found_at": "2026-11-14T16:18:54.769411+09:00",
-    "issue": 759
+    "issue": 759,
+    "multi": false,
+    "cls": "adc798d75833"
   },
   "e97337e3256a798e": {
     "store": "キデイランド",
@@ -13418,7 +13487,9 @@
     "key": "870ca090e113a6f2",
     "status": "pending",
     "found_at": "2026-11-14T16:18:54.769511+09:00",
-    "issue": 760
+    "issue": 760,
+    "multi": false,
+    "cls": "c3b8c40b5b63"
   },
   "94a0b998d557e5b7": {
     "store": "ちいかわクリニック",
@@ -13446,7 +13517,9 @@
     "key": "94a0b998d557e5b7",
     "status": "pending",
     "found_at": "2026-11-14T16:18:54.769550+09:00",
-    "issue": 761
+    "issue": 761,
+    "multi": false,
+    "cls": "e39a4ff54431"
   },
   "86f127c1cd9061ba": {
     "store": "CDG（コム デ ギャルソン）",
@@ -13474,7 +13547,9 @@
     "key": "86f127c1cd9061ba",
     "status": "pending",
     "found_at": "2026-11-14T16:19:17.903936+09:00",
-    "issue": 762
+    "issue": 762,
+    "multi": false,
+    "cls": "4bc969fadeeb"
   },
   "8d088b8f1cbb55cc": {
     "store": "楽天",
@@ -13502,7 +13577,8 @@
     "key": "8d088b8f1cbb55cc",
     "status": "pending",
     "found_at": "2026-11-14T16:19:31.064273+09:00",
-    "hold_reason": "店名があいまい"
+    "hold_reason": "店名があいまい",
+    "cls": "2cce4bfe99ef"
   },
   "ae0fc439c984a415": {
     "store": "楽天",
