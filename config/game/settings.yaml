@@ -78,6 +78,7 @@ rakuten_max_calls_per_run: 15   # 1回の実行で楽天APIを呼ぶ回数の上
 rakuten_photo_calls_per_run: 6   # 楽天ブックスに無い商品の写真を楽天市場から探す回数（1回の実行で。11/14）
 rakuten_photo_refresh_days: 7   # 同じ商品の写真を探し直すのは7日に1回
 premium_photo_per_run: 15   # 買取相場の商品で写真が無いものを、楽天市場でJANを使って探す件数（1回の実行で。11/14）
+premium_az_photo_per_run: 15   # それでも写真が無い商品を、AmazonでJANを使って探す件数（1回の実行で。11/14）
 rakuten_refresh_hours: 24       # 同じ商品を探し直すのは24時間に1回まで（見つからなかったものも）
 amazon_invite:              # トップの一番上に固定で出す「Amazonの招待リクエスト」の案内（url が空なら出さない）
   enabled: false

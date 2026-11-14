@@ -78,3 +78,20 @@ def test_photo_update_needs_jan(tmp_path, monkeypatch):
     ph = gp.photo_update({}, fetch=fetch, sleep=lambda s: None)
     assert ph["4548736000001"]["itemUrl"] == "https://item.rakuten.co.jp/b/2/" and ph["4548736000001"]["img"] == "https://x/2.jpg"
     assert "img" not in ph["4548736000002"]
+
+
+def test_az_photo_update_needs_same_ean(monkeypatch):
+    import game_premium as gp
+    saved = {}
+    monkeypatch.setattr(gp, "save_json", lambda n, d: saved.update({n: d}))
+    monkeypatch.setattr(gp, "load_json", lambda n, d: {"4548736000001": {"at": "2026-11-14T00:00:00+09:00"}})
+    monkeypatch.setattr(gp, "catalog", lambda s, w: [{"jan": "4548736000001", "name": "α7 V", "max": 300000, "img": ""},
+                                                       {"jan": "4548736000002", "name": "α7C", "max": 200000, "img": ""}])
+    monkeypatch.setattr(gp, "watch_map_cached", lambda: {})
+    def search(jan, tag):
+        it = {"asin": "B0X", "detailPageURL": "https://www.amazon.co.jp/dp/B0X?tag=t-22", "itemInfo": {"title": {"displayValue": "α7"},
+              "externalIds": {"eans": {"displayValues": ["4548736000001"]}}}, "images": {"primary": {"large": {"url": "https://m.media-amazon.com/a.jpg"}}}}
+        return [it]
+    ph = gp.az_photo_update({"amazon_tag": "t-22"}, search=search, sleep=lambda s: None)
+    assert ph["4548736000001"]["az"]["img"] == "https://m.media-amazon.com/a.jpg" and ph["4548736000001"]["at"]
+    assert "img" not in ph["4548736000002"]["az"]   # JANが違う商品は使わない

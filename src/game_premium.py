@@ -238,11 +238,93 @@ def photo_update(settings, fetch=None, sleep=None):
             if "hb.afl.rakuten.co.jp" in url:
                 from urllib.parse import parse_qs, urlparse
                 url = (parse_qs(urlparse(best.get("itemUrl")).query).get("pc") or [url])[0].split("?")[0]
-            ph[x["jan"]] = {"img": game_affi._image(best), "itemUrl": url, "title": best.get("itemName") or "", "at": t.isoformat()}
+            ph[x["jan"]] = dict(ph.get(x["jan"]) or {}, img=game_affi._image(best), itemUrl=url, title=best.get("itemName") or "", at=t.isoformat())
             log(f"相場の写真: {x['name'][:30]} → {(best.get('itemName') or '')[:30]}")
         else:
-            ph[x["jan"]] = {"at": t.isoformat()}
+            ph[x["jan"]] = dict(ph.get(x["jan"]) or {}, at=t.isoformat())
         sleep(1.2)
+    save_json(PHOTO, ph)
+    return ph
+
+
+def _amz_token():
+    import os
+    import requests
+    ver = (os.environ.get("AMAZON_CREDENTIAL_VERSION") or "").strip().lstrip("v")
+    url = {"3.1": "https://api.amazon.com/auth/o2/token", "3.2": "https://api.amazon.co.uk/auth/o2/token"}.get(ver, "https://api.amazon.co.jp/auth/o2/token")
+    r = requests.post(url, json={"grant_type": "client_credentials", "client_id": os.environ["AMAZON_CREDENTIAL_ID"].strip(),
+                                 "client_secret": os.environ["AMAZON_CREDENTIAL_SECRET"].strip(), "scope": "creatorsapi::default"}, timeout=20)
+    r.raise_for_status()
+    return r.json()["access_token"]
+
+
+def _amz_search(jan, tag, tok):
+    import requests
+    r = requests.post("https://creatorsapi.amazon/catalog/v1/searchItems", timeout=20,
+                      headers={"Authorization": f"Bearer {tok}", "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp"},
+                      json={"keywords": jan, "searchIndex": "All", "marketplace": "www.amazon.co.jp", "partnerTag": tag, "itemCount": 5,
+                            "resources": ["itemInfo.title", "itemInfo.externalIds", "images.primary.medium", "images.primary.large"]})
+    if r.status_code != 200:
+        raise RuntimeError(f"Amazon {r.status_code} {r.text[:120]}")
+    return (r.json().get("searchResult") or {}).get("items") or []
+
+
+def az_photo_update(settings, search=None, sleep=None):
+    """楽天でも写真が見つからなかった商品の写真を、AmazonでJANを使って探す（11/14 ユーザー：Amazonからも写真とってきたらええやん）。
+    AmazonのJAN（EAN）がこちらのJANと同じ商品だけ使う。写真はAmazonの商品ページ（アフィリエイト）に飛ばす（Amazonの決まり）。
+    1回 premium_az_photo_per_run 件・見つからなかったものは14日後にもう一度"""
+    import os
+    import time
+    import game_affi
+    sleep = sleep if sleep is not None else time.sleep
+    if search is None:
+        if not (os.environ.get("AMAZON_CREDENTIAL_ID") and os.environ.get("AMAZON_CREDENTIAL_SECRET")):
+            return {}
+        tok = {}
+
+        def search(jan, tag):
+            if "t" not in tok:
+                tok["t"] = _amz_token()
+            return _amz_search(jan, tag, tok["t"])
+    from common import job_elapsed
+    ph = load_json(PHOTO, {})
+    t = now()
+    tag = game_affi.amazon_tag(settings)
+    todo = [x for x in catalog(settings, watch_map_cached()) if not x.get("img")]
+    todo.sort(key=lambda x: -(x.get("max") or 0))
+    left = int(settings.get("premium_az_photo_per_run", 15))
+    for x in todo:
+        if left <= 0 or job_elapsed() > float(settings.get("rakuten_until_sec", 300)):
+            break
+        c = (ph.get(x["jan"]) or {}).get("az")
+        if c and (c.get("img") or (parse_dt(c.get("at")) and (t - parse_dt(c["at"])).total_seconds() < 14 * 86400)):
+            continue
+        left -= 1
+        try:
+            items = search(x["jan"], tag)
+        except Exception as e:
+            log(f"相場の写真（Amazon）: {x['jan']} 取得失敗 {e}")
+            if "401" in str(e) or "403" in str(e):
+                break
+            sleep(1.1)
+            continue
+        best = None
+        for it in items:
+            eans = (((it.get("itemInfo") or {}).get("externalIds") or {}).get("eans") or {}).get("displayValues") or []
+            img = (((it.get("images") or {}).get("primary") or {}).get("large") or {}).get("url") or \
+                  (((it.get("images") or {}).get("primary") or {}).get("medium") or {}).get("url")
+            if img and any(str(e).lstrip("0") == x["jan"].lstrip("0") for e in eans):
+                best = (it, img)
+                break
+        ent = ph.setdefault(x["jan"], {})
+        if best:
+            it, img = best
+            ent["az"] = {"img": img, "url": it.get("detailPageURL") or f"https://www.amazon.co.jp/dp/{it.get('asin')}?tag={tag}",
+                         "title": (((it.get("itemInfo") or {}).get("title") or {}).get("displayValue") or "")[:80], "at": t.isoformat()}
+            log(f"相場の写真（Amazon）: {x['name'][:30]} → {ent['az']['title'][:30]}")
+        else:
+            ent["az"] = {"at": t.isoformat()}
+        sleep(1.1)
     save_json(PHOTO, ph)
     return ph
 
@@ -340,10 +422,14 @@ def catalog(settings=None, wmap=None):
         if NOT_HOBBY.search(" ".join([name, tk.get("title") or "", (tk.get("caption") or "")[:200]] + x["names"])):   # 楽天の商品名・説明で分かるトレカ・家電も外す
             continue
         _ph = _photos.get(jan) or {}   # 写真が無ければ楽天市場で見つけた写真と商品ページ（photo_update）
+        _az = _ph.get("az") or {}      # それでも無ければAmazonの写真（az_photo_update）
         out.append({"jan": jan, "name": name, "names": x["names"], "teika": price, "max": x["max"], "store": x["store"],
                     "prices": sorted(x["prices"].items(), key=lambda kv: -kv[1]), "ratio": r,
-                    "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", "") or (_ph.get("itemUrl", "") if _ph.get("img") else ""), "azUrl": wm.get("azUrl", ""),
-                    "img": tk.get("img") or wm.get("img", "") or _ph.get("img", ""), "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
+                    "itemUrl": tk.get("itemUrl") or wm.get("rkUrl", "") or (_ph.get("itemUrl", "") if _ph.get("img") else ""),
+                    "azUrl": wm.get("azUrl", "") or _az.get("url", ""),
+                    "img": tk.get("img") or wm.get("img", "") or _ph.get("img", "") or _az.get("img", ""),
+                    "img_az": not (tk.get("img") or wm.get("img") or _ph.get("img")) and bool(_az.get("img")),   # Amazonの写真（Amazonの商品ページに飛ばす）
+                    "hist": h, "w1": _ago(h, 7, today), "m1": _ago(h, 30, today),
                     "teika_note": tnote,
                     "sales_date": tk.get("sales_date", "") or ov.get("sales_date", ""), "maker": tk.get("maker", ""), "hardware": tk.get("hardware", ""), "caption": tk.get("caption", "")})
     out.sort(key=lambda x: (x["ratio"] is None, -(x["ratio"] or 0), -x["max"]))
@@ -828,7 +914,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
         img = f'<img src="{escape(x["img"])}" alt="{escape(x["name"])}" width="120" height="120" loading="lazy">' if x["img"] else ""
-        if img and x.get("itemUrl"):   # 写真から楽天の商品ページへ（アフィリエイト。11/14）
+        if img and x.get("img_az") and x.get("azUrl"):   # Amazonの写真はAmazonの商品ページへ
+            img = f'<a href="{escape(x["azUrl"])}" target="_blank" rel="nofollow sponsored noopener">{img}</a>'
+        elif img and x.get("itemUrl"):   # 写真から楽天の商品ページへ（アフィリエイト。11/14）
             img = f'<a href="{escape(rakuten_link(x["itemUrl"], aff_id))}" target="_blank" rel="nofollow sponsored noopener">{img}</a>'
         _rb = x.get("teika_note") == "楽天ブックスの販売価格"   # 定価が分からず、楽天ブックスの販売価格を使っているとき（11/14）
         tk = ((f'楽天ブックスの販売価格 {x["teika"]:,}円' if _rb else f'定価 {x["teika"]:,}円' + (f'<small>（{escape(x["teika_note"])}）</small>' if x.get("teika_note") else ""))
@@ -1013,7 +1101,8 @@ def product_index(settings, live_rows):
             continue
         out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],
                                         "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "tn": x.get("teika_note", ""),
-                                        "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", "")})
+                                        "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", ""),
+                                        "imgu": x.get("azUrl", "") if x.get("img_az") else ""})
     seen = set()
     from dedupe import norm_product
     for r in live_rows:
@@ -1056,7 +1145,7 @@ def plist_html(prods):
     """商品のカード一覧（写真・商品名・定価・最高買取・定価比・楽天/Amazon/詳細を見る）。スマホでは1商品ずつ大きめのカードで、ボタンは下に横並び"""
     out = []
     for p in prods:
-        img = (f'<a class="pc-img" href="{escape(p.get("rk") or p["url"])}"{" target=_blank rel=\"nofollow sponsored noopener\"" if p.get("rk") else ""} tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
+        img = (f'<a class="pc-img" href="{escape(p.get("imgu") or p.get("rk") or p["url"])}"{" target=_blank rel=\"nofollow sponsored noopener\"" if (p.get("imgu") or p.get("rk")) else ""} tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
                if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
         nums = [f'<div><small>{tword(p, True)}</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
         if p.get("max"):

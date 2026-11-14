@@ -84,6 +84,10 @@ jobs:
           SITE_URL_GAME: ${{ vars.SITE_URL_GAME }}
           AMAZON_TAG_GAME: ${{ vars.AMAZON_TAG_GAME }}
           AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+          # 写真の無い商品の写真をAmazonから（Creators API。見張りと同じ鍵。11/14）
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
+          AMAZON_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREDENTIAL_VERSION }}
           # 楽天ブックスの商品写真・商品ページ（トレカと同じ鍵。Referer は楽天に登録してあるトレカのサイトのURL）
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
