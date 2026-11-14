@@ -778,7 +778,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "",
              # どのジャンルにも入らず、定価も無く、買取店1店だけで、商品の事実も無いページは検索に出さない（11/14 Fable：
              # サイトのテーマと関係ない家電などが混ざっていて、中身も薄い）。ページは残す
-             noindex=bool(x.get("stale") or (not _cid and not x["teika"] and len(x.get("prices") or []) <= 1 and not has_material(x))))
+             # 11/14：「ジャンルなし・定価なし・買取店1店」も外していたが、いちばんクリックされている「時のオカリナ」まで外れた。
+             # 家電は「家電・カメラ」に入ったので、その決まりはやめる（買取店から消えた商品だけ外す）
+             noindex=bool(x.get("stale")))
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
