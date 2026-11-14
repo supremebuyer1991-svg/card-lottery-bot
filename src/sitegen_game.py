@@ -116,7 +116,7 @@ def side_html(cats, cur_game=None, cur=None, counts=True):
     cats = sorted(cats, key=lambda c: -PCOUNTS.get(c["id"], 0))   # 商品の多いカテゴリから（11/9 ユーザーの指示）
     cl = "".join(f'<a href="/{escape(c["slug"])}/"{here if cur_game == c["id"] else ""}>{escape(c["short"])}'
                  + (f'<span class="n">{PCOUNTS[c["id"]]}</span>' if PCOUNTS.get(c["id"]) else "") + "</a>" for c in cats)
-    pages = (f'<a href="/"{here if cur == "premium" else ""}>プレミア商品一覧</a>'
+    pages = (f'<a href="/premium/"{here if cur == "premium" else ""}>プレミア商品一覧</a>'
              f'<a href="/souba/"{here if cur == "souba" else ""}>買取相場</a>'
              f'<a href="/calendar/"{here if cur == "calendar" else ""}>発売カレンダー</a>'
              f'<a href="/new/"{here if cur == "new" else ""}>発売予定・予約</a>')
@@ -693,6 +693,80 @@ def _write_x_queue(out, items, site, t=None):
     return q
 
 
+TOP_CSS = (".tp-sec{margin:18px 0 22px}.tp-sec h2{display:flex;align-items:center;gap:8px;font-size:19px;margin:0 0 10px;padding-left:10px;border-left:4px solid #ffd23f}"
+           ".tp-sec h2 small{font-size:12px;font-weight:700;color:#8a93a6}.tp-more{display:inline-block;margin-top:10px;font-weight:800;color:#ffd23f}"
+           ".sk{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}"
+           ".sk-i{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #262c3a;border-radius:12px;background:#141823;color:#e9edf5;text-decoration:none}"
+           ".sk-i:hover{border-color:#ffd23f}.sk-i img,.sk-i .ni{flex:0 0 64px;width:64px;height:64px;border-radius:8px;object-fit:contain;background:#fff}"
+           ".sk-i b{display:block;font-size:14px;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}"
+           ".sk-tag{display:inline-block;margin:4px 6px 0 0;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:800;background:#ffd23f;color:#0b0d12}"
+           ".sk-tag.pre{background:#5ee0ff}.sk-tag.off{background:#3a4152;color:#c3c9d6}.sk-m{font-size:12px;color:#8a93a6}.sk-i.off{opacity:.6}")
+TOP_JS = ("<script>(function(){var n=Date.now();document.querySelectorAll('[data-ago]').forEach(function(e){var m=Math.max(0,Math.round((n-Date.parse(e.dataset.ago))/60000));"
+          "e.textContent=m<60?m+'分前':m<1440?Math.round(m/60)+'時間前':Math.round(m/1440)+'日前';});})();</script>")
+
+
+def _sokuhou(wmap, allx, limit=8):
+    """トップの「最新の速報」：見張り（楽天・Amazon）が「売り切れ→販売・予約・招待」になったのを見つけた商品。新しい順。
+    いまも売っているものは「販売中」、もう売り切れたものは薄く「終了」"""
+    by_jan = {x["jan"]: x for x in allx}
+    hist, st2 = (wmap or {}).get("_hist") or {}, (wmap or {}).get("_st2") or {}
+    ev = []
+    for shop in ("rk", "az"):
+        for k, lst in (hist.get(shop) or {}).items():
+            if not k.startswith("j") or k[1:] not in by_jan:
+                continue
+            lst = lst or []
+            for n_, e in enumerate(lst):   # 新しい順。「売り切れ→販売・予約・招待」に変わった時だけ（いつも売っている商品は速報ではない）
+                if e.get("s") in ("buy", "pre", "invite") and n_ + 1 < len(lst) and lst[n_ + 1].get("s") == "none":
+                    ev.append((e.get("t") or "", shop, k, e))
+                    break   # 一番新しいものだけ
+    ev.sort(key=lambda v: v[0], reverse=True)
+    out, seen = [], set()
+    lab = {"buy": "販売中", "pre": "予約受付中", "invite": "招待受付中"}
+    for t, shop, k, e in ev:
+        if k in seen:
+            continue
+        seen.add(k)
+        x = by_jan[k[1:]]
+        cur = ((st2.get(shop) or {}).get(k) or {})
+        live = cur.get("s") in ("buy", "pre", "invite")
+        where = "楽天ブックス" if shop == "rk" else "Amazon"
+        tag = (f'<span class="sk-tag{" pre" if cur.get("s") != "buy" else ""}">{lab[cur["s"]]}</span>' if live else '<span class="sk-tag off">いまは売り切れ</span>')
+        price = e.get("p") or cur.get("p")
+        img = f'<img src="{escape(x["img"])}" alt="" loading="lazy" width="64" height="64">' if x.get("img") else '<span class="ni"></span>'
+        out.append(f'<a class="sk-i{"" if live else " off"}" href="/premium/{escape(x["jan"])}/">{img}<span><b>{escape(x["name"])}</b>'
+                   f'{tag}<span class="sk-m">{where}{f" {int(price):,}円" if price else ""} ・ <span data-ago="{escape(t)}"></span></span></span></a>')
+        if len(out) >= limit:
+            break
+    return "".join(out)
+
+
+def _top_blocks(allx, wmap, cats, counts, s):
+    """トップ（11/14 ユーザー「1いこ」）：最新の速報 → 定価より高く売れるTOP10 →（締切が近い抽選は一覧の部分）→ ジャンル"""
+    import game_premium
+    import game_affi
+    aff = game_affi.affiliate_id(s)
+    sk = _sokuhou(wmap, allx)
+    top = f"<style>{TOP_CSS}</style><style>{game_premium.CSS}</style>"
+    if sk:
+        top += ('<section class="tp-sec"><h2>最新の速報<small>楽天ブックス・Amazonで定価販売・予約が始まった商品</small></h2>'
+                f'<div class="sk">{sk}</div><p class="note">見張りが2分ごとに確かめています。始まったらXですぐお知らせします。</p></section>')
+    prem = [x for x in allx if x.get("ratio") and x["ratio"] >= float(s.get("premium_min_ratio", 1.03))]
+    prem.sort(key=lambda x: -x["ratio"])
+    if prem:
+        cards = [{"name": x["name"], "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
+                  "tn": x.get("teika_note", ""), "store": x["store"], "ratio": x["ratio"],
+                  "rk": game_affi.rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", ""),
+                  "imgu": x.get("azUrl", "") if x.get("img_az") else ""} for x in prem[:10]]
+        top += ('<section class="tp-sec"><h2>定価より高く売れる TOP10<small>買取店の新品の最高買取 ÷ 定価</small></h2>'
+                f'{game_premium.plist_html(cards)}<a class="tp-more" href="/premium/">プレミア商品一覧をすべて見る（{len(prem)}件）→</a></section>')
+    chips = "".join(f'<li><a href="/{escape(c["slug"])}/">{escape(c["short"])}<small>{counts.get(c["id"], 0)}</small></a></li>'
+                    for c in sorted(cats, key=lambda c: -counts.get(c["id"], 0)) if counts.get(c["id"]))
+    bottom = (f'<style>{game_premium.SG_CSS}</style><section class="tp-sec"><h2>ジャンルから探す</h2><ul class="sgmenu">{chips}</ul>'
+              '<p><a class="tp-more" href="/chusen/">受付中の抽選・予約をすべて見る →</a></p></section>' + TOP_JS)
+    return top, bottom
+
+
 def _simple_page(cats, html):
     """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
     css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
@@ -767,8 +841,6 @@ def _gone_redirects(out, pmod, limit=1800):
         while parts and not (out / "/".join(parts) / "index.html").exists():
             parts.pop()
         to = "/" + "/".join(parts) + "/" if parts else "/"
-        if to == "/premium/":
-            to = "/"
         last = str(v[1] or "") if isinstance(v, list) and len(v) > 1 else ""
         rows.append((last, f"/{p}/ {to} 301"))
     rows.sort(key=lambda r: r[0], reverse=True)   # 新しく消えたものを優先
@@ -1232,7 +1304,7 @@ def build(settings=None, out_dir=None, force=False):
         f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">'
         f'<title>ページが見つかりません｜{escape(brand["name"])}</title></head>'
         '<body><img src="/rinrin.png" alt="" width="96" height="96"><h1>ページが見つかりません</h1><p>受付が終わってページを削除した可能性があります。</p>'
-        '<p><a href="/">プレミア商品一覧</a> ・ <a href="/chusen/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
+        '<p><a href="/premium/">プレミア商品一覧</a> ・ <a href="/chusen/">受付中の一覧</a> ・ <a href="/now/">いま一覧</a> ・ <a href="/calendar/">カレンダー</a></p></body></html>')), encoding="utf-8")
     _x_draft(out, live, s, site, updated, cats)
     try:   # 定価以上で売れる商品（買取店の新品の買取価格×楽天の定価）：/premium/ と /premium/<JAN>/
         import game_premium
@@ -1245,6 +1317,19 @@ def build(settings=None, out_dir=None, force=False):
             urls.append((f"{site}/{pth}", lm))
     except Exception as e:
         log(f"プレ値商品のページ: スキップ {e}")
+    try:   # トップ（11/14 ユーザー：開いたら「いま買える・いま応募できる」が分かるページに。プレミア商品一覧は /premium/ へ）
+        import game_premium
+        _allx = game_premium.catalog(s, game_premium.watch_map_cached())
+        _cnt = {g_: sum(1 for i in live if i["game"] == g_) + len(pidx.get(g_, [])) for g_ in {c["id"] for c in cats}}
+        _bt, _bb = _top_blocks(_allx, game_premium.watch_map_cached(), cats, _cnt, s)
+        _soon = sorted([i for i in live if i["ph"] in ("open", "upcoming")], key=lambda i: (i["ph"] != "open", i.get("end") or "9999"))[:40]
+        write("", {"title": f"ゲーム・ホビー入荷速報｜PS5・Switch 2・ポケカの再販・抽選と定価以上で売れるプレミア商品【{md}更新】",
+                   "desc": f"楽天・Amazonで定価販売・予約が始まった商品をすぐお知らせ。締切が近いPS5・Switch 2・ポケカ・ガンプラの抽選・予約（受付中{n_open}件）と、定価より高く売れるプレミア商品のランキングを毎日更新。",
+                   "h1": "いま買える・いま応募できるゲームとホビー", "sumshort": f"定価販売の速報・締切が近い抽選・定価より高く売れる商品をまとめています（受付中{n_open}件）。",
+                   "lead": s.get("site_tagline") or "", "summary": summary(live, "受付"), "links": lk, "faq": top_faq, "pin": pin_html()},
+              _soon, trail=None, data_extra={"game": ""}, body_top=_bt, body_bottom=_bb)
+    except Exception as e:
+        log(f"トップ: スキップ {e}")
     try:   # ページごとの中身の量を測る（次の回の解説文づくりが、少ないページから順に使う）
         import game_volume
         game_volume.measure(out, int(s.get("content_target_chars", 1500)))
@@ -1261,7 +1346,7 @@ def build(settings=None, out_dir=None, force=False):
             shutil.copy(f, out / f.name)
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
-    (out / "_redirects").write_text("/premium /  301\n/premium/ /  301\n" + _gone_redirects(out, pmod), encoding="utf-8")   # 「定価以上で売れる」はトップに移した（11/9）
+    (out / "_redirects").write_text(_gone_redirects(out, pmod), encoding="utf-8")   # 「定価以上で売れる」は 11/14 に /premium/ に戻した（トップは「いま買える」ページ）
     (out / "_headers").write_text("/og.png\n  Cache-Control: public, max-age=3600\n", encoding="utf-8")
     if site:
         (out / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'

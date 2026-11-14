@@ -140,7 +140,7 @@ footer p{margin:4px 0}footer a{color:var(--ink-2)}
   .wk{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cal li{grid-template-columns:80px 1fr;padding:10px 12px}
 }
-</style>
+.gchips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}.gchips button{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border:1.5px solid #ffd23f;border-radius:999px;background:#141823;color:#ffd23f;font:inherit;font-size:14px;font-weight:700;cursor:pointer}.gchips button small{min-width:22px;padding:1px 7px;border-radius:999px;background:#ffd23f;color:#0b0d12;font-size:12px;font-weight:800;text-align:center}.gchips button[aria-pressed=true],.gchips button:hover{background:#ffd23f;color:#0b0d12}.gchips button[aria-pressed=true] small,.gchips button:hover small{background:#0b0d12;color:#ffd23f}.gchips[hidden]{display:none}</style>
 
 <div class="shell">
 __SIDEBAR__
@@ -169,6 +169,7 @@ __SIDEBAR__
         <input type="search" id="q" placeholder="お店・商品で検索" aria-label="お店・商品で検索">
       </div>
     </div>
+    <div class="gchips" id="gchips" role="group" aria-label="ジャンルで絞り込む" hidden></div>
     <div class="board" id="list">__PRERENDER__</div>
     <p class="endlink" id="endlink" hidden></p>
   </div>
@@ -297,9 +298,10 @@ __SIDEBAR__
       '<div class="bd"><a class="pn" href="' + esc(href(i)) + '">' + esc(nm(i)) + '</a><div class="sn">' + meta + "</div>" + condChips(i) + "</div>" +
       '<div class="acts">' + avBtns(i) + action(i, ph) + shopBtns(i) + "</div></div>";
   }
-  var state = { tab: null, nomember: false, online: false, nohist: false, q: "" };
+  var state = { tab: null, nomember: false, online: false, nohist: false, q: "", g: "" };
   function has(i, t) { return (i.tags || []).indexOf(t) >= 0; }
-  function pass(i) {
+  function pass(i) { return passBase(i) && (!state.g || i.game === state.g); }
+  function passBase(i) {
     if (state.nomember && (i.member === "account" || i.member === "card" || has(i, "会員"))) return false;
     if (state.online && (i.channel || "online") !== "online") return false;
     if (state.nohist && has(i, "購入履歴")) return false;
@@ -329,6 +331,14 @@ __SIDEBAR__
     if (!state.tab || !by[state.tab]) { state.tab = (TABS.filter(function (t) { return by[t[0]].length; })[0] || TABS[0])[0]; }
     sideCounts(by); setNav();
     $("lhead").hidden = false; $("ltitle").textContent = HEAD[state.tab];
+    // ジャンルのボタン（11/14 ユーザー：受付中の一覧もジャンル分け）。いくつかのジャンルが混ざる一覧だけ。いまのタブの件数
+    var gc = {}, gn = 0, nowG = new Date();
+    items.filter(passBase).forEach(function (i) { if (phase(i, nowG) === state.tab) { gc[i.game] = (gc[i.game] || 0) + 1; gn++; } });
+    var gk = Object.keys(gc).sort(function (a, b) { return gc[b] - gc[a]; }), ge = $("gchips");
+    if (state.g && !gc[state.g]) { state.g = ""; }
+    ge.hidden = PAGE.game || gk.length < 2;
+    ge.innerHTML = '<button type="button" data-g=""' + (state.g ? "" : ' aria-pressed="true"') + '>すべて<small>' + gn + "</small></button>" +
+      gk.map(function (g) { return '<button type="button" data-g="' + esc(g) + '"' + (state.g === g ? ' aria-pressed="true"' : "") + ">" + esc((CATS[g] || {}).short || g) + "<small>" + gc[g] + "</small></button>"; }).join("");
     var order = state.tab === "ended" || state.tab === "restock";
     var rows = by[state.tab].sort(function (a, b) { var ka = a[0].end || a[0].start || a[0].found_at || "", kb = b[0].end || b[0].start || b[0].found_at || ""; return order ? (kb > ka ? 1 : -1) : (ka > kb ? 1 : -1); });
     $("list").innerHTML = rows.length ? rows.map(function (r) { return rowHtml(r[0], r[1], now); }).join("") :
@@ -380,6 +390,8 @@ __SIDEBAR__
     var h = (location.hash || "").slice(1); if (HEAD[h]) state.tab = h;
     [].forEach.call(document.querySelectorAll(".stat a[data-t]"), function (a) { a.setAttribute("href", "#" + a.getAttribute("data-t")); });
     document.addEventListener("click", function (e) {
+      var gb = e.target.closest ? e.target.closest("#gchips button[data-g]") : null;
+      if (gb) { state.g = gb.getAttribute("data-g"); render(); return; }
       var a = e.target.closest ? e.target.closest(".stat a[data-t], #endlink button[data-t]") : null; if (!a) return;
       e.preventDefault(); pick(a.getAttribute("data-t"));
       if (window.innerWidth <= 760 || a.tagName === "BUTTON") $("lhead").scrollIntoView({ block: "start" });

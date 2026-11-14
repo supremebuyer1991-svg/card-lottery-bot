@@ -830,7 +830,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
          f'<h1>プレミア商品一覧（定価以上で売れるゲーム・ホビー）</h1><p>買取店の新品の最高買取価格が定価を上回っている商品です（{md}更新・{len(items)}件）。'
          f'定価はメーカー公式の希望小売価格・楽天ブックスの定価で、分からない商品は楽天ブックスの販売価格と比べています（カードに「販売価格」と表示）。'
          f'楽天・Amazonで定価で売り出されたら、Xですぐお知らせします。<a href="/souba/">すべての商品の買取相場（{len(allx)}件）</a></p>'
-         + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "")
+         + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "premium/")   # 11/14：トップは「いま買える・応募できる」ページに。一覧は /premium/ へ
     stores_all = {st_ for x in allx for st_, _ in (x.get("prices") or [])}
     # 買取相場：値動き中心（11/10 ユーザーの指示：プレミア商品一覧と中身が被らないように）
     #  値上がり・値下がりランキング（いちばん近い過去の記録＝最大7日前との差）＋ カテゴリごとの全商品（開いて見る）
@@ -869,7 +869,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     page(f"ゲーム・ホビー買取相場【{md}更新】値上がり・値下がりランキングと{len(allx)}商品の最高買取価格｜{brand['name']}",
          f"ゲーム機・周辺機器・たまごっち・ホビーの買取相場の値動き。値上がり・値下がりした商品のランキングと、{len(allx)}商品の新品の最高買取価格（買取店{len(stores_all)}店）をカテゴリごとに毎日更新。",
          f'<h1>ゲーム・ホビー買取相場（値動き）</h1><p>買取店{len(stores_all)}店の新品の買取価格から、商品ごとのいちばん高い価格を毎日記録して、値動きをまとめています（{md}更新）。'
-         f'定価より高く売れる商品は<a href="/">プレミア商品一覧</a>にまとめています。</p>' + mv_html + cat_html + note, "souba/")
+         f'定価より高く売れる商品は<a href="/premium/">プレミア商品一覧</a>にまとめています。</p>' + mv_html + cat_html + note, "souba/")
     import gamecats as _gc
     _cats = _gc.by_id(False)
     _wm_all = load_json("watch_map.json", {}) or {}
@@ -933,7 +933,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         # 題名：定価が分からない商品は「定価・」を外す。見出しは「〜の買取価格・販売状況」（11/14 Fable）
         _when = (f"{int(x['stale'][5:7])}/{int(x['stale'][8:10])}時点" if x.get("stale") else f"{md}更新")   # 買取店から消えた商品は、最後に確かめた日（11/14 Fable）
         page(f"{x['name']} 買取価格 最高{x['max']:,}円【{_when}】{'定価・' if x['teika'] and not _rb else ''}再販情報｜JAN {x['jan']}", desc,
-             f'{ld}<p>{_crumb}<a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}の買取価格・販売状況</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
+             f'{ld}<p>{_crumb}<a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">プレミア商品一覧</a></p><h1>{escape(x["name"])}の買取価格・販売状況</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div><div class="note" style="font-size:12px">※{md}時点の金額です。{CHANGE_NOTE}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
              f'{cur_h}{FOLLOW}<h2>{"定価で買えるところ" if x["teika"] and not _rb else "買えるところ"}<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
