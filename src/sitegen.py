@@ -2484,10 +2484,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         gp = Path(__file__).resolve().parent.parent / "config" / "guides.yaml"
         guides = ((yaml.safe_load(gp.read_text(encoding="utf-8")) or {}).get("guides") or []) if gp.exists() else []
         for gd in guides:
-            rx = re.compile(gd["store_re"], re.I)
-            sub = [i for i in items if rx.search(i.get("store") or "")]
+            if gd.get("kind") == "howto":  # 11/14：お店ではなく「やり方」のガイド。下の一覧は filter で選ぶ
+                f_ = gd.get("filter") or ""
+                sub = [i for i in items if
+                       (f_ == "livepocket" and "livepocket" in (i.get("url") or "").lower()) or
+                       (f_ == "no_id" and i.get("id_check") is False) or
+                       (f_ in ("online", "store") and i.get("channel") == f_) or f_ == ""]
+            else:
+                rx = re.compile(gd["store_re"], re.I)
+                sub = [i for i in items if rx.search(i.get("store") or "")]
             n_on = sum(1 for i in sub if i.get("channel") != "store")
-            live = (f'<p class="lead2">いま受付中の{escape(gd["name"])}の抽選は<b>{len(sub)}件</b>です（{upd_hm}時点・下の一覧）。'
+            live = (f'<p class="lead2">{escape(gd.get("list_label") or "関係する抽選")}は、いま<b>{len(sub)}件</b>受付中です（{upd_hm}時点・下の一覧）。</p>' if gd.get("kind") == "howto" else
+                    f'<p class="lead2">いま受付中の{escape(gd["name"])}の抽選は<b>{len(sub)}件</b>です（{upd_hm}時点・下の一覧）。'
                     '新しい抽選が見つかり次第、自動で追加されます。</p>') if sub else (
                     f'<p class="lead2">いま受付中の{escape(gd["name"])}の抽選はありません（{upd_hm}時点）。始まり次第、このページの下に自動で載ります。</p>')
             body = "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in gd.get("sections") or [])
