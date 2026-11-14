@@ -1428,7 +1428,7 @@
   },
   "store/tsutaya-9f983/": {
     "name": "TSUTAYA一関中央店",
-    "last": "2026-10-29",
+    "last": "2026-11-14",
     "game": "onepiece",
     "area": "岩手県"
   },
@@ -2516,7 +2516,7 @@
     "area": "千葉県"
   },
   "store/tokiwa-sukuea-17dcd/": {
-    "name": "ときわ書房本八幡スクエア店",
+    "name": "ときわ書房 本八幡スクエア店",
     "last": "2026-11-14",
     "game": "onepiece",
     "keep": true,
@@ -5915,13 +5915,6 @@
     "area": "京都府",
     "address": "京都府京都市下京区真苧屋町195"
   },
-  "store/girafullotarodo-08e4e/": {
-    "name": "GIRAFULLオタロード店（ジラフルオタロード店）",
-    "last": "2026-11-08",
-    "game": "pokemon",
-    "area": "大阪府",
-    "address": "大阪府大阪市浪速区日本橋3-8-16"
-  },
   "store/toukyuu-c8baa/": {
     "name": "文教堂湘南とうきゅう店",
     "last": "2026-11-14",
@@ -6266,11 +6259,6 @@
   "store/itoyokado-789b7/": {
     "name": "イトーヨーカドー／アリオ",
     "last": "2026-11-08",
-    "game": "onepiece"
-  },
-  "store/lawson-3eef2/": {
-    "name": "HMVトレカショップ・HMVトレカ取扱店舗（全国18店舗）",
-    "last": "2026-11-03",
     "game": "onepiece"
   },
   "store/lawson-c61b3/": {
@@ -6744,7 +6732,7 @@
     "area": "東京都"
   },
   "store/cardlabo-a9d32/": {
-    "name": "カードラボ新潟店",
+    "name": "カードラボ 新潟店",
     "last": "2026-11-14",
     "game": "onepiece",
     "area": "新潟県"
@@ -7617,16 +7605,6 @@
     "last": "2026-11-14",
     "game": "pokemon"
   },
-  "store/furukonpu-bcd3a/": {
-    "name": "フルコンプ 一部店舗（八王子・立川・町田・吉祥寺・新宿・仙台・福岡天神・札幌）",
-    "last": "2026-11-14",
-    "game": "pokemon"
-  },
-  "store/biccamera-da9f3/": {
-    "name": "コジマ（コジマアプリ抽選会）",
-    "last": "2026-11-14",
-    "game": "pokemon"
-  },
   "store/kogiaru-a1f1e/": {
     "name": "コーギーアール新宿店",
     "last": "2026-11-14",
@@ -7708,12 +7686,14 @@
   "store/toreka-girafull-donki-02930/": {
     "name": "トレカ専門店GIRAFULL 広島ドンキ店",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "広島県"
   },
   "store/girafullotarodo-4040d/": {
     "name": "GIRAFULL オタロード店",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "大阪府"
   },
   "store/tsutaya-c624a/": {
     "name": "TSUTAYA佐倉店",
@@ -7724,7 +7704,8 @@
   "store/bookoff-3c7ae/": {
     "name": "ブックオフ鹿児島ジョイプラザ店トレカ館",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "鹿児島県"
   },
   "store/kadoshoppu-58f56/": {
     "name": "カードショップ彩々 鹿児島店",
@@ -7754,15 +7735,10 @@
     "game": "onepiece",
     "area": "福島県"
   },
-  "store/tsutaya-3609b/": {
-    "name": "TSUTAYA一関中央店（トレカ専門店Vidaway一関中央店）",
-    "last": "2026-11-14",
-    "game": "onepiece",
-    "area": "岩手県"
-  },
   "store/surugaya-19cd4/": {
     "name": "駿河屋 横浜店",
     "last": "2026-11-14",
-    "game": "onepiece"
+    "game": "onepiece",
+    "area": "神奈川県"
   }
 }

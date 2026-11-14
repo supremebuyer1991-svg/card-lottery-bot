@@ -2549,7 +2549,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": false,
         "mem": "account",
@@ -3335,7 +3335,7 @@
         "g": "onepiece",
         "e": "2026-11-18T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": false,
         "mem": "account",
@@ -12109,7 +12109,7 @@
         "g": "onepiece",
         "e": "2026-11-19T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": true,
         "mem": "none",
@@ -13234,6 +13234,17 @@
   "store/tsutaya-9f983/": {
     "name": "TSUTAYA一関中央店",
     "items": {
+      "40a2ce6bea15618f": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "3738b73753d544e7": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -21820,9 +21831,20 @@
       }
     }
   },
-  "store/lawson-3eef2/": {
+  "store/lawson-637fb/": {
     "name": "HMVトレカショップ・HMVトレカ取扱店舗（全国18店舗）",
     "items": {
+      "fbf7b7a9711f813b": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T20:59",
+        "f": "2026-11-14",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "f9f059ce3c99db86": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -23072,6 +23094,21 @@
         "m": "アプリ",
         "id": null,
         "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-11-27"
+      },
+      "43bfff32ed232207": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-20T23:59",
+        "f": "2026-11-14",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
         "rq": [
           "購入履歴",
           "アプリ会員"
@@ -24765,7 +24802,7 @@
         "g": "dragonball",
         "e": "2026-11-16T23:00",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -34426,7 +34463,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -34453,7 +34490,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -34472,9 +34509,20 @@
       }
     }
   },
-  "store/girafullotarodo-08e4e/": {
+  "store/girafullotarodo-4040d/": {
     "name": "GIRAFULLオタロード店（ジラフルオタロード店）",
     "items": {
+      "5d3cb411ee2690bd": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-15T23:59",
+        "f": "2026-11-14",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "9c6f584fdab5b42d": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -35275,7 +35323,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -40465,6 +40513,18 @@
   "store/furukonpu-10949/": {
     "name": "フルコンプ 一部店舗",
     "items": {
+      "0e1d3124e0aff9bc": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-16T23:59",
+        "f": "2026-11-14",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-17"
+      },
       "9431de8b4ab2c4cb": {
         "p": "神の支配",
         "g": "onepiece",
@@ -40525,43 +40585,6 @@
         "rq": [
           "レシート"
         ]
-      }
-    }
-  },
-  "store/furukonpu-bcd3a/": {
-    "name": "フルコンプ 一部店舗（八王子・立川・町田・吉祥寺・新宿・仙台・福岡天神・札幌）",
-    "items": {
-      "0e1d3124e0aff9bc": {
-        "p": "30周年御三家カードセット",
-        "g": "pokemon",
-        "e": "2026-11-16T23:59",
-        "f": "2026-11-14",
-        "c": "online",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": [],
-        "a": "2026-11-17"
-      }
-    }
-  },
-  "store/biccamera-da9f3/": {
-    "name": "コジマ（コジマアプリ抽選会）",
-    "items": {
-      "43bfff32ed232207": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-20T23:59",
-        "f": "2026-11-14",
-        "c": "online",
-        "m": "Web",
-        "id": false,
-        "mem": "account",
-        "rq": [
-          "購入履歴",
-          "アプリ会員"
-        ],
-        "a": "2026-11-27"
       }
     }
   },
@@ -40677,22 +40700,6 @@
       }
     }
   },
-  "store/lawson-637fb/": {
-    "name": "HMVトレカショップ・HMVトレカ取扱店舗",
-    "items": {
-      "fbf7b7a9711f813b": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-15T20:59",
-        "f": "2026-11-14",
-        "c": "online",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
   "store/tsutaya-3da99/": {
     "name": "フタバ図書TSUTAYA GIGA祇園店",
     "items": {
@@ -40797,23 +40804,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
-  "store/girafullotarodo-4040d/": {
-    "name": "GIRAFULL オタロード店",
-    "items": {
-      "5d3cb411ee2690bd": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-15T23:59",
-        "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",
@@ -40845,7 +40836,7 @@
         "g": "onepiece",
         "e": "2026-11-15T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": false,
         "mem": "account",
@@ -40933,22 +40924,6 @@
       }
     }
   },
-  "store/tsutaya-3609b/": {
-    "name": "TSUTAYA一関中央店（トレカ専門店Vidaway一関中央店）",
-    "items": {
-      "40a2ce6bea15618f": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-19T23:59",
-        "f": "2026-11-14",
-        "c": "store",
-        "m": "Web",
-        "id": true,
-        "mem": "account",
-        "rq": []
-      }
-    }
-  },
   "store/surugaya-19cd4/": {
     "name": "駿河屋 横浜店",
     "items": {
@@ -40957,7 +40932,7 @@
         "g": "onepiece",
         "e": "2026-11-19T23:59",
         "f": "2026-11-14",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",

@@ -2771,7 +2771,7 @@
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:21.244527+09:00",
     "verified": true,
-    "page_checked_at": "2026-11-11T20:48:02.928142+09:00",
+    "page_checked_at": "2026-11-14T14:06:51.305012+09:00",
     "details_checked": true
   },
   "8f67ee9a88297337": {
@@ -2806,7 +2806,7 @@
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.741262+09:00",
     "verified": true,
-    "page_checked_at": "2026-11-11T20:48:05.219515+09:00",
+    "page_checked_at": "2026-11-14T14:06:54.102590+09:00",
     "details_checked": true
   },
   "4ec6cc62ca60f673": {
@@ -2841,7 +2841,7 @@
     "deadline_checked_at": "2026-11-14T11:40:32.354066+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・告知に締切の記載なし",
-    "page_checked_at": "2026-11-11T21:02:13.943148+09:00",
+    "page_checked_at": "2026-11-14T14:06:54.102957+09:00",
     "address_checked": true,
     "details_checked": true
   },
@@ -3131,7 +3131,7 @@
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.741215+09:00",
     "verified": true,
-    "page_checked_at": "2026-11-11T21:02:17.776502+09:00",
+    "page_checked_at": "2026-11-14T14:06:56.481350+09:00",
     "details_checked": true
   },
   "b3c41aa4700f3736": {
@@ -3166,7 +3166,7 @@
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.741105+09:00",
     "verified": true,
-    "page_checked_at": "2026-11-11T21:02:23.115071+09:00",
+    "page_checked_at": "2026-11-14T14:06:56.481806+09:00",
     "details_checked": true
   },
   "708729945fc9c183": {
@@ -3201,7 +3201,7 @@
     "official_checked": true,
     "verified_at": "2026-11-11T08:08:14.398072+09:00",
     "verified": true,
-    "page_checked_at": "2026-11-11T21:02:26.251220+09:00",
+    "page_checked_at": "2026-11-14T14:06:56.482255+09:00",
     "details_checked": true
   },
   "eb819e9d135ffaf9": {
@@ -4476,7 +4476,10 @@
     "cls": "521b10622da4",
     "verified_at": "2026-11-13T11:53:34.094843+09:00",
     "verified": true,
-    "official_checked": true
+    "official_checked": true,
+    "deadline_checked_at": "2026-11-14T14:06:47.786368+09:00",
+    "deadline_v": 5,
+    "deadline_note": "応募ページを読めず（HTTPSConnectionPool(host='store.sony.jp'）"
   },
   "c08d5914adcbad53": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -4563,7 +4566,10 @@
     "status": "pending",
     "found_at": "2026-11-13T11:51:36.302160+09:00",
     "cls": "d992af35df82",
-    "issue": 721
+    "issue": 721,
+    "deadline_checked_at": "2026-11-14T14:06:47.786387+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の受付期間の記載なし（予約受付中のみ）"
   },
   "83c666620f2c51ce": {
     "store": "ソニーストア",
@@ -4708,7 +4714,10 @@
     "status": "pending",
     "found_at": "2026-11-13T15:51:36.422566+09:00",
     "cls": "48e3c7f4747d",
-    "issue": 730
+    "issue": 730,
+    "deadline_checked_at": "2026-11-14T14:06:49.253658+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・締切の記載なし（予約開始のみ）"
   },
   "69267e22731e64b4": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -5115,7 +5124,16 @@
     "multi": true,
     "cls": "d3b8943fa57a",
     "verified_at": "2026-11-14T13:40:43.261176+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "関西店舗限定で、オーケークラブ会員カードアプリ限定の応募",
+      "オーケーの店舗またはネットスーパーでの一定以上の買い物実績が必要",
+      "お一人様いずれか1点まで",
+      "当選発表は11月26日(木)",
+      "竹鶴ピュアモルト・フロムザバレルは12月2日(水)〜5日(土)に受け取り",
+      "対象は山崎・白州・響JAPANESE HARMONY・竹鶴・フロムザバレルの5商品"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162385"
   },
   "ed7f8e09db9503be": {
     "store": "オーケーストア 関西店舗",
@@ -5152,7 +5170,15 @@
     "multi": true,
     "cls": "7e881780289e",
     "verified_at": "2026-11-14T13:40:43.261153+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "関西店舗限定。オーケークラブ会員カードアプリ限定の応募",
+      "オーケーの店舗またはネットスーパーで一定以上の買い物実績が必要",
+      "お一人様いずれか1点まで",
+      "当選発表は11月26日(木)",
+      "響は12月9日(水)〜12日(土)に受け取り"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162385"
   },
   "d6fb05c5ceed3e8d": {
     "store": "オーケーストア 関西店舗",
@@ -5189,7 +5215,16 @@
     "multi": true,
     "cls": "561181637754",
     "verified_at": "2026-11-14T13:40:43.261126+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "応募はオーケークラブ会員カードアプリから（関西店舗限定）",
+      "オーケーカードで一定以上の購入実績（購入回数と金額）が必要",
+      "お一人様いずれか1点まで",
+      "当選発表は11月26日(木)",
+      "竹鶴ピュアモルトの受け取りは12月2日(水)〜5日(土)",
+      "山崎・白州・響 JAPANESE HARMONYの受け取りは12月9日(水)〜12日(土)"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162385"
   },
   "a17de5d1eb20f2fe": {
     "store": "オーケーストア 関西店舗",
@@ -5226,7 +5261,15 @@
     "multi": true,
     "cls": "028f26dd6e90",
     "verified_at": "2026-11-14T13:40:43.261041+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "応募は関西店舗限定・オーケークラブ会員カードアプリ限定",
+      "オーケーカードで一定以上の買い物実績がある方が対象",
+      "お一人様いずれか1点まで（対象5商品から）",
+      "当選発表は11月26日(木)",
+      "フロムザバレルの受け取りは12月2日(水)〜5日(土)"
+    ],
+    "facts_src": "https://nyuka-now.com/archives/162385"
   },
   "067d67286b4bb5c3": {
     "store": "フルコンプ",
@@ -5315,5 +5358,326 @@
     "multi": false,
     "cls": "9c8df13f9ce7",
     "dup_of": "fcf6f533563e3502"
+  },
+  "7e578d38fa6521bd": {
+    "store": "イトーヨーカドー",
+    "product": "ウイスキー「山崎 2025」",
+    "series": "山崎",
+    "kind": "lottery",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645/images/000",
+    "key": "7e578d38fa6521bd",
+    "status": "pending",
+    "found_at": "2026-11-14T14:05:00.217071+09:00",
+    "multi": false,
+    "cls": "e08ef6c9834f",
+    "issue": 737
+  },
+  "12231ee8b172ffee": {
+    "store": "イトーヨーカドー",
+    "product": "ウイスキー「白州 2025」",
+    "series": "白州",
+    "kind": "lottery",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645/images/000",
+    "key": "12231ee8b172ffee",
+    "status": "pending",
+    "found_at": "2026-11-14T14:05:00.217186+09:00",
+    "multi": false,
+    "cls": "df7bc954d900",
+    "issue": 738
+  },
+  "853b03fe55c0913c": {
+    "store": "イトーヨーカドー",
+    "product": "ウイスキー「響 BLENDER'S CHOICE」",
+    "series": "響",
+    "kind": "lottery",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": null,
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "store",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://news.yahoo.co.jp/articles/1eae62b5ece021f4192a5a3b4c719b11e47a4645/images/000",
+    "key": "853b03fe55c0913c",
+    "status": "pending",
+    "found_at": "2026-11-14T14:05:00.217236+09:00",
+    "multi": false,
+    "cls": "9a68fe9e7a4a",
+    "issue": 739
+  },
+  "d9aa0cf1d0883f11": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "サントリー 響 BLENDER'S CHOICE",
+    "series": "響 BLENDER'S CHOICE",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文を受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選時は1人1点まで。",
+    "price": "17,600円",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "d9aa0cf1d0883f11",
+    "status": "duplicate",
+    "found_at": "2026-11-14T14:05:00.217288+09:00",
+    "cls": "813cb13a0483",
+    "duplicate_of": "216addb02501b26d"
+  },
+  "cffe2f3b71004b2a": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "サントリー 山崎 Story of the Distillery 2025 EDITION",
+    "series": "山崎 2025",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文を受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選時は1人1点まで。",
+    "price": "16,500円",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "cffe2f3b71004b2a",
+    "status": "duplicate",
+    "found_at": "2026-11-14T14:05:00.217331+09:00",
+    "cls": "9a26acec41a9",
+    "duplicate_of": "53ea76cf43273a9c"
+  },
+  "aaffa39ae779dd50": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "サントリー 白州 Story of the Distillery 2025 EDITION",
+    "series": "白州 2025",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文を受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選時は1人1点まで。",
+    "price": "16,500円",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「山崎 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "aaffa39ae779dd50",
+    "status": "duplicate",
+    "found_at": "2026-11-14T14:05:00.217370+09:00",
+    "cls": "b7e0ea12e013",
+    "duplicate_of": "cddc4cd9395d45eb"
+  },
+  "216addb02501b26d": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "サントリーウイスキー 響 BLENDER'S CHOICE（人気の洋酒 抽選販売）",
+    "series": "響 BLENDER'S CHOICE",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文をして受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選者にのみメールで通知。当選時の購入は1人1点まで。送料660円（沖縄県は2200円）別途。メーカー箱なし。20歳未満は購入不可。クレジットカードのみ（nanacoポイント使用可）。",
+    "price": "17,600円",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「響 ウイスキー 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "216addb02501b26d",
+    "status": "approved",
+    "found_at": "2026-11-14T14:05:31.866005+09:00",
+    "cls": "6fab248aa05c",
+    "facts": [
+      "対象は響・山崎 2025・白州 2025の3種",
+      "2025年11月1日～2026年10月31日に税込500円以上を注文し受け取っていることが条件",
+      "申し込みは1商品につき1人1回まで。当選時は1人1点まで",
+      "申し込みには7iDでのログインが必要",
+      "当選発表は2026年11月20日中、当選者のみメールで通知",
+      "送料660円別途（沖縄県は2200円）、メーカー箱なし、支払いはクレジットカードのみ"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "verified_at": "2026-11-14T14:07:23.435210+09:00",
+    "verified": true
+  },
+  "53ea76cf43273a9c": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "サントリー 響 BLENDER'S CHOICE、サントリー 山崎 Story of the Distillery 2025 EDITION、サントリー 白州 Story of the Distillery 2025 EDITION（人気の洋酒 抽選販売）",
+    "series": "山崎 2025",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文をして受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選者にのみメールで通知。当選時の購入は1人1点まで。送料660円（沖縄県は2200円）別途。メーカー箱なし。20歳未満は購入不可。クレジットカードのみ（nanacoポイント使用可）。",
+    "price": "響 BLENDER'S CHOICE 1万7600円、山崎・白州 各1万6500円（当選者への販売価格）",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「響 ウイスキー 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "53ea76cf43273a9c",
+    "status": "approved",
+    "found_at": "2026-11-14T14:05:31.866061+09:00",
+    "cls": "50a82c9aee10",
+    "facts": [
+      "応募は2025年11月1日～2026年10月31日に税込500円以上の注文を受け取っていること（期間中の合計額）",
+      "申し込みは1商品につき1人1回まで。7iDでのログインが必要",
+      "当選発表は2026年11月20日中、当選者にのみメールで通知",
+      "当選時に購入できるのは1人1点まで。20歳未満は購入不可",
+      "支払いはクレジットカードのみ（nanacoポイントの使用は可）",
+      "送料660円（沖縄県は2200円）。商品はメーカー箱なしで届く"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "verified_at": "2026-11-14T14:07:23.435127+09:00",
+    "before_verify": {
+      "product": "サントリー 山崎 Story of the Distillery 2025 EDITION（人気の洋酒 抽選販売）",
+      "price": "16,500円"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：product・price"
+  },
+  "cddc4cd9395d45eb": {
+    "store": "イトーヨーカドーネット通販",
+    "product": "響 BLENDER'S CHOICE、山崎 2025、白州 2025 の3種（サントリー）",
+    "series": "白州 2025",
+    "kind": "lottery",
+    "start": "2026-11-11T12:00:00+09:00",
+    "end": "2026-11-15T11:59:00+09:00",
+    "announce": "2026-11-20",
+    "method": "Web",
+    "conditions": "2025年11月1日～2026年10月31日の期間にイトーヨーカドーネット通販で税込500円以上の注文をして受け取っていること（期間中の支払い合計額）。1商品につき1人1回まで。7iDでのログインが必要。当選者にのみメールで通知。当選時の購入は1人1点まで。送料660円（沖縄県は2200円）別途。メーカー箱なし。20歳未満は購入不可。クレジットカードのみ（nanacoポイント使用可）。",
+    "price": "16,500円",
+    "round": null,
+    "url": "https://iyec.itoyokado.co.jp/shop/pages/apply_RLlottery.aspx",
+    "x_post": null,
+    "game": "liquor",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": "account",
+    "tags": [
+      "会員",
+      "購入履歴"
+    ],
+    "confidence": 0.9,
+    "source": "Googleニュース「響 ウイスキー 抽選」",
+    "source_url": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "key": "cddc4cd9395d45eb",
+    "status": "approved",
+    "found_at": "2026-11-14T14:05:31.866131+09:00",
+    "cls": "d8a915619768",
+    "facts": [
+      "応募条件は2025年11月1日～2026年10月31日に税込500円以上を注文・受け取ったこと（期間中の合計）",
+      "対象期間は終了済みで、今から注文しても条件は満たせない",
+      "1商品につき1人1回まで。申し込みには7iDでのログインが必要",
+      "当選発表は2026年11月20日中で、当選者のみメールで通知",
+      "当選者の販売価格は響1万7600円、山崎・白州は各1万6500円",
+      "送料660円（沖縄県は2200円）。支払いはクレジットカードのみ（nanacoポイント使用可）"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html",
+    "verified_at": "2026-11-14T14:07:23.434819+09:00",
+    "before_verify": {
+      "product": "サントリー 白州 Story of the Distillery 2025 EDITION（人気の洋酒 抽選販売）"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：product"
   }
 }
