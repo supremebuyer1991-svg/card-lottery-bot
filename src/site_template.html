@@ -219,6 +219,18 @@ section.hot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 .seg button small { display: block; font-size: 10px; font-weight: 500; line-height: 1.1; color: var(--ink-2); }
 .seg button[aria-pressed="true"] small { color: inherit; opacity: .75; }
 .seg button[aria-pressed="true"] { background: var(--seg-on); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+/* 11/14：ネット抽選・店頭抽選の切り替えを大きく目立たせる（ユーザー希望） */
+.filters .row:first-child { flex-wrap: wrap; }
+#channel { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; flex: 1 1 100%; background: none; padding: 0; border-radius: 0; }
+#channel button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 12px 8px 10px; border-radius: 14px; border: 2px solid var(--rule); background: var(--card, #fff); font-size: 18px; font-weight: 900; color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / .08); transition: transform .08s, box-shadow .15s; }
+#channel button::before { font-size: 26px; line-height: 1; }
+#channel button[data-v="online"]::before { content: "📦"; }
+#channel button[data-v="store"]::before { content: "🏪"; }
+#channel button small { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+#channel button[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 3px 10px rgb(200 16 46 / .30); }
+#channel button[aria-pressed="true"] small { color: #fff; opacity: .95; }
+#channel button:active { transform: scale(.98); }
+.ch-pick { margin: 2px 0 8px; font-size: 13px; font-weight: 800; color: var(--ink-2); text-align: center; }
 select, input[type="search"] { font: inherit; font-size: 14px; color: var(--ink); background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; min-width: 0; }
 input[type="search"] { flex: 1 1 160px; }
 .row.scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; }
@@ -799,6 +811,7 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
   <div class="stats" id="stats"></div>
 
   <div class="filters">
+    <p class="ch-pick">▼ どっちの抽選を探す？</p>
     <div class="row">
       <div class="seg" id="channel">
         <button type="button" data-v="online" aria-pressed="true" title="当選したら自宅に発送">ネット抽選<small id="n-on">発送</small></button>
