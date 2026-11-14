@@ -5685,7 +5685,9 @@
     "found_at": "2026-11-14T14:16:33.650655+09:00",
     "cls": "4cb23af2a6bf",
     "issue": 742,
-    "end_from": "同じ告知の別の商品から"
+    "end_from": "同じ告知の別の商品から",
+    "page_checked_at": "2026-11-14T16:57:03.855599+09:00",
+    "details_checked": true
   },
   "216addb02501b26d": {
     "store": "イトーヨーカドーネット通販",
@@ -5732,7 +5734,8 @@
       "price": "17,600円"
     },
     "verified": true,
-    "verify_note": "記事に合わせて直した：product・price"
+    "verify_note": "記事に合わせて直した：product・price",
+    "page_checked_at": "2026-11-14T16:57:10.936262+09:00"
   },
   "53ea76cf43273a9c": {
     "store": "イトーヨーカドーネット通販",
@@ -6044,7 +6047,10 @@
     "issue": 743,
     "deadline_checked_at": "2026-11-14T15:48:09.611689+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・きょうから応募受け付け(締切記載なし)"
+    "deadline_note": "画像0/0枚読込・きょうから応募受け付け(締切記載なし)",
+    "page_checked_at": "2026-11-14T16:57:15.176890+09:00",
+    "address_checked": true,
+    "details_checked": true
   },
   "aaf91112c5f02ceb": {
     "store": "三郎丸蒸留所",
@@ -6076,7 +6082,9 @@
     "issue": 744,
     "deadline_checked_at": "2026-11-14T15:48:11.069192+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・告知本文に日時の記載なし"
+    "deadline_note": "画像0/0枚読込・告知本文に日時の記載なし",
+    "page_checked_at": "2026-11-14T16:57:21.979328+09:00",
+    "details_checked": true
   },
   "436bd0afc7c65290": {
     "store": "Amazon",
@@ -6134,7 +6142,9 @@
     "status": "pending",
     "found_at": "2026-11-14T15:47:25.033783+09:00",
     "cls": "e1852a78fd74",
-    "issue": 748
+    "issue": 748,
+    "page_checked_at": "2026-11-14T16:57:25.662873+09:00",
+    "page_err": "中身が空"
   },
   "ec0dd8d29e104f3c": {
     "store": "BANDAI SPIRITS",
@@ -6195,7 +6205,9 @@
     "issue": 749,
     "deadline_checked_at": "2026-11-14T16:19:56.853695+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし（開始11/14 17時のみ）"
+    "deadline_note": "画像0/0枚読込・締切の記載なし（開始11/14 17時のみ）",
+    "page_checked_at": "2026-11-14T16:57:28.030224+09:00",
+    "details_checked": true
   },
   "6a2fc094509e6fc3": {
     "store": "BANDAI SPIRITS",
@@ -6478,7 +6490,10 @@
     "key": "ee0fc2e3b8858668",
     "status": "pending",
     "cls": "31392aca8a4e",
-    "issue": 756
+    "issue": 756,
+    "deadline_checked_at": "2026-11-14T16:56:59.629577+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・販売再開で抽選・締切の記載なし"
   },
   "f4decfb18f7a6be8": {
     "store": "バンダイ（プレミアムバンダイ）",
@@ -6507,7 +6522,10 @@
     "status": "pending",
     "found_at": "2026-11-14T16:02:03.296142+09:00",
     "cls": "19bd374dc25c",
-    "issue": 757
+    "issue": 757,
+    "deadline_checked_at": "2026-11-14T16:57:02.258270+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・告知本文に受付期間の記載なし"
   },
   "f560df57570cce09": {
     "store": "あみあみ",
@@ -7326,7 +7344,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "62656cfc674e"
   },
   "tca939dad94d9436bd": {
     "store": "オレタン",
@@ -7349,7 +7369,9 @@
     "verified": true,
     "key": "tca939dad94d9436bd",
     "product_short": "OP-18",
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "area": null,
+    "cls": "c2e991459f12"
   },
   "tcb1fd28c435763bf1": {
     "store": "TSUTAYA鎌ケ谷店",
@@ -7381,7 +7403,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "917f86464e7f"
   },
   "tcc5287d23ec3f66cf": {
     "store": "TSUTAYA山陽店",
@@ -7413,7 +7437,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "ca8f4539b436"
   },
   "tc08dcef7adfbe8cd1": {
     "store": "KaBoS＋GEO藤沢店",
@@ -7441,7 +7467,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "5e458e69db1f"
   },
   "tcf2a64a2b975be18a": {
     "store": "TSUTAYA中津店",
@@ -7465,7 +7493,9 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
-    }
+    },
+    "multi": false,
+    "cls": "118b522ee2de"
   },
   "tc41a37627f6bd1aeb": {
     "store": "TSUTAYA中津店",
@@ -7489,7 +7519,9 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300"
-    }
+    },
+    "multi": false,
+    "cls": "53006bdd4edc"
   },
   "tce0184b7349836e73": {
     "store": "TSUTAYA中津店",
@@ -7514,7 +7546,9 @@
     "photo": {
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300"
-    }
+    },
+    "multi": false,
+    "cls": "f0b7c0f828e0"
   },
   "tc6156593778550049": {
     "store": "TSUTAYA積文館書店シュロアモール店",
@@ -7546,7 +7580,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
     },
-    "dup_of": "tc265bfedae079b73c"
+    "dup_of": "tc265bfedae079b73c",
+    "multi": false,
+    "cls": "54758755bbd6"
   },
   "tc48d6c56a51dbd729": {
     "store": "TSUTAYA中津店トレカコーナー",
@@ -7576,7 +7612,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "f5ca69d5be0f"
   },
   "tca13b9502ab486ca2": {
     "store": "TSUTAYA中津店トレカコーナー",
@@ -7606,7 +7644,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "b524740dcaa1"
   },
   "tc363cc946d8e75da8": {
     "store": "TSUTAYA中津店トレカコーナー",
@@ -7636,7 +7676,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "55b28291a0e9"
   },
   "tc9e20e39aa2749a7c": {
     "store": "TSUTAYA山口葵店",
@@ -7667,7 +7709,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
     },
-    "dup_of": "fcf6f533563e3502"
+    "dup_of": "fcf6f533563e3502",
+    "multi": false,
+    "cls": "5f28b19c0c43"
   },
   "tcba24ccd65ca43346": {
     "store": "フタバ図書 TSUTAYA 可部センター店",
@@ -7698,7 +7742,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "5c42b36a7289"
   },
   "tc4855a327b18ba483": {
     "store": "TSUTAYA積文館書店シュロアモール店",
@@ -7728,7 +7774,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "ffb236c413cd"
   },
   "tc1e9bf23b410096d1": {
     "store": "TSUTAYA柳川店",
@@ -13635,5 +13683,364 @@
     "status": "duplicate",
     "found_at": "2026-11-14T16:19:31.064385+09:00",
     "duplicate_of": "8d088b8f1cbb55cc"
+  },
+  "70aba6c1a7d9a8c7": {
+    "store": "Amazon",
+    "product": "ワンピースカードゲーム ブースターパック「世界最強の戦士」",
+    "series": "世界最強の戦士",
+    "kind": "invite",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "招待リクエスト",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://snkrdunk.com/articles/32599/",
+    "x_post": null,
+    "game": "onepiece",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.2,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://snkrdunk.com/articles/32599/",
+    "key": "70aba6c1a7d9a8c7",
+    "status": "pending",
+    "found_at": "2026-11-14T16:55:04.136952+09:00",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300"
+    },
+    "cls": "ab7acabe3ba9",
+    "issue": 763
+  },
+  "5fd4651b3d353188": {
+    "store": "au",
+    "product": "iPhone Duo（全モデル）",
+    "series": "iPhone Duo",
+    "kind": "preorder",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "au Online Shop",
+    "conditions": "全モデル「予約受付中」。具体的な納期は未案内（2026-11-13時点）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606611/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.6,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "key": "5fd4651b3d353188",
+    "status": "pending",
+    "found_at": "2026-11-14T16:55:04.136985+09:00",
+    "cls": "55fffe87a239",
+    "issue": 764
+  },
+  "11866498e9cfd2df": {
+    "store": "ソフトバンク",
+    "product": "iPhone Duo（全モデル）",
+    "series": "iPhone Duo",
+    "kind": "preorder",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "ソフトバンクオンラインショップ",
+    "conditions": "予約受付中（表記は「予約商品」）。配送予定日は未案内（2026-11-13時点）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606612/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.6,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "key": "11866498e9cfd2df",
+    "status": "pending",
+    "found_at": "2026-11-14T16:55:04.137003+09:00",
+    "cls": "e87f1caf45f6",
+    "issue": 765
+  },
+  "c4700e875e528bf6": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 256GB スターホワイト",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/23週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137035+09:00",
+    "key": "c4700e875e528bf6",
+    "status": "pending",
+    "cls": "3be7a3055218",
+    "issue": 766
+  },
+  "5d87c54ca31e7089": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 256GB ナイトスカイ",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/16週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137058+09:00",
+    "key": "5d87c54ca31e7089",
+    "status": "duplicate",
+    "cls": "c598501efb96",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "b6c52f889ea4c029": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 512GB スターホワイト",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/16週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137095+09:00",
+    "key": "b6c52f889ea4c029",
+    "status": "duplicate",
+    "cls": "678bd3df52de",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "58a7bc7732cb3a9f": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 512GB ナイトスカイ",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/23週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137125+09:00",
+    "key": "58a7bc7732cb3a9f",
+    "status": "duplicate",
+    "cls": "4930cd281bc3",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "07e078577fe04413": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 1TB スターホワイト",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/23週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137152+09:00",
+    "key": "07e078577fe04413",
+    "status": "duplicate",
+    "cls": "b4b09ba620d8",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "4d6d71f4259588e9": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 1TB ナイトスカイ",
+    "series": "iPhone Duo",
+    "kind": "restock",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "入荷予定：11/30週（週単位の予定。2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.5,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137177+09:00",
+    "key": "4d6d71f4259588e9",
+    "status": "duplicate",
+    "cls": "a0fe754ec9eb",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "6483b9c742e96f42": {
+    "store": "楽天モバイル",
+    "product": "iPhone Duo 2TB（スターホワイト・ナイトスカイ）",
+    "series": "iPhone Duo",
+    "kind": "first_come",
+    "start": null,
+    "end": null,
+    "announce": null,
+    "method": "楽天モバイルオンラインショップ",
+    "conditions": "両カラーとも「在庫あり」と案内（2026-11-09時点の情報）",
+    "price": null,
+    "round": null,
+    "url": "https://iphone-mania.jp/iphone18-606613/",
+    "x_post": null,
+    "game": "kaden",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.4,
+    "source": "Googleニュース「ヨドバシ 抽選販売」",
+    "source_url": "https://iphone-mania.jp/iphone18-608649/",
+    "found_at": "2026-11-14T16:55:04.137203+09:00",
+    "key": "6483b9c742e96f42",
+    "status": "duplicate",
+    "cls": "28929b729573",
+    "duplicate_of": "c4700e875e528bf6"
+  },
+  "tcc0fe1315d2e86733": {
+    "store": "カードゲームショップどみなり屋",
+    "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー（抽選予約・1人1BOX・シュリンクなし）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-19T23:59:00+09:00",
+    "url": "https://x.com/DominariYa/status/2121479894307926088",
+    "channel": "online",
+    "method": "SNS抽選",
+    "conditions": "SNS応募・本人確認",
+    "tags": [
+      "SNS応募",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "none",
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "found_at": "2026-11-14T16:50:00.896341+09:00",
+    "status": "duplicate",
+    "kind": "lottery",
+    "from_tcg": true,
+    "verified": true,
+    "key": "tcc0fe1315d2e86733",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+    },
+    "area": null,
+    "cls": "a2da5daad9fe",
+    "dup_of": "fcf6f533563e3502"
+  },
+  "tc0fe52bf6a5d27230": {
+    "store": "フタバ図書TSUTAYA GIGAフレスタモールカジル岩国店",
+    "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】（1人1BOX）",
+    "series": "神の支配",
+    "end": "2026-11-16T21:59:00+09:00",
+    "url": "https://livepocket.jp/e/50or7",
+    "channel": "store",
+    "area": "山口県",
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "found_at": "2026-11-14T16:50:02.166602+09:00",
+    "status": "duplicate",
+    "kind": "lottery",
+    "from_tcg": true,
+    "verified": true,
+    "key": "tc0fe52bf6a5d27230",
+    "photo": {
+      "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+    },
+    "multi": false,
+    "cls": "b81a545a7317",
+    "dup_of": "tc0422b1a04600b858"
   }
 }
