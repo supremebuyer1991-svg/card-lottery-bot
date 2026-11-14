@@ -110,6 +110,9 @@ def _import_tcg(lots):
     for k, v in tcg.items():
         if v.get("game") not in BIG_TCG or not live(v):
             continue
+        from approve import AD_ITEM, AD_HOST
+        if AD_ITEM.search(v.get("product") or "") or AD_HOST.search(v.get("url") or ""):
+            continue   # 情報元のサイトの広告（ポケパ365の招待コード付きリンクなど。11/14）
         if not (v.get("channel") == "online" or BIG_STORES.search(v.get("store") or "")):
             continue
         want["tc" + (v.get("key") or k)] = v

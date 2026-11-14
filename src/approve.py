@@ -9,6 +9,10 @@ import requests
 from common import load_json, save_json, parse_dt, now, log, SITE
 
 GH = "https://api.github.com"
+import re as _re
+# 情報元のサイトの広告（抽選ではない）。11/14 ユーザー指摘：カード抽選まとめの「ポケパ365の抽選に応募する！を開く（広告・外部サイト）」
+AD_ITEM = _re.compile(r"広告・外部サイト|（広告）|\(広告\)|PR・外部|を開く（")
+AD_HOST = _re.compile(r"pokepa365\.com")
 # ゲーム・ホビー版：締切という考えのない種類（再入荷・先着・発売日）
 NO_DEADLINE_KINDS = ("restock", "first_come", "release")
 ISSUE_PREFIX = "[抽選候補]" if SITE != "game" else "【ゲーム】[候補]"
@@ -241,6 +245,11 @@ def approve(settings):
             if found:
                 it["url"] = found
                 log(f"まとめブログから公式のリンクを見つけました: {it.get('store')} → {found}")
+        # 11/14 ユーザー指摘：カード抽選まとめの「広告」（ポケパ365の招待コード付きリンクなど）を抽選として拾っていた → 載せない
+        if AD_ITEM.search(it.get("product") or "") or AD_HOST.search(it.get("url") or ""):
+            it["status"] = "rejected"
+            it["closed_reason"] = "情報元のサイトの広告（抽選ではない）"
+            continue
         if (it.get("url") or "").rstrip("/") in index_urls and not it.get("apply_url"):
             it["status"] = "rejected"
             it["closed_reason"] = "応募先が情報元の一覧ページ（個別の抽選ではない）"
