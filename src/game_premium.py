@@ -1016,10 +1016,40 @@ def _shop_mini(p):
     return out
 
 
-def cat_products_html(prods, short):
-    """カテゴリページの商品一覧（カード）"""
+def split_subgenres(prods, rules):
+    """商品をカテゴリの中のジャンル（categories.yaml の subgenres）に分ける → [(ジャンル名, [商品…]), …]（空のジャンルは出さない）"""
+    groups = [(r.get("name") or "", re.compile(r["re"]) if r.get("re") else None, []) for r in (rules or [])]
+    if not groups:
+        return [("", list(prods))]
+    rest = next((g for g in groups if g[1] is None), None)
+    if rest is None:
+        rest = ("そのほか", None, [])
+        groups.append(rest)
+    for p in prods:
+        nm = p.get("name") or ""
+        g = next((g for g in groups if g[1] is not None and g[1].search(nm)), rest)
+        g[2].append(p)
+    pri = {"本体": 0, "コントローラー": 1, "ゲームソフト": 2}   # 見せる順：本体→コントローラー→ゲームソフト→ほか（当てはめる順とは別）
+    out = [(n, lst) for n, _, lst in groups if lst]
+    return sorted(out, key=lambda g: (pri.get(g[0], 3), [x[0] for x in out].index(g[0])))
+
+
+SG_CSS = (".sgmenu{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;padding:0;list-style:none}"
+          ".sgmenu a{display:inline-block;padding:6px 12px;border:1px solid var(--line,#ccc);border-radius:999px;font-size:14px;text-decoration:none;color:inherit;background:var(--card,#fff)}"
+          ".sgmenu a small{margin-left:4px;opacity:.7}.sgmenu a:hover{border-color:currentColor}.pm-list h3{margin:18px 0 6px;font-size:17px}")
+
+
+def cat_products_html(prods, short, subgenres=None, has_list=False):
+    """カテゴリページの商品一覧（カード）。subgenres があれば、上にジャンルのメニューを置いてジャンルごとに見出しを分ける（11/14）"""
     if not prods:
         return f'<section class="sec"><h2>{escape(short)}の商品一覧</h2><p>商品はまだありません。</p></section>'
-    return (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
-            '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。' + CHANGE_NOTE + '定価で売り出されたらXで通知します。</p>'
-            f'{plist_html(prods)}</section>')
+    head = (f'<section class="sec pm-list"><h2>{escape(short)}の商品一覧（{len(prods)}件）</h2>'
+            '<p class="note">最高買取は買取店の新品の買取価格でいちばん高いもの。' + CHANGE_NOTE + '定価で売り出されたらXで通知します。</p>')
+    groups = split_subgenres(prods, subgenres)
+    if len(groups) < 2:
+        return head + f'{plist_html(prods)}</section>'
+    menu = "".join(f'<li><a href="#sg{k}">{escape(n)}<small>{len(lst)}</small></a></li>' for k, (n, lst) in enumerate(groups, 1))
+    if has_list:
+        menu += '<li><a href="#list">抽選・予約・再販の受付</a></li>'
+    body = "".join(f'<h3 id="sg{k}">{escape(short)}の{escape(n)}（{len(lst)}件）</h3>{plist_html(lst)}' for k, (n, lst) in enumerate(groups, 1))
+    return (f'<style>{SG_CSS}</style>' + head + f'<nav aria-label="{escape(short)}のジャンル"><ul class="sgmenu">{menu}</ul></nav>' + body + '</section>')

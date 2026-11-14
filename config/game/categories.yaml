@@ -35,6 +35,11 @@ categories:
     color: "#1b4965"
     kinds: [lottery, invite, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '周辺機器・アクセサリー', re: 'ヘッドセット|PULSE|ディスクドライブ|VR2|Portal|リモートプレーヤー|充電|スタンド|SSD|カメラ|リモコン'}
+      - {name: '本体', re: 'CFI-\d|CFIJ-100|^(新型 ?)?(PS5|PlayStation ?5|プレイステーション ?5)(?!.*(版|コントローラー|DualSense|ソフト))'}
+      - {name: 'コントローラー', re: 'DualSense|コントローラー|CFI-ZC'}
+      - {name: 'ゲームソフト'}
 
   - id: switch2
     group: console
@@ -48,6 +53,11 @@ categories:
     color: "#2a6f97"
     kinds: [lottery, invite, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '本体', re: '^Nintendo Switch 2(?! Edition)(?!.*(コントローラー|ドック|アダプター|ケース|オールインボックス))'}
+      - {name: 'コントローラー', re: 'コントローラー|Joy-Con|ジョイコン|ホリパッド|パッド|ハンドル|ホイール|スティック|太鼓'}
+      - {name: '周辺機器・アクセサリー', re: 'microSD|SD ?カード|ドック|ACアダプター|アダプタ|キャリングケース|ケース|充電|グリップ|スタンド|ヘッドセット|カメラ|ケーブル|オールインボックス|SSD|Alarmo|サウンドクロック|ストラップ|フィルム|ポーチ'}
+      - {name: 'ゲームソフト'}
 
   - id: handheld_pc
     group: console
@@ -61,6 +71,13 @@ categories:
     color: "#0b7285"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true   # 11/9 いったん外したが、やっぱり載せる（ユーザーの指示）
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: 'コントローラー・周辺機器', re: '^Steam Controller|コントローラー$|ケース|ドック'}
+      - {name: 'Steam Deck', re: 'Steam Deck'}
+      - {name: 'Steam Machine', re: 'Steam Machine'}
+      - {name: 'Steam Frame（VR）', re: 'Steam Frame'}
+      - {name: 'ROG Ally・Xbox Ally', re: 'Ally'}
+      - {name: 'そのほかの携帯ゲーミングPC'}
 
   - id: xbox
     group: console
@@ -74,6 +91,11 @@ categories:
     color: "#107c10"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '周辺機器・アクセサリー', re: 'ヘッドセット|充電スタンド|ストレージ|SSD'}
+      - {name: 'コントローラー', re: 'コントローラー'}
+      - {name: '本体', re: 'Series [SX]'}
+      - {name: 'ゲームソフト'}
 
   - id: pc_parts
     group: game_goods
@@ -87,6 +109,12 @@ categories:
     color: "#76b900"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: 'RTX 5090', re: '5090'}
+      - {name: 'RTX 5080', re: '5080'}
+      - {name: 'RTX 5070 Ti', re: '5070 ?Ti'}
+      - {name: 'RTX 5070', re: '5070'}
+      - {name: 'そのほかのPCパーツ'}
 
   - id: game_limited
     group: game_goods
@@ -153,6 +181,11 @@ categories:
     color: "#7f4f24"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: 'スターター', re: 'スターター'}
+      - {name: 'デッキセット', re: 'デッキ'}
+      - {name: 'バトルエントリー・カスタマイズセット', re: 'エントリー|カスタマイズ|スタートダッシュ|キックオフ'}
+      - {name: 'そのほか'}
 
   - id: figure
     group: hobby
@@ -257,6 +290,11 @@ categories:
     color: "#e60012"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '周辺機器・アクセサリー', re: '充電|スタンド|ケース|Alarmo|サウンドクロック|microSD'}
+      - {name: 'コントローラー', re: 'コントローラー|Joy-Con|ジョイコン|ホリパッド|パッド|ハンドル|ホイール|スティック|太鼓'}
+      - {name: '本体', re: '有機EL|Switch Lite|HEG-S|HAD-?S|HDH-S|2022年箱|^Nintendo Switch ?(本体|\(|（)'}
+      - {name: 'ゲームソフト'}
 
   - id: pokemon   # 11/10 ユーザーの指示：大手のポケカ抽選だけ載せる（ゲーム垢で予約投稿・リンク先はこのサイトのページ）
     group: hobby
@@ -299,6 +337,11 @@ categories:
     kinds: [lottery, preorder, restock, first_come, release]
     notice: "お酒は20歳になってから。20歳未満の方の飲酒・購入は法律で禁止されています。抽選・購入は20歳以上の方に限ります。"
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '山崎', re: '山崎'}
+      - {name: '白州', re: '白州'}
+      - {name: '響', re: '響'}
+      - {name: 'そのほかのお酒'}
 
   # ---- 11/11 入荷Nowでよく抽選・入荷が出ているホビー ----
   - id: labubu
@@ -344,3 +387,11 @@ categories:
     color: "#4a5568"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
+    subgenres:   # カテゴリの中のジャンル分け（11/14 ユーザー：スイッチなら本体・コントローラー・ゲームソフト）。上から順に当てはめ、re の無いものは残り全部
+      - {name: '交換レンズ', re: '\d+mm|NIKKOR|ZUIKO|XCD|SEL\d|SELP|テレコンバーター'}
+      - {name: 'カメラ', re: 'ボディ|ILCE|ILME|サイバーショット|DSC-|X2D|GR I|PENTAX|WG-|PIXPRO|VLOGCAM|ゾフォート|Insta360|OM-\d|OM SYSTEM|OM Digital|カメラ'}
+      - {name: 'スマホ', re: 'OPPO|Motorola|MOTOROLA|Arrows|iPhone|Pixel|Galaxy|Xperia|SIMフリー'}
+      - {name: 'VR（Meta Quest）', re: 'Quest'}
+      - {name: 'Fire TV・スピーカー', re: 'Fire TV|HomePod|Echo'}
+      - {name: 'イヤホン・オーディオ', re: 'WF-|WH-|イヤホン|ヘッドホン'}
+      - {name: '生活家電・美容家電'}

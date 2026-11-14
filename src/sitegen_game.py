@@ -1096,7 +1096,7 @@ def build(settings=None, out_dir=None, force=False):
                                  "desc": (f"{c['name']}の商品{npd}件の最高買取価格（買取相場）と、" if npd else f"{c['name']}の") + "発売・予約・再販・抽選の情報。楽天・Amazonで売り出されたらXで通知します。",
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": f"商品{npd}件・いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
-              body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
+              body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub)),
               body_bottom=ser_links, noindex=(npd == 0 and not sub))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}

@@ -47,3 +47,15 @@ t = ip[0].read_text(encoding="utf-8")
 assert "予測不能（発売前）" in t and "定期的にチェック" in t and "intent/follow?screen_name=a9994aaa" in t and "55,000円" in t
 assert "この商品をメルカリで見る" in t and "status=sold_out" in t and "この商品をメルカリで見る" in p
 print("ITEM PAGES OK")
+
+
+def test_split_subgenres():
+    import game_premium as gp
+    rules = [{"name": "周辺機器", "re": "ケース"}, {"name": "コントローラー", "re": "コントローラー"}, {"name": "本体", "re": "^Nintendo Switch 2"}, {"name": "ゲームソフト"}]
+    ps = [{"name": "Nintendo Switch 2 キャリングケース"}, {"name": "Nintendo Switch 2 BEE-S"}, {"name": "マリオカート ワールド"}, {"name": "Nintendo Switch 2 Proコントローラー"}]
+    gs = gp.split_subgenres(ps, rules)
+    assert [n for n, _ in gs] == ["本体", "コントローラー", "ゲームソフト", "周辺機器"]
+    assert gs[3][1][0]["name"].endswith("ケース")
+    h = gp.cat_products_html([dict(p, url="/x/", jan="1") for p in ps], "Switch 2", rules, has_list=True)
+    assert 'href="#sg1"' in h and 'href="#list"' in h and 'id="sg4"' in h
+    assert "sgmenu" not in gp.cat_products_html([dict(ps[0], url="/x/", jan="1")], "Switch 2", rules)
