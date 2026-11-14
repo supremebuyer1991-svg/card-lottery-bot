@@ -17099,13 +17099,15 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "8654a599e47e1227",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-12T12:04:53.382106+09:00",
     "multi": false,
     "cls": "1872af01bbc6",
     "tco_checked": true,
     "page_checked_at": "2026-11-14T15:57:37.522487+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-14T21:01:01.673719+09:00"
   },
   "f754adecaf2407d3": {
     "store": "TSUTAYA積文館書店佐大通り店",
@@ -19565,13 +19567,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "86befc03aec93c38",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-12T21:48:12.100797+09:00",
     "multi": false,
     "cls": "a4ab5b798170",
     "apply_url": "https://livepocket.jp/e/f2y9q",
     "page_checked_at": "2026-11-14T16:13:48.906160+09:00",
-    "page_err": "中身が空"
+    "page_err": "中身が空",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-14T21:01:01.673465+09:00"
   },
   "fcc64e227400e43b": {
     "store": "カードボックス通販／買取【CBトレコロ】",

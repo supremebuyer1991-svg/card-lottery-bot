@@ -3782,7 +3782,7 @@
     "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1YWUU3WmZkejFjSUFvYTA1QjkxbUQ5QzJRTWlnZWVJOF9MYzQyVnBUeGZuS0ZSVjN4YXZNVWJsT2N6RVhSTmIzTHlqcVVzWGVvQUNLLVlfZUdJQjNfRi1wTldNVlZmVjdVMUE?oc=5",
     "found_at": "2026-11-11T20:45:56.995448+09:00",
     "key": "ee5e342ae40428d7",
-    "status": "listed",
+    "status": "closed",
     "multi": false,
     "cls": "0065171f1fb1",
     "deadline_checked_at": "2026-11-14T13:40:02.087645+09:00",
@@ -3790,7 +3790,9 @@
     "deadline_note": "画像0/0枚読込・締切の記載なし",
     "page_checked_at": "2026-11-14T15:27:00.666920+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "closed_at": "2026-11-14T21:07:21.994672+09:00",
+    "closed_reason": "締切不明のまま10日経過"
   },
   "0fb00fdffc493db0": {
     "store": "ソニー・インタラクティブエンタテインメント",
@@ -13870,7 +13872,7 @@
     "end": null,
     "announce": null,
     "method": "Web",
-    "conditions": "本文には応募や購入の条件の記載がない。2026/11/27(金)から東京駅一番街などで開催され、第1弾グッズが発売されることだけが書かれている。",
+    "conditions": null,
     "price": null,
     "round": null,
     "url": "https://chiikawa-info.jp/p26/chiikawaclinic",
@@ -13888,8 +13890,8 @@
     "status": "pending",
     "found_at": "2026-11-14T16:18:54.769411+09:00",
     "issue": 759,
-    "multi": true,
-    "cls": "53bc2737260f",
+    "multi": false,
+    "cls": "adc798d75833",
     "deadline_checked_at": "2026-11-14T17:24:44.978834+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし（開催日のみ）",
@@ -14126,7 +14128,7 @@
     "end": null,
     "announce": null,
     "method": "招待リクエスト",
-    "conditions": null,
+    "conditions": "抽選は「招待リクエスト」形式とだけ書かれている。応募や購入の条件、会員登録の要否、本人確認、購入個数の上限、価格などは本文に記載がない。",
     "price": null,
     "round": null,
     "url": "https://snkrdunk.com/articles/32599/",
@@ -14147,9 +14149,11 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300"
     },
-    "cls": "ab7acabe3ba9",
+    "cls": "93fec86095fc",
     "issue": 763,
-    "series_raw": "世界最強の戦士"
+    "series_raw": "世界最強の戦士",
+    "page_checked_at": "2026-11-14T21:06:14.474018+09:00",
+    "details_checked": true
   },
   "5fd4651b3d353188": {
     "store": "au",
@@ -14181,7 +14185,9 @@
     "issue": 764,
     "deadline_checked_at": "2026-11-14T17:53:47.018024+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・受付締切の記載なし"
+    "deadline_note": "画像0/0枚読込・受付締切の記載なし",
+    "page_checked_at": "2026-11-14T21:06:23.353259+09:00",
+    "details_checked": true
   },
   "11866498e9cfd2df": {
     "store": "ソフトバンク",
@@ -14213,7 +14219,9 @@
     "issue": 765,
     "deadline_checked_at": "2026-11-14T17:53:49.697012+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・抽選の締切記載なし"
+    "deadline_note": "画像0/0枚読込・抽選の締切記載なし",
+    "page_checked_at": "2026-11-14T21:06:31.523009+09:00",
+    "details_checked": true
   },
   "c4700e875e528bf6": {
     "store": "楽天モバイル",
@@ -14245,7 +14253,9 @@
     "issue": 766,
     "deadline_checked_at": "2026-11-14T18:27:18.371677+09:00",
     "deadline_v": 5,
-    "deadline_note": "画像0/0枚読込・締切の記載なし（予約開始のみ）"
+    "deadline_note": "画像0/0枚読込・締切の記載なし（予約開始のみ）",
+    "page_checked_at": "2026-11-14T21:06:39.630562+09:00",
+    "details_checked": true
   },
   "5d87c54ca31e7089": {
     "store": "楽天モバイル",
@@ -14530,7 +14540,9 @@
     "verified_at": "2026-11-14T17:26:18.311196+09:00",
     "verified": true,
     "series_raw": "ポケモンカードゲームMEGA",
-    "cls": "ecccd659466c"
+    "cls": "ecccd659466c",
+    "page_checked_at": "2026-11-14T21:06:47.396633+09:00",
+    "details_checked": true
   },
   "e77c5bc541326dcc": {
     "store": "楽天ブックス",
@@ -15628,7 +15640,9 @@
     },
     "series_raw": "神の支配",
     "multi": false,
-    "cls": "56250b90bd89"
+    "cls": "56250b90bd89",
+    "page_checked_at": "2026-11-14T21:07:04.328015+09:00",
+    "page_err": "中身が空"
   },
   "tc2525021c0787ee77": {
     "store": "TSUTAYA白河店（みどり書房白河店）",
