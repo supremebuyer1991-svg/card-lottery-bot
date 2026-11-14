@@ -1083,10 +1083,11 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "eb482ed0b191b26a",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-03T10:45:26.813602+09:00",
     "cls": "08bed7d28779",
-    "page_checked_at": "2026-11-14T05:31:07.322646+09:00"
+    "page_checked_at": "2026-11-14T05:31:07.322646+09:00",
+    "closed_reason": "情報元のサイトの広告（抽選ではない）"
   },
   "88886703784d04ac": {
     "store": "ブックオフプラス新宿駅西口店",
@@ -7154,9 +7155,10 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "f91b7a57b2ccbb7c",
-    "status": "approved",
+    "status": "rejected",
     "found_at": "2026-11-09T12:43:53.282456+09:00",
-    "cls": "19ad925de8ef"
+    "cls": "19ad925de8ef",
+    "closed_reason": "情報元のサイトの広告（抽選ではない）"
   },
   "fb42245fb69824cf": {
     "store": "わくわくらんど土浦店",
@@ -25392,7 +25394,9 @@
     "no_quote": true,
     "key": "3e712eacb3198357",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.967858+09:00"
+    "found_at": "2026-11-14T13:28:55.967858+09:00",
+    "page_checked_at": "2026-11-14T17:49:03.043561+09:00",
+    "page_err": "中身が空"
   },
   "ee7eee17b5a56e8f": {
     "store": "カードラボ大阪日本橋店",
@@ -25418,7 +25422,9 @@
     "no_quote": true,
     "key": "ee7eee17b5a56e8f",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.967894+09:00"
+    "found_at": "2026-11-14T13:28:55.967894+09:00",
+    "page_checked_at": "2026-11-14T17:49:05.153300+09:00",
+    "address_checked": true
   },
   "dc862a38f780ab2e": {
     "store": "駿河屋 新天町店トレカ館",
@@ -25444,7 +25450,9 @@
     "no_quote": true,
     "key": "dc862a38f780ab2e",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.967933+09:00"
+    "found_at": "2026-11-14T13:28:55.967933+09:00",
+    "page_checked_at": "2026-11-14T17:49:09.422540+09:00",
+    "page_err": "中身が空"
   },
   "d6743f00e50ba6e8": {
     "store": "駿河屋 新天町店トレカ館",
@@ -25470,7 +25478,9 @@
     "no_quote": true,
     "key": "d6743f00e50ba6e8",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.967969+09:00"
+    "found_at": "2026-11-14T13:28:55.967969+09:00",
+    "page_checked_at": "2026-11-14T17:49:11.472471+09:00",
+    "page_err": "中身が空"
   },
   "60b7bba66445e659": {
     "store": "こどもや 各店ほか（リブ総社店・岡南店・平島店・倉敷店・原尾島店・ABCパレード宇多津店・いろは堂本店）",
@@ -25495,7 +25505,8 @@
     "no_quote": true,
     "key": "60b7bba66445e659",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968005+09:00"
+    "found_at": "2026-11-14T13:28:55.968005+09:00",
+    "page_checked_at": "2026-11-14T17:49:13.532671+09:00"
   },
   "00e6900cb4f3d73d": {
     "store": "トレカスタイル（トレカショップDANDAN BASE店）",
@@ -25520,7 +25531,8 @@
     "no_quote": true,
     "key": "00e6900cb4f3d73d",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968043+09:00"
+    "found_at": "2026-11-14T13:28:55.968043+09:00",
+    "page_checked_at": "2026-11-14T17:49:16.052273+09:00"
   },
   "0e1d3124e0aff9bc": {
     "store": "フルコンプ 一部店舗（八王子・立川・町田・吉祥寺・新宿・仙台・福岡天神・札幌）",
@@ -25549,7 +25561,9 @@
     "found_at": "2026-11-14T13:28:55.968081+09:00",
     "announce": "11月17日(火)〜11月18日(水)予定（LivePocketのメールで発表）",
     "buy": "11/22(日)〜11/24(火)",
-    "start": "2026-11-14T10:45:00+09:00"
+    "start": "2026-11-14T10:45:00+09:00",
+    "page_checked_at": "2026-11-14T17:49:20.867264+09:00",
+    "page_err": "中身が空"
   },
   "7e52007669dc2385": {
     "store": "カードラボ オタロード本店",
@@ -25574,7 +25588,9 @@
     "no_quote": true,
     "key": "7e52007669dc2385",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968117+09:00"
+    "found_at": "2026-11-14T13:28:55.968117+09:00",
+    "page_checked_at": "2026-11-14T17:49:22.969290+09:00",
+    "address_checked": true
   },
   "e733244147b824ea": {
     "store": "Japan TCG Center 蒲田駅東口店",
@@ -25655,7 +25671,8 @@
     "found_at": "2026-11-14T13:28:55.968222+09:00",
     "announce": "11月27日(金)0:00",
     "buy": "11/27(金)〜11/29(日)",
-    "start": "2026-11-13T21:00:00+09:00"
+    "start": "2026-11-13T21:00:00+09:00",
+    "page_checked_at": "2026-11-14T17:49:27.686658+09:00"
   },
   "afe45a3975f338f3": {
     "store": "北国書林松任店",
@@ -25705,7 +25722,8 @@
     "no_quote": true,
     "key": "82c0a320f86f04da",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968292+09:00"
+    "found_at": "2026-11-14T13:28:55.968292+09:00",
+    "page_checked_at": "2026-11-14T17:49:30.327881+09:00"
   },
   "7afdc63be2407eb6": {
     "store": "TSUTAYA Trading Card 戸塚",
@@ -25756,7 +25774,9 @@
     "no_quote": true,
     "key": "674b69a34c8870bc",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968383+09:00"
+    "found_at": "2026-11-14T13:28:55.968383+09:00",
+    "page_checked_at": "2026-11-14T17:49:32.551464+09:00",
+    "page_err": "中身が空"
   },
   "5019470319e6ed64": {
     "store": "TSUTAYA八戸ニュータウン店",
@@ -25782,7 +25802,9 @@
     "no_quote": true,
     "key": "5019470319e6ed64",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.968419+09:00"
+    "found_at": "2026-11-14T13:28:55.968419+09:00",
+    "page_checked_at": "2026-11-14T17:49:34.626048+09:00",
+    "address_checked": true
   },
   "1ef9e734a0243ece": {
     "store": "ミント名古屋店（アルペンナゴヤ6F）",
@@ -25809,7 +25831,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.968454+09:00",
     "multi": false,
-    "cls": "ed9983bce501"
+    "cls": "ed9983bce501",
+    "page_checked_at": "2026-11-14T17:49:36.942340+09:00",
+    "address_checked": true
   },
   "30a9399af3abacde": {
     "store": "いえろーきゃっと大曽根店",
@@ -25919,7 +25943,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.968600+09:00",
     "multi": false,
-    "cls": "88327b75a920"
+    "cls": "88327b75a920",
+    "page_checked_at": "2026-11-14T17:49:39.287894+09:00",
+    "page_err": "中身が空"
   },
   "b942af3bb247a4a9": {
     "store": "キデイランド 二子玉川店",
@@ -25947,7 +25973,9 @@
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.968636+09:00",
     "multi": false,
-    "cls": "e51c1a3280cd"
+    "cls": "e51c1a3280cd",
+    "page_checked_at": "2026-11-14T17:49:41.332330+09:00",
+    "page_err": "中身が空"
   },
   "f6e904478d6254ae": {
     "store": "TSUTAYA BOOKSTORE川崎駅前店",
@@ -26295,7 +26323,9 @@
     "no_quote": true,
     "key": "243b9d6020b8aa85",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.969079+09:00"
+    "found_at": "2026-11-14T13:28:55.969079+09:00",
+    "page_checked_at": "2026-11-14T17:49:43.385042+09:00",
+    "page_err": "中身が空"
   },
   "32d973cf0588dd6c": {
     "store": "TSUTAYA鈴鹿中央通店",
@@ -26321,7 +26351,9 @@
     "no_quote": true,
     "key": "32d973cf0588dd6c",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.969113+09:00"
+    "found_at": "2026-11-14T13:28:55.969113+09:00",
+    "page_checked_at": "2026-11-14T17:49:45.440587+09:00",
+    "page_err": "中身が空"
   },
   "a51135e74d46bcd7": {
     "store": "TSUTAYAウイングタウン岡崎店",
@@ -26422,7 +26454,9 @@
     "no_quote": true,
     "key": "4458dd47992a2472",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:55.969251+09:00"
+    "found_at": "2026-11-14T13:28:55.969251+09:00",
+    "page_checked_at": "2026-11-14T17:49:47.491636+09:00",
+    "page_err": "中身が空"
   },
   "f5355274f0605ea3": {
     "store": "HARUYAトレカベースわさだ店",
@@ -26473,7 +26507,9 @@
     "no_quote": true,
     "key": "52f3e2d3e9a3a0bb",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.434703+09:00"
+    "found_at": "2026-11-14T13:28:57.434703+09:00",
+    "page_checked_at": "2026-11-14T17:49:49.570168+09:00",
+    "page_err": "中身が空"
   },
   "fe6e170dc7a405b0": {
     "store": "ふるいちトップブックス高田西店",
@@ -26499,7 +26535,9 @@
     "no_quote": true,
     "key": "fe6e170dc7a405b0",
     "status": "approved",
-    "found_at": "2026-11-14T13:28:57.434757+09:00"
+    "found_at": "2026-11-14T13:28:57.434757+09:00",
+    "page_checked_at": "2026-11-14T17:49:51.655604+09:00",
+    "page_err": "中身が空"
   },
   "c07f69ccc670ce14": {
     "store": "カードボックス大垣書店伏見店",

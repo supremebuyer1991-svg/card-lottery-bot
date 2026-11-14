@@ -1535,6 +1535,7 @@
       "store": "BANDAI SPIRITS",
       "product": "一番くじ To LOVEる-とらぶる-ダークネス",
       "series": "To LOVEる-とらぶる-ダークネス",
+      "start": "2026-11-18T17:00:00+09:00",
       "end": "2026-11-19",
       "method": "店頭",
       "url": "https://1kuji.com/products/toloveru_d",
@@ -4288,6 +4289,31 @@
     },
     "path": "l/tce400b453/",
     "end": "2026-11-16T22:00:00+09:00",
+    "seen": "2026-11-14",
+    "ended": false
+  },
+  "6af6f1e9cefc2aa1": {
+    "snap": {
+      "key": "6af6f1e9cefc2aa1",
+      "game": "ichibankuji",
+      "store": "BANDAI SPIRITS",
+      "product": "一番くじ Tamagotchi ～夜空で発見！？12星座とたまごっち～",
+      "series": "Tamagotchi",
+      "end": "2026-11-21",
+      "method": "店頭",
+      "url": "https://1kuji.com/products/tamagotchi6",
+      "channel": "store",
+      "area": "東京都",
+      "spath": "ichibankuji/tamagotchi/",
+      "found_at": "2026-11-14T17:52:56.034971+09:00",
+      "kind": "release",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E4%25B8%2580%25E7%2595%25AA%25E3%2581%258F%25E3%2581%2598%2520Tamagotchi",
+        "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20Tamagotchi&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/6af6f1e9ce/",
+    "end": "2026-11-21",
     "seen": "2026-11-14",
     "ended": false
   }

@@ -1836,7 +1836,7 @@
     "product": "一番くじ To LOVEる-とらぶる-ダークネス",
     "series": "To LOVEる-とらぶる-ダークネス",
     "kind": "release",
-    "start": null,
+    "start": "2026-11-18T17:00:00+09:00",
     "end": "2026-11-19",
     "announce": null,
     "method": "店頭",
@@ -2810,7 +2810,14 @@
     "verified_at": "2026-11-11T08:08:14.741262+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T14:18:45.684680+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "開催記念の特別アイテム全6種のひとつ",
+      "CLUB TAMASHII MEMBERS全会員が対象の応募期間あり",
+      "11月27日10時～11月30日23時はどなたでも応募可能",
+      "会場では販売せず、すべて後日配送"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "4ec6cc62ca60f673": {
     "store": "魂ネイション2026（秋葉原）",
@@ -3135,7 +3142,14 @@
     "verified_at": "2026-11-11T08:08:14.741215+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T14:18:47.877793+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "6種の開催記念商品の一つで、会場では販売しない",
+      "すべて後日配送",
+      "全会員の応募は11月23日（月・祝）23時まで",
+      "11月27日（金）10時から11月30日（月）23時まではどなたでも応募可能"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "b3c41aa4700f3736": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -3170,7 +3184,15 @@
     "verified_at": "2026-11-11T08:08:14.741105+09:00",
     "verified": true,
     "page_checked_at": "2026-11-14T14:18:47.878027+09:00",
-    "details_checked": true
+    "details_checked": true,
+    "facts": [
+      "開催記念商品全6種のうちの1つ",
+      "会場では販売せず、すべて後日配送",
+      "CLUB TAMASHII MEMBERS全会員は11月13日10時～11月23日23時に応募",
+      "どなたでも応募可能な期間は11月27日10時～11月30日23時",
+      "詳細は魂ウェブ商店の開催記念商品ページで確認"
+    ],
+    "facts_src": "https://dengekionline.com/article/202611/93602"
   },
   "708729945fc9c183": {
     "store": "魂ウェブ商店（BANDAI SPIRITS）",
@@ -3413,7 +3435,16 @@
     "cls": "7bfdbe895fcf",
     "official_checked": true,
     "verified_at": "2026-11-13T15:54:20.959136+09:00",
-    "verified": true
+    "verified": true,
+    "facts": [
+      "当選者への販売価格は6万7100円（税込のメーカー希望小売価格と同額）",
+      "商品ページの「招待をリクエストする」ボタンから抽選に応募",
+      "招待メールが届いた人だけが購入でき、有効期間は72時間以内",
+      "容量700mL、アルコール度数43度",
+      "招待制以外の出品は11万円（配送料無料、お届けは11月25日）※執筆時点",
+      "ローラン・ペリエとグラスのセットも招待制で販売（8万9056円）"
+    ],
+    "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155437.html"
   },
   "2dcbcd67238a5872": {
     "store": "タチバナE酒販（アップライジング）",
@@ -6681,7 +6712,8 @@
     },
     "area": null,
     "cls": "acbbffc08b9f",
-    "dup_of": "tc265bfedae079b73c"
+    "dup_of": "tc265bfedae079b73c",
+    "page_checked_at": "2026-11-14T17:53:51.961937+09:00"
   },
   "tc905e7298a12da0bb": {
     "store": "秋葉原チェルモ",
@@ -6862,7 +6894,8 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300"
     },
     "area": null,
-    "cls": "a5d9b813c608"
+    "cls": "a5d9b813c608",
+    "page_checked_at": "2026-11-14T17:53:56.328013+09:00"
   },
   "tc76e3341002c299a4": {
     "store": "Luruna Card",
@@ -6908,7 +6941,7 @@
     "source": "カード抽選まとめ ポケカ",
     "source_url": "https://cardchusen.com/pokeka",
     "found_at": "2026-11-03T10:45:26.813602+09:00",
-    "status": "approved",
+    "status": "expired",
     "kind": "lottery",
     "from_tcg": true,
     "verified": true,
@@ -6948,7 +6981,8 @@
     },
     "dup_of": "tc265bfedae079b73c",
     "area": null,
-    "cls": "45412fb04ded"
+    "cls": "45412fb04ded",
+    "page_checked_at": "2026-11-14T17:54:00.645398+09:00"
   },
   "tc0e910525eb5fdb52": {
     "store": "TSUTAYAサンリブ宗像店",
@@ -7014,7 +7048,9 @@
     "product_short": "ハドウシーカー",
     "dup_of": "tc8ecac05d49e13817",
     "area": null,
-    "cls": "38388e46a930"
+    "cls": "38388e46a930",
+    "page_checked_at": "2026-11-14T17:54:03.335793+09:00",
+    "page_err": "403 Client Error: Forbidden for url: https://www.suruga-ya.jp/blog/?q=pokeka_chusen261105.html"
   },
   "tc8a017b2378525719": {
     "store": "駿河屋 通販",
@@ -7080,7 +7116,9 @@
     },
     "dup_of": "tc0422b1a04600b858",
     "multi": false,
-    "cls": "e1de9d3e1d99"
+    "cls": "e1de9d3e1d99",
+    "page_checked_at": "2026-11-14T17:54:03.646811+09:00",
+    "page_err": "中身が空"
   },
   "tc2357f2bd94e3e05b": {
     "store": "るるなカード（Luruna Card）オンラインショップ",
@@ -7113,7 +7151,8 @@
     },
     "dup_of": "tc265bfedae079b73c",
     "area": null,
-    "cls": "6c166522c04c"
+    "cls": "6c166522c04c",
+    "page_checked_at": "2026-11-14T17:54:05.749563+09:00"
   },
   "tcf44e8adc128e90f6": {
     "store": "TSUTAYA BOOK STORE島原店",
@@ -7868,7 +7907,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "039ab3b82a00"
   },
   "tc7798c78a804fe231": {
     "store": "SuperKaBoS+ゲオwasse店",
@@ -7898,7 +7939,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "bc2243a93611"
   },
   "tcccdb8911c43a6927": {
     "store": "SuperKaBoS+GEO鯖江店",
@@ -7928,7 +7971,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "404f2aa256a2"
   },
   "tcba91bb00e43737db": {
     "store": "SuperKaBoS+GEO鯖江店",
@@ -7958,7 +8003,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fapplied2%2F4582770058390x24%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/applied2/cabinet/202502/4582770058390x24.jpg?_ex=300x300"
     },
-    "dup_of": "tc9c6dc6f2c5ae10bf"
+    "dup_of": "tc9c6dc6f2c5ae10bf",
+    "multi": false,
+    "cls": "ca41a87608de"
   },
   "tc590fdc079d06452b": {
     "store": "TSUTAYA中津店トレカコーナー",
@@ -7988,7 +8035,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "0b791d1e9613"
   },
   "tc919f4e6334dcc5cd": {
     "store": "トレカエースイオンタウン水戸南店",
@@ -8019,7 +8068,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "6592fa23817e"
   },
   "tc160081d0ae4cfd70": {
     "store": "トレカステーションTSUTAYAハレノテラス東大宮店",
@@ -8046,7 +8097,9 @@
       "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
-    "dup_of": "tc0422b1a04600b858"
+    "dup_of": "tc0422b1a04600b858",
+    "multi": false,
+    "cls": "fbb0c0fc017f"
   },
   "tc772404bf1d82d03a": {
     "store": "フタバ図書TSUTAYA Alti福山店",
@@ -8119,7 +8172,7 @@
     "source": "カード抽選まとめ ポケカ",
     "source_url": "https://cardchusen.com/pokeka",
     "found_at": "2026-11-09T12:43:53.282456+09:00",
-    "status": "approved",
+    "status": "expired",
     "kind": "lottery",
     "from_tcg": true,
     "verified": true,
@@ -13820,7 +13873,10 @@
     "status": "pending",
     "found_at": "2026-11-14T16:55:04.136985+09:00",
     "cls": "55fffe87a239",
-    "issue": 764
+    "issue": 764,
+    "deadline_checked_at": "2026-11-14T17:53:47.018024+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・受付締切の記載なし"
   },
   "11866498e9cfd2df": {
     "store": "ソフトバンク",
@@ -13849,7 +13905,10 @@
     "status": "pending",
     "found_at": "2026-11-14T16:55:04.137003+09:00",
     "cls": "e87f1caf45f6",
-    "issue": 765
+    "issue": 765,
+    "deadline_checked_at": "2026-11-14T17:53:49.697012+09:00",
+    "deadline_v": 5,
+    "deadline_note": "画像0/0枚読込・抽選の締切記載なし"
   },
   "c4700e875e528bf6": {
     "store": "楽天モバイル",
@@ -15254,5 +15313,446 @@
       "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
     },
     "dup_of": "tc0422b1a04600b858"
+  },
+  "ff180ec59ccc8a64": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ ゴジラ 怪獣乱舞-ゼロの鼓動-",
+    "series": "ゴジラ 怪獣乱舞-ゼロの鼓動-",
+    "kind": "first_come",
+    "start": "2026-11-16T17:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/godzilla10",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.034813+09:00",
+    "key": "ff180ec59ccc8a64",
+    "status": "approved"
+  },
+  "25a12a4dd3851419": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ ワンピース～あにまる大集合！～",
+    "series": "ワンピース",
+    "kind": "first_come",
+    "start": "2026-12-07T11:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/onep105",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.034858+09:00",
+    "key": "25a12a4dd3851419",
+    "status": "approved"
+  },
+  "d0c2821a15ce5e3f": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ To LOVEる-とらぶる-ダークネス",
+    "series": "To LOVEる-とらぶる-ダークネス",
+    "kind": "first_come",
+    "start": "2026-11-18T17:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/toloveru_d",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.034895+09:00",
+    "key": "d0c2821a15ce5e3f",
+    "status": "duplicate",
+    "duplicate_of": "13067662f7bd7a05"
+  },
+  "ed37c76d41e8e710": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじちょこっと ホイッピ＆ラッピ",
+    "series": "ホイッピ＆ラッピ",
+    "kind": "first_come",
+    "start": "2026-11-19T11:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/whippi_wrappi",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.034919+09:00",
+    "key": "ed37c76d41e8e710",
+    "status": "duplicate",
+    "duplicate_of": "c86c90468b5e2a1c"
+  },
+  "ca74a523c54cba9b": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ にゃんこ大戦争 ～みんなでペリペリするにゃ～（再販売）",
+    "series": "にゃんこ大戦争",
+    "kind": "release",
+    "start": "2026-11-20T17:00:00+09:00",
+    "end": "2026-11-20T23:59:00+09:00",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/battlecats2-2",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "ca74a523c54cba9b",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.034936+09:00"
+  },
+  "4db7daa59d932e86": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ にゃんこ大戦争 ～みんなでペリペリするにゃ～（再販売）",
+    "series": "にゃんこ大戦争",
+    "kind": "first_come",
+    "start": "2026-11-20T17:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/battlecats2-2",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.034954+09:00",
+    "key": "4db7daa59d932e86",
+    "status": "duplicate",
+    "duplicate_of": "ca74a523c54cba9b"
+  },
+  "6af6f1e9cefc2aa1": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ Tamagotchi ～夜空で発見！？12星座とたまごっち～",
+    "series": "Tamagotchi",
+    "kind": "release",
+    "start": null,
+    "end": "2026-11-21",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/tamagotchi6",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "6af6f1e9cefc2aa1",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.034971+09:00",
+    "facts": [
+      "店頭販売のみで、オンライン販売の記載はない",
+      "2026年11月21日(土)より発売予定（時刻の記載なし）",
+      "日本全国のコンビニ・書店・ホビーショップなどで販売（一番くじ全体の説明）"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T17:55:42.401542+09:00",
+    "before_verify": {
+      "end": "2026-11-21T23:59:00+09:00"
+    },
+    "verified": true,
+    "verify_note": "記事に合わせて直した：end"
+  },
+  "7d952f4e71e65f64": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ ジョジョの奇妙な冒険 The Gathering of RIVALS",
+    "series": "ジョジョの奇妙な冒険",
+    "kind": "release",
+    "start": "2026-11-25T17:00:00+09:00",
+    "end": "2026-11-21T23:59:00+09:00",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/jojo_26",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "7d952f4e71e65f64",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.034988+09:00",
+    "facts": [
+      "店頭販売は順次発売される予定",
+      "オンライン販売も同じ商品で行われる",
+      "ハズレなしで、必ずいずれかの商品が手に入るくじ（一番くじ全体の説明）",
+      "お店で最後のくじを引くとラストワン賞が手に入る（一番くじ全体の説明）"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T17:55:30.821341+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：store・start・end 記事のジョジョ項目は店頭が2026年11月21日(土)より順次発売予定、オンラインが2026年11月25日(水)17:00より販売開始予定です。店頭の販売時刻は記事に無く、23:59は作り物です。販売店としてBANDAI SPIRITSは書かれておらず、店舗は全国のコンビ"
+  },
+  "bd890dbe828a3c75": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ ジョジョの奇妙な冒険 The Gathering of RIVALS",
+    "series": "ジョジョの奇妙な冒険",
+    "kind": "first_come",
+    "start": "2026-11-25T17:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/jojo_26",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.035006+09:00",
+    "key": "bd890dbe828a3c75",
+    "status": "duplicate",
+    "duplicate_of": "7d952f4e71e65f64"
+  },
+  "005bdf28fe90f582": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ 仮面ライダーマイス＆仮面ライダーゼッツ",
+    "series": "仮面ライダーマイス＆仮面ライダーゼッツ",
+    "kind": "release",
+    "start": "2026-11-27T15:00:00+09:00",
+    "end": "2026-11-27T23:59:00+09:00",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/rider_zeztz",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "005bdf28fe90f582",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.035023+09:00",
+    "facts": [
+      "店頭販売は2026年11月27日(金)より順次発売予定",
+      "オンライン販売は2026年11月27日(金)15:00より販売開始予定",
+      "全国のコンビニ・書店・ホビーショップなどで販売",
+      "ハズレなしのキャラクターくじ"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T17:55:30.376636+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：start・end 店頭販売は2026年11月27日(金)より順次発売予定と書かれているだけで時刻はありません。15:00は『オンライン販売』の販売開始時刻なので、店頭の開始日時として使うのは誤りです。endの23:59も記事にない時刻です。"
+  },
+  "ba2bc8d5ee67ca52": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ 仮面ライダーマイス＆仮面ライダーゼッツ",
+    "series": "仮面ライダーマイス＆仮面ライダーゼッツ",
+    "kind": "first_come",
+    "start": "2026-11-27T15:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/rider_zeztz",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.035040+09:00",
+    "key": "ba2bc8d5ee67ca52",
+    "status": "duplicate",
+    "cls": "6cb443dce326",
+    "duplicate_of": "005bdf28fe90f582"
+  },
+  "e97efe69614957ed": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ 『ペルソナ』シリーズ30th ANNIVERSARY",
+    "series": "ペルソナシリーズ30th ANNIVERSARY",
+    "kind": "release",
+    "start": "2026-12-01T11:00:00+09:00",
+    "end": "2026-11-28T23:59:00+09:00",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/persona_30th",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "e97efe69614957ed",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.035057+09:00",
+    "multi": false,
+    "cls": "ed02a87379c8",
+    "facts": [
+      "店頭販売は2026年11月28日(土)から順次発売予定",
+      "オンライン販売は2026年12月01日(火)17:00から販売開始予定",
+      "ハズレなしで、必ずいずれかの商品が手に入る",
+      "お店で最後のくじを引くと特別なラストワン賞が手に入る"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T17:55:29.359456+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：start・end 記事では店頭販売は2026年11月28日(土)から順次発売、オンライン販売は2026年12月01日(火)17:00から販売開始。読み取りのstartの11:00は記事になく、endの23:59も記事に時刻の記載はない。"
+  },
+  "84d8610949e40aaa": {
+    "store": "BANDAI SPIRITS（一番くじONLINE）",
+    "product": "一番くじ 『ペルソナ』シリーズ30th ANNIVERSARY",
+    "series": "ペルソナシリーズ30th ANNIVERSARY",
+    "kind": "first_come",
+    "start": "2026-12-01T11:00:00+09:00",
+    "end": null,
+    "announce": null,
+    "method": "Web",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/persona_30th",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "online",
+    "area": null,
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.9,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "found_at": "2026-11-14T17:52:56.035076+09:00",
+    "key": "84d8610949e40aaa",
+    "status": "duplicate",
+    "cls": "753cc6aef675",
+    "duplicate_of": "e97efe69614957ed"
+  },
+  "c35a1cf1cf97956a": {
+    "store": "BANDAI SPIRITS",
+    "product": "一番くじ ドラゴンボール Fantastic Adventure 3",
+    "series": "ドラゴンボール Fantastic Adventure 3",
+    "kind": "release",
+    "start": null,
+    "end": "2026-11-28T23:59:00+09:00",
+    "announce": null,
+    "method": "店頭",
+    "conditions": null,
+    "price": null,
+    "round": null,
+    "url": "https://1kuji.com/products/db_fa3",
+    "x_post": null,
+    "game": "ichibankuji",
+    "channel": "store",
+    "area": "東京都",
+    "id_check": null,
+    "member": null,
+    "tags": [],
+    "confidence": 0.8,
+    "source": "一番くじ公式 ラインナップ",
+    "source_url": "https://1kuji.com/products",
+    "key": "c35a1cf1cf97956a",
+    "status": "approved",
+    "found_at": "2026-11-14T17:52:56.035093+09:00",
+    "multi": false,
+    "cls": "29937ce869ae",
+    "facts": [
+      "店頭販売は2026年11月28日(土)より順次発売予定",
+      "オンライン販売は2026年12月01日(火)17:00より販売開始予定",
+      "店頭では順次発売で、開始時刻の記載はない"
+    ],
+    "facts_src": "https://1kuji.com/products",
+    "verified_at": "2026-11-14T17:55:29.359021+09:00",
+    "verified": false,
+    "verify_note": "記事と合わない：store・end 発売情報としては合っています。店頭販売は2026年11月28日(土)より順次発売予定と記事にありますが、時刻の記載はありません。end の23:59は記事にない時刻です。store も記事では BANDAI SPIRITS ではなく全国の店舗での店頭販売とされています。product"
   }
 }
