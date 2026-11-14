@@ -102,7 +102,8 @@ def _lot_data(snap, settings):
          "受付開始": fmt(snap["start"]) if snap.get("start") else "", "締切（発売の情報なら発売日）": fmt(snap["end"]) if snap.get("end") else "",
          "当選発表": snap.get("announce") or "", "受付の方法": {"store": "店頭", "online": "ネット"}.get(snap.get("channel") or "", ""),
          "地域": snap.get("area") or "", "条件": re.sub(r"\s+", " ", str(snap.get("conditions") or ""))[:300],
-         "購入方法": snap.get("buy") or "", "応募方法": snap.get("method") or ""}
+         "購入方法": snap.get("buy") or "", "応募方法": snap.get("method") or "",
+         "お店の告知に書かれていた要点": snap.get("facts") or ""}
     try:
         import game_premium
         x = game_premium.price_match(snap.get("product") or "", settings)
@@ -152,9 +153,10 @@ def update(settings, ai=None):
         if not hit:
             continue
         key = "l:" + hit[0]
-        if st.get(key):   # 抽選は短い間しかないので、作り直さない
+        snap_ = hit[1].get("snap") or {}
+        if st.get(key) and (st[key].get("facts") or not snap_.get("facts")):   # 抽選は短い間しかないので作り直さない（要点があとから取れたときだけ1回作り直す）
             continue
-        cands.append((False, uniq, 0, key, _lot_data(hit[1].get("snap") or {}, settings)))
+        cands.append((False, uniq, 0, key, _lot_data(snap_, settings)))
     cands.sort(key=lambda c: c[:3])
     todo = []
     for c in cands[:int(settings.get("aitext_per_run", 12))]:
@@ -175,6 +177,8 @@ def update(settings, ai=None):
                 continue
             if text:
                 st[c[3]] = {"at": t.isoformat(), "text": text}
+                if c[4].get("お店の告知に書かれていた要点"):
+                    st[c[3]]["facts"] = True
                 made += 1
     live_keys = {"l:" + k for k in lp}
     for k in [k for k in st if k.startswith("l:") and k not in live_keys]:

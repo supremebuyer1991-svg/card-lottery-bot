@@ -33,8 +33,13 @@ PROMPT = """あなたはゲーム機・ホビーの抽選・予約・販売情�
 4. start（受付・販売の開始日時）・end（締切。発売の情報なら発売日）が記事の日時と合っているか。記事に無い日時を作っていないか（イベントの開場時刻などを販売開始と取り違えていないか）
 5. channel：online=通販で発送、store=店頭で受け取り・購入。記事と合っているか
 
+6. facts：この受付について、記事に「はっきり書かれている」要点を最大6つ。価格・1人あたりの数の制限・応募の条件（会員・購入履歴など）・受け取り方法・対象の店舗や地域・当選発表・支払い方法・商品の内容（同梱物・仕様）など。
+   ・記事の文をそのまま写さず、短い自分の言葉（1つ60文字まで・です/ます調でなくてよい）で書く。数字・日時・固有名詞は記事のとおり正確に
+   ・記事に書かれていないことは書かない（推測・一般論も書かない）。読み取った情報の項目（お店・商品・締切）と同じことだけなら書かない
+   ・販売の情報でない（is_sale=false）ときは空のリスト
+
 答えはJSONだけ：
-{{"is_sale": true/false, "ok": true/false, "wrong": ["合っていない項目名"], "fix": {{"項目名": "記事から分かる正しい値（日時は 2026-11-24T11:00:00+09:00 の形。記事に無ければ null）"}}, "reason": "短い理由（日本語）"}}
+{{"is_sale": true/false, "ok": true/false, "wrong": ["合っていない項目名"], "fix": {{"項目名": "記事から分かる正しい値（日時は 2026-11-24T11:00:00+09:00 の形。記事に無ければ null）"}}, "reason": "短い理由（日本語）", "facts": ["要点", "…"]}}
 
 読み取った情報：
 {item}
@@ -83,6 +88,13 @@ def verify(settings, ai=None, fetcher=None):
             and (it.get("source_url") or it.get("url"))]
     todo.sort(key=lambda kv: kv[1].get("found_at") or "", reverse=True)   # 新しく見つけたものから
     todo = todo[:int(settings.get("verify_per_run", 6))]
+    # 11/14：前に確かめた受付中の項目のうち、要点（facts）がまだ無いものも、空いた枠で記事を読み直して要点だけ取る
+    # （抽選の個別ページの中身を増やすため。確かめた結果 verified は変えない）
+    back = [(k, it) for k, it in lots.items() if it.get("status") in ACTIVE and it.get("verified") is True and "facts" not in it
+            and not it.get("manual") and (it.get("source_url") or it.get("url"))]
+    back.sort(key=lambda kv: kv[1].get("found_at") or "", reverse=True)
+    back_keys = {k for k, _ in back[:max(0, int(settings.get("verify_facts_backfill", 4)))]}
+    todo += [kv for kv in back if kv[0] in back_keys]
     if not todo or job_elapsed() > float(settings.get("verify_until_sec", 300)):
         return 0
 
@@ -94,21 +106,28 @@ def verify(settings, ai=None, fetcher=None):
         try:
             text = _text(url, settings, fetcher)
         except Exception as e:
-            return k, None, f"本文が読めない {str(e)[:60]}"
+            return k, None, f"本文が読めない {str(e)[:60]}", url
         if len(text) < 200:
-            return k, None, "本文が短すぎる"
+            return k, None, "本文が短すぎる", url
         try:
             res = ai({f: it.get(f) for f in FIELDS}, url, text)
         except Exception as e:
-            return k, None, f"AIの失敗 {str(e)[:60]}"
-        return k, res, ""
+            return k, None, f"AIの失敗 {str(e)[:60]}", url
+        return k, res, "", url
 
     n = 0
     with ThreadPoolExecutor(max_workers=int(settings.get("verify_parallel", 4))) as ex:
-        for k, res, err in ex.map(one, todo):
+        for k, res, err, url in ex.map(one, todo):
             it = lots[k]
             if res is None:
                 log(f"  確認：{it.get('store')} {(it.get('product') or '')[:30]} … 保留（{err}）")
+                continue
+            facts = [re.sub(r"\s+", " ", str(f)).strip()[:80] for f in (res.get("facts") or []) if isinstance(f, str) and f.strip()][:6]
+            if res.get("is_sale", True):
+                it["facts"] = facts
+                it["facts_src"] = url
+            if k in back_keys:   # 要点だけ取り直した（確かめた結果はそのまま）
+                log(f"  要点：{it.get('store')} {(it.get('product') or '')[:30]} … {len(facts)}件")
                 continue
             n += 1
             it["verified_at"] = now().isoformat()

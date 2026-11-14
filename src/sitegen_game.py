@@ -343,6 +343,14 @@ def _extra_detail(html, snap, me_key, recs, live, cat_by, s, t):
     key_n = _nm_key(snap.get("series") or snap.get("product"))
     sp = snap.get("spath")
     secs = []
+    # 0) 告知の要点（元の記事から取って、自分の言葉で書き直したもの。出典つき）
+    if snap.get("facts"):
+        from urllib.parse import urlparse
+        src = snap.get("facts_src") or ""
+        host = urlparse(src).netloc if src else ""
+        secs.append(f'<section class="xsec"><h2>告知の要点</h2><ul>' + "".join(f"<li>{escape(f)}</li>" for f in snap["facts"]) + "</ul>"
+                    + (f'<p class="note">出典：<a href="{escape(src)}" target="_blank" rel="nofollow noopener">{escape(host)}</a>（お店の告知をもとに要約しています。最新の内容は告知でご確認ください）</p>' if src else "")
+                    + "</section>")
     # 1) 同じ商品の受付の記録
     same = []
     for k, rec in recs.items():
@@ -1027,6 +1035,8 @@ def build(settings=None, out_dir=None, force=False):
         else:
             snap.pop("image", None), snap.pop("img_url", None)
         snap["shop"] = {k: i[k] for k in ("rk", "az", "yh", "mc") if i.get(k)}
+        if i.get("facts"):   # 元の記事から取った要点（game_verify。自分の言葉で書き直したもの）と、その記事
+            snap["facts"], snap["facts_src"] = i["facts"], i.get("facts_src") or ""
         if i.get("avail"):
             snap["avail"] = i["avail"]
         pages[i["key"]] = {"snap": snap, "path": i["lpath"], "end": i.get("end"), "seen": today_iso}
