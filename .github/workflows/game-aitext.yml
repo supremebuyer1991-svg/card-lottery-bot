@@ -1,0 +1,27 @@
+name: game-aitext
+# 中身の少ないページの解説を、いっぺんにまとめて作る（手で動かす時だけ。11/14）
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bot   # 普段の実行（run.yml）と同時に動かない
+  cancel-in-progress: false
+jobs:
+  aitext:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - env:
+          SITE: game
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python tools/game_aitext_all.py
+      - run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add state/game/ai_text.json; git commit -m "解説をまとめて作った" || exit 0
+          for i in 1 2 3 4 5; do git pull --rebase origin main && git push && exit 0; sleep 10; done

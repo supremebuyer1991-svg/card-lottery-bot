@@ -34,3 +34,12 @@ seen.clear()
 ga.update({"content_target_chars": 1500, "aitext_per_run": 8}, ai=fake_ai)
 assert not [x for x in seen if x.get("_kind") == "lottery_page"]
 print("AITEXT LOT OK")
+
+
+def test_series_data_and_candidates():
+    import game_aitext as ga
+    recs = [({"store": "ヨドバシ", "kind": "lottery", "channel": "online", "end": "2026-11-20T23:59:00+09:00", "series": "神の支配"}, {"ended": False}),
+            ({"store": "TSUTAYA室蘭店", "kind": "lottery", "channel": "store", "area": "北海道", "series": "神の支配"}, {"ended": True})]
+    d = ga._series_data("神の支配", recs, {})
+    assert d["_kind"] == "series_page" and d["いま載っている受付の数"] == 1 and d["これまでに終わった受付の数"] == 1
+    assert "TSUTAYA室蘭店" in d["これまでに受付があったお店（終わったものを含む）"]

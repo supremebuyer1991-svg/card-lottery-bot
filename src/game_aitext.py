@@ -51,13 +51,29 @@ PROMPT_L = """あなたはゲーム機・ホビーの抽選・予約・再入荷
 {data}"""
 
 
+PROMPT_S = """あなたはゲーム機・ホビーの抽選・予約・再入荷の情報サイトの編集者です。次の「ひとつの商品（弾・シリーズ）についての受付のまとめ」のデータ「だけ」を使って、このまとめページに載せる解説を日本語で書いてください。
+
+ルール：
+・データに無い事実（応募条件、当選人数、倍率、商品の仕様の数字、在庫状況、発売日など）は書かない。推測は「〜とみられます」とも書かない
+・データにあるお店の名前・日時・件数・数字は正確に使う。転売・投資をすすめる言い方はしない（「儲かる」「狙い目」などは使わない）
+・見出しを2〜3つ立てる（行頭に「## 」）。例：「## いまの受付の状況」「## 受付の多いお店・種類」「## 価格の目安」（データに合う見出しにする）
+・長さは材料の量に合わせて300〜900文字。書けることが少なければ短くてよい（文字数を増やすために言い換えたり繰り返したりしない）。です・ます調。箇条書きは使わず、短い段落で
+・「複数の店を比べる」「直前に確認する」「落ち着いて待つ」のような、どの商品にも当てはまる助言・一般論は書かない。このデータにしか書けないこと（どのお店で・いつまで・どんな方法の受付が多いか、など）だけを書く
+・最後に余計な挨拶や注意書きは付けない
+・「データ」「このページ」「情報がありません」「記録がない」など、材料の有無についての話は書かない。分からない項目には一切ふれず、分かっていることだけで自然な文章にする
+・英語の単語を混ぜない（商品名・ブランド名・お店の名前は除く）
+
+まとめのデータ：
+{data}"""
+
+
 def _ai(data):
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
         raise RuntimeError("ANTHROPIC_API_KEY が未設定")
     r = requests.post("https://api.anthropic.com/v1/messages", timeout=60, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": (PROMPT_L if data.get("_kind") == "lottery_page" else PROMPT).format(
+        json={"model": MODEL, "max_tokens": 8000, "messages": [{"role": "user", "content": (PROMPT_L if data.get("_kind") == "lottery_page" else PROMPT_S if data.get("_kind") == "series_page" else PROMPT).format(
             data=json.dumps({k: v for k, v in data.items() if not k.startswith("_")}, ensure_ascii=False, indent=1))}]})
     if r.status_code >= 400:
         raise RuntimeError(f"Claude API {r.status_code}: {r.text[:160]}")
@@ -123,7 +139,37 @@ def _lot_data(snap, settings):
     return {k: v for k, v in d.items() if v not in ("", None)}
 
 
-def update(settings, ai=None):
+def _series_data(name, recs, settings):
+    """商品（弾・シリーズ）のまとめページ（/<ジャンル>/<商品>/）の解説の材料：受付中・これまでの受付の一覧と買取相場（11/14 ユーザー：1ページごとの中身も充実させて）"""
+    from collections import Counter
+    from detail import fmt
+    live = [r for r in recs if not r[1].get("ended")]
+    past = [r for r in recs if r[1].get("ended")]
+
+    def row(snap):
+        return {k: v for k, v in {"お店": snap.get("store") or "", "種類": KIND_JA.get(snap.get("kind") or "lottery", "受付"),
+                                  "方法": {"store": "店頭", "online": "ネット"}.get(snap.get("channel") or "", ""), "地域": snap.get("area") or "",
+                                  "受付開始": fmt(snap["start"]) if snap.get("start") else "", "締切": fmt(snap["end"]) if snap.get("end") else "",
+                                  "条件": re.sub(r"\s+", " ", str(snap.get("conditions") or ""))[:80]}.items() if v}
+    live.sort(key=lambda r: r[0].get("end") or "9999")
+    d = {"_kind": "series_page", "商品（弾・シリーズ）": name,
+         "いま載っている受付の数": len(live), "いま載っている受付（締切の早い順・最大15件）": [row(s_) for s_, _ in live[:15]],
+         "受付の種類の内訳": dict(Counter(KIND_JA.get(s_.get("kind") or "lottery", "受付") for s_, _ in live)),
+         "店頭とネットの内訳": dict(Counter({"store": "店頭", "online": "ネット"}.get(s_.get("channel") or "", "不明") for s_, _ in live)),
+         "地域の内訳（店頭）": dict(Counter(s_.get("area") for s_, _ in live if s_.get("area")).most_common(8)),
+         "これまでに終わった受付の数": len(past),
+         "これまでに受付があったお店（終わったものを含む）": list(dict.fromkeys(s_.get("store") for s_, _ in recs if s_.get("store")))[:15]}
+    try:
+        import game_premium
+        x = game_premium.price_match(name, settings) or game_premium.price_match((recs[0][0].get("product") or ""), settings)
+    except Exception:
+        x = None
+    if x:
+        d.update({"定価（税込・円）": x.get("teika") or "", "新品の最高買取価格（円）": x["max"], "最高買取の店": x["store"]})
+    return {k: v for k, v in d.items() if v not in ("", None, [], {})}
+
+
+def update(settings, ai=None, limit=None, no_time_limit=False):
     """少ないページから順に解説を作る（1回 aitext_per_run 件まで・時間の上限つき）"""
     if not (ai or os.environ.get("ANTHROPIC_API_KEY")):
         return {}
@@ -169,13 +215,31 @@ def update(settings, ai=None):
         if st.get(key) and (st[key].get("facts") or not snap_.get("facts")):   # 抽選は短い間しかないので作り直さない（要点があとから取れたときだけ1回作り直す）
             continue
         cands.append((False, uniq, 0, key, _lot_data(snap_, settings)))
+    # 商品（弾・シリーズ）のまとめページ（/<ジャンル>/<商品>/）：受付中のものがあるページ。7日たったら作り直す（受付が入れ替わるため）
+    by_sp = {}
+    for k, rec in lp.items():
+        sp = (rec.get("snap") or {}).get("spath")
+        if sp:
+            by_sp.setdefault(sp, []).append(((rec.get("snap") or {}), rec))
+    old_s = (t - timedelta(days=float(settings.get("aitext_series_refresh_days", 7)))).isoformat()
+    for path, (total, uniq) in vol.items():
+        recs = by_sp.get(path)
+        if not recs or uniq >= target + 600 or not any(not r.get("ended") for _, r in recs):
+            continue
+        key = "s:" + path
+        if st.get(key) and st[key].get("at", "") > old_s:
+            continue
+        name = recs[0][0].get("series") or ""
+        if not name:
+            continue
+        cands.append((False, uniq, 0, key, _series_data(name, recs, settings)))
     cands.sort(key=lambda c: c[:3])
     todo = []
-    for c in cands[:int(settings.get("aitext_per_run", 12))]:
+    for c in cands[:limit if limit is not None else int(settings.get("aitext_per_run", 12))]:
         todo.append(c)
     if not todo:
         return st
-    if job_elapsed() > float(settings.get("aitext_until_sec", 215)):
+    if not no_time_limit and job_elapsed() > float(settings.get("aitext_until_sec", 215)):
         log("解説：時間の上限なので次の回に")
         return st
     made = 0
@@ -223,6 +287,6 @@ def html_for(key):
         else:
             out.append(f"<p>{escape(block)}</p>")
     d = parse_dt(rec.get("at"))
-    what = "受付の情報・買取価格など" if key.startswith("l:") else "買取価格・定価・商品情報"
+    what = "受付の情報・買取価格など" if key[:2] in ("l:", "s:") else "買取価格・定価・商品情報"
     return ('<div class="pm-ai">' + "".join(out) + f'<p class="note">この解説は、このページのデータ（{what}）をもとに自動で作成しています'
             + (f"（{d.month}/{d.day}時点）" if d else "") + "。</p></div>")

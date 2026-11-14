@@ -1226,7 +1226,8 @@ def build(settings=None, out_dir=None, force=False):
                          "h1": f"{x}の抽選・予約・再入荷", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{x}」の情報だけを並べています。",
                          "summary": summary(lst, f"「{x}」の受付"), "links": lk, "og": og_u,
                          "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _xf},
-                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g}, body_bottom=_xb)
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g},
+                  body_bottom=(lambda h_: f'<section class="xsec xai"><style>.pm-ai p{{line-height:1.85;color:#cfd5e1}}.pm-ai h2{{font-size:17px;margin:16px 0 6px}}.pm-ai .note{{font-size:12px;color:#8a93a6}}</style>{h_}</section>' if h_ else "")(__import__("game_aitext").html_for("s:" + path)) + _xb)   # AIの解説（11/14 ユーザー：1ページごとの中身も充実）
         # モデルの常設まとめ（受付が終わっても消さない。11/14 ユーザー「A、OK」）
         for path, h in _hubs.items():
             if path in _hub_done:
@@ -1282,7 +1283,7 @@ def build(settings=None, out_dir=None, force=False):
         snap = dict(rec["snap"])
         snap.setdefault("kind", "lottery")
         from approve import AD_ITEM as _ADI, AD_HOST as _ADH
-        if (raw.get(k) or {}).get("status") == "rejected" or _ADI.search(snap.get("product") or "") or _ADH.search(snap.get("url") or ""):
+        if (raw.get(k) or {}).get("status") in ("rejected", "duplicate") or _ADI.search(snap.get("product") or "") or _ADH.search(snap.get("url") or ""):
             del pages[k]   # 外した抽選（情報元の広告など）は個別ページも消す（11/14 ユーザー指摘：ポケパ365のページがまだあった）
             continue
         e = parse_dt(snap.get("end"))
