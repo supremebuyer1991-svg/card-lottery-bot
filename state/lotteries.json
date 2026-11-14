@@ -1536,7 +1536,7 @@
     "key": "01a2203ed4c5ffe7",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153013+09:00",
-    "page_checked_at": "2026-11-14T13:29:03.202215+09:00",
+    "page_checked_at": "2026-11-14T19:55:24.937610+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=118",
     "multi": false,
     "cls": "a9606263ac62"
@@ -1565,7 +1565,7 @@
     "key": "9c957b2a49dcb30d",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153032+09:00",
-    "page_checked_at": "2026-11-14T13:29:03.299079+09:00",
+    "page_checked_at": "2026-11-14T19:55:25.026067+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=119",
     "multi": false,
     "cls": "f1778911f193"
@@ -1594,7 +1594,7 @@
     "key": "ed9ab9ff28df4f3d",
     "status": "approved",
     "found_at": "2026-11-04T11:56:33.153064+09:00",
-    "page_checked_at": "2026-11-14T13:29:03.364307+09:00",
+    "page_checked_at": "2026-11-14T19:55:25.069330+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=120",
     "multi": false,
     "cls": "1e6723f3d4e4"
@@ -2091,7 +2091,7 @@
     "deadline_checked_at": "2026-11-13T15:42:23.828953+09:00",
     "deadline_v": 5,
     "deadline_note": "画像2/2枚読込・画像・本文に受付期間の記載なし",
-    "page_checked_at": "2026-11-14T13:29:03.452610+09:00",
+    "page_checked_at": "2026-11-14T19:55:25.110641+09:00",
     "page_err": "中身が空",
     "multi": true,
     "cls": "77fbf1dd61a9",
@@ -2246,7 +2246,7 @@
     "key": "4e6dfad6fcf37d0e",
     "status": "pending",
     "found_at": "2026-11-05T18:08:40.663429+09:00",
-    "page_checked_at": "2026-11-14T13:29:05.592461+09:00",
+    "page_checked_at": "2026-11-14T19:55:27.174014+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "3eb7a3f8d9c6",
@@ -3530,10 +3530,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "49a1a1dd874279a3",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-07T11:04:31.608138+09:00",
     "multi": false,
-    "cls": "63d6e9fa71e6"
+    "cls": "63d6e9fa71e6",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-14T19:54:59.681562+09:00"
   },
   "54d015c5e969b744": {
     "store": "三洋堂トレカ館 中津川店",
@@ -4468,7 +4470,7 @@
     "found_at": "2026-11-08T10:44:58.214260+09:00",
     "multi": false,
     "cls": "5b6e9198db2f",
-    "page_checked_at": "2026-11-14T13:29:07.810722+09:00",
+    "page_checked_at": "2026-11-14T19:55:29.220128+09:00",
     "page_err": "中身が空"
   },
   "7a539f31c232cf36": {
@@ -4785,7 +4787,7 @@
     "hold_reason": "店名があいまい",
     "tco_checked": true,
     "apply_url": "https://livepocket.jp/e/luo8lp88-d",
-    "page_checked_at": "2026-11-14T13:29:17.071201+09:00",
+    "page_checked_at": "2026-11-14T19:55:31.324630+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -4900,7 +4902,7 @@
     "found_at": "2026-11-08T13:50:18.227540+09:00",
     "multi": false,
     "cls": "917f86464e7f",
-    "page_checked_at": "2026-11-14T13:29:19.191956+09:00",
+    "page_checked_at": "2026-11-14T19:55:33.383081+09:00",
     "page_err": "中身が空",
     "start": "2026-11-02T09:30:00+09:00"
   },
@@ -4932,7 +4934,7 @@
     "found_at": "2026-11-08T13:50:18.227569+09:00",
     "multi": false,
     "cls": "ca8f4539b436",
-    "page_checked_at": "2026-11-14T13:29:21.354616+09:00",
+    "page_checked_at": "2026-11-14T19:55:35.496518+09:00",
     "page_err": "中身が空"
   },
   "0ad0af536ed3ed92": {
@@ -5241,7 +5243,7 @@
     "found_at": "2026-11-08T22:59:53.775332+09:00",
     "multi": false,
     "cls": "118b522ee2de",
-    "page_checked_at": "2026-11-14T13:29:23.455599+09:00",
+    "page_checked_at": "2026-11-14T19:55:37.641437+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -5271,7 +5273,7 @@
     "found_at": "2026-11-08T22:59:53.775376+09:00",
     "multi": false,
     "cls": "53006bdd4edc",
-    "page_checked_at": "2026-11-14T13:29:25.561618+09:00",
+    "page_checked_at": "2026-11-14T19:55:39.721458+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -5301,7 +5303,7 @@
     "found_at": "2026-11-08T22:59:53.775399+09:00",
     "multi": false,
     "cls": "f0b7c0f828e0",
-    "page_checked_at": "2026-11-14T13:29:27.663995+09:00",
+    "page_checked_at": "2026-11-14T19:55:41.773684+09:00",
     "page_err": "中身が空",
     "post_checked": true,
     "details_checked": true
@@ -7241,7 +7243,7 @@
     "key": "7706d94a458fb9cb",
     "status": "approved",
     "found_at": "2026-11-09T12:43:54.397441+09:00",
-    "page_checked_at": "2026-11-14T13:29:34.417772+09:00",
+    "page_checked_at": "2026-11-14T19:55:43.852978+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "d4d5dcb244af"
@@ -7412,7 +7414,7 @@
     "key": "b11cfd641feb04e6",
     "status": "approved",
     "found_at": "2026-11-09T13:43:22.995510+09:00",
-    "page_checked_at": "2026-11-14T13:29:36.524259+09:00",
+    "page_checked_at": "2026-11-14T19:55:45.928998+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "dcbcb8fef922",
@@ -11227,10 +11229,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "e4a8db48db8a9067",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-10T15:53:17.223855+09:00",
     "multi": false,
-    "cls": "fa3feae53e43"
+    "cls": "fa3feae53e43",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-14T19:54:59.681827+09:00"
   },
   "133af7a9bb704124": {
     "store": "TSUTAYA AZ岡南店",
@@ -29221,7 +29225,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229131+09:00",
     "multi": false,
-    "cls": "2eb8a8ad75f0"
+    "cls": "2eb8a8ad75f0",
+    "page_checked_at": "2026-11-14T19:55:48.011332+09:00",
+    "page_err": "中身が空"
   },
   "6a5f8c824571adcf": {
     "store": "バトロコsatellite札幌駅北口",
@@ -29249,7 +29255,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229161+09:00",
     "multi": false,
-    "cls": "f5a25f416cb7"
+    "cls": "f5a25f416cb7",
+    "page_checked_at": "2026-11-14T19:55:50.934680+09:00",
+    "address_checked": true
   },
   "8fdabc627ce42ade": {
     "store": "文真堂トレカ丸倉賀野店",
@@ -29277,7 +29285,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229226+09:00",
     "multi": false,
-    "cls": "901c96531276"
+    "cls": "901c96531276",
+    "page_checked_at": "2026-11-14T19:55:53.408068+09:00",
+    "page_err": "中身が空"
   },
   "8798135cb67b777e": {
     "store": "文真堂トレカ丸幸手店",
@@ -29305,7 +29315,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229256+09:00",
     "multi": false,
-    "cls": "63764c5ae51d"
+    "cls": "63764c5ae51d",
+    "page_checked_at": "2026-11-14T19:55:55.468002+09:00",
+    "page_err": "中身が空"
   },
   "14cb0b7652d298a5": {
     "store": "文真堂トレカ丸新井店",
@@ -29333,7 +29345,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229281+09:00",
     "multi": false,
-    "cls": "a32a541f461c"
+    "cls": "a32a541f461c",
+    "page_checked_at": "2026-11-14T19:55:55.468017+09:00",
+    "page_err": "中身が空"
   },
   "dafff4e352970b63": {
     "store": "文真堂トレカ丸葉鹿店",
@@ -29361,7 +29375,9 @@
     "status": "approved",
     "found_at": "2026-11-14T15:41:17.229303+09:00",
     "multi": false,
-    "cls": "3b456d6ff0fe"
+    "cls": "3b456d6ff0fe",
+    "page_checked_at": "2026-11-14T19:55:55.468019+09:00",
+    "page_err": "中身が空"
   },
   "37f17aaf93aab4b5": {
     "store": "文真堂書店上原店",
