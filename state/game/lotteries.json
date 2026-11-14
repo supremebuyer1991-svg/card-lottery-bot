@@ -9389,7 +9389,7 @@
     "product": "ポケモンカードゲームMEGA スタートデッキ100 バトルコレクション",
     "series": "スタートデッキ100 バトルコレクション",
     "end": "2026-11-14T23:59:00+09:00",
-    "url": "https://x.com/bic_hiroshima/status/2120321107253232000",
+    "url": "https://www.biccamera.com/",
     "channel": "store",
     "area": "広島県",
     "method": "店頭",
@@ -9403,7 +9403,7 @@
     "member": "card",
     "game": "pokemon",
     "source": "カード抽選まとめ ポケカ",
-    "source_url": "https://cardchusen.com/pokeka",
+    "source_url": "https://x.com/bic_hiroshima/status/2120321107253232000",
     "found_at": "2026-11-11T18:17:10.771342+09:00",
     "status": "approved",
     "kind": "lottery",
@@ -9412,7 +9412,8 @@
     "key": "tc6d4d2a7bf2dd5c60",
     "multi": false,
     "cls": "5e4d102216a5",
-    "series_raw": "バトルコレクション"
+    "series_raw": "バトルコレクション",
+    "official_checked": true
   },
   "tc66a594b99d581d67": {
     "store": "［トレカ］三次店（フタバ図書TSUTAYA）",
@@ -10828,7 +10829,8 @@
     },
     "area": null,
     "cls": "ff85246c84aa",
-    "series_raw": "30周年御三家カードセット"
+    "series_raw": "30周年御三家カードセット",
+    "page_checked_at": "2026-11-14T18:48:19.433054+09:00"
   },
   "tc9bb8757a1fd13083": {
     "store": "エディオン・トレカキャピタル各店",
@@ -10919,7 +10921,9 @@
     },
     "multi": false,
     "cls": "ed590b651e0f",
-    "series_raw": "神の支配（OP-18）"
+    "series_raw": "神の支配（OP-18）",
+    "page_checked_at": "2026-11-14T18:48:42.280462+09:00",
+    "page_err": "中身が空"
   },
   "tc146b3b922a84c708": {
     "store": "エディオン各店・エディオンネットショップ",
@@ -11312,7 +11316,8 @@
     },
     "area": null,
     "cls": "227688eeda74",
-    "series_raw": "神の支配"
+    "series_raw": "神の支配",
+    "page_checked_at": "2026-11-14T18:48:44.332918+09:00"
   },
   "tc86052fcbc72ff493": {
     "store": "楽天ブックス",
@@ -11339,7 +11344,8 @@
     "key": "tc86052fcbc72ff493",
     "area": null,
     "cls": "7b04d14fcbe5",
-    "series_raw": "ヒロインズエディション vol.2"
+    "series_raw": "ヒロインズエディション vol.2",
+    "page_checked_at": "2026-11-14T18:48:56.586242+09:00"
   },
   "tc9c6dc6f2c5ae10bf": {
     "store": "楽天ブックス",
@@ -11370,7 +11376,8 @@
     },
     "area": null,
     "cls": "909e5c5e489e",
-    "series_raw": "世界最強の戦士"
+    "series_raw": "世界最強の戦士",
+    "page_checked_at": "2026-11-14T18:49:18.838131+09:00"
   },
   "tc3b93c893b49c898f": {
     "store": "イオン北海道（iAEONアプリ）",
@@ -11465,7 +11472,9 @@
     },
     "area": null,
     "cls": "bcaa76e482a9",
-    "series_raw": "ハドウシーカー"
+    "series_raw": "ハドウシーカー",
+    "page_checked_at": "2026-11-14T18:49:41.236355+09:00",
+    "page_err": "HTTPSConnectionPool(host='www.bee-honpo.co', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("
   },
   "tc4769d69ec2613130": {
     "store": "Bee本舗",
