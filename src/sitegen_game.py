@@ -990,11 +990,11 @@ def build(settings=None, out_dir=None, force=False):
                ("どんな条件がありますか？", "会員登録・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台など、告知から読み取った条件をタグで表示しています。応募前に公式ページで必ずご確認ください。")]
         npd = len(pidx.get(g, []))
         write(f"{c['slug']}/", {"title": f"{c['short']} 商品一覧・定価・買取相場と発売・再販情報【{md}更新】｜{brand['name']}",
-                                 "desc": f"{c['name']}の商品{npd}件の定価・最高買取価格（買取相場）と、発売・予約・再販・抽選の情報。楽天・Amazonで定価で売り出されたらXで通知します。",
+                                 "desc": (f"{c['name']}の商品{npd}件の最高買取価格（買取相場）と、" if npd else f"{c['name']}の") + "発売・予約・再販・抽選の情報。楽天・Amazonで売り出されたらXで通知します。",
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": f"商品{npd}件・いま受付中{n}件。", "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
               body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
-              body_bottom=ser_links)
+              body_bottom=ser_links, noindex=(npd == 0 and not sub))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         for x, lst in sers.items():
             path = lst[0]["spath"]
@@ -1019,7 +1019,8 @@ def build(settings=None, out_dir=None, force=False):
                          "desc": f"{cname}で受け付けている{c['short']}の抽選・予約・再入荷の情報。いま受付中{no}件。締切・条件つき。",
                          "h1": f"{cname}の{c['short']}", "sumshort": f"いま受付中{no}件。", "lead": f"{cname}の{c['name']}に関する受付だけを並べています。",
                          "summary": summary(lst, f"{cname}の{c['short']}の受付"), "links": lk, "og": og_u},
-                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (cname, path)], data_extra={"game": g})
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (cname, path)], data_extra={"game": g},
+                  noindex=len(lst) < 3)   # お店×カテゴリで受付が3件未満の薄いページは検索に出さない（11/14 Fable）
 
     # --- 個別ページ /l/<id>/（終了しても KEEP 日はページを残す）---
     pages = load_json("lottery_pages.json", {})

@@ -307,7 +307,7 @@ def _notice_p(text):
             f'color:#7a1f1f;border-radius:8px;font-size:13px">🔞 {escape(text)}</p>') if text else ""
 
 
-def chart_svg(h, teika):
+def chart_svg(h, teika, label="定価"):
     """最高買取価格のチャート（直近90日・定価の線つき）"""
     pts = sorted(h.items())[-90:]
     if not pts:
@@ -322,7 +322,7 @@ def chart_svg(h, teika):
     line = " ".join(f"{X(i):.1f},{Y(v):.1f}" for i, (_, v) in enumerate(pts))
     dots = "".join(f'<circle cx="{X(i):.1f}" cy="{Y(v):.1f}" r="3"><title>{d} {v:,}円</title></circle>' for i, (d, v) in enumerate(pts))
     ty = Y(teika) if teika else 0
-    tk_line = (f'<line x1="{P}" x2="{W - P}" y1="{ty:.1f}" y2="{ty:.1f}" class="tk"/><text x="{W - P}" y="{ty - 6:.1f}" text-anchor="end" class="tkl">定価 {teika:,}円</text>'
+    tk_line = (f'<line x1="{P}" x2="{W - P}" y1="{ty:.1f}" y2="{ty:.1f}" class="tk"/><text x="{W - P}" y="{ty - 6:.1f}" text-anchor="end" class="tkl">{label} {teika:,}円</text>'
                if teika else "")   # 定価が分からないときは線を引かない（11/11：最高買取を「定価」と表示していた）
     return (f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="最高買取価格の推移">'
             f'{tk_line}'
@@ -355,7 +355,7 @@ def info_rows(x):
         if m:
             model = m.group(0)
             break
-    rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), ("定価（税込）", f'{x["teika"]:,}円' if x.get("teika") else ""),
+    rows = [("商品名", x["name"]), ("メーカー", x.get("maker")), ("発売日", x.get("sales_date")), (f"{tword(x)}（税込）", f'{x["teika"]:,}円' if x.get("teika") else ""),
             ("型番", model), ("対応機種", x.get("hardware")), ("JANコード", x["jan"])]
     out = "".join(f"<tr><th>{escape(k)}</th><td>{escape(str(v))}</td></tr>" for k, v in rows if v)
     return out
@@ -454,7 +454,23 @@ def _sell_btn(x):
     return (f'<a class="sellb" href="{escape(u)}" target="_blank" rel="nofollow noopener">→ {escape(x["store"])}の買取ページを見る</a>' if u else "")
 
 
-def _aitext(key):
+def has_material(x):
+    """AIの解説を作ってよいだけの材料があるか（11/14 Fable：材料の無い商品の解説が一般論になっていた）：
+    楽天ブックスの商品説明・メーカー公式などの商品の事実・買取店2店以上＋定価、のどれか"""
+    if x.get("caption"):
+        return True
+    try:
+        import game_facts
+        if game_facts.get(x["jan"]):
+            return True
+    except Exception:
+        pass
+    return bool(x.get("teika") and len(x.get("prices") or []) >= 2)
+
+
+def _aitext(key, x=None):
+    if x is not None and not has_material(x):   # 材料の無い商品の解説（前に作ったもの）は出さない
+        return ""
     try:
         import game_aitext
         return game_aitext.html_for(key)
@@ -465,6 +481,31 @@ def _aitext(key):
 def _jsonld(d):
     import json as _j
     return '<script type="application/ld+json">' + _j.dumps(d, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def tword(x, short=False):
+    """「定価」と書いてよいか（11/14 Fable の監査：定価が分からず楽天ブックスの販売価格を使っている商品まで「定価」と書いていた）"""
+    if x.get("teika_note") == "楽天ブックスの販売価格" or x.get("tn") == "楽天ブックスの販売価格":
+        return "販売価格" if short else "楽天ブックスの販売価格"
+    return "定価"
+
+
+def _related(x, allx, cid, k=8):
+    """同じカテゴリのほかの商品（11/14 Fable：全ページが同じ先頭8件で、381ページはリンクが1本以下・113ページは0本だった）。
+    名前の共通の語が多い順 → 買取価格が近い順。同点はJANで開始位置をずらして、リンクがいろいろな商品に回るように"""
+    import hashlib
+    if not cid:
+        return []
+    def toks(n):
+        return {w for w in re.split(r"[\s　/／()（）\[\]【】・,、\-]+", (n or "").lower()) if len(w) >= 2}
+    me = toks(x["name"])
+    cand = [y for y in allx if y["jan"] != x["jan"] and cat_of([y["name"]] + y.get("names", [])) == cid]
+    if not cand:
+        return []
+    off = int(hashlib.md5(x["jan"].encode()).hexdigest(), 16) % len(cand)
+    cand = cand[off:] + cand[:off]
+    cand.sort(key=lambda y: (-len(me & toks(y["name"])), abs((y["max"] or 0) - (x["max"] or 0)) // 2000))
+    return cand[:k]
 
 
 def seo_parts(x, allx, site, cats_by, md):
@@ -492,7 +533,7 @@ def seo_parts(x, allx, site, cats_by, md):
         s1 += f"{tw}は{teika:,}円（税込{tkn}）です。"
     s2 = f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円"
     if teika:
-        s2 += f"で、定価より{abs(diff):,}円{'高く' if diff >= 0 else '安く'}売れる（定価比 {'+' if diff >= 0 else ''}{round((x['ratio'] - 1) * 100)}%）状態です。"
+        s2 += f"で、{tw}より{abs(diff):,}円{'高く' if diff >= 0 else '安く'}売れる（{tw}比 {'+' if diff >= 0 else ''}{round((x['ratio'] - 1) * 100)}%）状態です。"
     else:
         s2 += "です。"
     if n >= 2:
@@ -503,7 +544,7 @@ def seo_parts(x, allx, site, cats_by, md):
     if n:
         rows = "".join(f'<tr><td>{i + 1}位 {_sl(s_, jan, name)}</td><td class="n">{p_:,}円</td>'
                        f'<td class="n">{(("+" if p_ - teika >= 0 else "") + format(p_ - teika, ",") + "円") if teika else "—"}</td></tr>' for i, (s_, p_) in enumerate(prices))
-        secs += (f'<h2>{escape(name)}の買取価格 店舗比較（新品・{n}店）</h2><table class="pm-t"><tr><th>買取店</th><th>買取価格</th><th>定価との差</th></tr>{rows}</table>'
+        secs += (f'<h2>{escape(name)}の買取価格 店舗比較（新品・{n}店）</h2><table class="pm-t"><tr><th>買取店</th><th>買取価格</th><th>{tw}との差</th></tr>{rows}</table>'
                  + (f'<p class="note">平均 {avg:,}円・最高 {x["max"]:,}円・最安 {lo:,}円（{md}時点）。{CHANGE_NOTE}</p>' if n >= 2 else f'<p class="note">{CHANGE_NOTE}</p>'))
     # 買取店での呼び方（別の名前・型番で探す人のため）
     alias = []
@@ -517,19 +558,22 @@ def seo_parts(x, allx, site, cats_by, md):
     faq = []
     faq.append((f"{name}の定価はいくら？", f"{tw}は{teika:,}円（税込{tkn}）です。" if teika else "定価は確認中です（楽天ブックス等で分かりしだい載せます）。"))
     faq.append((f"{name}の買取価格（相場）は？", f"{md}時点の新品の最高買取価格は{x['store']}の{x['max']:,}円です。" + (f"買取店{n}店の平均は{avg:,}円です。" if n >= 2 else "") + CHANGE_NOTE))
-    if teika:
+    if teika and not _rb:
         faq.append((f"{name}は定価以上で売れる？（プレ値？）",
                     f"はい、{md}時点で定価より{diff:,}円高い{x['max']:,}円で買い取られています。" if diff > 0 else
                     f"{md}時点では定価を下回る{x['max']:,}円の買取です（定価との差 {diff:,}円）。"))
+    elif teika:
+        faq.append((f"{name}は楽天ブックスの販売価格より高く売れる？",
+                    f"{md}時点の最高買取{x['max']:,}円は、楽天ブックスの販売価格{teika:,}円より{abs(diff):,}円{'高い' if diff >= 0 else '低い'}です（定価は確認中です）。"))
     faq.append((f"{name}はどこで買える？在庫・再販は？",
-                "楽天・Amazonで定価で販売していないかを定期的にチェックしています。販売が始まったら X（@a9994aaa）ですぐ通知します。このページの「定価で買えるところ」からも確認できます。"))
+                "楽天ブックス・Amazonで販売していないかを定期的にチェックしています。販売が始まったら X（@a9994aaa）ですぐ通知します。このページの「買えるところ」からも確認できます。"))
     faq.append((f"{name}のJANコードは？", f"JANコードは {jan} です。"))
     secs += "<h2>よくある質問</h2>" + "".join(f'<details class="faq"><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q, a in faq)
     # 同じカテゴリの商品（中のリンクで関連の商品を見てもらう）
-    same = [y for y in allx if y["jan"] != jan and cid and cat_of([y["name"]] + y.get("names", [])) == cid][:8]
+    same = _related(x, allx, cid)
     if same:
         secs += f"<h2>{escape(cat)}のほかの商品の買取相場</h2><ul>" + "".join(
-            f'<li><a href="/premium/{y["jan"]}/">{escape(y["name"])}</a>（最高買取 {y["max"]:,}円' + (f'・定価 {y["teika"]:,}円' if y.get("teika") else "") + "）</li>" for y in same) + "</ul>"
+            f'<li><a href="/premium/{y["jan"]}/">{escape(y["name"])}</a>（最高買取 {y["max"]:,}円' + (f'・{tword(y)} {y["teika"]:,}円' if y.get("teika") else "") + "）</li>" for y in same) + "</ul>"
     # 構造化データ（Google向け：商品・よくある質問・パンくず）
     # 「商品（Product）」の構造化データは入れない。Google は販売価格（offers）か
     # レビュー・評価が無い Product を「無効」として扱う（Search Console で20件エラー）。
@@ -538,7 +582,8 @@ def seo_parts(x, allx, site, cats_by, md):
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
     ld += _jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "ホーム", "item": f"{site}/"},
-        {"@type": "ListItem", "position": 2, "name": "ゲーム・ホビー買取相場一覧", "item": f"{site}/souba/"},
+        ({"@type": "ListItem", "position": 2, "name": cat, "item": f"{site}/{(cats_by.get(cid) or {}).get('slug', '')}/"} if cid and (cats_by.get(cid) or {}).get("slug")
+         else {"@type": "ListItem", "position": 2, "name": "ゲーム・ホビー買取相場一覧", "item": f"{site}/souba/"}),
         {"@type": "ListItem", "position": 3, "name": name, "item": f"{site}/premium/{jan}/"}]})
     return intro, secs, ld
 
@@ -616,13 +661,14 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             paths.append((path, fp))
 
     def table(xs):
-        return plist_html([{"name": x["name"], "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"],
+        return plist_html([{"name": x["name"], "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "teika": x["teika"], "max": x["max"], "tn": x.get("teika_note", ""),
                             "store": x["store"], "ratio": x["ratio"], "w1h": _chg(x["max"], x["w1"]) if x.get("w1") else "",
                             "rk": rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", "az": x.get("azUrl", "")} for x in xs])
 
     page(f"プレミア商品一覧｜定価以上で売れるゲーム・ホビー【{md}更新】買取相場と再販・入荷速報｜{brand['name']}",
          "定価より高く買い取られているゲーム機・周辺機器・ホビーの一覧。買取店の新品の最高買取価格・定価との差・1週間前比を毎日更新。",
          f'<h1>プレミア商品一覧（定価以上で売れるゲーム・ホビー）</h1><p>買取店の新品の最高買取価格が定価を上回っている商品です（{md}更新・{len(items)}件）。'
+         f'定価はメーカー公式の希望小売価格・楽天ブックスの定価で、分からない商品は楽天ブックスの販売価格と比べています（カードに「販売価格」と表示）。'
          f'楽天・Amazonで定価で売り出されたら、Xですぐお知らせします。<a href="/souba/">すべての商品の買取相場（{len(allx)}件）</a></p>'
          + (table(items) if items else "<p>いま該当する商品はありません。</p>") + note, "")
     stores_all = {st_ for x in allx for st_, _ in (x.get("prices") or [])}
@@ -698,8 +744,15 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>") if rel else \
             "<h2>この商品の抽選・予約・再販</h2><p>いま受付中のものはありません。楽天・Amazonで販売が始まったらXでお知らせします。</p>"
-        shops = (f'<a class="btn btn-rk" href="{escape(rakuten_link(x["itemUrl"], aff_id))}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if x["itemUrl"] else "") + \
-            (f'<a class="btn btn-az" href="{escape(x["azUrl"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if x.get("azUrl") else "") + \
+        import game_affi as _gaf
+        from urllib.parse import quote as _qt
+        _sq = _qt(re.sub(r"\s+", " ", x["name"])[:60])
+        # 楽天・Amazonの商品ページが分からないときは「探す」（検索）のリンク（11/14 Fable：ボタンが無い商品ページが187あった。
+        # 別の商品が出ることもあるので「探す」と書き、上の「販売中」のボタンには使わない）
+        shops = (f'<a class="btn btn-rk" href="{escape(rakuten_link(x["itemUrl"], aff_id))}" target="_blank" rel="nofollow sponsored noopener">楽天で見る</a>' if x["itemUrl"] else
+                 f'<a class="btn btn-rk" href="{escape(rakuten_link("https://search.rakuten.co.jp/search/mall/" + _sq + "/", aff_id))}" target="_blank" rel="nofollow sponsored noopener">楽天で探す</a>') + \
+            (f'<a class="btn btn-az" href="{escape(x["azUrl"])}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>' if x.get("azUrl") else
+             f'<a class="btn btn-az" href="https://www.amazon.co.jp/s?k={_sq}&amp;tag={escape(_gaf.amazon_tag(settings or {}))}" target="_blank" rel="nofollow sponsored noopener">Amazonで探す</a>') + \
             f'<a class="btn btn-yh" href="https://shopping.yahoo.co.jp/search?p={q}" target="_blank" rel="nofollow noopener">Yahoo!で見る</a>' + \
             f'<a class="btn btn-mc" href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener">メルカリで探す</a>'
         top = "".join(f'<tr><td>{escape(s_)}</td><td class="n">{p_:,}円</td></tr>' for s_, p_ in x["prices"][:5])
@@ -709,15 +762,23 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
               + f'（{_ratio_html(x)}）') if x["teika"] else "定価：確認中"
         # JANコードで検索する人が多い（Search Console 11/11）ので、説明の頭と題名の最後に JAN を入れる。
         # 「買取」で検索する人のため、題名に最高買取価格も入れる。
-        desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、定価{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
-        page(f"{x['name']} 買取価格 最高{x['max']:,}円【{md}更新】定価・再販情報｜JAN {x['jan']}", desc,
-             f'{ld}<p><a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
+        desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、{tword(x)}{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
+        _cid = cat_of([x["name"]] + x.get("names", []))
+        _cc = _cats.get(_cid) or {}
+        _crumb = (f'<a href="/{escape(_cc["slug"])}/">{escape(_cc.get("short", ""))}</a> ／ ' if _cc.get("slug") else "")
+        # 題名：定価が分からない商品は「定価・」を外す。見出しは「〜の買取価格・販売状況」（11/14 Fable）
+        _when = (f"{int(x['stale'][5:7])}/{int(x['stale'][8:10])}時点" if x.get("stale") else f"{md}更新")   # 買取店から消えた商品は、最後に確かめた日（11/14 Fable）
+        page(f"{x['name']} 買取価格 最高{x['max']:,}円【{_when}】{'定価・' if x['teika'] and not _rb else ''}再販情報｜JAN {x['jan']}", desc,
+             f'{ld}<p>{_crumb}<a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/">プレミア商品一覧</a></p><h1>{escape(x["name"])}の買取価格・販売状況</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div><div class="note" style="font-size:12px">※{md}時点の金額です。{CHANGE_NOTE}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
-             f'{cur_h}{FOLLOW}<h2>定価で買えるところ<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
-             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"])}'
-             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"])}{rel_html}'
-             f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "")
+             f'{cur_h}{FOLLOW}<h2>{"定価で買えるところ" if x["teika"] and not _rb else "買えるところ"}<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
+             f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"], x)}'
+             f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"], tword(x))}{rel_html}'
+             f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "",
+             # どのジャンルにも入らず、定価も無く、買取店1店だけで、商品の事実も無いページは検索に出さない（11/14 Fable：
+             # サイトのテーマと関係ない家電などが混ざっていて、中身も薄い）。ページは残す
+             noindex=bool(x.get("stale") or (not _cid and not x["teika"] and len(x.get("prices") or []) <= 1 and not has_material(x))))
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
@@ -876,7 +937,7 @@ def product_index(settings, live_rows):
         if not cid:
             continue
         out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],
-                                        "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""),
+                                        "jan": x["jan"], "url": f"/premium/{x['jan']}/", "img": x.get("img", ""), "tn": x.get("teika_note", ""),
                                         "rk": rakuten_link(x["itemUrl"], aff) if x.get("itemUrl") else "", "az": x.get("azUrl", "")})
     seen = set()
     from dedupe import norm_product
@@ -922,12 +983,12 @@ def plist_html(prods):
     for p in prods:
         img = (f'<a class="pc-img" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"><img src="{escape(p["img"])}" alt="{escape(p["name"])}" loading="lazy" width="84" height="84"></a>'
                if p.get("img") else f'<a class="pc-img none" href="{escape(p["url"])}" tabindex="-1" aria-hidden="true"></a>')
-        nums = [f'<div><small>定価</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
+        nums = [f'<div><small>{tword(p, True)}</small><b>{format(p["teika"], ",")}円</b></div>' if p.get("teika") else '<div><small>定価</small><b>—</b></div>']
         if p.get("max"):
             nums.append(f'<div><small>最高買取（新品）</small><b>{format(p["max"], ",")}円</b>{("<em>" + _sl(p["store"], p.get("jan", ""), p["name"]) + "</em>") if p.get("store") else ""}</div>')
         if p.get("ratio"):
             pc = round((p["ratio"] - 1) * 100)
-            nums.append(f'<span class="pc-r{" dn" if pc < 0 else ""}">定価比 {"+" if pc >= 0 else ""}{pc}%</span>')
+            nums.append(f'<span class="pc-r{" dn" if pc < 0 else ""}">{tword(p, True)}比 {"+" if pc >= 0 else ""}{pc}%</span>')
         sub = f'<div class="pc-sub">1週間前比 {p["w1h"]}</div>' if p.get("w1h") else ""
         from urllib.parse import quote
         acts = ""   # 上から Amazon・楽天・メルカリ（メルカリはいつも出す）、右端に「詳細を見る」

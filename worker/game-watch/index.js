@@ -54,7 +54,9 @@ async function rakutenItem(env, code) {
   const p = new URLSearchParams({ applicationId: env.RAKUTEN_APP_ID, itemCode: code, format: "json", formatVersion: "2", availability: "0" });
   const r = await fetch(`${ENDPOINT}?${p}`, { headers: { accessKey: env.RAKUTEN_ACCESS_KEY, Referer: REFERER, Origin: REFERER.slice(0, -1), "User-Agent": "game-nyuka/1.0" } });
   if (!r.ok) throw new Error(`楽天API ${r.status} ${(await r.text()).slice(0, 120)}`);
-  return ((await r.json()).Items || [])[0];
+  // 11/14 Fable の監査：1件目を確かめずに使っていて、別の商品（770円）の状態を「楽天ブックスで予約受付中」と出していた → 商品番号が一致するものだけ
+  const items = ((await r.json()).Items || []).map((x) => x.Item || x);
+  return items.find((x) => String(x.itemCode || "").toLowerCase() === String(code).toLowerCase());
 }
 
 // ---- Amazon（Creators API）----
@@ -151,11 +153,13 @@ function batch(list, n, salt) {
 }
 const yen = (s) => Number(String(s || "").replace(/[^\d]/g, "")) || 0;
 
-async function rakutenByJan(env, jan) {
+async function rakutenByJan(env, jan, name = "") {
   const p = new URLSearchParams({ applicationId: env.RAKUTEN_APP_ID, keyword: jan, shopCode: "book", hits: "3", format: "json", formatVersion: "2", availability: "0" });
   const r = await fetch(`${ENDPOINT}?${p}`, { headers: { accessKey: env.RAKUTEN_ACCESS_KEY, Referer: REFERER, Origin: REFERER.slice(0, -1), "User-Agent": "game-nyuka/1.0" } });
   if (!r.ok) throw new Error(`楽天API ${r.status} ${(await r.text()).slice(0, 120)}`);
-  return ((await r.json()).Items || [])[0];
+  // JANで探した結果も、商品名が合うものだけ（11/14：別の商品を出さない）
+  const items = ((await r.json()).Items || []).map((x) => x.Item || x);
+  return items.find((x) => !name || sim(name, x.itemName || "") >= SIM_MIN);
 }
 
 async function run(env, which, { dry = false } = {}) {
@@ -191,7 +195,7 @@ async function run(env, which, { dry = false } = {}) {
     let cur = "none", url = "", price = 0;
     try {
       if (which === "rk") {
-        const it = w.rk ? await rakutenItem(env, w.rk) : await rakutenByJan(env, w.jan);
+        const it = w.rk ? await rakutenItem(env, w.rk) : await rakutenByJan(env, w.jan, w.n);
         if (!it) { await sleep(1100); continue; }   // 見つからなかっただけ（売り切れとは数えない）
         if (it) {
           price = Number(it.itemPrice) || 0;

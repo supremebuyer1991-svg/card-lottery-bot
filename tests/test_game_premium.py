@@ -35,7 +35,7 @@ p = (out / "premium/4902370554564/index.html").read_text(encoding="utf-8")
 assert "最高買取" in p and "13,800円" in p and "1週間前比" in p and "1か月前比" in p and "<svg class=\"chart\"" in p and "楽天で見る" in p and "メルカリで探す" in p
 assert "定価以上で売れる" in (out / "index.html").read_text(encoding="utf-8") and "/premium/4902370554564/" in (out / "sitemap.xml").read_text(encoding="utf-8")
 assert (out / "souba/index.html").exists() and (out / "premium/4902370552683/index.html").exists()          # 定価より安い商品も相場ページは作る
-assert "<h2>商品情報</h2>" in p and "JANコード" in p and "定価（税込）" in p
+assert "<h2>商品情報</h2>" in p and "JANコード" in p and ("定価（税込）" in p or "楽天ブックスの販売価格（税込）" in p) and "定価 12,980円" not in p   # 楽天ブックスの値段しか分からない商品は「定価」と書かない（11/14）
 print("PREMIUM OK")
 # 抽選・発売日の商品（買取相場に無いもの）にも商品ページ。発売前は相場「予測不能」、フォローの案内
 w("lotteries.json", {"r1": {"key": "r1", "status": "listed", "kind": "release", "game": "ps5", "store": "SIE", "product": "PS5 新色 テスト", "end": "2099-01-01T00:00+09:00", "price": "55,000円", "url": "https://x", "found_at": "2026-11-08T10:00+09:00"}})
