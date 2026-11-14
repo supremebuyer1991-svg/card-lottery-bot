@@ -66,3 +66,20 @@ series_souba:
 #   ps5:
 #     PS5 Pro: {rakuten_url: "https://books.rakuten.co.jp/rb/00000000/", amazon_asin: "B000000000"}   # TODO: オーナーが確認
 series_shop: {}
+
+# モデルごとの常設まとめ（11/14 ユーザー「A、OK」・Fable の監査の施策8）。
+# 受付が終わっても消さない（受付が無いときも、これまでの記録・該当商品の買取相場と販売状況を出す）。
+#   game … カテゴリ、name … 表示名、path … ページのアドレス（前からあるモデルのページと同じなら、そのページに足す）
+#   match … 商品名に当てる正規表現、require … これも入っていること（任意）、exclude … これが入っていたら外す（任意）
+# 出す条件：当てはまる商品（JAN）が2つ以上、または受付の記録が1件以上
+hubs:
+  - {game: pc_parts, name: "GeForce RTX 5090", path: pc-parts/rtx-5090/, match: "RTX ?5090"}
+  - {game: pc_parts, name: "Ryzen X3D（5800X3D・7800X3D・9800X3D など）", path: pc-parts/ryzen-x3d/, match: "\\d{4}X3D"}
+  - {game: ps5, name: "PS5 Pro", path: ps5/ps5-pro/, match: "PS5 ?Pro|PlayStation ?5 ?Pro|プレイステーション ?5 ?Pro|CFI-7\\d{3}", exclude: "コントローラ|DualSense|カバー|ケース|スタンド"}
+  - {game: ps5, name: "PS5 ミッドナイト ブラック", path: ps5/ps5-midnight-black/, match: "ミッドナイト ?ブラック", require: "PS5|PlayStation ?5|プレイステーション ?5", exclude: "コントローラ|DualSense|カバー|Portal|リモート|ヘッドセット|PULSE"}
+  - {game: ps5, name: "PlayStation Portal", path: ps5/playstation-portal/, match: "PlayStation ?Portal|リモートプレーヤー"}
+  - {game: switch2, name: "Switch 2 本体", path: switch2/switch2/, match: "Switch ?2|スイッチ ?2", require: "本体|セット|日本語・国内専用", exclude: "ソフト|コントローラ|ケース|microSD|カメラ|充電|ドック|フィルム|amiibo|Proコン"}
+  - {game: liquor, name: "山崎（サントリー シングルモルトウイスキー）", path: liquor/yamazaki/, match: "山崎", exclude: "まさよし"}
+  - {game: liquor, name: "響（サントリー ウイスキー）", path: liquor/hibiki/, match: "響 ?(JAPANESE|ジャパニーズ|BLOSSOM|ブロッサム|BLENDER|ブレンダー|\\d+年)|サントリー ?(ウイスキー ?)?響"}
+  - {game: liquor, name: "白州（サントリー シングルモルトウイスキー）", path: liquor/hakushu/, match: "白州"}
+  - {game: gunpla, name: "ガンダムベース限定ガンプラ", path: gunpla/gandamubesu-9967d/, match: "ガンダムベース"}

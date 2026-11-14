@@ -295,6 +295,74 @@ def _price_sec(product, name, s):
     return sec, faq
 
 
+def _hubs_cfg():
+    import yaml
+    pth = ROOT / "config" / "game" / "models.yaml"
+    y = (yaml.safe_load(pth.read_text(encoding="utf-8")) or {}) if pth.exists() else {}
+    out = []
+    for h in y.get("hubs") or []:
+        try:
+            h = dict(h, _m=re.compile(h["match"], re.I), _r=re.compile(h["require"], re.I) if h.get("require") else None,
+                     _x=re.compile(h["exclude"], re.I) if h.get("exclude") else None)
+        except (re.error, KeyError):
+            continue
+        h["path"] = h["path"].strip("/") + "/"
+        out.append(h)
+    return out
+
+
+def _hub_hit(h, text):
+    text = text or ""
+    return bool(h["_m"].search(text) and (not h["_r"] or h["_r"].search(text)) and not (h["_x"] and h["_x"].search(text)))
+
+
+_CAT_ALL = {}
+
+
+def _hub_extra(h, pages, live_keys, s):
+    """モデルの常設まとめに足す欄 → (HTML, よくある質問, 当てはまる商品の数, 記録の数)。
+    当てはまる商品（買取相場のJAN）の最高買取・定価・楽天/Amazon、これまでの受付の記録（終わったものも）"""
+    import game_premium
+    if "x" not in _CAT_ALL:
+        try:
+            _CAT_ALL["x"] = game_premium.catalog(s, game_premium.watch_map_cached())
+        except Exception:
+            _CAT_ALL["x"] = []
+    prods = [x for x in _CAT_ALL["x"] if _hub_hit(h, " ".join([x["name"]] + x.get("names", [])[:3]))]
+    prods.sort(key=lambda x: -(x["max"] or 0))
+    recs = [(rec.get("snap") or {}, rec) for k, rec in pages.items() if k not in live_keys
+            and _hub_hit(h, f'{(rec.get("snap") or {}).get("product") or ""} {(rec.get("snap") or {}).get("series") or ""}')]
+    recs.sort(key=lambda r: (r[0].get("end") or ""), reverse=True)
+    secs, faq = [], []
+    nm = h["name"]
+    if prods:
+        rows = "".join(
+            f'<tr><td><a href="/premium/{escape(x["jan"])}/">{escape(x["name"])}</a></td><td>{x["max"]:,}円</td>'
+            f'<td>{(game_premium.tword(x, True) + " " + format(x["teika"], ",") + "円") if x.get("teika") else "—"}</td>'
+            f'<td>{"<a href=\"" + escape(x["itemUrl"]) + "\" rel=\"nofollow sponsored noopener\" target=\"_blank\">楽天</a>" if x.get("itemUrl") else ""}'
+            f'{" " if x.get("itemUrl") and x.get("azUrl") else ""}{"<a href=\"" + escape(x["azUrl"]) + "\" rel=\"nofollow sponsored noopener\" target=\"_blank\">Amazon</a>" if x.get("azUrl") else ""}</td></tr>'
+            for x in prods[:15])
+        secs.append(f'<section class="xsec"><h2>{escape(nm)}の商品と買取相場（{len(prods)}件）</h2>'
+                    '<p>買取店の新品の最高買取価格と、楽天ブックス・Amazonの商品ページです。販売が始まったら X（@a9994aaa）でお知らせします。'
+                    f'{escape(game_premium.CHANGE_NOTE)}</p>'
+                    f'<div class="xtbl"><table><thead><tr><th>商品</th><th>最高買取</th><th>定価・販売価格</th><th>販売ページ</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+        top = prods[0]
+        faq.append((f"{nm}の買取価格は？", f"いちばん高いのは「{top['name']}」の{top['max']:,}円（{top['store']}）です。商品ごとの買取価格は上の表のとおりです。{game_premium.CHANGE_NOTE}"))
+    if recs:
+        rows = "".join(f'<tr><td>{escape(o.get("store") or "")}</td><td>{escape((o.get("series") or o.get("product") or "")[:40])}</td>'
+                       f'<td>{escape(KIND_JA.get(o.get("kind") or "lottery", "受付"))}</td><td>{escape(_md_range(o))}</td></tr>' for o, rec in recs[:20])
+        secs.append(f'<section class="xsec"><h2>{escape(nm)}のこれまでの抽選・予約・販売</h2>'
+                    f'<p>受付が終わったものも含めて、このサイトで見つけた{escape(nm)}の受付の記録です（{len(recs)}件）。どのお店で、どんな種類の受付があったかの参考にしてください。</p>'
+                    f'<div class="xtbl"><table><thead><tr><th>お店</th><th>商品</th><th>種類</th><th>期間</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+        stores = list(dict.fromkeys(o.get("store") for o, _ in recs if o.get("store")))
+        faq.append((f"{nm}はこれまでどこで抽選・販売がありましたか？", "・".join(stores[:10]) + "などで受付がありました（受付が終わったものを含む）。"))
+    faq.append((f"{nm}の再販・在庫の情報はどうやって知れますか？",
+                "楽天ブックス・Amazonの販売状況を数分おきに確かめていて、販売が始まったら X（@a9994aaa）でお知らせします。新しい抽選・予約もこのページに載せます。"))
+    css = ('<style>.xsec{margin:18px 0}.xsec h2{font-size:17px;margin:0 0 8px}.xsec p{font-size:14px;line-height:1.75}'
+           '.xtbl{overflow-x:auto}.xtbl table{border-collapse:collapse;width:100%;font-size:13px}.xtbl th,.xtbl td{border-bottom:1px solid #ddd;padding:6px 4px;text-align:left}</style>')
+    return (css + "".join(secs)) if secs else "", faq, len(prods), len(recs)
+
+
 def _series_extra(x, path, lst, pages, s):
     """商品ごとのまとめページ（/<ジャンル>/<商品>/）に足す欄 → (HTML, よくある質問)。
     これまでの受付の記録（終わったものも）・買取相場と定価・お店の数などデータから作る質問"""
@@ -996,17 +1064,40 @@ def build(settings=None, out_dir=None, force=False):
               body_top=_notice_html(c.get("notice")) + f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"]),
               body_bottom=ser_links, noindex=(npd == 0 and not sub))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
+        _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}
+        _hub_done = set()
         for x, lst in sers.items():
             path = lst[0]["spath"]
             no = sum(1 for i in lst if i["ph"] == "open")
             # 11/14 ユーザー：1ページあたりのボリュームを増やす → これまでの受付の記録・買取相場・データから作るよくある質問
             _xb, _xf = _series_extra(x, path, lst, _prev_pages, s)
+            if path in _hubs:   # モデルの常設まとめと同じページ：当てはまる商品の買取相場・記録も足す
+                _hb, _hf, _, _ = _hub_extra(_hubs[path], _prev_pages, {i.get("key") for i in lst}, s)
+                _xb, _xf = _xb + _hb, _xf + _hf
+                _hub_done.add(path)
             write(path, {"title": f"{x} 抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
                          "desc": f"{x}（{c['short']}）の抽選・予約・再入荷の受付情報。いま受付中{no}件。各店の締切・条件・定価をまとめています。",
                          "h1": f"{x}の抽選・予約・再入荷", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{x}」の情報だけを並べています。",
                          "summary": summary(lst, f"「{x}」の受付"), "links": lk, "og": og_u,
                          "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _xf},
                   lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g}, body_bottom=_xb)
+        # モデルの常設まとめ（受付が終わっても消さない。11/14 ユーザー「A、OK」）
+        for path, h in _hubs.items():
+            if path in _hub_done:
+                continue
+            lst = [i for i in sub if _hub_hit(h, f'{i.get("product") or ""} {i.get("series") or ""}')]
+            hb, hf, n_p, n_r = _hub_extra(h, _prev_pages, {i.get("key") for i in lst}, s)
+            if not lst and n_p < 2 and n_r < 1:   # 中身が無いページは作らない
+                continue
+            no = sum(1 for i in lst if i["ph"] == "open")
+            nm = h["name"]
+            write(path, {"title": f"{nm} 抽選・予約・再販・在庫情報まとめ【{md}更新】｜{brand['name']}",
+                         "desc": f"{nm}の抽選・予約・再販・在庫の情報と、商品ごとの買取相場。いま受付中{no}件・商品{n_p}件・これまでの受付{n_r}件。販売開始はXで通知。",
+                         "h1": f"{nm}の抽選・予約・再販・在庫", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{nm}」の受付・販売・買取相場をまとめています。",
+                         "summary": summary(lst, f"「{nm}」の受付") if lst else f"いま受付中の{nm}の抽選・予約はありません。下の商品の販売状況とこれまでの記録をご覧ください。",
+                         "links": lk, "og": og_u,
+                         "faq": [(f"{nm}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。") if no else "いま受付中の抽選・予約はありません。再販・入荷はXでお知らせします。")] + hf},
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (nm, path)], data_extra={"game": g}, body_bottom=hb)
         by_chain = {}
         for i in sub:
             if i.get("chain"):

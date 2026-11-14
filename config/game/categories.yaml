@@ -20,6 +20,7 @@ groups:
   game_goods: ゲーム関連の限定品
   hobby: ホビー・おもちゃ
   liquor: お酒
+  kaden: 家電・カメラ
 
 categories:
   - id: ps5
@@ -28,7 +29,7 @@ categories:
     short: PS5
     slug: ps5
     hashtags: "#PS5 #PS5Pro #PS5抽選"
-    hints: "PS5|PlayStation ?5|プレステ5|プレイステーション ?5|DualSense|デュアルセンス"
+    hints: "PS5|PlayStation ?5|プレステ5|プレイステーション ?5|DualSense|デュアルセンス|PlayStation ?Portal|リモートプレーヤー|PULSE ?(3D|Elite|Explore)|PS ?VR2|PlayStation ?VR2|VR2 CFIJ|CFIJ-\\d|CFI-[A-Z0-9]"
     strip_words: "本体|同梱版|同梱|セット|通常版|デジタル・?エディション|Digital ?Edition|CFI-\\w+"
     aff_keywords: ["PS5 本体", "PS5 コントローラー"]
     color: "#1b4965"
@@ -54,7 +55,7 @@ categories:
     short: 携帯ゲームPC
     slug: handheld-pc
     hashtags: "#SteamDeck #ROGAlly #携帯ゲーミングPC"
-    hints: "Steam ?Deck|スチームデック|ROG ?Ally|ROG ?Xbox ?Ally|Legion ?Go|レギオン ?ゴー|MSI ?Claw|AYANEO|GPD ?Win|OneXPlayer|携帯ゲーミング ?PC|ポータブルゲーミング ?PC"
+    hints: "Steam ?Deck|スチームデック|ROG ?Ally|ROG ?Xbox ?Ally|Legion ?Go|レギオン ?ゴー|MSI ?Claw|AYANEO|GPD ?Win|OneXPlayer|携帯ゲーミング ?PC|ポータブルゲーミング ?PC|Steam ?(Machine|Frame|Controller)"
     strip_words: "本体|モデル|GB|TB|OLED|LCD"
     aff_keywords: ["Steam Deck", "ROG Ally"]
     color: "#0b7285"
@@ -250,7 +251,7 @@ categories:
     short: Switch（初代）
     slug: switch
     hashtags: "#NintendoSwitch #Switch"
-    hints: "Nintendo Switch(?! ?2(?!\\d))|Switch Lite|有機ELモデル|Joy-Con(?! ?2)|HAC-|HEG-|HDH-|ニンテンドースイッチ(?! ?2(?!\\d))"
+    hints: "Nintendo Switch(?! ?2(?!\\d))|Switch Lite|有機ELモデル|Joy-Con(?! ?2)|HAC-|HEG-|HDH-|ニンテンドースイッチ(?! ?2(?!\\d))|Switch版"
     strip_words: "本体|セット|エディション"
     aff_keywords: ["Nintendo Switch 有機ELモデル", "Switch Lite"]
     color: "#e60012"
@@ -291,7 +292,7 @@ categories:
     slug: liquor
     aff_strict: true      # 楽天の商品名にこのジャンルの言葉が入っているものだけ当てはめる（別の商品のリンクを出さない）
     hashtags: "#ウイスキー #山崎 #ウイスキー抽選"
-    hints: "ウイスキー|ウィスキー|WHISKY|山崎 ?(NV|ノンエイジ|12年|18年|25年|リミテッド|LIMITED|Story|ストーリー)|サントリー ?(山崎|白州|響|知多|碧|AO)|響 ?(JAPANESE HARMONY|ジャパニーズ ?ハーモニー|BLOSSOM|ブロッサム|17年|21年|30年)|白州|イチローズ ?モルト|秩父 ?(蒸溜所|ザ・ファースト)|竹鶴|余市|宮城峡|フロム[・ ]?ザ[・ ]?バレル|ザ・?ニッカ|厚岸|駒ヶ岳|嘉之助|三郎丸|ジャパニーズ ?ウイスキー"
+    hints: "ウイスキー|ウィスキー|WHISKY|山崎 ?(NV|ノンエイジ|12年|18年|25年|リミテッド|LIMITED|Story|ストーリー)|サントリー ?(山崎|白州|響|知多|碧|AO)|響 ?(JAPANESE HARMONY|ジャパニーズ ?ハーモニー|BLOSSOM|ブロッサム|17年|21年|30年)|白州|イチローズ ?モルト|秩父 ?(蒸溜所|ザ・ファースト)|竹鶴|余市|宮城峡|フロム[・ ]?ザ[・ ]?バレル|ザ・?ニッカ|厚岸|駒ヶ岳|嘉之助|三郎丸|ジャパニーズ ?ウイスキー|山崎 ?(シングルモルト|ミニ)|響 ?(ブレンダーズ|BLENDER)"
     strip_words: "ウイスキー|ウィスキー|シングルモルト|ピュアモルト|ブレンデッド|700ml|700ML|180ml|ml|ML|箱付き|カートン付き|化粧箱付|カートン|ギフトBOX|サントリー|ニッカ"
     aff_keywords: ["山崎 ウイスキー", "響 ウイスキー"]
     color: "#8a5a19"
@@ -325,5 +326,21 @@ categories:
     strip_words: "ボンボンドロップシール|ボンボンドロップ|ボンドロ|シール|BONBON ?DROP"
     aff_keywords: ["ボンボンドロップシール"]
     color: "#f4a261"
+    kinds: [lottery, preorder, restock, first_come, release]
+    enabled: true
+
+  # ---- 家電・カメラ（11/14 ユーザー：買取店の一覧に混ざっていた家電・カメラ・スマホは「残す」→ ジャンルを作る）----
+  # ほかのジャンル（PS5のヘッドセットなど）を先に見るので、最後に置く。Xの速報には出さない（x_exclude_games）
+  - id: kaden
+    group: kaden
+    name: 家電・カメラ・スマホの買取相場と抽選・再販
+    short: 家電・カメラ
+    slug: kaden
+    hashtags: ""
+    hints: "SIMフリー|スマートフォン|デジタルカメラ|ミラーレス|一眼|レンズ|テレコンバーター|NIKKOR|ZUIKO|SEL\\d|ILCE-|ILME-|VLOGCAM|サイバーショット|DSC-RX|PENTAX|ペンタックス|RICOH|リコー|Leica|ライカ|Hasselblad|ハッセルブラッド|Insta360|Kodak|コダック|OM SYSTEM|OM Digital|OMデジタル|Tough TG|WF-1000|WH-1000|イヤホン|ヘッドホン|HomePod|AirPods|炊飯|真空圧力IH|ナノケア|ドライヤー|YA-MAN|ヤーマン|Fire TV|Meta Quest|OCULUS|Arrows|OPPO|MOTOROLA|Motorola|moto g|iPhone|Galaxy|Xperia|Pixel \\d|instax|チェキ|GoPro|DJI|Osmo|SELP\\d"
+    strip_words: ""
+    aff_keywords: []
+    aff_strict: true
+    color: "#4a5568"
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true

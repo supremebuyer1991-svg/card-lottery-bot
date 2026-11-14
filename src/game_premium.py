@@ -499,7 +499,7 @@ def _related(x, allx, cid, k=8):
     def toks(n):
         return {w for w in re.split(r"[\s　/／()（）\[\]【】・,、\-]+", (n or "").lower()) if len(w) >= 2}
     me = toks(x["name"])
-    cand = [y for y in allx if y["jan"] != x["jan"] and cat_of([y["name"]] + y.get("names", [])) == cid]
+    cand = [y for y in allx if y["jan"] != x["jan"] and cat_of([y["name"]] + y.get("names", []) + [y.get("hardware") or ""]) == cid]
     if not cand:
         return []
     off = int(hashlib.md5(x["jan"].encode()).hexdigest(), 16) % len(cand)
@@ -512,7 +512,7 @@ def seo_parts(x, allx, site, cats_by, md):
     """商品ページを検索で見つけてもらうための追加の情報：まとめの文・買取店すべての価格・店での呼び方・よくある質問・同じカテゴリの商品・構造化データ
     → (まとめの文, 追加の節, 構造化データ)"""
     name, jan = x["name"], x["jan"]
-    cid = cat_of([name] + x.get("names", []))
+    cid = cat_of([name] + x.get("names", []) + [x.get("hardware") or ""])
     cat = (cats_by.get(cid) or {}).get("short", "") if cid else ""
     prices = x.get("prices") or []
     n = len(prices)
@@ -702,7 +702,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     _cn = _gc2.by_id(False)
     groups_ = {}
     for x in allx:
-        groups_.setdefault(cat_of([x["name"]] + x.get("names", [])) or "_other", []).append(x)
+        groups_.setdefault(cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""]) or "_other", []).append(x)
     cat_html = "<h2>カテゴリごとの全商品</h2>" + "".join(
         f'<details class="faq"><summary>{escape((_cn.get(c) or {}).get("short") or "その他")}（{len(xs)}件）</summary>{table(sorted(xs, key=lambda x: -x["max"]))}</details>'
         for c, xs in sorted(groups_.items(), key=lambda kv: (kv[0] == "_other", -len(kv[1]))))
@@ -733,7 +733,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             extra = game_facts.html_for(x["jan"], x["name"]) + extra
         except Exception:
             pass
-        _ntc = (_cats.get(cat_of([x["name"]] + x.get("names", []))) or {}).get("notice")
+        _ntc = (_cats.get(cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""])) or {}).get("notice")
         if _ntc:   # お酒の「20歳になってから」など、カテゴリの注意書き（11/11）
             intro = _notice_p(_ntc) + intro
         if x.get("stale"):
@@ -763,7 +763,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         # JANコードで検索する人が多い（Search Console 11/11）ので、説明の頭と題名の最後に JAN を入れる。
         # 「買取」で検索する人のため、題名に最高買取価格も入れる。
         desc = f"JAN {x['jan']}｜{x['name']}の新品の最高買取価格は{x['max']:,}円（{x['store']}）" + (f"、{tword(x)}{x['teika']:,}円の{round(x['ratio'] * 100)}%" if x["teika"] else "") + "。買取店ごとの価格・1週間前比・抽選や再販の情報。"
-        _cid = cat_of([x["name"]] + x.get("names", []))
+        _cid = cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""])
         _cc = _cats.get(_cid) or {}
         _crumb = (f'<a href="/{escape(_cc["slug"])}/">{escape(_cc.get("short", ""))}</a> ／ ' if _cc.get("slug") else "")
         # 題名：定価が分からない商品は「定価・」を外す。見出しは「〜の買取価格・販売状況」（11/14 Fable）
@@ -933,7 +933,7 @@ def product_index(settings, live_rows):
     out = {}
     allx = catalog(settings, watch_map_cached())
     for x in allx:
-        cid = cat_of(x["names"] + [x["name"]])
+        cid = cat_of(x["names"] + [x["name"], x.get("hardware") or ""])
         if not cid:
             continue
         out.setdefault(cid, []).append({"name": x["name"], "teika": x["teika"], "max": x["max"], "store": x["store"], "ratio": x["ratio"],

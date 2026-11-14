@@ -12,7 +12,7 @@ x_urgent_start_hours: 3    # 受付開始まで何時間以内なら「急ぎ」
 x_speed_hobby_per_day: 1   # ホビーの速報は1日この本数まで（ゲームが本業のアカウント。ホビーの速報でフォロワーが減ったため 11/8 に2→1）
 premium_teika_per_run: 30  # 定価以上で売れる商品：楽天ブックスで定価を調べる数（1回あたり・同じ商品は7日に1回）
 kaitori_per_run: 4         # 買取ルデヤで新品の買取価格を調べる数（1回あたり。同じ商品は24時間に1回）
-x_exclude_games: [ichibankuji, pokemon, onepiece, liquor, labubu, bondrop]   # Xに投稿しないカテゴリ（11/9 ユーザーの指示：一番くじの投稿はいらない）。サイトには載せる。11/11 足したお酒・ラブブ・ボンボンドロップシールも、まずはサイトだけ（ゲーム垢のフォロワーが減らないか様子を見るため）
+x_exclude_games: [ichibankuji, pokemon, onepiece, liquor, labubu, bondrop, kaden]   # Xに投稿しないカテゴリ（11/9 ユーザーの指示：一番くじの投稿はいらない）。サイトには載せる。11/11 足したお酒・ラブブ・ボンボンドロップシールも、まずはサイトだけ（ゲーム垢のフォロワーが減らないか様子を見るため）
 x_speed_link: true         # 1件だけの速報で、その商品のAmazon・楽天（アフィリエイト）のページがあればリンクを付ける（PR表記つき・1件 約$0.20）
 min_confidence: 0.7       # AI抽出の自信度がこれ未満は承認待ち（GitHubのIssue）
 max_posts_per_run: 0      # Xの自動投稿は使わない（下書きページ /x-draft.html からコピペで手動投稿）
