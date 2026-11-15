@@ -21158,7 +21158,7 @@
       "game": "pokemon",
       "store": "カードスタジアム那覇新都心店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "沖縄県",
       "found_at": "2026-11-14T13:28:55.967858+09:00",
       "chain": null
@@ -21176,7 +21176,7 @@
       "game": "pokemon",
       "store": "駿河屋 新天町店トレカ館",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "found_at": "2026-11-14T13:28:55.967933+09:00",
       "chain": "surugaya"
@@ -21185,7 +21185,7 @@
       "game": "pokemon",
       "store": "駿河屋 新天町店トレカ館",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "福岡県",
       "found_at": "2026-11-14T13:28:55.967969+09:00",
       "chain": "surugaya"
@@ -21194,7 +21194,7 @@
       "game": "pokemon",
       "store": "こどもや 各店ほか（リブ総社店・岡南店・平島店・倉敷店・原尾島店・ABCパレード宇多津店・いろは堂本店）",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-14T13:28:55.968005+09:00",
       "chain": null
@@ -21212,7 +21212,7 @@
       "game": "pokemon",
       "store": "フルコンプ 一部店舗（八王子・立川・町田・吉祥寺・新宿・仙台・福岡天神・札幌）",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-14T13:28:55.968081+09:00",
       "chain": null
@@ -21248,7 +21248,7 @@
       "game": "pokemon",
       "store": "コジマ（コジマアプリ抽選会）",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-14T13:28:55.968222+09:00",
       "chain": "biccamera"
@@ -21257,7 +21257,7 @@
       "game": "pokemon",
       "store": "北国書林松任店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "found_at": "2026-11-14T13:28:55.968257+09:00",
       "chain": null
@@ -21266,7 +21266,7 @@
       "game": "pokemon",
       "store": "カードショップ＠ほ～む。熊本店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "熊本県",
       "found_at": "2026-11-14T13:28:55.968292+09:00",
       "chain": null
@@ -21501,7 +21501,7 @@
       "store": "浜北鑑定団",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "静岡県",
       "found_at": "2026-11-14T13:28:55.969217+09:00",
       "chain": null
     },
@@ -21519,7 +21519,7 @@
       "store": "HARUYAトレカベースわさだ店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "福岡県",
       "found_at": "2026-11-14T13:28:55.969285+09:00",
       "chain": null
     },
@@ -23319,7 +23319,7 @@
       "store": "ふるいちトップブックス富山滑川店",
       "series": "30th CELEBRATION",
       "channel": "store",
-      "area": null,
+      "area": "富山県",
       "found_at": "2026-11-15T20:58:59.992317+09:00",
       "chain": "furuichi"
     },
@@ -23327,8 +23327,8 @@
       "game": "pokemon",
       "store": "萬屋七重浜店",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "北海道",
       "found_at": "2026-11-15T20:58:59.992330+09:00",
       "chain": null
     },
@@ -23439,6 +23439,24 @@
       "area": null,
       "found_at": "2026-11-15T20:59:01.029617+09:00",
       "chain": "joshin"
+    },
+    "9eac61f8304651fa": {
+      "game": "pokemon",
+      "store": "その他のストア",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-15T22:23:09.022372+09:00",
+      "chain": null
+    },
+    "fec838dfb27c7869": {
+      "game": "pokemon",
+      "store": "その他のストア",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-15T22:23:09.022414+09:00",
+      "chain": null
     }
   }
 }
