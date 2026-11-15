@@ -30,7 +30,8 @@ assert "sitemap.xml" in files and "robots.txt" in files and ".changed" in files
 assert sum(1 for f in files if f.startswith("pokeka/s-")) == 2 and any(f.startswith("onepiece/s-") for f in files)
 sp = next(out.glob("pokeka/s-*/index.html"))
 seriesA = [p for p in out.glob("pokeka/s-*/index.html") if "「弾A」の抽選" in p.read_text()][0].read_text()
-assert re.search(r"<title>【ポケカ】弾Aの抽選販売・予約の最新情報まとめ【\d+/\d+更新】受付中2件", seriesA)       # 終了・保留は載せない
+assert re.search(r"<title>【ポケカ】弾Aの抽選・予約まとめ 受付中2件｜トレカ抽選ナビ</title>", seriesA)       # 終了・保留は載せない（11/15：タイトルは約35字・【更新】は説明文へ）
+assert "更新】" not in re.search(r"<title>(.*?)</title>", seriesA).group(1) and re.search(r'name="description" content="【\d+/\d+更新】', seriesA)
 assert "FAQPage" in seriesA and "よくある質問" in seriesA and "WebPage" in seriesA  # 弾ページのQ&A・更新日（検索向け）
 head = seriesA[:seriesA.index("</head>")]                                          # title・説明・正規URLは <head> の中
 assert "<title>" in head and 'name="description"' in head and 'rel="canonical"' in head and 'og:image' in head

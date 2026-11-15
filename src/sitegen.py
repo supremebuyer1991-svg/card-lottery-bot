@@ -20,6 +20,7 @@ from urllib.parse import quote
 
 from common import ROOT, load_json, save_json, load_settings, now, parse_dt, sha, normalize
 import detail
+import seotitle as _st  # 11/15：タイトルを「サイト名が切れない長さ」に（日付の【更新】は説明文へ）
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 ACTIVE = ("approved", "posted", "listed")
@@ -399,6 +400,7 @@ def _series_stats(game, x, raw, short):
             '</ul><p class="note">※トレカ抽選ナビがこれまでに見つけた抽選の数です（同じ抽選の重複はのぞいています）。1日6回更新します。</p></section>')
 
 
+_SH_PAGES = []  # このビルドで作った「予約・再販・在庫」ページ [(ゲーム, 弾名, パス, 発売前か)]（発売日カレンダーからリンクする。11/15）
 _SER_WRITTEN = set()  # このビルドで作った弾ページ（ページがない弾にリンクしないため）
 
 
@@ -444,9 +446,12 @@ def _cg_title(cname, sh, cig, hg, md, _cd, _cp):
     from collections import Counter
     if cig:
         top_x = [x for x, _ in Counter(i["series"] for i in cig if i.get("series")).most_common(2)]
-        return (f"{cname}の{sh}抽選 受付中{len(cig)}件【{md}更新】" + ("「" + "」「".join(top_x) + "」ほか" if top_x else "")
-                + "｜締切順・応募方法｜トレカ抽選ナビ")
-    return (f"{cname}の{sh}抽選｜" + (f"前回{_cd(hg[0][0])}締切「{_cp(hg[0][0])}」・" if hg else "") + "応募のしかた・結果発表の目安｜トレカ抽選ナビ")
+        hd = f"{cname}の{sh}抽選 受付中{len(cig)}件"
+        return _st.fit((hd + "｜「" + "」「".join(top_x) + "」ほか") if top_x else None,
+                       (hd + f"｜「{top_x[0]}」ほか") if top_x else None, hd + "｜店舗別・締切順", hd + "｜締切順", hd)
+    hd = f"{cname}の{sh}抽選まとめ"  # 「まとめ」＝チェーン全体のページ（同じ名前のお店ページと同じタイトルにしない）
+    return _st.fit((hd + f"｜前回{_cd(hg[0][0])}締切「{_cp(hg[0][0])}」") if hg else None,
+                   (hd + f"｜前回{_cd(hg[0][0])}締切・応募のしかた") if hg else None, hd + "｜応募のしかた・結果発表", hd + "｜応募のしかた", hd)
 
 
 def _cg_desc(cname, sh, cig, hg, md, _cd, _cp):
@@ -456,7 +461,7 @@ def _cg_desc(cname, sh, cig, hg, md, _cd, _cp):
         return (f"【{md}更新】{cname}でいま受付中の{sh}抽選は{len(cig)}件（ネット{on}件・店頭{len(cig) - on}件）。"
                 + (f"締切が一番近いのは{soon['store']}「{_pname(soon)}」（{_fmt(soon['end'])}締切）。" if soon else "")
                 + "各店の締切・応募方法（Web・アプリ・店頭）・本人確認や会員の有無を一覧にしています。")
-    return (f"【{md}更新】{cname}の{sh}抽選の情報。いま受付中の抽選はありません。"
+    return (f"{cname}の{sh}抽選の情報。いま受付中の抽選はありません。"
             + (f"前回は{_cd(hg[0][0])}締切の「{_cp(hg[0][0])}」でした。" if hg else "")
             + "これまでの抽選・応募のしかた・結果発表の目安をまとめ、新しい抽選が始まり次第ここに載ります。")
 
@@ -1187,6 +1192,12 @@ def ser_hist_html(game, x, release=""):
             '<p class="note">※トレカ抽選ナビが見つけた抽選です。お店の名前を押すと、そのお店のこれまでの抽選が見られます。</p></section>')
 
 
+@_ft.lru_cache(maxsize=1)
+def _GUIDE_TXT():
+    gp = Path(__file__).resolve().parent.parent / "config" / "guides.yaml"
+    return gp.read_text(encoding="utf-8") if gp.exists() else ""
+
+
 def guide_links_html():
     """/guide/ に出す「お店ごとの応募のしかた」の一覧（config/guides.yaml）"""
     import yaml
@@ -1620,6 +1631,7 @@ def active_series(settings=None):
 
 def build(settings=None, out_dir=None, sample=None, force=False):
     _SER_WRITTEN.clear()
+    _SH_PAGES.clear()
     s = settings or load_settings()
     site = (s.get("site_public_url") or os.environ.get("SITE_URL") or "").rstrip("/")
     tag = s.get("amazon_tag") or os.environ.get("AMAZON_TAG")  # サイト別タグ（設定ファイル）を優先
@@ -1848,6 +1860,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         p.parent.mkdir(parents=True, exist_ok=True)
         meta["canonical"] = f"{site}/{path}" if site else None
         meta["site"], meta["verify"] = site, verify
+        meta["title"] = _st.clean(meta["title"])  # 11/15：【更新】を外し、サイト名こみで約35字に収める（最後の点検）
         meta.setdefault("upd", ("更新 ", updated))  # 11/8 Fable：文字列を入れていて画面の更新時刻が「11/1 00:00」になっていた
         meta["prerender"] = prerender(subset)
         if not subset and path.split("/")[0] in ("guide", "calendar", "stats", "about"):
@@ -1879,7 +1892,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         lm = prev[1] if prev[:1] == [sig] and len(prev) > 1 else today_iso
         first = prev[2] if len(prev) > 2 else (min([i["found_at"] for i in subset if i.get("found_at")] or [today_iso])[:10])
         pmod[path] = [sig, lm, first]
-        ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": meta["title"], "headline": meta["h1"],
+        ld.append({"@context": "https://schema.org", "@type": meta.get("ld_type") or "WebPage", "name": meta["title"], "headline": meta["h1"],
                    "description": meta["desc"], "url": f"{site}/{path}", "inLanguage": "ja",
                    "datePublished": first, "dateModified": lm, "publisher": org})
         if meta.get("og_image"):  # ページの代表の画像（Googleの「おすすめ（Discover）」などで使われる・11/7）
@@ -1948,6 +1961,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         def _upcoming(gs, k=8):
             """11/8：トップ・ゲームのページから、これから発売の新弾ページへ（新しいページを早く見つけてもらう・順位を上げる）"""
             td_ = now().date().isoformat()
+            _sh_until = (now().date() + __import__("datetime").timedelta(days=150)).isoformat()
             rows_ = sorted(((v.get("release"), gg, xx, v) for gg in gs for xx, v in ((_ser_cfg()["info"].get(gg) or {}).items())
                             if str(v.get("release") or "") > td_), key=lambda t: t[0])[:k]
             if not rows_:
@@ -1955,14 +1969,31 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             return ('<section class="sinfo snext" aria-label="これから発売の新弾"><h2>これから発売の新弾</h2><ul>'
                     + "".join(f'<li><a href="/{series_path(gg, xx)}">{escape(GAME_SHORT[gg]) + " " if len(gs) > 1 else ""}{escape(xx)}</a>'
                               + f'<span>{escape((re.search(r"【([A-Z]{2,4}-[0-9]{2})】", v.get("type") or "") or [None, ""])[1])}</span>'
-                              + f'<b>{escape(jdate(r_))}</b></li>' for r_, gg, xx, v in rows_)
+                              + f'<b>{escape(jdate(r_))}</b>'
+                              # 11/15：「予約・定価で買える店」のページ（発売150日前から作る）へ、トップとゲームのトップからもリンク（弾ページからの1本だけだった）
+                              + (f'<a class="shl" href="/{series_path(gg, xx)}saihan/">予約・買える店</a>' if sample is None and str(r_)[:10] <= _sh_until else "")
+                              + '</li>' for r_, gg, xx, v in rows_)
                     + '</ul><p class="more"><a href="/calendar/">発売日カレンダーをすべて見る ›</a></p></section>')
+
+        def _past_sets(g_):
+            """11/15：発売済みの弾のページ（BOX相場・収録カード）への入口。古い弾のページは /souba/ からしかリンクがなかった"""
+            td_ = now().date().isoformat()
+            c90_ = (now().date() - __import__("datetime").timedelta(days=90)).isoformat()
+            inf_ = _ser_cfg()["info"].get(g_) or {}
+            act_ = {x_ for i in items if i["game"] == g_ for x_ in (i.get("sers") or ([i["series"]] if i.get("series") else []))}
+            rows_ = sorted(((str(v.get("release") or "")[:10], x_) for x_, v in inf_.items()
+                            if str(v.get("release") or "")[:10] and str(v.get("release"))[:10] <= td_
+                            and (x_ in act_ or str(v.get("release"))[:10] >= c90_ or f"{g_}|{x_}" in souba_sm)), reverse=True)
+            if len(rows_) < 3:
+                return ""
+            return _links(f"{GAME_SHORT[g_]}の発売済みの弾（BOX相場・収録カード・発売日）", [(x_, "/" + series_path(g_, x_)) for _, x_ in rows_])
 
         meta = {"og_image": f"{site}/{og_g}" if og_g else None,
                 # 「ポケモンカード 抽選」のように正式名で探す人にも届くよう、略称と正式名の両方を入れる（11/3）
-                "title": (f"{name}（{short}）の" if name != short else f"【{short}】") + f"抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(gi)}件" + (f"・本日締切{today}件" if today else "") + "｜トレカ抽選ナビ",
+                "title": _st.fit((f"{name}（{short}）の抽選・予約まとめ 受付中{len(gi)}件" if name != short else None),
+                                 f"{short}の抽選・予約まとめ 受付中{len(gi)}件", f"{short}の抽選・予約まとめ"),
                 "desc": f"【{md}更新】" + (f"{name}（{short}）" if name != short else name) + f"の抽選販売・予約・再販情報を締切が近い順にまとめ。受付中{len(gi)}件（ネット抽選{online}件・"
-                        f"店頭抽選{len(gi) - online}件）。" + (f"「{'」「'.join(series[:3])}」など弾別、" if series else "") +
+                        f"店頭抽選{len(gi) - online}件" + (f"・本日締切{today}件" if today else "") + "）。" + (f"「{'」「'.join(series[:3])}」など弾別、" if series else "") +
                         "都道府県別・本人確認や会員の有無で絞り込めます。1日6回自動更新。",
                 "summary": summary(gi, f"{short}の抽選"),
                 "faq": faq_for(gi, f"{short}の抽選"),
@@ -1970,11 +2001,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "lead": f"いま受付中の{name}の抽選を、ネット・店頭（都道府県別）に分けて締切が近い順に並べています。"
                         "1日6回（朝7時〜夜22時）自動で更新しています。",
                 "links": _menu(items, games, g), "root": "/",
-                "supply_bottom": _supply_ad(short, name, tag, raff, prices, g) + (_upcoming([g]) if g in ("pokemon", "onepiece") else ""),  # 11/8 Fable：一覧の後へ
+                "supply_bottom": _supply_ad(short, name, tag, raff, prices, g) + (_upcoming([g]) if g in ("pokemon", "onepiece") else "") + _past_sets(g),  # 11/8 Fable：一覧の後へ
                 "topsq": souba_strip([(x, souba_sm[f"{g}|{x}"]) for x in series if f"{g}|{x}" in souba_sm], f"/souba/#{g}", g)}
         write(f"{slug}/", {"game": g}, dict(meta), gi, [("トップ", ""), (f"{short}の抽選", f"{slug}/")])
         if g == games[0]:
-            top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ【{md}更新】締切が近い順",
+            top = dict(meta, title=f"トレカ抽選ナビ｜ポケカ・ワンピースカードの抽選情報まとめ 受付中{sum(game_counts.values())}件",
                        desc=f"【{md}更新】ポケカ（ポケモンカード）・ワンピースカード・フュージョンワールドの抽選販売をネットと店頭（都道府県別）に分けて"
                             f"締切が近い順に掲載。受付中{sum(game_counts.values())}件。本人確認・会員の有無でも絞り込めます。",
                        summary=summary(items, "トレカの抽選"), faq=faq_for(items, "トレカの抽選"),
@@ -2086,12 +2117,18 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                             + (f"いま受付中の抽選は{len(si)}件です。" if si else "")))
                 if sm:
                     faq.append((f"「{x}」のBOXの相場は？", f"スニダンで{_md(sm['date'])}に成立した取引の平均は{_yen(sm['price'])}" + (f"で、定価{_yen(teika)}の{sm['price'] / teika:.1f}倍" if teika else "") + "です。"))
-            ttl = (f"【{short}】{x}の予約・抽選はどこ？定価で買える店と発売日{_md_(rel_x)}【{md}更新】｜トレカ抽選ナビ" if pre_mode else
-                   f"【{short}】{x}の再販・追加抽選・在庫情報【{md}更新】" + (f"受付中{len(si)}件・" if si else "") + "定価で買える店｜トレカ抽選ナビ")
+            ttl = (_st.fit(f"【{short}】{x}の予約・抽選はどこ？{_md_(rel_x)}発売・定価で買える店", f"【{short}】{x}の予約・抽選はどこ？{_md_(rel_x)}発売",
+                           f"{x}の予約・抽選はどこ？{_md_(rel_x)}発売", f"{x}の予約・抽選はどこ？") if pre_mode else
+                   _st.fit(f"【{short}】{x}の再販・追加抽選・在庫情報 受付中{len(si)}件" if si else None, f"【{short}】{x}の再販・追加抽選・在庫情報",
+                           f"{x}の再販・追加抽選・在庫情報", f"{x}の再販・在庫情報"))
             desc = ((f"【{md}更新】{name}「{x}」（{jdate(rel_x)}発売" + (f"・定価{_yen(teika)}" if teika else "") + f"）の予約・抽選の受付状況。受付中{len(si)}件、"
                      "楽天ブックス・Amazonの在庫を1〜2分おきに確認しています。") if pre_mode else
                     (f"【{md}更新】{name}「{x}」の再販・追加抽選・在庫情報。発売後に見つけた抽選{len(post_x)}件、受付中{len(si)}件。"
                      "楽天ブックス・Amazonの在庫を1〜2分おきに確認し、相場（スニダン）も載せています。"))
+            _buy_guides = "".join(f'<p class="cs-guide">📘 <a href="/guide/{sl_}/">{escape(t_)} →</a></p>' for sl_, t_ in
+                                  (("lottery-invite-firstcome", "抽選・先着・招待・予約のちがいと、それぞれのコツ"), ("amazon-invite", "Amazonの招待リクエストのやり方"))
+                                  + ((("premium-bandai", "プレミアムバンダイの抽選のやり方・注意点"),) if g == "onepiece" else (("yodobashi", "ヨドバシの抽選のやり方・応募の条件"),))
+                                  if (Path(__file__).resolve().parent.parent / "config" / "guides.yaml").exists() and f"slug: {sl_}\n" in _GUIDE_TXT())
             lead = ((f"「{x}」は{jdate(rel_x)}発売です。予約・抽選の受付中のものと、定価で買えるところをまとめています。" if pre_mode else
                      f"「{x}」の発売後の追加抽選・再販と、いま定価で買えるところをまとめています。")
                     + "数字はトレカ抽選ナビの記録で、予想ではありません。")
@@ -2099,7 +2136,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "title": ttl, "desc": desc, "h1": (f"「{x}」の予約・抽選・定価で買える店" if pre_mode else f"「{x}」の再販・追加抽選・在庫情報"),
                 "lead": lead, "summary": summary(si, f"「{x}」の抽選"), "faq": faq or None,
                 "aff": buy + fact_html + (iv_html + cs_html if not si else ""),
-                "info_html": (iv_html + cs_html if si else "") + tab_html,
+                "info_html": (iv_html + cs_html if si else "") + tab_html + _buy_guides,
                 "supply_bottom": _price_anchor(x, name, sm, tag, raff, rel_x, g) + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag),
                 "links": _menu(items, games, g, "/" + series_path(g, x)), "root": "/"}, si,
                 [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x)), ("予約・再販" if pre_mode else "再販・在庫", path)])
@@ -2111,6 +2148,20 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         extra = [x for x, inf in ((_ser_cfg()["info"].get(g) or {}).items())
                  if x not in series and (str(inf.get("release") or "") >= cut90 or f"{g}|{x}" in souba_sm)]
         extra += [k.split("|", 1)[1] for k in souba_sm if k.startswith(g + "|") and k.split("|", 1)[1] not in series + extra]
+        # 11/15：前後に発売された弾へのリンク（古い弾のページは /souba/ からの1本しかリンクがなかった）
+        _rel_all = sorted((str(((_ser_cfg()["info"].get(g) or {}).get(x_) or {}).get("release") or "")[:10], x_) for x_ in series + extra)
+        _rel_all = [t for t in _rel_all if t[0]]
+
+        def _near_sets(x):
+            k = next((n for n, t in enumerate(_rel_all) if t[1] == x), None)
+            if k is None or len(_rel_all) < 2:
+                return ""
+            lo = max(0, min(k - 3, len(_rel_all) - 7))
+            near = [t for t in _rel_all[lo:lo + 7] if t[1] != x]
+            return ('<section class="sinfo snext" aria-label="前後に発売された弾"><h2>前後に発売された' + escape(short) + 'の弾</h2><ul>'
+                    + "".join(f'<li><a href="/{series_path(g, k_)}">{escape(k_)}</a><b>{escape(jdate(r_))}</b></li>' for r_, k_ in near)
+                    + f'</ul><p class="more"><a href="/souba/#{g}">BOX相場の一覧を見る ›</a></p></section>')
+
         for x in series + extra:
             si = [i for i in gi if in_ser(i, x)]
             rk_ = rk if sample is None else {}
@@ -2211,17 +2262,33 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             sh_path = series_path(g, x) + "saihan/"
             sh_link = (f'<a class="shlink" href="/{sh_path}">{"🛒 予約・定価で買える店を見る" if pre_mode else "🔁 再販・追加抽選・在庫の情報を見る"} ›</a>'
                        if make_sh else "")
+            # 11/15：古い弾（受付中なし・相場あり・発売から90日超）は、タイトルだけ「BOX相場・高額カード」で、見出しと説明文は「抽選・予約」のままだった。3つをそろえる
+            old_mode = (not si) and bool(sm) and str(info.get("release") or "") < cut90
+            _rel_md = f"{int(rel_x0[5:7])}月{int(rel_x0[8:10])}日" if rel_x0 else ""
+            _has_cards = bool(cards_by.get(f"{g}|{x}") or clist_html)
+            _old_w = "BOX相場・高額カード" if _has_cards else "BOX相場・定価"
+            near_html = _near_sets(x) if sample is None else ""
             # 11/8 Fable：店頭が9割の弾でも「ネット抽選」から開いて数件しか見えなかったので、多いほうから開く
             write(series_path(g, x), {"game": g, "series": x, "channel": "store" if sum(1 for i in si if i.get("channel") == "store") * 2 > len(si) else "online"}, {
                 "og_image": f"{site}/{og_rel}" if og_rel else None,
-                "title": (f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ【{md}更新】受付中{len(si)}件｜トレカ抽選ナビ" if si else
-                          f"【{short}】{x}{code_b}の予約・抽選情報まとめ｜{int(rel_x0[5:7])}月{int(rel_x0[8:10])}日発売・定価｜トレカ抽選ナビ" if rel_x0 > today_d else
-                          (f"【{short}】{x}のBOX相場・高額カード" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ"
-                           if sm and str(info.get("release") or "") < cut90 else  # 古い弾は「抽選」より「相場」で探される（11/7）
-                           f"【{short}】{x}の抽選販売・予約情報まとめ" + ("｜発売日・定価" if info.get("release") else "") + "｜トレカ抽選ナビ")),
+                "title": (_st.fit(f"【{short}】{x}{code_b}の抽選・予約まとめ 受付中{len(si)}件", f"【{short}】{x}の抽選・予約まとめ 受付中{len(si)}件",
+                                  f"【{short}】{x}の抽選・予約 受付中{len(si)}件", f"{x}{code_b}の抽選・予約まとめ 受付中{len(si)}件",
+                                  f"{x}の抽選・予約 受付中{len(si)}件", f"{x}の抽選・予約") if si else
+                          _st.fit(f"【{short}】{x}{code_b}の予約・抽選まとめ｜{_rel_md}発売・定価", f"【{short}】{x}{code_b}の予約・抽選まとめ｜{_rel_md}発売",
+                                  f"【{short}】{x}の予約・抽選まとめ｜{_rel_md}発売", f"【{short}】{x}の予約・抽選｜{_rel_md}発売",
+                                  f"{x}{code_b}の予約・抽選｜{_rel_md}発売", f"{x}の予約・抽選｜{_rel_md}発売", f"{x}の予約・抽選") if rel_x0 > today_d else
+                          (_st.fit(f"【{short}】{x}の{_old_w}・発売日" if info.get("release") else None, f"【{short}】{x}の{_old_w}",
+                                   f"{x}の{_old_w}・発売日" if info.get("release") else None, f"{x}の{_old_w}", f"{x}のBOX相場")
+                           if old_mode else  # 古い弾は「抽選」より「相場」で探される（11/7）
+                           _st.fit(f"【{short}】{x}の抽選・予約情報まとめ｜発売日・定価" if info.get("release") else None, f"【{short}】{x}の抽選・予約情報まとめ",
+                                   f"{x}の抽選・予約情報まとめ", f"{x}の抽選・予約"))),
                 "desc": (f"【{md}更新】{name}「{x}」" + (f"（{alias}）" if alias and alias != x else "") +
                          f"の抽選販売・予約・再販情報を1日6回更新。" + ("・".join(sts) + "など" if sts else "") +
                          f"受付中{len(si)}件（ネット{on_}件・店頭{len(si) - on_}件）を締切順に一覧。本人確認・会員の有無も分かります。") if si else
+                        (f"{name}「{x}」{code_b}のBOX相場は{_md(sm['date'])}時点で{_yen(sm['price'])}" + (f"（定価{_yen(sm['teika'])}）" if sm.get("teika") else "") + "。" +
+                         ("収録カードの相場、" if _has_cards else "") + (f"発売日（{jdate(info['release'])}）、" if info.get("release") else "") +
+                         ("どんな弾かをまとめています。" if info.get("about") or info.get("points") else "30日の値動きをまとめています。") +
+                         "再販や追加の抽選が見つかったときは、このページに載せます。") if old_mode else
                         (f"{name}「{x}」{code_b}の予約・抽選情報をまとめるページです。" + (info.get("hook") or ((info.get("about") or [""])[0].split("。")[0] + "。" if info.get("about") else "")) +
                          (f"発売日は{jdate(info['release'])}" + (f"、希望小売価格は{info['price']}" if info.get("price") else "") + "。" if info.get("release") else "") +
                          "抽選・予約が始まり次第、お店ごとの締切・応募方法をここに自動で載せます。"),
@@ -2231,19 +2298,21 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                           (f"（定価{_yen(sm['teika'])}との差 {'+' if sm['price'] >= sm['teika'] else '−'}{abs(sm['price'] - sm['teika']):,}円）" if sm.get("teika") else "") +
                           "。相場は毎日変わります。")] if sm else []) + faq_for(si, f"「{x}」の抽選", info, f"「{x}」"),
                 "trend_html": _trend_series(g, x) if sample is None else "",  # 11/14：この弾の抽選の動き（一覧のあと・たたんで表示）
-                "info_html": (about_html + info_html + clist_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
-                "h1": f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ",
+                "info_html": (about_html + info_html + clist_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html + near_html) if si else "",  # 抽選がまだない弾は基本情報を上に出す（数字で見るも、受付中があれば一覧の下）
+                "h1": (f"【{short}】{x}{code_b}の{_old_w}・発売日" if old_mode else f"【{short}】{x}{code_b}の抽選販売・予約の最新情報まとめ"),
                 "lead": (f"{name}「{x}」の受付中の抽選は{len(si)}件です。新しい抽選が見つかり次第、自動で追加されます。" if si else
+                         f"{name}「{x}」のBOXの相場" + ("と収録カードの相場" if _has_cards else "") + "、発売日・定価をまとめています。いま受付中の抽選はありません（再販や追加の抽選が見つかり次第、このページに載ります）。" if old_mode else
                          f"{name}「{x}」の抽選・予約は、いま受付中のものがありません。抽選が始まり次第、このページに自動で載ります（1日6回更新）。"),
-                "aff": quick_html + sh_link + ("" if si else about_html) + _ser_areas(g, slug, x, si) + _ser_chains(g, x, si) + ("" if si else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
+                "aff": quick_html + sh_link + ("" if si else about_html) + _ser_areas(g, slug, x, si) + _ser_chains(g, x, si) + ("" if si or old_mode else likely_chains_html(g, x)) + (aff if si else _product_ad(x, name, rr, tag, raff, info.get("release"))
                                                      + souba_block(x, sm, souba_fx, us_line=(g == "pokemon"), img=sb_img) + _price_anchor(x, name, sm, tag, raff, info.get("release"), g)
-                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + clist_html + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html),
+                                                     + cards_block(x, cards_by.get(f"{g}|{x}") or [], tag) + clist_html + info_html + stat_html + ser_hist_html(g, x, info.get("release")) + next_html + near_html),
                 "links": _menu(items, games, g, "/" + series_path(g, x)),
                 "root": "/"}, si, [("トップ", ""), (f"{short}の抽選", f"{slug}/"), (x, series_path(g, x))])
 
 
             if make_sh:
                 write_saihan(g, x, si, info, sm, rr, post_x, pre_mode, rel_x)
+                _SH_PAGES.append((g, x, "/" + sh_path, pre_mode))
 
         _hist0 = {} if sample is not None else load_json("store_history.json", {})
         _reg0 = {} if sample is not None else load_json("stores.json", {})
@@ -2279,8 +2348,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 "topsq": line_box(a),
                 "trend_html": _trend_area(g, a),  # 11/14：この地域の店頭抽選の傾向（一覧のあと・たたんで表示）
                 "info_html": area_html + (near_html if ai else ""),
-                "title": f"{short} 抽選 {a}｜{a}の店頭抽選" + (f" 受付中{len(ai)}件" if ai else "") + f"【{md}更新】｜トレカ抽選ナビ",
-                "desc": f"【{md}更新】{short}{f'（{name}）' if short != name else ''}の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
+                "title": _st.fit(f"{a}の{short}抽選｜店頭抽選 受付中{len(ai)}件・締切順" if ai else None, f"{a}の{short}抽選｜店頭抽選 受付中{len(ai)}件" if ai else None,
+                                 f"{a}の{short}抽選｜店頭抽選・近くの県の抽選", f"{a}の{short}抽選｜店頭抽選", f"{a}の{short}抽選"),
+                "desc": (f"【{md}更新】" if ai else "") + f"{short}{f'（{name}）' if short != name else ''}の抽選を{a}で探すなら。{a}のお店の店頭抽選・Web応募で店頭受け取りの抽選" +
                         (f"{len(ai)}件（今日締切{today_a}件・新着{new_a}件）を締切が近い順にまとめています。" if ai else
                          "をまとめています。いま受付中のものがない時は、近くの県の抽選を案内します。") + "1日6回自動更新。",
                 "summary": summary(ai, f"{a}の{short}店頭抽選") if ai else "",
@@ -2319,7 +2389,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 lock["channel"] = ch
             on_ = sum(1 for i in sub if i.get("channel") != "store")
             write(f"{slug}/{key}/", lock, {
-                "title": f"【{md}更新】{h1}まとめ｜受付中{len(sub)}件｜トレカ抽選ナビ",
+                "title": _st.fit(f"{h1}まとめ 受付中{len(sub)}件" if sub else None, f"{h1} 受付中{len(sub)}件" if sub else None, f"{h1}まとめ", h1),
                 "desc": f"【{md}更新】{lead[:60]}… 受付中{len(sub)}件（ネット{on_}件・店頭{len(sub) - on_}件）を締切順に掲載。1日6回自動更新。",
                 "summary": summary(sub, h1), "faq": faq_for(sub, h1), "h1": h1, "lead": lead,
                 "links": _menu(items, games, g), "root": "/"}, sub,
@@ -2351,7 +2421,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         on_ = sum(1 for i in td if i.get("channel") != "store")
         write("today/", {"checks": ["f-today"], "all_subset": True}, {
             "og_image": og_t or None,
-            "title": f"【{md}】今日締切のトレカ抽選まとめ｜ポケカ・ワンピ{len(td)}件｜トレカ抽選ナビ",
+            "title": _st.fit(f"今日（{md}）締切のトレカ抽選{len(td)}件｜ポケカ・ワンピ", f"今日（{md}）締切のトレカ抽選{len(td)}件", f"今日（{md}）締切のトレカ抽選"),
             "desc": f"【{md}更新】今日が締切のポケカ・ワンピースカードの抽選{len(td)}件（ネット{on_}件・店頭{len(td) - on_}件）を締切が近い順に。応募し忘れのチェックに。",
             "summary": summary(td, h1), "faq": faq_for(td, h1), "h1": h1, "lead": lead,
             "links": _menu(items, games, games[0]), "root": "/"}, td,
@@ -2486,7 +2556,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
 <p class="note">ネット抽選だけを見たいときは<a href="{gl("pokemon", "online")}">ポケカのネット抽選</a>・<a href="{gl("onepiece", "online")}">ワンピースカードのネット抽選</a>をどうぞ。</p>
 </article>"""
         write("guide/", {"game": games[0], "subset": True}, {
-            "title": "ポケカ・ワンピースカード抽選の当て方｜当たりやすい抽選の選び方と応募のコツ｜トレカ抽選ナビ",
+            "title": _st.fit("ポケカ・ワンピースカード抽選の当て方と応募のコツ"),
             "desc": f"ポケカ・ワンピースカードの抽選の種類（Web・SNS・アプリ・店頭）、当たりやすい抽選の選び方、応募前の準備をまとめました。掲載中の抽選{n_all}件のデータ付き。",
             "summary": summary([i for i in items if i["game"] == games[0]], "ポケカの抽選"),
             "faq": [("抽選は何件くらいありますか？", f"{upd_hm}時点でトレカ抽選ナビに掲載中の抽選は{n_all}件です（ネット{on_all}件・店頭{n_all - on_all}件）。"),
@@ -2503,6 +2573,35 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         import yaml
         gp = Path(__file__).resolve().parent.parent / "config" / "guides.yaml"
         guides = ((yaml.safe_load(gp.read_text(encoding="utf-8")) or {}).get("guides") or []) if gp.exists() else []
+        # 11/15：ガイドに「当サイトの記録」（過去90日にそのお店で見つけた抽選の件数・店舗数）と、ほかのガイドへのリンクを足す
+        #        （参考にした記事だけでなく、自分のデータを根拠に。premium-bandai などは /guide/ からの1本しかリンクがなかった）
+        _gh = load_json("store_history.json", {}) if sample is None else {}
+        _gcut = (now().date() - __import__("datetime").timedelta(days=90)).isoformat()
+
+        def _guide_record(gd):
+            if gd.get("kind") == "howto":
+                return ""
+            rx_ = re.compile(gd["store_re"], re.I)
+            n_ = k_ = 0
+            for v_ in _gh.values():
+                if not rx_.search(v_.get("name") or ""):
+                    continue
+                c_ = sum(1 for it_ in (v_.get("items") or {}).values() if ((it_.get("e") or it_.get("f") or "")[:10]) >= _gcut)
+                n_ += c_
+                k_ += 1 if c_ else 0
+            if not n_:
+                return ""
+            ch_ = chain_of(gd["name"])
+            more_ = (f'お店ごとの締切や応募方法の傾向は<a href="/chain/{ch_}/">{escape(gd["name"])}の抽選まとめ</a>で見られます。'
+                     if ch_ and (out / "chain" / ch_ / "index.html").exists() else "")
+            return (f'<p class="note"><b>トレカ抽選ナビの記録</b>：{escape(gd["name"])}の抽選は、過去90日に{n_}件'
+                    + (f'（{k_}店舗）' if k_ > 1 else '') + f'見つかっています（{now().month}/{now().day}時点・当サイトが見つけた分）。{more_}</p>')
+
+        def _guide_more(gd):
+            hw_ = [(g_.get("short") or g_["h1"], f'/guide/{g_["slug"]}/') for g_ in guides if g_.get("kind") == "howto" and g_["slug"] != gd["slug"]]
+            st_ = [(g_["name"], f'/guide/{g_["slug"]}/') for g_ in guides if g_.get("kind") != "howto" and g_["slug"] != gd["slug"]]
+            return ('<h2>ほかのガイド</h2>' + _links("応募の基本", hw_) + _links("お店ごとの抽選のやり方", st_)) if hw_ or st_ else ""
+
         for gd in guides:
             if gd.get("kind") == "howto":  # 11/14：お店ではなく「やり方」のガイド。下の一覧は filter で選ぶ
                 f_ = gd.get("filter") or ""
@@ -2521,11 +2620,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             body = "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in gd.get("sections") or [])
             src_html = ('<p class="note">参考：' + "・".join(f'<a href="{escape(u)}" target="_blank" rel="noopener nofollow">{escape(t)}</a>'
                                                           for t, u in (gd.get("sources") or [])) + '。条件は抽選ごとに変わることがあるため、応募前に必ずお店の告知をご確認ください。</p>')
-            art = (f'<article class="guide">{live}<p>{gd["intro"]}</p>{body}{src_html}'
-                   '<p class="note"><a href="/guide/">抽選の当て方・コツ（全体）</a>もあわせてどうぞ。</p></article>')
+            art = (f'<article class="guide">{live}<p>{gd["intro"]}</p>{body}{_guide_record(gd)}{src_html}'
+                   f'<p class="note"><a href="/guide/">抽選の当て方・コツ（全体）</a>もあわせてどうぞ。</p>{_guide_more(gd)}</article>')
             g0 = gd.get("game") or games[0]
             write(f"guide/{gd['slug']}/", {"game": g0}, {
-                "title": gd["title"] + "｜トレカ抽選ナビ", "desc": gd["desc"],
+                "title": _st.fit(gd.get("title_s"), gd["title"]), "desc": gd["desc"],
                 # 11/14 Fable：ゲームで絞った件数・ゲーム全体の件数を出していて、下の「いま受付中◯件」と食い違っていた。同じ sub で数える
                 "summary": summary(sub, gd["name"] + "の抽選") if sub else "",
                 "faq": [tuple(q) for q in gd.get("faq") or []], "h1": gd["h1"],
@@ -2596,19 +2695,21 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                       f'<div class="line-rooms">{main_c}{cards}</div>'
                       '<p class="ch-note">※オープンチャットはLINEのサービスです。ルールを守って参加してください。転売目的の売買の呼びかけはご遠慮ください。</p>')
             write("line/", {"game": games[0], "channel": "store", "subset": True}, {
-                "title": "地域ごとのLINEオープンチャット（トレカ販売情報共有）｜トレカ抽選ナビ",
+                "title": _st.fit("地域ごとのLINEオープンチャット（トレカ販売情報共有）", "地域ごとのLINEオープンチャット"),
                 "desc": "ポケカ・ワンピースカードの販売・抽選情報を、北海道・東北／関東／中部／近畿／中国・四国／九州・沖縄の地域ごとのLINEオープンチャットでリアルタイムに共有できます。",
                 "summary": "", "h1": "地域ごとのLINEオープンチャット", "h1_tag": "現在テスト運行中",
                 "lead": "地域ごとのLINEオープンチャットの一覧です。下には、締切が近い店頭抽選を載せています。",
                 "aff": body_l, "links": _menu(items, games, games[0]), "root": "/"},
                 _soon([i for i in items if i["game"] == games[0] and i.get("channel") == "store"]), [("トップ", ""), ("LINEオープンチャット", "line/")])
         write("souba/", {"game": games[0], "subset": True}, {
-            "title": f"ポケカ・ワンピースカードBOX相場一覧【{_md(latest) if latest else md}更新】定価との差・前日比・1週間の推移｜トレカ抽選ナビ",
-            "desc": f"ポケカ・ワンピースカードの未開封BOXの相場（スニダンの取引価格）を毎日更新。定価との差、前日比、1週間比、30日の値動きのグラフ、海外（TCGplayer）の相場も一覧で比べられます。",
+            "title": _st.fit("ポケカ・ワンピースカードBOX相場一覧｜定価との差・前日比", "ポケカ・ワンピースカードBOX相場一覧"),
+            "desc": f"【{_md(latest) if latest else md}更新】ポケカ・ワンピースカードの未開封BOXの相場（スニダンの取引価格）を毎日更新。定価との差、前日比、1週間比、30日の値動きのグラフ、海外（TCGplayer）の相場も一覧で比べられます。",
             "summary": "", "faq": faq_s,
             "h1": "ポケカ・ワンピースカード BOX相場一覧",
             "lead": "スニダンで成立した取引の値段（1個の取引のその日の平均）をもとにしたBOXの相場です。下には締切が近いポケカの抽選を載せています。",
-            "aff": intro + _sb_tabs([g for g in games if any(f'data-g="{g}"' in x_ for x_ in secs)]) + "".join(secs), "links": _menu(items, games, games[0]), "root": "/",
+            "aff": intro + _sb_tabs([g for g in games if any(f'data-g="{g}"' in x_ for x_ in secs)]) + "".join(secs)
+                   + _links("再販・追加抽選・在庫の情報", [(x_, p_) for _, x_, p_, pre_ in _SH_PAGES if not pre_]),
+            "links": _menu(items, games, games[0]), "root": "/",
             "upd": ("相場の更新 ", souba_raw["updated"]) if souba_raw.get("updated") else None},
             _soon([i for i in items if i["game"] == games[0]]), [("トップ", ""), ("BOX相場", "souba/")])
 
@@ -2697,7 +2798,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             sm_ = wsum(ws)
             label = f"{_md(ws)}〜{_md(sm_['week_end'])}"
             sub = [i for i in items if i["key"] in wk[ws]]
-            meta_w = {"title": f"今週のトレカ抽選まとめ（{label}）｜ポケカ・ワンピースカードの抽選{sm_['total']}件｜トレカ抽選ナビ",
+            meta_w = {"title": _st.fit(f"今週のトレカ抽選まとめ（{label}）{sm_['total']}件", f"今週のトレカ抽選まとめ（{label}）"),
                       "desc": f"{label}に見つかったポケカ・ワンピースカードの抽選{sm_['total']}件のまとめ。多かった弾・お店・地域とBOX相場の動き。",
                       "summary": "", "h1": f"今週のトレカ抽選まとめ（{label}）",
                       "lead": "その週に見つかった抽選のまとめです。下には、そのうち今も受付中の抽選を載せています。",
@@ -2826,8 +2927,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         h.append('<p class="note">※トレカ抽選ナビが見つけた分だけです。すべての抽選の結果を載せているわけではありません。'
                  '発表日はお店の告知に書かれていた予定で、変わることがあります。</p></div>')
         write("kekka/", {"game": games[0], "subset": True}, {
-            "title": f"ポケカ・ワンピースカードの抽選結果・当選発表まとめ【{md}更新】｜トレカ抽選ナビ",
-            "desc": "ポケカ・ワンピースカードの抽選結果（当選発表）が出たお店と、これから結果が出るお店を日付ごとにまとめています。確かめ方（メール・アプリなど）も。",
+            "title": _st.fit("ポケカ・ワンピースカードの抽選結果・当選発表まとめ"),
+            "desc": f"【{md}更新】ポケカ・ワンピースカードの抽選結果（当選発表）が出たお店と、これから結果が出るお店を日付ごとにまとめています。確かめ方（メール・アプリなど）も。",
             "summary": "", "h1": "抽選結果・当選発表のまとめ",
             "lead": "結果が出たお店・これから結果が出るお店を日付ごとにまとめています。下には締切が近い抽選を載せています。",
             "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"},
@@ -2929,11 +3030,13 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             up_items = [i for i in items if any(t[0] > today_c and t[1] == i["game"] and t[2] in (i.get("sers") or [i.get("series")]) for t in rows_c)]
             write("calendar/", {"game": games[0], "subset": True}, {
                 # 11/8 Fable：「ポケカ 発売日 2026」で探す人に、年の一覧だと伝わるタイトルに
-                "title": f"ポケカ・ワンピースカード 発売日一覧 {now().year}年〜{now().year + 1}年｜新弾スケジュールと定価・抽選【{now().month}月更新】｜トレカ抽選ナビ",
+                "title": _st.fit(f"ポケカ・ワンピースカード発売日一覧 {now().year}〜{now().year + 1}年｜定価", f"ポケカ・ワンピースカード発売日一覧 {now().year}〜{now().year + 1}年"),
                 "desc": "ポケカ・ワンピースカードの新弾・新商品の発売日と希望小売価格を月ごとにまとめたカレンダー。発売前の弾の抽選・予約の受付状況も1日6回更新。",
                 "summary": "", "faq": faq_c or None, "h1": f"ポケカ・ワンピースカード 発売日一覧（{now().year}〜{now().year + 1}年）",
                 "lead": "新弾の発売日・定価・抽選の受付状況をまとめています。下には発売前の弾の受付中の抽選を載せています。",
-                "aff": "".join(h), "links": _menu(items, games, games[0]), "root": "/"}, up_items,
+                "aff": "".join(h) + _links("予約・定価で買える店（発売前の弾）", [(x_, p_) for _, x_, p_, pre_ in _SH_PAGES if pre_])
+                       + _links("再販・追加抽選・在庫の情報（発売済みの弾）", [(x_, p_) for _, x_, p_, pre_ in _SH_PAGES if not pre_]),
+                "links": _menu(items, games, games[0]), "root": "/"}, up_items,
                 [("トップ", ""), ("発売日カレンダー", "calendar/")])
             # 11/11：月ごとの発売スケジュール（「ポケカ 12月 発売」で探す人向け）。弾のある月だけ
             ms_ = sorted(by_m)
@@ -2964,7 +3067,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                       + "です。" + ("抽選・予約の受付状況は、それぞれの弾のページで1日6回更新しています。" if not past_ else "")))
                 m_items = [i for i in items if any(t[2] == i["game"] and t[3] in (i.get("sers") or [i.get("series")]) for t in rs_)]
                 write(f"calendar/{m_}/", {"game": games[0], "subset": True}, {
-                    "title": f"【{y_}年{mo_}月発売】ポケカ・ワンピースカードの新弾一覧｜発売日・定価・抽選情報｜トレカ抽選ナビ",
+                    "title": _st.fit(f"【{y_}年{mo_}月発売】ポケカ・ワンピースカードの新弾一覧｜定価", f"【{y_}年{mo_}月発売】ポケカ・ワンピースカードの新弾一覧"),
                     "desc": lead_[:110] + "発売日・希望小売価格・抽選の受付状況をまとめています。",
                     "summary": "", "faq": faq_m or None, "h1": f"{y_}年{mo_}月発売のポケカ・ワンピースカード新弾",
                     "lead": "", "aff": body_, "links": _menu(items, games, games[0]), "root": "/"}, m_items,
@@ -2978,26 +3081,37 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                   '<h2>サイトの基本情報</h2><div class="tbl"><table class="stbl">'
                   '<tr><td>サイト名</td><td>トレカ抽選ナビ</td></tr>'
                   '<tr><td>URL</td><td>https://tcg-chusen.com/</td></tr>'
-                  '<tr><td>運営</td><td>個人運営</td></tr>'
+                  '<tr><td>運営者</td><td>トレカ抽選ナビ 運営事務局（個人運営）</td></tr>'
                   '<tr><td>公開日</td><td>2026年10月26日</td></tr>'
                   f'<tr><td>いま受付中の抽選</td><td>{n_act_a}件（<a href="/stats/">集計データ</a>）</td></tr>'
                   '<tr><td>更新</td><td>1日6回（自動）</td></tr>'
                   '<tr><td>公式X</td><td><a href="https://x.com/pokepi_tcg" rel="me">@pokepi_tcg（ポケピ🐝トレカ抽選ナビ）</a></td></tr>'
                   '<tr><td>公式YouTube</td><td><a href="https://www.youtube.com/@トレカ抽選ナビ" rel="me">@トレカ抽選ナビ</a></td></tr>'
-                  '<tr><td>お問い合わせ</td><td>公式XのDMでお願いします</td></tr></table></div>'
+                  '<tr><td>お問い合わせ</td><td>公式X（<a href="https://x.com/pokepi_tcg" rel="me">@pokepi_tcg</a>）のDMでお願いします</td></tr></table></div>'
                   '<h2>情報の集め方</h2><p>お店の公式サイト・公式SNS・応募ページ・抽選のまとめ情報などを1日6回自動で見回り、見つけた抽選の応募期間・応募方法・条件（本人確認・会員登録など）・受け取り方を読み取って掲載しています。'
                   '同じ抽選を別の情報元から見つけたときは1件にまとめ、受付が終わった抽選は自動で「受付終了」にします。応募の前に、必ず各お店の公式の告知で内容を確かめてください。</p>'
-                  '<h2>ほかにまとめていること</h2><ul><li><a href="/souba/">BOXの相場</a>と、弾ごとの収録カードの相場</li><li><a href="/calendar/">発売日カレンダー</a></li><li><a href="/kekka/">抽選結果の発表日</a>と<a href="/tousenritsu/">当選率</a></li><li><a href="/stats/">集計データ</a>（お店別・都道府県別・締切の傾向）</li><li><a href="/en/">海外向けのページ（English・繁體中文・한국어）</a></li></ul>'
+                  '<h2>掲載の方針</h2><ul>'
+                  '<li>抽選ごとに、応募ページまたは告知へのリンクを付けています（リンク先が分からない抽選は「応募先は店舗の告知でご確認ください」と表示します）。締切・応募方法・条件は、告知に書かれている内容をもとに載せています。</li>'
+                  '<li>締切が告知から読み取れなかった抽選は、「締切は告知でご確認ください」と表示します。</li>'
+                  '<li>件数・割合などの数字は、当サイトが集めたデータから計算したものです（<a href="/stats/">集計データ</a>に、数えた期間と対象を書いています）。</li>'
+                  '<li>BOX・カードの相場は、取引サイトで成立した取引の値段をもとにした参考の数字で、買取価格ではありません。</li></ul>'
+                  '<h2>自動で集めていることについて</h2><p>抽選の告知を見つける作業と、告知の文章から応募期間・条件などを読み取る作業は、プログラムとAIで自動化しています。'
+                  '自動の読み取りにはまちがいが起こりえるため、締切の日付の点検や、同じ抽選の重なりを1件にまとめる処理を入れています。'
+                  'それでもまちがいが残ることがあるので、応募の前に必ずお店の告知をご確認ください。</p>'
+                  '<h2>まちがいの訂正・掲載の取り下げ</h2><p>掲載内容のまちがい（締切・条件・お店の名前など）や、掲載をやめてほしいお店の方は、公式X（<a href="https://x.com/pokepi_tcg">@pokepi_tcg</a>）のDMでお知らせください。'
+                  '内容を確かめたうえで、該当のページを直す・取り下げる対応をします。その際、どのページ（URL）のどこがちがうかを書いていただけると助かります。</p>'
+                  '<h2>ほかにまとめていること</h2><ul><li><a href="/souba/">BOXの相場</a>と、弾ごとの収録カードの相場</li><li><a href="/calendar/">発売日カレンダー</a></li><li><a href="/kekka/">抽選結果の発表日</a>と<a href="/tousenritsu/">当選率</a></li><li><a href="/stats/">集計データ</a>（お店別・都道府県別・締切の傾向）</li><li><a href="/guide/">抽選の応募のしかた・お店ごとのガイド</a></li><li><a href="/en/">海外向けのページ（English・繁體中文・한국어）</a></li></ul>'
                   '<h2>広告について</h2><p>当サイトは楽天アフィリエイト・Amazonアソシエイト・メルカリアンバサダーなどのアフィリエイト広告（PR）を利用しています。抽選の掲載順や内容は広告によって変えていません。</p>'
                   '<h2>名前の似たサイトについて</h2><p>「トレカ抽選ナビ」という名前のサイトはほかにもありますが、当サイト（tcg-chusen.com）とは関係のない別のサイトです。</p>'
                   '<p class="note">「ポケモンカードゲーム」は株式会社ポケモン、「ONE PIECEカードゲーム」「ドラゴンボールスーパーカードゲーム フュージョンワールド」は株式会社バンダイの商品です。当サイトは各社とは関係のない個人のサイトです。</p></div>')
         write("about/", {"game": games[0], "subset": True}, {
             "head_extra": ["<style>.filters,#list,.sortbar,.list-head{display:none!important}</style>"],  # 一覧の絞り込み・抽選の一覧は出さない（このページはデータ／説明だけ）
-            "title": "トレカ抽選ナビ（tcg-chusen.com）について｜運営・情報の集め方・広告｜トレカ抽選ナビ",
-            "desc": "トレカ抽選ナビ（tcg-chusen.com）は、ポケカ・ワンピースカードの抽選販売を1日6回自動で集めて締切順にまとめる無料の情報サイトです。運営・情報の集め方・広告について。",
+            "title": "トレカ抽選ナビ（tcg-chusen.com）について｜運営者情報・掲載方針",  # サイト名が先頭にあるので、後ろには付けない
+            "ld_type": "AboutPage",
+            "desc": "トレカ抽選ナビ（tcg-chusen.com）は、ポケカ・ワンピースカードの抽選販売を1日6回自動で集めて締切順にまとめる無料の情報サイトです。運営者情報・お問い合わせ先・情報の集め方・掲載と訂正の方針・広告について。",
             "summary": "", "faq": None, "h1": "トレカ抽選ナビ（tcg-chusen.com）について",
             "lead": "", "aff": body_a, "links": _menu(items, games, games[0]), "root": "/"}, [],
-            [("トップ", ""), ("サイトについて", "about/")])
+            [("トップ", ""), ("サイトについて（運営者情報）", "about/")])
     except Exception as e:
         print("サイトについてのページを作れませんでした", e)
 
@@ -3009,7 +3123,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             lambda a: f"/pokeka/area/{PREF[a]}/" if a in PREF else None, escape)
         write("stats/", {"game": games[0], "subset": True}, {
             "head_extra": ["<style>.filters,#list,.sortbar,.list-head{display:none!important}</style>"],  # 一覧の絞り込み・抽選の一覧は出さない（このページはデータ／説明だけ）
-            "title": f"トレカ抽選の集計データ｜掲載{n_all_s:,}件・受付中{n_act_s}件のお店別・都道府県別・締切の傾向【{now().month}/{now().day}更新】｜トレカ抽選ナビ",
+            "title": _st.fit(f"トレカ抽選{n_all_s:,}件の集計データ｜お店別・都道府県別・締切の傾向", f"トレカ抽選{n_all_s:,}件の集計データ｜お店別・都道府県別", "トレカ抽選の集計データ"),
             "desc": lead_s[:120],
             "summary": "", "faq": faq_s, "h1": "トレカ抽選の集計データ（トレカ抽選ナビ調べ）",
             "lead": "", "aff": body_s, "links": _menu(items, games, games[0]), "root": "/"}, [],
@@ -3254,9 +3368,14 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             hist_html = f'<section class="hist"><h2>{escape(name)}の抽選結果の発表</h2>{ann_li}</section>'
         if not si and past:  # 11/14 Fable：受付中がないとき、タイトルのゲーム名は前回までの抽選に合わせる（「ワンピースカード抽選｜前回『ハドウシーカー』」になっていた）
             words = "・".join(dict.fromkeys(GAME_SHORT[p_["g"]] for p_ in past if p_.get("g") in GAME_SHORT)) or words
+        nm_t = _st.short_name(name)
+        _e0 = parse_dt(min((i["end"] for i in si if i.get("end")), default=None))
+        _end_t = f"{_e0.month}/{_e0.day}" if _e0 else ""
+        _hd_t = [f"{nm_t}の{words}抽選"] + ([f"{nm_t}のトレカ抽選"] if "・" in words else [])  # ゲームが2つ以上で長いときは「トレカ抽選」
         write(path, {"game": g0, "store": path, "channel": ch}, {
-            "title": (f"{name}の{words}抽選 受付中{len(si)}件【{md}更新】" + (f"締切{_fmt(min(si, key=lambda i: i.get('end') or '9')['end'])}" if any(i.get("end") for i in si) else "")
-                      if si else f"{name}の{words}抽選｜" + (f"前回{_d(past[0])}締切「{past[0]['p']}」・" if past else "") + "応募方法") + "｜トレカ抽選ナビ",
+            "title": (_st.fit(*_st.combo(_hd_t, [f" 受付中{len(si)}件・{_end_t}締切" if _end_t else None, f" 受付中{len(si)}件", "（受付中）", ""]), f"{nm_t}のトレカ抽選")
+                      if si else _st.fit(*_st.combo(_hd_t, [f"｜前回{_d(past[0])}締切「{past[0]['p']}」" if past else None,
+                                                            f"｜前回{_d(past[0])}締切・応募方法" if past else None, "・応募方法", ""]), f"{nm_t}のトレカ抽選")),
             "desc": ((f"【{md}更新】{where}" + summary(si, f"{name}の{words}の抽選").replace("現在受付中の", "いま受付中の") + "応募方法・本人確認や会員の条件もまとめています。") if si else
                      f"{name}{where}の{words}の抽選情報。いま受付中の抽選はありません。" + (f"前回は{_d(past[0])}締切の「{past[0]['p']}」でした。" if past else "") +
                      "これまでの抽選・応募方法・受け取り方をまとめ、新しい抽選が始まり次第ここに載ります。"),
@@ -3326,8 +3445,9 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                  + '<p class="note">※トレカ抽選ナビが見つけた抽選（受付終了）です。</p></section>') if past else ""
         gd_ = (f'<p class="cs-guide">📘 <a href="/guide/{escape(gdc["slug"])}/">{escape(cname)}の抽選の応募のしかた・結果の確かめ方 →</a></p>' if gdc else "")
         others = [(CHAIN[c2][1], "/" + p2) for (c2, g2, x2), p2 in CS_PAGES.items() if g2 == g and x2 == x and c2 != slug][:12]
-        nav_ = (f'<p class="cs-nav"><a href="/{series_path(g, x)}">「{escape(x)}」の抽選をすべて見る（全部のお店） ›</a>'
-                f'<a href="/chain/{slug}/{GAME_SLUG[g]}/">{escape(cname)}の{escape(sh)}抽選をすべて見る ›</a></p>')
+        nav_ = ('<p class="cs-nav">' + (f'<a href="/{series_path(g, x)}">「{escape(x)}」の抽選をすべて見る（全部のお店） ›</a>'
+                                         if series_path(g, x) in _SER_WRITTEN else "")  # 11/15：弾ページが無い弾（受付中0件・相場なし）へのリンクが切れていた
+                + f'<a href="/chain/{slug}/{GAME_SLUG[g]}/">{escape(cname)}の{escape(sh)}抽選をすべて見る ›</a></p>')
         oth_ = _links(f"ほかのお店の「{x}」の抽選", others) if others else ""
         faq = [(f"{cname}の「{x}」の抽選はいま受付中ですか？",
                 (f"いま受付中の抽選は{len(act)}件（{n_st}店舗）です" + (f"。締切が一番近いのは{_sname(soon['store'])}（{_fmt(soon['end'])}）です。" if soon else "。")) if act else
@@ -3337,11 +3457,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         if len(idk) >= 3:
             faq.append((f"{cname}の「{x}」の抽選に本人確認は必要ですか？", f"条件が書かれていた{len(idk)}件のうち{idn}件で本人確認が必要でした。"))
         md_ = f"{now().month}/{now().day}"
-        ttl = (f"{cname}の「{x}」抽選 受付中{len(act)}件【{md_}更新】店舗・締切・応募方法｜トレカ抽選ナビ" if act else
-               f"{cname}の「{x}」抽選｜" + (f"前回{_md_(past[0][0]['e'])}締切・" if past else "") + f"これまで{len(past)}件・応募方法｜トレカ抽選ナビ")
+        ttl = (_st.fit(f"{cname}の「{x}」抽選 受付中{len(act)}件・{n_st}店舗", f"{cname}の「{x}」抽選 受付中{len(act)}件", f"{cname}の「{x}」抽選") if act else
+               _st.fit(f"{cname}の「{x}」抽選｜前回{_md_(past[0][0]['e'])}締切・これまで{len(past)}件" if past else None,
+                       f"{cname}の「{x}」抽選｜前回{_md_(past[0][0]['e'])}締切" if past else None, f"{cname}の「{x}」抽選・応募方法", f"{cname}の「{x}」抽選"))
         desc = (f"【{md_}更新】{cname}でいま受付中の{sh}「{x}」の抽選は{len(act)}件（{n_st}店舗）。" + (f"締切が一番近いのは{_sname(soon['store'])}（{_fmt(soon['end'])}）。" if soon else "")
                 + f"これまでの抽選{len(past)}件の締切・結果発表も表にしています。" if act else
-                f"【{md_}更新】{cname}の{sh}「{x}」の抽選の情報。いま受付中の抽選はありません。これまでの抽選{len(past)}件"
+                f"{cname}の{sh}「{x}」の抽選の情報。いま受付中の抽選はありません。これまでの抽選{len(past)}件"
                 + (f"（前回{_md_(past[0][0]['e'])}締切）" if past else "") + "と応募のしかたをまとめ、新しい抽選が始まり次第ここに載ります。")
         write(pth, {"game": g, "chain": slug, "series": x, "channel": "store" if sum(1 for i in act if i.get("channel") == "store") * 2 > len(act) else "online"}, {
             "title": ttl, "desc": desc, "h1": f"{cname}の「{x}」抽選情報",
@@ -3533,10 +3654,14 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 lose_c = _after_lose_ad(x_l, s["game_names"][g_l], souba_sm.get(f"{g_l}|{x_l}"), tag, raff, None, g_l)
         write(f"chain/{slug}/", {"game": g0, "chain": slug, "channel": ch}, {
             "trend_html": _trend_chain(slug, cname),
-            "title": (f"{cname}の{words_c}抽選 受付中{len(ci)}件【{md}更新】" + (f"店舗一覧（{len(sts)}店舗）・締切順" if len(sts) >= 5 else "店舗別・締切順") if ci else
-                      f"{cname}の{words_c}抽選｜" + (f"前回{_cd(cpast[0][0])}締切「{_cp(cpast[0][0])}」・" if cpast else "") + "応募方法・結果発表") + "｜トレカ抽選ナビ",
+            # チェーン全体のページは「◯◯の抽選まとめ」（「◯◯のポケカ抽選」はチェーン×ゲームのページ）。同じタイトルにしない
+            "title": (_st.fit(f"{cname}の抽選まとめ 受付中{len(ci)}件｜{words_c}・{len(sts)}店舗" if len(sts) >= 2 else None, f"{cname}の抽選まとめ 受付中{len(ci)}件｜{words_c}",
+                              f"{cname}の抽選まとめ 受付中{len(ci)}件｜{len(sts)}店舗・締切順" if len(sts) >= 2 else None, f"{cname}の抽選まとめ 受付中{len(ci)}件｜締切順",
+                              f"{cname}の抽選まとめ 受付中{len(ci)}件") if ci else
+                      _st.fit(f"{cname}の抽選まとめ｜{words_c}・前回{_cd(cpast[0][0])}締切" if cpast else None, f"{cname}の抽選まとめ｜{words_c}・応募方法",
+                              f"{cname}の抽選まとめ｜{words_c}", f"{cname}の抽選まとめ｜応募方法・結果発表", f"{cname}の抽選まとめ")),
             "desc": (f"【{md}更新】" + summary(ci, f"{cname}の{words_c}の抽選").replace("現在受付中の", "いま受付中の") + "店舗別・締切順に、応募方法と本人確認・会員の条件もまとめています。" if ci else
-                     f"【{md}更新】{cname}の{words}の抽選情報。いま受付中の抽選はありません。{_last}" +
+                     f"{cname}の{words}の抽選情報。いま受付中の抽選はありません。{_last}" +
                      (f"これまでに見つけた{len(cpast)}件の抽選" + ("と、応募のしかた・本人確認などの傾向" if guide_c else "") + "をまとめています。" if cpast else "") +
                      "新しい抽選が始まり次第、このページに自動で載ります。"),
             "summary": summary(ci, f"{cname}の抽選"), "h1": f"{cname}のポケカ・ワンピースカード抽選情報", "lead": lead,
@@ -3560,7 +3685,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                         f'<span>{len(by_store.get(p, []))}</span></a></li>' for p, r in lst)
         secs.append(f'<section><h2>{escape(a)}<small>{len(lst)}店舗</small></h2><ul>{chips}</ul></section>')
     write("store/", {"game": games[0]}, {
-        "title": f"店舗一覧｜ポケカ・ワンピースカードの抽選をしているお店【{md}更新】｜トレカ抽選ナビ",
+        "title": _st.fit(f"ポケカ・ワンピースカード抽選のお店一覧（{len(reg):,}店舗）", "ポケカ・ワンピースカード抽選のお店一覧"),
         "desc": f"【{md}更新】ポケカ・ワンピースカードの抽選をしている（最近していた）お店{len(reg)}店舗を都道府県別に一覧にしました。お店を選ぶと、そのお店の受付中の抽選が見られます。",
         "summary": f"最近抽選があったお店は{len(reg)}店舗です。数字は受付中の抽選の件数です。",
         "h1": "抽選をしているお店の一覧",

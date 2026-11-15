@@ -232,6 +232,20 @@ def update_souba(settings, sess=None, sleep=time.sleep, force=False):
     return got
 
 
+_TEIKA_NOW = {}
+
+
+def _teika_now(rec):
+    """定価は config/souba.yaml のいまの値を先に使う（state/souba.json の値は、次にその弾の相場を読むまで古いままなので。11/15）"""
+    if not _TEIKA_NOW:
+        try:
+            _TEIKA_NOW.update({(i["game"], i["series"]): i.get("teika") for i in items()})
+        except Exception:
+            pass
+        _TEIKA_NOW.setdefault(None, None)
+    return _TEIKA_NOW.get((rec.get("game"), rec.get("series"))) or rec.get("teika")
+
+
 def summary(rec, today=None):
     """サイトに出す数字：いちばん新しい日の相場・その前の日との差・7日前との差・定価との差・30日分の点"""
     jp = sorted((rec.get("jp") or {}).items())
@@ -246,7 +260,7 @@ def summary(rec, today=None):
     wk = _ago(done, d0, 7, slack=3)
     pts = [(d, v) for d, v in done if d >= (datetime.fromisoformat(d0) - timedelta(days=30)).date().isoformat()]
     us = sorted((rec.get("us") or {}).items())
-    out = {"date": d0, "price": v0, "teika": rec.get("teika"), "prev": prev, "week": wk,
+    out = {"date": d0, "price": v0, "teika": _teika_now(rec), "prev": prev, "week": wk,
            "month": _ago(done, d0, 30, slack=5), "year": _ago(done, d0, 365), "points": pts, "snkr": rec.get("snkr")}
     if len(us) >= 1:
         out["us"] = us[-1]

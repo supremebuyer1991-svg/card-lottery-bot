@@ -819,7 +819,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             continue
         us, _ = _last(v.get("us") or {})
         rel = str(((info.get(g) or {}).get(x) or {}).get("release") or "")
-        rows.append({"g": g, "x": x, "p": p, "day": day, "teika": v.get("teika"), "old": _ago(v.get("jp") or {}, 30),
+        rows.append({"g": g, "x": x, "p": p, "day": day, "teika": __import__("souba")._teika_now(dict(v, game=g, series=x)), "old": _ago(v.get("jp") or {}, 30),  # 11/15：定価は souba.yaml のいまの値（日本語ページと同じ数字に）
                      "us": us, "rel": rel, "jpser": v.get("jp") or {}, "usser": v.get("us") or {},
                      # ワンピースの tcg は英語版のBOX（souba.yaml の説明どおり）なので、英語版として扱う
                      "enser": v.get("en") or (v.get("us") if g == "onepiece" else None) or {},

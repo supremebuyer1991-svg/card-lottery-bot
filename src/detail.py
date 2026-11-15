@@ -222,6 +222,22 @@ def _cal_links(i, store, name, canon):
             '<a class="calsub-l" href="/calendar/#sub">🔔 これからの締切も自動で入れる →</a></div>')
 
 
+def _fit_name(store_t, name, kw, tail):
+    """タイトルの最後の候補：商品名を入るところまでにして「…」（お店の名前と締切は残す）。それも無理なら商品名を外す"""
+    import seotitle as _st
+    room = _st.LIMIT - _st.tw("｜" + _st.SITE) - _st.tw(f"{store_t}「」{kw}{tail}")
+    if room >= _st.tw(name):
+        return f"{store_t}「{name}」{kw}{tail}"
+    if room >= 5:
+        cut = ""
+        for ch in name:
+            if _st.tw(cut + ch) > room - 1:
+                break
+            cut += ch
+        return f"{store_t}「{cut.rstrip('（(・ 　')}…」{kw}{tail}"
+    return f"{store_t}「{name}」{kw}"  # お店の名前だけで長い：商品名は外さない（同じお店の別の抽選と同じタイトルにしない）
+
+
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None, noindex=False, next_link=None,
            brand=None, games=None, canon_to=None, guides=(), keep_index=False):
     """1件分のHTML。i は sitegen の row（＋products / start / announce / buy）
@@ -253,6 +269,13 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             "応募方法・応募条件・対象商品・当選発表日をまとめています。") if kw == "抽選" else (
             f"{store}の{gshort}の{kw}「{name}」。" + ((f"受付期間 {start_s}〜{end_s}。" if start_s else f"締切 {end_s}。") if end_s else "") +
             "受付方法・条件・対象商品をまとめています。")
+    _e = parse_dt(i.get("end"))
+    _end_md = f"{_e.month}/{_e.day}" if _e else ""
+    if brand is None:  # 11/15：【◯/◯(日) 23:59締切】は長いので「11/15締切」に。締切の時刻は説明文とページの中にある
+        import seotitle as _st
+        _tl = [f" {_end_md}締切", ""] if _end_md else [""]  # 締切の日付は残す（同じお店・同じ弾の別の抽選と区別がつくように）
+        title = _st.fit(*_st.combo([f"{store_t}の{gshort}{kw}「{tname}」", f"{store_t}「{tname}」{kw}", f"{store_t}の{gshort}{kw}「{name}」", f"{store_t}「{name}」{kw}"], _tl),
+                        _fit_name(store_t, name, kw, _tl[0]))
     if is_end:
         title = f"【受付終了】{store_t}の{gshort}{kw}「{tname}」" + (f"（{end_s}締切）" if end_s else "") + f"｜{brand_name}"
         if canon_to:  # 11/11：終わった抽選のページが「古本市場 ワンピースカード 抽選」などで週650回出ていたのにクリック1%。お店の名前と「次の抽選・受付中の一覧」を先に出す
@@ -261,6 +284,17 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             _n = re.search(r"（(\d+)件）", next_link[0]) if next_link and next_link[1] == canon_to else None
             if _n and int(_n.group(1)) > 0:
                 title = f"{store_t}の{gshort}{kw} 受付中{_n.group(1)}件｜次の抽選・一覧（「{tname}」は受付終了）｜{brand_name}"
+        if brand is None:  # 11/15：トレカ抽選ナビはサイト名が切れない長さに（ゲーム・ホビー入荷速報のタイトルはそのまま）
+            import seotitle as _st
+            hd = f"{store_t}の{gshort}{kw}"
+            _n = re.search(r"（(\d+)件）", next_link[0]) if canon_to and next_link and next_link[1] == canon_to else None
+            if canon_to and _n and int(_n.group(1)) > 0:
+                title = _st.fit(f"{hd} 受付中{_n.group(1)}件｜次の抽選・受付中の一覧", f"{hd} 受付中{_n.group(1)}件｜次の抽選", f"{hd} 受付中{_n.group(1)}件", hd)
+            elif canon_to:
+                title = _st.fit(f"{hd}｜受付中の一覧・次の抽選", f"{hd}｜次の抽選", hd)
+            else:
+                title = _st.fit(f"【受付終了】{hd}「{tname}」{_end_md}締切" if _end_md else None, f"【受付終了】{hd}「{tname}」",
+                                f"【受付終了】{store_t}「{tname}」{kw}", f"【受付終了】{hd}")
         desc = (f"{store}の{gshort}の{kw}「{name}」は受付を終了しました。" +
                 (f"{next_link[0].replace('を見る', '')}。" if next_link else "いま受付中の抽選は一覧からさがせます。"))
 
