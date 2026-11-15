@@ -373,6 +373,10 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                     wl += [w_ for w_ in _kw if not (w_.get("jan") and w_["jan"] in _have)]
                 except Exception as e:
                     log(f"見張り（言葉）: スキップ {e}")
+                _alw = {str(j_) for j_ in (s.get("x_always_post_jans") or [])}   # 条件に関係なく速報する商品（11/15 ユーザー「これだけ速報流して」）
+                for w_ in wl:
+                    if w_.get("jan") in _alw:
+                        w_["always"] = 1
                 (ROOT / "site_game" / "watch.json").write_text(_json.dumps({"updated": now().isoformat(), "items": wl}, ensure_ascii=False), encoding="utf-8")
                 log(f"楽天・Amazonの見張り：{len(wl)}件")
             except Exception as e:
