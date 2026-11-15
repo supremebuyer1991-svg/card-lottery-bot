@@ -943,6 +943,62 @@ def title_name(x, cid):
     return n
 
 
+SG_SLUG = {"本体": "hontai", "コントローラー": "controller", "ゲームソフト": "soft", "周辺機器・アクセサリー": "accessory", "コントローラー・周辺機器": "accessory",
+           "交換レンズ": "lens", "カメラ": "camera", "スマホ": "smartphone", "VR（Meta Quest）": "vr", "Fire TV・スピーカー": "firetv",
+           "イヤホン・オーディオ": "audio", "生活家電・美容家電": "appliance", "RTX 5090": "rtx5090", "RTX 5080": "rtx5080", "RTX 5070 Ti": "rtx5070ti",
+           "RTX 5070": "rtx5070", "そのほかのPCパーツ": "other", "山崎": "yamazaki", "白州": "hakushu", "響": "hibiki", "そのほかのお酒": "other",
+           "スターター": "starter", "デッキセット": "deck", "バトルエントリー・カスタマイズセット": "entry", "そのほか": "other",
+           "Steam Deck": "steam-deck", "Steam Machine": "steam-machine", "Steam Frame（VR）": "steam-frame", "ROG Ally・Xbox Ally": "ally",
+           "そのほかの携帯ゲーミングPC": "other"}
+
+
+def list_url(c, sg=None):
+    """カテゴリ（・ジャンル）の買取価格一覧のURL（11/15 Fable：「○○ 買取」で探す人の受け皿）"""
+    return f"/souba/{c['slug']}/" + (f"{SG_SLUG[sg]}/" if sg and sg in SG_SLUG else "")
+
+
+def price_list_body(c, short, xs, md, sgs=None, base=None):
+    """買取価格一覧ページの本文：数のまとめ（その一覧の数字だけ）・ジャンルのメニュー・表（順位・商品・最高買取・店・定価・定価比・店数）"""
+    import statistics as _st
+    xs = sorted(xs, key=lambda x: -x["max"])
+    n = len(xs)
+    med = round(_st.median(x["max"] for x in xs))
+    rs = [x for x in xs if x.get("ratio") and x.get("teika_note") != "楽天ブックスの販売価格"]
+    over = [x for x in rs if x["ratio"] >= 1]
+    stores = {}
+    for x in xs:
+        if x.get("store"):
+            stores[x["store"]] = stores.get(x["store"], 0) + 1
+    top_st = sorted(stores.items(), key=lambda kv: -kv[1])[:3]
+    s = (f"{md}時点で、新品の買取価格が分かる{escape(short)}は{n}件です。最高買取がいちばん高いのは{escape(xs[0]['name'])}の{xs[0]['max']:,}円（{escape(xs[0]['store'])}）で、"
+         f"{n}件の中央値は{med:,}円です。")
+    if len(rs) >= 3:
+        s += f"定価の分かる{len(rs)}件のうち、定価以上で買い取られているのは{len(over)}件" + (f"（いちばん高いのは{escape(max(over, key=lambda x: x['ratio'])['name'])}の定価比{round(max(x['ratio'] for x in over) * 100)}%）" if over else "") + "です。"
+    if top_st:
+        s += "最高買取の店として多いのは" + "・".join(f"{escape(k)}（{v}件）" for k, v in top_st) + "です。"
+    menu = ""
+    if sgs:
+        menu = '<ul class="sgmenu">' + "".join(f'<li><a href="{escape(u)}">{escape(nm)}<small>{k}</small></a></li>' for nm, u, k in sgs) + "</ul>"
+    rows = "".join(
+        f'<tr><td class="n">{i}</td><td><a href="/premium/{escape(x["jan"])}/">{escape(x["name"])}</a></td><td class="n">{x["max"]:,}円</td><td>{escape(x["store"])}</td>'
+        f'<td class="n">{(str(format(x["teika"], ",")) + "円") if x.get("teika") and x.get("teika_note") != "楽天ブックスの販売価格" else "—"}</td>'
+        f'<td class="n">{(str(round(x["ratio"] * 100)) + "%") if x.get("ratio") and x.get("teika_note") != "楽天ブックスの販売価格" else "—"}</td>'
+        f'<td class="n">{len(x.get("prices") or [])}</td></tr>' for i, x in enumerate(xs, 1))
+    return (f'<style>{SG_CSS}</style><p>{s}</p>{menu}<div style="overflow-x:auto"><table class="pm-t"><tr><th>順位</th><th>商品</th><th>最高買取</th><th>店</th><th>定価</th><th>定価比</th><th>店数</th></tr>{rows}</table></div>'
+            '<p class="note">新品（未開封）の買取価格です。定価はメーカーの希望小売価格・楽天ブックスの定価で、分からない商品は「—」。店数＝その商品の価格を載せている買取店の数。</p>')
+
+
+def _list_links(x, c, grp):
+    """商品ページから、その商品のカテゴリ・ジャンルの買取価格一覧へ"""
+    if not c or len(grp) < 5:
+        return ""
+    out = [f'<a href="{list_url(c)}">{escape(c["short"])}の買取価格一覧（{len(grp)}件）</a>']
+    for nm_, lst_ in split_subgenres(grp, c.get("subgenres")):
+        if nm_ in SG_SLUG and len(lst_) >= 10 and any(y is x for y in lst_):
+            out.insert(0, f'<a href="{list_url(c, nm_)}">{escape(c["short"])}の{escape(nm_)}の買取価格一覧（{len(lst_)}件）</a>')
+    return '<p class="pm-ll">→ ' + " ／ ".join(out) + "</p>"
+
+
 def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id=""):
     """/premium/（定価以上で売れる）・/souba/（買取相場の一覧）・/premium/<JAN>/（商品ごと）を書く。書いたパスの一覧を返す"""
     from urllib.parse import quote
@@ -1018,9 +1074,28 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     groups_ = {}
     for x in allx:
         groups_.setdefault(cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""]) or "_other", []).append(x)
-    cat_html = "<h2>カテゴリごとの全商品</h2>" + "".join(
-        f'<details class="faq"><summary>{escape((_cn.get(c) or {}).get("short") or "その他")}（{len(xs)}件）</summary>{table(sorted(xs, key=lambda x: -x["max"]))}</details>'
-        for c, xs in sorted(groups_.items(), key=lambda kv: (kv[0] == "_other", -len(kv[1]))))
+    # カテゴリ（・ジャンル）ごとの買取価格一覧のページ（11/15 Fable・ユーザー「1はやろか」）。この一覧は軽くして、各ページへのリンクに
+    cat_links = []
+    for c, xs in sorted(groups_.items(), key=lambda kv: (kv[0] == "_other", -len(kv[1]))):
+        cc = _cn.get(c)
+        if not cc or len(xs) < 5:   # 5件未満の一覧は中身が薄いので作らない
+            continue
+        sgs = []
+        for nm_, lst_ in split_subgenres(xs, cc.get("subgenres")):
+            if nm_ and nm_ in SG_SLUG and len(lst_) >= 10:   # ジャンルの一覧は10件以上のときだけ
+                sgs.append((nm_, list_url(cc, nm_), len(lst_)))
+                sub_short = f"{cc['short']}の{nm_}"
+                page(f"{sub_short} 買取価格一覧【{md}】新品の最高買取・定価比（{len(lst_)}件）｜{brand['name']}",
+                     f"{sub_short}{len(lst_)}件の新品の最高買取価格を高い順に一覧にしました。買取店・定価・定価比・買取店の数つき。{md}更新。",
+                     f'<p><a href="/souba/">買取相場</a> ／ <a href="{list_url(cc)}">{escape(cc["short"])}の買取価格一覧</a></p>'
+                     f'<h1>{escape(sub_short)}の買取価格一覧（新品・{md}時点）</h1>' + price_list_body(cc, sub_short, lst_, md) + note, list_url(cc, nm_).strip("/") + "/")
+        page(f"{cc['short']} 買取価格一覧【{md}】新品の最高買取・定価比（{len(xs)}件）｜{brand['name']}",
+             f"{cc['short']}{len(xs)}件の新品の最高買取価格を高い順に一覧にしました。" + ("・".join(s_[0] for s_ in sgs) + "ごとにも見られます。" if sgs else "") + f"買取店・定価・定価比つき。{md}更新。",
+             f'<p><a href="/souba/">買取相場</a> ／ <a href="/{escape(cc["slug"])}/">{escape(cc["short"])}の抽選・再販</a></p>'
+             f'<h1>{escape(cc["short"])}の買取価格一覧（新品・{md}時点）</h1>' + price_list_body(cc, cc["short"], xs, md, sgs) + note, list_url(cc).strip("/") + "/")
+        top3 = "・".join(x["name"][:18] for x in sorted(xs, key=lambda x: -x["max"])[:2])
+        cat_links.append(f'<li><a href="{list_url(cc)}">{escape(cc["short"])}の買取価格一覧<small>{len(xs)}</small></a></li>')
+    cat_html = (f'<style>{SG_CSS}</style><h2>カテゴリごとの買取価格一覧</h2><ul class="sgmenu">' + "".join(cat_links) + "</ul>")
     page(f"ゲーム・ホビー買取相場【{md}更新】値上がり・値下がりランキングと{len(allx)}商品の最高買取価格｜{brand['name']}",
          f"ゲーム機・周辺機器・たまごっち・ホビーの買取相場の値動き。値上がり・値下がりした商品のランキングと、{len(allx)}商品の新品の最高買取価格（買取店{len(stores_all)}店）をカテゴリごとに毎日更新。",
          f'<h1>ゲーム・ホビー買取相場（値動き）</h1><p>買取店{len(stores_all)}店の新品の買取価格から、商品ごとのいちばん高い価格を毎日記録して、値動きをまとめています（{md}更新）。'
@@ -1071,7 +1146,8 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             _cid0 = _cid_of.get(x["jan"]) or cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""])
             _c0 = _cats.get(_cid0) or {}
             extra = (sec_stores(x, len(_stat), _stat) + sec_price_log(x) + sec_stock(x["jan"], _wm_all, x["name"])
-                     + (sec_peers(x, _by_cat.get(_cid0, []), _c0.get("short", ""), _today_d, _c0.get("subgenres")) if _cid0 and not x.get("stale") else "")) + extra
+                     + (sec_peers(x, _by_cat.get(_cid0, []), _c0.get("short", ""), _today_d, _c0.get("subgenres")) if _cid0 and not x.get("stale") else "")
+                     + _list_links(x, _c0, _by_cat.get(_cid0, []))) + extra
             intro = intro + same_title_html(x, _by_norm)
         except Exception as e:
             log(f"商品ページの節: スキップ {x['jan']} {e}")

@@ -1251,7 +1251,8 @@ def build(settings=None, out_dir=None, force=False):
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": (f"いま受付中{n}件。弾ごとにまとめています。" if c.get("sets") else f"商品{npd}件・いま受付中{n}件。"), "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
               body_top=_notice_html(c.get("notice")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
-                       f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))),
+                       f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))
+                       + (f'<p class="note">→ <a href="/souba/{escape(c["slug"])}/">{escape(c["short"])}の買取価格一覧（高い順の表）</a></p>' if len(pidx.get(g, [])) >= 5 else "")),
               body_bottom=ser_links, noindex=(npd == 0 and not sub and not sc_protected(f"{c['slug']}/")))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}
