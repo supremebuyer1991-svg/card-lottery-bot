@@ -298,7 +298,7 @@
   },
   "store/cardbox-b76fe/": {
     "name": "カードボックス京都店",
-    "last": "2026-11-03",
+    "last": "2026-11-15",
     "game": "pokemon",
     "area": "京都府"
   },
@@ -1571,7 +1571,7 @@
   },
   "store/toredingukadopitto-dc934/": {
     "name": "トレーディングカードピット小山駅前店",
-    "last": "2026-11-12",
+    "last": "2026-11-15",
     "game": "onepiece",
     "area": "栃木県"
   },
@@ -1665,7 +1665,7 @@
   },
   "store/bookoff-cba2b/": {
     "name": "ブックオフ新瑞橋駅前店",
-    "last": "2026-10-28",
+    "last": "2026-11-15",
     "game": "onepiece",
     "area": "愛知県"
   },
@@ -1724,13 +1724,13 @@
   },
   "store/batoroco-ebd51/": {
     "name": "バトロコミニ横浜鶴ヶ峰店",
-    "last": "2026-10-29",
+    "last": "2026-11-15",
     "game": "onepiece",
     "area": "神奈川県"
   },
   "store/batoroco-24492/": {
     "name": "TC バトロコ本厚木駅前",
-    "last": "2026-10-29",
+    "last": "2026-11-15",
     "game": "onepiece",
     "area": "神奈川県"
   },
@@ -1860,7 +1860,8 @@
   "store/shimamurapaku-97403/": {
     "name": "しまむらパーク",
     "last": "2026-11-08",
-    "game": "onepiece"
+    "game": "onepiece",
+    "address": "沖縄県沖縄県那覇市おもろまち4-2-8"
   },
   "store/furuichi-e7ee4/": {
     "name": "古本市場 中百舌鳥店",
@@ -2076,7 +2077,7 @@
   },
   "store/toredingukadopitto-57796/": {
     "name": "トレーディングカードピット亀戸店",
-    "last": "2026-11-12",
+    "last": "2026-11-15",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -4651,7 +4652,8 @@
     "last": "2026-11-06",
     "game": "onepiece",
     "keep": true,
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都東京都台東区上野６丁目１４-６"
   },
   "store/jumpshop-2d164/": {
     "name": "JUMP SHOP福岡店",
@@ -4663,7 +4665,8 @@
     "name": "JUMP SHOP大阪心斎橋店",
     "last": "2026-11-03",
     "game": "onepiece",
-    "area": "大阪府"
+    "area": "大阪府",
+    "address": "大阪府大阪市中央区心斎橋1-7-1"
   },
   "store/jumpshop-992ff/": {
     "name": "JUMP SHOP仙台店",
@@ -4815,7 +4818,8 @@
     "name": "JUMP SHOP 名古屋店",
     "last": "2026-11-03",
     "game": "onepiece",
-    "area": "愛知県"
+    "area": "愛知県",
+    "address": "愛知県名古屋市中区栄3-28-11"
   },
   "store/torekapoto-7e90a/": {
     "name": "トレカポート",
@@ -5425,7 +5429,7 @@
   },
   "store/hobbyoff-1ba31/": {
     "name": "ホビーオフ愛川店",
-    "last": "2026-11-13",
+    "last": "2026-11-15",
     "game": "pokemon",
     "area": "神奈川県"
   },
@@ -5601,7 +5605,8 @@
     "name": "ヤマシロヤ",
     "last": "2026-11-12",
     "game": "pokemon",
-    "area": "東京都"
+    "area": "東京都",
+    "address": "東京都東京都台東区上野６丁目１４-６"
   },
   "store/tsutaya-6d7cd/": {
     "name": "フタバ図書TSUTAYA GIGA防府店",
@@ -5991,7 +5996,7 @@
   },
   "store/tsutaya-0ff0f/": {
     "name": "TSUTAYA横須賀粟田店",
-    "last": "2026-11-08",
+    "last": "2026-11-15",
     "game": "pokemon",
     "area": "神奈川県"
   },
@@ -6116,7 +6121,8 @@
     "name": "上野(東京)",
     "last": "2026-11-06",
     "game": "pokemon",
-    "keep": true
+    "keep": true,
+    "address": "東京都東京都台東区上野６丁目１４-６"
   },
   "store/akebono-709f0/": {
     "name": "あけぼの(宮城)",
@@ -6526,7 +6532,7 @@
   },
   "store/furuichi-e05d3/": {
     "name": "古本市場千里丘店",
-    "last": "2026-11-08",
+    "last": "2026-11-15",
     "game": "onepiece",
     "keep": true,
     "area": "大阪府"
@@ -7881,5 +7887,38 @@
     "last": "2026-11-15",
     "game": "onepiece",
     "area": "栃木県"
+  },
+  "store/furuichi-93d01/": {
+    "name": "ふるいちトップブックス富山滑川店",
+    "last": "2026-11-15",
+    "game": "pokemon"
+  },
+  "store/shop-e4ae0/": {
+    "name": "萬屋七重浜店",
+    "last": "2026-11-15",
+    "game": "pokemon"
+  },
+  "store/bookoff-adb5a/": {
+    "name": "ブックオフコザ店",
+    "last": "2026-11-15",
+    "game": "onepiece",
+    "area": "沖縄県"
+  },
+  "store/bookoff-31103/": {
+    "name": "ブックオフ富士宮北町店",
+    "last": "2026-11-15",
+    "game": "onepiece",
+    "area": "静岡県"
+  },
+  "store/joshin-a0dec/": {
+    "name": "Joshin（ジョーシン）",
+    "last": "2026-11-15",
+    "game": "onepiece"
+  },
+  "store/furuichi-37937/": {
+    "name": "ふるいち川越クレアモール店",
+    "last": "2026-11-15",
+    "game": "pokemon",
+    "keep": true
   }
 }

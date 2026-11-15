@@ -80,13 +80,13 @@
     "25bhn": "",
     "b--sf": "",
     "36g4a": "",
-    "l39fk": "",
+    "l39fk": "https://livepocket.jp/p/k-xl2",
     "h_36i": "https://livepocket.jp/p/k-xl2",
     "mr_dw": "",
     "b0pdj": "",
     "m6j4z": "",
     "vsmod": "https://livepocket.jp/p/1iug4",
-    "sxuqx": "",
+    "sxuqx": "https://livepocket.jp/p/k-xl2",
     "ptliv": "https://livepocket.jp/p/3t72t",
     "vv1wt": "https://livepocket.jp/p/7av4u",
     "c7q8c": "",
@@ -173,7 +173,7 @@
     "9lv0h": "",
     "npg3u": "",
     "5qr1d": "",
-    "luo8lp88-d": "",
+    "luo8lp88-d": "https://livepocket.jp/p/iu_zh",
     "m_o9_": "",
     "37m04": "",
     "7cw9u": "",
@@ -197,7 +197,7 @@
     "uyq6h": "",
     "2br_t": "",
     "n-3o7": "",
-    "vulam": "",
+    "vulam": "https://livepocket.jp/p/f3kkz",
     "bjg9s": "",
     "v4akl": "",
     "jrifn": "",
@@ -224,7 +224,7 @@
     "htnyy": "",
     "lkv83": "",
     "fksqs": "",
-    "vqetd": "",
+    "vqetd": "https://livepocket.jp/p/x8-bw",
     "im-9g": "",
     "0aq7y": "",
     "s61fn": "",
@@ -233,7 +233,7 @@
     "0r314": "",
     "ek6xw": "",
     "yvpts": "",
-    "k_foq": "",
+    "k_foq": "https://livepocket.jp/p/8s6bg",
     "lsk3_": "",
     "gr4t4": "",
     "eairh": "",
@@ -251,8 +251,8 @@
     "jogp8": "",
     "3-ayh": "",
     "2q34tryqw98dvhasjkl-jgh12u89yru": "https://livepocket.jp/p/ocx_u",
-    "vq5r7": "",
-    "bt0zd": "",
+    "vq5r7": "https://livepocket.jp/p/4v7aw",
+    "bt0zd": "https://livepocket.jp/p/x8-bw",
     "gpnjs": "",
     "d1_98": "https://livepocket.jp/p/gl4ys",
     "qsh3w": "",
@@ -262,7 +262,7 @@
     "z-8_2": "",
     "dkvtj": "",
     "h-n75": "",
-    "dz3vb": "",
+    "dz3vb": "https://livepocket.jp/p/4v7aw",
     "luqc8": "",
     "6b32h": "",
     "h78by": "",
@@ -546,7 +546,8 @@
     "https://livepocket.jp/p/iu_zh": {
       "name": "イトーヨーカドー",
       "events": [
-        "y3ccfn268p"
+        "y3ccfn268p",
+        "luo8lp88-d"
       ]
     },
     "https://livepocket.jp/p/i9q1i": {
@@ -572,7 +573,9 @@
     "https://livepocket.jp/p/k-xl2": {
       "name": "ジャンプショップ 東京駅店",
       "events": [
-        "h_36i"
+        "h_36i",
+        "sxuqx",
+        "l39fk"
       ]
     },
     "https://livepocket.jp/p/1iug4": {
@@ -679,7 +682,8 @@
     "https://livepocket.jp/p/8s6bg": {
       "name": "TSUTAYA東仙台店",
       "events": [
-        "mpbzb"
+        "mpbzb",
+        "k_foq"
       ]
     },
     "https://livepocket.jp/p/btsrb": {
@@ -826,6 +830,26 @@
       "name": "ふるいちトップブックス竹尾インター店",
       "events": [
         "preview"
+      ]
+    },
+    "https://livepocket.jp/p/f3kkz": {
+      "name": "しまむらパーク",
+      "events": [
+        "vulam"
+      ]
+    },
+    "https://livepocket.jp/p/x8-bw": {
+      "name": "TSUTAYA大安寺店",
+      "events": [
+        "vqetd",
+        "bt0zd"
+      ]
+    },
+    "https://livepocket.jp/p/4v7aw": {
+      "name": "TSUTAYA鎌ケ谷店",
+      "events": [
+        "vq5r7",
+        "dz3vb"
       ]
     }
   }
