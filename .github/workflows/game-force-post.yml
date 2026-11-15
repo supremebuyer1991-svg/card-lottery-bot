@@ -1,0 +1,33 @@
+name: game-force-post
+# 11/15 ユーザー「これだけ速報流して」：速報の条件に当てはまらない商品を、手で1回だけ速報する（ゲーム側のX @a9994aaa）。
+# 見張り（game-watch）がその場でもう一度在庫を確かめ、いま予約・販売中のときだけ投稿する。dry=1 なら文を作るだけ
+on:
+  workflow_dispatch:
+    inputs:
+      jan:
+        description: "商品のJAN"
+        required: true
+      shop:
+        description: "az（Amazon）か rk（楽天ブックス）"
+        required: true
+        default: az
+      dry:
+        description: "1＝投稿しないで文だけ見る"
+        required: false
+        default: "0"
+permissions:
+  contents: read
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          JAN: ${{ inputs.jan }}
+          SHOP: ${{ inputs.shop }}
+          DRY: ${{ inputs.dry }}
+        run: |
+          ADMIN=$(printf '%s' "${X_API_KEY}game-watch" | sha256sum | cut -c1-24)
+          curl -sS "https://game-watch.supreme-buyer-1991.workers.dev/force?k=${ADMIN}&w=${SHOP}&jan=${JAN}&dry=${DRY}"
+          echo

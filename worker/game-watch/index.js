@@ -290,6 +290,35 @@ export default {
       await env.STATE.put(k, JSON.stringify(st));
       return Response.json({ ok: true, postedBefore: before });
     }
+    if (u.pathname === "/force") {   // 11/15 ユーザー「これだけ速報流して」：条件に当てはまらない商品を、手で1回だけ速報する。?w=az|rk&jan=JAN
+      // その場でもう一度確かめて、いま予約・販売中のときだけ投稿する（売り切れていたら投稿しない）。投稿済みの印も付ける（二重にならないように）
+      const which = u.searchParams.get("w") === "rk" ? "rk" : "az", jan = u.searchParams.get("jan") || "";
+      const st = (await env.STATE.get(which, "json")) || { items: {}, posted: {}, map: {} };
+      const w = (await watchList()).find((x) => x.jan === jan);
+      if (!w) return Response.json({ ok: false, why: "見張りの一覧にない" });
+      let cur = "none", url = "", price = 0, id = "";
+      if (which === "az") {
+        const a = w.asin || (st.map && st.map[jan] && st.map[jan].asin);
+        if (!a) return Response.json({ ok: false, why: "ASINが分からない" });
+        const m = await amzItems(env, [a]); const it = m && m[a];
+        if (!it) return Response.json({ ok: false, why: "Amazonで見つからない " + lastAmzErr });
+        cur = amzState(it); id = a;
+        url = it.detailPageURL || `https://www.amazon.co.jp/dp/${a}?tag=${AMZ_TAG}`;
+      } else {
+        const it = w.rk ? await rakutenItem(env, w.rk) : await rakutenByJan(env, jan, w.n);
+        if (!it) return Response.json({ ok: false, why: "楽天で見つからない" });
+        cur = it.availability === 1 ? (/予約/.test((it.itemName || "") + (it.itemCaption || "").slice(0, 200)) ? "pre" : "buy") : "none";
+        url = affLink(it.itemUrl, env.RAKUTEN_AFF); id = w.rk || "j" + jan; price = Number(it.itemPrice) || 0;
+      }
+      if (cur === "none") return Response.json({ ok: false, why: "いまは売り切れ（投稿しない）" });
+      const text = compose(w, which, cur, url);
+      if (u.searchParams.get("dry") === "1") return Response.json({ ok: true, dry: true, cur, text });
+      const tid = await tweet(env, text);
+      st.posted = st.posted || {}; st.posted[id + cur] = Date.now();
+      st.postlog = [{ t: new Date().toISOString(), id, jan, n: w.n, cur, url, pg: w.pg || "", tid, text, manual: true }, ...(st.postlog || [])].slice(0, 30);
+      await env.STATE.put(which, JSON.stringify(st));
+      return Response.json({ ok: true, tid, cur, text });
+    }
     if (u.pathname === "/map") {   // JANで見つけた楽天・Amazonの商品ページ（サイトのボタン・写真に使う）
       const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};
       const m = {};
