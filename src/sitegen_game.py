@@ -805,6 +805,20 @@ def _ai_block(path):
             f'.pm-ai .note{{font-size:12px;color:#8a93a6}}</style>{h_}</section>') if h_ else ""
 
 
+_SCP = {}
+
+
+def sc_protected(path):
+    """Search Console で表示回数があったページ（config/game/sc_impression_pages.txt）なら True。こういうページは検索に出さないにしない"""
+    if "v" not in _SCP:
+        try:
+            txt = (ROOT / "config" / "game" / "sc_impression_pages.txt").read_text(encoding="utf-8")
+            _SCP["v"] = {("" if ln.strip() == "/" else ln.strip()) for ln in txt.splitlines() if ln.strip() and not ln.startswith("#")}
+        except Exception:
+            _SCP["v"] = set()
+    return path in _SCP["v"]
+
+
 def _simple_page(cats, html):
     """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
     css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
@@ -1134,7 +1148,7 @@ def build(settings=None, out_dir=None, force=False):
                                 "h1": f"{cname}の抽選・予約・再販", "sumshort": f"いま受付中{no}件。締切が近い順です。", "lead": "・".join(cats_in[:8]),
                                 "summary": summary(lst, f"{cname}の受付"), "links": lk, "faq": faq_c}, lst,
               trail=[("トップ", ""), ("抽選・受付中", "chusen/"), (cname, f"chain/{c_}/")], data_extra={"game": ""}, body_bottom=_ai_block(f"chain/{c_}/") + chain_links,
-              noindex=len(lst) < 3)   # 1〜2件だけのお店のページは中身が薄いので検索には出さない（11/9 監査と同じ考え方）
+              noindex=len(lst) < 3 and not sc_protected(f"chain/{c_}/"))   # 1〜2件だけのお店のページは中身が薄いので検索には出さない（11/9 監査と同じ考え方）
 
     # --- トップ ---
     n_open = sum(1 for i in live if i["ph"] == "open")
@@ -1235,7 +1249,8 @@ def build(settings=None, out_dir=None, force=False):
                          "summary": summary(lst, f"「{x}」の受付"), "links": lk, "og": og_u,
                          "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _xf},
                   lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g},
-                  body_bottom=_ai_block(path) + _xb)   # AIの解説（11/14 ユーザー：1ページごとの中身も充実）
+                  body_bottom=_ai_block(path) + _xb,
+                  noindex=len(lst) < 3 and not sc_protected(path))   # 受付が1〜2件だけの小さいまとめは検索に出さない（検索に表示されたことのあるページは除く。11/15 ユーザーOK）
         # モデルの常設まとめ（受付が終わっても消さない。11/14 ユーザー「A、OK」）
         for path, h in _hubs.items():
             if path in _hub_done:
@@ -1266,7 +1281,7 @@ def build(settings=None, out_dir=None, force=False):
                          "h1": f"{cname}の{c['short']}", "sumshort": f"いま受付中{no}件。", "lead": f"{cname}の{c['name']}に関する受付だけを並べています。",
                          "summary": summary(lst, f"{cname}の{c['short']}の受付"), "links": lk, "og": og_u},
                   lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (cname, path)], data_extra={"game": g}, body_bottom=_ai_block(path),
-                  noindex=len(lst) < 3)   # お店×カテゴリで受付が3件未満の薄いページは検索に出さない（11/14 Fable）
+                  noindex=len(lst) < 3 and not sc_protected(path))   # お店×カテゴリで受付が3件未満の薄いページは検索に出さない（11/14 Fable）
 
     # --- 個別ページ /l/<id>/（終了しても KEEP 日はページを残す）---
     pages = load_json("lottery_pages.json", {})
