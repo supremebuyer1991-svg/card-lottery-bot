@@ -100,12 +100,6 @@
       },
       "avail": [
         {
-          "shop": "Amazon",
-          "s": "pre",
-          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
-          "p": 55000
-        },
-        {
           "shop": "楽天ブックス",
           "s": "pre",
           "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18856424%2F",
@@ -396,7 +390,16 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DS.H.Figuarts%2520%25E3%2582%25A8%25E3%2583%2589%25E3%2583%25AF%25E3%2583%25BC%25E3%2583%2589%2520%25E3%2583%258B%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%2588",
         "mc": "https://jp.mercari.com/search?keyword=S.H.Figuarts%20%E3%82%A8%E3%83%89%E3%83%AF%E3%83%BC%E3%83%89%20%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%88&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "1次予約分は完売し、2次予約分が抽選販売",
+        "抽選結果は2027年3月上旬に発表",
+        "2027年7月に発送予定",
+        "全高は約24.5センチ",
+        "ワイヤ入り布製マントパーツと、グラグラの実の能力を再現したエフェクトパーツが付属",
+        "価格は2万8600円"
+      ],
+      "facts_src": "https://mantan-web.jp/article/20261105dog00m200001000a.html"
     },
     "path": "l/66891c533d/",
     "end": "2027-02-28T23:00:00+09:00",
@@ -1423,7 +1426,12 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E4%25B8%2580%25E7%2595%25AA%25E3%2581%258F%25E3%2581%2598%2520To%2520LOVE%25E3%2582%258B-%25E3%2581%25A8%25E3%2582%2589%25E3%2581%25B6%25E3%2582%258B-%25E3%2583%2580%25E3%2583%25BC%25E3%2582%25AF%25E3%2583%258D%25E3%2582%25B9",
         "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20To%20LOVE%E3%82%8B-%E3%81%A8%E3%82%89%E3%81%B6%E3%82%8B-%E3%83%80%E3%83%BC%E3%82%AF%E3%83%8D%E3%82%B9&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "オンライン販売は2026年11月18日(水)17:00より販売開始予定",
+        "店頭販売は「順次発売予定」と記載（開始時刻の記載なし）"
+      ],
+      "facts_src": "https://1kuji.com/products"
     },
     "path": "l/13067662f7/",
     "end": "2026-11-19",
@@ -1459,7 +1467,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DTAMASHII%2520NATION%25202026%2520%25E9%2596%258B%25E5%2582%25AC%25E8%25A8%2598%25E5%25BF%25B5%25E5%2595%2586%25E5%2593%2581",
         "mc": "https://jp.mercari.com/search?keyword=TAMASHII%20NATION%202026%20%E9%96%8B%E5%82%AC%E8%A8%98%E5%BF%B5%E5%95%86%E5%93%81&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "会場では販売せず、すべて後日配送",
+        "CLUB TAMASHII MEMBERS全会員の応募は11/13 10時〜11/23 23時",
+        "どなたでも応募可能な事後抽選は11/27 10時〜11/30 23時",
+        "開催記念商品6種のうちの1つ",
+        "詳細は魂ウェブ商店の開催記念商品ページで確認"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/b807e1cbfc/",
     "end": "2026-11-23T23:00:00+09:00",
@@ -1489,7 +1505,14 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DTAMASHII%2520NATION%25202026%2520%25E9%2596%258B%25E5%2582%25AC%25E8%25A8%2598%25E5%25BF%25B5%25E5%2595%2586%25E5%2593%2581",
         "mc": "https://jp.mercari.com/search?keyword=TAMASHII%20NATION%202026%20%E9%96%8B%E5%82%AC%E8%A8%98%E5%BF%B5%E5%95%86%E5%93%81&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "応募対象はCLUB TAMASHII MEMBERSの全会員",
+        "11月27日10時～11月30日23時はどなたでも応募できる事後抽選販売も実施",
+        "イベント開催を記念した特別アイテム全6種のうちの1つ",
+        "会場では販売せず、すべて後日配送"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/4d55e79d42/",
     "end": "2026-11-23T23:00:00+09:00",
@@ -1519,7 +1542,14 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DTAMASHII%2520NATION%25202026%2520%25E9%2596%258B%25E5%2582%25AC%25E8%25A8%2598%25E5%25BF%25B5%25E5%2595%2586%25E5%2593%2581",
         "mc": "https://jp.mercari.com/search?keyword=TAMASHII%20NATION%202026%20%E9%96%8B%E5%82%AC%E8%A8%98%E5%BF%B5%E5%95%86%E5%93%81&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "開催記念の特別アイテム全6種のひとつ",
+        "CLUB TAMASHII MEMBERS全会員が対象の応募期間あり",
+        "11月27日10時～11月30日23時はどなたでも応募可能",
+        "会場では販売せず、すべて後日配送"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/8f67ee9a88/",
     "end": "2026-11-23T23:00:00+09:00",
@@ -1549,7 +1579,14 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E8%2581%2596%25E9%2597%2598%25E5%25A3%25AB%25E8%2581%2596%25E8%25A1%25A3%25E7%25A5%259E%25E8%25A9%25B1EX%2520%25E5%25A5%25B3%25E7%25A5%259E%25E3%2582%25A2%25E3%2583%2586%25E3%2583%258A-ORIGINAL%2520COLOR",
         "mc": "https://jp.mercari.com/search?keyword=%E8%81%96%E9%97%98%E5%A3%AB%E8%81%96%E8%A1%A3%E7%A5%9E%E8%A9%B1EX%20%E5%A5%B3%E7%A5%9E%E3%82%A2%E3%83%86%E3%83%8A-ORIGINAL%20COLOR&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "6種の開催記念商品の一つで、会場では販売しない",
+        "すべて後日配送",
+        "全会員の応募は11月23日（月・祝）23時まで",
+        "11月27日（金）10時から11月30日（月）23時まではどなたでも応募可能"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/e3a83f8482/",
     "end": "2026-11-23T23:00:00+09:00",
@@ -1579,7 +1616,15 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DMETAL%2520ROBOT%25E9%25AD%2582%2520%253CSIDE",
         "mc": "https://jp.mercari.com/search?keyword=METAL%20ROBOT%E9%AD%82%20%3CSIDE&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "開催記念商品全6種のうちの1つ",
+        "会場では販売せず、すべて後日配送",
+        "CLUB TAMASHII MEMBERS全会員は11月13日10時～11月23日23時に応募",
+        "どなたでも応募可能な期間は11月27日10時～11月30日23時",
+        "詳細は魂ウェブ商店の開催記念商品ページで確認"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/b3c41aa470/",
     "end": "2026-11-23T23:00:00+09:00",
@@ -1612,7 +1657,16 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DS.H.Figuarts%2520%25E4%25BB%25AE%25E9%259D%25A2%25E3%2583%25A9%25E3%2582%25A4%25E3%2583%2580%25E3%2583%25BC%25E3%2582%25AF%25E3%2582%25A6%25E3%2582%25AC",
         "mc": "https://jp.mercari.com/search?keyword=S.H.Figuarts%20%E4%BB%AE%E9%9D%A2%E3%83%A9%E3%82%A4%E3%83%80%E3%83%BC%E3%82%AF%E3%82%A6%E3%82%AC&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "購入上限は各商品お一人様1点まで",
+        "応募には会員登録とLINE公式アカウントの友だち登録が必要",
+        "応募時にベルサール秋葉原会場から半径約1km以内の位置情報取得が必要",
+        "当選発表は4種セットが11月18日、単体が11月19日（メールで通知）",
+        "4種セットに当選した場合、各単品は当選しない",
+        "会場での受け取りはなく、2026年12月に発送予定"
+      ],
+      "facts_src": "https://dengekionline.com/article/202611/93602"
     },
     "path": "l/c7636b6155/",
     "end": "2026-11-15T23:00:00+09:00",
@@ -1641,7 +1695,14 @@
         "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th&tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C30th",
         "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "招待リクエストを受け付け中と記載",
+        "抽選期間・当選発表日は「-」で記載なし",
+        "「現在予約・抽選受付中の店舗」欄に掲載",
+        "商品の発売日は2026年9月16日(水)、世界同時発売"
+      ],
+      "facts_src": "https://snkrdunk.com/articles/32425/"
     },
     "path": "l/a04c85b1ca/",
     "end": null,
@@ -1678,7 +1739,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E9%259F%25BF%2520JAPANESE%2520HARMONY",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E9%9F%BF%20JAPANESE%20HARMONY&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "イオンお買物アプリの登録が応募条件",
+        "応募はイオン南関東店舗限定",
+        "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外店舗あり）",
+        "当選発表は12/12(金)13:00～17:00",
+        "税込8,250円（本体価格7,500円）",
+        "その他の応募条件は抽選ページで確認"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/8db052d4d9/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -1715,7 +1785,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%2520%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E3%2582%25B6%2520%25E3%2583%259E%25E3%2583%2583%25E3%2582%25AB%25E3%2583%25A9%25E3%2583%25B3",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%20%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E3%82%B6%20%E3%83%9E%E3%83%83%E3%82%AB%E3%83%A9%E3%83%B3&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "対象はイオン南関東店舗限定の抽選販売",
+        "税込14,850円（本体13,500円）",
+        "応募にはイオンお買物アプリの登録が必要",
+        "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部除外店舗あり）",
+        "当選発表は12/12 13:00〜17:00",
+        "当選者は店頭で購入"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/f3ac265710/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -1752,7 +1831,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25AB%25E3%2583%2590%25E3%2583%25A9%25E3%2583%25B3%2520%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B9%25E3%2583%2586%25E3%2582%25A3%25E3%2583%25A9%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25BB%25E3%2583%25AC%25E3%2582%25AF%25E3%2583%2588%2520No.1%2520700ml",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%AB%E3%83%90%E3%83%A9%E3%83%B3%20%E3%83%87%E3%82%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%83%A9%E3%83%AA%E3%83%BC%E3%82%BB%E3%83%AC%E3%82%AF%E3%83%88%20No.1%20700ml&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "税込6,138円（本体価格5,580円）",
+        "応募にはイオンお買物アプリの登録が必要",
+        "イオン南関東店舗限定の抽選",
+        "受取対象はイオンの東京都・神奈川県・千葉県・山梨県内の店舗（一部対象外あり）",
+        "当選発表は12/12(金)13:00～17:00",
+        "当選者には店頭販売"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/95a1a286a2/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -1789,7 +1877,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25AB%25E3%2583%2590%25E3%2583%25A9%25E3%2583%25B3%2520%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B9%25E3%2583%2586%25E3%2582%25A3%25E3%2583%25A9%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25BB%25E3%2583%25AC%25E3%2582%25AF%25E3%2583%2588%2520No.2%2520700ml",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%AB%E3%83%90%E3%83%A9%E3%83%B3%20%E3%83%87%E3%82%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%83%A9%E3%83%AA%E3%83%BC%E3%82%BB%E3%83%AC%E3%82%AF%E3%83%88%20No.2%20700ml&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "税込6,138円（本体5,580円）",
+        "イオンお買物アプリの登録が必要",
+        "イオン南関東店舗限定の抽選",
+        "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外店舗あり）",
+        "当選発表は12/12(金)13:00～17:00"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/32259e57cf/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -1852,7 +1948,12 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DMARS%2520WHISKY%2520Malt%2520Duo",
         "mc": "https://jp.mercari.com/search?keyword=MARS%20WHISKY%20Malt%20Duo&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "記事の「抽選・予約応募受付中」欄に掲載",
+        "応募は本坊酒造の応募ページ（shop-hombo.jp）から行う"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/8bcb38065a/",
     "end": "2026-11-18T23:59:00+09:00",
@@ -1878,7 +1979,14 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2580%258E%25E6%2596%25B0%25E4%25B8%2596%25E7%25B4%2580%25E3%2582%25A8%25E3%2583%25B4%25E3%2582%25A1%25E3%2583%25B3%25E3%2582%25B2%25E3%2583%25AA%25E3%2582%25AA%25E3%2583%25B3%25E3%2580%258F%25E3%2583%25A9%25E3%2583%2599%25E3%2583%25AB%2520%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC",
         "mc": "https://jp.mercari.com/search?keyword=%E3%80%8E%E6%96%B0%E4%B8%96%E7%B4%80%E3%82%A8%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%B2%E3%83%AA%E3%82%AA%E3%83%B3%E3%80%8F%E3%83%A9%E3%83%99%E3%83%AB%20%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "対象は3種類で、初号機ラベル／スプリングバンク2000は154,000円",
+        "弐号機ラベル／グレンエルギン2009は19,800円",
+        "零号機ラベル／シークレットスペイサイド2007は18,700円",
+        "当選数はおひとり様2本まで"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/97537b2adb/",
     "end": "2026-11-17T23:59:00+09:00",
@@ -1915,7 +2023,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E5%25B1%25B1%25E5%25B4%258E%2520700ml",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E5%B1%B1%E5%B4%8E%20700ml&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "税込7,700円（本体価格7,000円）",
+        "当選発表は12/12(金)13:00～17:00",
+        "応募にはイオンお買物アプリの登録が必要",
+        "応募はイオン南関東店舗限定",
+        "受取対象は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外あり）"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/eb6817e120/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -1952,7 +2068,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E7%2599%25BD%25E5%25B7%259E%2520700ml",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E7%99%BD%E5%B7%9E%20700ml&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "税込価格7,700円（本体価格7,000円）",
+        "応募にはイオンお買物アプリの登録が必要",
+        "応募対象はイオン南関東店舗限定",
+        "当選発表は12/12(金)13:00～17:00",
+        "受取対象店舗は東京都・神奈川県・千葉県・山梨県内のイオン（一部対象外あり）",
+        "その他の応募条件は抽選ページで確認"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/97230"
     },
     "path": "l/64b7bb0c6b/",
     "end": "2026-12-01T20:00:00+09:00",
@@ -2004,7 +2129,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%25E7%2599%25BD%25E5%25B7%259E12%25E5%25B9%25B4",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "当選者への販売価格は1万7600円（メーカー希望小売価格の税込価格）",
+        "商品ページの注意事項を確認し「招待をリクエストする」ボタンで応募",
+        "招待メールが届いた人のみ購入できる",
+        "招待メール受信後72時間以内であれば購入可能",
+        "招待制以外の出品価格は配送料込み2万4950円（箱なし）から（価格は執筆時点）"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155231.html"
     },
     "path": "l/deda3042a9/",
     "end": null,
@@ -2033,7 +2166,14 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%25E7%2599%25BD%25E5%25B7%259E12%25E5%25B9%25B4%2520700mL",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E7%99%BD%E5%B7%9E12%E5%B9%B4%20700mL&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "招待制の抽選販売。商品ページの「招待をリクエスト」ボタンで応募する",
+        "当選者の販売価格は1万7600円（税込、希望小売価格と同額）",
+        "登録メールに招待メールが届いた人のみ購入できる",
+        "招待メール受信から72時間以内に購入する必要がある"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155231.html"
     },
     "path": "l/41e3f8e4fe/",
     "end": null,
@@ -2068,7 +2208,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DPlayStation%2520Portal%2520%25E3%2583%2597%25E3%2583%25AC%25E3%2583%25BC%25E3%2583%25A4%25E3%2583%25BC",
         "mc": "https://jp.mercari.com/search?keyword=PlayStation%20Portal%20%E3%83%97%E3%83%AC%E3%83%BC%E3%83%A4%E3%83%BC&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "価格は39,980円（税込）で現行モデルと同じ",
+        "本体言語は日本語のみ、アカウントの「国/地域」は日本のみ",
+        "PS Plus プレミアム1か月無料コードが付属",
+        "本体ストレージを搭載（用途は今後発表）",
+        "提携カード決済で3%OFF",
+        "納期は2026年12月10日頃お届け予定"
+      ],
+      "facts_src": "https://kunkoku.jp/playstationportal-29.html"
     },
     "path": "l/85269413aa/",
     "end": null,
@@ -2099,7 +2248,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%25E5%25B1%25B1%25E5%25B4%258E18%25E5%25B9%25B4",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%E5%B1%B1%E5%B4%8E18%E5%B9%B4&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "当選者への販売価格は6万7100円（税込のメーカー希望小売価格と同額）",
+        "商品ページの「招待をリクエストする」ボタンから抽選に応募",
+        "招待メールが届いた人だけが購入でき、有効期間は72時間以内",
+        "容量700mL、アルコール度数43度",
+        "招待制以外の出品は11万円（配送料無料、お届けは11月25日）※執筆時点",
+        "ローラン・ペリエとグラスのセットも招待制で販売（8万9056円）"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155437.html"
     },
     "path": "l/4545a0183e/",
     "end": null,
@@ -2131,7 +2289,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E7%25A6%258F%25E3%2581%25BF%25E3%2581%258F%25E3%2581%2598",
         "mc": "https://jp.mercari.com/search?keyword=%E7%A6%8F%E3%81%BF%E3%81%8F%E3%81%98&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "1口6980円（送料無料）の抽選販売",
+        "Amazon.co.jpや楽天市場などで販売",
+        "1等は響21年、定価6万7100円（メーカー希望小売価格）",
+        "2等は響 JAPANESE HARMONYが5口、3等はイチローズモルト 20th アニバーサリー エディションが8口",
+        "発送予定は2026年11月30日～12月2日（順次発送）",
+        "466口限定で、なくなり次第終了"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2155579.html"
     },
     "path": "l/2dcbcd6723/",
     "end": null,
@@ -2160,7 +2327,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2581%25AD%25E3%2582%2593%25E3%2581%25A9%25E3%2582%258D%25E3%2581%2584%25E3%2581%25A9%2520%25E9%2599%25B8%25E5%25A5%25A5%25E3%2581%2593%25E3%2581%25BE%25E3%2582%258D",
         "mc": "https://jp.mercari.com/search?keyword=%E3%81%AD%E3%82%93%E3%81%A9%E3%82%8D%E3%81%84%E3%81%A9%20%E9%99%B8%E5%A5%A5%E3%81%93%E3%81%BE%E3%82%8D&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "Amazon.co.jpで予約受付中",
+        "Amazon.co.jpでの販売価格は6,780円（税込）",
+        "表情パーツは「ぼんやり顔」「笑顔」「鼻血顔」",
+        "学生カバン、目安箱、絆創膏シールなどが付属",
+        "プラスチック製塗装済み可動、ノンスケール、全高約100mm",
+        "2027年5月31日発売予定"
+      ],
+      "facts_src": "https://hobby.dengeki.com/news/3225734/"
     },
     "path": "l/b6634d08cf/",
     "end": null,
@@ -2200,7 +2376,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E5%25B1%25B1%25E5%25B4%258E",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E5%B1%B1%E5%B4%8E&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "関西店舗限定で、オーケークラブ会員カードアプリ限定の応募",
+        "オーケーカードで一定以上の買い物実績（回数と金額）がある人が対象",
+        "お一人様いずれか1点まで",
+        "当選発表は11月26日(木)",
+        "山崎・白州・響は12月9日(水)〜12日(土)に受け取り",
+        "竹鶴ピュアモルト・フロムザバレルは12月2日(水)〜5日(土)に受け取り"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/162385"
     },
     "path": "l/f2075585f8/",
     "end": "2026-11-22T23:59:00+09:00",
@@ -2240,7 +2425,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E7%2599%25BD%25E5%25B7%259E",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%A2%E3%83%AB%E3%83%88%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E7%99%BD%E5%B7%9E&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "関西店舗限定・オーケークラブ会員カードアプリ限定の応募",
+        "オーケーカードで一定以上の買い物実績（購入回数と金額）が必要",
+        "お一人様いずれか1点まで",
+        "当選発表は11月26日(木)",
+        "竹鶴ピュアモルト・フロムザバレルは12月2日(水)〜5日(土)に受け取り",
+        "山崎・白州・響 JAPANESE HARMONYは12月9日(水)〜12日(土)に受け取り"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/162385"
     },
     "path": "l/c333f96cc3/",
     "end": "2026-11-22T23:59:00+09:00",
@@ -2280,7 +2474,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E9%259F%25BF%2520JAPANESE%2520HARMONY",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E9%9F%BF%20JAPANESE%20HARMONY&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "関西店舗限定。オーケークラブ会員カードアプリでの応募",
+        "応募条件はオーケーカードでの一定以上のお買い物実績",
+        "お一人様いずれか1点まで",
+        "当選発表は11月26日(木)",
+        "響の受け取りは12月9日(水)〜12日(土)"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/162385"
     },
     "path": "l/ed7f8e09db/",
     "end": "2026-11-22T23:59:00+09:00",
@@ -2320,7 +2522,15 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E7%25AB%25B9%25E9%25B6%25B4%25E3%2583%2594%25E3%2583%25A5%25E3%2582%25A2%25E3%2583%25A2%25E3%2583%25AB%25E3%2583%2588",
         "mc": "https://jp.mercari.com/search?keyword=%E7%AB%B9%E9%B6%B4%E3%83%94%E3%83%A5%E3%82%A2%E3%83%A2%E3%83%AB%E3%83%88&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "関西店舗限定・オーケークラブ会員カードアプリ限定の応募",
+        "オーケーの店舗かネットスーパーでオーケーカードを使い、一定以上の購入実績（回数と金額）がある人が対象",
+        "お一人様いずれか1点まで",
+        "当選発表は11月26日(木)",
+        "竹鶴ピュアモルトの受け取りは12月2日(水)〜5日(土)"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/162385"
     },
     "path": "l/d6fb05c5ce/",
     "end": "2026-11-22T23:59:00+09:00",
@@ -2360,7 +2570,16 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%258B%25E3%2583%2583%25E3%2582%25AB%2520%25E3%2583%2595%25E3%2583%25AD%25E3%2583%25A0%2520%25E3%2582%25B6%2520%25E3%2583%2590%25E3%2583%25AC%25E3%2583%25AB",
         "mc": "https://jp.mercari.com/search?keyword=%E3%83%8B%E3%83%83%E3%82%AB%20%E3%83%95%E3%83%AD%E3%83%A0%20%E3%82%B6%20%E3%83%90%E3%83%AC%E3%83%AB&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "関西店舗限定で、オーケークラブ会員カードアプリからの応募",
+        "応募条件は、オーケーカードでの一定以上の購入実績（回数と金額）",
+        "お一人様いずれか1点まで",
+        "当選発表は2026年11月26日(木)",
+        "フロム ザ バレルの受け取りは12月2日(水)〜5日(土)",
+        "山崎・白州・響 JAPANESE HARMONYは12月9日(水)〜12日(土)に受け取り"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/162385"
     },
     "path": "l/a17de5d1eb/",
     "end": "2026-11-22T23:59:00+09:00",
@@ -2393,7 +2612,16 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E9%259F%25BF%2520BLENDER%2527S",
         "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E9%9F%BF%20BLENDER%27S&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "山崎2025・白州2025の当選者価格は各1万6500円",
+        "送料660円（沖縄県は2200円）",
+        "2025年11月1日～2026年10月31日に税込500円以上の注文・受取が条件。今からの注文は対象外",
+        "1商品につき1人1回まで。7iDでのログインが必要",
+        "当選発表は2026年11月20日中、当選者にのみメールで通知",
+        "支払いはクレジットカードのみ（nanacoポイント使用可）"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156153.html"
     },
     "path": "l/216addb025/",
     "end": "2026-11-15T11:59:00+09:00",
@@ -2427,7 +2655,14 @@
         },
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DMETAL%2520BUILD%2520%25E3%2582%25AC%25E3%2583%25B3%25E3%2583%2580%25E3%2583%25A0%25E3%2583%2587%25E3%2583%25A5%25E3%2583%258A%25E3%2583%25A1%25E3%2582%25B9",
         "mc": "https://jp.mercari.com/search?keyword=METAL%20BUILD%20%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%E3%83%87%E3%83%A5%E3%83%8A%E3%83%A1%E3%82%B9&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "対象は2次受注分で、2027年2月発送",
+        "1次受注分（2027年1月発送）は準備数に達し予約受付を終了",
+        "当選発表は12月上旬",
+        "価格は33,000円"
+      ],
+      "facts_src": "https://hobby.watch.impress.co.jp/docs/news/2156412.html"
     },
     "path": "l/d335c0d441/",
     "end": "2026-11-29T23:00:00+09:00",
@@ -3976,7 +4211,16 @@
         "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%20%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC&tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%2520%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC",
         "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%20%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "当選者のみ購入できる。購入期間は11月29日10時～12月3日23時59分",
+        "当選は1人1点まで。複数応募しても1点に制限",
+        "応募には楽天会員の住所登録が必須。未登録は抽選無効",
+        "当選後の配送先変更は不可（登録住所と異なる住所への変更不可）",
+        "支払いはクレジットカード決済のみ",
+        "配送は宅配またはポスト投函のみ。代引き・コンビニ・郵便局受取は不可"
+      ],
+      "facts_src": "https://www.famitsu.com/article/202611/93883"
     },
     "path": "l/62dd0611eb/",
     "end": "2026-11-18T23:59:00+09:00",
@@ -4040,7 +4284,13 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E4%25B8%2580%25E7%2595%25AA%25E3%2581%258F%25E3%2581%2598%2520Tamagotchi",
         "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20Tamagotchi&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "店頭販売のみで、オンライン販売の記載はない",
+        "2026年11月21日(土)より発売予定（時刻の記載なし）",
+        "日本全国のコンビニ・書店・ホビーショップなどで販売（一番くじ全体の説明）"
+      ],
+      "facts_src": "https://1kuji.com/products"
     },
     "path": "l/6af6f1e9ce/",
     "end": "2026-11-21",
@@ -4064,7 +4314,12 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E4%25B8%2580%25E7%2595%25AA%25E3%2581%258F%25E3%2581%2598%2520%25E3%2582%25B4%25E3%2582%25B8%25E3%2583%25A9%2520%25E6%2580%25AA%25E7%258D%25A3%25E4%25B9%25B1%25E8%2588%259E-%25E3%2582%25BC%25E3%2583%25AD%25E3%2581%25AE%25E9%25BC%2593%25E5%258B%2595-",
         "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%82%B4%E3%82%B8%E3%83%A9%20%E6%80%AA%E7%8D%A3%E4%B9%B1%E8%88%9E-%E3%82%BC%E3%83%AD%E3%81%AE%E9%BC%93%E5%8B%95-&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "店頭販売は2026年11月13日(金)より順次発売予定",
+        "2026年11月発売の一覧に掲載"
+      ],
+      "facts_src": "https://1kuji.com/products"
     },
     "path": "l/ff180ec59c/",
     "end": null,
@@ -4088,10 +4343,57 @@
       "shop": {
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E4%25B8%2580%25E7%2595%25AA%25E3%2581%258F%25E3%2581%2598%2520%25E3%2583%25AF%25E3%2583%25B3%25E3%2583%2594%25E3%2583%25BC%25E3%2582%25B9~%25E3%2581%2582%25E3%2581%25AB%25E3%2581%25BE%25E3%2582%258B%25E5%25A4%25A7%25E9%259B%2586%25E5%2590%2588%2521~",
         "mc": "https://jp.mercari.com/search?keyword=%E4%B8%80%E7%95%AA%E3%81%8F%E3%81%98%20%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9~%E3%81%82%E3%81%AB%E3%81%BE%E3%82%8B%E5%A4%A7%E9%9B%86%E5%90%88%21~&status=on_sale&afid=1350793153"
-      }
+      },
+      "facts": [
+        "店頭販売は2026年11月14日(土)より発売予定",
+        "店頭は全国のコンビニ・書店・ホビーショップなどで販売",
+        "ハズレなしで必ずいずれかの商品が手に入るくじ",
+        "お店で最後のくじを引くと特別なラストワン賞が手に入る"
+      ],
+      "facts_src": "https://1kuji.com/products"
     },
     "path": "l/25a12a4dd3/",
     "end": null,
+    "seen": "2026-11-15",
+    "ended": false
+  },
+  "a3c8958cab96f5de": {
+    "snap": {
+      "key": "a3c8958cab96f5de",
+      "game": "gunpla",
+      "store": "BANDAI SPIRITS（CLUB TAMASHII / プレミアムバンダイ）",
+      "product": "METAL BUILD ゴッドガンダム（明鏡止水）TAMASHII NATION 2026開催記念商品 事後CTM抽選",
+      "series": "METAL BUILD ゴッドガンダム（明鏡止水）",
+      "start": "2026-11-13",
+      "end": "2026-11-23",
+      "method": "Web",
+      "conditions": "CLUB TAMASHII MEMBERS全会員向けの事後抽選",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://p-bandai.jp/item/item-1000258476/",
+      "channel": "online",
+      "member": "account",
+      "spath": "gunpla/metalbuildgoddogandamu-172b0/",
+      "found_at": "2026-11-15T13:07:23.814544+09:00",
+      "kind": "lottery",
+      "price": "39,600円",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DMETAL%2520BUILD%2520%25E3%2582%25B4%25E3%2583%2583%25E3%2583%2589%25E3%2582%25AC%25E3%2583%25B3%25E3%2583%2580%25E3%2583%25A0%2520TAMASHII",
+        "mc": "https://jp.mercari.com/search?keyword=METAL%20BUILD%20%E3%82%B4%E3%83%83%E3%83%89%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%20TAMASHII&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "CTM会員向けの事後抽選販売。受付は11月13日から11月23日まで",
+        "11月27日からは会員でなくても抽選に参加できる事後販売も行われる予定",
+        "2027年3月発送予定、価格は39,600円",
+        "赤みがかった金色の「明鏡止水」カラーで、樹脂パーツと合金パーツもゴールド塗装",
+        "日輪エフェクトパーツは専用の配色に刷新され、付属パーツで後方に固定可能",
+        "専用ディスプレイ台は真紅にゴールドの箔押し"
+      ],
+      "facts_src": "https://hobby.watch.impress.co.jp/docs/special/2156378.html"
+    },
+    "path": "l/a3c8958cab/",
+    "end": "2026-11-23",
     "seen": "2026-11-15",
     "ended": false
   }
