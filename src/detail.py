@@ -223,7 +223,7 @@ def _cal_links(i, store, name, canon):
 
 
 def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="", related=(), updated="", souba=None, noindex=False, next_link=None,
-           brand=None, games=None, canon_to=None, guides=()):
+           brand=None, games=None, canon_to=None, guides=(), keep_index=False):
     """1件分のHTML。i は sitegen の row（＋products / start / announce / buy）
     brand … サイトの名前・色など（省略＝トレカ抽選ナビ）。games … {game: (短い名前, ページのslug)}（省略＝トレカの3つ）"""
     b = brand or BRAND
@@ -374,7 +374,7 @@ def render(i, *, site, path, verify, now_dt, ended=False, redirect=None, aff="",
             '<meta name="twitter:card" content="summary_large_image">', f'<meta name="twitter:image" content="{escape(og)}">',
             f'<meta name="theme-color" content="{b["color"]}">', '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
             '<link rel="icon" href="/favicon.png" sizes="48x48">', '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
-            f'<meta name="robots" content="{"noindex,follow" if ((is_end and not canon_to) or redirect or noindex) else "index,follow,max-image-preview:large"}">']
+            f'<meta name="robots" content="{"noindex,follow" if ((is_end and not canon_to and not keep_index) or redirect or noindex) else "index,follow,max-image-preview:large"}">']
     if site:
         head.insert(0, '<script>if(/\\.pages\\.dev$/.test(location.hostname))location.replace(%s+location.pathname+location.search+location.hash)</script>' % json.dumps(site))
     if canon:

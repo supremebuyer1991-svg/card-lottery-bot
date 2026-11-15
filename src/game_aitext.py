@@ -82,7 +82,7 @@ def _ai(data):
     if not text:
         log(f"  解説：返事が空（stop_reason={js.get('stop_reason')}・{[b.get('type') for b in js.get('content', [])]}）")
     text = re.sub(r"^#\s.*\n", "", text)   # 先頭の大見出し（# …）は外す
-    if not (150 <= len(text) <= 4000 and "## " in text) or re.search(r"データ|このページ|情報がありません|記録がな", text):
+    if not (150 <= len(text) <= 4000 and "## " in text) or re.search(r"データ|このページ|情報がありません|記録がな|0件|ゼロ件", text):
         log(f"  解説：使わない返事（{len(text)}文字）{text[:60]!r}")
         return ""
     return text

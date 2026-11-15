@@ -56,7 +56,8 @@ def shown_ok(i):
 # 終了したものも「終了」タブと結果待ちのために少しのあいだ残す
 KEEP_ENDED_DAYS = 7
 FIELDS = ("key", "game", "store", "product", "series", "start", "end", "announce", "buy", "conditions", "tags", "url",
-          "channel", "area", "found_at", "id_check", "member", "method", "kind", "price", "round", "manual", "products")
+          "channel", "area", "found_at", "id_check", "member", "method", "kind", "price", "round", "manual", "products",
+          "facts", "facts_src")   # 告知の要点（game_verify）。無いと個別ページとAIの解説に届かなかった（11/15 Fable）
 
 # ゲーム・ホビー向けのお店（チェーン）。トレカ側の CHAINS を変えずに、こちらだけで持つ
 GAME_CHAINS = [
@@ -819,6 +820,17 @@ def sc_protected(path):
     return path in _SCP["v"]
 
 
+_HUBMEMO = {}
+
+
+def _hub_extra_memo(h, pages, keys, s):
+    """_hub_extra を同じ回のサイト作りで2回計算しない（カテゴリページのリンク判定と、まとめページ本体）"""
+    k = (h["path"], frozenset(k_ for k_ in keys if k_))
+    if k not in _HUBMEMO:
+        _HUBMEMO[k] = _hub_extra(h, pages, keys, s)
+    return _HUBMEMO[k]
+
+
 def _simple_page(cats, html):
     """404・プライバシーポリシー：本文を左のメニューつきの暗い見た目で包む"""
     css = SHELL_CSS.read_text(encoding="utf-8") + ".doc{max-width:680px;line-height:1.85}.doc h1{font-size:22px;font-weight:900}.doc h2{font-size:16px;margin-top:24px}.doc p{color:var(--ink-2)}"
@@ -1101,7 +1113,7 @@ def build(settings=None, out_dir=None, force=False):
             head.append(f'<meta name="google-site-verification" content="{escape(verify)}">')
         for x in ld:
             head.append('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False).replace("</", "<\\/") + "</script>")
-        data = dict(common_data, items=[{k: v for k, v in i.items() if v not in (None, "", []) and k not in ("ph", "manual", "products")} for i in sub],
+        data = dict(common_data, items=[{k: v for k, v in i.items() if v not in (None, "", []) and k not in ("ph", "manual", "products", "facts", "facts_src")} for i in sub],
                     page=dict({"list": list_mode, "top": not path}, **(data_extra or {})))
         body = tpl
         for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]), "__HEADMETA__": "\n".join(head), "__CRUMBS__": cr,
@@ -1218,8 +1230,18 @@ def build(settings=None, out_dir=None, force=False):
         for i in sub:
             if i.get("series"):
                 sers.setdefault(i["series"], []).append(i)
+        # 常設まとめ（models.yaml の hubs）もここからリンクする（11/15 Fable：PS5 Pro・山崎などのまとめに内部リンクが無かった）
+        _hub_links = ""
+        _prev_pages0 = load_json("lottery_pages.json", {}) or {}
+        for h in _hubs_cfg():
+            if h.get("game") != g or any(i[0]["spath"] == h["path"] for i in sers.values()):
+                continue
+            _lh = [i for i in sub if _hub_hit(h, f'{i.get("product") or ""} {i.get("series") or ""}')]
+            _r = _hub_extra_memo(h, _prev_pages0, {i.get("key") for i in _lh}, s)
+            if _lh or _r[2] >= 2 or _r[3] >= 1:
+                _hub_links += f'<a href="/{escape(h["path"])}">{escape(h["name"])}<small>{sum(1 for i in _lh if i["ph"] == "open")}件</small></a>'
         ser_links = '<section class="sec"><h2>機種・モデルごと</h2><div class="links">' + "".join(
-            f'<a href="/{escape(i[0]["spath"])}">{escape(x)}<small>{sum(1 for j in i if j["ph"] == "open")}件</small></a>' for x, i in sorted(sers.items(), key=lambda kv: -len(kv[1]))) + "</div></section>" if sers else ""
+            f'<a href="/{escape(i[0]["spath"])}">{escape(x)}<small>{sum(1 for j in i if j["ph"] == "open")}件</small></a>' for x, i in sorted(sers.items(), key=lambda kv: -len(kv[1]))) + _hub_links + "</div></section>" if (sers or _hub_links) else ""
         faq = [(f"{c['short']}の{'抽選' if 'lottery' in c['kinds'] else '予約'}はどこで受け付けていますか？",
                 ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in sub if i["ph"] == "open")) + f"（{n}件）です。" if n else "いま受付中のものはありません。") + "一覧は締切が近い順です。"),
                ("どんな条件がありますか？", "会員登録・アプリ・本人確認・購入履歴・プレイ時間・PSN必須・NSO加入・1人1台など、告知から読み取った条件をタグで表示しています。応募前に公式ページで必ずご確認ください。")]
@@ -1230,7 +1252,7 @@ def build(settings=None, out_dir=None, force=False):
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
               body_top=_notice_html(c.get("notice")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
                        f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))),
-              body_bottom=ser_links, noindex=(npd == 0 and not sub))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
+              body_bottom=ser_links, noindex=(npd == 0 and not sub and not sc_protected(f"{c['slug']}/")))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}
         _hub_done = set()
@@ -1256,7 +1278,7 @@ def build(settings=None, out_dir=None, force=False):
             if path in _hub_done:
                 continue
             lst = [i for i in sub if _hub_hit(h, f'{i.get("product") or ""} {i.get("series") or ""}')]
-            hb, hf, n_p, n_r = _hub_extra(h, _prev_pages, {i.get("key") for i in lst}, s)
+            hb, hf, n_p, n_r = _hub_extra_memo(h, _prev_pages, {i.get("key") for i in lst}, s)
             if not lst and n_p < 2 and n_r < 1:   # 中身が無いページは作らない
                 continue
             no = sum(1 for i in lst if i["ph"] == "open")
@@ -1325,7 +1347,7 @@ def build(settings=None, out_dir=None, force=False):
         # トレカ抽選ナビから載せたポケカ・ワンピの抽選は、同じ内容のページがトレカ抽選ナビにあるので検索には出さない（自分のサイト同士で競わない。11/14）
         _dup = str(k).startswith("tc") or bool((raw.get(k) or {}).get("from_tcg"))
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
-                             next_link=nxt, brand=dbrand, games=games_map, noindex=_dup)
+                             next_link=nxt, brand=dbrand, games=games_map, noindex=_dup, keep_index=sc_protected(rec["path"]))
         html = _theme_detail(_shop_detail(_release_detail(html, snap), snap), side_html(cats, g, counts=False))
         try:
             html = _extra_detail(html, snap, k, pages, live, cat_by, s, t)
@@ -1340,7 +1362,7 @@ def build(settings=None, out_dir=None, force=False):
             ev_ = detail.cal_event(snap, snap.get("store") or "", detail.short_name(snap), f"{site}/{rec['path']}" if site else "", domain=brand["domain"])
             if ev_:
                 (p.parent / "shimekiri.ics").write_text(detail.ics_wrap([ev_]), encoding="utf-8")
-        if site and not ended and not _dup:
+        if site and (not ended or sc_protected(rec["path"])) and not _dup:
             fp = sha(re.sub(r"情報の更新：\d+/\d+ \d\d:\d\d", "", html))
             prev = pmod.get(rec["path"])
             lm = today_iso if not prev or prev[0] != fp else prev[1]

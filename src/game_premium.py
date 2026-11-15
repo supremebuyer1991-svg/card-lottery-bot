@@ -143,6 +143,18 @@ def update(settings, fetch=None, sleep=None):
         for d in [d for d in h if d < cut]:
             h.pop(d)
     save_json(HIST, hist)
+    try:   # 買取店ごとの価格も毎日残す（11/15 Fable：最高値だけだと「どの店が上げたか」が書けない）。90日分
+        sh = load_json("premium_store_hist.json", {}) or {}
+        _today = t.date().isoformat()
+        _cut = (t.date() - timedelta(days=90)).isoformat()
+        for jan, x in g.items():
+            d = sh.setdefault(jan, {})
+            d[_today] = dict(x["prices"]) if not isinstance(x["prices"], dict) else x["prices"]
+            for k_ in [k_ for k_ in d if k_ < _cut]:
+                d.pop(k_)
+        save_json("premium_store_hist.json", sh)
+    except Exception as e:
+        log(f"買取店ごとの価格の記録: スキップ {e}")
     teika = load_json(TEIKA, {})
     import os
     if fetch is None and not (os.environ.get("RAKUTEN_APP_ID") and os.environ.get("RAKUTEN_ACCESS_KEY")):
@@ -483,6 +495,7 @@ def chart_svg(h, teika, label="定価"):
 
 
 CSS = (".pm-facts ul{padding-left:1.2em;line-height:1.85;color:#cfd5e1}.pm-facts .note{font-size:12px}.sellb{display:inline-block;margin-top:6px;font-size:13px;color:#8a93a6!important}.pm-ai p{line-height:1.85;color:#cfd5e1}.pm-intro{line-height:1.8;margin:8px 0 14px;color:#cfd5e1}.faq{border:1px solid #262c3a;border-radius:10px;padding:10px 14px;margin:8px 0;background:#141823}.faq summary{font-weight:900;cursor:pointer}.faq p{margin:8px 0 0;line-height:1.7}"
+       ".pm-same{margin:10px 0 14px;padding:10px 12px;border:1px solid #ffd23f55;border-radius:10px;font-size:14px}.pm-same ul{margin:6px 0 0;padding-left:18px}"
        ".pm-t{width:100%;border-collapse:collapse;font-size:14px}.pm-t td,.pm-t th{padding:8px 6px;border-bottom:1px solid var(--line,#262c3a);text-align:left}"
        ".pm-t td.n{text-align:right;font-family:var(--font-num);white-space:nowrap}.up{color:#3ddc84}.dn{color:#ff8a95}.eq,.na{color:#8a93a6}"
        ".chart{width:100%;height:auto;background:#0f121a;border:1px solid #262c3a;border-radius:10px;margin:8px 0}"
@@ -788,6 +801,148 @@ r.innerHTML=hit.slice(0,100).map(function(e){return '<a class="qs-i" href="'+e[2
 </script><style>.qs-i{display:block;padding:12px 14px;margin:8px 0;border:1px solid #262c3a;border-radius:10px;background:#141823;color:#e9edf5;text-decoration:none}.qs-i b{display:block}.qs-i span{font-size:13px;color:#8a93a6}</style>"""
 
 
+# ---- 商品ページに足す「データから作る節」（11/15 Fable の設計。数字はすべてその商品のもの・言えることが無い節は出さない）----
+def _md2(k):
+    return f"{int(k[5:7])}/{int(k[8:10])}"
+
+
+def sec_price_log(x):
+    """買取価格の値動きの記録（動いた商品だけ）"""
+    h = x.get("hist") or {}
+    ks = sorted(h)
+    if len(ks) < 3:
+        return ""
+    vals = [h[k] for k in ks]
+    chg = [(ks[i], vals[i] - vals[i - 1]) for i in range(1, len(ks)) if vals[i] != vals[i - 1]]
+    if not chg:
+        return ""
+    hi, lo = max(vals), min(vals)
+    up, dn = sum(1 for _, d in chg if d > 0), sum(1 for _, d in chg if d < 0)
+    s = (f"{_md2(ks[0])}から{_md2(ks[-1])}までの{len(ks)}日分の記録では、{escape(x['name'])}の新品の最高買取価格は{len(chg)}回変わりました"
+         f"（値上がり{up}回・値下がり{dn}回）。いちばん高かったのは{_md2(ks[vals.index(hi)])}の{hi:,}円、いちばん安かったのは{_md2(ks[vals.index(lo)])}の{lo:,}円で、"
+         f"その差は{hi - lo:,}円です。直近の変化は{_md2(chg[-1][0])}の{'+' if chg[-1][1] > 0 else ''}{chg[-1][1]:,}円です。")
+    tk = x.get("teika")
+    if tk and x.get("teika_note") != "楽天ブックスの販売価格":
+        s += f"この間、定価（{tk:,}円）以上で買い取られていた日は{len(vals)}日のうち{sum(1 for v in vals if v >= tk)}日です。"
+    return f"<h2>買取価格の値動き</h2><p>{s}</p>"
+
+
+def _age_days(x, today):
+    m = re.match(r"(\d{4})年(\d{1,2})月(\d{1,2})日", x.get("sales_date") or "")
+    if not m:
+        return None
+    try:
+        from datetime import date as _d
+        return (today - _d(*map(int, m.groups()))).days
+    except ValueError:
+        return None
+
+
+def sec_peers(x, grp, cat, today, rules=None):
+    """同じカテゴリ（できれば同じジャンル）の中での買取価格の位置と、買取価格が近い商品の表"""
+    import statistics as _st
+    if rules:   # 本体・ゲームソフトなど、ジャンルが同じ商品と比べる（ケースとソフトを並べない）
+        for nm_, lst_ in split_subgenres(grp, rules):
+            if any(y is x for y in lst_):
+                grp, cat = lst_, f"{cat}の{nm_}"
+                break
+    if len(grp) < 5 or not any(y is x for y in grp):
+        return ""
+    order = sorted(grp, key=lambda y: -y["max"])
+    rk = next(i for i, y in enumerate(order) if y is x) + 1
+    med = round(_st.median(y["max"] for y in grp))
+    s = f"買取価格が分かる{escape(cat)}{len(grp)}件のうち、{escape(x['name'])}の最高買取{x['max']:,}円は高い方から{rk}番目です（中央値は{med:,}円）。"
+    rs = [y for y in grp if y.get("ratio") and y.get("teika_note") != "楽天ブックスの販売価格"]
+    if any(y is x for y in rs) and len(rs) >= 5:
+        rr = next(i for i, y in enumerate(sorted(rs, key=lambda y: -y["ratio"])) if y is x) + 1
+        s += f"定価に対する割合（{round(x['ratio'] * 100)}%）では、定価の分かる{len(rs)}件のうち{rr}番目で、定価以上で買い取られているのは{sum(1 for y in rs if y['ratio'] >= 1)}件です。"
+        a = _age_days(x, today)
+        if a is not None and a >= 0:
+            bands = [(0, 90, "発売から3か月以内"), (90, 365, "発売から3か月〜1年"), (365, 1095, "発売から1〜3年"), (1095, 99999, "発売から3年以上")]
+            lo_, hi_, lbl = next(b for b in bands if b[0] <= a < b[1])
+            same = [y for y in rs if _age_days(y, today) is not None and lo_ <= _age_days(y, today) < hi_]
+            if len(same) >= 4:
+                s += (f"同じ「{lbl}」の商品{len(same)}件の買取価格は定価の{round(_st.median(y['ratio'] for y in same) * 100)}%（中央値）で、"
+                      f"この商品は{round(x['ratio'] * 100)}%です。")
+    i = rk - 1
+    near = order[max(0, i - 2):i] + order[i + 1:i + 3]
+    rows = "".join(f'<tr><td><a href="/premium/{escape(y["jan"])}/">{escape(y["name"])}</a></td><td class="n">{y["max"]:,}円</td><td class="n">{y["max"] - x["max"]:+,}円</td></tr>' for y in near)
+    return (f"<h2>{escape(cat)}の中での買取価格の位置</h2><p>{s}</p>"
+            f'<table class="pm-t"><tr><th>買取価格が近い商品</th><th>最高買取</th><th>この商品との差</th></tr>{rows}</table>')
+
+
+def sec_stores(x, n_all, stat):
+    """買取店の広がり（2店以上で買い取っている商品だけ）"""
+    ps = list(x.get("prices") or [])
+    if len(ps) < 2:
+        return ""
+    top = ps[0][0]
+    s = (f"買取価格を読み取っている{n_all}店のうち、{escape(x['name'])}の新品の買取価格を載せているのは{len(ps)}店（{escape('・'.join(p[0] for p in ps[:6]))}）です。"
+         f"最高値の{escape(top)}（{ps[0][1]:,}円）と2番目の{escape(ps[1][0])}（{ps[1][1]:,}円）の差は{ps[0][1] - ps[1][1]:,}円、"
+         f"いちばん安い{escape(ps[-1][0])}（{ps[-1][1]:,}円）との差は{ps[0][1] - ps[-1][1]:,}円です。")
+    st = stat.get(top) or {}
+    if st.get("n"):
+        s += f"{escape(top)}はこのサイトで{st['n']:,}商品の価格を記録していて、そのうち{st.get('top', 0):,}商品で最高値です。"
+    return f"<h2>買取店ごとの差</h2><p>{s}</p>"
+
+
+def sec_stock(jan, wm_all, name):
+    """楽天ブックス・Amazonで買えた時間（見張りの記録・2回以上変わった商品だけ）"""
+    from datetime import timezone as _tz
+    jst = _tz(timedelta(hours=9))
+    wm = wm_all.get(jan) or {}
+    hist = wm_all.get("_hist") or {}
+    out = []
+    for w, shop, ids in (("rk", "楽天ブックス", ["j" + jan]), ("az", "Amazon", [i for i in (wm.get("asin"), "j" + jan) if i])):
+        ev = next((hist.get(w, {}).get(i) for i in ids if hist.get(w, {}).get(i)), None)
+        if not ev or len(ev) < 2:
+            continue
+        ev = sorted(ev, key=lambda e: e["t"])
+        try:
+            tt = [datetime.fromisoformat(e["t"].replace("Z", "+00:00")).astimezone(jst) for e in ev]
+        except Exception:
+            continue
+        ins = [(tt[i], e, (tt[i + 1] if i + 1 < len(ev) else None)) for i, e in enumerate(ev) if e.get("s") in ("buy", "pre", "invite")]
+        s = f"{shop}では{tt[0].month}/{tt[0].day}から見ていて、状態が変わったのは{len(ev) - 1}回です。"
+        if ins:
+            a, e, b = ins[-1]
+            dur = (f"、{b.month}/{b.day} {b:%H:%M}に売り切れるまで約{max(1, round((b - a).total_seconds() / 3600))}時間続きました" if b else "、いまも続いています")
+            s += (f"販売・予約を確かめたのは{len(ins)}回で、いちばん新しいのは{a.month}/{a.day} {a:%H:%M}（{SNAME.get(e['s'], '')}"
+                  + (f"・{int(e['p']):,}円" if e.get("p") else "") + f"）{dur}。")
+        else:
+            s += "この間、販売・予約は1度も確かめられていません。"
+        out.append(s)
+    return (f"<h2>{escape(name)}が楽天ブックス・Amazonで買えた時間</h2><p>" + "".join(out) + "</p>") if out else ""
+
+
+def same_title_html(x, by_norm):
+    """同じタイトルで別のJANの商品（Switch版とSwitch 2版・特典違いなど）への相互リンク（11/15 Fable：時のオカリナが2ページに分かれていた）"""
+    others = [y for y in by_norm.get(_norm_title(x["name"]), []) if y["jan"] != x["jan"]][:6]
+    if not others:
+        return ""
+    return ('<div class="pm-same"><b>同じタイトルの別の商品（JANが違います）</b><ul>' + "".join(
+        f'<li><a href="/premium/{escape(y["jan"])}/">{escape(y["name"])}</a>（JAN {escape(y["jan"])}・最高買取 {y["max"]:,}円・{len(y.get("prices") or [])}店）</li>' for y in others) + "</ul></div>")
+
+
+def _norm_title(n):
+    n = re.sub(r"[（(【\[].*?[）)】\]]", "", n or "")
+    n = re.sub(r"Nintendo ?Switch ?2|Nintendo ?Switch|Switch ?2 ?Edition|Edition|PS5|PS4|通常版|初回特典|限定版|\s|・|-|ー", "", n, flags=re.I)
+    return n.lower()
+
+
+def title_name(x, cid):
+    """題名に使う商品名：注記（※・JAN:・買取不可 など）を落とし、ゲームソフトには機種を短く足す"""
+    n = re.sub(r"\s*(※|JAN:|買取不可|価格未掲載|店舗印).*$", "", x["name"]).strip()
+    n = re.sub(r"\[[^\]]{0,30}\]", "", n).strip()
+    plat = {"switch2": "Switch2", "switch1": "Switch", "ps5": "PS5"}.get(cid or "")
+    if plat and not re.search(r"Switch|スイッチ|PS5|PlayStation|プレイステーション", n, re.I):
+        n = f"{n} {plat}"
+    if len(n) > 48:   # 長い名前は言葉の切れ目で切る
+        cut = n[:48]
+        n = cut[:cut.rfind(" ")] if " " in cut[20:] else cut
+    return n
+
+
 def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id=""):
     """/premium/（定価以上で売れる）・/souba/（買取相場の一覧）・/premium/<JAN>/（商品ごと）を書く。書いたパスの一覧を返す"""
     from urllib.parse import quote
@@ -885,6 +1040,25 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     for j in [j for j, v in snap.items() if v.get("seen", "") < cut]:
         snap.pop(j, None)
     save_json("premium_snap.json", snap)
+    _by_norm = {}
+    for y in allx:
+        _by_norm.setdefault(_norm_title(y["name"]), []).append(y)
+    _stat = {}
+    for y in allx:
+        for s_, _ in y.get("prices") or []:
+            _stat.setdefault(s_, {"n": 0, "top": 0})["n"] += 1
+        if y.get("store"):
+            _stat.setdefault(y["store"], {"n": 0, "top": 0})["top"] += 1
+    _by_cat = {}
+    _cid_of = {}
+    for y in allx:
+        _cid_of[y["jan"]] = cat_of([y["name"]] + y.get("names", []) + [y.get("hardware") or ""])
+        _by_cat.setdefault(_cid_of[y["jan"]], []).append(y)
+    _today_d = upd.date()
+    try:
+        from sitegen_game import sc_protected as _scp
+    except Exception:
+        _scp = lambda p_: False  # noqa: E731
     for x in allx + revived:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
@@ -893,6 +1067,14 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
             extra = game_facts.html_for(x["jan"], x["name"]) + extra
         except Exception:
             pass
+        try:   # データから作る節（11/15 Fable）：値動き・カテゴリの中での位置・買取店ごとの差・買えた時間
+            _cid0 = _cid_of.get(x["jan"]) or cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""])
+            _c0 = _cats.get(_cid0) or {}
+            extra = (sec_stores(x, len(_stat), _stat) + sec_price_log(x) + sec_stock(x["jan"], _wm_all, x["name"])
+                     + (sec_peers(x, _by_cat.get(_cid0, []), _c0.get("short", ""), _today_d, _c0.get("subgenres")) if _cid0 and not x.get("stale") else "")) + extra
+            intro = intro + same_title_html(x, _by_norm)
+        except Exception as e:
+            log(f"商品ページの節: スキップ {x['jan']} {e}")
         _ntc = (_cats.get(cat_of([x["name"]] + x.get("names", []) + [x.get("hardware") or ""])) or {}).get("notice")
         if _ntc:   # お酒の「20歳になってから」など、カテゴリの注意書き（11/11）
             intro = _notice_p(_ntc) + intro
@@ -903,7 +1085,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         rel = [r for r in live_rows if ol.same_item_score(r.get("product") or "", x["name"]) >= 0.6][:6]
         rel_html = ("<h2>この商品の抽選・予約・再販</h2><ul>" + "".join(
             f'<li><a href="/{escape(r["lpath"])}">{escape(r.get("store") or "")} {escape(r.get("product") or "")}</a></li>' for r in rel) + "</ul>") if rel else \
-            "<h2>この商品の抽選・予約・再販</h2><p>いま受付中のものはありません。楽天・Amazonで販売が始まったらXでお知らせします。</p>"
+            ""   # 受付中のものが無ければ見出しごと出さない（750ページで同じ文だった。11/15 Fable）
         import game_affi as _gaf
         from urllib.parse import quote as _qt
         _sq = _qt(re.sub(r"\s+", " ", x["name"])[:60])
@@ -932,11 +1114,13 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         _crumb = (f'<a href="/{escape(_cc["slug"])}/">{escape(_cc.get("short", ""))}</a> ／ ' if _cc.get("slug") else "")
         # 題名：定価が分からない商品は「定価・」を外す。見出しは「〜の買取価格・販売状況」（11/14 Fable）
         _when = (f"{int(x['stale'][5:7])}/{int(x['stale'][8:10])}時点" if x.get("stale") else f"{md}更新")   # 買取店から消えた商品は、最後に確かめた日（11/14 Fable）
-        page(f"{x['name']} 買取価格 最高{x['max']:,}円【{_when}】{'定価・' if x['teika'] and not _rb else ''}再販情報｜JAN {x['jan']}", desc,
-             f'{ld}<p>{_crumb}<a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">プレミア商品一覧</a></p><h1>{escape(x["name"])}の買取価格・販売状況</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
+        _np = len(x.get("prices") or [])
+        _tn = title_name(x, _cid)
+        page(f"{_tn} 買取価格 {x['max']:,}円｜{str(_np) + '店比較' if _np >= 2 else '新品'}【{_when}】JAN {x['jan']}", desc,
+             f'{ld}<p>{_crumb}<a href="/souba/">ゲーム・ホビー買取相場一覧</a> ／ <a href="/premium/">プレミア商品一覧</a></p><h1>{escape(x["name"])}の買取価格（新品・{_when.replace("更新", "時点")}）</h1>{buy_box(x.get("azUrl") or "", rakuten_link(x["itemUrl"], aff_id) if x.get("itemUrl") else "", x["name"])}{intro}'
              f'<div class="pm-row">{img}<div><div>最高買取（新品）</div><div class="pm-big">{x["max"]:,}円</div><div>{_sl(x["store"], x["jan"], x["name"])}・{tk}</div><div class="note" style="font-size:12px">※{md}時点の金額です。{CHANGE_NOTE}</div>{_sell_btn(x)}</div></div>'
              f'<table class="pm-t"><tr><th>1週間前比</th><td class="n">{_chg(x["max"], x["w1"])}</td></tr><tr><th>1か月前比</th><td class="n">{_chg(x["max"], x["m1"])}</td></tr></table>{mercari_box(x["name"])}'
-             f'{cur_h}{FOLLOW}<h2>{"定価で買えるところ" if x["teika"] and not _rb else "買えるところ"}<small class="hot">（販売してたら激熱🔥）</small></h2><div class="shopb">{shops}</div>{hist_h}'
+             f'{cur_h}{FOLLOW}<h2>{"定価で買えるところ" if x["teika"] and not _rb else "買えるところ"}{'<small class="hot">（販売してたら激熱🔥）</small>' if (x.get("ratio") or 0) >= 1 else ""}</h2><div class="shopb">{shops}</div>{hist_h}'
              f'<h2>商品情報</h2><table class="pm-t">{info_rows(x)}</table>{features_html(x)}{_aitext(x["jan"], x)}'
              f'<h2>最高買取価格の推移</h2>{chart_svg(x["hist"], x["teika"], tword(x))}{rel_html}'
              f'{extra}{note}', f"premium/{x['jan']}/", img=x.get("img") or "",
@@ -944,7 +1128,8 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              # サイトのテーマと関係ない家電などが混ざっていて、中身も薄い）。ページは残す
              # 11/14：「ジャンルなし・定価なし・買取店1店」も外していたが、いちばんクリックされている「時のオカリナ」まで外れた。
              # 家電は「家電・カメラ」に入ったので、その決まりはやめる（買取店から消えた商品だけ外す）
-             noindex=bool(x.get("stale")))
+             # 11/15 Fable：買取店から消えてすぐ外さず14日待つ。検索に表示されたことのあるページは外さない
+             noindex=bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat() and not _scp(f"premium/{x['jan']}/"))
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
