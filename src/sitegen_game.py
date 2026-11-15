@@ -19,6 +19,7 @@ import os
 import re
 from html import escape
 from pathlib import Path
+from datetime import timedelta
 
 from common import ROOT, load_json, save_json, now, parse_dt, sha, normalize, log
 import detail
@@ -201,14 +202,25 @@ def avail_of(row, status):
     from urllib.parse import unquote
     out = []
     m = re.search(r"/dp/([A-Z0-9]{10})", row.get("az") or "")
+    # 11/15 ユーザー指摘：PS5 ミッドナイト ブラックに「楽天ブックス 7,700円」と出ていた。
+    # 古い見張りが別の商品（book/15212484）の状態を記録したまま残っていた → 同じ商品のリンクで、3日以内に確かめた状態だけ使う
+    old = (now() - timedelta(days=3)).isoformat()
+
+    def fresh(x):
+        try:
+            return (parse_dt(x.get("at")) or now()).isoformat() >= old
+        except Exception:
+            return False
     if m and (status.get(m.group(1)) or {}).get("s") in AV_LABEL:
         x = status[m.group(1)]
-        out.append({"shop": "Amazon", "s": x["s"], "u": x.get("u") or row["az"], "p": x.get("p") or 0})
+        if m.group(1) in unquote(x.get("u") or m.group(1)) and fresh(x):
+            out.append({"shop": "Amazon", "s": x["s"], "u": x.get("u") or row["az"], "p": x.get("p") or 0})
     u = unquote((row.get("rk") or {}).get("u") or "")
     m = re.search(r"item\.rakuten\.co\.jp/([^/]+)/([^/?#&]+)", u)
     if m and (status.get(f"{m.group(1)}:{m.group(2)}") or {}).get("s") in AV_LABEL:
         x = status[f"{m.group(1)}:{m.group(2)}"]
-        out.append({"shop": "楽天ブックス", "s": x["s"], "u": row["rk"]["u"], "p": x.get("p") or 0})
+        if f"/{m.group(1)}/{m.group(2)}/" in unquote(x.get("u") or "") + "/" and fresh(x):
+            out.append({"shop": "楽天ブックス", "s": x["s"], "u": row["rk"]["u"], "p": x.get("p") or 0})
     return out
 
 
