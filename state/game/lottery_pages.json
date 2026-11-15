@@ -97,15 +97,7 @@
         "az": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DPlayStation%25205%2520%25E3%2583%2587%25E3%2582%25B8%25E3%2582%25BF%25E3%2583%25AB%2520%25E3%2582%25A8%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%25B3",
         "mc": "https://jp.mercari.com/search?keyword=PlayStation%205%20%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%20%E3%82%A8%E3%83%87%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3&status=on_sale&afid=1350793153"
-      },
-      "avail": [
-        {
-          "shop": "Amazon",
-          "s": "pre",
-          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
-          "p": 55000
-        }
-      ]
+      }
     },
     "path": "l/ps5-midnight-black-release-1119/",
     "end": "2026-11-19T23:59+09:00",
@@ -4532,6 +4524,7 @@
       "product": "響30年/21年、山崎18年、白州18年、マッカラン25年",
       "series": "響",
       "end": "2026-11-19（時刻の記載なし）",
+      "method": "店頭",
       "url": "https://www.chiba-tv.com/plus/detail/2026112225703",
       "channel": "store",
       "area": "千葉県",
@@ -4549,6 +4542,96 @@
     },
     "path": "l/85e634193b/",
     "end": "2026-11-19（時刻の記載なし）",
+    "seen": "2026-11-15",
+    "ended": false
+  },
+  "6637612643438f53": {
+    "snap": {
+      "key": "6637612643438f53",
+      "game": "liquor",
+      "store": "イオン船橋店",
+      "product": "サントリーウイスキー 響30年 700ml（箱付き）",
+      "series": "響30年",
+      "start": "2026-11-13T10:00:00+09:00",
+      "end": "2026-11-19T20:00:00+09:00",
+      "announce": "2026-12-11T13:00:00+09:00〜2026-12-11T17:00:00+09:00（当選者へメール）",
+      "method": "Web",
+      "conditions": "イオンお買物アプリ会員（当日入会可）、応募は1人1回、20歳以上、購入時に当選メール・会員番号・顔写真付き公的身分証明書が必要、購入は12月16日〜19日",
+      "tags": [
+        "会員",
+        "アプリ",
+        "本人確認"
+      ],
+      "url": "https://www.aeon.com/store/lp/592804/",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "spath": "liquor/30-9cf0b/",
+      "found_at": "2026-11-15T22:27:27.018655+09:00",
+      "kind": "lottery",
+      "price": "456,500円",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E9%259F%25BF30%25E5%25B9%25B4%2520700ml",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E9%9F%BF30%E5%B9%B4%20700ml&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "応募はイオンお買物アプリの会員が条件（当日入会も可）",
+        "応募は1人1回。複数商品を選ぶことは可能",
+        "当選者にのみ12月11日にメールで通知",
+        "購入期間は12月16日～19日の各日10時～20時",
+        "応募時に選んだ受取店舗でのみ購入でき、変更不可",
+        "購入時に当選メール・会員番号・顔写真付き公的身分証が必要。応募と購入は20歳以上"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156531.html"
+    },
+    "path": "l/6637612643/",
+    "end": "2026-11-19T20:00:00+09:00",
+    "seen": "2026-11-15",
+    "ended": false
+  },
+  "c88aa2e5924076c4": {
+    "snap": {
+      "key": "c88aa2e5924076c4",
+      "game": "liquor",
+      "store": "イオン船橋店、イオンスタイル南砂",
+      "product": "サントリーウイスキー 響21年 700ml（箱付き）",
+      "series": "響21年",
+      "start": "2026-11-13T10:00:00+09:00",
+      "end": "2026-11-19T20:00:00+09:00",
+      "announce": "2026-12-11T13:00:00+09:00〜2026-12-11T17:00:00+09:00（当選者へメール）",
+      "method": "Web",
+      "conditions": "イオンお買物アプリ会員（当日入会可）、応募は1人1回、20歳以上、購入時に当選メール・会員番号・顔写真付き公的身分証明書が必要、購入は12月16日〜19日",
+      "tags": [
+        "会員",
+        "アプリ",
+        "本人確認"
+      ],
+      "url": "https://www.aeon.com/store/lp/592804/",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "spath": "liquor/21-49421/",
+      "found_at": "2026-11-15T22:27:27.018718+09:00",
+      "kind": "lottery",
+      "price": "67,100円",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2588%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25A6%25E3%2582%25A4%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25BC%2520%25E9%259F%25BF21%25E5%25B9%25B4%2520700ml",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B5%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC%20%E9%9F%BF21%E5%B9%B4%20700ml&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "応募は1人1回。複数の商品を選ぶことも可能",
+        "応募にはイオンお買物アプリの会員であることが必要（当日入会可）",
+        "当選者にのみ12月11日13時～17時にメールで通知",
+        "購入期間は12月16日～19日、各日10時～20時",
+        "購入時に当選メール、会員番号、顔写真付き公的身分証明書が必要",
+        "応募と購入は20歳以上に限る"
+      ],
+      "facts_src": "https://gourmet.watch.impress.co.jp/docs/news/2156531.html"
+    },
+    "path": "l/c88aa2e592/",
+    "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-15",
     "ended": false
   }
