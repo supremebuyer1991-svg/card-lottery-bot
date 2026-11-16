@@ -145,10 +145,12 @@ function compose(w, shop, kind, url) {
 
 // 見張る順番：その回の分だけ見る（全部を毎回は見ない）。プレ値の商品（hot）は回ってくる間隔を短く
 function batch(list, n, salt) {
-  const hot = list.filter((w) => w.hot || w.rk || w.asin), rest = list.filter((w) => !(w.hot || w.rk || w.asin));
+  // 11/16 ユーザー指摘（ポケモンGO Plus+ を入荷Nowは速報したのにこちらは見逃した）：速報の対象（定価以上で売れる hot・ユーザーが決めた always）だけを
+  // 「先に見る組」にして、1回の半分→4分の3をここに使う（前は楽天・Amazonの番号が分かる商品ぜんぶが先の組で、1つが回ってくるまで長かった）
+  const hot = list.filter((w) => w.hot || w.always), rest = list.filter((w) => !(w.hot || w.always));
   const turn = Math.floor(Date.now() / 120e3) + salt;
   const pick = (arr, k) => { if (!arr.length) return []; const out = []; const s0 = (turn * k) % arr.length; for (let i = 0; i < Math.min(k, arr.length); i++) out.push(arr[(s0 + i) % arr.length]); return out; };
-  const nh = Math.min(hot.length, Math.ceil(n / 2));
+  const nh = Math.min(hot.length, Math.ceil(n * 3 / 4));
   return [...pick(hot, nh), ...pick(rest, n - nh)];
 }
 const yen = (s) => Number(String(s || "").replace(/[^\d]/g, "")) || 0;
