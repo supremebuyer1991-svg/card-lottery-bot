@@ -373,6 +373,15 @@ def run(step="all", extractor=None, fetcher=None, out_dir=None, sources=None):
                     wl += [w_ for w_ in _kw if not (w_.get("jan") and w_["jan"] in _have)]
                 except Exception as e:
                     log(f"見張り（言葉）: スキップ {e}")
+                try:   # Amazon限定の特典つきなど、JANでは見つからない商品ページ（x_extra_asins）。速報の判定はもとの商品の買取価格・定価で
+                    _base = {w_.get("jan"): w_ for w_ in wl if w_.get("jan")}
+                    for e_ in s.get("x_extra_asins") or []:
+                        b_ = _base.get(str(e_.get("jan"))) or {}
+                        wl.append({"k": e_["asin"], "asin": e_["asin"], "jan": "", "n": str(e_.get("name") or b_.get("n") or "")[:40], "g": b_.get("g", True),
+                                   "rk": "", "tag": b_.get("tag", []), "tk": b_.get("tk", 0), "mx": b_.get("mx", 0), "hot": b_.get("hot", False),
+                                   "neg": b_.get("neg", False), "pm": b_.get("pm", ""), "pg": b_.get("pg", "")})
+                except Exception as e:
+                    log(f"見張り（Amazonの別ページ）: スキップ {e}")
                 _alw = {str(j_) for j_ in (s.get("x_always_post_jans") or [])}   # 条件に関係なく速報する商品（11/15 ユーザー「これだけ速報流して」）
                 for w_ in wl:
                     if w_.get("jan") in _alw:

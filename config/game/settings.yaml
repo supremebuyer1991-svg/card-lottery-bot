@@ -135,3 +135,9 @@ game_job_offset_sec: 90
 # 同じ商品の速報は6時間に1回まで（見張りの COOLDOWN）
 x_always_post_jans:
   - "4948872418249"   # PlayStation 5 デジタル・エディション ミッドナイト ブラック 日本語専用 CFI-2200B02S
+# JANでは見つからないAmazonの別の商品ページ（Amazon限定の特典つきなど）も見張る（11/16 ユーザー：ポケモンGO Plus+ のAmazon限定ありも見て）。
+# jan＝もとの商品のJAN（買取価格・定価・サイトのページはその商品のものを使う）
+x_extra_asins:
+  - {asin: B0CLYCCG1N, jan: "4521329368009", name: "Pokémon GO Plus +【Amazon.co.jp限定】マイクロファイバークロス同梱"}
+  - {asin: B0CNCNYYLL, jan: "4521329368009", name: "Pokémon GO Plus +＆カビゴンうでまくらクッション【Amazon限定】"}
+  - {asin: B0D1KF8Y82, jan: "4521329368009", name: "Pokémon GO Plus +＆カビゴンポケットティッシュマスコット【Amazon限定】"}
