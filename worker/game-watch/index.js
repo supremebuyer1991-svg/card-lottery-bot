@@ -318,7 +318,8 @@ export default {
       if (cur === "none") return Response.json({ ok: false, why: "いまは売り切れ（投稿しない）" });
       const text = compose(w, which, cur, url);
       if (u.searchParams.get("dry") === "1") return Response.json({ ok: true, dry: true, cur, text });
-      const tid = await tweet(env, text);
+      let tid;
+      try { tid = await tweet(env, text); } catch (e) { return Response.json({ ok: false, why: "Xへの投稿に失敗", err: String(e).slice(0, 300), text }); }
       st.posted = st.posted || {}; st.posted[id + cur] = Date.now();
       st.postlog = [{ t: new Date().toISOString(), id, jan, n: w.n, cur, url, pg: w.pg || "", tid, text, manual: true }, ...(st.postlog || [])].slice(0, 30);
       await env.STATE.put(which, JSON.stringify(st));
