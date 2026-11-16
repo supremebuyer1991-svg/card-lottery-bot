@@ -392,6 +392,24 @@ categories:
     kinds: [lottery, preorder, restock, first_come, release]
     enabled: true
 
+  - id: mellojoy   # 11/16 ユーザー「メロジョイはホビーやん」：ジャンルなしだった48商品をまとめる
+    group: hobby
+    name: Mellojoy（メロジョイ）の抽選・予約・再入荷と買取価格
+    short: メロジョイ
+    slug: mellojoy
+    aff_strict: true      # 楽天の商品名にこのジャンルの言葉が入っているものだけ当てはめる（別の商品のリンクを出さない）
+    hashtags: "#メロジョイ #Mellojoy"
+    hints: "Mellojoy|メロジョイ|MELLOWEEN"
+    strip_words: "Mellojoy|メロジョイ|ブラインドBOX|ぬいぐるみ"
+    aff_keywords: ["メロジョイ"]
+    color: "#e9a5c0"
+    kinds: [lottery, preorder, restock, first_come, release]
+    subgenres:   # カテゴリの中のジャンル分け。上から順に当てはめ、re の無いものは残り全部
+      - {name: 'ブラインドBOX', re: 'ブラインド'}
+      - {name: 'ハロウィン（MELLOWEEN）', re: 'MELLOWEEN'}
+      - {name: 'ぬいぐるみ・そのほか'}
+    enabled: true
+
   - id: bondrop
     group: hobby
     name: ボンボンドロップシール（ぷっくりシール）の抽選・予約・再入荷

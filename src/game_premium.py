@@ -949,7 +949,7 @@ SG_SLUG = {"本体": "hontai", "コントローラー": "controller", "ゲーム
            "RTX 5070": "rtx5070", "そのほかのPCパーツ": "other", "山崎": "yamazaki", "白州": "hakushu", "響": "hibiki", "そのほかのお酒": "other",
            "スターター": "starter", "デッキセット": "deck", "バトルエントリー・カスタマイズセット": "entry", "そのほか": "other",
            "Steam Deck": "steam-deck", "Steam Machine": "steam-machine", "Steam Frame（VR）": "steam-frame", "ROG Ally・Xbox Ally": "ally",
-           "そのほかの携帯ゲーミングPC": "other"}
+           "そのほかの携帯ゲーミングPC": "other", "ブラインドBOX": "blind-box", "ハロウィン（MELLOWEEN）": "melloween", "ぬいぐるみ・そのほか": "other"}
 
 
 def list_url(c, sg=None):
