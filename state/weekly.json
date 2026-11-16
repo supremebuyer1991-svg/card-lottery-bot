@@ -23545,7 +23545,7 @@
       "game": "pokemon",
       "store": "竜のしっぽ各店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-16T11:13:01.249586+09:00",
       "chain": null
@@ -23554,7 +23554,7 @@
       "game": "pokemon",
       "store": "竜のしっぽ各店",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-16T11:13:01.249603+09:00",
       "chain": null
@@ -23599,7 +23599,7 @@
       "game": "pokemon",
       "store": "きくざわ書店ナッピィモール店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "石川県",
       "found_at": "2026-11-16T11:13:01.249673+09:00",
       "chain": null
@@ -23608,8 +23608,8 @@
       "game": "pokemon",
       "store": "トレカチャンピオン大須店",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "愛知県",
       "found_at": "2026-11-16T11:13:01.249686+09:00",
       "chain": null
     },
@@ -23654,7 +23654,7 @@
       "store": "Ganryu入間店（WonderGOO入間店内）",
       "series": "30th CELEBRATION",
       "channel": "store",
-      "area": null,
+      "area": "埼玉県",
       "found_at": "2026-11-16T11:13:01.249747+09:00",
       "chain": null
     },
@@ -23663,7 +23663,7 @@
       "store": "Ganryu入間店（WonderGOO入間店内）",
       "series": null,
       "channel": "store",
-      "area": null,
+      "area": "埼玉県",
       "found_at": "2026-11-16T11:13:01.249760+09:00",
       "chain": null
     },
@@ -23672,7 +23672,7 @@
       "store": "ブックオフプラス仙台南バイパス店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "宮城県",
       "found_at": "2026-11-16T11:13:01.249772+09:00",
       "chain": "bookoff"
     },
@@ -23744,7 +23744,7 @@
       "store": "ゆうぷら 二本松店",
       "series": "ハドウシーカー",
       "channel": "store",
-      "area": null,
+      "area": "福島県",
       "found_at": "2026-11-16T11:13:01.249874+09:00",
       "chain": null
     },
@@ -23789,7 +23789,7 @@
       "store": "Ganryu入間店（WonderGOO入間店内）",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "埼玉県",
       "found_at": "2026-11-16T11:13:01.802980+09:00",
       "chain": null
     },
@@ -24035,6 +24035,150 @@
       "area": "愛知県",
       "found_at": "2026-11-16T11:13:01.871494+09:00",
       "chain": null
+    },
+    "47cd956b6ca0945e": {
+      "game": "pokemon",
+      "store": "ホビーオフ",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-16T12:04:54.335762+09:00",
+      "chain": "hobbyoff"
+    },
+    "fb3736e12698d016": {
+      "game": "pokemon",
+      "store": "SuperKaBoS敦賀店（CARDBOX）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.120909+09:00",
+      "chain": null
+    },
+    "e228dcf02018cc08": {
+      "game": "pokemon",
+      "store": "SuperKaBoS敦賀店（CARDBOX）",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.120936+09:00",
+      "chain": null
+    },
+    "7a080b19cd4572e3": {
+      "game": "pokemon",
+      "store": "SuperKaBoS敦賀店（CARDBOX）",
+      "series": "スターターセットex",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.120953+09:00",
+      "chain": null
+    },
+    "340256d1496e04fd": {
+      "game": "pokemon",
+      "store": "SuperKaBoS敦賀店（CARDBOX）",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.120970+09:00",
+      "chain": null
+    },
+    "2b3f6e8521efc173": {
+      "game": "pokemon",
+      "store": "浪漫遊 金沢本店",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": "石川県",
+      "found_at": "2026-11-16T12:04:55.120985+09:00",
+      "chain": null
+    },
+    "3edb53e8c43b0ab9": {
+      "game": "pokemon",
+      "store": "SuperKaBoS+GEO武生店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.121016+09:00",
+      "chain": null
+    },
+    "d67172d37ff7626f": {
+      "game": "pokemon",
+      "store": "SuperKaBoS+GEO武生店",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "福井県",
+      "found_at": "2026-11-16T12:04:55.121038+09:00",
+      "chain": null
+    },
+    "8d80f120353b2f2e": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 戸塚",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-16T12:04:55.121052+09:00",
+      "chain": "tsutaya"
+    },
+    "3e6dc812b0bfdc3d": {
+      "game": "onepiece",
+      "store": "文教堂浦安西友店【トレカ】",
+      "series": null,
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-16T12:04:55.806139+09:00",
+      "chain": null
+    },
+    "7e1a7ff2ad088c24": {
+      "game": "onepiece",
+      "store": "ブックオフ那覇小禄店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "沖縄県",
+      "found_at": "2026-11-16T12:04:55.806175+09:00",
+      "chain": "bookoff"
+    },
+    "aef5500e08cab7a8": {
+      "game": "onepiece",
+      "store": "メディアポリス富士中島店（ブックオフ富士中島店）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-16T12:04:55.806188+09:00",
+      "chain": null
+    },
+    "d47f7be2e6b3edf8": {
+      "game": "onepiece",
+      "store": "ブックオフJR蒲田駅東口店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-16T12:04:55.806203+09:00",
+      "chain": "bookoff"
+    },
+    "4e0353b7f6c2b524": {
+      "game": "onepiece",
+      "store": "ブックオフ和歌山国体道路店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "和歌山県",
+      "found_at": "2026-11-16T12:04:55.806223+09:00",
+      "chain": "bookoff"
+    },
+    "a3a959648625cbc6": {
+      "game": "onepiece",
+      "store": "カードラボ宇都宮店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-16T12:04:55.806238+09:00",
+      "chain": "cardlabo"
+    },
+    "b44b6de00d1989ff": {
+      "game": "onepiece",
+      "store": "駿河屋 小倉あるあるCity店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-16T12:04:55.806254+09:00",
+      "chain": "surugaya"
     }
   }
 }

@@ -748,7 +748,8 @@
     "name": "HobbyMarketさとう店",
     "last": "2026-11-16",
     "game": "onepiece",
-    "area": "愛知県"
+    "area": "愛知県",
+    "address": "愛知県豊橋市佐藤3-15-8"
   },
   "store/cardmasterd-c-08e17/": {
     "name": "CARDMASTER D.C.（カードマスターDC）",
@@ -919,12 +920,12 @@
   },
   "store/bookoff-17739/": {
     "name": "ブックオフ那覇小禄店",
-    "last": "2026-10-28",
+    "last": "2026-11-16",
     "game": "onepiece",
     "area": "沖縄県"
   },
   "store/japantcgcenter-ri-1b441/": {
-    "name": "Japan TCG Center那覇沖映通り店",
+    "name": "Japan TCG Center 那覇沖映通り店",
     "last": "2026-11-16",
     "game": "onepiece",
     "area": "沖縄県"
@@ -1308,7 +1309,7 @@
   },
   "store/bookoff-f98a4/": {
     "name": "ブックオフ和歌山国体道路店",
-    "last": "2026-10-29",
+    "last": "2026-11-16",
     "game": "onepiece",
     "area": "和歌山県"
   },
@@ -2261,7 +2262,7 @@
   },
   "store/cardlabo-1c57d/": {
     "name": "カードラボ宇都宮店",
-    "last": "2026-11-15",
+    "last": "2026-11-16",
     "game": "pokemon",
     "keep": true,
     "area": "栃木県"
@@ -2848,7 +2849,7 @@
   },
   "store/bookoff-2ec58/": {
     "name": "ブックオフJR蒲田駅東口店",
-    "last": "2026-11-05",
+    "last": "2026-11-16",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -3143,7 +3144,7 @@
   },
   "store/hobbyoff-c72a2/": {
     "name": "ホビーオフ各店（甲府向町店・甲府国母店）",
-    "last": "2026-11-15",
+    "last": "2026-11-16",
     "game": "pokemon",
     "keep": true
   },
@@ -4197,7 +4198,7 @@
   },
   "store/shop-1f5da/": {
     "name": "文教堂浦安西友店",
-    "last": "2026-11-15",
+    "last": "2026-11-16",
     "game": "pokemon",
     "area": "千葉県",
     "address": "千葉県千葉県浦安市北栄1-14-1"
@@ -4310,7 +4311,7 @@
     "name": "きくざわ書店 ナッピィモール店",
     "last": "2026-11-16",
     "game": "pokemon",
-    "area": "岩手県"
+    "area": "石川県"
   },
   "store/biggubantoreka-209de/": {
     "name": "ビッグバン トレカ館 帯広柏林台店",
@@ -4537,7 +4538,7 @@
   },
   "store/superkabos-geo-bf112/": {
     "name": "SuperKaBoS+GEO武生店",
-    "last": "2026-11-15",
+    "last": "2026-11-16",
     "game": "pokemon",
     "area": "福井県"
   },
@@ -6730,7 +6731,7 @@
   },
   "store/superkabos-19aca/": {
     "name": "SuperKaBoS敦賀店（CARDBOX）",
-    "last": "2026-11-15",
+    "last": "2026-11-16",
     "game": "pokemon",
     "area": "福井県"
   },
@@ -7929,18 +7930,14 @@
   "store/ganryu-b4ef4/": {
     "name": "Ganryu入間店（WonderGOO入間店内）",
     "last": "2026-11-16",
-    "game": "pokemon"
-  },
-  "store/shop-c1485/": {
-    "name": "文教堂浦安西友店【トレカ】",
-    "last": "2026-11-16",
     "game": "pokemon",
-    "area": "千葉県"
+    "area": "埼玉県"
   },
   "store/yuupura-63148/": {
     "name": "ゆうぷら 二本松店",
     "last": "2026-11-16",
-    "game": "pokemon"
+    "game": "pokemon",
+    "area": "福島県"
   },
   "store/machikyara-moritaun-75823/": {
     "name": "まちキャラ昭島モリタウン店",
@@ -7952,5 +7949,22 @@
     "name": "アピタ・ピアゴ（majica対象店舗）",
     "last": "2026-11-16",
     "game": "onepiece"
+  },
+  "store/shop-a051a/": {
+    "name": "浪漫遊 金沢本店",
+    "last": "2026-11-16",
+    "game": "pokemon"
+  },
+  "store/mediaporisu-205f1/": {
+    "name": "メディアポリス富士中島店（ブックオフ富士中島店）",
+    "last": "2026-11-16",
+    "game": "onepiece",
+    "area": "静岡県"
+  },
+  "store/surugaya-f6e32/": {
+    "name": "駿河屋 小倉あるあるCity店",
+    "last": "2026-11-16",
+    "game": "onepiece",
+    "area": "福岡県"
   }
 }

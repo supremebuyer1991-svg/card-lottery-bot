@@ -97,7 +97,15 @@
         "az": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DPlayStation%25205%2520%25E3%2583%2587%25E3%2582%25B8%25E3%2582%25BF%25E3%2583%25AB%2520%25E3%2582%25A8%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%25B3",
         "mc": "https://jp.mercari.com/search?keyword=PlayStation%205%20%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%20%E3%82%A8%E3%83%87%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3&status=on_sale&afid=1350793153"
-      }
+      },
+      "avail": [
+        {
+          "shop": "Amazon",
+          "s": "pre",
+          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+          "p": 55000
+        }
+      ]
     },
     "path": "l/ps5-midnight-black-release-1119/",
     "end": "2026-11-19T23:59+09:00",
@@ -4852,6 +4860,46 @@
     },
     "path": "l/tc30fd8ef1/",
     "end": "2026-11-22T23:00:00+09:00",
+    "seen": "2026-11-16",
+    "ended": false
+  },
+  "248365b0483e0e36": {
+    "snap": {
+      "key": "248365b0483e0e36",
+      "game": "bondrop",
+      "store": "ロフトネットストア",
+      "product": "ボンボンドロップシール各種（ちいかわ・サンリオ・ナルミヤ・しずくちゃん 全22種）",
+      "series": "ボンボンドロップシール",
+      "start": "2026-11-16T12:00:00+09:00",
+      "end": "2026-11-19T23:59:00+09:00",
+      "announce": "2026-11-25T12:00:00+09:00",
+      "method": "Web",
+      "conditions": "会員登録が必要（ブラウザから応募）。商品ごとに1人1回まで。当選後は購入可能期間内に購入手続き（クレジットカード決済）が必要。",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://www.loft.co.jp/store/r/rlo000011/",
+      "channel": "online",
+      "member": "account",
+      "spath": "bonbon-drop/bonbondoroppushiru-dbf81/",
+      "found_at": "2026-11-16T12:12:15.840751+09:00",
+      "kind": "lottery",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB%25E5%2590%2584%25E7%25A8%25AE",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB%E5%90%84%E7%A8%AE&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "抽選参加には会員登録が必要（11/9よりロフト会員へ移行、7iD利用者は初回のみ引継ぎが必要）",
+        "応募はロフトアプリではなくブラウザから行う",
+        "抽選応募は商品ごとにお一人様1回まで",
+        "当選後は購入可能期間内に購入手続きの完了が必要",
+        "当選発表は11月25日(水) 12時ごろ",
+        "当選購入時の支払いはクレジットカード決済"
+      ],
+      "facts_src": "https://nyuka-now.com/archives/156722"
+    },
+    "path": "l/248365b048/",
+    "end": "2026-11-19T23:59:00+09:00",
     "seen": "2026-11-16",
     "ended": false
   }
