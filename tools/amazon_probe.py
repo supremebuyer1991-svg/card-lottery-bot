@@ -17,7 +17,7 @@ if tok:
     h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json", "x-marketplace": "www.amazon.co.jp"}
     # 11/14：写真（images）が取れるか・リソース名の確認。キーワードはソニー α7 IV のJAN
     for res in (["itemInfo.title", "itemInfo.externalIds", "images.primary.medium", "images.primary.large"], ["itemInfo.title", "images.primary.medium"], ["itemInfo.title"]):
-        body = {"keywords": "Pokémon GO Plus + Amazon.co.jp限定", "searchIndex": "All", "marketplace": "www.amazon.co.jp",
+        body = {"keywords": "ポケモン ゴー プラスプラス Amazon.co.jp限定 特典", "searchIndex": "All", "marketplace": "www.amazon.co.jp",
                 "partnerTag": "st9994ststst-22", "itemCount": 10, "resources": res}
         r = requests.post("https://creatorsapi.amazon/catalog/v1/searchItems", headers=h, json=body, timeout=20)
         out.setdefault("search", []).append({"res": res, "status": r.status_code, "body": r.text[:6000]})
