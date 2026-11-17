@@ -24238,8 +24238,8 @@
       "game": "pokemon",
       "store": "Japan TCG Center キテミテマツド店",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "千葉県",
       "found_at": "2026-11-17T07:55:34.368193+09:00",
       "chain": null
     },
@@ -24355,7 +24355,7 @@
       "game": "pokemon",
       "store": "駿河屋 高槻店トレカ館",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "大阪府",
       "found_at": "2026-11-17T07:55:34.368614+09:00",
       "chain": "surugaya"
@@ -24382,7 +24382,7 @@
       "game": "pokemon",
       "store": "バトロコミニ帯広WOW店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "北海道",
       "found_at": "2026-11-17T07:55:34.368693+09:00",
       "chain": "batoroco"
@@ -24400,7 +24400,7 @@
       "game": "pokemon",
       "store": "イエローサブマリン名古屋GAMESHOP＠大須",
       "series": "ストームエメラルダ",
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "found_at": "2026-11-17T07:55:34.368748+09:00",
       "chain": "yellowsubmarine"
@@ -24409,7 +24409,7 @@
       "game": "pokemon",
       "store": "イエローサブマリン名古屋GAMESHOP＠大須",
       "series": "30周年御三家カードセット",
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "found_at": "2026-11-17T07:55:34.368777+09:00",
       "chain": "yellowsubmarine"
@@ -24463,7 +24463,7 @@
       "game": "pokemon",
       "store": "ホビーオフ各店（八王子大和田店・相模原下九沢店・甲府国母店・愛甲石田店・藤沢店・高座渋谷店・高麗川店・甲府向町店・羽村店）",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-17T07:55:34.368935+09:00",
       "chain": "hobbyoff"
@@ -24499,7 +24499,7 @@
       "game": "pokemon",
       "store": "バトスタ松本店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "長野県",
       "found_at": "2026-11-17T07:55:34.369046+09:00",
       "chain": null
@@ -24572,7 +24572,7 @@
       "store": "TSUTAYA大桑店",
       "series": "神の支配",
       "channel": "store",
-      "area": null,
+      "area": "岐阜県",
       "found_at": "2026-11-17T07:55:35.412604+09:00",
       "chain": "tsutaya"
     },
@@ -24589,8 +24589,8 @@
       "game": "onepiece",
       "store": "MINTGAMES広島店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "広島県",
       "found_at": "2026-11-17T07:55:35.412672+09:00",
       "chain": null
     },
@@ -24598,7 +24598,7 @@
       "game": "onepiece",
       "store": "トーナメントセンターバトロコ 弘前駅前",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "青森県",
       "found_at": "2026-11-17T07:55:35.412703+09:00",
       "chain": "batoroco"
@@ -24818,6 +24818,78 @@
       "area": "大阪府",
       "found_at": "2026-11-17T07:57:53.073626+09:00",
       "chain": "cardbox"
+    },
+    "6a329ca01bdafc57": {
+      "game": "pokemon",
+      "store": "ヤマト屋書店TSUTAYAあけぼの店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "宮城県",
+      "found_at": "2026-11-18T04:13:57.195104+09:00",
+      "chain": "tsutaya"
+    },
+    "17047c41cec0d7ec": {
+      "game": "pokemon",
+      "store": "NカードLOOPなんば店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-18T04:13:57.195151+09:00",
+      "chain": null
+    },
+    "525440d824de7c5e": {
+      "game": "pokemon",
+      "store": "TSUTAYA北習志野駅前店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-18T04:13:57.195206+09:00",
+      "chain": "tsutaya"
+    },
+    "b5e117e91f3271b5": {
+      "game": "pokemon",
+      "store": "TSUTAYA北習志野駅前店",
+      "series": "インフェルノX",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-18T04:13:57.195224+09:00",
+      "chain": "tsutaya"
+    },
+    "a212ca5765a38778": {
+      "game": "pokemon",
+      "store": "TSUTAYA北習志野駅前店",
+      "series": "メガドリームex",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-18T04:13:57.195243+09:00",
+      "chain": "tsutaya"
+    },
+    "9f35c2d44e33ad87": {
+      "game": "onepiece",
+      "store": "バトロコ立川駅前",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-18T04:14:35.913674+09:00",
+      "chain": "batoroco"
+    },
+    "f4cf650d40bf8914": {
+      "game": "dragonball",
+      "store": "DMM通販",
+      "series": "DUAL EVOLUTION",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-18T04:14:49.405127+09:00",
+      "chain": "dmm"
+    },
+    "e4d0fcd51e06cdb9": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール座間店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "神奈川県",
+      "found_at": "2026-11-18T04:15:03.134270+09:00",
+      "chain": "aeon"
     }
   }
 }
