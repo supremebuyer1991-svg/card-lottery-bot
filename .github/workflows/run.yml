@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HAS_CF: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
-    timeout-minutes: 20
+    timeout-minutes: 30  # 11/17：集める処理が伸びて20分で打ち切られ、データの保存（save state）まで行かない回が続いた
     steps:
       - name: remember the start time (keeps each run under 5 billed minutes)
         run: echo "JOB_T0=$(date +%s)" >> "$GITHUB_ENV"
