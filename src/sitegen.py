@@ -3847,7 +3847,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         'fetch(u,{credentials:"omit"}).then(function(r){if(!r.ok||r.url.indexOf("404")>-1)return up(i-1,s[i-1]);'
         'return r.text().then(function(h){if(miss&&miss.length>3){var re=/href="(\\/[^"#?]+)"/g,m,best=null;'
         'while((m=re.exec(h))){var l=m[1],t=l.replace(/\\/+$/,"").split("/").pop();'
-        'if(l.indexOf(u)===0&&t.length>3&&(t.indexOf(miss)>-1||miss.indexOf(t)>-1)){best=l;break}}if(best)return go(best)}go(u)})})'
+        'var nt=t.replace(/[^a-z0-9]/g,""),nm=miss.replace(/[^a-z0-9]/g,"");if(l.indexOf(u)===0&&nt.length>3&&nm.length>3&&(nt.indexOf(nm)>-1||nm.indexOf(nt)>-1)){best=l;break}}if(best)return go(best)}go(u)})})'
         '.catch(function(){go("/")})}up(s.length-1,s[s.length-1])})();</script></body></html>', encoding="utf-8")
 
     # 共通の画像（OGP・アイコン）と IndexNow の鍵ファイル
@@ -3920,12 +3920,75 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                     olds[f"/{GAME_SLUG[g_]}/{v_['slug']}/"] = "/" + series_path(g_, x_)
         if not (out / "chain" / "index.html").exists():
             olds["/chain/"] = "/store/"  # チェーン一覧は店舗一覧にある（11/8：手打ちのアクセスが404だった）
+        # 11/17：GA4で「ページが見つかりません」が28日で405回。ほとんどがAIアシスタントや手打ちの「ありそうなURL」
+        #   （/pokemon/・/pref/osaka/・/onepiece/kamino-shihai/ など）。よくある形を正しいページへ301で送る
+        guess = {}
+        _al = {
+            "/pokemon/": "/pokeka/", "/pokeca/": "/pokeka/", "/pokecard/": "/pokeka/", "/pokemon": "/pokeka/",
+            "/dragonball/": "/fusionworld/", "/fusion/": "/fusionworld/", "/one-piece/": "/onepiece/", "/onepiece-card/": "/onepiece/",
+            "/net-chusen/": "/pokeka/online/", "/net-lottery/": "/pokeka/online/", "/online/": "/pokeka/online/", "/pokemon-net/": "/pokeka/online/",
+            "/today/": "/pokeka/today/", "/today/pokemon/": "/pokeka/today/", "/today/onepiece/": "/onepiece/today/",
+            "/tomorrow/": "/", "/saihan/": "/", "/saihan": "/", "/search": "/", "/search/": "/", "/kekka": "/kekka/",
+            "/pokeka/kekka/": "/kekka/", "/onepiece/kekka/": "/kekka/", "/pokeka/store/": "/store/", "/onepiece/store/": "/store/",
+            "/pokeka/saihan/": "/pokeka/", "/pokeka/tomorrow/": "/pokeka/", "/pokeka/area": "/pokeka/area/",
+            "/pokemoncenter-online/": "/chain/pokemoncenter/", "/chain/pokemon-center/": "/chain/pokemoncenter/",
+            "/chain/yamada-denki": "/chain/yamada/", "/chain/yamada-denki/": "/chain/yamada/", "/chain/yamada-denki/pokeka/": "/chain/yamada/",
+            "/chain/bic-camera/": "/chain/biccamera/", "/chain/bic-camera/pokeka/": "/chain/biccamera/pokeka/",
+            "/chain/yellow-submarine/": "/chain/yellowsubmarine/", "/chain/yellow-submarine/pokeka/": "/chain/yellowsubmarine/pokeka/",
+            "/biccamera/": "/chain/biccamera/", "/aeon/": "/chain/aeon/", "/tsutaya/": "/chain/tsutaya/", "/geo/": "/chain/geo/",
+            "/restock/brightness-of-hope/": "/fusionworld/brightness-of-hope/", "/dragonball/fb12-reach-the-god": "/fusionworld/reach-the-god/",
+        }
+        _ser = {  # よく打たれる弾の別の書き方 → 本当の弾ページ
+            "pokeka/hadou-seeker/": ["/pokeka/hadousika/", "/pokeka/hado-seeker/", "/pokeka/hadowseeker/", "/pokeka/hadou", "/pokeka/hadou/",
+                                     "/pokeka/hadou-seeker-box-lottery/", "/hadouseeker/", "/hadou-seeker/", "/card/hadou-seeker/", "/pokeca/hadou-seeker",
+                                     "/pokeca/hadou-seeker/", "/pokeca/hadouseeker/", "/pokemon/hadousika/", "/pokemon/hadouseeker", "/pokemon/hadouseeker/",
+                                     "/pokemon/hadou-seeker/", "/chusen/pk-hadou-seeker/", "/chain/pokeka/hadou-seeker/"],
+            "pokeka/30th-celebration/": ["/pokeka/30th/", "/pokeka/30th-celebration-box/", "/pokeka/30th-celebration-box-lottery/", "/30th-celebration-box-lottery/",
+                                         "/30th-celebration/", "/30th/", "/pokeka/pokemon-30th-celebration-box/", "/product/30th-celebration", "/products/30th-pack/",
+                                         "/pokemon/30th-celebration/", "/edion-30th-celebration/", "/pokeka/30th-pack/"],
+            "pokeka/storm-emeralda/": ["/pokeka/storm-emerald/", "/products/storm-emeralda/", "/pokemon/storm-emeralda/"],
+            "pokeka/special-deck-set-mega/": ["/pokeka/special-deck-mega/", "/pokecard/special-deckset-mega/", "/pokeka/special-deck-set-mega-3/",
+                                              "/pokemon/special-deck-set-mega/"],
+            "pokeka/30th-futuristic-box/": ["/pokeka/futuristic-box/"],
+            "onepiece/op18-kami-no-shihai/": ["/op18/", "/op18", "/onepiece/op18/", "/onepiece/op-18/", "/onepiece/op-18-kami-no-shihai/", "/onepiece/kamino-shihai/",
+                                              "/onepiece/kaminoshihai/", "/onepiece/kami-no-shihai/", "/onepiece-kaminoshihai/", "/op-18/"],
+            "onepiece/eb05-heroines-edition-vol2/": ["/onepiece/eb05-heroines/", "/onepiece/eb-05/", "/onepiece/eb05/", "/onepiece/heroines-edition-vol2/",
+                                                     "/onepiece/heroines2/", "/chusen/onepiece/eb05"],
+            "onepiece/heroines-precious-box/": ["/onepiece/op-heroines-precious-box", "/onepiece/op-heroines-precious-box/", "/onepiece/one-piece-heroines-precious-box/"],
+            "onepiece/op17-sekai-saikyo-no-senshi/": ["/onepiece/op17-sekaisaikyounosenshi/", "/onepiece/op17/"],
+            "onepiece/op13-uketsugareru-ishi/": ["/onepiece/op13/"],
+        }
+        for tgt_, srcs_ in _ser.items():
+            for s_ in srcs_:
+                _al[s_] = "/" + tgt_
+        for pj_, pr_ in PREF.items():
+            for pre_ in ("", "/pref", "/prefecture", "/prefectures", "/region", "/area", "/a", "/pokemon/area", "/pokeca/area", "/pokemon"):
+                _al[f"{pre_}/{pr_}/"] = f"/pokeka/area/{pr_}/"
+            _al[f"/pokeka/{pr_}/"] = f"/pokeka/area/{pr_}/"
+            for pre_ in ("/onepiece", "/prefecture/" + pr_, "/area/" + pr_, ""):
+                k_ = f"{pre_}/{pr_}/" if pre_ in ("/onepiece",) else (f"{pre_}/onepiece/" if pre_ else f"/{pr_}/onepiece/")
+                _al[k_] = f"/onepiece/area/{pr_}/"
+            _al[f"/{pr_}/pokeka/"] = _al[f"/{pr_}/pokemon/"] = _al[f"/prefecture/{pr_}/pokemon/"] = f"/pokeka/area/{pr_}/"
+            for pre_ in ("/dragonball/area", "/fusion/area"):
+                _al[f"{pre_}/{pr_}/"] = f"/fusionworld/area/{pr_}/" if (out / "fusionworld" / "area" / pr_ / "index.html").exists() else "/fusionworld/"
+        for o_, n_ in _al.items():
+            src_ = out / o_.strip("/") / "index.html"
+            if o_ not in olds and not src_.exists() and not (out / o_.strip("/")).is_file():
+                guess[o_] = n_
+        olds.update(guess)
         # 転送先のページが無い行は書かない（11/8：ワンピの弾がポケカ側の別名に入っていた3行など）
         olds = {o: n for o, n in olds.items() if n == "/" or (out / n.strip("/") / "index.html").exists()}
         if len(olds) > 1900:
             print(f"注意：転送（_redirects）が{len(olds)}行。Cloudflare Pages の上限2,000行に近い")
         # 「/」なしの版は書かない（前のアドレスはいつも「/」付きで公開していた）
-        (out / "_redirects").write_text("".join(f"{o} {n} 301\n" for o, n in sorted(olds.items())), encoding="utf-8")
+        dyn = (  # 11/17：上に当てはまらない残り（下の行ほど広い。Cloudflare Pages は上から最初に合った行を使う）
+            "/yugioh / 302\n/yugioh/ / 302\n/yugioh/* / 302\n"          # 遊戯王は扱っていない（ほかのトレカの一覧へ。恒久ではないので302）
+            "/duema/* / 302\n"
+            "/pokemon/* /pokeka/:splat 301\n"
+            "/pokeca/* /pokeka/:splat 301\n"
+            "/dragonball/* /fusionworld/:splat 301\n"
+        )
+        (out / "_redirects").write_text("".join(f"{o} {n} 301\n" for o, n in sorted(olds.items())) + dyn, encoding="utf-8")
 
     if sample is None and site:  # 海外向けページ（英語・繁体字・韓国語）11/7
         import intl
