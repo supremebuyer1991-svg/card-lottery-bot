@@ -3908,6 +3908,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
         # ゲームを取り違えて一時公開していた弾ページ（11/13 Search Console の404）
         olds["/onepiece/brightness-of-hope/"] = "/fusionworld/brightness-of-hope/"
+        # 11/18：海外向けページの弾アドレス（英語名が未登録で記号8けただった2つ）を英語名のアドレスに変えたので転送
+        import intl as _intl
+        for g_, x_, h_ in (("pokemon", "スタートデッキ100 バトルコレクション", "pokemon-5c71830a"), ("onepiece", "スタートデッキEX ルフィ&エース", "one-piece-245f3f8a")):
+            for L_ in ("en", "zh-tw", "ko"):
+                olds[f"/{L_}/sets/{h_}/"] = f"/{L_}/sets/{_intl.set_slug(g_, x_)}/"
         # 11/14：検索でクリックがあったのに404になっていた前のアドレス（10/30より後に見つかったお店で、上の自動転送から外れていた）
         olds["/store/443d9a38/"] = "/" + store_path("おもちゃのペリカン各店")
         olds["/store/2c76d793/"] = "/store/furuichi-2c76d/"

@@ -35,6 +35,7 @@ SETS = {
         "アビスアイ": ("M5", "Abyss Eye", "Pitch Black", "深淵之瞳", "어비스아이"),
         "ニンジャスピナー": ("M4", "Ninja Spinner", "Chaos Rising", "忍者飛旋", "닌자스피너"),
         "ムニキスゼロ": ("M3", "Nihil Zero", "Perfect Order", "虛無歸零", "니힐제로"),
+        "スタートデッキ100 バトルコレクション": ("", "Start Deck 100 Battle Collection", "Ascended Heroes", "初階牌組100 對戰收藏", "스타트 덱 100 배틀컬렉션"),  # 11/18 Bulbapedia で確認（英語版は単独発売なし、Ascended Heroes に収録）
         "MEGAドリームex": ("M2a", "MEGA Dream ex", "Ascended Heroes", "超級進化夢想ex", "MEGA 드림 ex"),
         "インフェルノX": ("M2", "Inferno X", "Phantasmal Flames", "烈獄狂火X", "인페르노X"),
         "メガブレイブ": ("M1L", "Mega Brave", "Mega Evolution", "超級勇氣", "메가브레이브"),
@@ -110,6 +111,7 @@ SETS = {
         "HEROINES PRECIOUS BOX": ("", "HEROINES PRECIOUS BOX", "", "", ""),
         "世界最強の戦士": ("OP-17", "The World's Strongest Warriors", "The World's Strongest Warriors", "世界最強的戰士", ""),
         "決戦の刻": ("OP-16", "The Time of Battle", "The Time of Battle", "決戰時刻", ""),
+        "スタートデッキEX ルフィ&エース": ("ST-30", "Starter Deck EX -Luffy & Ace-", "Starter Deck EX -Luffy & Ace-", "", ""),  # 11/18 英語版公式（en.onepiece-cardgame.com/products/st30.html）で確認
         "神の島の冒険": ("OP-15", "Adventure on Kami's Island", "Adventure on Kami's Island", "神之島的冒險", "신의 섬 모험"),
         "蒼海の七傑": ("OP-14", "The Azure Sea's Seven", "The Azure Sea's Seven", "蒼海的七傑", "창해의 칠걸"),
         "受け継がれる意志": ("OP-13", "Carrying On His Will", "Carrying On His Will", "繼承的意志", "계승되는 의지"),
@@ -143,6 +145,7 @@ LOCAL_REL = {
         "アビスアイ": {"en": "2026-07-17", "tw": "2026-06-05"},
         "ニンジャスピナー": {"en": "2026-05-22", "tw": "2026-03-27", "kr": "2026-05-01"},
         "ムニキスゼロ": {"en": "2026-03-27", "tw": "2026-02-06", "kr": "2026-03-13"},
+        "スタートデッキ100 バトルコレクション": {"en": "2026-01-30", "tw": "2026-01-09", "kr": "2026-02-13"},  # 11/18 Bulbapedia で確認（英語版は Ascended Heroes の発売日）
         "MEGAドリームex": {"en": "2026-01-30", "tw": "2025-12-05", "kr": "2026-01-23"},
         "インフェルノX": {"en": "2025-11-14", "tw": "2025-10-09", "kr": "2025-11-28"},
         "テラスタルフェスex": {"en": "2025-01-17", "tw": "2024-12-20", "kr": "2025-01-22"},
@@ -159,6 +162,7 @@ LOCAL_REL = {
         "ヒロインズエディション vol.2": {"en": "2026-10-30", "tw": "2026-10-31"},
         "世界最強の戦士": {"en": "2026-08-28", "tw": "2026-08-22"},
         "決戦の刻": {"en": "2026-06-12", "tw": "2026-05-30"},
+        "スタートデッキEX ルフィ&エース": {"en": "2026-06-12"},  # 11/18 英語版公式で確認
         "神の島の冒険": {"en": "2026-04-03", "tw": "2026-02-28", "kr": "2026-11-27"},  # 11/12 韓国公式で確認（韓国版は OPK-15）。英語版は OP15-EB04
         "EGGHEAD CRISIS": {"tw": "2026-01-31", "kr": "2026-10-23"},  # 英語版は単独発売なし（OP14-EB04・OP15-EB04 に収録）
         "蒼海の七傑": {"en": "2026-01-16", "tw": "2025-11-22", "kr": "2026-08-21"},  # 英語版は OP14-EB04
