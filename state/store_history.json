@@ -5585,6 +5585,17 @@
   "store/reddohausu-f0d93/": {
     "name": "レッドハウス（青森県八戸市）",
     "items": {
+      "6c951e3d54d489d3": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "1f9f1daf23910fcb": {
         "p": "HEROINES PRECIOUS BOX",
         "g": "onepiece",
@@ -8032,6 +8043,17 @@
   "store/batoroco-9c3b4/": {
     "name": "TC バトロコ旭川駅前",
     "items": {
+      "1ac8145a139f4c49": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "0ad0af536ed3ed92": {
         "p": "神の支配",
         "g": "onepiece",
@@ -11061,6 +11083,17 @@
   "store/tsutaya-cb3b7/": {
     "name": "TSUTAYA神明店",
     "items": {
+      "17e1644c3d1e85b6": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-20T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "d4a66a98d375070d": {
         "p": "神の支配",
         "g": "onepiece",
@@ -11323,7 +11356,7 @@
         "g": "onepiece",
         "e": "2026-11-19T17:00",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -11403,7 +11436,7 @@
         "g": "onepiece",
         "e": "2026-11-19T21:00",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": true,
         "mem": "none",
@@ -19308,6 +19341,17 @@
   "store/batoroco-aa580/": {
     "name": "TCバトロコ八千代台駅前",
     "items": {
+      "fd32e37b96b64538": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-20T17:00",
+        "f": "2026-11-19",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "f132e033db28c6b5": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -20716,6 +20760,17 @@
   "store/cardlabo-8020f/": {
     "name": "カードラボ天王寺店",
     "items": {
+      "64fbcc99642b6997": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-11-19T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "3f343628754453f9": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -30635,7 +30690,7 @@
         "g": "pokemon",
         "e": "2026-11-23T22:00",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": false,
         "mem": "account",
@@ -37892,7 +37947,7 @@
         "g": "pokemon",
         "e": "2026-11-23T17:00",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "SNS",
         "id": false,
         "mem": "none",
@@ -38450,6 +38505,18 @@
         "f": "2026-11-18",
         "c": "store",
         "m": "店頭",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-11-24"
+      },
+      "4db60d75425eb9b8": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-23T23:59",
+        "f": "2026-11-19",
+        "c": "online",
+        "m": "Web",
         "id": true,
         "mem": "account",
         "rq": [],
@@ -44332,6 +44399,17 @@
   "store/sumairukingu-470c9/": {
     "name": "すまいるキング安城店",
     "items": {
+      "3816041baa274f66": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22T23:59",
+        "f": "2026-11-19",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "a17f3c88b702996e": {
         "p": "神の支配",
         "g": "onepiece",
@@ -46862,7 +46940,7 @@
         "g": "pokemon",
         "e": "2026-11-23T23:59",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "none",
@@ -46878,7 +46956,7 @@
         "g": "pokemon",
         "e": "2026-11-23T23:59",
         "f": "2026-11-18",
-        "c": "online",
+        "c": "store",
         "m": "Web",
         "id": true,
         "mem": "account",

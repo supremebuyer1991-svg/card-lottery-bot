@@ -25291,8 +25291,8 @@
       "game": "pokemon",
       "store": "ブックオフ イトーヨーカドー溝ノ口店",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "神奈川県",
       "found_at": "2026-11-18T12:43:59.173206+09:00",
       "chain": "bookoff"
     },
@@ -25300,7 +25300,7 @@
       "game": "pokemon",
       "store": "草叢BOOKS 新守山店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "愛知県",
       "found_at": "2026-11-18T12:43:59.173232+09:00",
       "chain": null
@@ -25336,7 +25336,7 @@
       "game": "pokemon",
       "store": "なんでもリサイクルビッグバン中標津店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "北海道",
       "found_at": "2026-11-18T12:43:59.173359+09:00",
       "chain": null
@@ -25345,7 +25345,7 @@
       "game": "pokemon",
       "store": "BIGMAGIC池袋店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-18T12:43:59.173385+09:00",
       "chain": "bigmagic"
@@ -25984,8 +25984,8 @@
       "game": "onepiece",
       "store": "ブックオフ西友大森店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "東京都",
       "found_at": "2026-11-18T12:43:59.924092+09:00",
       "chain": "bookoff"
     },
@@ -26002,7 +26002,7 @@
       "game": "onepiece",
       "store": "MINT新宿店（新宿マルイアネックス7F）",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "東京都",
       "found_at": "2026-11-18T12:43:59.924131+09:00",
       "chain": "mint"
@@ -26012,7 +26012,7 @@
       "store": "トレカ専門店 ギャラクシー 渋谷店",
       "series": null,
       "channel": "store",
-      "area": null,
+      "area": "東京都",
       "found_at": "2026-11-18T12:43:59.924153+09:00",
       "chain": null
     },
@@ -26771,6 +26771,60 @@
       "area": "愛知県",
       "found_at": "2026-11-18T22:07:39.492111+09:00",
       "chain": "sanyodo"
+    },
+    "64fbcc99642b6997": {
+      "game": "pokemon",
+      "store": "カードラボ天王寺店",
+      "series": null,
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-19T06:27:43.407266+09:00",
+      "chain": "cardlabo"
+    },
+    "3816041baa274f66": {
+      "game": "pokemon",
+      "store": "すまいるキング安城店",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-19T06:27:43.407326+09:00",
+      "chain": null
+    },
+    "4db60d75425eb9b8": {
+      "game": "pokemon",
+      "store": "晴れる屋2 各店",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-19T06:27:43.407368+09:00",
+      "chain": null
+    },
+    "17e1644c3d1e85b6": {
+      "game": "pokemon",
+      "store": "TSUTAYA神明店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-19T06:27:43.407409+09:00",
+      "chain": "tsutaya"
+    },
+    "1ac8145a139f4c49": {
+      "game": "pokemon",
+      "store": "TC バトロコ旭川駅前",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-19T06:27:43.407432+09:00",
+      "chain": "batoroco"
+    },
+    "fd32e37b96b64538": {
+      "game": "onepiece",
+      "store": "TCバトロコ八千代台駅前",
+      "series": "神の支配",
+      "channel": "online",
+      "area": "千葉県",
+      "found_at": "2026-11-19T06:27:43.976163+09:00",
+      "chain": "batoroco"
     }
   }
 }
