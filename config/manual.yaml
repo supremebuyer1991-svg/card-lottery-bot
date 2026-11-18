@@ -816,3 +816,123 @@ lotteries:
     member: account
     tags: [会員, 購入履歴]
     url: https://limited.yodobashi.com/
+
+  - slug: kiddyland-kichijoji-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 吉祥寺店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 東京都
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/4ywaz
+
+  - slug: kiddyland-harajuku-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 原宿店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 東京都
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日 20時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/0d5mm
+
+  - slug: kiddyland-futakotamagawa-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 二子玉川店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 東京都
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/haqf_
+
+  - slug: kiddyland-hikarigaoka-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 光が丘店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 東京都
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-13T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/zy35l
+
+  - slug: kiddyland-fukuoka-parco-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 福岡パルコ店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 福岡県
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/0gm0u
+
+  - slug: kiddyland-osaka-umeda-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 大阪梅田店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 大阪府
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月21日(土)〜11月25日(水)中にメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/y3yhq
+
+  - slug: kiddyland-kyoto-shijo-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 京都四条河原町店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 京都府
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/wjgu1
+
+  - slug: kiddyland-kagoshima-hadou-seeker-1118
+    game: pokemon
+    store: キデイランド 鹿児島店
+    series: ハドウシーカー
+    product: ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）
+    channel: store
+    area: 鹿児島県
+    method: LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入
+    start: 2026-11-16T10:00
+    end: 2026-11-18T23:59
+    announce: 2026年11月25日(水) 18時ごろまでにメール
+    buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
+    conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
+    url: https://livepocket.jp/e/tqh55
