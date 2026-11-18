@@ -81,6 +81,9 @@
       "series": "PS5 ミッドナイト ブラック",
       "end": "2026-11-19T23:59+09:00",
       "conditions": "数量限定。日本語・日本地域のPSNアカウント専用。ディスクドライブは別売（ミッドナイト ブラック、同日発売）。予約は10/20から各店で順次。",
+      "tags": [
+        "数量限定"
+      ],
       "channel": "online",
       "spath": "ps5/ps5-midnight-black/",
       "found_at": "2026-11-08T13:43:17.790685+09:00",
@@ -97,7 +100,15 @@
         "az": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DPlayStation%25205%2520%25E3%2583%2587%25E3%2582%25B8%25E3%2582%25BF%25E3%2583%25AB%2520%25E3%2582%25A8%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%25B3",
         "mc": "https://jp.mercari.com/search?keyword=PlayStation%205%20%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%20%E3%82%A8%E3%83%87%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3&status=on_sale&afid=1350793153"
-      }
+      },
+      "avail": [
+        {
+          "shop": "Amazon",
+          "s": "pre",
+          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+          "p": 55000
+        }
+      ]
     },
     "path": "l/ps5-midnight-black-release-1119/",
     "end": "2026-11-19T23:59+09:00",
@@ -5166,13 +5177,13 @@
       "game": "pokemon",
       "store": "TSUTAYA北習志野駅前店",
       "product": "ポケモンカード 拡張パック「インフェルノX」「メガドリームex」抽選販売",
-      "series": "ハイクラスパック「MEGAドリームex」",
+      "series": "拡張パック「インフェルノX」",
       "end": "2026-11-20T23:59:00+09:00",
       "method": "Web",
       "url": "https://livepocket.jp/e/gdpb9",
       "channel": "store",
       "area": "千葉県",
-      "spath": "pokeca/haikurasupakku-megadorimuex-f2f58/",
+      "spath": "pokeca/pakku-inferunox-7cf01/",
       "found_at": "2026-11-18T04:13:57.195243+09:00",
       "kind": "lottery",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/colorfulstar/cabinet/10379001/imgrc0115850570.jpg?_ex=300x300",
@@ -5221,7 +5232,7 @@
     "path": "l/tce4d0fcd5/",
     "end": "2026-11-18T21:00:00+09:00",
     "seen": "2026-11-18",
-    "ended": false
+    "ended": true
   },
   "tc666cd8154559c750": {
     "snap": {
@@ -5428,12 +5439,12 @@
       "spath": "pokeca/pakku-inferunox-7cf01/",
       "found_at": "2026-11-18T12:43:59.174010+09:00",
       "kind": "lottery",
-      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/kuro-tcg/cabinet/imgrc0155347114.jpg?_ex=300x300",
-      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkuro-tcg%2F007%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fkuro-tcg%2F007%2F",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/colorfulstar/cabinet/10379001/imgrc0115850570.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcolorfulstar%2F4521329431932%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fcolorfulstar%2F4521329431932%2F",
       "shop": {
         "rk": {
-          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkuro-tcg%2F007%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fkuro-tcg%2F007%2F",
-          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kuro-tcg/cabinet/imgrc0155347114.jpg?_ex=300x300"
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcolorfulstar%2F4521329431932%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fcolorfulstar%2F4521329431932%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/colorfulstar/cabinet/10379001/imgrc0115850570.jpg?_ex=300x300"
         },
         "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89&tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589",
@@ -5479,7 +5490,7 @@
     "path": "l/tc3fb2fce0/",
     "end": "2026-11-18T21:00:00+09:00",
     "seen": "2026-11-18",
-    "ended": false
+    "ended": true
   },
   "tcf16f6c40eb75ac34": {
     "snap": {
@@ -5515,7 +5526,7 @@
     "path": "l/tcf16f6c40/",
     "end": "2026-11-18T21:00:00+09:00",
     "seen": "2026-11-18",
-    "ended": false
+    "ended": true
   },
   "tc4cb7fabc7eba6753": {
     "snap": {
@@ -5643,6 +5654,224 @@
     },
     "path": "l/tc8de6222e/",
     "end": "2026-11-18T23:59:00+09:00",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "2b8faae5aeba0ce4": {
+    "snap": {
+      "key": "2b8faae5aeba0ce4",
+      "game": "bondrop",
+      "store": "EXILE TRIBE STATION TOKYO / OSAKA / ONLINE STORE",
+      "product": "EXILE TRIBE ボンボンドロップシール（全7種）",
+      "series": "EXILE TRIBE",
+      "start": "2026-11-20T12:00:00+09:00",
+      "end": "2026-11-20T12:00:00+09:00",
+      "method": "Web/店頭",
+      "url": "https://www.exiletribestation.jp/item/detail/1_5_10126120104_1/1114",
+      "channel": "online",
+      "area": "神奈川県",
+      "spath": "bonbon-drop/exile-tribe/",
+      "found_at": "2026-11-16T12:45:10.760748+09:00",
+      "kind": "release",
+      "price": "800円（税込）",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DEXILE%2520TRIBE%2520%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB",
+        "mc": "https://jp.mercari.com/search?keyword=EXILE%20TRIBE%20%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "全7種、各800円（税込）",
+        "東京・大阪・オンラインは12:00、横浜は11:00から",
+        "横浜はby Tree Village YOKOHAMAで販売",
+        "発売後の在庫・入店方法・購入制限は各販売先に確認",
+        "11/15時点で公式通販は「COMING SOON」表示",
+        "素材はPVC（公式商品ページ記載）"
+      ],
+      "facts_src": "https://bonbon-navi.com/items/new_arrival/exile-tribe-bonbon-drop-seal-7designs-20261120/"
+    },
+    "path": "l/2b8faae5ae/",
+    "end": "2026-11-20T12:00:00+09:00",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "b1806660a89c0230": {
+    "snap": {
+      "key": "b1806660a89c0230",
+      "game": "bondrop",
+      "store": "EXILE TRIBE STATION TOKYO / OSAKA / ONLINE STORE",
+      "product": "EXILE TRIBE ボンボンドロップシール THE RAMPAGE",
+      "series": "EXILE TRIBE",
+      "start": "2026-11-20T12:00:00+09:00",
+      "end": "2026-11-20",
+      "method": "Web/店頭",
+      "url": "https://www.exiletribestation.jp/item/detail/1_6_10126120105_1/1121",
+      "channel": "online",
+      "area": "神奈川県",
+      "spath": "bonbon-drop/exile-tribe/",
+      "found_at": "2026-11-16T12:45:10.760762+09:00",
+      "kind": "release",
+      "price": "800円（税込）",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DEXILE%2520TRIBE%2520%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB%2520THE",
+        "mc": "https://jp.mercari.com/search?keyword=EXILE%20TRIBE%20%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB%20THE&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "横浜の店舗（by Tree Village YOKOHAMA）は11:00から発売",
+        "公式通販は11/15時点で「COMING SOON」表示",
+        "全7種を1枚ずつ買うと代金合計5,600円（送料等別）",
+        "素材はPVC（公式商品ページ記載）",
+        "今回確認できた販売先は公式のEXILE TRIBE STATIONのみ",
+        "発売後の在庫・入店方法・購入制限は各販売先の案内を確認"
+      ],
+      "facts_src": "https://bonbon-navi.com/items/new_arrival/exile-tribe-bonbon-drop-seal-7designs-20261120/"
+    },
+    "path": "l/b1806660a8/",
+    "end": "2026-11-20",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "a4fe1f09fbb458cb": {
+    "snap": {
+      "key": "a4fe1f09fbb458cb",
+      "game": "bondrop",
+      "store": "EXILE TRIBE STATION TOKYO / OSAKA / ONLINE STORE",
+      "product": "EXILE TRIBE ボンボンドロップシール（全7種）",
+      "series": "EXILE TRIBE",
+      "start": "2026-11-20T12:00:00+09:00",
+      "end": "2026-11-20",
+      "method": "Web/店頭",
+      "url": "https://www.exiletribestation.jp/item/detail/1_7_10126120106_1/1131",
+      "channel": "online",
+      "area": "神奈川県",
+      "spath": "bonbon-drop/exile-tribe/",
+      "found_at": "2026-11-16T12:45:10.760774+09:00",
+      "kind": "release",
+      "price": "800円（税込）",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DEXILE%2520TRIBE%2520%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB",
+        "mc": "https://jp.mercari.com/search?keyword=EXILE%20TRIBE%20%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "全7種、各800円（税込）",
+        "発売日は2026年11月20日（金）",
+        "横浜のby Tree Village YOKOHAMAは11:00から開始",
+        "購入制限や在庫は各販売先の最新案内を確認",
+        "全国の雑貨店などでの販売は確認できていない",
+        "素材はPVC（公式商品ページ記載）"
+      ],
+      "facts_src": "https://bonbon-navi.com/items/new_arrival/exile-tribe-bonbon-drop-seal-7designs-20261120/"
+    },
+    "path": "l/a4fe1f09fb/",
+    "end": "2026-11-20",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "d314541b8ec47f17": {
+    "snap": {
+      "key": "d314541b8ec47f17",
+      "game": "bondrop",
+      "store": "EXILE TRIBE STATION TOKYO / OSAKA / ONLINE STORE",
+      "product": "EXILE TRIBE ボンボンドロップシール BALLISTIK BOYZ･PSYCHIC FEVER",
+      "series": "EXILE TRIBE",
+      "start": "2026-11-20T12:00:00+09:00",
+      "end": "2026-11-20",
+      "method": "Web/店頭",
+      "url": "https://www.exiletribestation.jp/item/detail/1_1_10126120107_1/9999",
+      "channel": "online",
+      "area": "神奈川県",
+      "spath": "bonbon-drop/exile-tribe/",
+      "found_at": "2026-11-16T12:45:10.760793+09:00",
+      "kind": "release",
+      "price": "800円（税込）",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DEXILE%2520TRIBE%2520%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB",
+        "mc": "https://jp.mercari.com/search?keyword=EXILE%20TRIBE%20%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "横浜（by Tree Village YOKOHAMA）は11:00から販売",
+        "全国の雑貨店などでの販売は今回確認できていないと記載",
+        "発売後の在庫・入店方法・購入制限は各販売先の最新案内で確認",
+        "11月15日時点で公式通販は「COMING SOON」と表示",
+        "素材はPVC（公式商品ページ記載）",
+        "楽天・Amazon・Yahoo!のボタンは検索リンクで、在庫や取扱いの確認ではない"
+      ],
+      "facts_src": "https://bonbon-navi.com/items/new_arrival/exile-tribe-bonbon-drop-seal-7designs-20261120/"
+    },
+    "path": "l/d314541b8e/",
+    "end": "2026-11-20",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "9818aaa7027b78a9": {
+    "snap": {
+      "key": "9818aaa7027b78a9",
+      "game": "bondrop",
+      "store": "EXILE TRIBE STATION TOKYO / OSAKA / ONLINE STORE",
+      "product": "EXILE TRIBE ボンボンドロップシール（全7種）",
+      "series": "EXILE TRIBE",
+      "start": "2026-11-20T12:00:00+09:00",
+      "end": "2026-11-20T12:00:00+09:00",
+      "method": "Web/店頭",
+      "url": "https://www.exiletribestation.jp/item/detail/1_1_10126120108_1/9999",
+      "channel": "online",
+      "area": "神奈川県",
+      "spath": "bonbon-drop/exile-tribe/",
+      "found_at": "2026-11-16T12:45:10.760813+09:00",
+      "kind": "release",
+      "price": "800円（税込）",
+      "shop": {
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DEXILE%2520TRIBE%2520%25E3%2583%259C%25E3%2583%25B3%25E3%2583%259C%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2583%25E3%2583%2597%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB",
+        "mc": "https://jp.mercari.com/search?keyword=EXILE%20TRIBE%20%E3%83%9C%E3%83%B3%E3%83%9C%E3%83%B3%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%B7%E3%83%BC%E3%83%AB&status=on_sale&afid=1350793153"
+      },
+      "facts": [
+        "各800円（税込）",
+        "全7種。EXILEとEXILE THE SECONDなどは1商品にまとまっている",
+        "横浜のby Tree Village YOKOHAMAは11:00から発売",
+        "1枚ずつ全7種購入で商品代金5,600円。送料などは別途",
+        "素材はPVC（公式商品ページ記載）",
+        "楽天・Amazon・Yahoo!ボタンは検索リンクで取扱い確定ではない"
+      ],
+      "facts_src": "https://bonbon-navi.com/items/new_arrival/exile-tribe-bonbon-drop-seal-7designs-20261120/"
+    },
+    "path": "l/9818aaa702/",
+    "end": "2026-11-20T12:00:00+09:00",
+    "seen": "2026-11-18",
+    "ended": false
+  },
+  "tcb5d021cdb7379d3e": {
+    "snap": {
+      "key": "tcb5d021cdb7379d3e",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "スターターセットex各種（イーブイex、ゾロア＆ゾロアークex、ニャオハ＆マスカーニャex）",
+      "series": "スターターセットMEGA・ex",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "spath": "pokeca/sutatasettomega-ex-835b1/",
+      "found_at": "2026-11-18T22:07:37.576031+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysprime/cabinet/system202512-11/2100014942575.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysprime/cabinet/system202512-11/2100014942575.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%BB%E3%83%83%E3%83%88ex%E5%90%84%E7%A8%AE&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2582%25BF%25E3%2583%25BC%25E3%2582%25BB%25E3%2583%2583%25E3%2583%2588ex%25E5%2590%2584%25E7%25A8%25AE",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%BB%E3%83%83%E3%83%88ex%E5%90%84%E7%A8%AE&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcb5d021cd/",
+    "end": "2026-11-22T23:00:00+09:00",
     "seen": "2026-11-18",
     "ended": false
   }

@@ -65141,7 +65141,7 @@
       "tags": [
         "アプリ"
       ],
-      "url": "https://twitter.com/tcg_info_navi/status/2122828308153049288/photo/1",
+      "url": "https://t.co/0Z5O2Dtn0k",
       "channel": "store",
       "id_check": false,
       "member": "none",
@@ -70072,7 +70072,10 @@
       "store": "古本市場・ふるいち 各店",
       "product": "ポケモンカードゲーム MEGA 拡張パック ハドウシーカー 1BOX（税込6,000円・お一人様1BOX）",
       "series": "ハドウシーカー",
+      "start": "2026-11-17T23:00:00+09:00",
       "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11/25(水)23時頃（ふるいちアプリのお知らせ）",
+      "buy": "11/27(金)〜11/29(日)",
       "method": "オンライン",
       "conditions": "アプリ・会員・本人確認",
       "tags": [
@@ -73555,6 +73558,838 @@
       "channel": "online",
       "spath": "store/bukkusu-5b716/",
       "found_at": "2026-11-18T12:46:50.708970+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-kichijoji-hadou-seeker-1118/": {
+    "d": {
+      "key": "5d61a19625763713",
+      "game": "pokemon",
+      "store": "キデイランド 吉祥寺店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/4ywaz",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-76f8e/",
+      "found_at": "2026-11-18T22:07:03.234618+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-harajuku-hadou-seeker-1118/": {
+    "d": {
+      "key": "45eda15fbd7b6fda",
+      "game": "pokemon",
+      "store": "キデイランド 原宿店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日 20時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/0d5mm",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-53108/",
+      "found_at": "2026-11-18T22:07:03.234660+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-futakotamagawa-hadou-seeker-1118/": {
+    "d": {
+      "key": "815f27cc9a1551da",
+      "game": "pokemon",
+      "store": "キデイランド 二子玉川店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/haqf_",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-60c89/",
+      "found_at": "2026-11-18T22:07:03.234677+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-hikarigaoka-hadou-seeker-1118/": {
+    "d": {
+      "key": "ddc861c9d064a847",
+      "game": "pokemon",
+      "store": "キデイランド 光が丘店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-13T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/zy35l",
+      "channel": "store",
+      "area": "東京都",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-f5557/",
+      "found_at": "2026-11-18T22:07:03.234690+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-fukuoka-parco-hadou-seeker-1118/": {
+    "d": {
+      "key": "a622fee46e6a3550",
+      "game": "pokemon",
+      "store": "キデイランド 福岡パルコ店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/0gm0u",
+      "channel": "store",
+      "area": "福岡県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-90aa7/",
+      "found_at": "2026-11-18T22:07:03.234703+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-osaka-umeda-hadou-seeker-1118/": {
+    "d": {
+      "key": "63c34f9c61f13fea",
+      "game": "pokemon",
+      "store": "キデイランド 大阪梅田店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月21日(土)〜11月25日(水)中にメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/y3yhq",
+      "channel": "store",
+      "area": "大阪府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-2d7e2/",
+      "found_at": "2026-11-18T22:07:03.234715+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-kyoto-shijo-hadou-seeker-1118/": {
+    "d": {
+      "key": "67cd2a5a6ffc8713",
+      "game": "pokemon",
+      "store": "キデイランド 京都四条河原町店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/wjgu1",
+      "channel": "store",
+      "area": "京都府",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-1e44f/",
+      "found_at": "2026-11-18T22:07:03.234726+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/kiddyland-kagoshima-hadou-seeker-1118/": {
+    "d": {
+      "key": "873041c885538084",
+      "game": "pokemon",
+      "store": "キデイランド 鹿児島店",
+      "product": "ポケモンカード 拡張パック「ハドウシーカー」購入整理券（1枚で30パック＝1BOX、1パック200円税込）",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T10:00+09:00",
+      "end": "2026-11-18T23:59+09:00",
+      "announce": "2026年11月25日(水) 18時ごろまでにメール",
+      "buy": "2026年11月27日(金)〜11月29日(日)に店頭で購入",
+      "method": "LivePocketの抽選ページから応募（LivePocket会員登録が必要・1人1回）→ 当選したらQRコードチケットと身分証を持って店頭で購入",
+      "conditions": "顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可",
+      "url": "https://livepocket.jp/e/tqh55",
+      "channel": "store",
+      "area": "鹿児島県",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/kiddyland-205bd/",
+      "found_at": "2026-11-18T22:07:03.234745+09:00",
+      "manual": true
+    },
+    "last": "2026-11-18"
+  },
+  "l/be68b963a3/": {
+    "d": {
+      "key": "be68b963a3694274",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "buy": "11/23(月)12:00〜11/28(土)23:00",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/basudei-b466c/",
+      "found_at": "2026-11-18T22:07:37.575930+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/42788cfd13/": {
+    "d": {
+      "key": "42788cfd13daca8a",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "30th CELEBRATION BOX",
+      "series": "30th CELEBRATION",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "buy": "11/23(月)12:00〜11/28(土)23:00",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/basudei-b466c/",
+      "found_at": "2026-11-18T22:07:37.575951+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/869ea63b9d/": {
+    "d": {
+      "key": "869ea63b9d4584b4",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "ストームエメラルダ",
+      "series": "ストームエメラルダ",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "buy": "11/23(月)12:00〜11/28(土)23:00",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/basudei-b466c/",
+      "found_at": "2026-11-18T22:07:37.575992+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/b5d021cdb7/": {
+    "d": {
+      "key": "b5d021cdb7379d3e",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "スターターセットex各種（イーブイex、ゾロア＆ゾロアークex、ニャオハ＆マスカーニャex）",
+      "series": "スターターセットex",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "buy": "11/23(月)12:00〜11/28(土)23:00",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysprime/cabinet/system202512-11/2100014942575.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysprime%2F4975201331788%2F",
+      "spath": "store/basudei-b466c/",
+      "found_at": "2026-11-18T22:07:37.576031+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/369acf816b/": {
+    "d": {
+      "key": "369acf816bdd71cd",
+      "game": "pokemon",
+      "store": "バースデイ",
+      "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+      "series": "スペシャルデッキセットMEGA",
+      "start": "2026-11-17T13:00:00+09:00",
+      "end": "2026-11-22T23:00:00+09:00",
+      "announce": "11月23日(月)予定（当選者のみメール通知）",
+      "buy": "11/23(月)12:00〜11/28(土)23:00",
+      "method": "アプリ抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "アプリ",
+        "会員"
+      ],
+      "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+      "channel": "online",
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/big-boy/cabinet/4521329463155.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbig-boy%2F4521329463155%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbig-boy%2F4521329463155%2F",
+      "spath": "store/basudei-b466c/",
+      "found_at": "2026-11-18T22:07:37.576053+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/9b124f7bc6/": {
+    "d": {
+      "key": "9b124f7bc69cfde3",
+      "game": "pokemon",
+      "store": "ドラゴンスター",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-16T22:00:00+09:00",
+      "end": "2026-11-18T23:59:00+09:00",
+      "announce": "11月19日(木)予定",
+      "method": "WEB抽選受付（当選者にはオンライン販売）",
+      "url": "https://dorasuta.membercard.jp/lottery",
+      "channel": "online",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/dragonstar-d49e0/",
+      "found_at": "2026-11-18T22:07:37.576104+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/f1043865a8/": {
+    "d": {
+      "key": "f1043865a84dd8e7",
+      "game": "pokemon",
+      "store": "晴れる屋2",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-18T17:00:00+09:00",
+      "end": "2026-11-23T23:59:00+09:00",
+      "announce": "11月24日(火)予定",
+      "buy": "11/27(金)〜11/29(日)",
+      "method": "WEB抽選受付（当選者には店頭販売）",
+      "tags": [
+        "本人確認",
+        "会員"
+      ],
+      "url": "https://livepocket.jp/e/wfku9",
+      "channel": "store",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/reru-2-6e663/",
+      "found_at": "2026-11-18T22:07:37.576172+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/9e102cf4f4/": {
+    "d": {
+      "key": "9e102cf4f4d28ae2",
+      "game": "pokemon",
+      "store": "トレカプラザ55",
+      "product": "ハドウシーカー",
+      "series": "ハドウシーカー",
+      "start": "2026-11-18T20:00:00+09:00",
+      "end": "2026-11-22T23:59:00+09:00",
+      "announce": "11月23日(月)〜11月24日(火)（当選者のみメール）",
+      "method": "WEB抽選受付（当選者にはオンライン販売）",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeNdQItGyUMs7dhwBfG_MXHz3ytkmwhOmev9BPbJHIjDAjnBQ/viewform",
+      "channel": "online",
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/torekapuraza55-20d8e/",
+      "found_at": "2026-11-18T22:07:37.576193+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/e2b5cf6849/": {
+    "d": {
+      "key": "e2b5cf684907526f",
+      "game": "pokemon",
+      "store": "カードラボ名古屋大須店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」（7,200円税込・Xフォロー＆リポストで応募）",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "SNS抽選",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://www.c-labo.jp/shop/nagoyaoosu/blog/624714/",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/cardlabo-a8368/",
+      "found_at": "2026-11-18T22:07:38.799894+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/0c711a1545/": {
+    "d": {
+      "key": "0c711a15454770fc",
+      "game": "pokemon",
+      "store": "ToyShop POTATO KING（通販）",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ストームエメラルダ」1BOX（定価抽選販売・郵送）",
+      "series": "ストームエメラルダ",
+      "end": "2026-11-22T23:45:00+09:00",
+      "method": "オンライン",
+      "url": "https://potatoking.base.shop/items/166327751",
+      "channel": "online",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/toyshoppotatoking-500ca/",
+      "found_at": "2026-11-18T22:07:38.799936+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/99f9fe6b3c/": {
+    "d": {
+      "key": "99f9fe6b3c59f2ef",
+      "game": "pokemon",
+      "store": "ブックオフお宝大陸倉敷笹沖店",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」1BOX",
+      "series": "ハドウシーカー",
+      "end": "2026-11-22T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/Bookoff_sasaoki/status/2122932906243076169",
+      "channel": "store",
+      "area": "岡山県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/bookoff-6a210/",
+      "found_at": "2026-11-18T22:07:38.799957+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/9c23660331/": {
+    "d": {
+      "key": "9c23660331c8c32a",
+      "game": "pokemon",
+      "store": "ToyShop POTATO KING（通販）",
+      "product": "ポケモンカードゲーム MEGA拡張パック「30th CELEBRATION」（定価抽選販売・郵送）",
+      "series": "30th CELEBRATION",
+      "end": "2026-11-23T23:45:00+09:00",
+      "method": "オンライン",
+      "url": "https://potatoking.base.shop/items/166328202",
+      "channel": "online",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "spath": "store/toyshoppotatoking-500ca/",
+      "found_at": "2026-11-18T22:07:38.799976+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/794bcd26fd/": {
+    "d": {
+      "key": "794bcd26fdc98b78",
+      "game": "pokemon",
+      "store": "santy（サンティ）仙台クリスロード店",
+      "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」抽選予約",
+      "series": "ハドウシーカー",
+      "end": "2026-11-23T23:59:00+09:00",
+      "method": "SNS抽選",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/santycrissroad/status/2122925901642076587",
+      "channel": "store",
+      "area": "宮城県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/santy-kurisurodo-bb7e1/",
+      "found_at": "2026-11-18T22:07:38.800008+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/dad28d1f61/": {
+    "d": {
+      "key": "dad28d1f616198de",
+      "game": "pokemon",
+      "store": "TC バトロコ金沢駅前",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（Googleフォーム抽選・店頭受取のみ）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-24T23:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfMJhxVL7zBzoV0o7CFo8w6j6bzuP233HeQFp8NEFXikB0V7Q/viewform",
+      "channel": "store",
+      "area": "石川県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/batoroco-39057/",
+      "found_at": "2026-11-18T22:07:38.800033+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/41fb9796bf/": {
+    "d": {
+      "key": "41fb9796bffc7dae",
+      "game": "pokemon",
+      "store": "TC バトロコsatellite金沢香林坊",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（Googleフォーム抽選・店頭受取のみ）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-24T23:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSdEd3lMB8AkW7Mms5uxT-xZr03ftMXJa9xjgzsQts7bxfONQw/viewform",
+      "channel": "store",
+      "area": "石川県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/batoroco-5b362/",
+      "found_at": "2026-11-18T22:07:38.800052+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/b80d69b882/": {
+    "d": {
+      "key": "b80d69b882ed8a95",
+      "game": "pokemon",
+      "store": "ミント渋谷店（渋谷PARCO B1F）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-25T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "SNS応募・本人確認",
+      "tags": [
+        "SNS応募",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfoODp-LIf_8f_G45KenjJYHbsvg2s2kAUTkuaj6E-GJGcLAA/viewform",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/mint-b2472/",
+      "found_at": "2026-11-18T22:07:38.800074+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/0a59f7e7cd/": {
+    "d": {
+      "key": "0a59f7e7cde07065",
+      "game": "pokemon",
+      "store": "ブックオフスーパーバザー カインズモール名古屋みなと店",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」1BOX",
+      "series": "ハドウシーカー",
+      "end": "2026-11-25T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/bookoff_minato/status/2122924304040091961",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/bookoff-c8679/",
+      "found_at": "2026-11-18T22:07:38.800093+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/b61b7e1259/": {
+    "d": {
+      "key": "b61b7e1259ef83e7",
+      "game": "pokemon",
+      "store": "TSUTAYA西五反田店",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/nishigotsutaya/status/2122940346401517800",
+      "channel": "store",
+      "area": "東京都",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/tsutaya-da612/",
+      "found_at": "2026-11-18T22:07:38.800111+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/b3b58a5ba5/": {
+    "d": {
+      "key": "b3b58a5ba5f6dab3",
+      "game": "pokemon",
+      "store": "TSUTAYA六高台店 NICトレカ部",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」（11/24発売の再販分・LivePocket抽選・2Fレジ掲示のQRコードから応募）",
+      "series": "ストームエメラルダ",
+      "end": "2026-11-20T21:45:00+09:00",
+      "method": "店頭",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://x.com/torepa_rokkou/status/2122898842559623500",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": false,
+      "member": "card",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "spath": "store/tsutaya-d671d/",
+      "found_at": "2026-11-18T22:07:38.800130+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/59000c4b98/": {
+    "d": {
+      "key": "59000c4b98d3ede5",
+      "game": "pokemon",
+      "store": "ミント横浜店（スカイビル）",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-22T20:30:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/mint_yokohama/status/2122923322883428429",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/mint-cc0d6/",
+      "found_at": "2026-11-18T22:07:38.800148+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/c47181706d/": {
+    "d": {
+      "key": "c47181706d085e7d",
+      "game": "pokemon",
+      "store": "Japan TCG Center 本厚木駅前店",
+      "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」30パック（LivePocket抽選）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-23T21:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/yd0az",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": true,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/japantcgcenter-56d25/",
+      "found_at": "2026-11-18T22:07:38.800166+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/6ec81af6ca/": {
+    "d": {
+      "key": "6ec81af6caf66e36",
+      "game": "pokemon",
+      "store": "バトロコミニ前橋文京店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "ハドウシーカー",
+      "end": "2026-11-24T20:00:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/batoloco_mae/status/2122902632889196631",
+      "channel": "store",
+      "area": "群馬県",
+      "id_check": false,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/batoroco-900b1/",
+      "found_at": "2026-11-18T22:07:38.800184+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/95f2baba6e/": {
+    "d": {
+      "key": "95f2baba6e8d5a73",
+      "game": "pokemon",
+      "store": "トレカノ青森大野店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（6,000円税込・お一家族様1回1BOX・店頭申込用紙）",
+      "series": "ハドウシーカー",
+      "end": "2026-11-22T18:00:00+09:00",
+      "method": "店頭",
+      "conditions": "本人確認",
+      "tags": [
+        "本人確認"
+      ],
+      "url": "https://x.com/torekanoaomori/status/2122909836933570909",
+      "channel": "store",
+      "area": "青森県",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "spath": "store/torekano-2dd33/",
+      "found_at": "2026-11-18T22:07:38.800202+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/dbe9dfbd43/": {
+    "d": {
+      "key": "dbe9dfbd43ecd224",
+      "game": "onepiece",
+      "store": "TC バトロコ川崎駅前",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（Googleフォーム抽選）",
+      "series": "神の支配",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSe-b5abHHuW9LMPzAwPsDDV-FaemaUx6KcMiB1dcqT_ntgMCA/viewform",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "account",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/toysbox2nd/cabinet/13442309/imgrc0132765245.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Ftoysbox2nd%2Fcardbox-o-025%2F",
+      "spath": "store/batoroco-b5495/",
+      "found_at": "2026-11-18T22:07:39.492054+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/25f801c7e5/": {
+    "d": {
+      "key": "25f801c7e571d11f",
+      "game": "onepiece",
+      "store": "カードラボ津田沼店",
+      "product": "ワンピースカードゲーム エクストラブースター『ONE PIECE Heroines Edition vol.2【EB-05】』抽選再販（24パック）",
+      "series": "ヒロインズエディション vol.2",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募・本人確認",
+      "tags": [
+        "SNS応募",
+        "本人確認"
+      ],
+      "url": "https://x.com/Numa_labo27/status/2122920385352172013",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922090.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F",
+      "spath": "store/cardlabo-00238/",
+      "found_at": "2026-11-18T22:07:39.492084+09:00"
+    },
+    "last": "2026-11-18"
+  },
+  "l/e6ba0eceef/": {
+    "d": {
+      "key": "e6ba0eceef6be133",
+      "game": "onepiece",
+      "store": "三洋堂トレカ館 ららぽーと愛知東郷店",
+      "product": "ワンピースカードゲーム「Heroines Edition vol.2」1BOX",
+      "series": "ヒロインズエディション vol.2",
+      "end": "2026-11-22T23:59:00+09:00",
+      "method": "SNS応募",
+      "conditions": "SNS応募・本人確認",
+      "tags": [
+        "SNS応募",
+        "本人確認"
+      ],
+      "url": "https://x.com/sanyodoTCG_toug/status/2122935913114480899",
+      "channel": "store",
+      "area": "愛知県",
+      "id_check": true,
+      "member": "none",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922090.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922090000%2F",
+      "spath": "store/sanyodo-4b261/",
+      "found_at": "2026-11-18T22:07:39.492111+09:00"
     },
     "last": "2026-11-18"
   }
