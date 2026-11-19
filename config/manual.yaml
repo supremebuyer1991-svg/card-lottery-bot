@@ -936,3 +936,17 @@ lotteries:
     buy: 2026年11月27日(金)〜11月29日(日)に店頭で購入
     conditions: 顔写真付き身分証で本人確認。キデイランド複数店舗への重複応募は無効。返品交換不可
     url: https://livepocket.jp/e/tqh55
+
+  - slug: pokemoncenter-hadou-seeker-1123
+    game: pokemon
+    store: ポケモンセンター（LINE抽選・全国の各店）
+    series: ハドウシーカー
+    product: ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（お1人様20パックまで）
+    channel: store
+    method: 各店のお知らせページにあるLINEミニアプリの申し込みページから、購入する「呼出時間枠」を選んで応募（購入時間帯抽選）→ 当選者にだけLINEで通知 → 当選した時間枠に店頭で購入
+    start: 2026-11-19T14:00
+    end: 2026-11-23T23:59
+    announce: 11月25日(水)12時以降、順次LINEの「LINEミニアプリ お知らせ」アカウントから（当選者のみ通知）
+    buy: 11月27日(金)〜11月28日(土) 11時〜19時の当選した呼出時間枠（30分単位）
+    conditions: お1人様1回限り。複数店舗・複数日程への申し込み不可。購入整理券画面を表示できるスマートフォンが必要（スクリーンショット不可）。代理購入・当選権利の譲渡不可。抽選販売期間中は一般販売なし
+    url: https://shop.pokemon.co.jp/ja/shop/pokemoncenter-tokyodx/news/202611/000718.html
