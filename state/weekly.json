@@ -26029,8 +26029,8 @@
       "game": "onepiece",
       "store": "books交野駅前店",
       "series": "神の支配",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "大阪府",
       "found_at": "2026-11-18T12:43:59.924192+09:00",
       "chain": null
     },
@@ -26785,8 +26785,8 @@
       "game": "pokemon",
       "store": "すまいるキング安城店",
       "series": "ハドウシーカー",
-      "channel": "online",
-      "area": null,
+      "channel": "store",
+      "area": "愛知県",
       "found_at": "2026-11-19T06:27:43.407326+09:00",
       "chain": null
     },
@@ -26794,7 +26794,7 @@
       "game": "pokemon",
       "store": "晴れる屋2 各店",
       "series": "ハドウシーカー",
-      "channel": "online",
+      "channel": "store",
       "area": null,
       "found_at": "2026-11-19T06:27:43.407368+09:00",
       "chain": null
@@ -26821,10 +26821,253 @@
       "game": "onepiece",
       "store": "TCバトロコ八千代台駅前",
       "series": "神の支配",
-      "channel": "online",
+      "channel": "store",
       "area": "千葉県",
       "found_at": "2026-11-19T06:27:43.976163+09:00",
       "chain": "batoroco"
+    },
+    "c0dd849ef42be62f": {
+      "game": "pokemon",
+      "store": "お宝創庫グループ（お宝創庫・おじゃま館・メディオ！・プレイズ 一部店舗）",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-19T12:33:39.760018+09:00",
+      "chain": null
+    },
+    "251d3b01f4aab8ed": {
+      "game": "pokemon",
+      "store": "カードラボ静岡店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-19T12:33:39.760053+09:00",
+      "chain": "cardlabo"
+    },
+    "a0cdca35ec3ce20d": {
+      "game": "pokemon",
+      "store": "トレカプラザ55通販",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-19T12:33:39.760075+09:00",
+      "chain": null
+    },
+    "5dfdf2d1039b6d00": {
+      "game": "pokemon",
+      "store": "HobbyMarketさとう店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-19T12:33:39.760098+09:00",
+      "chain": null
+    },
+    "1cb643f3b56ab227": {
+      "game": "pokemon",
+      "store": "ブックマート国府店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-19T12:33:39.760117+09:00",
+      "chain": null
+    },
+    "b8772f6fdc1c11c2": {
+      "game": "pokemon",
+      "store": "王の洞窟岐南本店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-19T12:33:39.760136+09:00",
+      "chain": null
+    },
+    "fb5b574fddb3620b": {
+      "game": "pokemon",
+      "store": "トレカ専門店Vidaway函館白鳥店（TSUTAYA函館白鳥店内）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-19T12:33:39.760154+09:00",
+      "chain": null
+    },
+    "c6ca55c58ffd7a1a": {
+      "game": "pokemon",
+      "store": "TSUTAYA須賀川店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福島県",
+      "found_at": "2026-11-19T12:33:39.760173+09:00",
+      "chain": "tsutaya"
+    },
+    "ffeaf7f47822d3d9": {
+      "game": "pokemon",
+      "store": "トレカ専門店Vidaway白河立石店（TSUTAYA白河立石店内）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福島県",
+      "found_at": "2026-11-19T12:33:39.760192+09:00",
+      "chain": null
+    },
+    "cfd728e4c05530ec": {
+      "game": "pokemon",
+      "store": "カーデリア池袋店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-19T12:33:39.760210+09:00",
+      "chain": null
+    },
+    "c049de4fc982cbf5": {
+      "game": "pokemon",
+      "store": "ブックマーケット函館美原店（駿河屋）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "北海道",
+      "found_at": "2026-11-19T12:33:39.760230+09:00",
+      "chain": null
+    },
+    "2e3df8a1d96eae2d": {
+      "game": "pokemon",
+      "store": "MINT吉祥寺店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-19T12:33:39.760250+09:00",
+      "chain": "mint"
+    },
+    "7306a3dd06fd99a7": {
+      "game": "pokemon",
+      "store": "ブックオフ東千葉祐光店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-19T12:33:39.760271+09:00",
+      "chain": "bookoff"
+    },
+    "5d991d730ee1fff1": {
+      "game": "pokemon",
+      "store": "ブックオフ和歌山次郎丸店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "和歌山県",
+      "found_at": "2026-11-19T12:33:39.760291+09:00",
+      "chain": "bookoff"
+    },
+    "836280e621fe9cda": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "佐賀県",
+      "found_at": "2026-11-19T12:33:39.760388+09:00",
+      "chain": "tsutaya"
+    },
+    "30b84ee8495baefb": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "series": "メガブレイブ",
+      "channel": "store",
+      "area": "佐賀県",
+      "found_at": "2026-11-19T12:33:39.760409+09:00",
+      "chain": "tsutaya"
+    },
+    "a3613fcc01d4fed4": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "series": "メガシンフォニア",
+      "channel": "store",
+      "area": "佐賀県",
+      "found_at": "2026-11-19T12:33:39.760430+09:00",
+      "chain": "tsutaya"
+    },
+    "95057d634c872014": {
+      "game": "pokemon",
+      "store": "文教堂行徳店【トレカ】",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "千葉県",
+      "found_at": "2026-11-19T12:33:39.760450+09:00",
+      "chain": null
+    },
+    "e64540911d949d9a": {
+      "game": "pokemon",
+      "store": "ブックオフスーパーバザー多摩永山店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-19T12:33:39.760481+09:00",
+      "chain": "bookoff"
+    },
+    "f106dbc600932628": {
+      "game": "pokemon",
+      "store": "今井書店倉吉パープルタウン店（トレカ）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "鳥取県",
+      "found_at": "2026-11-19T12:33:39.760502+09:00",
+      "chain": null
+    },
+    "4caaaeb6ae0d1f52": {
+      "game": "onepiece",
+      "store": "BMエーツー 南瀬名店（駿河屋）",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-19T12:33:40.399503+09:00",
+      "chain": null
+    },
+    "014058fcc762ceee": {
+      "game": "onepiece",
+      "store": "駿河屋 馬渕店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-19T12:33:40.399530+09:00",
+      "chain": "surugaya"
+    },
+    "88fc4d052a733d68": {
+      "game": "onepiece",
+      "store": "トレカショップ☆プラネットポケット",
+      "series": "神の支配",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-19T12:33:40.399555+09:00",
+      "chain": null
+    },
+    "df4faf1fce5e00c2": {
+      "game": "onepiece",
+      "store": "ミント大丸心斎橋店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "大阪府",
+      "found_at": "2026-11-19T12:33:40.399577+09:00",
+      "chain": "mint"
+    },
+    "51f6a2a918a05b8f": {
+      "game": "onepiece",
+      "store": "カードラボ静岡店",
+      "series": "ヒロインズエディション vol.2",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-19T12:33:40.399614+09:00",
+      "chain": "cardlabo"
+    },
+    "579a282b9544207f": {
+      "game": "onepiece",
+      "store": "カーデリア池袋店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-19T12:33:40.399633+09:00",
+      "chain": null
+    },
+    "849eb1961993a3e8": {
+      "game": "onepiece",
+      "store": "トレカショップ カードきんぐ 西宮店",
+      "series": "世界最強の戦士",
+      "channel": "store",
+      "area": "兵庫県",
+      "found_at": "2026-11-19T12:33:40.399651+09:00",
+      "chain": null
     }
   }
 }

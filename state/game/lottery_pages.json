@@ -5298,7 +5298,7 @@
     "path": "l/tce2579f8a/",
     "end": "2026-11-19T09:59:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "tc3db039491aeb4212": {
     "snap": {
@@ -5811,6 +5811,10 @@
       "series": "拡張パック「ストームエメラルダ」",
       "end": "2026-11-20T23:59:00+09:00",
       "method": "店頭",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
       "url": "https://x.com/TSUTAYA10912325/status/2122957567899132410",
       "channel": "store",
       "id_check": false,
@@ -5871,6 +5875,321 @@
     },
     "path": "l/tcfd32e37b/",
     "end": "2026-11-20T17:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcc0dd849ef42be62f": {
+    "snap": {
+      "key": "tcc0dd849ef42be62f",
+      "game": "pokemon",
+      "store": "お宝創庫グループ（お宝創庫・おじゃま館・メディオ！・プレイズ 一部店舗）",
+      "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」",
+      "series": "拡張パック「ハドウシーカー」",
+      "start": "2026-11-19T12:00:00+09:00",
+      "end": "2026-11-22T23:45:00+09:00",
+      "announce": "11月25日(水)頃",
+      "method": "オンライン",
+      "conditions": "アプリ・会員・本人確認",
+      "tags": [
+        "アプリ",
+        "会員",
+        "本人確認",
+        "購入履歴"
+      ],
+      "url": "https://www.otakarasouko.com/information/109459977/",
+      "channel": "online",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T12:33:39.760018+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcc0dd849e/",
+    "end": "2026-11-22T23:45:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tca0cdca35ec3ce20d": {
+    "snap": {
+      "key": "tca0cdca35ec3ce20d",
+      "game": "pokemon",
+      "store": "トレカプラザ55通販",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（6,000円）",
+      "series": "拡張パック「ハドウシーカー」",
+      "start": "2026-11-18T20:00:00+09:00",
+      "end": "2026-11-22T23:59:00+09:00",
+      "announce": "11月23日(月)〜11月24日(火)（当選者のみメール）",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeNdQItGyUMs7dhwBfG_MXHz3ytkmwhOmev9BPbJHIjDAjnBQ/viewform",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T12:33:39.760075+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tca0cdca35/",
+    "end": "2026-11-22T23:59:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcfb5b574fddb3620b": {
+    "snap": {
+      "key": "tcfb5b574fddb3620b",
+      "game": "pokemon",
+      "store": "トレカ専門店Vidaway函館白鳥店（TSUTAYA函館白鳥店内）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（シュリンクを剥がして渡す）",
+      "series": "拡張パック「ハドウシーカー」",
+      "end": "2026-11-23T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・SNS応募",
+      "tags": [
+        "会員",
+        "SNS応募"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeMcvE37DJnf8ByrKXoZSleEtz7N8qAp9umxky1O6pCP4Rg8g/viewform",
+      "channel": "store",
+      "area": "北海道",
+      "id_check": false,
+      "member": "account",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T12:33:39.760154+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcfb5b574f/",
+    "end": "2026-11-23T23:59:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcc6ca55c58ffd7a1a": {
+    "snap": {
+      "key": "tcc6ca55c58ffd7a1a",
+      "game": "pokemon",
+      "store": "TSUTAYA須賀川店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+      "series": "拡張パック「ハドウシーカー」",
+      "end": "2026-11-24T20:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNlcWMTKL6ejHESmpNZ74gZ4wf6D0M-30x7de4_gV-wFUrOA/viewform",
+      "channel": "store",
+      "area": "福島県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T12:33:39.760173+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcc6ca55c5/",
+    "end": "2026-11-24T20:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcffeaf7f47822d3d9": {
+    "snap": {
+      "key": "tcffeaf7f47822d3d9",
+      "game": "pokemon",
+      "store": "トレカ専門店Vidaway白河立石店（TSUTAYA白河立石店内）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（シュリンクを剥がして渡す）",
+      "series": "拡張パック「ハドウシーカー」",
+      "end": "2026-11-24T20:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScFy2t1owqqjeWgp-pGZ90E3zD8iwNdTO_mzpJvnBvYrTV4AA/viewform",
+      "channel": "store",
+      "area": "福島県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T12:33:39.760192+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcffeaf7f4/",
+    "end": "2026-11-24T20:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tc836280e621fe9cda": {
+    "snap": {
+      "key": "tc836280e621fe9cda",
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」BOX（再販分）",
+      "series": "拡張パック「ストームエメラルダ」",
+      "end": "2026-11-22T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/kasima_TCG/status/2122972996466016730",
+      "channel": "store",
+      "area": "佐賀県",
+      "id_check": true,
+      "member": "card",
+      "spath": "pokeca/pakku-sutomuemeraruda-a0152/",
+      "found_at": "2026-11-19T12:33:39.760388+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc836280e6/",
+    "end": "2026-11-22T20:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tc30b84ee8495baefb": {
+    "snap": {
+      "key": "tc30b84ee8495baefb",
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「メガブレイブ」BOX（再販分）",
+      "series": "拡張パック「メガブレイブ」",
+      "end": "2026-11-22T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/kasima_TCG/status/2122972996466016730",
+      "channel": "store",
+      "area": "佐賀県",
+      "id_check": true,
+      "member": "card",
+      "spath": "pokeca/pakku-megabureibu-4f321/",
+      "found_at": "2026-11-19T12:33:39.760409+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255639318%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/pokemon/imgrc0112310449.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc30b84ee8/",
+    "end": "2026-11-22T20:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tca3613fcc01d4fed4": {
+    "snap": {
+      "key": "tca3613fcc01d4fed4",
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店 鹿島店",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「メガシンフォニア」BOX（再販分）",
+      "series": "拡張パック「メガシンフォニア」",
+      "end": "2026-11-22T20:00:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/kasima_TCG/status/2122972996466016730",
+      "channel": "store",
+      "area": "佐賀県",
+      "id_check": true,
+      "member": "card",
+      "spath": "pokeca/pakku-megashinfonia-44d50/",
+      "found_at": "2026-11-19T12:33:39.760430+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fspjstore%2F4521329431185%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/spjstore/cabinet/11379786/11406626/compass1753320107.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tca3613fcc/",
+    "end": "2026-11-22T20:00:00+09:00",
     "seen": "2026-11-19",
     "ended": false
   }
