@@ -197,9 +197,11 @@ def update(settings, ai=None, limit=None, no_time_limit=False):
             x = cat[m.group(2)]
             if not game_premium.has_material(x):   # 材料の無い商品は作らない（11/14 Fable）
                 continue
+            if not _has_facts:   # 11/19：商品の事実が無い商品の解説はページに出さないので作らない（費用の節約）
+                continue
             # 定価以上で売れる商品・買取価格の高い商品を先に（検索されやすい）、その中は中身の少ない順
             cands.append(((x.get("ratio") or 0) < 1, uniq, -x["max"], key, _premium_data(x)))
-        elif m.group(1) == "new" and m.group(2) in up:
+        elif m.group(1) == "new" and m.group(2) in up and False:   # 11/19：発売予定の商品の解説は商品の事実を材料にしていないので出さない＝作らない
             cands.append((True, uniq, 0, key, _new_data(m.group(2), up[m.group(2)])))
     # 抽選の個別ページ（/l/）：受付中のものだけ（11/14 ユーザー：1ページあたりのボリュームを増やしたい）
     lp = load_json("lottery_pages.json", {}) or {}
@@ -288,6 +290,13 @@ def update(settings, ai=None, limit=None, no_time_limit=False):
 
 
 _cache = {}
+
+
+def record(key):
+    """作った解説の記録（{"at","text","facts"}）。無ければ None"""
+    if "st" not in _cache:
+        _cache["st"] = load_json(STATE, {}) or {}
+    return _cache["st"].get(key)
 
 
 def html_for(key):

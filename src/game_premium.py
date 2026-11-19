@@ -633,11 +633,20 @@ def has_material(x):
     return bool(x.get("teika") and len(x.get("prices") or []) >= 2)
 
 
+# どの商品にも当てはまる一般論（11/9ごろに作った解説に混ざっている）。こういう文の入った解説は出さない
+_GENERIC_RE = re.compile(r"複数の(買取)?店|比べること|直前に|最新の(値段|金額)|思い出|おすすめします|安心です|納得")
+
+
 def _aitext(key, x=None):
+    """商品ページのAIの解説。11/19 ユーザーOK：Googleに中身の薄い決まり文句と見られないよう、
+    メーカー公式などの「商品の事実」を材料に作った解説（facts）だけを出す。価格の言い直し・一般論だけの解説は出さない"""
     if x is not None and not has_material(x):   # 材料の無い商品の解説（前に作ったもの）は出さない
         return ""
     try:
         import game_aitext
+        rec = game_aitext.record(key)
+        if not rec or not rec.get("facts") or _GENERIC_RE.search(rec.get("text") or ""):
+            return ""
         return game_aitext.html_for(key)
     except Exception:
         return ""
@@ -1012,7 +1021,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
     note = ('<p class="note">買取価格は各買取店が公開している新品（未開封）の買取価格を毎日読み取ったものです（店の条件で変わることがあります）。' + CHANGE_NOTE +
             '定価はメーカー公式の希望小売価格、分からなければ楽天ブックスの定価（定価が無い商品は楽天ブックスの販売価格で、そう書いています）です。転売を勧めるものではありません。リンクの一部は広告（PR）です。</p>')
 
-    def page(title, desc, body, path, img="", noindex=False):
+    def page(title, desc, body, path, img="", noindex=False, sitemap=True):
         """1ページ書く。img＝Xなどで共有したときのカードの画像（無ければサイトの共通画像）。noindex＝検索に出さない（情報が少ないページ）"""
         og = img or f"{site}/og.png"
         html = (f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -1026,7 +1035,7 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         d = out / path
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(simple_page(cats, html), encoding="utf-8")
-        if not noindex:   # 検索に出すページだけサイトマップへ。中身（日付以外）の指紋も渡す＝本当に変わった日だけ更新日を変える
+        if not noindex and sitemap:   # 検索に出すページだけサイトマップへ（11/19：中身の薄い商品ページはサイトマップに入れない。ページと検索の設定はそのまま）。中身（日付以外）の指紋も渡す＝本当に変わった日だけ更新日を変える
             import hashlib
             fp = hashlib.sha1(re.sub(r"\d{1,2}/\d{1,2}(?:更新|時点|\([月火水木金土日]\))", "", body).encode()).hexdigest()[:16]
             paths.append((path, fp))
@@ -1205,7 +1214,10 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              # 11/14：「ジャンルなし・定価なし・買取店1店」も外していたが、いちばんクリックされている「時のオカリナ」まで外れた。
              # 家電は「家電・カメラ」に入ったので、その決まりはやめる（買取店から消えた商品だけ外す）
              # 11/15 Fable：買取店から消えてすぐ外さず14日待つ。検索に表示されたことのあるページは外さない
-             noindex=bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat() and not _scp(f"premium/{x['jan']}/"))
+             noindex=bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat() and not _scp(f"premium/{x['jan']}/"),
+             # 11/19 ユーザーOK：材料の少ない商品（買取店1店だけ・商品の事実なし・商品説明なし）はサイトマップに入れない。
+             # Googleに「中身のあるページ」から先に見てもらうため。検索に表示されたことのあるページは入れたまま
+             sitemap=has_material(x) or _scp(f"premium/{x['jan']}/"))
     # サイトに載っている抽選・予約・発売日の商品で、買取相場の一覧に無いもの → 商品ページを作る（発売前は相場「予測不能」）
     import hashlib
     from dedupe import norm_product
