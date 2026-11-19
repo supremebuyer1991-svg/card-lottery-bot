@@ -13142,6 +13142,17 @@
   "store/surugaya-29f82/": {
     "name": "駿河屋 博多マルイ店",
     "items": {
+      "bb9856f6d33f585d": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-20T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "ad2b980f19dd199d": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -25474,6 +25485,19 @@
   "store/sevennet-2fe22/": {
     "name": "セブンネットショッピング",
     "items": {
+      "c29c922a63b42922": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-23T23:59",
+        "f": "2026-11-20",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [
+          "レシート"
+        ]
+      },
       "238555c4b20931a8": {
         "p": "30周年エーフィ・ブラッキーデッキ",
         "g": "pokemon",
@@ -31619,6 +31643,17 @@
   "store/kadokingudamu-014ff/": {
     "name": "カードキングダム秋葉原駅前店",
     "items": {
+      "184565dfd0b384d8": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T21:00",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "afe2813188e2a0c6": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -35773,6 +35808,17 @@
   "store/bukkuesu-9e2af/": {
     "name": "ブックエース坂東店",
     "items": {
+      "3c57b3637d2226e6": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-22T21:00",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "ae33c29e6a55f8ea": {
         "p": "神の支配",
         "g": "onepiece",
@@ -37270,6 +37316,20 @@
   "store/pokemoncenter-876ec/": {
     "name": "ポケモンセンター",
     "items": {
+      "fde69c206ebcc594": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-23T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "アプリ",
+        "id": false,
+        "mem": "none",
+        "rq": [
+          "アプリ会員"
+        ],
+        "a": "2026-11-25"
+      },
       "ab6b4fb4fdd21320": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -43852,6 +43912,17 @@
   "store/batoroco-204f5/": {
     "name": "トーナメントセンターバトロコ 弘前駅前",
     "items": {
+      "eb981164335433c5": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T20:00",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "08884453b46af6be": {
         "p": "神の支配",
         "g": "onepiece",
@@ -44869,6 +44940,17 @@
   "store/onepiece-warasutoa-c99f8/": {
     "name": "ONE PIECE 麦わらストア 各店（渋谷本店・池袋店・お台場店・MUGIWARA STORE HARAJUKU・東京駅店・名古屋店・あべの店・梅田店・福岡店・熊本店）",
     "items": {
+      "877d00848e8a0cbe": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-22T23:59",
+        "f": "2026-11-19",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "e44a7695ce4bcc86": {
         "p": "神の支配",
         "g": "onepiece",
@@ -44966,6 +45048,17 @@
   "store/tamutamu1-2-masa21-60a0d/": {
     "name": "タムタム1/2 岐阜マーサ21店",
     "items": {
+      "9f790e7704c440a3": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-22T20:00",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "696ba5802a3b9ec8": {
         "p": "神の支配",
         "g": "onepiece",
@@ -47823,25 +47916,6 @@
       }
     }
   },
-  "store/pokemoncenter-f360e/": {
-    "name": "ポケモンセンター（LINE抽選・全国の各店）",
-    "items": {
-      "fde69c206ebcc594": {
-        "p": "ハドウシーカー",
-        "g": "pokemon",
-        "e": "2026-11-23T23:59",
-        "f": "2026-11-19",
-        "c": "store",
-        "m": "アプリ",
-        "id": false,
-        "mem": "none",
-        "rq": [
-          "アプリ会員"
-        ],
-        "a": "2026-11-25"
-      }
-    }
-  },
   "store/bookoff-ae779/": {
     "name": "ブックオフ スーパーバザー トライアル伊勢崎中央店",
     "items": {
@@ -47912,22 +47986,6 @@
       }
     }
   },
-  "store/surugaya-92157/": {
-    "name": "駿河屋 博多マルイ店（トレカ専用）",
-    "items": {
-      "bb9856f6d33f585d": {
-        "p": "神の支配",
-        "g": "onepiece",
-        "e": "2026-11-20T23:59",
-        "f": "2026-11-19",
-        "c": "store",
-        "m": "SNS",
-        "id": false,
-        "mem": "none",
-        "rq": []
-      }
-    }
-  },
   "store/furuichi-c4008/": {
     "name": "古本市場灘店",
     "items": {
@@ -47944,18 +48002,52 @@
       }
     }
   },
-  "store/onepiece-warasutoa-9550f/": {
-    "name": "ONE PIECE 麦わらストア 各店（渋谷本店・池袋店・お台場店・MUGIWARA STORE HARAJUKU・東京駅店・名古屋店・あべの店・福岡店・熊本店／梅田店を除く）",
+  "store/bookoff-59340/": {
+    "name": "ブックオフ守口ジャガータウン店",
     "items": {
-      "877d00848e8a0cbe": {
-        "p": "世界最強の戦士",
-        "g": "onepiece",
-        "e": "2026-11-22T23:59",
-        "f": "2026-11-19",
+      "f3c39948b03199fe": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-20",
         "c": "store",
-        "m": "Web",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": [
+          "アプリ会員"
+        ]
+      }
+    }
+  },
+  "store/shop-21a6e/": {
+    "name": "富士書店 土浦南店",
+    "items": {
+      "8c1e17a883adce98": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-20T23:59",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "店頭",
         "id": true,
-        "mem": "account",
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/book-net-one-d181a/": {
+    "name": "伊吉書院 BOOK・NET・ONE 二戸店",
+    "items": {
+      "fbed9d7b7dffa332": {
+        "p": "スターターセットex",
+        "g": "pokemon",
+        "e": "2026-11-25T20:00",
+        "f": "2026-11-20",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
         "rq": []
       }
     }
