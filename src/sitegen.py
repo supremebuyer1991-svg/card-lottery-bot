@@ -3908,6 +3908,12 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         olds["/teika/"] = "/"  # 「定価で買えるBOX」のページはやめた
         # ゲームを取り違えて一時公開していた弾ページ（11/13 Search Console の404）
         olds["/onepiece/brightness-of-hope/"] = "/fusionworld/brightness-of-hope/"
+        # 11/19 Search Console の404：ゲームの取り違え・弾名の表記ゆれで一時できていた弾ページを今のページへ
+        olds["/onepiece/cross-force/"] = "/fusionworld/cross-force/"
+        olds["/pokeka/s-26b61998/"] = "/onepiece/eb05-heroines-edition-vol2/"
+        olds["/onepiece/s-14ca2b77/"] = "/onepiece/op18-kami-no-shihai/"
+        olds["/pokeka/s-27fd15ac/"] = "/pokeka/terastal-fes-ex/"
+        olds["/pokeka/s-c9fe586a/"] = "/pokeka/special-deck-set-mega/"
         # 11/18：海外向けページの弾アドレス（英語名が未登録で記号8けただった2つ）を英語名のアドレスに変えたので転送
         import intl as _intl
         for g_, x_, h_ in (("pokemon", "スタートデッキ100 バトルコレクション", "pokemon-5c71830a"), ("onepiece", "スタートデッキEX ルフィ&エース", "one-piece-245f3f8a")):
