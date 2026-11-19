@@ -1216,10 +1216,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "3d6a1101a5854573",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-06T10:15:09.696521+09:00",
     "multi": false,
-    "cls": "54b8b997dcfe"
+    "cls": "54b8b997dcfe",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017089+09:00"
   },
   "6d89174d81a84d32": {
     "store": "トレカショップ買取アルト ライフ神戸店",
@@ -1326,10 +1328,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "79d9c5aa40010f00",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-06T10:15:10.579557+09:00",
     "multi": false,
-    "cls": "5011fb1df37b"
+    "cls": "5011fb1df37b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017273+09:00"
   },
   "b968a7b295606070": {
     "store": "スーパーフリークス米子店",
@@ -2870,7 +2874,7 @@
     "announce": "11月24日(火)予定",
     "buy": "11/27(金)〜11/29(日)",
     "start": "2026-11-10T20:00:00+09:00",
-    "page_checked_at": "2026-11-19T12:33:43.798033+09:00",
+    "page_checked_at": "2026-11-19T22:16:46.668231+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=118"
   },
   "772f6b4b951c440d": {
@@ -2899,7 +2903,7 @@
     "found_at": "2026-11-11T10:57:59.875267+09:00",
     "multi": false,
     "cls": "d812968befdf",
-    "page_checked_at": "2026-11-19T12:33:43.949194+09:00",
+    "page_checked_at": "2026-11-19T22:16:46.765391+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=120"
   },
   "988beb928e006a30": {
@@ -2928,7 +2932,7 @@
     "found_at": "2026-11-11T10:57:59.875285+09:00",
     "multi": false,
     "cls": "570f56e13964",
-    "page_checked_at": "2026-11-19T12:33:43.995296+09:00",
+    "page_checked_at": "2026-11-19T22:16:46.837010+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://oretan.membercard.jp/lottery?search_store_id=119"
   },
   "762ce9214be9b608": {
@@ -3103,12 +3107,14 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "955f158efc8a1d6f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-11T10:58:00.783086+09:00",
     "multi": false,
     "cls": "2621f8fab6b0",
     "page_checked_at": "2026-11-19T12:33:48.735270+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017275+09:00"
   },
   "a2575519b2167d4e": {
     "store": "ブックオフ川崎モアーズ店",
@@ -3487,10 +3493,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "1c2bea7c26527e64",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-11T18:17:11.760507+09:00",
     "multi": false,
-    "cls": "36a4167b4359"
+    "cls": "36a4167b4359",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017276+09:00"
   },
   "893e7763d8d4a49c": {
     "store": "BOOKOFF PLUS 千葉仁戸名店",
@@ -3516,10 +3524,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "893e7763d8d4a49c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-11T18:17:11.760525+09:00",
     "multi": false,
-    "cls": "f596349e644e"
+    "cls": "f596349e644e",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017277+09:00"
   },
   "58f5023de309c9a2": {
     "store": "ブックオフプラス田富昭和通り店",
@@ -3575,33 +3585,6 @@
     "multi": false,
     "cls": "e6efcb230435",
     "closed_at": "2026-11-19T06:29:10.122573+09:00"
-  },
-  "9a03aab5669f8ad0": {
-    "store": "HobbyMarketさとう店",
-    "product": "神の支配【OP-18】",
-    "series": "神の支配",
-    "start": "2026-11-09T14:13:00+09:00",
-    "end": "2026-11-17T21:00:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": "1人1回",
-    "url": "https://livepocket.jp/e/t-h1u",
-    "x_post": "https://x.com/tcg_info_navi/status/2120428906779910446",
-    "game": "onepiece",
-    "channel": "store",
-    "area": null,
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.85,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "9a03aab5669f8ad0",
-    "status": "duplicate",
-    "found_at": "2026-11-11T18:18:33.953316+09:00",
-    "multi": false,
-    "cls": "4ccd01aecd96",
-    "duplicate_of": "e79c028fea7df258"
   },
   "1b14b7d7170d0667": {
     "store": "TCバトロコ satellite 金沢香林坊",
@@ -4247,10 +4230,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "bce80556f4fedea9",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-12T15:17:23.048850+09:00",
     "multi": false,
-    "cls": "7f6ee40db4b7"
+    "cls": "7f6ee40db4b7",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017102+09:00"
   },
   "e4ca8c83e47266d2": {
     "store": "カードラボAKIHABARAゲーマーズB1店",
@@ -4975,10 +4960,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "2be2046ea8d05ae5",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-12T21:48:12.873632+09:00",
     "multi": false,
-    "cls": "2cdf1e0ea792"
+    "cls": "2cdf1e0ea792",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017279+09:00"
   },
   "6573403c079f0fda": {
     "store": "ブックオフ西友岡崎店",
@@ -5144,33 +5131,6 @@
     "issue": 696,
     "tco_checked": true
   },
-  "ec9f5becc832ba53": {
-    "store": "TSUTAYA Trading Card 平塚店",
-    "product": "ワンピースカード「神の支配」",
-    "series": "神の支配",
-    "start": null,
-    "end": "2026-11-17T20:00:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": "1BOX購入権の抽選。2026-11-21〜23に店頭購入、テープカットでお渡し",
-    "url": "https://livepocket.jp/e/gy0g3",
-    "x_post": "https://x.com/OnchainOutlaw/status/2120836510631305235",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "神奈川県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.7,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "ec9f5becc832ba53",
-    "status": "duplicate",
-    "found_at": "2026-11-12T21:49:46.584315+09:00",
-    "multi": false,
-    "cls": "2a0ce9784bf9",
-    "duplicate_of": "fc2050f149c76688"
-  },
   "73264dbaa600a193": {
     "store": "Amazon",
     "product": "ONE PIECEカードゲーム エクストラブースター「EAST BLUE【EB-06】」BOX",
@@ -5293,7 +5253,7 @@
     "cls": "cc7bb392959f",
     "issue": 703,
     "tco_checked": true,
-    "page_checked_at": "2026-11-18T22:10:10.313624+09:00",
+    "page_checked_at": "2026-11-19T22:16:46.892659+09:00",
     "address": "東京都渋谷区神南1-11-4FPG",
     "address_checked": true,
     "details_checked": true
@@ -5387,7 +5347,7 @@
     "deadline_note": "応募ページの中身が空",
     "issue": 706,
     "cls": "26da6e16c25a",
-    "page_checked_at": "2026-11-19T12:34:06.026278+09:00",
+    "page_checked_at": "2026-11-19T22:16:49.342736+09:00",
     "page_err": "中身が空"
   },
   "daa1f283cd4746be": {
@@ -5444,9 +5404,10 @@
     "end_from": "応募ページ（抽選受付期間：2026/11/25(水)）",
     "multi": false,
     "cls": "46a69539f8e3",
-    "page_checked_at": "2026-11-18T22:10:15.238483+09:00",
+    "page_checked_at": "2026-11-19T22:16:52.108458+09:00",
     "address_checked": true,
-    "details_checked": true
+    "details_checked": true,
+    "page_err": "503 Server Error: Service Unavailable for url: https://cardbox.online/news/detail/?id=1024"
   },
   "38c88e72c570b271": {
     "store": "ディセントゲーム新宿",
@@ -5506,7 +5467,7 @@
     "issue": 707,
     "multi": true,
     "cls": "60f15249b3fb",
-    "page_checked_at": "2026-11-19T12:34:08.836583+09:00",
+    "page_checked_at": "2026-11-19T22:16:52.601500+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://youing-toreka.membercard.jp/lottery",
     "post_checked": true,
     "details_checked": true
@@ -5664,92 +5625,11 @@
     "multi": true,
     "cls": "2361f431e1e2",
     "issue": 713,
-    "page_checked_at": "2026-11-18T22:10:18.024784+09:00",
+    "page_checked_at": "2026-11-19T22:16:52.654864+09:00",
     "end_from": "応募ページ（神の支配 抽選 11/21〜11/28(）",
     "address_checked": true,
     "details_checked": true,
     "page_err": "中身が空"
-  },
-  "b2c80790b7edeb63": {
-    "store": "王の洞窟岐南本店",
-    "product": "神の支配 OP-18",
-    "series": "神の支配",
-    "start": "2026-11-10T21:30:00+09:00",
-    "end": "2026-11-17T21:30:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": "1BOX購入権の抽選。2026-11-21〜23に店頭購入、シュリンク・箱を開封してお渡し",
-    "url": "https://livepocket.jp/e/k-c79",
-    "x_post": "https://x.com/Nchan_000/status/2120865529535893600",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "岐阜県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.8,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "b2c80790b7edeb63",
-    "status": "duplicate",
-    "found_at": "2026-11-13T05:52:03.746702+09:00",
-    "multi": false,
-    "cls": "6d61f2ef2694",
-    "duplicate_of": "d97c943bc77162f1"
-  },
-  "cd6460daeee51875": {
-    "store": "TSUTAYA Trading Card平塚店",
-    "product": "神の支配 OP-18",
-    "series": "神の支配",
-    "start": null,
-    "end": "2026-11-17T20:00:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": "1BOX購入権の抽選。2026-11-21〜23に店頭購入、テープカットでお渡し",
-    "url": "https://livepocket.jp/e/gy0g3",
-    "x_post": "https://x.com/Nchan_000/status/2120865374266925345",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "神奈川県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.8,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "cd6460daeee51875",
-    "status": "duplicate",
-    "found_at": "2026-11-13T05:52:03.746745+09:00",
-    "multi": false,
-    "cls": "2517ec69f458",
-    "duplicate_of": "ec9f5becc832ba53"
-  },
-  "efb41f5452821d26": {
-    "store": "王の洞窟岐南本店",
-    "product": "神の支配【OP-18】",
-    "series": "神の支配",
-    "start": "2026-11-10T21:30:00+09:00",
-    "end": "2026-11-17T21:30:00+09:00",
-    "announce": null,
-    "method": "Web",
-    "conditions": "LivePocketの応募ページから応募（店頭受取のみ）",
-    "url": "https://livepocket.jp/e/k-c79",
-    "x_post": "https://x.com/tcg_info_navi/status/2120864708769026063",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "岐阜県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.9,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "efb41f5452821d26",
-    "status": "duplicate",
-    "found_at": "2026-11-13T05:52:03.746769+09:00",
-    "multi": false,
-    "cls": "87ab9f47010f",
-    "duplicate_of": "b2c80790b7edeb63"
   },
   "e895ab4da0e362d7": {
     "store": "楽天",
@@ -5944,7 +5824,7 @@
     "status": "approved",
     "found_at": "2026-11-13T11:39:29.094055+09:00",
     "cls": "8dc26edafa63",
-    "page_checked_at": "2026-11-18T22:10:20.098383+09:00"
+    "page_checked_at": "2026-11-19T22:16:54.895406+09:00"
   },
   "410df321646935dc": {
     "store": "トレカショップ カドデ（岐阜県各務原市・2027年1月2日オープン）",
@@ -6566,7 +6446,7 @@
     "multi": true,
     "cls": "010eb031b17a",
     "start": "2026-11-13T15:00:00+09:00",
-    "page_checked_at": "2026-11-18T22:11:24.644475+09:00",
+    "page_checked_at": "2026-11-19T22:16:57.607085+09:00",
     "address_checked": true
   },
   "dcc2d128e5d59c49": {
@@ -6795,7 +6675,7 @@
     "key": "674b69a34c8870bc",
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.968383+09:00",
-    "page_checked_at": "2026-11-19T12:34:14.260187+09:00",
+    "page_checked_at": "2026-11-19T22:17:00.333533+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "4ef2c446e84a"
@@ -6825,7 +6705,7 @@
     "key": "5019470319e6ed64",
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.968419+09:00",
-    "page_checked_at": "2026-11-16T12:40:41.526289+09:00",
+    "page_checked_at": "2026-11-19T22:17:02.451541+09:00",
     "address_checked": true,
     "multi": false,
     "cls": "0678f78e4697"
@@ -6856,7 +6736,7 @@
     "found_at": "2026-11-14T13:28:55.968454+09:00",
     "multi": false,
     "cls": "ed9983bce501",
-    "page_checked_at": "2026-11-16T12:40:43.996619+09:00",
+    "page_checked_at": "2026-11-19T22:17:04.931199+09:00",
     "address_checked": true
   },
   "30a9399af3abacde": {
@@ -7088,7 +6968,7 @@
     "key": "243b9d6020b8aa85",
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.969079+09:00",
-    "page_checked_at": "2026-11-16T12:40:50.559792+09:00",
+    "page_checked_at": "2026-11-19T22:17:07.371353+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "7d61ac181f8d"
@@ -7118,7 +6998,7 @@
     "key": "32d973cf0588dd6c",
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.969113+09:00",
-    "page_checked_at": "2026-11-14T17:49:45.440587+09:00",
+    "page_checked_at": "2026-11-19T22:17:09.498976+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "91a1b068650f"
@@ -7229,7 +7109,7 @@
     "key": "4458dd47992a2472",
     "status": "approved",
     "found_at": "2026-11-14T13:28:55.969251+09:00",
-    "page_checked_at": "2026-11-14T17:49:47.491636+09:00",
+    "page_checked_at": "2026-11-19T22:17:11.714331+09:00",
     "page_err": "中身が空",
     "multi": false,
     "cls": "0d82d2fe4aec"
@@ -7621,7 +7501,7 @@
     "found_at": "2026-11-14T13:28:57.436733+09:00",
     "multi": false,
     "cls": "fe4f4bf29eff",
-    "page_checked_at": "2026-11-14T18:44:36.324174+09:00",
+    "page_checked_at": "2026-11-19T22:17:13.837347+09:00",
     "address_checked": true
   },
   "594eccd1f67a7331": {
@@ -7677,7 +7557,7 @@
     "found_at": "2026-11-14T13:28:57.436791+09:00",
     "multi": false,
     "cls": "ff82fe1422d4",
-    "page_checked_at": "2026-11-14T18:44:38.681753+09:00",
+    "page_checked_at": "2026-11-19T22:17:16.363624+09:00",
     "address_checked": true
   },
   "0317d628049e4b3b": {
@@ -7706,7 +7586,7 @@
     "found_at": "2026-11-14T13:28:57.436818+09:00",
     "multi": false,
     "cls": "ed1263b53df9",
-    "page_checked_at": "2026-11-14T18:44:40.966278+09:00",
+    "page_checked_at": "2026-11-19T22:17:18.849926+09:00",
     "address_checked": true
   },
   "70dbf0e2e4f5d80c": {
@@ -7862,7 +7742,7 @@
     "found_at": "2026-11-14T13:28:57.592632+09:00",
     "multi": true,
     "cls": "49cdeb3939ff",
-    "page_checked_at": "2026-11-14T18:44:45.237482+09:00",
+    "page_checked_at": "2026-11-19T22:17:21.424601+09:00",
     "address_checked": true,
     "start": "2026-11-14T00:00:00+09:00"
   },
@@ -8323,10 +8203,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "1c075466b636b31c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-14T16:50:02.166652+09:00",
     "multi": false,
-    "cls": "89962d9c332d"
+    "cls": "89962d9c332d",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017280+09:00"
   },
   "763f8783b2442c8c": {
     "store": "WonderGOO瑞江店",
@@ -8524,10 +8406,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "4088e5b0b898ed8b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-14T17:38:26.040106+09:00",
     "multi": false,
-    "cls": "2ed53b6207b4"
+    "cls": "2ed53b6207b4",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017281+09:00"
   },
   "2525021c0787ee77": {
     "store": "TSUTAYA白河店（みどり書房白河店）",
@@ -8551,10 +8435,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "2525021c0787ee77",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-14T17:38:26.040129+09:00",
     "multi": false,
-    "cls": "413c7274d4b0"
+    "cls": "413c7274d4b0",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017282+09:00"
   },
   "289d4b43cc122bf9": {
     "store": "三洋堂トレカ館 中津川店",
@@ -8900,10 +8786,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "cca1162802e8de8d",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T10:57:40.599307+09:00",
     "multi": false,
-    "cls": "525d8d30ad7d"
+    "cls": "525d8d30ad7d",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017104+09:00"
   },
   "ba91b0eb66cc7a2b": {
     "store": "キャラカプ イオンモール盛岡店",
@@ -8927,10 +8815,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ba91b0eb66cc7a2b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T10:57:40.599326+09:00",
     "multi": false,
-    "cls": "9aebbde58555"
+    "cls": "9aebbde58555",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017106+09:00"
   },
   "05b62ad76b49e67e": {
     "store": "TSUTAYA春日井店（トレカ）",
@@ -9553,10 +9443,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "6b67e26e7efdb195",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T10:57:41.763478+09:00",
     "multi": false,
-    "cls": "c3a5a4dc4e45"
+    "cls": "c3a5a4dc4e45",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017283+09:00"
   },
   "0807e5740f41754f": {
     "store": "ピットイン西葛西",
@@ -9580,10 +9472,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "0807e5740f41754f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T10:57:41.763490+09:00",
     "multi": false,
-    "cls": "da20ff616db3"
+    "cls": "da20ff616db3",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017285+09:00"
   },
   "1d454f74d28070da": {
     "store": "トレーディングカードピット長岡店",
@@ -9972,7 +9866,7 @@
     "key": "2313c45efb21d89f",
     "status": "pending",
     "found_at": "2026-11-15T20:58:59.992342+09:00",
-    "deadline_checked_at": "2026-11-18T12:47:40.486388+09:00",
+    "deadline_checked_at": "2026-11-19T22:16:45.781166+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・受付は予告なく終了する場合あり",
     "issue": 780,
@@ -10001,12 +9895,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "f45ffe963d3914e8",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T20:58:59.992377+09:00",
     "start": "2026-11-13",
     "multi": false,
     "cls": "d6a30a41c9ea",
-    "announce": "2026-11-20"
+    "announce": "2026-11-20",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017107+09:00"
   },
   "88ae15e3fd6a820c": {
     "store": "ホビーオフ愛川店",
@@ -10083,10 +9979,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "c7d66a26bee33dda",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T20:59:01.029552+09:00",
     "multi": false,
-    "cls": "33e69ec05e41"
+    "cls": "33e69ec05e41",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017286+09:00"
   },
   "2e11622403ec1bab": {
     "store": "バトロコミニ横浜鶴ヶ峰店",
@@ -10110,10 +10008,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "2e11622403ec1bab",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-15T20:59:01.029563+09:00",
     "multi": false,
-    "cls": "0de76182446e"
+    "cls": "0de76182446e",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017287+09:00"
   },
   "2f23152ab26c5152": {
     "store": "ブックオフ新瑞橋駅前店",
@@ -10957,10 +10857,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "1536529e86bc27ba",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-16T11:13:01.249772+09:00",
     "multi": false,
-    "cls": "842d7982132f"
+    "cls": "842d7982132f",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017108+09:00"
   },
   "fa8ae8c438b2d7ac": {
     "store": "文教堂浦安西友店【トレカ】",
@@ -12612,10 +12514,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "b70ec356ed5c908b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-17T07:55:34.368010+09:00",
     "multi": false,
-    "cls": "5b94f14a8fb2"
+    "cls": "5b94f14a8fb2",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017110+09:00"
   },
   "646d692369778736": {
     "store": "カードラボ新潟店",
@@ -13300,10 +13204,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "6988ff306217ca57",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-17T07:55:34.368803+09:00",
     "multi": false,
-    "cls": "d910a0ce3565"
+    "cls": "d910a0ce3565",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017111+09:00"
   },
   "e6e5b61509d033ef": {
     "store": "TSUTAYA伊那店",
@@ -13834,10 +13740,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "e4c82305c44c1aeb",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-17T07:55:35.412672+09:00",
     "multi": false,
-    "cls": "b17bfba21ed0"
+    "cls": "b17bfba21ed0",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017288+09:00"
   },
   "08884453b46af6be": {
     "store": "トーナメントセンターバトロコ 弘前駅前",
@@ -13862,10 +13770,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "08884453b46af6be",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-17T07:55:35.412703+09:00",
     "multi": false,
-    "cls": "e6da4922cd49"
+    "cls": "e6da4922cd49",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017289+09:00"
   },
   "1601d6599d6a1b7f": {
     "store": "BOOKOFFシーナシーナ琴似店",
@@ -13887,10 +13797,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "1601d6599d6a1b7f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-17T07:55:35.412734+09:00",
     "multi": false,
-    "cls": "54514fa60d4d"
+    "cls": "54514fa60d4d",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017290+09:00"
   },
   "1eb2436c45c5a801": {
     "store": "あそビバ横浜ビブレ店",
@@ -14379,31 +14291,6 @@
     "multi": true,
     "cls": "bac0a34928b2",
     "closed_at": "2026-11-19T06:29:10.125977+09:00"
-  },
-  "ea005d311a1ef58d": {
-    "store": "ブックセンター江戸屋",
-    "product": "神の支配",
-    "series": "神の支配",
-    "start": "2026-11-15T21:00:00+09:00",
-    "end": "2026-11-17T21:00:00+09:00",
-    "announce": null,
-    "method": null,
-    "conditions": null,
-    "url": "https://shoplottery.e-starbox.com/lottery/entry?code=hA8jO7byJY",
-    "x_post": "https://x.com/torekachusen/status/2122327082328039590",
-    "game": "onepiece",
-    "channel": "store",
-    "area": "茨城県",
-    "id_check": null,
-    "member": null,
-    "tags": [],
-    "confidence": 0.4,
-    "source": "X「ワンピカード 抽選」",
-    "source_url": "https://x.com/",
-    "key": "ea005d311a1ef58d",
-    "status": "duplicate",
-    "found_at": "2026-11-17T07:56:36.335403+09:00",
-    "duplicate_of": "629b8d9c96fcd3c6"
   },
   "fabc54ba0abd85ed": {
     "store": "ヤマシロヤ",
@@ -15947,10 +15834,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "e834e38ee4466c5f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.172394+09:00",
     "multi": false,
-    "cls": "1eacc5166aa3"
+    "cls": "1eacc5166aa3",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017112+09:00"
   },
   "44d3a969d6d8499b": {
     "store": "古本市場市川鬼高店",
@@ -15975,10 +15864,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "44d3a969d6d8499b",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.172412+09:00",
     "multi": false,
-    "cls": "4b8252a5d1c1"
+    "cls": "4b8252a5d1c1",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017113+09:00"
   },
   "dfd601691b884f36": {
     "store": "カードラボ岐阜店",
@@ -17478,10 +17369,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "4563cfc7a2f3ff6f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.173877+09:00",
     "multi": false,
-    "cls": "bae3498d9cea"
+    "cls": "bae3498d9cea",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017115+09:00"
   },
   "42d1c00eefda4743": {
     "store": "TSUTAYA BOOKSTORE 福島南",
@@ -19029,10 +18922,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "d7f56fec2d7fbebf",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.924092+09:00",
     "multi": false,
-    "cls": "478bbc5934d9"
+    "cls": "478bbc5934d9",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017291+09:00"
   },
   "e52d325dc68dc841": {
     "store": "ブックオフ リヴィン田無店",
@@ -19056,10 +18951,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "e52d325dc68dc841",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.924111+09:00",
     "multi": false,
-    "cls": "dca90b964264"
+    "cls": "dca90b964264",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017293+09:00"
   },
   "a3dcd4948f7e1f74": {
     "store": "MINT新宿店（新宿マルイアネックス7F）",
@@ -19084,10 +18981,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "a3dcd4948f7e1f74",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.924131+09:00",
     "multi": false,
-    "cls": "bb2653faf7ef"
+    "cls": "bb2653faf7ef",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017294+09:00"
   },
   "29b57467ed2f7ebd": {
     "store": "トレカ専門店 ギャラクシー 渋谷店",
@@ -19109,10 +19008,12 @@
     "source_url": "https://cardchusen.com/onepiece",
     "no_quote": true,
     "key": "29b57467ed2f7ebd",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-18T12:43:59.924153+09:00",
     "multi": false,
-    "cls": "bd4951fafeee"
+    "cls": "bd4951fafeee",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-19T22:16:43.017295+09:00"
   },
   "4e32c4903449b1da": {
     "store": "ブックオフスーパーバザー ららぽーとTOKYO-BAY North Gate店",
@@ -22953,7 +22854,9 @@
     "key": "7f1d9162a1dd5730",
     "status": "pending",
     "found_at": "2026-11-19T12:33:39.760311+09:00",
-    "issue": 909
+    "issue": 909,
+    "multi": false,
+    "cls": "cc0734d0404c"
   },
   "437ac08bb7f8979c": {
     "store": "カードラッシュ池袋店",
@@ -22989,7 +22892,9 @@
     "key": "437ac08bb7f8979c",
     "status": "pending",
     "found_at": "2026-11-19T12:33:39.760331+09:00",
-    "issue": 910
+    "issue": 910,
+    "multi": false,
+    "cls": "f84022321483"
   },
   "1392afd8e466fa4d": {
     "store": "カードラッシュ秋葉原0号店TC",
@@ -23025,7 +22930,9 @@
     "key": "1392afd8e466fa4d",
     "status": "pending",
     "found_at": "2026-11-19T12:33:39.760351+09:00",
-    "issue": 911
+    "issue": 911,
+    "multi": false,
+    "cls": "935651d72700"
   },
   "836280e621fe9cda": {
     "store": "TSUTAYA積文館書店 鹿島店",
@@ -23051,7 +22958,9 @@
     "no_quote": true,
     "key": "836280e621fe9cda",
     "status": "approved",
-    "found_at": "2026-11-19T12:33:39.760388+09:00"
+    "found_at": "2026-11-19T12:33:39.760388+09:00",
+    "multi": false,
+    "cls": "1046deaa292d"
   },
   "30b84ee8495baefb": {
     "store": "TSUTAYA積文館書店 鹿島店",
@@ -23077,7 +22986,9 @@
     "no_quote": true,
     "key": "30b84ee8495baefb",
     "status": "approved",
-    "found_at": "2026-11-19T12:33:39.760409+09:00"
+    "found_at": "2026-11-19T12:33:39.760409+09:00",
+    "multi": false,
+    "cls": "d2d55c85a769"
   },
   "a3613fcc01d4fed4": {
     "store": "TSUTAYA積文館書店 鹿島店",
@@ -23103,7 +23014,9 @@
     "no_quote": true,
     "key": "a3613fcc01d4fed4",
     "status": "approved",
-    "found_at": "2026-11-19T12:33:39.760430+09:00"
+    "found_at": "2026-11-19T12:33:39.760430+09:00",
+    "multi": false,
+    "cls": "ce1774811304"
   },
   "95057d634c872014": {
     "store": "文教堂行徳店【トレカ】",
@@ -23129,7 +23042,9 @@
     "no_quote": true,
     "key": "95057d634c872014",
     "status": "approved",
-    "found_at": "2026-11-19T12:33:39.760450+09:00"
+    "found_at": "2026-11-19T12:33:39.760450+09:00",
+    "multi": false,
+    "cls": "9e31d96ffac3"
   },
   "e64540911d949d9a": {
     "store": "ブックオフスーパーバザー多摩永山店",
@@ -23155,7 +23070,9 @@
     "no_quote": true,
     "key": "e64540911d949d9a",
     "status": "approved",
-    "found_at": "2026-11-19T12:33:39.760481+09:00"
+    "found_at": "2026-11-19T12:33:39.760481+09:00",
+    "multi": false,
+    "cls": "d60dd0fab546"
   },
   "f106dbc600932628": {
     "store": "今井書店倉吉パープルタウン店（トレカ）",
@@ -23372,5 +23289,483 @@
     "found_at": "2026-11-19T12:33:40.399651+09:00",
     "multi": false,
     "cls": "eae49a91cc97"
+  },
+  "fde69c206ebcc594": {
+    "game": "pokemon",
+    "store": "ポケモンセンター（LINE抽選・全国の各店）",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（お1人様20パックまで）",
+    "series": "ハドウシーカー",
+    "channel": "store",
+    "method": "各店のお知らせページにあるLINEミニアプリの申し込みページから、購入する「呼出時間枠」を選んで応募（購入時間帯抽選）→ 当選者にだけLINEで通知 → 当選した時間枠に店頭で購入",
+    "start": "2026-11-19T14:00+09:00",
+    "end": "2026-11-23T23:59+09:00",
+    "announce": "11月25日(水)12時以降、順次LINEの「LINEミニアプリ お知らせ」アカウントから（当選者のみ通知）",
+    "buy": "11月27日(金)〜11月28日(土) 11時〜19時の当選した呼出時間枠（30分単位）",
+    "conditions": "お1人様1回限り。複数店舗・複数日程への申し込み不可。購入整理券画面を表示できるスマートフォンが必要（スクリーンショット不可）。代理購入・当選権利の譲渡不可。抽選販売期間中は一般販売なし",
+    "url": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-tokyodx/news/202611/000718.html",
+    "slug": "pokemoncenter-hadou-seeker-1123",
+    "key": "fde69c206ebcc594",
+    "status": "listed",
+    "found_at": "2026-11-19T22:16:19.836708+09:00",
+    "manual": true,
+    "source": "手動追加",
+    "confidence": 1.0,
+    "multi": true,
+    "cls": "182df9121fc7",
+    "tags": [
+      "アプリ"
+    ],
+    "id_check": false,
+    "member": "none"
+  },
+  "084457a95876b49b": {
+    "store": "ポケモンセンター",
+    "start": "2026-11-19T14:00:00+09:00",
+    "end": "2026-11-23T23:59:00+09:00",
+    "announce": "11月25日(水)12時以降から順次（LINEミニアプリ お知らせで当選者のみ通知）",
+    "buy": null,
+    "method": "アプリ抽選受付（当選者には店頭販売）",
+    "url": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-megatokyo/news/202611/000709.html",
+    "x_post": null,
+    "game": "pokemon",
+    "channel": "store",
+    "id_check": null,
+    "member": null,
+    "tags": [
+      "アプリ"
+    ],
+    "confidence": 0.9,
+    "product": "ハドウシーカー",
+    "series": "ハドウシーカー",
+    "source": "入荷Now 入荷情報",
+    "source_url": "https://nyuka-now.com/archives/162248",
+    "no_quote": true,
+    "key": "084457a95876b49b",
+    "status": "duplicate",
+    "found_at": "2026-11-19T22:16:39.951203+09:00",
+    "multi": false,
+    "cls": "cc90c7700ce3",
+    "duplicate_of": "fde69c206ebcc594"
+  },
+  "4a1f095629486f55": {
+    "store": "ティーズ イオンタウン宇多津",
+    "product": "ポケモンカード ストームエメラルダ（再販分）1BOX 購入権抽選",
+    "series": "ストームエメラルダ",
+    "end": "2026-11-19T23:59:00+09:00",
+    "url": "https://shoplottery.e-starbox.com/lottery/entry?code=D1MWBqns6F",
+    "x_post": null,
+    "channel": "store",
+    "area": "香川県",
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "4a1f095629486f55",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.917977+09:00",
+    "multi": false,
+    "cls": "8f31c8bbafbd"
+  },
+  "b48c5e72572cc405": {
+    "store": "トレカショップ スキップ 通販店",
+    "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」1BOX（6,000円税込・店頭受け渡しのみ）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-21T12:00:00+09:00",
+    "url": "https://www.skip-tcg.com/view/news/20261118170202",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "b48c5e72572cc405",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918003+09:00",
+    "multi": false,
+    "cls": "316370be8927"
+  },
+  "1611c6afece27429": {
+    "store": "ブックオフ スーパーバザー トライアル伊勢崎中央店",
+    "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」1BOX購入権",
+    "series": "ハドウシーカー",
+    "end": "2026-11-22T23:59:00+09:00",
+    "url": "https://x.com/BSB_TRIAL/status/2123265007492182211",
+    "x_post": "https://x.com/BSB_TRIAL/status/2123265007492182211",
+    "channel": "store",
+    "area": "群馬県",
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "1611c6afece27429",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918015+09:00",
+    "multi": false,
+    "cls": "068e383523f4"
+  },
+  "dd5e2ac257513c46": {
+    "store": "ブックマーケットエーツー三河安城店",
+    "product": "ポケモンカードゲームMEGA 拡張パック「ハドウシーカー」1BOX（6,000円税込・会員限定）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-22T23:59:00+09:00",
+    "url": "https://livepocket.jp/e/hwu69",
+    "x_post": null,
+    "channel": "store",
+    "area": "愛知県",
+    "method": "オンライン",
+    "conditions": "会員・レシート・本人確認",
+    "tags": [
+      "会員",
+      "レシート",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "dd5e2ac257513c46",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918025+09:00",
+    "multi": false,
+    "cls": "9b04e7968129"
+  },
+  "1613993bfcd88d2a": {
+    "store": "ポケモンセンター各店（店頭事前抽選）",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（お1人様20パックまで・当選者は店頭購入）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-23T23:59:00+09:00",
+    "url": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-megatokyo/news/202611/000709.html",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "アプリ ／ 対象地域：北海道・宮城県・東京都・千葉県・神奈川県・石川県・愛知県・京都府・大阪府・広島県・香川県・福岡県・沖縄県",
+    "tags": [
+      "アプリ"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "1613993bfcd88d2a",
+    "status": "duplicate",
+    "found_at": "2026-11-19T22:16:40.918036+09:00",
+    "multi": true,
+    "cls": "7200dfcba696",
+    "duplicate_of": "fde69c206ebcc594"
+  },
+  "200eae22afabdee8": {
+    "store": "ミント沖縄店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（6,000円税込・お1人様1BOXまで）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-25T14:00:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScR_SG5qgwHqzapZLKYBTocBxBSSg5dNLXELa_1JojSso-trw/viewform",
+    "x_post": null,
+    "channel": "store",
+    "area": "沖縄県",
+    "method": "オンライン",
+    "conditions": "アプリ・会員・SNS応募・本人確認",
+    "tags": [
+      "アプリ",
+      "会員",
+      "SNS応募",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "200eae22afabdee8",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918046+09:00",
+    "multi": false,
+    "cls": "8b59e5e709a5"
+  },
+  "7f651bd2baf4b43a": {
+    "store": "BOOKOFF SUPER BAZAAR Luz湘南辻堂店",
+    "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」（お1人様1個まで）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-25T23:59:00+09:00",
+    "url": "https://x.com/Luz74390267288/status/2123275108961964351",
+    "x_post": "https://x.com/Luz74390267288/status/2123275108961964351",
+    "channel": "store",
+    "area": "神奈川県",
+    "method": "SNS抽選",
+    "conditions": "アプリ・SNS応募",
+    "tags": [
+      "アプリ",
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "7f651bd2baf4b43a",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918061+09:00",
+    "multi": false,
+    "cls": "5fd4cb71636d"
+  },
+  "f0a26b179ed8fde1": {
+    "store": "ガンギ HOBBYSHOP",
+    "product": "ポケモンカードゲーム ソード＆シールド ハイクラスパック「VSTARユニバース」10パック入りBOX（5,500円税込＋送料）",
+    "series": "VSTARユニバース",
+    "end": "2026-11-25T23:59:00+09:00",
+    "url": "https://www.gangi.co.jp/blog/drawsale-720",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・SNS応募",
+    "tags": [
+      "会員",
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "f0a26b179ed8fde1",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918075+09:00",
+    "cls": "3ff74d0ab3c4"
+  },
+  "f44dceb76ad58bc8": {
+    "store": "ミント仙台店",
+    "product": "ポケモンカードゲーム MEGA拡張パック「ハドウシーカー」1BOX（6,000円税込・店頭受取）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T12:00:00+09:00",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSejElB3ULoL6q5oUBNvu0Ttq2r6JhAelRve5ZMuu3NabAu1Ug/viewform",
+    "x_post": null,
+    "channel": "store",
+    "area": "宮城県",
+    "method": "オンライン",
+    "conditions": "アプリ・会員・SNS応募・本人確認",
+    "tags": [
+      "アプリ",
+      "会員",
+      "SNS応募",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "f44dceb76ad58bc8",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918087+09:00",
+    "multi": false,
+    "cls": "d192e80dd473"
+  },
+  "0f113d43e668998d": {
+    "store": "ブックオフ7号能代店",
+    "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」",
+    "series": "ハドウシーカー",
+    "end": "2026-11-23T23:59:00+09:00",
+    "url": "https://x.com/BOOKOFFnoshiro/status/2123299385169817668",
+    "x_post": "https://x.com/BOOKOFFnoshiro/status/2123299385169817668",
+    "channel": "store",
+    "area": "秋田県",
+    "method": "店頭",
+    "conditions": "アプリ・会員・本人確認",
+    "tags": [
+      "アプリ",
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "card",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "0f113d43e668998d",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:40.918114+09:00",
+    "multi": false,
+    "cls": "db4dd9caa984"
+  },
+  "0586b2f823a8e537": {
+    "store": "駿河屋 名古屋大須トレカ・ボードゲーム館",
+    "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（5,760円税込）",
+    "series": "神の支配",
+    "end": "2026-11-20T23:59:00+09:00",
+    "url": "https://x.com/suruga758tb/status/2123249906710175869",
+    "x_post": "https://x.com/suruga758tb/status/2123249906710175869",
+    "channel": "store",
+    "area": "愛知県",
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "0586b2f823a8e537",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:41.470765+09:00",
+    "multi": false,
+    "cls": "d76e69719615"
+  },
+  "bb9856f6d33f585d": {
+    "store": "駿河屋 博多マルイ店（トレカ専用）",
+    "product": "ONE PIECEカードゲーム ブースターパック 神の支配【OP-18】1BOX（5,760円税込・抽選販売 第2弾）",
+    "series": "神の支配",
+    "end": "2026-11-20T23:59:00+09:00",
+    "url": "https://x.com/SToreka81969/status/2123278627139899591",
+    "x_post": "https://x.com/SToreka81969/status/2123278627139899591",
+    "channel": "store",
+    "area": "福岡県",
+    "method": "SNS抽選",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "bb9856f6d33f585d",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:41.470825+09:00",
+    "multi": false,
+    "cls": "fbf96167d04c"
+  },
+  "65a51c2714f9ac83": {
+    "store": "ブックオフ野田店（ホビー・トレカ）",
+    "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX",
+    "series": "神の支配",
+    "end": "2026-11-21T15:00:00+09:00",
+    "url": "https://x.com/bookoff_noda/status/2123251393318490243",
+    "x_post": "https://x.com/bookoff_noda/status/2123251393318490243",
+    "channel": "store",
+    "area": "千葉県",
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "65a51c2714f9ac83",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:41.470843+09:00",
+    "multi": false,
+    "cls": "393840efcc76"
+  },
+  "beafb05e81c6da88": {
+    "store": "古本市場灘店",
+    "product": "ONE PIECEカードゲーム ONE PIECE HEROINES PRECIOUS BOX（税込8,470円・1点）",
+    "series": null,
+    "end": "2026-11-22T22:00:00+09:00",
+    "url": "https://livepocket.jp/e/5_l7h",
+    "x_post": null,
+    "channel": "store",
+    "area": "兵庫県",
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "beafb05e81c6da88",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:41.470860+09:00",
+    "multi": false,
+    "cls": "e71dd1c68e00"
+  },
+  "877d00848e8a0cbe": {
+    "store": "ONE PIECE 麦わらストア 各店（渋谷本店・池袋店・お台場店・MUGIWARA STORE HARAJUKU・東京駅店・名古屋店・あべの店・福岡店・熊本店／梅田店を除く）",
+    "product": "ONE PIECEカードゲーム ブースターパック「世界最強の戦士」【OP-17】1BOX（再入荷分・5,760円税込）",
+    "series": "世界最強の戦士",
+    "end": "2026-11-22T23:59:00+09:00",
+    "url": "https://www.mugiwara-store.com/news/3131/",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認 ／ 対象地域：東京都・大阪府・京都府・愛知県・福岡県・熊本県",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "877d00848e8a0cbe",
+    "status": "approved",
+    "found_at": "2026-11-19T22:16:41.470880+09:00",
+    "multi": true,
+    "cls": "f4df4bdf7f1e"
   }
 }

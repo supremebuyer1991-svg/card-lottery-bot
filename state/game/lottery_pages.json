@@ -100,7 +100,15 @@
         "az": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=gamenyuka-22",
         "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DPlayStation%25205%2520%25E3%2583%2587%25E3%2582%25B8%25E3%2582%25BF%25E3%2583%25AB%2520%25E3%2582%25A8%25E3%2583%2587%25E3%2582%25A3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%25B3",
         "mc": "https://jp.mercari.com/search?keyword=PlayStation%205%20%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%20%E3%82%A8%E3%83%87%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3&status=on_sale&afid=1350793153"
-      }
+      },
+      "avail": [
+        {
+          "shop": "Amazon",
+          "s": "buy",
+          "u": "https://www.amazon.co.jp/dp/B0HN71N1KR?tag=st9994ststst-22&linkCode=ogi&th=1&psc=1",
+          "p": 55000
+        }
+      ]
     },
     "path": "l/ps5-midnight-black-release-1119/",
     "end": "2026-11-19T23:59+09:00",
@@ -4424,7 +4432,7 @@
     "path": "l/ca54886e78/",
     "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "7a51503f71accd18": {
     "snap": {
@@ -4469,7 +4477,7 @@
     "path": "l/7a51503f71/",
     "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "3db30047264e44f6": {
     "snap": {
@@ -4514,7 +4522,7 @@
     "path": "l/3db3004726/",
     "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "85e634193b3bf2e2": {
     "snap": {
@@ -4588,7 +4596,7 @@
     "path": "l/6637612643/",
     "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "c88aa2e5924076c4": {
     "snap": {
@@ -4633,7 +4641,7 @@
     "path": "l/c88aa2e592/",
     "end": "2026-11-19T20:00:00+09:00",
     "seen": "2026-11-19",
-    "ended": false
+    "ended": true
   },
   "tc5ff969b090d2935f": {
     "snap": {
@@ -6190,6 +6198,122 @@
     },
     "path": "l/tca3613fcc/",
     "end": "2026-11-22T20:00:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcfde69c206ebcc594": {
+    "snap": {
+      "key": "tcfde69c206ebcc594",
+      "game": "pokemon",
+      "store": "ポケモンセンター（LINE抽選・全国の各店）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（お1人様20パックまで）",
+      "series": "拡張パック「ハドウシーカー」",
+      "start": "2026-11-19T14:00+09:00",
+      "end": "2026-11-23T23:59+09:00",
+      "announce": "11月25日(水)12時以降、順次LINEの「LINEミニアプリ お知らせ」アカウントから（当選者のみ通知）",
+      "method": "各店のお知らせページにあるLINEミニアプリの申し込みページから、購入する「呼出時間枠」を選んで応募（購入時間帯抽選）→ 当選者にだけLINEで通知 → 当選した時間枠に店頭で購入",
+      "conditions": "お1人様1回限り。複数店舗・複数日程への申し込み不可。購入整理券画面を表示できるスマートフォンが必要（スクリーンショット不可）。代理購入・当選権利の譲渡不可。抽選販売期間中は一般販売なし",
+      "tags": [
+        "アプリ"
+      ],
+      "url": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-tokyodx/news/202611/000718.html",
+      "channel": "store",
+      "id_check": false,
+      "member": "none",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-19T22:16:19.836708+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcfde69c20/",
+    "end": "2026-11-23T23:59+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tc4a1f095629486f55": {
+    "snap": {
+      "key": "tc4a1f095629486f55",
+      "game": "pokemon",
+      "store": "ティーズ イオンタウン宇多津",
+      "product": "ポケモンカード ストームエメラルダ（再販分）1BOX 購入権抽選",
+      "series": "拡張パック「ストームエメラルダ」",
+      "end": "2026-11-19T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://shoplottery.e-starbox.com/lottery/entry?code=D1MWBqns6F",
+      "channel": "store",
+      "area": "香川県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-sutomuemeraruda-a0152/",
+      "found_at": "2026-11-19T22:16:40.917977+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%201BOX%20%E8%B3%BC%E5%85%A5%E6%A8%A9&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%2520%25E3%2582%25B9%25E3%2583%2588%25E3%2583%25BC%25E3%2583%25A0%25E3%2582%25A8%25E3%2583%25A1%25E3%2583%25A9%25E3%2583%25AB%25E3%2583%2580%25201BOX%2520%25E8%25B3%25BC%25E5%2585%25A5%25E6%25A8%25A9",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%201BOX%20%E8%B3%BC%E5%85%A5%E6%A8%A9&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc4a1f0956/",
+    "end": "2026-11-19T23:59:00+09:00",
+    "seen": "2026-11-19",
+    "ended": false
+  },
+  "tcf0a26b179ed8fde1": {
+    "snap": {
+      "key": "tcf0a26b179ed8fde1",
+      "game": "pokemon",
+      "store": "ガンギ HOBBYSHOP",
+      "product": "ポケモンカードゲーム ソード＆シールド ハイクラスパック「VSTARユニバース」10パック入りBOX（5,500円税込＋送料）",
+      "series": "VSTARユニバース",
+      "end": "2026-11-25T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・SNS応募",
+      "tags": [
+        "会員",
+        "SNS応募"
+      ],
+      "url": "https://www.gangi.co.jp/blog/drawsale-720",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "spath": "pokeca/vstaryunibasu-78efe/",
+      "found_at": "2026-11-19T22:16:40.918075+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/kingshop/cabinet/compass1704109441.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkingshop%2Ff2690%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fkingshop%2Ff2690%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkingshop%2Ff2690%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fkingshop%2Ff2690%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/kingshop/cabinet/compass1704109441.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%82%BD%E3%83%BC%E3%83%89%26%E3%82%B7%E3%83%BC%E3%83%AB%E3%83%89&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2582%25BD%25E3%2583%25BC%25E3%2583%2589%2526%25E3%2582%25B7%25E3%2583%25BC%25E3%2583%25AB%25E3%2583%2589",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%82%BD%E3%83%BC%E3%83%89%26%E3%82%B7%E3%83%BC%E3%83%AB%E3%83%89&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcf0a26b17/",
+    "end": "2026-11-25T23:59:00+09:00",
     "seen": "2026-11-19",
     "ended": false
   }
