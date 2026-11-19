@@ -148,6 +148,8 @@ export async function runCards(env) {
   for (const k of order) {
     if (left < 3) break;
     if (!touched[k] && (idx.sets[k].due || 0) > now) continue;
+    // 11/20：弾が増えて1回で何弾も書き込み、KVの1日1,000回を超えた。1回で書く弾は2つまで（1日 48回×(2＋目次1)＝最大144回）
+    if (!touched[k] && Object.keys(touched).length >= 2) break;
     const s = await load(k);
     const todo = Object.values(s.cards).filter((c) => dueAt(c) <= now).sort((a, b) => dueAt(a) - dueAt(b));
     for (const c of todo) {

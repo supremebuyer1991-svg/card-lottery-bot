@@ -172,7 +172,7 @@ async function run(env, which, { dry = false } = {}) {
   const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   if (st.day !== today) { st.day = today; st.count = 0; st.hobby = 0; }
   const log = [], out = [];
-  let changed = false, minor = false, n = 0;
+  let changed = false, minor = false, posted = false, n = 0;
   let list = [];
   try { list = await watchList(); } catch (e) { log.push(String(e)); }
   list = list.filter((w) => (which === "rk" ? (w.rk || w.jan) : (w.asin || w.jan)));
@@ -263,7 +263,7 @@ async function run(env, which, { dry = false } = {}) {
     if (dry) { out.push(text); continue; }
     try {
       const tid = await tweet(env, text);
-      st.count++; if (!w.g) st.hobby++; st.posted[id + cur] = Date.now(); changed = true;
+      st.count++; if (!w.g) st.hobby++; st.posted[id + cur] = Date.now(); changed = true; posted = true;
       st.postlog = [{ t: new Date().toISOString(), id, jan: w.jan || "", n: w.n, cur, url, pg: w.pg || "", tid, text }, ...(st.postlog || [])].slice(0, 30);   // 何を投稿したかの記録（11/10）
       out.push(`posted ${tid}`);
     } catch (e) { log.push(String(e)); }
@@ -272,8 +272,10 @@ async function run(env, which, { dry = false } = {}) {
   // KVの保存は無料だと1日1,000回まで：在庫が変わった・新しく見つけた・投稿した・エラーのときだけ
   // 2分ごとに2つ（楽天・Amazon）動くので、毎回保存すると上限を超える：在庫の状態が変わった・新しく見つけた・投稿した時はすぐ、
   // 値段だけの変化やエラーの記録は30分に1回まとめて
-  const due = Date.now() - (st.savedAt || 0) > 30 * 60e3;
-  if (!dry && (changed || ((minor || log.length) && due))) { st.savedAt = Date.now(); await env.STATE.put(key, JSON.stringify(st)); }
+  // 11/20：在庫の表示が行ったり来たりする商品が増え（11/16 見張りの対象を多めに）、「変わったらすぐ保存」で1日1,000回を超えた。
+  //   投稿したときだけすぐ保存（二重投稿を防ぐ）。在庫の変化・新しく見つけたものは15分に1回、値段だけ・エラーは30分に1回まとめて保存
+  const age = Date.now() - (st.savedAt || 0);
+  if (!dry && (posted || (changed && age > 15 * 60e3) || ((minor || log.length) && age > 30 * 60e3))) { st.savedAt = Date.now(); await env.STATE.put(key, JSON.stringify(st)); }
   return st.last;
 }
 
