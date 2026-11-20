@@ -433,7 +433,11 @@
     "50or7": "",
     "gr1sc": "",
     "u5hdv": "",
-    "ksjw9": ""
+    "ksjw9": "",
+    "1p9ix": "https://livepocket.jp/p/tumjc",
+    "p-oje": "https://livepocket.jp/p/t844h",
+    "wtl4o": "https://livepocket.jp/p/23-hu",
+    "kmyxd": "https://livepocket.jp/p/95waj"
   },
   "shops": {
     "https://livepocket.jp/p/isjs6": {
@@ -620,7 +624,8 @@
     "https://livepocket.jp/p/t844h": {
       "name": "フタバ図書TSUTAYA 可部センター店",
       "events": [
-        "sage1"
+        "sage1",
+        "p-oje"
       ]
     },
     "https://livepocket.jp/p/8krkq": {
@@ -676,7 +681,8 @@
     "https://livepocket.jp/p/tumjc": {
       "name": "文教堂浦安西友店",
       "events": [
-        "hloou"
+        "hloou",
+        "1p9ix"
       ]
     },
     "https://livepocket.jp/p/8s6bg": {
@@ -868,6 +874,18 @@
       "name": "トレカオーシャン",
       "events": [
         "qatvd"
+      ]
+    },
+    "https://livepocket.jp/p/23-hu": {
+      "name": "浪漫遊 金沢本店",
+      "events": [
+        "wtl4o"
+      ]
+    },
+    "https://livepocket.jp/p/95waj": {
+      "name": "駿河屋 高槻店トレカ館",
+      "events": [
+        "kmyxd"
       ]
     }
   }
