@@ -15,6 +15,9 @@ const AMZ_SELLER = "AN1VRQENFRJN5"; // Amazon.co.jp
 const AMZ_TAG = "st9994ststst-22";
 const COOLDOWN = 6 * 3600e3, PER_DAY = 12, HOBBY_PER_DAY = 3, SCARCE_DAYS = 3;   // 3日以上売り切れが続いた＝品薄
 const RANK = { none: 0, invite: 1, pre: 2, buy: 3 };
+// 11/20 ユーザー：楽天ブラックフライデー（11/25 01:59まで）は楽天の速報を積極的に。投稿には「さらにポイントでお得に買える」と書く
+const RK_BF_END = Date.parse("2026-11-25T01:59:00+09:00");
+const rkBF = () => Date.now() < RK_BF_END;
 // 1回（2分ごと）に見る数（11/9 ユーザー：できるだけ速く）：楽天は1件ずつ・1秒に1回まで、Amazonは10件ずつまとめて
 const RK_PER_RUN = 40, AZ_BATCH = 40, AZ_SEARCH = 2;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -139,6 +142,7 @@ function compose(w, shop, kind, url) {
   const lines = ["🚨速報🚨 " + head, "", `【${w.n}】`, ...(w.pm ? [`💰定価以上で売れてる商品（${w.pm}）`] : []), ...(w._days >= 3 ? [`📦${Math.floor(w._days)}日ぶりの在庫復活`] : []), "",
     w.pg ? `${where}の購入ボタンはこちら👇` : (kind === "pre" ? "定価で予約できます👇" : shop === "az" ? "Amazon.co.jp本体の販売です👇" : "定価で買えます👇"), link, ""];
   if (kind === "invite") lines.push("📩リクエストして、招待メールが届いた人が買える方式です", "");
+  if (shop === "rk" && rkBF()) lines.push("🛍️楽天ブラックフライデー開催中（11/25 1:59まで）", "さらにポイントでお得に買える✨", "");
   lines.push("⚠️売り切れてもすぐ復活することあり", "🔔通知ONで速報が届きます", (w.tag || []).join(" "));
   return lines.join("\n");
 }
@@ -153,6 +157,8 @@ function batch(list, n, salt) {
   const nh = Math.min(hot.length, Math.ceil(n * 3 / 4));
   return [...pick(hot, nh), ...pick(rest, n - nh)];
 }
+// 速報の対象になりうる商品（この商品の在庫の変化はすぐ保存する）
+const postable = (w, which) => !!(w.hot || w.always || ok80(w) || (which === "rk" && rkBF() && w.tk && w.mx && w.mx >= w.tk * 0.6));
 const ok80 = (w) => !!(w.tk && w.mx && w.mx >= w.tk * 0.8 && !w.neg);   // 買取が定価の8割以上（速報の対象。11/16）
 const yen = (s) => Number(String(s || "").replace(/[^\d]/g, "")) || 0;
 
@@ -172,7 +178,7 @@ async function run(env, which, { dry = false } = {}) {
   const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   if (st.day !== today) { st.day = today; st.count = 0; st.hobby = 0; }
   const log = [], out = [];
-  let changed = false, minor = false, posted = false, n = 0;
+  let changed = false, minor = false, posted = false, urgent = false, n = 0;
   let list = [];
   try { list = await watchList(); } catch (e) { log.push(String(e)); }
   list = list.filter((w) => (which === "rk" ? (w.rk || w.jan) : (w.asin || w.jan)));
@@ -242,10 +248,11 @@ async function run(env, which, { dry = false } = {}) {
     // 売り切れの記録（11/9 ユーザーの指示：売り切れ→販売に切り替わった時だけ速報。売り切れは1回見たらOK）
     st.soldout = st.soldout || {};
     const so = st.soldout[id];
-    if (cur === "none") { if (!so) { st.soldout[id] = { since: Date.now(), n: 1 }; changed = true; } else if (so.n < 2) { so.n++; changed = true; } }
+    if (cur === "none") { if (!so) { st.soldout[id] = { since: Date.now(), n: 1 }; changed = true; if (postable(w, which)) urgent = true; } else if (so.n < 2) { so.n++; changed = true; } }
     const confirmed = !!so;   // 11/9 ユーザーの指示：売り切れは1回見たらOK（商品を見る間隔がもともと40分〜1時間あるため）
     if (cur !== "none" && so) { delete st.soldout[id]; changed = true; }
     // 速報：前に「本当に売り切れ」を見ていて、いま販売中・予約受付中・招待受付中に変わった時だけ。前から売っているものは出さない
+    if (prev !== cur && postable(w, which)) urgent = true;   // 11/20：速報の対象になりうる商品の在庫の変化はすぐ保存（保存を待つ間に次の回が古い状態を読んで、速報を見逃していた）
     const fresh = st.init[id] && prev === "none" && cur !== "none" && confirmed && !(st.posted[id + cur] && Date.now() - st.posted[id + cur] < COOLDOWN);
     if (!st.init[id]) { st.init[id] = 1; changed = true; }
     st.items[id] = cur;
@@ -254,10 +261,12 @@ async function run(env, which, { dry = false } = {}) {
     const soldDays = so ? (Date.now() - so.since) / 86400e3 : 0;
     // 11/16 ユーザー：「3日以上売り切れだった品薄の商品」は速報しない → 定価以上で売れる商品（hot）と、ユーザーが決めた商品（always）だけ
     // 11/16 ユーザー（サウンドクロック・PS VR2 同梱版はなぜ流さない？）：買取が定価の8割以上の商品も速報する（前は定価以上で売れる商品だけ）
-    if (!(w.hot || w.always || ok80(w))) continue;
-    // 11/13 ユーザー：買取価格が定価の8割（定価－20％）より低い商品は、品薄でも速報しない
-    if (w.neg || (w.tk && w.mx && w.mx < w.tk * 0.8)) { log.push(`買取が定価の8割未満なので速報しない：${w.n}`); continue; }
-    if (st.count >= PER_DAY || (!w.g && st.hobby >= HOBBY_PER_DAY)) { log.push("1日の上限"); continue; }
+    const bf = which === "rk" && rkBF();   // 楽天ブラックフライデー中：買取が定価の6割以上なら速報・1日の上限も多め
+    const skip = (why) => { log.push(why); st.skiplog = [{ t: new Date().toISOString(), id, n: w.n, cur, why }, ...(st.skiplog || [])].slice(0, 30); urgent = true; };
+    if (!(w.hot || w.always || ok80(w) || (bf && w.tk && w.mx && w.mx >= w.tk * 0.6))) { skip("速報の対象外（買取が定価の8割未満など）"); continue; }
+    // 11/13 ユーザー：買取価格が定価の8割（定価－20％）より低い商品は、品薄でも速報しない（ブラックフライデー中の楽天は6割）
+    if (!w.always && (bf ? (w.tk && w.mx && w.mx < w.tk * 0.6) : (w.neg || (w.tk && w.mx && w.mx < w.tk * 0.8)))) { skip(`買取が定価の${bf ? 6 : 8}割未満なので速報しない`); continue; }
+    if (st.count >= PER_DAY + (bf ? 8 : 0) || (!w.g && st.hobby >= HOBBY_PER_DAY + (bf ? 3 : 0))) { skip("1日の上限"); continue; }
     w._days = soldDays;
     const text = compose(w, which, cur, url);
     if (dry) { out.push(text); continue; }
@@ -266,7 +275,7 @@ async function run(env, which, { dry = false } = {}) {
       st.count++; if (!w.g) st.hobby++; st.posted[id + cur] = Date.now(); changed = true; posted = true;
       st.postlog = [{ t: new Date().toISOString(), id, jan: w.jan || "", n: w.n, cur, url, pg: w.pg || "", tid, text }, ...(st.postlog || [])].slice(0, 30);   // 何を投稿したかの記録（11/10）
       out.push(`posted ${tid}`);
-    } catch (e) { log.push(String(e)); }
+    } catch (e) { skip("Xへの投稿に失敗 " + String(e).slice(0, 200)); }
   }
   st.last = { at: new Date().toISOString(), checked: n, total: list.length, out, log };
   // KVの保存は無料だと1日1,000回まで：在庫が変わった・新しく見つけた・投稿した・エラーのときだけ
@@ -275,7 +284,7 @@ async function run(env, which, { dry = false } = {}) {
   // 11/20：在庫の表示が行ったり来たりする商品が増え（11/16 見張りの対象を多めに）、「変わったらすぐ保存」で1日1,000回を超えた。
   //   投稿したときだけすぐ保存（二重投稿を防ぐ）。在庫の変化・新しく見つけたものは15分に1回、値段だけ・エラーは30分に1回まとめて保存
   const age = Date.now() - (st.savedAt || 0);
-  if (!dry && (posted || (changed && age > 15 * 60e3) || ((minor || log.length) && age > 30 * 60e3))) { st.savedAt = Date.now(); await env.STATE.put(key, JSON.stringify(st)); }
+  if (!dry && (posted || urgent || (changed && age > 15 * 60e3) || ((minor || log.length) && age > 30 * 60e3))) { st.savedAt = Date.now(); await env.STATE.put(key, JSON.stringify(st)); }
   return st.last;
 }
 
@@ -340,6 +349,6 @@ export default {
     if (u.pathname === "/dry") return Response.json({ rk: await run(env, "rk", { dry: true }), az: await run(env, "az", { dry: true }) });
     const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};
     const recent = (st) => Object.entries(st.posted || {}).filter(([, v]) => Date.now() - v < 24 * 3600e3).map(([k, v]) => [k, new Date(v).toISOString()]);
-    return Response.json({ rk: rk.last, az: az.last, posts: { rk: rk.postlog || [], az: az.postlog || [] }, posted24h: { rk: recent(rk), az: recent(az) } });
+    return Response.json({ rk: rk.last, az: az.last, skips: { rk: rk.skiplog || [], az: az.skiplog || [] }, posts: { rk: rk.postlog || [], az: az.postlog || [] }, posted24h: { rk: recent(rk), az: recent(az) } });
   },
 };
