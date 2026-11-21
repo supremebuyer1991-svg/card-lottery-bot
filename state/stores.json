@@ -45,7 +45,7 @@
   },
   "store/dmm-d0426/": {
     "name": "DMMマイカ",
-    "last": "2026-11-20",
+    "last": "2026-11-21",
     "game": "pokemon"
   },
   "store/sanyodo-4b261/": {
@@ -243,7 +243,7 @@
   },
   "store/cardbox-18b0c/": {
     "name": "カードボックス 本の王国大垣店",
-    "last": "2026-11-08",
+    "last": "2026-11-21",
     "game": "pokemon",
     "area": "岐阜県"
   },
@@ -915,7 +915,7 @@
   },
   "store/bookoff-ca0b8/": {
     "name": "ブックオフ那覇与儀店",
-    "last": "2026-11-18",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "沖縄県"
   },
@@ -939,7 +939,7 @@
   },
   "store/bookoff-70458/": {
     "name": "ブックオフ具志川店",
-    "last": "2026-11-18",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "沖縄県"
   },
@@ -1090,7 +1090,7 @@
   },
   "store/surugaya-aa99d/": {
     "name": "駿河屋 千葉中央店",
-    "last": "2026-11-18",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "千葉県"
   },
@@ -1262,7 +1262,7 @@
   },
   "store/aeon-42942/": {
     "name": "あそビバ イオンモール草津店",
-    "last": "2026-11-19",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "滋賀県"
   },
@@ -1555,7 +1555,7 @@
   },
   "store/cardwings-89791/": {
     "name": "CARD WINGS秋葉原駅前店",
-    "last": "2026-11-15",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "東京都"
   },
@@ -2151,7 +2151,7 @@
   },
   "store/aeon-85100/": {
     "name": "ふるいちイオンモール神戸北店",
-    "last": "2026-11-16",
+    "last": "2026-11-21",
     "game": "pokemon",
     "keep": true,
     "area": "兵庫県"
@@ -2518,14 +2518,14 @@
   },
   "store/cardbox-2efe8/": {
     "name": "カードボックス船橋駅前店",
-    "last": "2026-11-20",
+    "last": "2026-11-21",
     "game": "onepiece",
     "keep": true,
     "area": "千葉県"
   },
   "store/tokiwa-sukuea-17dcd/": {
     "name": "ときわ書房 本八幡スクエア店",
-    "last": "2026-11-17",
+    "last": "2026-11-21",
     "game": "onepiece",
     "keep": true,
     "area": "千葉県"
@@ -4104,7 +4104,7 @@
     "area": "大阪府"
   },
   "store/furuichi-7deba/": {
-    "name": "古本市場 深谷店",
+    "name": "古本市場深谷店",
     "last": "2026-11-21",
     "game": "onepiece",
     "keep": true,
@@ -4413,7 +4413,7 @@
     "area": "千葉県"
   },
   "store/japantcgcenter-76db2/": {
-    "name": "Japan TCG Center 八王子駅前店",
+    "name": "Japan TCG Center八王子駅前店",
     "last": "2026-11-21",
     "game": "onepiece",
     "area": "東京都"
@@ -5546,7 +5546,7 @@
   },
   "store/surugaya-cc295/": {
     "name": "駿河屋 新天町店トレカ館",
-    "last": "2026-11-15",
+    "last": "2026-11-21",
     "game": "pokemon",
     "area": "福岡県"
   },
@@ -7173,7 +7173,7 @@
   },
   "store/shop-6910b/": {
     "name": "文教堂 西野３条店",
-    "last": "2026-11-15",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "北海道"
   },
@@ -7253,7 +7253,7 @@
   },
   "store/bookoff-93ca5/": {
     "name": "ブックオフタイヨー小松台店",
-    "last": "2026-11-15",
+    "last": "2026-11-21",
     "game": "onepiece",
     "area": "愛媛県"
   },
@@ -8470,12 +8470,6 @@
     "last": "2026-11-21",
     "game": "pokemon"
   },
-  "store/shop-2a48a/": {
-    "name": "文教堂 西野３条店【トレカ】",
-    "last": "2026-11-21",
-    "game": "pokemon",
-    "area": "北海道"
-  },
   "store/shop-36a2d/": {
     "name": "浪漫遊 松阪店",
     "last": "2026-11-21",
@@ -8501,5 +8495,17 @@
     "name": "MERECA秋葉原店",
     "last": "2026-11-21",
     "game": "onepiece"
+  },
+  "store/furuichi-95a75/": {
+    "name": "古本市場 香里園店",
+    "last": "2026-11-21",
+    "game": "pokemon",
+    "area": "大阪府"
+  },
+  "store/tsutaya-4a1f6/": {
+    "name": "TSUTAYA大利根店トレカ売場",
+    "last": "2026-11-21",
+    "game": "pokemon",
+    "area": "埼玉県"
   }
 }
