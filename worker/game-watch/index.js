@@ -281,6 +281,14 @@ async function run(env, which, { dry = false } = {}) {
       if (/402|credits/i.test(String(e))) {
         st.pending = [{ t: new Date().toISOString(), w: which, id, jan: w.jan || "", n: w.n, cur, text }, ...(st.pending || []).filter((x) => x.id + x.cur !== id + cur)].slice(0, 20);
         st.posted[id + cur] = Date.now(); changed = true; urgent = true;   // 同じ速報を2分ごとに何度も「予約待ち」に入れない
+        // 11/22 ユーザー「2やろ」：スマホ（ntfyアプリ）に通知。押すとXの投稿画面が文章入りで開く
+        try {
+          await fetch("https://ntfy.sh/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+            topic: "game-nyuka-58ac664db7d2", title: "速報（クレジット切れ）押してポスト", message: text, priority: 5,
+            click: "https://x.com/intent/post?text=" + encodeURIComponent(text),
+            actions: [{ action: "view", label: "Xで投稿", url: "https://x.com/intent/post?text=" + encodeURIComponent(text) }],
+          }) });
+        } catch (_) {}
       }
     }
   }
