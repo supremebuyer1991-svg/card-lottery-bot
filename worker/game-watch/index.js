@@ -275,7 +275,14 @@ async function run(env, which, { dry = false } = {}) {
       st.count++; if (!w.g) st.hobby++; st.posted[id + cur] = Date.now(); changed = true; posted = true;
       st.postlog = [{ t: new Date().toISOString(), id, jan: w.jan || "", n: w.n, cur, url, pg: w.pg || "", tid, text }, ...(st.postlog || [])].slice(0, 30);   // 何を投稿したかの記録（11/10）
       out.push(`posted ${tid}`);
-    } catch (e) { skip("Xへの投稿に失敗 " + String(e).slice(0, 200)); }
+    } catch (e) {
+      skip("Xへの投稿に失敗 " + String(e).slice(0, 200));
+      // 11/22 ユーザー「クレジットが無かったら Claude が最短で予約投稿して」：投稿できなかった速報を「予約待ち」に残す（Claudeの定期の作業が読んで、Xの予約投稿で出す）
+      if (/402|credits/i.test(String(e))) {
+        st.pending = [{ t: new Date().toISOString(), w: which, id, jan: w.jan || "", n: w.n, cur, text }, ...(st.pending || []).filter((x) => x.id + x.cur !== id + cur)].slice(0, 20);
+        st.posted[id + cur] = Date.now(); changed = true; urgent = true;   // 同じ速報を2分ごとに何度も「予約待ち」に入れない
+      }
+    }
   }
   st.last = { at: new Date().toISOString(), checked: n, total: list.length, out, log };
   // KVの保存は無料だと1日1,000回まで：在庫が変わった・新しく見つけた・投稿した・エラーのときだけ
@@ -335,6 +342,20 @@ export default {
       st.postlog = [{ t: new Date().toISOString(), id, jan, n: w.n, cur, url, pg: w.pg || "", tid, text, manual: true }, ...(st.postlog || [])].slice(0, 30);
       await env.STATE.put(which, JSON.stringify(st));
       return Response.json({ ok: true, tid, cur, text });
+    }
+    if (u.pathname === "/pending") {   // 予約待ち（Xのクレジット切れで投稿できなかった速報）の一覧。?ack=id1,id2 で一覧から消す
+      const ack = (u.searchParams.get("ack") || "").split(",").filter(Boolean);
+      const out = [];
+      for (const which of ["rk", "az"]) {
+        const st = (await env.STATE.get(which, "json")) || {};
+        if (ack.length) {
+          const before = (st.pending || []).length;
+          st.pending = (st.pending || []).filter((x) => !ack.includes(x.id + x.cur));
+          if (st.pending.length !== before) await env.STATE.put(which, JSON.stringify(st));
+        }
+        for (const x of st.pending || []) out.push({ ...x, key: x.id + x.cur });
+      }
+      return Response.json({ pending: out });
     }
     if (u.pathname === "/map") {   // JANで見つけた楽天・Amazonの商品ページ（サイトのボタン・写真に使う）
       const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};

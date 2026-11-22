@@ -1,0 +1,25 @@
+name: game-pending
+# Xのクレジット切れで投稿できなかった速報（予約待ち）の一覧を出す。ack に key をカンマ区切りで渡すと一覧から消す（予約投稿したあと）
+on:
+  workflow_dispatch:
+    inputs:
+      ack:
+        description: "予約投稿し終えた速報の key（カンマ区切り）"
+        required: false
+        default: ""
+permissions:
+  contents: read
+jobs:
+  pending:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          ACK: ${{ inputs.ack }}
+        run: |
+          ADMIN=$(printf '%s' "${X_API_KEY}game-watch" | sha256sum | cut -c1-24)
+          echo "PENDING_JSON_START"
+          curl -sS "https://game-watch.supreme-buyer-1991.workers.dev/pending?k=${ADMIN}&ack=${ACK}"
+          echo
+          echo "PENDING_JSON_END"
