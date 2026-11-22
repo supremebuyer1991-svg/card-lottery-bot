@@ -329,6 +329,45 @@ def _hub_hit(h, text):
     return bool(h["_m"].search(text) and (not h["_r"] or h["_r"].search(text)) and not (h["_x"] and h["_x"].search(text)))
 
 
+_HUB_ART = {}
+
+
+def _hub_article(path):
+    """モデルの常設まとめに載せる記事（config/game/hub_articles.yaml。11/22 ユーザー「3」：中身で勝負する記事）
+    → (meta の置き換え, 上に出す「まとめ」HTML, 下に出す本文HTML, よくある質問)。記事が無ければ ({}, "", "", [])"""
+    import yaml
+    if "y" not in _HUB_ART:
+        pth = ROOT / "config" / "game" / "hub_articles.yaml"
+        try:
+            _HUB_ART["y"] = (yaml.safe_load(pth.read_text(encoding="utf-8")) or {}) if pth.exists() else {}
+        except Exception:
+            _HUB_ART["y"] = {}
+    a = _HUB_ART["y"].get(path)
+    if not a:
+        return {}, "", "", []
+    from datetime import date
+    ck = str(a.get("checked") or "")
+    try:
+        old = (now().date() - date.fromisoformat(ck)).days > 60
+    except ValueError:
+        old = True
+    ckj = f"{int(ck[:4])}年{int(ck[5:7])}月{int(ck[8:10])}日" if len(ck) == 10 else ""
+    css = ('<style>.hubart{margin:14px 0 18px;padding:14px 16px;border:2px solid #1d2b53;border-radius:10px;background:#fff}'
+           '.hubart h2{font-size:17px;margin:0 0 8px}.hubart ul{margin:0;padding-left:1.2em}.hubart li{font-size:14px;line-height:1.8;margin:2px 0}'
+           '.hubart .ck{font-size:12px;color:#666;margin:8px 0 0}.hubbody h2{font-size:18px;margin:22px 0 8px;padding-left:8px;border-left:5px solid #1d2b53}'
+           '.hubbody p,.hubbody li{font-size:14px;line-height:1.85}.hubbody ul.tl{list-style:none;padding-left:0}.hubbody ul.tl li{border-left:3px solid #ddd;padding:2px 0 6px 12px}'
+           '.xtbl{overflow-x:auto}.xtbl table{border-collapse:collapse;width:100%;font-size:13px}.xtbl th,.xtbl td{border-bottom:1px solid #ddd;padding:6px 4px;text-align:left}</style>')
+    top = (css + '<section class="hubart"><h2>まとめ</h2><ul>' + "".join(f"<li>{x}</li>" for x in a.get("summary") or []) + "</ul>"
+           + (f'<p class="ck">{"※この記事は少し前の情報です。最新はお店・メーカーの告知でご確認ください。" if old else ""}'
+              f'{ckj}時点で公式発表・報道を確かめて書いています。受付の一覧と買取価格は毎日自動で更新しています。</p>' if ckj else "") + "</section>")
+    body = '<article class="hubbody">' + "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in a.get("sections") or [])
+    if a.get("sources"):
+        body += '<p class="note">出典：' + "・".join(f'<a href="{escape(u)}" target="_blank" rel="noopener nofollow">{escape(tt)}</a>' for tt, u in a["sources"]) + "</p>"
+    body += "</article>"
+    meta = {k: a[k] for k in ("title", "desc", "h1") if a.get(k)}
+    return meta, top, body, [tuple(q) for q in a.get("faq") or []]
+
+
 _CAT_ALL = {}
 
 
@@ -1283,13 +1322,17 @@ def build(settings=None, out_dir=None, force=False):
                 _hb, _hf, _, _ = _hub_extra(_hubs[path], _prev_pages, {i.get("key") for i in lst}, s)
                 _xb, _xf = _xb + _hb, _xf + _hf
                 _hub_done.add(path)
-            write(path, {"title": f"{x} 抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
-                         "desc": f"{x}（{c['short']}）の抽選・予約・再入荷の受付情報。いま受付中{no}件。各店の締切・条件・定価をまとめています。",
-                         "h1": f"{x}の抽選・予約・再入荷", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{x}」の情報だけを並べています。",
+            _am, _at, _ab, _af = _hub_article(path)   # 11/22 記事（あれば）
+            _mt = {"title": f"{x} 抽選・予約・再入荷情報まとめ【{md}更新】｜{brand['name']}",
+                   "desc": f"{x}（{c['short']}）の抽選・予約・再入荷の受付情報。いま受付中{no}件。各店の締切・条件・定価をまとめています。",
+                   "h1": f"{x}の抽選・予約・再入荷"}
+            if _am:
+                _mt.update({k: (v.replace("{md}", md) + (f"｜{brand['name']}" if k == "title" else "")) for k, v in _am.items()})
+            write(path, dict(_mt, **{"sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{x}」の情報だけを並べています。",
                          "summary": summary(lst, f"「{x}」の受付"), "links": lk, "og": og_u,
-                         "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _xf},
-                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g},
-                  body_bottom=_ai_block(path) + _xb,
+                         "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _af + _xf}),
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g}, body_top=_at,
+                  body_bottom=_ab + _ai_block(path) + _xb,
                   noindex=len(lst) < 3 and not sc_protected(path))   # 受付が1〜2件だけの小さいまとめは検索に出さない（検索に表示されたことのあるページは除く。11/15 ユーザーOK）
         # モデルの常設まとめ（受付が終わっても消さない。11/14 ユーザー「A、OK」）
         for path, h in _hubs.items():
@@ -1301,13 +1344,19 @@ def build(settings=None, out_dir=None, force=False):
                 continue
             no = sum(1 for i in lst if i["ph"] == "open")
             nm = h["name"]
-            write(path, {"title": f"{nm} 抽選・予約・再販・在庫情報まとめ【{md}更新】｜{brand['name']}",
-                         "desc": f"{nm}の抽選・予約・再販・在庫の情報と、商品ごとの買取相場。いま受付中{no}件・商品{n_p}件・これまでの受付{n_r}件。販売開始はXで通知。",
-                         "h1": f"{nm}の抽選・予約・再販・在庫", "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{nm}」の受付・販売・買取相場をまとめています。",
+            _am, _at, _ab, _af = _hub_article(path)   # 11/22 記事（あれば）
+            _mt = {"title": f"{nm} 抽選・予約・再販・在庫情報まとめ【{md}更新】｜{brand['name']}",
+                   "desc": f"{nm}の抽選・予約・再販・在庫の情報と、商品ごとの買取相場。いま受付中{no}件・商品{n_p}件・これまでの受付{n_r}件。販売開始はXで通知。",
+                   "h1": f"{nm}の抽選・予約・再販・在庫"}
+            if _am:
+                _mt.update({k: (v.replace("{md}", md) + (f"｜{brand['name']}" if k == "title" else "")) for k, v in _am.items()})
+            hf = _af + hf
+            hb = _ab + hb
+            write(path, {**_mt, "sumshort": f"いま受付中{no}件。", "lead": f"{c['name']}のうち「{nm}」の受付・販売・買取相場をまとめています。",
                          "summary": summary(lst, f"「{nm}」の受付") if lst else f"いま受付中の{nm}の抽選・予約はありません。下の商品の販売状況とこれまでの記録をご覧ください。",
                          "links": lk, "og": og_u,
                          "faq": [(f"{nm}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。") if no else "いま受付中の抽選・予約はありません。再販・入荷はXでお知らせします。")] + hf},
-                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (nm, path)], data_extra={"game": g}, body_bottom=hb)
+                  lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (nm, path)], data_extra={"game": g}, body_top=_at, body_bottom=hb)
         by_chain = {}
         for i in sub:
             if i.get("chain"):
