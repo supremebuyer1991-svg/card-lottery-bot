@@ -3947,7 +3947,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
             "/chain/bic-camera/": "/chain/biccamera/", "/chain/bic-camera/pokeka/": "/chain/biccamera/pokeka/",
             "/chain/yellow-submarine/": "/chain/yellowsubmarine/", "/chain/yellow-submarine/pokeka/": "/chain/yellowsubmarine/pokeka/",
             "/biccamera/": "/chain/biccamera/", "/aeon/": "/chain/aeon/", "/tsutaya/": "/chain/tsutaya/", "/geo/": "/chain/geo/",
-            "/restock/brightness-of-hope/": "/fusionworld/brightness-of-hope/", "/dragonball/fb12-reach-the-god": "/fusionworld/reach-the-god/",
+            "/restock/brightness-of-hope/": "/fusionworld/brightness-of-hope/", "/onepiece/the-best-ver-2/": "/onepiece/prb02-the-best-vol2/",
+            "/pokeka/heroines-precious/": "/onepiece/heroines-precious-box/", "/onepiece/heroines-precious/": "/onepiece/heroines-precious-box/", "/dragonball/fb12-reach-the-god": "/fusionworld/reach-the-god/",
         }
         _ser = {  # よく打たれる弾の別の書き方 → 本当の弾ページ
             "pokeka/hadou-seeker/": ["/pokeka/hadousika/", "/pokeka/hado-seeker/", "/pokeka/hadowseeker/", "/pokeka/hadou", "/pokeka/hadou/",
