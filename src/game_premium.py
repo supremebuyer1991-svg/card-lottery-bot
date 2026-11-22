@@ -619,6 +619,17 @@ def _sell_btn(x):
     return (f'<a class="sellb" href="{escape(u)}" target="_blank" rel="nofollow noopener">→ {escape(x["store"])}の買取ページを見る</a>' if u else "")
 
 
+def _rich(x):
+    """検索に出すだけの中身がある商品ページか（11/22）：商品説明・商品の事実のどちらかがある、または買取店4店以上の比較"""
+    if x.get("caption") or len(x.get("prices") or []) >= 4:
+        return True
+    try:
+        import game_facts
+        return bool(game_facts.get(x["jan"]))
+    except Exception:
+        return False
+
+
 def has_material(x):
     """AIの解説を作ってよいだけの材料があるか（11/14 Fable：材料の無い商品の解説が一般論になっていた）：
     楽天ブックスの商品説明・メーカー公式などの商品の事実・買取店2店以上＋定価、のどれか"""
@@ -1023,6 +1034,8 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
 
     def page(title, desc, body, path, img="", noindex=False, sitemap=True):
         """1ページ書く。img＝Xなどで共有したときのカードの画像（無ければサイトの共通画像）。noindex＝検索に出さない（情報が少ないページ）"""
+        # 11/22 ユーザーOK：題名の【◯/◯更新】は外す（中身が変わらなくても毎日題名が変わっていた。日付はページの中に出す）
+        title = re.sub(r"\s*｜\s*", "｜", re.sub(r"\s*【[^【】]*更新】\s*", " ", title)).strip()
         og = img or f"{site}/og.png"
         html = (f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
                 f'<title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{site}/{path}">'
@@ -1214,7 +1227,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              # 11/14：「ジャンルなし・定価なし・買取店1店」も外していたが、いちばんクリックされている「時のオカリナ」まで外れた。
              # 家電は「家電・カメラ」に入ったので、その決まりはやめる（買取店から消えた商品だけ外す）
              # 11/15 Fable：買取店から消えてすぐ外さず14日待つ。検索に表示されたことのあるページは外さない
-             noindex=bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat() and not _scp(f"premium/{x['jan']}/"),
+             # 11/22 ユーザーOK：検索に載るページが668→175に減った（11/14〜。Googleの中身の判断）。中身の薄い商品ページは検索に出さない：
+             #   楽天ブックスの商品説明・メーカー公式などの商品の事実のどちらも無く、買取店が3店以下のページ。検索に表示されたことのあるページは外さない
+             noindex=((bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat()) or not _rich(x)) and not _scp(f"premium/{x['jan']}/"),
              # 11/19 ユーザーOK：材料の少ない商品（買取店1店だけ・商品の事実なし・商品説明なし）はサイトマップに入れない。
              # Googleに「中身のあるページ」から先に見てもらうため。検索に表示されたことのあるページは入れたまま
              sitemap=has_material(x) or _scp(f"premium/{x['jan']}/"))

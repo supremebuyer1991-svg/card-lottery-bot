@@ -1097,6 +1097,8 @@ def build(settings=None, out_dir=None, force=False):
         return "".join(f'<a href="/{escape(p)}">{escape(n)}</a>' for n, p in pairs)
 
     def write(path, meta, sub, trail=None, data_extra=None, body_top="", body_bottom="", noindex=False, list_mode=True, ld_extra=(), cur=None):
+        # 11/22 ユーザーOK：題名の【◯/◯更新】は外す（中身が変わらなくても毎日題名が変わっていた。日付はページの「更新」と説明文に出す）
+        meta = dict(meta, title=re.sub(r"\s*｜\s*", "｜", re.sub(r"\s*【[^【】]*更新】\s*", " ", meta["title"])).strip())
         p = out / path / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         canon = f"{site}/{path}" if site else ""
@@ -1109,7 +1111,7 @@ def build(settings=None, out_dir=None, force=False):
         if fl:
             ld.append(fl)
         ld.append({"@context": "https://schema.org", "@type": "WebPage", "name": meta["title"], "description": meta["desc"], "url": canon or None, "inLanguage": "ja",
-                   "dateModified": updated, "publisher": {"@type": "Organization", "name": brand["name"], "url": f"{site}/"}})
+                   "dateModified": "__DMOD__", "publisher": {"@type": "Organization", "name": brand["name"], "url": f"{site}/"}})
         if not path:
             ld.insert(0, {"@context": "https://schema.org", "@type": "WebSite", "name": brand["name"], "url": f"{site}/", "inLanguage": "ja"})
         og = meta.get("og") or (f"{site}/og.png" if site else "/og.png")
@@ -1139,13 +1141,16 @@ def build(settings=None, out_dir=None, force=False):
         cut = body.index('<div class="shell">')
         html = ('<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
                 f'{body[:cut]}</head><body>{body[cut:]}</body></html>')
-        p.write_text(html, encoding="utf-8")
+        # 11/22：構造化データの更新日（dateModified）は、中身が本当に変わった日（サイトマップの lastmod と同じ）にする
+        lm = updated
         if site and not noindex:
             fp = sha(re.sub(r"更新 \d+/\d+\([月火水木金土日]\) \d\d:\d\d", "", html))
             prev = pmod.get(path)
             lm = today_iso if not prev or prev[0] != fp else prev[1]
             pmod[path] = [fp, lm, (prev or [None, None, today_iso])[2]]
             urls.append((f"{site}/{path}", lm))
+        html = html.replace('"dateModified":"__DMOD__"', '"dateModified":' + json.dumps(lm)).replace('"dateModified": "__DMOD__"', '"dateModified": ' + json.dumps(lm))
+        p.write_text(html, encoding="utf-8")
 
     menu = [("すべて", "chusen/"), ("いま一覧", "now/"), ("今日", "today/"), ("カレンダー", "calendar/")] + [(c["short"], f"{c['slug']}/") for c in cats] + [("見方・使い方", "guide/")]
     lk = links_html(menu)

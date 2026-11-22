@@ -69,7 +69,9 @@ else:
         assert f"{c['slug']}/index.html" in files, c["slug"]
     top = (out / "chusen/index.html").read_text(encoding="utf-8")
     head = top[:top.index("</head>")]
-    assert "<title>ゲーム・ホビーの抽選・予約・受付中の一覧【" in head and "｜ゲーム・ホビー入荷速報</title>" in head
+    # 11/22：題名に【◯/◯更新】は入れない。構造化データの更新日は日付（中身が変わった日）
+    assert "<title>ゲーム・ホビーの抽選・予約・受付中の一覧 締切が近い順｜ゲーム・ホビー入荷速報</title>" in head and "更新】" not in re.search(r"<title>(.*?)</title>", head).group(1)
+    assert "__DMOD__" not in head and re.search(r'"dateModified": ?"\d{4}-\d\d-\d\d', head)
     assert 'rel="canonical" href="https://example-game.jp/chusen/"' in head and '"FAQPage"' in head
     assert "記載の社名・製品名は各社の商標です。当サイトは各社と関係ありません。" in top                 # 商標の注意書き
     assert "Amazonのアソシエイトとして、ゲーム・ホビー入荷速報は適格販売により収入を得ています" in top     # アフィリエイト表記
