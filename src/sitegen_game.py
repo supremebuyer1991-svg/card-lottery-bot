@@ -332,6 +332,17 @@ def _hub_hit(h, text):
 _HUB_ART = {}
 
 
+def _guides_cfg():
+    import yaml
+    if "g" not in _HUB_ART:
+        gp = ROOT / "config" / "game" / "guides.yaml"
+        try:
+            _HUB_ART["g"] = ((yaml.safe_load(gp.read_text(encoding="utf-8")) or {}).get("guides") or []) if gp.exists() else []
+        except Exception:
+            _HUB_ART["g"] = []
+    return _HUB_ART["g"]
+
+
 def _hub_article(path):
     """モデルの常設まとめに載せる記事（config/game/hub_articles.yaml。11/22 ユーザー「3」：中身で勝負する記事）
     → (meta の置き換え, 上に出す「まとめ」HTML, 下に出す本文HTML, よくある質問)。記事が無ければ ({}, "", "", [])"""
@@ -1308,7 +1319,8 @@ def build(settings=None, out_dir=None, force=False):
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
               body_top=_notice_html(c.get("notice")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
                        f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))
-                       + (f'<p class="note">→ <a href="/souba/{escape(c["slug"])}/">{escape(c["short"])}の買取価格一覧（高い順の表）</a></p>' if len(pidx.get(g, [])) >= 5 else "")),
+                       + (f'<p class="note">→ <a href="/souba/{escape(c["slug"])}/">{escape(c["short"])}の買取価格一覧（高い順の表）</a></p>' if len(pidx.get(g, [])) >= 5 else ""))
+                       + "".join(f'<p class="note">→ <a href="/guide/{escape(gd_["slug"])}/">{escape(gd_["title"])}</a></p>' for gd_ in _guides_cfg() if gd_.get("game") == g),   # 11/22 カテゴリの解説記事へ
               body_bottom=ser_links, noindex=(npd == 0 and not sub and not sc_protected(f"{c['slug']}/")))   # 商品も受付も0件の一覧は検索に出さない（11/14 Fable）
         _prev_pages = load_json("lottery_pages.json", {}) or {}
         _hubs = {h["path"]: h for h in _hubs_cfg() if h.get("game") == g}
@@ -1447,7 +1459,7 @@ def build(settings=None, out_dir=None, force=False):
           [], trail=[("トップ", ""), ("見方・使い方", "guide/")], body_top=gl, list_mode=False, data_extra={"list": False})
     for gd in guides:
         rx = re.compile(gd["store_re"], re.I)
-        sub = [i for i in live if rx.search(i.get("store") or "")]
+        sub = [i for i in live if rx.search(i.get("store") or "") and (not gd.get("game") or i.get("game") == gd["game"])]   # game … そのカテゴリの受付だけ（11/22）
         body = f'<article class="guide"><p>{gd["intro"]}</p>' + "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in gd.get("sections") or [])
         if gd.get("sources"):
             body += '<p class="note">参考：' + "・".join(f'<a href="{escape(u)}" target="_blank" rel="noopener nofollow">{escape(tt)}</a>' for tt, u in gd["sources"]) + "</p>"

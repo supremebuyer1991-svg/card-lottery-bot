@@ -1004,8 +1004,41 @@ def price_list_body(c, short, xs, md, sgs=None, base=None):
         f'<td class="n">{(str(format(x["teika"], ",")) + "円") if x.get("teika") and x.get("teika_note") != "楽天ブックスの販売価格" else "—"}</td>'
         f'<td class="n">{(str(round(x["ratio"] * 100)) + "%") if x.get("ratio") and x.get("teika_note") != "楽天ブックスの販売価格" else "—"}</td>'
         f'<td class="n">{len(x.get("prices") or [])}</td></tr>' for i, x in enumerate(xs, 1))
-    return (f'<style>{SG_CSS}</style><p>{s}</p>{menu}<div style="overflow-x:auto"><table class="pm-t"><tr><th>順位</th><th>商品</th><th>最高買取</th><th>店</th><th>定価</th><th>定価比</th><th>店数</th></tr>{rows}</table></div>'
+    mv = _movers_html(xs, short)
+    return (f'<style>{SG_CSS}</style><p>{s}</p>{menu}{mv}<div style="overflow-x:auto"><table class="pm-t"><tr><th>順位</th><th>商品</th><th>最高買取</th><th>店</th><th>定価</th><th>定価比</th><th>店数</th></tr>{rows}</table></div>'
             '<p class="note">新品（未開封）の買取価格です。定価はメーカーの希望小売価格・楽天ブックスの定価で、分からない商品は「—」。店数＝その商品の価格を載せている買取店の数。</p>')
+
+
+def _movers_html(xs, short):
+    """11/22 ユーザー「やろか」（検索で強いページ）：この1週間で買取価格が上がった・下がった商品（毎日の最高買取の記録から。自動で毎日変わる）"""
+    try:
+        H = load_json(HIST, {}) or {}
+    except Exception:
+        return ""
+    ch = []
+    for x in xs:
+        h = H.get(x["jan"]) or {}
+        ds = sorted(h)
+        if len(ds) < 8:
+            continue
+        a, b = h[ds[-8]], h[ds[-1]]
+        if a and b and a != b:
+            ch.append((b - a, (b - a) / a, x, a, b))
+    if len(ch) < 3:
+        return ""
+    up = sorted([c for c in ch if c[0] > 0], key=lambda c: -c[1])[:5]
+    dn = sorted([c for c in ch if c[0] < 0], key=lambda c: c[1])[:5]
+
+    def tb(lst, ttl):
+        if not lst:
+            return ""
+        rows = "".join(f'<tr><td><a href="/premium/{escape(x["jan"])}/">{escape(x["name"])}</a></td><td class="n">{a:,}円 → <b>{b:,}円</b></td>'
+                       f'<td class="n">{"+" if d > 0 else "−"}{abs(d):,}円（{"+" if d > 0 else "−"}{abs(round(r * 100, 1))}%）</td></tr>' for d, r, x, a, b in lst)
+        return f'<h3 style="font-size:15px;margin:10px 0 6px">{ttl}</h3><div style="overflow-x:auto"><table class="pm-t"><tr><th>商品</th><th>1週間前 → いま</th><th>変化</th></tr>{rows}</table></div>'
+    nu, nd = sum(1 for c in ch if c[0] > 0), sum(1 for c in ch if c[0] < 0)
+    return (f'<section style="margin:14px 0"><h2 style="font-size:17px">この1週間の買取価格の動き</h2>'
+            f'<p>{escape(short)}のうち、1週間前と比べて最高買取価格が<b>上がった商品は{nu}件、下がった商品は{nd}件</b>でした（毎日の記録から自動で計算）。</p>'
+            + tb(up, "上がった商品（上昇率の大きい順）") + tb(dn, "下がった商品（下落率の大きい順）") + "</section>")
 
 
 def _list_links(x, c, grp):
