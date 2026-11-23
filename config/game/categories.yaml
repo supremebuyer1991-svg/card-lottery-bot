@@ -402,6 +402,11 @@ categories:
     hints: "Mellojoy|メロジョイ|MELLOWEEN"
     strip_words: "Mellojoy|メロジョイ|ブラインドBOX|ぬいぐるみ"
     aff_keywords: ["メロジョイ"]
+    official:   # 11/23 ユーザー：公式ストアは毎日12時に在庫更新（ユーザーが公式と確認）。カテゴリページの上に案内を出す
+      title: "Mellojoy 公式オンラインストア（毎日12時に在庫更新）"
+      note: "公式ストアは毎日12時に商品の在庫を更新しています。新作・再入荷は12時ちょうどに見に行くのがおすすめです。"
+      url: "https://www.mellojoyjapan.com/"
+      label: "公式ストアを見る"
     color: "#e9a5c0"
     kinds: [lottery, preorder, restock, first_come, release]
     subgenres:   # カテゴリの中のジャンル分け。上から順に当てはめ、re の無いものは残り全部

@@ -48,6 +48,16 @@ def _notice_html(text):
     return ('<p class="cat-notice" style="margin:8px 0;padding:8px 12px;border:1px solid #e0b4b4;background:#fff5f5;'
             f'color:#7a1f1f;border-radius:8px;font-size:13px">🔞 {escape(text)}</p>')
 
+def _official_html(o):
+    """カテゴリの公式ストアの案内（11/23 ユーザー「俺のサイトに公式ページのリンク貼ってサイトに誘導させて」：メロジョイの公式ストア・毎日12時に在庫更新）"""
+    if not o or not o.get("url"):
+        return ""
+    return ('<div class="cat-official" style="margin:10px 0;padding:12px 14px;border:2px solid #e9a5c0;background:#fff7fa;border-radius:10px">'
+            f'<p style="margin:0 0 6px;font-weight:700">🛒 {escape(o.get("title") or "公式ストア")}</p>'
+            + (f'<p style="margin:0 0 8px;font-size:14px;line-height:1.7">{escape(o["note"])}</p>' if o.get("note") else "")
+            + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a></div>')
+
+
 def shown_ok(i):
     if i.get("verified") is False:
         return False
@@ -1342,7 +1352,7 @@ def build(settings=None, out_dir=None, force=False):
                                  "desc": (f"{c['name']}の商品{npd}件の最高買取価格（買取相場）と、" if npd else f"{c['name']}の") + "発売・予約・再販・抽選の情報。楽天・Amazonで売り出されたらXで通知します。",
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": (f"いま受付中{n}件。弾ごとにまとめています。" if c.get("sets") else f"商品{npd}件・いま受付中{n}件。"), "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
-              body_top=_notice_html(c.get("notice")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
+              body_top=_notice_html(c.get("notice")) + _official_html(c.get("official")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
                        f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))
                        + (f'<p class="note">→ <a href="/souba/{escape(c["slug"])}/">{escape(c["short"])}の買取価格一覧（高い順の表）</a></p>' if len(pidx.get(g, [])) >= 5 else ""))
                        + "".join(f'<p class="note">→ <a href="/guide/{escape(gd_["slug"])}/">{escape(gd_["title"])}</a></p>' for gd_ in _guides_cfg() if gd_.get("game") == g),   # 11/22 カテゴリの解説記事へ
