@@ -973,6 +973,31 @@ def _gone_redirects(out, pmod, limit=1800):
     return "".join(line + "\n" for _, line in rows[:limit])
 
 
+def _tag_rakuten(out, code):
+    """11/23 ユーザー「やって」：このサイトの楽天リンクすべてに楽天アフィリエイトの計測ID（例 _RTLink158861＝game-nyuka）を付ける。
+    レポートの「計測ID別」で、このサイト経由の売上だけを見られるようにする（トレカ抽選ナビ・Xのリンクとは別に数える）"""
+    if not code:
+        return
+    import re as _re
+    rx = _re.compile(r"(hb\.afl\.rakuten\.co\.jp/hgc/[0-9a-f.]+/)\?")
+    js = ('"/?pc="', "'/?pc='")
+    n = 0
+    for f in list(out.rglob("*.html")) + list(out.rglob("*.js")) + list(out.rglob("*.json")):
+        try:
+            t0 = f.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        if "rakuten" not in t0:
+            continue
+        t1 = rx.sub(lambda m: m.group(1) + code + "?", t0)
+        for q in js:   # ページの中のプログラムがあとで作る楽天リンク（"hgc/" + ID + "/?pc=" ...）
+            t1 = t1.replace(q, q[0] + "/" + code + "?pc=" + q[0])
+        if t1 != t0:
+            f.write_text(t1, encoding="utf-8")
+            n += 1
+    log(f"楽天の計測ID（{code}）: {n}ファイル")
+
+
 def build(settings=None, out_dir=None, force=False):
     from common import load_settings
     s = settings or load_settings()
@@ -1527,6 +1552,7 @@ def build(settings=None, out_dir=None, force=False):
              "", "## 主なページ", f"- [トップ]({site}/)", f"- [いま一覧（お店×商品）]({site}/now/)", f"- [今日締切・開始]({site}/today/)", f"- [カレンダー]({site}/calendar/)", f"- [見方・使い方]({site}/guide/)", ""]
         L += [f"- [{c['short']}]({site}/{c['slug']}/)" for c in cats]
         (out / "llms.txt").write_text("\n".join(L) + "\n", encoding="utf-8")
+    _tag_rakuten(out, s.get("rakuten_rtlink") or "")
     sg.inject_ga(out, os.environ.get("GA_ID_GAME") or s.get("ga_id"))
     save_json("site_meta.json", {"digest": digest, "updated": updated})
     save_json("page_lastmod.json", pmod)
