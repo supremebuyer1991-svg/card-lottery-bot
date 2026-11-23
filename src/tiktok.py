@@ -155,7 +155,7 @@ if __name__ == "__main__":
         kw = [i for i in d["items"] if i["id"] in set(d.get("kawaii") or [])]
         line = lambda it: f"・{it['name']}（{it['price']}円）"
         desc = "\n".join([f"{d['title']}（{d['sub']}）", "", *map(line, main), *( ["", f"ラストの{d['word']}が可愛すぎる♡", *map(line, kw)] if kw else []), "",
-                          "どれを回したい？コメントで教えてね🪐", "発売日・近くの在庫店はプロフィールのリンクから", "",
+                          "どれを回したい？コメントで教えてね🪐", "発売日・近くの在庫のある店はプロフィールのリンクから", "",
                           "#ガチャガチャ #ガチャ #カプセルトイ #新作ガチャ #ガチャ活" + (f" #{d['word']}" if d.get("word") else "")])
         pid = upload_photos(d["slides"], d["title"], desc)
         print("publish_id:", pid)
