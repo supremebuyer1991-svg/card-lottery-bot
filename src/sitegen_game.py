@@ -48,11 +48,19 @@ def _notice_html(text):
     return ('<p class="cat-notice" style="margin:8px 0;padding:8px 12px;border:1px solid #e0b4b4;background:#fff5f5;'
             f'color:#7a1f1f;border-radius:8px;font-size:13px">🔞 {escape(text)}</p>')
 
+# 11/24 ユーザー「公式ストアを見るのところダークモードですんごいみにくい」：明るい背景の枠は、ダークモードでは暗い背景・明るい文字にする
+_DARK_FIX = ('<style>.cat-official{background:#fff7fa;color:#3a1c28}.hubart{background:#fff;color:#1d1d1f}'
+             '@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cat-official{background:#3a1c28;color:#ffe3ee;border-color:#d9467a!important}'
+             ':root:not([data-theme="light"]) .hubart{background:#1c2233;color:#e8ecf5;border-color:#5b6b9a!important}:root:not([data-theme="light"]) .hubart .ck{color:#aab3c8!important}}'
+             ':root[data-theme="dark"] .cat-official{background:#3a1c28;color:#ffe3ee;border-color:#d9467a!important}'
+             ':root[data-theme="dark"] .hubart{background:#1c2233;color:#e8ecf5;border-color:#5b6b9a!important}:root[data-theme="dark"] .hubart .ck{color:#aab3c8!important}</style>')
+
+
 def _official_html(o):
     """カテゴリの公式ストアの案内（11/23 ユーザー「俺のサイトに公式ページのリンク貼ってサイトに誘導させて」：メロジョイの公式ストア・毎日12時に在庫更新）"""
     if not o or not o.get("url"):
         return ""
-    return ('<div class="cat-official" style="margin:10px 0;padding:12px 14px;border:2px solid #e9a5c0;background:#fff7fa;border-radius:10px">'
+    return (_DARK_FIX + '<div class="cat-official" style="margin:10px 0;padding:12px 14px;border:2px solid #e9a5c0;border-radius:10px">'
             f'<p style="margin:0 0 6px;font-weight:700">🛒 {escape(o.get("title") or "公式ストア")}</p>'
             + (f'<p style="margin:0 0 8px;font-size:14px;line-height:1.7">{escape(o["note"])}</p>' if o.get("note") else "")
             + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a></div>')
@@ -373,12 +381,12 @@ def _hub_article(path):
     except ValueError:
         old = True
     ckj = f"{int(ck[:4])}年{int(ck[5:7])}月{int(ck[8:10])}日" if len(ck) == 10 else ""
-    css = ('<style>.hubart{margin:14px 0 18px;padding:14px 16px;border:2px solid #1d2b53;border-radius:10px;background:#fff}'
+    css = ('<style>.hubart{margin:14px 0 18px;padding:14px 16px;border:2px solid #1d2b53;border-radius:10px}'
            '.hubart h2{font-size:17px;margin:0 0 8px}.hubart ul{margin:0;padding-left:1.2em}.hubart li{font-size:14px;line-height:1.8;margin:2px 0}'
            '.hubart .ck{font-size:12px;color:#666;margin:8px 0 0}.hubbody h2{font-size:18px;margin:22px 0 8px;padding-left:8px;border-left:5px solid #1d2b53}'
            '.hubbody p,.hubbody li{font-size:14px;line-height:1.85}.hubbody ul.tl{list-style:none;padding-left:0}.hubbody ul.tl li{border-left:3px solid #ddd;padding:2px 0 6px 12px}'
            '.xtbl{overflow-x:auto}.xtbl table{border-collapse:collapse;width:100%;font-size:13px}.xtbl th,.xtbl td{border-bottom:1px solid #ddd;padding:6px 4px;text-align:left}</style>')
-    top = (css + '<section class="hubart"><h2>まとめ</h2><ul>' + "".join(f"<li>{x}</li>" for x in a.get("summary") or []) + "</ul>"
+    top = (css + _DARK_FIX + '<section class="hubart"><h2>まとめ</h2><ul>' + "".join(f"<li>{x}</li>" for x in a.get("summary") or []) + "</ul>"
            + (f'<p class="ck">{"※この記事は少し前の情報です。最新はお店・メーカーの告知でご確認ください。" if old else ""}'
               f'{ckj}時点で公式発表・報道を確かめて書いています。受付の一覧と買取価格は毎日自動で更新しています。</p>' if ckj else "") + "</section>")
     body = '<article class="hubbody">' + "".join(f'<h2>{escape(sec["h"])}</h2>{sec["html"]}' for sec in a.get("sections") or [])
