@@ -242,6 +242,14 @@ def update_store_alias(names_count):
     return al
 
 
+def _h1html(t):
+    """11/25 ユーザー「トレカ抽選ナビ｜トレ／カの…と折り返してるのきもい」：「サイト名｜説明」の見出しは2行に分けて出す"""
+    if "｜" in t:
+        a, b = t.split("｜", 1)
+        return f'<span class="h1-main">{escape(a)}</span><span class="h1-sub">{escape(b)}</span>'
+    return escape(t)
+
+
 def _load_gsc_keep():
     """11/14：検索で実際に使われていた店舗ページ（config/gsc_keep_store.txt）。noindex にしない"""
     p = Path(__file__).resolve().parent.parent / "config" / "gsc_keep_store.txt"
@@ -1038,7 +1046,7 @@ def page(data: dict, meta: dict, standalone=True) -> str:
     if standalone:
         body = _externalize(body)
     for k, v in {"__TITLE__": escape(meta["title"]), "__DESC__": escape(meta["desc"]),
-                 "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": escape(meta["h1"]) + ('<span class="h1-tag">' + escape(meta["h1_tag"]) + "</span>" if meta.get("h1_tag") else ""),
+                 "__HEADMETA__": "\n".join(head), "__ROOT__": escape(base), "__H1__": _h1html(meta["h1"]) + ('<span class="h1-tag">' + escape(meta["h1_tag"]) + "</span>" if meta.get("h1_tag") else ""),
                  "__LEAD__": escape(meta["lead"]), "__SUMMARY__": escape(meta.get("summary", "")),
                  "__CRUMBS__": meta.get("crumbs", ""),
                  "__LINKS__": meta.get("links", ""), "__AFF__": meta.get("aff", ""), "__TOPSQ__": meta.get("topsq", ""), "__SNS__": _sns_bar(), "__SUPPLY__": meta.get("supply", ""),

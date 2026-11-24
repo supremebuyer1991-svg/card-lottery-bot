@@ -58,6 +58,8 @@ header.top { background: var(--card); border-bottom: 1px solid var(--rule); }
 .logo .t::after { content: ""; position: absolute; top: 4px; bottom: 4px; right: 7px; border-right: 1.5px dashed rgb(255 255 255 / .55); }
 .lead { margin-block: 18px 0; display: grid; gap: 6px; }
 .lead h1 { font-family: var(--font-body); font-weight: 700; letter-spacing: .01em; font-size: 22px; line-height: 1.35; margin: 0; text-wrap: balance; }
+.lead h1 .h1-main, .lead h1 .h1-sub { display: block; }
+.lead h1 .h1-sub { font-size: .72em; font-weight: 700; color: var(--muted, #9aa3b2); margin-top: 2px; }
 .about { margin: 8px 0 18px; padding: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); }
 .about h2 { margin: 0; font-size: 14px; color: var(--ink); }
 .about p { margin: 0; }
@@ -1258,8 +1260,9 @@ table.wr th, table.wr td { border-bottom: 1px solid #e5e7eb; padding: 8px 10px; 
     // トップの見出し：選んでいるゲームに合わせる（ポケカ→「ポケカの抽選情報まとめ」）
     var h1 = document.querySelector("h1");
     if (h1) {
-      if (h1.dataset.top == null && h1.textContent === "トレカの抽選情報まとめ") h1.dataset.top = h1.textContent;
-      if (h1.dataset.top != null) h1.textContent = st.game === "all" ? h1.dataset.top
+      var h1s = h1.querySelector(".h1-sub") || h1;   // 11/25：トップは「サイト名」と「説明」の2行。説明の行だけゲームに合わせる
+      if (h1.dataset.top == null && h1s.textContent === "トレカの抽選情報まとめ") h1.dataset.top = h1s.textContent;
+      if (h1.dataset.top != null) h1s.textContent = st.game === "all" ? h1.dataset.top
         : ({ pokemon: "ポケカ", onepiece: "ワンピースカード", dragonball: "ドラゴンボール" }[st.game] || "トレカ") + "の抽選情報まとめ";
     }
     // 「今日のBOX相場」の枠：選んでいるゲームの枠だけ（すべての時はいちばん上のゲーム）
