@@ -5370,6 +5370,17 @@
   "store/tsutaya-02cfc/": {
     "name": "TSUTAYA Trading Card 北千住",
     "items": {
+      "53808580dcae3621": {
+        "p": "30周年御三家カードセット",
+        "g": "pokemon",
+        "e": "2026-12-13T23:59",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "28dc5b9a9f2e6680": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -7898,6 +7909,17 @@
   "store/tsutaya-2f0ec/": {
     "name": "TSUTAYA籠原店",
     "items": {
+      "b0db7cc92385e36a": {
+        "p": "インフェルノX",
+        "g": "pokemon",
+        "e": "2026-11-26T21:00",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "0a30d9a5ac1335cf": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -13444,6 +13466,17 @@
   "store/batoroco-cb20b/": {
     "name": "TC バトロコ福島駅前",
     "items": {
+      "c16ad75aa5de8142": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "980ef802a17c9708": {
         "p": "神の支配",
         "g": "onepiece",
@@ -18572,6 +18605,17 @@
   "store/batoroco-ebd51/": {
     "name": "バトロコミニ横浜鶴ヶ峰店",
     "items": {
+      "d1afe4a733a7713f": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-26T13:00",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "2e11622403ec1bab": {
         "p": "神の支配",
         "g": "onepiece",
@@ -21395,6 +21439,19 @@
   "store/aeon-f2aeb/": {
     "name": "ブックオフ イオン橋本店",
     "items": {
+      "faba9f705085c556": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "43148fd15e0c7417": {
         "p": "神の支配",
         "g": "onepiece",
@@ -34200,6 +34257,19 @@
   "store/aeon-9afe9/": {
     "name": "ふるいちイオンモール東浦店",
     "items": {
+      "822626283c392ce6": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-26T21:05",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "20c955f67f47bcec": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -51227,6 +51297,17 @@
   "store/batoroco-47d46/": {
     "name": "TC バトロコ高田馬場",
     "items": {
+      "2036c94853d57b1b": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-25T23:59",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "e53246e6e09e9d78": {
         "p": "神の支配",
         "g": "onepiece",
@@ -52784,6 +52865,22 @@
         "m": "店頭",
         "id": true,
         "mem": "card",
+        "rq": []
+      }
+    }
+  },
+  "store/pokettosenta-63b0f/": {
+    "name": "ポケットセンター秋葉原",
+    "items": {
+      "2799ae827b0cb3c1": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-26T23:59",
+        "f": "2026-11-25",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
         "rq": []
       }
     }
