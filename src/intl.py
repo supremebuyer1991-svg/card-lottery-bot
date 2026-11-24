@@ -111,6 +111,8 @@ SETS = {
         "HEROINES PRECIOUS BOX": ("", "HEROINES PRECIOUS BOX", "", "", ""),
         "世界最強の戦士": ("OP-17", "The World's Strongest Warriors", "The World's Strongest Warriors", "世界最強的戰士", ""),
         "決戦の刻": ("OP-16", "The Time of Battle", "The Time of Battle", "決戰時刻", ""),
+        "スタートデッキ 砂漠の王女と海賊たち": ("ST-37", "Starter Deck -The Desert Princess and the Pirates-", "Starter Deck -The Desert Princess and the Pirates-", "", ""),  # 11/24 日本公式の商品一覧（12/19発売）と英語版公式 st38 ページの関連商品で確認
+        "スタートデッキ バロックワークス": ("ST-38", "Starter Deck -Baroque Works-", "Starter Deck -Baroque Works-", "", ""),  # 11/24 英語版公式（en.onepiece-cardgame.com/products/st38.html）で確認
         "スタートデッキEX ルフィ&エース": ("ST-30", "Starter Deck EX -Luffy & Ace-", "Starter Deck EX -Luffy & Ace-", "", ""),  # 11/18 英語版公式（en.onepiece-cardgame.com/products/st30.html）で確認
         "神の島の冒険": ("OP-15", "Adventure on Kami's Island", "Adventure on Kami's Island", "神之島的冒險", "신의 섬 모험"),
         "蒼海の七傑": ("OP-14", "The Azure Sea's Seven", "The Azure Sea's Seven", "蒼海的七傑", "창해의 칠걸"),
@@ -162,6 +164,7 @@ LOCAL_REL = {
         "ヒロインズエディション vol.2": {"en": "2026-10-30", "tw": "2026-10-31"},
         "世界最強の戦士": {"en": "2026-08-28", "tw": "2026-08-22"},
         "決戦の刻": {"en": "2026-06-12", "tw": "2026-05-30"},
+        "スタートデッキ バロックワークス": {"en": "2026-12-18"},  # 11/24 英語版公式で確認（日本は 12/19）
         "スタートデッキEX ルフィ&エース": {"en": "2026-06-12"},  # 11/18 英語版公式で確認
         "神の島の冒険": {"en": "2026-04-03", "tw": "2026-02-28", "kr": "2026-11-27"},  # 11/12 韓国公式で確認（韓国版は OPK-15）。英語版は OP15-EB04
         "EGGHEAD CRISIS": {"tw": "2026-01-31", "kr": "2026-10-23"},  # 英語版は単独発売なし（OP14-EB04・OP15-EB04 に収録）
