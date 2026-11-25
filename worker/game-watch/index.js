@@ -306,7 +306,7 @@ async function run(env, which, { dry = false } = {}) {
 // ---- メロジョイ公式ストア（11/25 ユーザー「メロジョイの公式から毎日12時に発売された商品の画像と発売商品、在庫の有無をとってきて、サイトとXに速報だせる？」）----
 // 公式ストア（Shopify）の商品一覧（products.json）を見て、売り切れ→在庫あり・新しく出た商品を @a9994aaa に速報。
 // サイト（/mellojoy/）は /mellojoy.json を読んで、画像・値段・在庫の有無をその場で表示する。
-// 12時（在庫更新）の前後 11:50〜13:30 は2分ごと、それ以外は30分ごとに見る。KVへの保存は在庫が変わった時だけ（無料は1日1,000回まで）。
+// 12時（在庫更新）の前後 11:50〜13:30 だけ2分ごとに見る（ほかの時間は在庫が変わらない）。KVへの保存は在庫が変わった時だけ（無料は1日1,000回まで）。
 const MJ_URL = "https://www.mellojoyjapan.com/products.json?limit=250";
 const MJ_PAGE = "https://game-nyuka.com/mellojoy/";
 const mjName = (t) => String(t || "").replace(/【\s*開封後のキャンセルができません\s*】/g, "").replace(/^\s*Mellojoy\s*[-－–—]*\s*/i, "").replace(/\s+/g, " ").trim();
@@ -368,7 +368,8 @@ export default {
     if (env.RAKUTEN_APP_ID) ctx.waitUntil(run(env, "rk"));
     if (env.AMAZON_CREDENTIAL_ID) ctx.waitUntil(run(env, "az"));   // 11/9：4分ごと → 2分ごと（10件ずつまとめて調べるので呼び出し回数はむしろ少ない）
     const jst = new Date(event.scheduledTime + 9 * 3600e3), hm = jst.getUTCHours() * 60 + jst.getUTCMinutes();
-    if ((hm >= 11 * 60 + 50 && hm <= 13 * 60 + 30) || m % 30 === 0) ctx.waitUntil(mellojoy(env).catch(() => null));   // メロジョイ：12時前後は2分ごと、ほかは30分ごと
+    // メロジョイ：公式の在庫更新は毎日12時だけ（11/25 ユーザー「12時以外はストックしやんのんちゃうん？」）→ 11:50〜13:30 に2分ごとだけ見る
+    if (hm >= 11 * 60 + 50 && hm <= 13 * 60 + 30) ctx.waitUntil(mellojoy(env).catch(() => null));
   },
   async fetch(req, env) {
     const u = new URL(req.url);

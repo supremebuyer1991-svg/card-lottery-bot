@@ -71,7 +71,7 @@ def _live_stock_html(src):
           'function e(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;"}[c]})}'
           'var on=it.filter(function(x){return x.a}).length;'
           'var t=d.upd?new Date(d.upd).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):"";'
-          'el.querySelector(".upd").textContent="在庫あり "+on+"商品／全"+it.length+"商品（公式ストアの在庫の記録："+t+"・12時前後は2分ごとに確認）";'
+          'el.querySelector(".upd").textContent="在庫あり "+on+"商品／全"+it.length+"商品（公式ストアの在庫の記録："+t+"・毎日12時前後に2分ごとに確認）";'
           'el.querySelector(".mjg").innerHTML=it.map(function(x){return \'<a class="mjc\'+(x.a?"":" off")+\'" href="\'+e(x.u)+\'" target="_blank" rel="noopener">\''
           '+(x.img?\'<img loading="lazy" src="\'+e(x.img)+\'" alt="\'+e(x.n)+\'">\':"")'
           '+\'<span class="b">\'+e(x.n)+\'<br><span class="p">\'+Number(x.p).toLocaleString("ja-JP")+\'円</span><br><span class="s \'+(x.a?"on":"off")+\'">\'+(x.a?"在庫あり":"売り切れ")+"</span></span></a>"}).join("");'
