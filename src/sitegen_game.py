@@ -56,6 +56,30 @@ _DARK_FIX = ('<style>.cat-official{background:#fff7fa;color:#3a1c28}.hubart{back
              ':root[data-theme="dark"] .hubart{background:#1c2233;color:#e8ecf5;border-color:#5b6b9a!important}:root[data-theme="dark"] .hubart .ck{color:#aab3c8!important}</style>')
 
 
+def _live_stock_html(src):
+    """11/25 ユーザー：公式ストアの商品の画像・値段・在庫の有無を、見張り役（Cloudflare Worker）の記録からその場で表示（ページを開いた時点の最新）"""
+    css = ('<style>.mjl{margin:12px 0 16px}.mjl h2{font-size:17px;margin:0 0 4px}.mjl .upd{font-size:12px;opacity:.7;margin:0 0 8px}'
+           '.mjg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}'
+           '.mjc{display:block;border:1px solid rgba(128,128,128,.35);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit}'
+           '.mjc img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:rgba(128,128,128,.15)}'
+           '.mjc .b{padding:6px 8px;font-size:12.5px;line-height:1.45}.mjc .p{font-weight:700}'
+           '.mjc .s{display:inline-block;margin-top:3px;padding:1px 7px;border-radius:999px;font-size:11.5px;font-weight:700}'
+           '.mjc .s.on{background:#12a150;color:#fff}.mjc .s.off{background:rgba(128,128,128,.3)}.mjc.off img{opacity:.55}</style>')
+    js = ('<script>(function(){var el=document.getElementById("mjl");if(!el)return;'
+          'fetch(' + json.dumps(src) + ',{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){'
+          'var it=(d.items||[]);if(!it.length){el.style.display="none";return}'
+          'function e(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;"}[c]})}'
+          'var on=it.filter(function(x){return x.a}).length;'
+          'var t=d.upd?new Date(d.upd).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}):"";'
+          'el.querySelector(".upd").textContent="在庫あり "+on+"商品／全"+it.length+"商品（公式ストアの在庫の記録："+t+"・12時前後は2分ごとに確認）";'
+          'el.querySelector(".mjg").innerHTML=it.map(function(x){return \'<a class="mjc\'+(x.a?"":" off")+\'" href="\'+e(x.u)+\'" target="_blank" rel="noopener">\''
+          '+(x.img?\'<img loading="lazy" src="\'+e(x.img)+\'" alt="\'+e(x.n)+\'">\':"")'
+          '+\'<span class="b">\'+e(x.n)+\'<br><span class="p">\'+Number(x.p).toLocaleString("ja-JP")+\'円</span><br><span class="s \'+(x.a?"on":"off")+\'">\'+(x.a?"在庫あり":"売り切れ")+"</span></span></a>"}).join("");'
+          'el.style.display=""}).catch(function(){el.style.display="none"})})();</script>')
+    return (css + '<section class="mjl" id="mjl" style="display:none"><h2>公式ストアの商品と在庫（いまの状況）</h2><p class="upd"></p><div class="mjg"></div>'
+            '<p class="note" style="font-size:12px">画像・商品名・値段は公式ストアのものです。在庫は数分おきの記録なので、最新は公式ストアでご確認ください。</p></section>' + js)
+
+
 def _official_html(o):
     """カテゴリの公式ストアの案内（11/23 ユーザー「俺のサイトに公式ページのリンク貼ってサイトに誘導させて」：メロジョイの公式ストア・毎日12時に在庫更新）"""
     if not o or not o.get("url"):
@@ -63,7 +87,8 @@ def _official_html(o):
     return (_DARK_FIX + '<div class="cat-official" style="margin:10px 0;padding:12px 14px;border:2px solid #e9a5c0;border-radius:10px">'
             f'<p style="margin:0 0 6px;font-weight:700">🛒 {escape(o.get("title") or "公式ストア")}</p>'
             + (f'<p style="margin:0 0 8px;font-size:14px;line-height:1.7">{escape(o["note"])}</p>' if o.get("note") else "")
-            + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a></div>')
+            + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a></div>'
+            + (_live_stock_html(o["live"]) if o.get("live") else ""))
 
 
 def shown_ok(i):

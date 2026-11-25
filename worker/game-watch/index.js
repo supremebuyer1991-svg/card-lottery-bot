@@ -303,14 +303,79 @@ async function run(env, which, { dry = false } = {}) {
   return st.last;
 }
 
+// ---- メロジョイ公式ストア（11/25 ユーザー「メロジョイの公式から毎日12時に発売された商品の画像と発売商品、在庫の有無をとってきて、サイトとXに速報だせる？」）----
+// 公式ストア（Shopify）の商品一覧（products.json）を見て、売り切れ→在庫あり・新しく出た商品を @a9994aaa に速報。
+// サイト（/mellojoy/）は /mellojoy.json を読んで、画像・値段・在庫の有無をその場で表示する。
+// 12時（在庫更新）の前後 11:50〜13:30 は2分ごと、それ以外は30分ごとに見る。KVへの保存は在庫が変わった時だけ（無料は1日1,000回まで）。
+const MJ_URL = "https://www.mellojoyjapan.com/products.json?limit=250";
+const MJ_PAGE = "https://game-nyuka.com/mellojoy/";
+const mjName = (t) => String(t || "").replace(/【\s*開封後のキャンセルができません\s*】/g, "").replace(/^\s*Mellojoy\s*[-－–—]*\s*/i, "").replace(/\s+/g, " ").trim();
+async function notifyPhone(text) {   // Xのクレジット切れの時：スマホ（ntfy）に通知。押すとXの投稿画面が文章入りで開く
+  try {
+    await fetch("https://ntfy.sh/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+      topic: "game-nyuka-58ac664db7d2", title: "速報（クレジット切れ）押してポスト", message: text, priority: 5,
+      click: "https://x.com/intent/post?text=" + encodeURIComponent(text),
+      actions: [{ action: "view", label: "Xで投稿", url: "https://x.com/intent/post?text=" + encodeURIComponent(text) }],
+    }) });
+  } catch (_) {}
+}
+async function mellojoy(env, { dry = false, force = false } = {}) {
+  const r = await fetch(MJ_URL, { headers: { "User-Agent": "Mozilla/5.0 (compatible; game-nyuka-watch/1.0; +https://game-nyuka.com/)", Accept: "application/json" } });
+  if (!r.ok) throw new Error("mellojoy " + r.status);
+  const ps = ((await r.json()).products || []).filter((p) => /mellojoy/i.test(p.title || "") && Number(p.variants?.[0]?.price || 0) >= 100);
+  const st = (await env.STATE.get("mj", "json")) || { items: {}, posted: {} };
+  const first = !Object.keys(st.items || {}).length, now = Date.now(), ev = [];
+  let changed = false;
+  const items = {};
+  for (const p of ps) {
+    const a = (p.variants || []).some((v) => v.available), id = String(p.id), prev = st.items[id];
+    const x = { n: mjName(p.title), p: Math.round(Number(p.variants[0].price)), img: (p.images?.[0]?.src || "").split("?")[0] + "?width=400",
+      u: "https://www.mellojoyjapan.com/products/" + encodeURIComponent(p.handle), a, t: prev && prev.a === a ? prev.t : now };
+    items[id] = x;
+    if (!prev || prev.a !== a) changed = true;
+    if (!first && a && (!prev || !prev.a) && now - (st.posted[id] || 0) > COOLDOWN) ev.push([id, x, prev ? "restock" : "new"]);
+  }
+  if (Object.keys(items).length !== Object.keys(st.items || {}).length) changed = true;
+  st.items = items;
+  let posted = null;
+  if (ev.length || force) {
+    const list = (force ? Object.entries(items).filter(([, x]) => x.a).map(([id, x]) => [id, x, "now"]) : ev).slice(0, 4);
+    if (list.length) {
+      const hhmm = new Date(now + 9 * 3600e3).toISOString().slice(11, 16);
+      const head = list.some((e) => e[2] === "new") ? "🍡メロジョイ公式ストアに新商品！" : "🍡メロジョイ公式ストアに入荷！";
+      const lines = list.map(([, x]) => `・${x.n.slice(0, 34)} ${x.p.toLocaleString("ja-JP")}円`);
+      const more = (force ? Object.values(items).filter((x) => x.a).length : ev.length) - list.length;
+      const text = `${head}（${hhmm}）\n${lines.join("\n")}${more > 0 ? `\nほか${more}商品` : ""}\n画像・在庫の有無はこちら👇\n${MJ_PAGE}\n#メロジョイ #Mellojoy`;
+      if (dry) posted = { dry: true, text };
+      else {
+        try { posted = { id: await tweet(env, text), text }; }
+        catch (e) { posted = { error: String(e).slice(0, 200), text }; if (/402|credits/i.test(String(e))) await notifyPhone(text); }
+        for (const [id] of list) st.posted[id] = now;
+        changed = true;
+      }
+    }
+  }
+  st.last = { at: new Date(now).toISOString(), n: ps.length, avail: Object.values(items).filter((x) => x.a).length, ev: ev.length, posted };
+  if (!dry && (changed || first)) { st.upd = new Date(now).toISOString(); await env.STATE.put("mj", JSON.stringify(st)); }
+  return st.last;
+}
+
 export default {
   async scheduled(event, env, ctx) {
     const m = new Date(event.scheduledTime).getUTCMinutes();
     if (env.RAKUTEN_APP_ID) ctx.waitUntil(run(env, "rk"));
     if (env.AMAZON_CREDENTIAL_ID) ctx.waitUntil(run(env, "az"));   // 11/9：4分ごと → 2分ごと（10件ずつまとめて調べるので呼び出し回数はむしろ少ない）
+    const jst = new Date(event.scheduledTime + 9 * 3600e3), hm = jst.getUTCHours() * 60 + jst.getUTCMinutes();
+    if ((hm >= 11 * 60 + 50 && hm <= 13 * 60 + 30) || m % 30 === 0) ctx.waitUntil(mellojoy(env).catch(() => null));   // メロジョイ：12時前後は2分ごと、ほかは30分ごと
   },
   async fetch(req, env) {
     const u = new URL(req.url);
+    if (u.pathname === "/mellojoy.json") {   // だれでも読める：サイトのメロジョイのページが画像・値段・在庫の有無を表示するのに使う
+      const st = (await env.STATE.get("mj", "json")) || { items: {} };
+      const items = Object.values(st.items || {}).sort((a, b) => (b.a - a.a) || (b.t - a.t));
+      return new Response(JSON.stringify({ upd: st.upd || null, items }), { headers: { "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*", "Cache-Control": "public, max-age=60" } });
+    }
     if (u.searchParams.get("k") !== env.ADMIN_KEY) return new Response("game-watch", { status: 200 });
     if (u.pathname === "/mark") {   // 手で投稿した商品に「投稿済み」の印（見張りの速報と二重にならないように）。?id=ASIN&s=pre&w=az
       const k = u.searchParams.get("w") === "rk" ? "rk" : "az", st = (await env.STATE.get(k, "json")) || { items: {}, posted: {} };
@@ -365,6 +430,7 @@ export default {
       }
       return Response.json({ pending: out });
     }
+    if (u.pathname === "/mj") return Response.json(await mellojoy(env, { dry: u.searchParams.get("dry") !== "0", force: !!u.searchParams.get("force") }));   // 管理用：?dry=0 で本当に動かす
     if (u.pathname === "/map") {   // JANで見つけた楽天・Amazonの商品ページ（サイトのボタン・写真に使う）
       const rk = (await env.STATE.get("rk", "json")) || {}, az = (await env.STATE.get("az", "json")) || {};
       const m = {};
