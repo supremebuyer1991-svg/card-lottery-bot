@@ -11,6 +11,11 @@ on:
     - cron: "47 8 * * *"   # 17:47
     - cron: "17 11 * * *"  # 20:17
   workflow_dispatch:
+    inputs:
+      whoami:
+        description: "送らずに、つながっているTikTokアカウント名だけ表示する"
+        type: boolean
+        default: false
 
 concurrency:
   group: gacha-tiktok
@@ -36,6 +41,7 @@ jobs:
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_ACCOUNT: gacha
         run: |
+          if [ "${{ github.event.inputs.whoami }}" = "true" ]; then cd src && python tiktok.py whoami; exit 0; fi
           D=$(TZ=Asia/Tokyo date +%F)
           curl -fsSL -o /tmp/reel.json "https://gachapla.com/data/social-reel.json?t=$(date +%s)" || { echo "データが読めません"; exit 0; }
           if [ "$(python -c "import json;print(json.load(open('/tmp/reel.json'))['date'])")" != "$D" ]; then echo "今日のガチャのスライドがまだありません（$D）"; exit 0; fi

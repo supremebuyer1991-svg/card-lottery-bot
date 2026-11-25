@@ -163,6 +163,11 @@ if __name__ == "__main__":
             import time
             time.sleep(20)
             print(json.dumps(status(pid), ensure_ascii=False)[:500])
+    elif cmd == "whoami":  # 鍵がどのTikTokアカウントにつながっているかを表示（送り先の確認用）
+        acc = _access()
+        r = requests.get("https://open.tiktokapis.com/v2/user/info/?fields=display_name,open_id",
+                         headers={"Authorization": f"Bearer {acc}"}, timeout=30)
+        print("account:", ((r.json().get("data") or {}).get("user") or {}).get("display_name"), r.status_code)
     elif cmd == "test":
         pid = upload_draft(sys.argv[2])
         print("publish_id:", pid)
