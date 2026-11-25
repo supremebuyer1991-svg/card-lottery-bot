@@ -5,6 +5,11 @@ name: gacha-tiktok
 on:
   schedule:
     - cron: "47 3 * * *"   # 日本時間 12:47
+    # GitHub の定時実行が9〜10時間遅れる日があり（11/22〜24）、日付が変わると送れなかったので、予備の時刻を足す。
+    # 同じ日に2回は送らない（state/gacha_tiktok_sent.txt に送った日を残す）
+    - cron: "17 6 * * *"   # 15:17
+    - cron: "47 8 * * *"   # 17:47
+    - cron: "17 11 * * *"  # 20:17
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +39,9 @@ jobs:
           D=$(TZ=Asia/Tokyo date +%F)
           curl -fsSL -o /tmp/reel.json "https://gachapla.com/data/social-reel.json?t=$(date +%s)" || { echo "データが読めません"; exit 0; }
           if [ "$(python -c "import json;print(json.load(open('/tmp/reel.json'))['date'])")" != "$D" ]; then echo "今日のガチャのスライドがまだありません（$D）"; exit 0; fi
-          cd src && python tiktok.py photos /tmp/reel.json
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(cat state/gacha_tiktok_sent.txt 2>/dev/null)" = "$D" ]; then echo "今日（$D）はもう送ってあります"; exit 0; fi
+          (cd src && python tiktok.py photos /tmp/reel.json) | tee /tmp/tt.log
+          grep -q "publish_id: p_" /tmp/tt.log && echo "$D" > state/gacha_tiktok_sent.txt || true
       - name: save state
         if: always()
         run: |
