@@ -11897,7 +11897,7 @@
     "path": "l/tcd0082602/",
     "end": "2026-11-25T10:00:00+09:00",
     "seen": "2026-11-25",
-    "ended": false
+    "ended": true
   },
   "tcd07a1b1cbda4b122": {
     "snap": {
@@ -13115,6 +13115,605 @@
     },
     "path": "l/tc82262628/",
     "end": "2026-11-26T21:05:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc7b94883aed9d1059": {
+    "snap": {
+      "key": "tc7b94883aed9d1059",
+      "game": "pokemon",
+      "store": "トレカポート（Toreca Port）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」【M7】1BOX（定価6,000円・通販の抽選販売）",
+      "series": "拡張パック「ハドウシーカー」",
+      "end": "2026-11-27T10:00:00+09:00",
+      "method": "オンライン",
+      "url": "https://www.toreca-port.com/items/166900843",
+      "channel": "online",
+      "id_check": false,
+      "member": "none",
+      "spath": "pokeca/pakku-hadoushika-c88d3/",
+      "found_at": "2026-11-25T13:54:57.830057+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgeexcollection%2Fs783%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/geexcollection/cabinet/s/783.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E3%2583%258F%25E3%2583%2589%25E3%2582%25A6%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25BC%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc7b94883a/",
+    "end": "2026-11-27T10:00:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc9e71a4365d9db40a": {
+    "snap": {
+      "key": "tc9e71a4365d9db40a",
+      "game": "pokemon",
+      "store": "カードスタジアム首里店（TSUTAYA首里店内）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「30th CELEBRATION」1BOX（20パック・再販・税込7,200円・お一人様1BOX）",
+      "series": "拡張パック「30th CELEBRATION」",
+      "end": "2026-11-27T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/x3r2g",
+      "channel": "store",
+      "area": "沖縄県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-30thcelebration-441f3/",
+      "found_at": "2026-11-25T13:54:57.830077+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2520%25E6%258B%25A1%25E5%25BC%25B5%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C30th",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc9e71a436/",
+    "end": "2026-11-27T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc582c90e8f26871ef": {
+    "snap": {
+      "key": "tc582c90e8f26871ef",
+      "game": "pokemon",
+      "store": "TSUTAYA入間仏子店",
+      "product": "ポケモンカードゲーム MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー（再販・税込5,500円・ご家族で1個）",
+      "series": "スペシャルデッキセットMEGA",
+      "end": "2026-11-29T21:45:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/c4pkq",
+      "channel": "store",
+      "area": "埼玉県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/supesharudekkisettomega-816be/",
+      "found_at": "2026-11-25T13:54:57.830093+09:00",
+      "kind": "lottery",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2F&m=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA%2F",
+          "search": true
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc582c90e8/",
+    "end": "2026-11-29T21:45:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tcde443e35759bb341": {
+    "snap": {
+      "key": "tcde443e35759bb341",
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 平塚",
+      "product": "ポケモンカードゲーム「MEGAドリームex」「テラスタルフェスex」「白熱のアルカナ」1BOX（クリスマス フォロー＆リポストキャンペーン・計3名に定価販売・BOXは選べない）",
+      "series": "ハイクラスパック「MEGAドリームex」",
+      "end": "2026-12-14T23:59:00+09:00",
+      "method": "店頭",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/TTChiratsuka/status/2124693361592525094",
+      "channel": "store",
+      "area": "神奈川県",
+      "id_check": false,
+      "member": "none",
+      "spath": "pokeca/haikurasupakku-megadorimuex-f2f58/",
+      "found_at": "2026-11-25T13:54:57.830112+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/pocketstore/cabinet/08572927/4521329431932.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpocketstore%2F4521329431932%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fpocketstore%2F4521329431932%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpocketstore%2F4521329431932%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fpocketstore%2F4521329431932%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/pocketstore/cabinet/08572927/4521329431932.jpg?_ex=300x300"
+        }
+      }
+    },
+    "path": "l/tcde443e35/",
+    "end": "2026-12-14T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc126acdcfbeda9df9": {
+    "snap": {
+      "key": "tc126acdcfbeda9df9",
+      "game": "pokemon",
+      "store": "エディオンネットショップ",
+      "product": "ポケモンカード福袋 スペシャルセット①（30th CELEBRATION・ストームエメラルダ・アビスアイ・ニンジャスピナー・メガブレイブ・ブラックボルト 各1BOX／35,800円税込・50名）",
+      "series": "拡張パック「30th CELEBRATION」",
+      "end": "2026-12-20T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://edion-cp.com/edionnet01031",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "spath": "pokeca/pakku-30thcelebration-441f3/",
+      "found_at": "2026-11-25T13:54:57.830130+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E7%A6%8F%E8%A2%8B%20%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BB%E3%83%83%E3%83%881&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E7%25A6%258F%25E8%25A2%258B%2520%25E3%2582%25B9%25E3%2583%259A%25E3%2582%25B7%25E3%2583%25A3%25E3%2583%25AB%25E3%2582%25BB%25E3%2583%2583%25E3%2583%25881",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E7%A6%8F%E8%A2%8B%20%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BB%E3%83%83%E3%83%881&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc126acdcf/",
+    "end": "2026-12-20T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc8f527c49db5d58c1": {
+    "snap": {
+      "key": "tc8f527c49db5d58c1",
+      "game": "pokemon",
+      "store": "エディオンネットショップ",
+      "product": "ポケモンカード福袋 スペシャルセット②（30th CELEBRATION・ストームエメラルダ・アビスアイ・ニンジャスピナー・メガシンフォニア・ホワイトフレアほか 各1BOX／35,800円税込・50名）",
+      "series": "拡張パック「30th CELEBRATION」",
+      "end": "2026-12-20T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://edion-cp.com/edionnet010312",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "spath": "pokeca/pakku-30thcelebration-441f3/",
+      "found_at": "2026-11-25T13:54:57.830148+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E7%A6%8F%E8%A2%8B%20%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BB%E3%83%83%E3%83%882&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E7%25A6%258F%25E8%25A2%258B%2520%25E3%2582%25B9%25E3%2583%259A%25E3%2582%25B7%25E3%2583%25A3%25E3%2583%25AB%25E3%2582%25BB%25E3%2583%2583%25E3%2583%25882",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E7%A6%8F%E8%A2%8B%20%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BB%E3%83%83%E3%83%882&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc8f527c49/",
+    "end": "2026-12-20T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc935b2b90b45dd79a": {
+    "snap": {
+      "key": "tc935b2b90b45dd79a",
+      "game": "pokemon",
+      "store": "TSUTAYA鈴鹿中央通店（トレカ）",
+      "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」1BOX（店頭受付限定ゲリラ1DAY抽選）",
+      "series": "拡張パック「ストームエメラルダ」",
+      "end": "2026-11-25T23:59:00+09:00",
+      "method": "店頭",
+      "url": "https://x.com/TSUTAYAsuzuka_c/status/2125398771785961608",
+      "channel": "store",
+      "area": "三重県",
+      "id_check": false,
+      "member": "none",
+      "spath": "pokeca/pakku-sutomuemeraruda-a0152/",
+      "found_at": "2026-11-25T13:54:57.830165+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520MEGA",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20MEGA&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc935b2b90/",
+    "end": "2026-11-25T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tcd096b9047bbc5121": {
+    "snap": {
+      "key": "tcd096b9047bbc5121",
+      "game": "pokemon",
+      "store": "TSUTAYA北習志野駅前店",
+      "product": "ポケモンカードゲーム「30th CELEBRATION」1BOX（税込7,200円）",
+      "series": "拡張パック「30th CELEBRATION」",
+      "end": "2026-11-26T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/merhm",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-30thcelebration-441f3/",
+      "found_at": "2026-11-25T13:54:57.830205+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnoah-shopping%2F4521329462424%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/noah-shopping/cabinet/default2/jahbjcgqwh.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8C30th&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%25E3%2580%258C30th",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8C30th&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcd096b904/",
+    "end": "2026-11-26T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tccae103a822623dad": {
+    "snap": {
+      "key": "tccae103a822623dad",
+      "game": "pokemon",
+      "store": "TSUTAYA北習志野駅前店",
+      "product": "ポケモンカードゲーム「ストームエメラルダ」1BOX（税込6,000円）",
+      "series": "拡張パック「ストームエメラルダ」",
+      "end": "2026-11-26T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/merhm",
+      "channel": "store",
+      "area": "千葉県",
+      "id_check": true,
+      "member": "account",
+      "spath": "pokeca/pakku-sutomuemeraruda-a0152/",
+      "found_at": "2026-11-25T13:54:57.830222+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Foutletplaza%2F40001113670%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/outletplaza/cabinet/229/4521329462233.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D1BOX&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%25E3%2580%258C%25E3%2582%25B9%25E3%2583%2588%25E3%2583%25BC%25E3%2583%25A0%25E3%2582%25A8%25E3%2583%25A1%25E3%2583%25A9%25E3%2583%25AB%25E3%2583%2580%25E3%2580%258D1BOX",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D1BOX&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tccae103a8/",
+    "end": "2026-11-26T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tcdf30f79fe3c7b4f8": {
+    "snap": {
+      "key": "tcdf30f79fe3c7b4f8",
+      "game": "pokemon",
+      "store": "TSUTAYA金沢店",
+      "product": "ポケモンカードゲーム プレミアムデッキセット エーフィ・ブラッキー（再販・1点）",
+      "series": "30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー",
+      "end": "2026-11-29T23:59:00+09:00",
+      "method": "店頭",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://x.com/tsutakanaTCG/status/2125130156910272789",
+      "channel": "store",
+      "area": "石川県",
+      "id_check": false,
+      "member": "card",
+      "spath": "pokeca/30thcelebrationpuremiamudekkis-6e36c/",
+      "found_at": "2026-11-25T13:54:57.830272+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18595283%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2189/4521329462189.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%259D%25E3%2582%25B1%25E3%2583%25A2%25E3%2583%25B3%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2597%25E3%2583%25AC%25E3%2583%259F%25E3%2582%25A2%25E3%2583%25A0%25E3%2583%2587%25E3%2583%2583%25E3%2582%25AD%25E3%2582%25BB%25E3%2583%2583%25E3%2583%2588%2520%25E3%2582%25A8%25E3%2583%25BC%25E3%2583%2595%25E3%2582%25A3",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcdf30f79f/",
+    "end": "2026-11-29T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc32718cebb07ffaaf": {
+    "snap": {
+      "key": "tc32718cebb07ffaaf",
+      "game": "onepiece",
+      "store": "ふるいちイオンモール太田店",
+      "product": "ワンピースカードゲーム ブースターパック「神の支配」【OP-18】1BOX（税込5,760円）",
+      "series": "ブースターパック「神の支配」【OP-18】",
+      "end": "2026-11-25T21:00:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/mwy9d",
+      "channel": "store",
+      "area": "群馬県",
+      "id_check": true,
+      "member": "account",
+      "spath": "onepiece-card/busutapakku-no-op-18-0afef/",
+      "found_at": "2026-11-25T13:54:58.113486+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3D%25E3%2583%25AF%25E3%2583%25B3%25E3%2583%2594%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E7%25A5%259E%25E3%2581%25AE%25E6%2594%25AF%25E9%2585%258D%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc32718ceb/",
+    "end": "2026-11-25T21:00:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc3399f5a1e9e67195": {
+    "snap": {
+      "key": "tc3399f5a1e9e67195",
+      "game": "onepiece",
+      "store": "ドラゴンスター通販",
+      "product": "ONE PIECEカードゲーム エクストラブースター「ONE PIECE Heroines Edition」【EB-03】（2025年発売分）",
+      "series": "エクストラブースター「Heroines Edition vol.2」【EB-05】",
+      "end": "2026-11-26T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員",
+      "tags": [
+        "会員"
+      ],
+      "url": "https://dorasuta.membercard.jp/lottery-entry?ekey=QTNxVWFvN0VBZWtWaFJwMzJOUnhFUT09",
+      "channel": "online",
+      "id_check": false,
+      "member": "account",
+      "spath": "onepiece-card/ekusutorabusuta-heroineseditio-0df4d/",
+      "found_at": "2026-11-25T13:54:58.113568+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/goldhobby/cabinet/imgrc0200707547.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fgoldhobby%2Feb-03-c%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/goldhobby/cabinet/imgrc0200707547.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%80%8CONE&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DONE%2520PIECE%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2582%25A8%25E3%2582%25AF%25E3%2582%25B9%25E3%2583%2588%25E3%2583%25A9%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2580%258CONE",
+        "mc": "https://jp.mercari.com/search?keyword=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%80%8CONE&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc3399f5a1/",
+    "end": "2026-11-26T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc4e27000d7c8840b8": {
+    "snap": {
+      "key": "tc4e27000d7c8840b8",
+      "game": "onepiece",
+      "store": "ふるいちイオンモール高の原店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】",
+      "series": "ブースターパック「神の支配」【OP-18】",
+      "end": "2026-11-26T23:59:00+09:00",
+      "method": "店頭",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://x.com/furu1_AMt_hara/status/2125409133335556332",
+      "channel": "store",
+      "area": "京都府",
+      "id_check": true,
+      "member": "card",
+      "spath": "onepiece-card/busutapakku-no-op-18-0afef/",
+      "found_at": "2026-11-25T13:54:58.113600+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DONE%2520PIECE%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E7%25A5%259E%25E3%2581%25AE%25E6%2594%25AF%25E9%2585%258D%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc4e27000d/",
+    "end": "2026-11-26T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tc5969d4446f7e928f": {
+    "snap": {
+      "key": "tc5969d4446f7e928f",
+      "game": "onepiece",
+      "store": "カードスタジアム首里店（TSUTAYA首里店内）",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】1BOX（24パック・再販・税込5,760円・お一人様1個）",
+      "series": "ブースターパック「神の支配」【OP-18】",
+      "end": "2026-11-27T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/0v954",
+      "channel": "store",
+      "area": "沖縄県",
+      "id_check": true,
+      "member": "account",
+      "spath": "onepiece-card/busutapakku-no-op-18-0afef/",
+      "found_at": "2026-11-25T13:54:58.113619+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DONE%2520PIECE%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E7%25A5%259E%25E3%2581%25AE%25E6%2594%25AF%25E9%2585%258D%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tc5969d444/",
+    "end": "2026-11-27T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tcc9aa0d038e541586": {
+    "snap": {
+      "key": "tcc9aa0d038e541586",
+      "game": "onepiece",
+      "store": "TSUTAYA中津店",
+      "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】（2次抽選）",
+      "series": "ブースターパック「神の支配」【OP-18】",
+      "end": "2026-11-29T23:59:00+09:00",
+      "method": "オンライン",
+      "conditions": "会員・本人確認",
+      "tags": [
+        "会員",
+        "本人確認"
+      ],
+      "url": "https://livepocket.jp/e/jvstn",
+      "channel": "store",
+      "area": "大分県",
+      "id_check": true,
+      "member": "account",
+      "spath": "onepiece-card/busutapakku-no-op-18-0afef/",
+      "found_at": "2026-11-25T13:54:58.113676+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fmediaworldkaitoriworld%2F13922237000%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/mediaworldkaitoriworld/cabinet/1392/2/cg13922237.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DONE%2520PIECE%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2591%25E3%2583%2583%25E3%2582%25AF%25E3%2580%258C%25E7%25A5%259E%25E3%2581%25AE%25E6%2594%25AF%25E9%2585%258D%25E3%2580%258D",
+        "mc": "https://jp.mercari.com/search?keyword=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E7%A5%9E%E3%81%AE%E6%94%AF%E9%85%8D%E3%80%8D&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcc9aa0d03/",
+    "end": "2026-11-29T23:59:00+09:00",
+    "seen": "2026-11-25",
+    "ended": false
+  },
+  "tcaf86318b862ed6f0": {
+    "snap": {
+      "key": "tcaf86318b862ed6f0",
+      "game": "onepiece",
+      "store": "TSUTAYA AZ岡南店",
+      "product": "ONE PIECEカードゲーム ブースターパック「受け継がれる意志」【OP-13】1BOX（定価・店頭販売のみ・3名）",
+      "series": "ブースターパック「受け継がれる意志」",
+      "end": "2026-12-02T23:59:00+09:00",
+      "method": "店頭",
+      "conditions": "SNS応募",
+      "tags": [
+        "SNS応募"
+      ],
+      "url": "https://x.com/tsutayaazkonanT/status/2125424245761352108",
+      "channel": "store",
+      "area": "岡山県",
+      "id_check": false,
+      "member": "none",
+      "spath": "onepiece-card/busutapakku-ke-gareru-74640/",
+      "found_at": "2026-11-25T13:54:58.113696+09:00",
+      "kind": "lottery",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/misc/4582769865213.jpg?_ex=300x300",
+      "img_url": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F",
+      "shop": {
+        "rk": {
+          "u": "https://hb.afl.rakuten.co.jp/hgc/0f60e3a0.0ec21e9a.0f60e3a1.23a40abb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F&m=https%3A%2F%2Fitem.rakuten.co.jp%2Fnipponiajapan%2F1255664219%2F",
+          "img": "https://thumbnail.image.rakuten.co.jp/@0_mall/nipponiajapan/cabinet/tradingcard/misc/4582769865213.jpg?_ex=300x300"
+        },
+        "az": "https://www.amazon.co.jp/s?k=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0&tag=gamenyuka-22",
+        "yh": "https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787021&pid=892747824&vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3DONE%2520PIECE%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E3%2582%25B2%25E3%2583%25BC%25E3%2583%25A0",
+        "mc": "https://jp.mercari.com/search?keyword=ONE%20PIECE%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0&status=on_sale&afid=1350793153"
+      }
+    },
+    "path": "l/tcaf86318b/",
+    "end": "2026-12-02T23:59:00+09:00",
     "seen": "2026-11-25",
     "ended": false
   }
