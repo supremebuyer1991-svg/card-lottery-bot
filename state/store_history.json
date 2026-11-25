@@ -6020,6 +6020,17 @@
   "store/reddohausu-f0d93/": {
     "name": "レッドハウス（青森県八戸市）",
     "items": {
+      "3507674b1c24de52": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "5fcc45e3bea39770": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -15572,7 +15583,7 @@
     "name": "イオン九州（iAEONアプリ）",
     "items": {
       "06242fdc0a38f616": {
-        "p": "ONE PIECEカードゲーム スタートデッキ 砂漠の王女と海賊たち【ST-37】／スタートデッキ バロックワークス【S",
+        "p": "スタートデッキ 砂漠の王女と海賊たち",
         "g": "onepiece",
         "e": "2026-11-29T23:59",
         "f": "2026-11-21",
@@ -22519,6 +22530,28 @@
   "store/torekashoppu-puranettopoketto-47596/": {
     "name": "トレカショップ☆プラネットポケット",
     "items": {
+      "6bb5469742f870c1": {
+        "p": "プラポケ福袋2027 ポケモンカード（16,500円税込＋送料500円・通販）",
+        "g": "pokemon",
+        "e": "2026-11-27T21:00",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
+      "f63d253e7e273552": {
+        "p": "プラポケ福袋2027 ONE PIECEカード（11,500円税込＋送料500円・通販）",
+        "g": "onepiece",
+        "e": "2026-11-27T21:00",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "d008260201840fa9": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -40062,6 +40095,17 @@
   "store/furuichi-fdfd2/": {
     "name": "古本市場原山台店",
     "items": {
+      "c51c2ab7126d0800": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-26T22:00",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "a735214c8322c976": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -51376,6 +51420,17 @@
   "store/aeon-40b5d/": {
     "name": "カードボックスイオンモール高知店",
     "items": {
+      "097e11962163e562": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "ff39095289da2eba": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -53247,6 +53302,54 @@
         "m": "Web",
         "id": true,
         "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/sengawatorekadaichu-10569/": {
+    "name": "せんがわトレカDAICHU",
+    "items": {
+      "c687a830c8c1710b": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-27T23:59",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/lawson-7e190/": {
+    "name": "ローソン（Loppi・HMV&BOOKS online 抽選）",
+    "items": {
+      "3df116add346e767": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:30",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/tsutaya-e3391/": {
+    "name": "TSUTAYA BOOKSTORE ビバモール寝屋川トレカ部",
+    "items": {
+      "105e4f5ad9b9b615": {
+        "p": "REACH THE GOD",
+        "g": "dragonball",
+        "e": "2026-11-27T20:00",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
         "rq": []
       }
     }
