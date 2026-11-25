@@ -333,7 +333,9 @@ async function mellojoy(env, { dry = false, force = false } = {}) {
       u: "https://www.mellojoyjapan.com/products/" + encodeURIComponent(p.handle), a, t: prev && prev.a === a ? prev.t : now };
     items[id] = x;
     if (!prev || prev.a !== a) changed = true;
-    if (!first && a && (!prev || !prev.a) && now - (st.posted[id] || 0) > COOLDOWN) ev.push([id, x, prev ? "restock" : "new"]);
+    // 公式ストアは売り切れた商品を一覧から外し、12時に出し直すことがある：一度見た商品は「新商品」ではなく「入荷」と書く
+    if (!first && a && (!prev || !prev.a) && now - (st.posted[id] || 0) > COOLDOWN) ev.push([id, x, prev || (st.seen || {})[id] ? "restock" : "new"]);
+    (st.seen = st.seen || {})[id] = 1;
   }
   if (Object.keys(items).length !== Object.keys(st.items || {}).length) changed = true;
   st.items = items;
