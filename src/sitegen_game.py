@@ -1388,7 +1388,7 @@ def build(settings=None, out_dir=None, force=False):
                          "faq": [(f"{x}はいまどこで買えますか（受付中）？", ("いま受付中は" + "・".join(dict.fromkeys(i["store"] for i in lst if i["ph"] == "open")) + "です。" if no else "いま受付中のものはありません。予告・発売日のタブもご覧ください。"))] + _af + _xf}),
                   lst, trail=[("トップ", ""), (c["short"], f"{c['slug']}/"), (x, path)], data_extra={"game": g}, body_top=_at,
                   body_bottom=_ab + _ai_block(path) + _xb,
-                  noindex=len(lst) < 3 and not sc_protected(path))   # 受付が1〜2件だけの小さいまとめは検索に出さない（検索に表示されたことのあるページは除く。11/15 ユーザーOK）
+                  noindex=len(lst) < 3 and not sc_protected(path) and not _am and path not in _hubs)   # 受付が1〜2件だけの小さいまとめは検索に出さない（検索に表示されたことのあるページは除く。11/15 ユーザーOK）。記事のあるページ・モデルの常設まとめは受付が少なくても出す（11/25：/switch2/switch2/ が記事つきなのに noindex だった）
         # モデルの常設まとめ（受付が終わっても消さない。11/14 ユーザー「A、OK」）
         for path, h in _hubs.items():
             if path in _hub_done:

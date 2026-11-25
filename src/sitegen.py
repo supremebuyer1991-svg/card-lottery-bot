@@ -4246,6 +4246,7 @@ def ga_snippet(ga_id):
             + 'document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.href||"";'
             'var n=/rakuten\\.co\\.jp/.test(h)?"rakuten":/amazon\\.(co\\.jp|com)/.test(h)?"amazon":/valuecommerce|7net|yamada/.test(h)?"vc":/ebay\\.com/.test(h)?"ebay":/mercari\\.com/.test(h)?"mercari":"";'
             'if(!n||!/sponsored/.test(a.rel||""))return;var p=a.dataset.pl||(a.closest("[data-pl]")||{}).dataset&&a.closest("[data-pl]").dataset.pl||(a.closest(".ad,.lose,.feed,.anchor,.cal-buy,.ticket,.shopb,.mc-box,.pc-shops,.pm-sh,.av-go,.buyb,.pm-row,table")||{}).className||"other";'
+            'p=String(p).trim().split(/\\s+/)[0]||"other";'   # 11/25：className の2つ目（"buyb on" の on など）を外す
             'gtag("event","affiliate_click",{network:n,placement:String(p).slice(0,40),page:location.pathname.slice(0,60)});},true);'
             "})();</script>")
 
