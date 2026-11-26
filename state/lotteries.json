@@ -336,7 +336,7 @@
     "key": "640090efda7e51ca",
     "status": "approved",
     "found_at": "2026-10-29T10:30:18.750575+09:00",
-    "page_checked_at": "2026-11-25T13:55:03.792405+09:00",
+    "page_checked_at": "2026-11-26T13:10:52.576665+09:00",
     "cls": "a5d9b813c608"
   },
   "55bfb5f2d783dd9d": {
@@ -652,7 +652,7 @@
     "key": "2357f2bd94e3e05b",
     "status": "approved",
     "found_at": "2026-11-06T10:15:09.696595+09:00",
-    "page_checked_at": "2026-11-25T13:55:10.151173+09:00",
+    "page_checked_at": "2026-11-26T13:10:57.161488+09:00",
     "cls": "6c166522c04c"
   },
   "ff58f78ff5f820df": {
@@ -714,7 +714,7 @@
     "status": "approved",
     "found_at": "2026-11-08T10:44:57.383614+09:00",
     "cls": "172f1be000c7",
-    "page_checked_at": "2026-11-25T13:55:17.373919+09:00"
+    "page_checked_at": "2026-11-26T13:11:01.756231+09:00"
   },
   "856454ca0bd70b32": {
     "store": "TSUTAYA白河店（みどり書房白河店）",
@@ -880,10 +880,10 @@
     "manual": true,
     "source": "手動追加",
     "confidence": 1.0,
-    "deadline_checked_at": "2026-11-25T04:32:28.762362+09:00",
+    "deadline_checked_at": "2026-11-26T13:10:52.508969+09:00",
     "deadline_v": 5,
     "deadline_note": "画像0/0枚読込・締切の記載なし",
-    "page_checked_at": "2026-11-25T13:55:21.868040+09:00",
+    "page_checked_at": "2026-11-26T13:11:05.174798+09:00",
     "area": null,
     "cls": "e4844ec04520",
     "x_post": "https://x.com/7_netshopping/status/2116047447793295723"
@@ -1095,7 +1095,7 @@
     "status": "approved",
     "found_at": "2026-11-11T10:57:59.875342+09:00",
     "cls": "bb7b82711ef0",
-    "page_checked_at": "2026-11-25T13:55:26.886420+09:00"
+    "page_checked_at": "2026-11-26T13:11:07.587328+09:00"
   },
   "12392d2732d832ea": {
     "store": "トレカダンジョンLite大須店",
@@ -1329,7 +1329,7 @@
     "status": "approved",
     "found_at": "2026-11-12T12:04:52.355570+09:00",
     "cls": "d391616c8181",
-    "page_checked_at": "2026-11-25T13:55:33.554956+09:00"
+    "page_checked_at": "2026-11-26T13:11:10.952687+09:00"
   },
   "f8ea67bb7f6eed0c": {
     "store": "トレカショップなかよし 久米川駅前",
@@ -1536,7 +1536,7 @@
     "status": "approved",
     "found_at": "2026-11-12T21:48:12.100915+09:00",
     "cls": "fd384aca51ba",
-    "page_checked_at": "2026-11-25T13:55:36.361672+09:00"
+    "page_checked_at": "2026-11-26T13:11:14.100368+09:00"
   },
   "aee89d1950e47e74": {
     "store": "ティアワン渋谷",
@@ -1669,7 +1669,7 @@
     "issue": 707,
     "multi": true,
     "cls": "60f15249b3fb",
-    "page_checked_at": "2026-11-26T03:40:16.108864+09:00",
+    "page_checked_at": "2026-11-26T13:11:17.203667+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://youing-toreka.membercard.jp/lottery",
     "post_checked": true,
     "details_checked": true
@@ -3301,7 +3301,7 @@
     "found_at": "2026-11-18T12:43:59.174850+09:00",
     "multi": false,
     "cls": "1a46ee456314",
-    "page_checked_at": "2026-11-25T13:55:47.383080+09:00",
+    "page_checked_at": "2026-11-26T13:11:17.246410+09:00",
     "address_checked": true
   },
   "7f448bff611d966d": {
@@ -3419,7 +3419,7 @@
     "found_at": "2026-11-18T12:43:59.924992+09:00",
     "multi": false,
     "cls": "c4343f18f8f8",
-    "page_checked_at": "2026-11-25T13:55:51.471508+09:00",
+    "page_checked_at": "2026-11-26T13:11:19.975282+09:00",
     "address_checked": true
   },
   "8b8a515de58fadd1": {
@@ -4487,13 +4487,15 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "f44dceb76ad58bc8",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-19T22:16:40.918087+09:00",
     "multi": false,
     "cls": "d192e80dd473",
     "page_checked_at": "2026-11-26T03:40:21.136463+09:00",
     "address": "宮城県仙台市青葉区中央1-2-3",
-    "address_checked": true
+    "address_checked": true,
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651948+09:00"
   },
   "0f113d43e668998d": {
     "store": "ブックオフ7号能代店",
@@ -6351,10 +6353,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "c0f861f632080a2c",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-20T21:58:52.968348+09:00",
     "multi": false,
-    "cls": "696fc503d8d9"
+    "cls": "696fc503d8d9",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651957+09:00"
   },
   "20abbd621a65d5cd": {
     "store": "GEO",
@@ -6982,7 +6986,7 @@
     "found_at": "2026-11-20T21:58:53.448027+09:00",
     "multi": true,
     "cls": "394992abb2dd",
-    "page_checked_at": "2026-11-26T03:40:23.762426+09:00",
+    "page_checked_at": "2026-11-26T13:11:20.022921+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://geo-online.co.jp/news/792"
   },
   "68972b1a9646fe36": {
@@ -8666,7 +8670,7 @@
     "found_at": "2026-11-22T21:38:19.610719+09:00",
     "multi": false,
     "cls": "5e98c7e779b0",
-    "page_checked_at": "2026-11-25T13:55:58.381115+09:00",
+    "page_checked_at": "2026-11-26T13:11:20.076048+09:00",
     "address_checked": true
   },
   "7b2c795d762dc873": {
@@ -8925,7 +8929,7 @@
     "found_at": "2026-11-22T21:38:20.101460+09:00",
     "multi": true,
     "cls": "fe4ccb5f8d43",
-    "page_checked_at": "2026-11-26T03:40:31.057648+09:00",
+    "page_checked_at": "2026-11-26T13:11:22.540153+09:00",
     "page_err": "中身が空"
   },
   "bd5e6141a50799d9": {
@@ -9363,10 +9367,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "8ddf77c8c489abd0",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-23T11:50:28.289585+09:00",
     "multi": false,
-    "cls": "7e62b0e36b8b"
+    "cls": "7e62b0e36b8b",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651961+09:00"
   },
   "9845116dfc748cd7": {
     "store": "TC バトロコ本厚木駅前",
@@ -9391,12 +9397,14 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "9845116dfc748cd7",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-23T11:50:28.289620+09:00",
     "multi": false,
     "cls": "8a558cae37d6",
     "page_checked_at": "2026-11-26T03:40:33.170769+09:00",
-    "address_checked": true
+    "address_checked": true,
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651963+09:00"
   },
   "5b8fd2cd2df6b878": {
     "store": "北国書林辰口店（Cardbox）",
@@ -9700,10 +9708,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ead38e899cdb5692",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-23T11:50:28.289994+09:00",
     "multi": false,
-    "cls": "36af77b414da"
+    "cls": "36af77b414da",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651965+09:00"
   },
   "7fc0fdb1b272ae70": {
     "store": "トレーディングカードピット小山駅前店",
@@ -10071,7 +10081,7 @@
     "found_at": "2026-11-23T11:50:28.867441+09:00",
     "multi": false,
     "cls": "63f7925decfe",
-    "page_checked_at": "2026-11-26T03:40:35.671605+09:00",
+    "page_checked_at": "2026-11-26T13:11:24.589581+09:00",
     "page_err": "中身が空"
   },
   "6fe02160b6f9586b": {
@@ -10102,7 +10112,7 @@
     "found_at": "2026-11-23T23:44:35.643994+09:00",
     "multi": false,
     "cls": "bec07204a409",
-    "page_checked_at": "2026-11-26T03:40:37.765605+09:00",
+    "page_checked_at": "2026-11-26T13:11:26.673555+09:00",
     "page_err": "403 Client Error: Forbidden for url: https://shop.joshin.co.jp/app/"
   },
   "5ba79d178cce5c4a": {
@@ -11767,8 +11777,10 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "2db8b194edb4f3b6",
-    "status": "approved",
-    "found_at": "2026-11-24T15:06:20.296351+09:00"
+    "status": "expired",
+    "found_at": "2026-11-24T15:06:20.296351+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651968+09:00"
   },
   "ce26560932a3e5f2": {
     "store": "ブックオフ 大宮ステラタウン",
@@ -11792,8 +11804,10 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "ce26560932a3e5f2",
-    "status": "approved",
-    "found_at": "2026-11-24T15:06:20.296377+09:00"
+    "status": "expired",
+    "found_at": "2026-11-24T15:06:20.296377+09:00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651970+09:00"
   },
   "3e5643c64f0da43e": {
     "store": "ブックオフ松戸駅東口店",
@@ -12348,7 +12362,7 @@
     "key": "9e93596750e93d76",
     "status": "approved",
     "found_at": "2026-11-24T15:06:20.849037+09:00",
-    "page_checked_at": "2026-11-26T03:40:50.212799+09:00",
+    "page_checked_at": "2026-11-26T13:11:26.994422+09:00",
     "page_err": "中身が空"
   },
   "b09f18eb6dbcf0b7": {
@@ -12400,7 +12414,9 @@
     "no_quote": true,
     "key": "97fb593a3966e4fb",
     "status": "approved",
-    "found_at": "2026-11-24T15:06:20.849110+09:00"
+    "found_at": "2026-11-24T15:06:20.849110+09:00",
+    "page_checked_at": "2026-11-26T13:11:29.171152+09:00",
+    "page_err": "中身が空"
   },
   "e2422acb6bb7f465": {
     "store": "トレカエース勝田東石川店",
@@ -12426,7 +12442,9 @@
     "no_quote": true,
     "key": "e2422acb6bb7f465",
     "status": "approved",
-    "found_at": "2026-11-24T15:06:20.849151+09:00"
+    "found_at": "2026-11-24T15:06:20.849151+09:00",
+    "page_checked_at": "2026-11-26T13:11:31.249513+09:00",
+    "page_err": "中身が空"
   },
   "a8807996c88d28f0": {
     "store": "トレカステーション豊橋店",
@@ -12480,7 +12498,9 @@
     "status": "approved",
     "found_at": "2026-11-24T15:06:20.849244+09:00",
     "multi": false,
-    "cls": "ae15339b76f9"
+    "cls": "ae15339b76f9",
+    "page_checked_at": "2026-11-26T13:11:33.289056+09:00",
+    "page_err": "中身が空"
   },
   "fefbc8ccdf86387f": {
     "store": "トレカステーション領家店",
@@ -12508,7 +12528,9 @@
     "status": "approved",
     "found_at": "2026-11-24T15:06:20.849290+09:00",
     "multi": false,
-    "cls": "1ea3266af82b"
+    "cls": "1ea3266af82b",
+    "page_checked_at": "2026-11-26T13:11:35.333610+09:00",
+    "page_err": "中身が空"
   },
   "ea5de2ceeb81bf19": {
     "store": "トレカステーション中島新町店",
@@ -12839,10 +12861,12 @@
     "source_url": "https://cardchusen.com/pokeka",
     "no_quote": true,
     "key": "d1afe4a733a7713f",
-    "status": "approved",
+    "status": "expired",
     "found_at": "2026-11-25T04:32:20.682402+09:00",
     "multi": false,
-    "cls": "8074e63ffb00"
+    "cls": "8074e63ffb00",
+    "closed_reason": "情報元の一覧から消えた",
+    "closed_at": "2026-11-26T13:10:49.651971+09:00"
   },
   "2799ae827b0cb3c1": {
     "store": "ポケットセンター秋葉原",
@@ -14026,5 +14050,674 @@
     "key": "105e4f5ad9b9b615",
     "status": "approved",
     "found_at": "2026-11-26T03:40:09.506507+09:00"
+  },
+  "ddbc7668d7a372e3": {
+    "store": "ブックオフプラス佐賀南部バイパス店",
+    "product": "ポケモンカードゲーム 拡張パック「ハドウシーカー」1BOX",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T17:00:00+09:00",
+    "url": "https://x.com/bookoffnanbai/status/2125752894419063109",
+    "x_post": "https://x.com/bookoffnanbai/status/2125752894419063109",
+    "channel": "online",
+    "area": null,
+    "method": "X抽選",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "ddbc7668d7a372e3",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140617+09:00"
+  },
+  "07b8cd675bee2879": {
+    "store": "ワットマン ホビー マルイファミリー海老名店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（お一人様1BOXまで・シュリンクなし）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T19:30:00+09:00",
+    "url": "https://x.com/wattmann_ho_ebn/status/2125780274944544889",
+    "x_post": "https://x.com/wattmann_ho_ebn/status/2125780274944544889",
+    "channel": "online",
+    "area": null,
+    "method": "SNS応募",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "07b8cd675bee2879",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140665+09:00"
+  },
+  "dfc8facc601a3b2c": {
+    "store": "カードボックス青馬堂トナリエクレオつくば店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（税込6,000円・現金払いのみ）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T23:59:00+09:00",
+    "url": "https://x.com/zundoko_dt/status/2125547446428398070",
+    "x_post": "https://x.com/zundoko_dt/status/2125547446428398070",
+    "channel": "store",
+    "area": "茨城県",
+    "method": "SNS応募",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "dfc8facc601a3b2c",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140708+09:00"
+  },
+  "5985e5062b048010": {
+    "store": "トレカショップ .ACE（浜松）",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」BOX 抽選販売（店舗アプリから応募）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-27T00:00:00+09:00",
+    "url": "https://x.com/dotACE_0809/status/2125520612055568579",
+    "x_post": "https://x.com/dotACE_0809/status/2125520612055568579",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "アプリ",
+    "tags": [
+      "アプリ"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "5985e5062b048010",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140747+09:00"
+  },
+  "69653c9553ee1e69": {
+    "store": "ブックオフスーパーバザー ショップス市川店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（お一人様1BOXまで・シュリンクなし）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-27T12:00:00+09:00",
+    "url": "https://x.com/BSBshops_HO/status/2125785642441568330",
+    "x_post": "https://x.com/BSBshops_HO/status/2125785642441568330",
+    "channel": "store",
+    "area": "千葉県",
+    "method": "SNS応募",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "69653c9553ee1e69",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140783+09:00"
+  },
+  "ebd604fdab15500e": {
+    "store": "TCG NEX 大阪高槻店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」（定価販売抽選・店頭販売のみ）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-27T23:59:00+09:00",
+    "url": "https://x.com/tcgnex2/status/2125508970681131300",
+    "x_post": "https://x.com/tcgnex2/status/2125508970681131300",
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "ebd604fdab15500e",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140820+09:00"
+  },
+  "35446fb177c3b4a2": {
+    "store": "TSUTAYA神明店",
+    "product": "ポケモンカードゲーム MEGA 「30th CELEBRATION 拡張パック」購入券 抽選",
+    "series": "30周年パック",
+    "end": "2026-11-27T23:59:00+09:00",
+    "url": "https://livepocket.jp/e/on7tx",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "35446fb177c3b4a2",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140854+09:00"
+  },
+  "6e950580f3511c5f": {
+    "store": "ドラゴンスター通販",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ストームエメラルダ」",
+    "series": "ストームエメラルダ",
+    "end": "2026-11-27T23:59:00+09:00",
+    "url": "https://dorasuta.membercard.jp/lottery-entry?ekey=YVhPTG1YeTZXUHZMYTdTYVB2c3dlQT09",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "6e950580f3511c5f",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140891+09:00"
+  },
+  "54bbeddbaadf44ea": {
+    "store": "古本市場野口店",
+    "product": "ポケモンカードゲーム MEGA「30th CELEBRATION カードセット」（各カードセット1度まで応募可）",
+    "series": "30周年御三家カードセット",
+    "end": "2026-11-28T22:00:00+09:00",
+    "url": "https://livepocket.jp/e/limnc",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "54bbeddbaadf44ea",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140926+09:00"
+  },
+  "8114adb703aa00ae": {
+    "store": "オレタン岡山本店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（再販・税込6,000円・お一人様1BOX・シュリンクとミシン目を外してお渡し）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://oretan.membercard.jp/lottery?search_store_id=118",
+    "x_post": null,
+    "channel": "online",
+    "area": "岡山県",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "8114adb703aa00ae",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140962+09:00"
+  },
+  "ac7d630e35a6b2c7": {
+    "store": "オレタン福岡天神店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（再販・税込6,000円・お一人様1BOX・シュリンクとミシン目を外してお渡し）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://oretan.membercard.jp/lottery?search_store_id=119",
+    "x_post": null,
+    "channel": "online",
+    "area": "福岡県",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "ac7d630e35a6b2c7",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.140995+09:00"
+  },
+  "bd0efea5a6508bca": {
+    "store": "オレタン松山店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（再販・税込6,000円・お一人様1BOX・シュリンクとミシン目を外してお渡し）",
+    "series": "ハドウシーカー",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://oretan.membercard.jp/lottery?search_store_id=120",
+    "x_post": null,
+    "channel": "online",
+    "area": "愛媛県",
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "bd0efea5a6508bca",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141030+09:00"
+  },
+  "cbb4cd904c0bda78": {
+    "store": "イオンスタイルオンライン",
+    "product": "ポケモンカードゲーム スターターセットex 3種（イーブイex／ゾロア＆ゾロアークex／ニャオハ＆マスカーニャex）・商品ごとに1世帯1回",
+    "series": "スターターセットex",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://aeonretail.com/Page/k-lottery_sale_02.aspx",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "cbb4cd904c0bda78",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141066+09:00"
+  },
+  "cadce111662824e5": {
+    "store": "トレカスタイル（トレカショップDANDAN BASE店）",
+    "product": "ポケモンカードゲーム 拡張パック 30th CELEBRATION【未開封シュリンク付き】1BOX（7,200円）",
+    "series": "30周年パック",
+    "end": "2026-11-30T23:59:00+09:00",
+    "url": "https://gamesearch.base.ec/items/166839254",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "レシート",
+    "tags": [
+      "レシート"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "cadce111662824e5",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141102+09:00"
+  },
+  "5dad773f23fa6197": {
+    "store": "福田屋百貨店（宇都宮店・インターパーク店）",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（LINE抽選販売）",
+    "series": "ハドウシーカー",
+    "end": "2026-12-01T15:00:00+09:00",
+    "url": "https://www.fukudaya.net/event/6925",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "LINE抽選",
+    "conditions": "本人確認",
+    "tags": [
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "5dad773f23fa6197",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141135+09:00"
+  },
+  "8eab82840904eb0b": {
+    "store": "福田屋百貨店（宇都宮店・インターパーク店）",
+    "product": "スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー（税込5,500円・LINE抽選販売）",
+    "series": null,
+    "end": "2026-12-01T15:00:00+09:00",
+    "url": "https://www.fukudaya.net/event/6925",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "LINE抽選",
+    "conditions": "本人確認",
+    "tags": [
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "8eab82840904eb0b",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141163+09:00"
+  },
+  "56c35103bc2f57cb": {
+    "store": "トレカショップ カードきんぐ 西宮店",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX 抽選販売（西宮店オープン記念・LINE応募）",
+    "series": "ハドウシーカー",
+    "end": "2026-12-02T15:00:00+09:00",
+    "url": "https://x.com/ck_nishinomiya/status/2125529930158977378",
+    "x_post": "https://x.com/ck_nishinomiya/status/2125529930158977378",
+    "channel": "online",
+    "area": null,
+    "method": "LINE抽選",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "56c35103bc2f57cb",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141191+09:00"
+  },
+  "e64980abde8161e6": {
+    "store": "バトロコ新浜松駅前",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」1BOX（LINEクーポン抽選・ポイントカード提示必須）",
+    "series": "ハドウシーカー",
+    "end": "",
+    "url": "https://lin.ee/QiQQeQW",
+    "x_post": null,
+    "channel": "online",
+    "area": "静岡県",
+    "method": "オンライン",
+    "conditions": "アプリ・会員",
+    "tags": [
+      "アプリ",
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "period_text": "オンライン 保存 アプリ 会員 バトロコ新浜松駅前 開始 本日 15:00 抽選に応募する！ 応募方法をみる",
+    "attrs": {
+      "data-card": "",
+      "data-category": "pokemon",
+      "data-lottery-type": "online",
+      "data-store": "battoloco-shinhamamatsu",
+      "data-pack": "hadou-seeker",
+      "data-area": "shizuoka",
+      "data-entry-end": ""
+    },
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "e64980abde8161e6",
+    "status": "pending",
+    "found_at": "2026-11-26T13:10:48.141220+09:00",
+    "issue": 957
+  },
+  "400e24d4cc2f414c": {
+    "store": "BAR UNKNOWN トレーディングカードショップ",
+    "product": "ポケモンカードゲーム MEGA 拡張パック「ハドウシーカー」",
+    "series": "ハドウシーカー",
+    "end": "2026-11-26T18:00:00+09:00",
+    "url": "https://customform.jp/form/input/260516",
+    "x_post": null,
+    "channel": "online",
+    "area": "大阪府",
+    "method": "オンライン",
+    "conditions": "SNS応募",
+    "tags": [
+      "SNS応募"
+    ],
+    "id_check": false,
+    "member": "none",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "400e24d4cc2f414c",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141255+09:00"
+  },
+  "136df7f8fc3ae070": {
+    "store": "トレカステーション豊川店",
+    "product": "(再入荷)ポケモンカード 30th CELEBRATION カードセット 9種セット（1人1個まで）",
+    "series": "30周年御三家カードセット",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://livepocket.jp/e/gw9ru",
+    "x_post": null,
+    "channel": "store",
+    "area": "愛知県",
+    "method": "店頭",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "card",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "136df7f8fc3ae070",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141364+09:00"
+  },
+  "22d632f1eec90982": {
+    "store": "トレカステーション佐鳴台店",
+    "product": "(再入荷)ポケモンカード 30th CELEBRATION カードセット 9種セット（1人1個まで）",
+    "series": "30周年御三家カードセット",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://livepocket.jp/e/gw9ru",
+    "x_post": null,
+    "channel": "store",
+    "area": "静岡県",
+    "method": "店頭",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "card",
+    "confidence": 0.95,
+    "game": "pokemon",
+    "source": "カード抽選まとめ ポケカ",
+    "source_url": "https://cardchusen.com/pokeka",
+    "no_quote": true,
+    "key": "22d632f1eec90982",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.141404+09:00"
+  },
+  "a39ff9dfcc7930ee": {
+    "store": "古本市場野口店",
+    "product": "ONE PIECEカードゲーム ブースターパック「神の支配」【OP-18】（1BOX・テープカットして渡し）",
+    "series": "神の支配",
+    "end": "2026-11-28T22:00:00+09:00",
+    "url": "https://livepocket.jp/e/5bdzn",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "a39ff9dfcc7930ee",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.714286+09:00"
+  },
+  "0372cf9702ed4a4e": {
+    "store": "古本市場野口店",
+    "product": "ONE PIECEカードゲーム ブースターパック「世界最強の戦士」【OP-17】（1BOX・テープカットして渡し）",
+    "series": "世界最強の戦士",
+    "end": "2026-11-28T22:00:00+09:00",
+    "url": "https://livepocket.jp/e/u2i8v",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "onepiece",
+    "source": "カード抽選まとめ ワンピ",
+    "source_url": "https://cardchusen.com/onepiece",
+    "no_quote": true,
+    "key": "0372cf9702ed4a4e",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.714330+09:00"
+  },
+  "18c4c3dbc5cef944": {
+    "store": "TSUTAYA神明店",
+    "product": "ドラゴンボール カードゲーム FB09 DUAL EVOLUTION 購入券 抽選",
+    "series": "DUAL EVOLUTION",
+    "end": "2026-11-27T23:59:00+09:00",
+    "url": "https://livepocket.jp/e/hpmnr",
+    "x_post": null,
+    "channel": "store",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員・本人確認",
+    "tags": [
+      "会員",
+      "本人確認"
+    ],
+    "id_check": true,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "18c4c3dbc5cef944",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.908581+09:00"
+  },
+  "2c381c83123c3737": {
+    "store": "ドラゴンスター通販",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック「REACH THE GOD」【FB12】",
+    "series": "REACH THE GOD",
+    "end": "2026-11-27T23:59:00+09:00",
+    "url": "https://dorasuta.membercard.jp/lottery-entry?ekey=SWRQVTVMNWtJVjBPYXJPUks2YncxUT09",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "2c381c83123c3737",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.908631+09:00"
+  },
+  "cb3e45b041a100e3": {
+    "store": "イオンスタイルオンライン",
+    "product": "ドラゴンボールスーパーカードゲーム フュージョンワールド ブースターパック BRIGHTNESS OF HOPE【FB11】24パックセット（税込5,755円・お一人様1点）",
+    "series": "BRIGHTNESS OF HOPE",
+    "end": "2026-11-29T23:59:00+09:00",
+    "url": "https://aeonretail.com/Page/k-lottery_sale_02.aspx",
+    "x_post": null,
+    "channel": "online",
+    "area": null,
+    "method": "オンライン",
+    "conditions": "会員",
+    "tags": [
+      "会員"
+    ],
+    "id_check": false,
+    "member": "account",
+    "confidence": 0.95,
+    "game": "dragonball",
+    "source": "カード抽選まとめ ドラゴンボール",
+    "source_url": "https://cardchusen.com/dragonball",
+    "no_quote": true,
+    "key": "cb3e45b041a100e3",
+    "status": "approved",
+    "found_at": "2026-11-26T13:10:48.908660+09:00"
   }
 }
