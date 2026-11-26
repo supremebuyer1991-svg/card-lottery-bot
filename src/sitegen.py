@@ -3868,7 +3868,11 @@ def build(settings=None, out_dir=None, sample=None, force=False):
     (out / "_headers").write_text("/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n"
                                   "/sw.js\n  Cache-Control: no-cache\n/push.js\n  Cache-Control: public, max-age=3600\n"
                                   "/manifest.webmanifest\n  Content-Type: application/manifest+json\n"
-                                  "/og/*\n  Access-Control-Allow-Origin: *\n/x/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: no-cache\n", encoding="utf-8")
+                                  "/og/*\n  Access-Control-Allow-Origin: *\n/x/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: no-cache\n"
+                                  # 11/27：Cloudflare の元のアドレス（*.pages.dev）が検索に読まれていた（Search Console に site:pages.dev の検索語）。
+                                  #   同じページが2つのアドレスにある状態なので、pages.dev 側は検索に出さない
+                                  "https://:project.pages.dev/*\n  X-Robots-Tag: noindex\n"
+                                  "https://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex\n", encoding="utf-8")
     if s.get("indexnow_key"):
         (out / f"{s['indexnow_key']}.txt").write_text(s["indexnow_key"], encoding="utf-8")
 
