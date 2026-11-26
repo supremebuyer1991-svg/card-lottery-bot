@@ -1,0 +1,47 @@
+# ガールズホビー.com（girlshobby.com）用：楽天・Amazonの商品写真の一覧を作る
+# 鍵はこのリポジトリにだけあるので、ここで作って Cloudflare Pages（girlshobby-img.pages.dev）に置く。
+# ガールズホビー側のロボットが毎朝 5:17 にそれを取り込む。画像そのものは保存しない（URLだけ）。
+name: girls-photos
+on:
+  schedule:
+    - cron: "37 19 * * *"   # 日本時間 4:37（ガールズホビーの更新 5:17 の前）
+  workflow_dispatch:
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: supremebuyer1991-svg/girlshobby
+          path: gh
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 楽天・Amazonで写真を探す
+        working-directory: gh
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ vars.RAKUTEN_AFFILIATE_ID }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
+          AMAZON_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREDENTIAL_VERSION }}
+        run: |
+          python bot/rakuten_card_images.py || true
+          python bot/seal_images.py || true
+          python bot/amazon_images.py || true
+          mkdir -p ../out
+          cp site/img/index.json ../out/img.json
+          cp site/img/seal/index.json ../out/seal.json 2>/dev/null || echo '{}' > ../out/seal.json
+      - name: Cloudflare Pages に置く
+        env:
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          printf '/*\n  Access-Control-Allow-Origin: *\n' > out/_headers
+          npx --yes wrangler@4 pages project create girlshobby-img --production-branch=main >/dev/null 2>&1 || true
+          npx --yes wrangler@4 pages deploy out --project-name=girlshobby-img --branch=main --commit-dirty=true
