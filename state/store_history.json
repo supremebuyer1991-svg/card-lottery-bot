@@ -2361,6 +2361,18 @@
   "store/dragonstar-d49e0/": {
     "name": "ドラゴンスター各店（ららぽーと甲子園店・ららぽーと堺店・秋葉原駅前店・日本橋3号店・泉佐野店 ほか）",
     "items": {
+      "e3187c42e97cd569": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-27T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-11-29"
+      },
       "9b124f7bc69cfde3": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -3598,6 +3610,17 @@
   "store/gangihobbyshop-2337f/": {
     "name": "ガンギ HOBBYSHOP",
     "items": {
+      "6e9cfcab4f8cc8d9": {
+        "p": "500年後の未来",
+        "g": "onepiece",
+        "e": "2026-12-02T23:59",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      },
       "f0a26b179ed8fde1": {
         "p": "VSTARユニバース",
         "g": "pokemon",
@@ -6685,6 +6708,83 @@
   "store/hobisachi-0b3a8/": {
     "name": "ホビーサーチ",
     "items": {
+      "2ae99e3063dbfc2d": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "78887269f6f9cfb6": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": null,
+        "mem": null,
+        "rq": []
+      },
+      "6c4fdd194fc79916": {
+        "p": "スペシャルデッキセットMEGA",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "d73f7a44b172fd91": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "689d00ec3e9ffb21": {
+        "p": "アビスアイ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "5b7f6ef903ede017": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "88655a8cca8fc732": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "ef463c2be3fc5146": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -18063,6 +18163,97 @@
   "store/biccamera-7ddb2/": {
     "name": "ビックカメラ",
     "items": {
+      "791b54cada1ad52a": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "購入履歴",
+          "レシート",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
+      "a6c304b84573e1f4": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
+      "0e4f85b10872a316": {
+        "p": "ニンジャスピナー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
+      "81fbb54890aa9c96": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
+      "3a7de750045b836d": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
+      "8e74f3b84a377f69": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": null,
+        "rq": [
+          "購入履歴",
+          "アプリ会員"
+        ],
+        "a": "2026-12-04"
+      },
       "681c82b34df79233": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -19029,6 +19220,17 @@
   "store/pokemoncenter-3736f/": {
     "name": "ポケモンセンターオンライン",
     "items": {
+      "fdd182e567f8276a": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-30T16:59",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "dae9ccbb78239b14": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -26945,6 +27147,28 @@
   "store/itoyokado-789b7/": {
     "name": "イトーヨーカドー／アリオ",
     "items": {
+      "47cc612663cd2bef": {
+        "p": "ニンジャスピナー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "939c1a6b8d8a0243": {
+        "p": "ムニキスゼロ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "1df6543c8828ee7f": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -52902,6 +53126,17 @@
   "store/warasutoa-c5237/": {
     "name": "麦わらストア 熊本店",
     "items": {
+      "e349494fb2e73c1a": {
+        "p": "ONE PIECEカードゲーム プレミアムカードコレクション -熊本県スペシャル-（12月再入荷分）",
+        "g": "onepiece",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "f8141c255be6ebc9": {
         "p": "ONE PIECEカードゲーム プレミアムカードコレクション -熊本県スペシャル-（11月再入荷分）",
         "g": "onepiece",
@@ -52999,6 +53234,28 @@
   "store/tsutaya-2a33c/": {
     "name": "TSUTAYA今市店",
     "items": {
+      "27cf07b5591dfc25": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T20:00",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "50b6c08288aa87bc": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-29T20:00",
+        "f": "2026-11-26",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "ef222b8a24ecfb07": {
         "p": "MEGAドリームex",
         "g": "pokemon",
@@ -53656,6 +53913,22 @@
         "c": "online",
         "m": "SNS",
         "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/sanyodo-458b0/": {
+    "name": "三洋堂トレカ館 新関店",
+    "items": {
+      "be3d5f828ace52f8": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-30T23:59",
+        "f": "2026-11-26",
+        "c": "online",
+        "m": "SNS",
+        "id": true,
         "mem": "none",
         "rq": []
       }

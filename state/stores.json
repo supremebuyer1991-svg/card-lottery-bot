@@ -1,7 +1,7 @@
 {
   "store/pokemoncenter-3736f/": {
     "name": "ポケモンセンターオンライン",
-    "last": "2026-11-10",
+    "last": "2026-11-26",
     "game": "pokemon"
   },
   "store/amazon-cbc62/": {
@@ -140,7 +140,7 @@
   },
   "store/gangihobbyshop-2337f/": {
     "name": "ガンギ HOBBYSHOP",
-    "last": "2026-11-25",
+    "last": "2026-11-26",
     "game": "pokemon"
   },
   "store/cardlabo-1d856/": {
@@ -1591,7 +1591,7 @@
   },
   "store/dragonstar-d49e0/": {
     "name": "ドラゴンスター",
-    "last": "2026-11-18",
+    "last": "2026-11-26",
     "game": "pokemon"
   },
   "store/cardlabo-d9d91/": {
@@ -4514,7 +4514,8 @@
     "last": "2026-11-26",
     "game": "pokemon",
     "keep": true,
-    "area": "千葉県"
+    "area": "千葉県",
+    "address": "千葉県船橋市習志野台2-1-6"
   },
   "store/tsutaya-f6b1d/": {
     "name": "TSUTAYA防府",
@@ -6261,7 +6262,7 @@
   },
   "store/itoyokado-789b7/": {
     "name": "イトーヨーカドー／アリオ",
-    "last": "2026-11-22",
+    "last": "2026-11-26",
     "game": "onepiece"
   },
   "store/lawson-c61b3/": {
@@ -6565,7 +6566,8 @@
     "name": "カードスタジアム首里店",
     "last": "2026-11-26",
     "game": "onepiece",
-    "area": "沖縄県"
+    "area": "沖縄県",
+    "address": "沖縄県沖縄県那覇市首里久場川町2-122-1"
   },
   "store/tcgsuch-ffa3e/": {
     "name": "TCG SUCH",
@@ -8458,7 +8460,7 @@
   },
   "store/warasutoa-c5237/": {
     "name": "麦わらストア 熊本店",
-    "last": "2026-11-23",
+    "last": "2026-11-26",
     "game": "onepiece",
     "area": "熊本県"
   },
@@ -8485,7 +8487,7 @@
   },
   "store/tsutaya-2a33c/": {
     "name": "TSUTAYA今市店",
-    "last": "2026-11-25",
+    "last": "2026-11-26",
     "game": "pokemon",
     "area": "栃木県"
   },
@@ -8682,5 +8684,10 @@
     "name": "TCG NEX 大阪高槻店",
     "last": "2026-11-26",
     "game": "pokemon"
+  },
+  "store/sanyodo-458b0/": {
+    "name": "三洋堂トレカ館 新関店",
+    "last": "2026-11-26",
+    "game": "onepiece"
   }
 }
