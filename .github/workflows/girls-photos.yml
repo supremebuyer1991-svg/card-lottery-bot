@@ -9,7 +9,7 @@ on:
 jobs:
   photos:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,12 +33,14 @@ jobs:
           python bot/rakuten_card_images.py || true
           python bot/seal_images.py || true
           python bot/amazon_images.py || true
+          python bot/card_images.py || true
           python bot/catalog.py || true
           python bot/amazon_catalog.py || true
           mkdir -p ../out
           cp site/img/index.json ../out/img.json
           cp site/img/seal/index.json ../out/seal.json 2>/dev/null || echo '{}' > ../out/seal.json
           cp site/catalog.json ../out/catalog.json 2>/dev/null || echo '{}' > ../out/catalog.json
+          cp site/img/cards.json ../out/cards.json 2>/dev/null || echo '{}' > ../out/cards.json
       - name: Cloudflare Pages に置く
         env:
           CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
