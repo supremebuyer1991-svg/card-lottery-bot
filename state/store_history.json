@@ -1973,6 +1973,18 @@
   "store/dmm-d0426/": {
     "name": "DMMマイカ",
     "items": {
+      "c9c829f1a69b2970": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-12-03T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-12-07"
+      },
       "e3177c5a1c0a103f": {
         "p": "神の支配",
         "g": "onepiece",
@@ -6708,6 +6720,17 @@
   "store/hobisachi-0b3a8/": {
     "name": "ホビーサーチ",
     "items": {
+      "4687981d2bb21247": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "2ae99e3063dbfc2d": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -6827,6 +6850,17 @@
   "store/furuichi-477f3/": {
     "name": "ふるいちトップブックス佐渡佐和田店",
     "items": {
+      "008154c2ff934b0c": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T21:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "ce1277c32216739e": {
         "p": "神の支配",
         "g": "onepiece",
@@ -20969,7 +21003,8 @@
         "m": "Web",
         "id": false,
         "mem": "account",
-        "rq": []
+        "rq": [],
+        "a": "2026-12-01"
       },
       "268a66f3a9b5cc39": {
         "p": "ハドウシーカー",
@@ -26363,6 +26398,18 @@
   "store/kiddyland-ed682/": {
     "name": "キデイランド",
     "items": {
+      "a1bb5cb97af8e416": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": null,
+        "mem": null,
+        "rq": [],
+        "a": "2026-12-03"
+      },
       "de68dbadc3eac1a5": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -26968,6 +27015,84 @@
   "store/biccamera-cad9f/": {
     "name": "ビックカメラなんば店",
     "items": {
+      "623f3c807c3b2175": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
+      "acbbc3edbb366ca6": {
+        "p": "MEGAドリームex",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
+      "cb0ff6713107f24f": {
+        "p": "ニンジャスピナー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
+      "16a704ffb14847ca": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
+      "15e5ababb7446f32": {
+        "p": "メガブレイブ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
+      "317ab58ca6396a66": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "レシート"
+        ]
+      },
       "0fa1838bb437a10c": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -27792,6 +27917,29 @@
   "store/kiddyland-668b3/": {
     "name": "キデイランド 浦和美園店",
     "items": {
+      "83612db9cbc53fdf": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-12-03"
+      },
+      "885148af0edf2616": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "6e00433c8d8ed04e": {
         "p": "30周年御三家カードセット",
         "g": "pokemon",
@@ -28301,6 +28449,17 @@
   "store/kadoshoppuorionbesu-1732a/": {
     "name": "カードショップ オリオンベース",
     "items": {
+      "3760f4ce271fe5ac": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T21:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "007bf8559f095cb4": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -31056,6 +31215,28 @@
   "store/tsutaya-8ede9/": {
     "name": "TSUTAYA BOOKSTORE 水口",
     "items": {
+      "42d9c94def1eb6dd": {
+        "p": "REACH THE GOD",
+        "g": "dragonball",
+        "e": "2026-11-29T21:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
+      "91a6a39f9811178b": {
+        "p": "ドラゴンボールスーパーカードゲーム フュージョンワールド 再入荷商品各種（DUAL EVOLUTION【FB09】／ST",
+        "g": "dragonball",
+        "e": "2026-11-29T21:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "e9f8a11ee8a11f98": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -39111,6 +39292,28 @@
   "store/tsutaya-54494/": {
     "name": "TSUTAYA Trading Card 松戸",
     "items": {
+      "a861f2cbea8516f7": {
+        "p": "ブラックボルト・ホワイトフレア",
+        "g": "pokemon",
+        "e": "2026-12-05T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
+      "08a5abf6f5075f13": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "7902c978c13fe897": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -42847,6 +43050,61 @@
   "store/tsutaya-3ac4a/": {
     "name": "TSUTAYA武雄店",
     "items": {
+      "8966518c69d66568": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "75b04463ac0b2a7e": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "bca3a434b6667561": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "de377f4625724ca6": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
+      "f7ca6d3244c65a73": {
+        "p": "ニンジャスピナー",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-27",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": []
+      },
       "7fb1864c3c295638": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -49478,6 +49736,17 @@
   "store/torekaoshan-659cd/": {
     "name": "トレカオーシャン",
     "items": {
+      "8b8b5fa026571cb3": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-27T16:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "1719e3c1f2ded157": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -52763,6 +53032,18 @@
   "store/pokemoncardlounge-18644/": {
     "name": "POKEMON CARD LOUNGE 渋谷店",
     "items": {
+      "ede48406bbb60dcc": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": [],
+        "a": "2026-12-08"
+      },
       "84ca17b449b49e13": {
         "p": "ストームエメラルダ",
         "g": "pokemon",
@@ -53930,6 +54211,70 @@
         "m": "SNS",
         "id": true,
         "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/cardstock-76282/": {
+    "name": "CarD StocK",
+    "items": {
+      "3339693ef999409a": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-27T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/kanaberu-c81b5/": {
+    "name": "カーナベル",
+    "items": {
+      "963dd9b4e88ed7ae": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-27T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": false,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/torekapaiku-c54cc/": {
+    "name": "トレカパイク（TORECA PIKE）",
+    "items": {
+      "9255caffacf3de10": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-28T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      }
+    }
+  },
+  "store/kirinotarodo-c6272/": {
+    "name": "KIRINオタロード店",
+    "items": {
+      "53602d1450566bdb": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
         "rq": []
       }
     }
