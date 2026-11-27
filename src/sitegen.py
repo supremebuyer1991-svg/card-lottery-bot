@@ -1863,7 +1863,40 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                                      **({"url": f"{site}/{i['lpath']}"} if i.get("lpath") and site else
                                         {"url": i["url"]} if i.get("url") else {})} for k, i in enumerate(rows)]}
 
+    # 11/28：コアアップデート後も順位が戻らない（40〜60位）。検索に出すページを中身の濃い約200に絞る（ページは残す・noindex＋サイトマップから外す）
+    _kp_store = {w for ln in (Path(__file__).resolve().parent.parent / "config" / "index_keep_store.txt").read_text(encoding="utf-8").splitlines()
+                 if not ln.startswith("#") for w in ln.split()} if (Path(__file__).resolve().parent.parent / "config" / "index_keep_store.txt").exists() else set()
+    _kp_chain = {"tsutaya", "bookoff", "cardlabo", "furuichi", "aeon", "batoroco", "biccamera", "cardbox", "kiddyland", "torecastation",
+                 "surugaya", "sanyodo", "amazon", "geo", "mint", "jumpshop", "dragonstar", "edion", "joshin", "yamada", "yodobashi",
+                 "pokemoncenter", "heiwado", "wondergoo"}
+    _kp_pref = {"tokyo", "osaka", "kanagawa", "aichi", "saitama", "chiba", "fukuoka", "hokkaido", "hyogo", "kyoto"}
+    _kp_ser = {series_path(i["game"], i["series"]).strip("/") for i in items if i.get("series") and i.get("game")}
+    _kp_top = {"", "today", "kekka", "souba", "stats", "about", "tousenritsu"}
+
+    def _index_ok(path):
+        q = path.strip("/")
+        sp = q.split("/") if q else []
+        if q in _kp_top or q.startswith("guide/"):
+            return True
+        if len(sp) >= 1 and sp[0] in GAME_SLUG.values():
+            if len(sp) == 1:
+                return True
+            if len(sp) == 2:
+                return sp[1] == "online" or q in _kp_ser
+            if len(sp) == 3 and sp[1] == "area":
+                return sp[2] in _kp_pref
+            return False
+        if sp[:1] == ["chain"]:
+            return len(sp) == 2 and sp[1] in _kp_chain
+        if sp[:1] == ["store"]:
+            return len(sp) == 2 and sp[1] in _kp_store
+        if sp[:1] == ["calendar"]:
+            return len(sp) == 2 and sp[1] == now().strftime("%Y-%m")
+        return False
+
     def write(path, lock, meta, subset, trail=None):
+        if not _index_ok(path):
+            meta["noindex"] = True
         p = out / path / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         meta["canonical"] = f"{site}/{path}" if site else None
@@ -3782,7 +3815,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         # 11/7 監査：受付は中央値4.5日と短く、1店舗だけの店頭抽選のページは検索に載る前に終わる＆中身が薄い。
         # 検索に出すのは「ネット抽選」と「大手チェーンの店頭抽選」だけ（1店舗だけの抽選はお店ページで受ける）
         c_ = chain_of(d.get("store"))
-        l_index = d.get("channel") != "store" or bool(c_ and CHAIN[c_][3])
+        l_index = False  # 11/28：抽選1件ずつのページは検索に出さない（一覧のページ＝弾・チェーンのページに任せる）
         nxt = None
         canon_to = None
         if False and not active and l_index and c_ and (out / _cgp(c_, g).strip("/") / "index.html").exists():
@@ -4032,7 +4065,7 @@ def build(settings=None, out_dir=None, sample=None, force=False):
         # 11/8：日本語の弾ページ ⇔ 海外の弾ページを hreflang でつなぐ（同じ弾の別の言語版だとGoogleに伝える。両方向に書く）
         HL_ = [("en", "en"), ("zh-Hant", "zh-tw"), ("zh-TW", "zh-tw"), ("zh-HK", "zh-tw"), ("ko", "ko")]
         n_hl = 0
-        for g_, m_ in (_ser_cfg()["info"] or {}).items():
+        for g_, m_ in ({} if True else (_ser_cfg()["info"] or {})).items():  # 11/28：海外の弾ページは検索に出さなくなったので、つながない
             if g_ not in GAME_SLUG:
                 continue
             for x_ in m_:

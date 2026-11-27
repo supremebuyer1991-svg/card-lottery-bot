@@ -1374,7 +1374,7 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             html = (f'<!doctype html><html lang="{meta["html"]}"><head><meta charset="utf-8">'
                     f'<meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}</title>'
                     f'<meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}">{alt}'
-                    + ('<meta name="robots" content="noindex,follow">' if parent == "cards" else "")  # 11/13：カード1枚ずつのページ（816ページ・ほぼ見られていない）は検索に出さない
+                    + ('<meta name="robots" content="noindex,follow">' if (parent == "cards" or path) else "")  # 11/28：検索の評価が落ちたため、海外向けは各言語のトップだけ検索に出す  # 11/13：カード1枚ずつのページ（816ページ・ほぼ見られていない）は検索に出さない
                     + (f'<meta name="naver-site-verification" content="{escape(naver)}">' if naver else "")
                     + f'<meta property="og:type" content="website"><meta property="og:site_name" content="{escape(t["site"])}">'
                     f'<meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}">'
@@ -1390,5 +1390,6 @@ def build_intl(out, s, souba_raw, card_raw, info, site, today):
             p = Path(out) / L / path / "index.html"
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text(html, encoding="utf-8")
-            urls.append((url, tdy))
+            if not path:  # 11/28：サイトマップも各言語のトップだけ
+                urls.append((url, tdy))
     return urls
