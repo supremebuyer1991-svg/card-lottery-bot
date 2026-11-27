@@ -1885,6 +1885,8 @@ def build(settings=None, out_dir=None, sample=None, force=False):
                 return sp[1] == "online" or q in _kp_ser
             if len(sp) == 3 and sp[1] == "area":
                 return sp[2] in _kp_pref
+            if len(sp) == 3 and sp[2] == "saihan":  # 再販・予約のページはよく見られている（GA4 週200〜300）。受付中の抽選がある弾の分だけ残す
+                return f"{sp[0]}/{sp[1]}" in _kp_ser
             return False
         if sp[:1] == ["chain"]:
             return len(sp) == 2 and sp[1] in _kp_chain
