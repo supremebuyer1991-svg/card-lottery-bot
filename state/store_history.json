@@ -6128,6 +6128,17 @@
   "store/otachuu-5-4a74e/": {
     "name": "おたちゅう。秋葉原5号店",
     "items": {
+      "8c24308ab2868a32": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-30T17:00",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "d03aaa128d6ee0c6": {
         "p": "神の支配",
         "g": "onepiece",
@@ -7287,6 +7298,17 @@
   "store/tsutaya-b2d46/": {
     "name": "TSUTAYA錦糸町",
     "items": {
+      "f8f6733bfdfeae24": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T21:00",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "6988ff306217ca57": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -19254,6 +19276,39 @@
   "store/pokemoncenter-3736f/": {
     "name": "ポケモンセンターオンライン",
     "items": {
+      "81befe5816b063b3": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-12-07T16:59",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "b9739431c0b833cc": {
+        "p": "30周年エーフィ・ブラッキーデッキ",
+        "g": "pokemon",
+        "e": "2026-12-07T16:59",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
+      "718147960317ea2a": {
+        "p": "30周年 FUTURISTIC BOX",
+        "g": "pokemon",
+        "e": "2026-12-07T16:59",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "fdd182e567f8276a": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -37539,6 +37594,17 @@
   "store/shop-c6247/": {
     "name": "隆文堂書店 岡山",
     "items": {
+      "01eb5221497187d0": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "SNS",
+        "id": false,
+        "mem": "none",
+        "rq": []
+      },
       "b09f18eb6dbcf0b7": {
         "p": "神の支配",
         "g": "onepiece",
@@ -43897,6 +43963,32 @@
   "store/reputon-b9295/": {
     "name": "レプトン各店（レプトン会員アプリ）",
     "items": {
+      "a4f69073941bc765": {
+        "p": "ストームエメラルダ",
+        "g": "pokemon",
+        "e": "2026-11-29T20:00",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
+      "0451d9c59f84d38b": {
+        "p": "メガシンフォニア",
+        "g": "pokemon",
+        "e": "2026-11-29T20:00",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "aa58376627c93ac6": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -54271,6 +54363,22 @@
         "g": "pokemon",
         "e": "2026-11-29T23:59",
         "f": "2026-11-27",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      }
+    }
+  },
+  "store/itoyokado-a9686/": {
+    "name": "イトーヨーカドー ららぽーと横浜店",
+    "items": {
+      "58403b0d91833ae0": {
+        "p": "ヒロインズエディション vol.2",
+        "g": "onepiece",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-28",
         "c": "online",
         "m": "Web",
         "id": true,
