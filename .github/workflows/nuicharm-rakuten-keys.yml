@@ -1,0 +1,49 @@
+name: nuicharm-rakuten-keys
+
+# 一回だけ使う：このリポジトリの楽天キー（Secrets）を、ぬいチャーム.com の Cloudflare Pages（nuicharm-site）に写す。
+# キーの値はログに出さない。終わったらこのブランチは消してよい。
+on:
+  push:
+    branches: [nuicharm-rakuten-keys]
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: copy keys to nuicharm-site
+        env:
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+        run: |
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          for k in RAKUTEN_APP_ID RAKUTEN_ACCESS_KEY; do
+            ok=""
+            for n in 1 2 3; do
+              if printf '%s' "${!k}" | tr -d '[:space:]' | npx --yes wrangler@4 pages secret put "$k" --project-name=nuicharm-site >/dev/null; then ok=1; break; fi
+              sleep 5
+            done
+            [ -n "$ok" ] && echo "set $k" || { echo "::error::failed $k"; exit 1; }
+          done
+      - name: test Rakuten API with nuicharm.com as Referer
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+        run: |
+          code=$(curl -s -o /tmp/r.json -w '%{http_code}' -G "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701" \
+            --data-urlencode "applicationId=$(printf '%s' "$RAKUTEN_APP_ID" | tr -d '[:space:]')" \
+            --data-urlencode "keyword=めじるしアクセサリー" --data-urlencode "hits=1" --data-urlencode "formatVersion=2" \
+            -H "accessKey: $(printf '%s' "$RAKUTEN_ACCESS_KEY" | tr -d '[:space:]')" -H "Referer: https://nuicharm.com/" -H "Origin: https://nuicharm.com")
+          echo "rakuten status $code"
+          python3 -c "import json;j=json.load(open('/tmp/r.json'));print('items', len(j.get('Items') or []));print('error', j.get('error') or j.get('errors') or '')" || true
+      - name: rebuild nuicharm-site
+        env:
+          CF_TOKEN_RAW: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_RAW: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          T="$(printf '%s' "$CF_TOKEN_RAW" | sed 's/.*Bearer //' | tr -d '[:space:]"')"
+          A="$(printf '%s' "$CF_ACCOUNT_RAW" | tr -d '[:space:]"')"
+          curl -s -X POST -H "Authorization: Bearer $T" -F branch=main "https://api.cloudflare.com/client/v4/accounts/$A/pages/projects/nuicharm-site/deployments" | python3 -c "import sys,json;j=json.load(sys.stdin);print('deploy', j.get('success'), j.get('errors'))"
