@@ -31786,6 +31786,366 @@
       "area": null,
       "found_at": "2026-11-28T03:14:27.934583+09:00",
       "chain": "itoyokado"
+    },
+    "aca8ea07da160395": {
+      "game": "pokemon",
+      "store": "PAO（パオ）",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-28T12:56:31.518961+09:00",
+      "chain": null
+    },
+    "5f5d8354a8225f93": {
+      "game": "pokemon",
+      "store": "トレカエース植田店",
+      "series": "ストームエメラルダ",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.135276+09:00",
+      "chain": null
+    },
+    "942606c7c73d2588": {
+      "game": "pokemon",
+      "store": "ふるいちトップブックス氷見店",
+      "series": "MEGAドリームex",
+      "channel": "store",
+      "area": "富山県",
+      "found_at": "2026-11-28T12:56:32.135323+09:00",
+      "chain": "furuichi"
+    },
+    "dc9b4c23027b77ad": {
+      "game": "pokemon",
+      "store": "ふるいちトップブックス氷見店",
+      "series": "30周年エーフィ・ブラッキーデッキ",
+      "channel": "store",
+      "area": "富山県",
+      "found_at": "2026-11-28T12:56:32.135348+09:00",
+      "chain": "furuichi"
+    },
+    "27a54ff93cafe420": {
+      "game": "pokemon",
+      "store": "TSUTAYA佐野店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "栃木県",
+      "found_at": "2026-11-28T12:56:32.135370+09:00",
+      "chain": "tsutaya"
+    },
+    "44efce85fa91bfea": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": null,
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-28T12:56:32.135389+09:00",
+      "chain": "kiddyland"
+    },
+    "b253b9cc454cd416": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": null,
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-28T12:56:32.135408+09:00",
+      "chain": "kiddyland"
+    },
+    "6da0321ab79f921c": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": "30周年御三家カードセット",
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-28T12:56:32.135427+09:00",
+      "chain": "kiddyland"
+    },
+    "44eb3cff8b6a3358": {
+      "game": "pokemon",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": "ストームエメラルダ",
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-28T12:56:32.135446+09:00",
+      "chain": "kiddyland"
+    },
+    "37d9de76c77ea4f7": {
+      "game": "pokemon",
+      "store": "ときわ書房本八幡スクエア店",
+      "series": "30周年御三家カードセット",
+      "channel": "online",
+      "area": "千葉県",
+      "found_at": "2026-11-28T12:56:32.135466+09:00",
+      "chain": null
+    },
+    "42855161d5869639": {
+      "game": "pokemon",
+      "store": "ブックオフ古淵駅前店",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.135487+09:00",
+      "chain": "bookoff"
+    },
+    "aefc33aed77c2a6a": {
+      "game": "pokemon",
+      "store": "ホビーラウンジ（秋葉原）",
+      "series": "ハドウシーカー",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.135505+09:00",
+      "chain": null
+    },
+    "0bb35017c0ddba38": {
+      "game": "pokemon",
+      "store": "TSUTAYA南国店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "高知県",
+      "found_at": "2026-11-28T12:56:32.135523+09:00",
+      "chain": "tsutaya"
+    },
+    "c6aa65e3a933b2f6": {
+      "game": "pokemon",
+      "store": "カードボックス大垣書店伏見店",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-28T12:56:32.135542+09:00",
+      "chain": "cardbox"
+    },
+    "5e9c589743adffa7": {
+      "game": "pokemon",
+      "store": "カードボックス大垣書店伏見店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-28T12:56:32.135561+09:00",
+      "chain": "cardbox"
+    },
+    "54438c88886ad7d0": {
+      "game": "pokemon",
+      "store": "カードボックス大垣書店伏見店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-28T12:56:32.135579+09:00",
+      "chain": "cardbox"
+    },
+    "ff754165b61748dd": {
+      "game": "pokemon",
+      "store": "カードボックス大垣書店伏見店",
+      "series": "ムニキスゼロ",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-28T12:56:32.135597+09:00",
+      "chain": "cardbox"
+    },
+    "b8cc91ce3e541484": {
+      "game": "pokemon",
+      "store": "カードボックス大垣書店伏見店",
+      "series": "ニンジャスピナー",
+      "channel": "store",
+      "area": "京都府",
+      "found_at": "2026-11-28T12:56:32.135615+09:00",
+      "chain": "cardbox"
+    },
+    "c79ab845638a215f": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店八女店",
+      "series": "30th CELEBRATION",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-28T12:56:32.135632+09:00",
+      "chain": "tsutaya"
+    },
+    "95db432a561e821b": {
+      "game": "pokemon",
+      "store": "TSUTAYA Trading Card 伊勢丘",
+      "series": "メガシンフォニア",
+      "channel": "store",
+      "area": "広島県",
+      "found_at": "2026-11-28T12:56:32.135650+09:00",
+      "chain": "tsutaya"
+    },
+    "242e5d66e9e31cb1": {
+      "game": "pokemon",
+      "store": "TSUTAYA土佐道路店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "高知県",
+      "found_at": "2026-11-28T12:56:32.135667+09:00",
+      "chain": "tsutaya"
+    },
+    "36f404710d68d034": {
+      "game": "pokemon",
+      "store": "ダイソー楽器トレカ店（中津川）",
+      "series": "30周年御三家カードセット",
+      "channel": "store",
+      "area": "岐阜県",
+      "found_at": "2026-11-28T12:56:32.135685+09:00",
+      "chain": null
+    },
+    "f987a009b9a6f414": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店佐大通り店",
+      "series": "ストームエメラルダ",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-28T12:56:32.135703+09:00",
+      "chain": "tsutaya"
+    },
+    "60df1ee28ba40a0c": {
+      "game": "pokemon",
+      "store": "TSUTAYA積文館書店佐大通り店",
+      "series": "ハドウシーカー",
+      "channel": "store",
+      "area": "福岡県",
+      "found_at": "2026-11-28T12:56:32.135722+09:00",
+      "chain": "tsutaya"
+    },
+    "b428914b116aa686": {
+      "game": "onepiece",
+      "store": "TSUTAYA Trading Card 錦糸町",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "東京都",
+      "found_at": "2026-11-28T12:56:32.519215+09:00",
+      "chain": "tsutaya"
+    },
+    "ce1efc6936b9323b": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール茨木店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.519255+09:00",
+      "chain": "aeon"
+    },
+    "44ef920b3b401c48": {
+      "game": "onepiece",
+      "store": "古本市場京山店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "岡山県",
+      "found_at": "2026-11-28T12:56:32.519283+09:00",
+      "chain": "furuichi"
+    },
+    "77320cfafb67071a": {
+      "game": "onepiece",
+      "store": "トレカエース勝田東石川店",
+      "series": "神の支配",
+      "channel": "online",
+      "area": "茨城県",
+      "found_at": "2026-11-28T12:56:32.519305+09:00",
+      "chain": null
+    },
+    "00b2b4090a4b8ed9": {
+      "game": "onepiece",
+      "store": "古本市場深谷店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.519328+09:00",
+      "chain": "furuichi"
+    },
+    "f65a446b9f4cb46a": {
+      "game": "onepiece",
+      "store": "TSUTAYA田宮店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "徳島県",
+      "found_at": "2026-11-28T12:56:32.519351+09:00",
+      "chain": "tsutaya"
+    },
+    "3939e81563a89231": {
+      "game": "onepiece",
+      "store": "ふるいちイオンモール甲府昭和店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": "山梨県",
+      "found_at": "2026-11-28T12:56:32.519375+09:00",
+      "chain": "aeon"
+    },
+    "8a300c2632961988": {
+      "game": "onepiece",
+      "store": "古本市場東住吉店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.519397+09:00",
+      "chain": "furuichi"
+    },
+    "4403875fc7e97e5b": {
+      "game": "onepiece",
+      "store": "カードボックス松阪店（本の王国＆すまいるキング）",
+      "series": "スタートデッキ 砂漠の王女と海賊たち",
+      "channel": "store",
+      "area": "三重県",
+      "found_at": "2026-11-28T12:56:32.519419+09:00",
+      "chain": "cardbox"
+    },
+    "33a9341301674c78": {
+      "game": "onepiece",
+      "store": "カードボックス松阪店（本の王国＆すまいるキング）",
+      "series": "スタートデッキ バロックワークス",
+      "channel": "store",
+      "area": "三重県",
+      "found_at": "2026-11-28T12:56:32.519441+09:00",
+      "chain": "cardbox"
+    },
+    "20b20dd944150315": {
+      "game": "onepiece",
+      "store": "キデイランド ららぽーと富士見店",
+      "series": "世界最強の戦士",
+      "channel": "online",
+      "area": "埼玉県",
+      "found_at": "2026-11-28T12:56:32.519464+09:00",
+      "chain": "kiddyland"
+    },
+    "0502c3ed1b09b7bf": {
+      "game": "onepiece",
+      "store": "古本市場西神戸店",
+      "series": "神の支配",
+      "channel": "store",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.519484+09:00",
+      "chain": "furuichi"
+    },
+    "84e9ead8e6b89dfb": {
+      "game": "dragonball",
+      "store": "ブックオフ伊豆の国大仁店・メディアポリス伊豆の国大仁店",
+      "series": "REACH THE GOD",
+      "channel": "store",
+      "area": "静岡県",
+      "found_at": "2026-11-28T12:56:32.634432+09:00",
+      "chain": "bookoff"
+    },
+    "0c62ee42e4e45967": {
+      "game": "dragonball",
+      "store": "DRAGON BALL STORE TOKYO",
+      "series": "REACH THE GOD",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.634461+09:00",
+      "chain": null
+    },
+    "ca04a27b1c960076": {
+      "game": "dragonball",
+      "store": "DRAGON BALL STORE TOKYO",
+      "series": "地球育ちのサイヤ人",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.634478+09:00",
+      "chain": null
+    },
+    "4e4880ee55e1f12d": {
+      "game": "dragonball",
+      "store": "DRAGON BALL STORE TOKYO",
+      "series": "サイヤ人の王子",
+      "channel": "online",
+      "area": null,
+      "found_at": "2026-11-28T12:56:32.634497+09:00",
+      "chain": null
     }
   }
 }
