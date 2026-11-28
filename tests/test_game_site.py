@@ -234,7 +234,9 @@ else:
     assert "メルカリで探す" in d2 and "jp.mercari.com/search?keyword=" in d2 and "Yahoo!で見る" in d2          # 楽天・Amazonが無くても、Yahoo!・メルカリは出す
     # 楽天・Amazon のリンクは、どのページでも検索結果のページではない
     for f_ in out3.rglob("*.html"):
-        for u_ in re.findall(r"https?://[^\"'\s<>]*(?:rakuten|amazon)[^\"'\s<>]*", f_.read_text(encoding="utf-8")):
+        # 11/28：カテゴリの公式ストアの案内の「〜で探す」ボタン（cat-buy。「探す」と書いて検索だと分かるもの）だけは除く
+        _tx = re.sub(r'<div class="cat-buy".*?</div>', "", f_.read_text(encoding="utf-8"), flags=re.S)
+        for u_ in re.findall(r"https?://[^\"'\s<>]*(?:rakuten|amazon)[^\"'\s<>]*", _tx):
             if "thumbnail.image.rakuten" in u_:
                 continue
             assert "search" not in u_.lower() and "/s?" not in u_, (f_, u_)
