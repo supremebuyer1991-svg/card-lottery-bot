@@ -149,3 +149,46 @@
     - 本体1台でのプレイ人数は1人で、通信プレイには本体とソフトが人数分必要です。
   facts_src: https://www.nintendo.com/jp/games/switch2/aadla/products/soft.html
   facts_src_title: スプラトゥーン レイダース 商品情報（任天堂）
+
+# --- 11/28 アフィリエイトがよく押される商品ページのうち、商品の事実が無かった3件（3日ごとの見直し）。
+#     JAN は小売店の商品ページで確認。事実は PlayStation Blog・ポケモンセンターオンライン・任天堂で確認したものだけ。
+"4948872417501":   # JAN確認 https://store.shopping.yahoo.co.jp/free-store1/4948872417501.html ／ PlayStation Blog 2026/9/3（型番と色の対応はソニーショップ）
+  name: DualSense ワイヤレスコントローラー "グランド・セフト・オートVI" ホワイト リミテッドエディション（CFI-ZCT2JZI）
+  teika: 12480
+  teika_note: 希望小売価格（税込）
+  sales_date: 2026年11月19日
+  facts:
+    - 『グランド・セフト・オートVI』をモチーフにした数量限定のDualSenseで、State of Playで初公開されました。
+    - ホワイトとブラック（CFI-ZCT2JZH）の2色があり、こちらはホワイトのモデルです。
+    - ホワイトは、白い砂浜とパステル調の空が広がるバイスシティの夜明けをイメージしたデザインです。
+    - GTA VIのロゴとヤシの木のモチーフが本体に入っています。
+    - 予約は2026年9月10日から順次始まり、11月19日から順次発売されています。
+  facts_src: https://blog.ja.playstation.com/2026/09/03/20260903-sop-gtavi-dualsense-o/
+  facts_src_title: PlayStation Blog
+
+"4521329458366":   # JAN確認 https://books.rakuten.co.jp/rb/18784089/ ／ ポケモンセンターオンライン・電撃オンライン
+  name: ぽこ あ ポケモン ＋ エキスパンションパス（Nintendo Switch 2）
+  teika: 13380
+  teika_note: 税込（本編だけのパッケージは8,980円）
+  sales_date: 2026年10月29日
+  facts:
+    - 本編『ぽこ あ ポケモン』と有料の追加コンテンツ「エキスパンションパス」を1枚のゲームカードにまとめたパッケージです。
+    - ゲームカードはキーカードで、はじめて遊ぶときに本編をダウンロードします。インターネット接続と10GB以上の空き容量が必要です。
+    - 購入特典として、シリアルコードで受け取れる「きのみ家具セット」が付いています。
+    - エキスパンションパスの追加コンテンツは何回かに分けて配信され、第2弾は2026年12月9日の予定です。
+  facts_src: https://www.pokemoncenter-online.com/4521329458366.html
+  facts_src_title: ポケモンセンターオンライン
+
+"4902370542929":   # JAN確認 https://joshinweb.jp/game/53455/4902370542929.html（型番 HDH-S-GAZAA）／ 任天堂ニュースリリース 2026/5/8
+  name: Nintendo Switch Lite グレー（HDH-S-GAZAA）
+  teika: 29980
+  teika_note: 2026年5月25日の価格改定後の希望小売価格（税込）
+  sales_date: 2019年9月20日
+  facts:
+    - 携帯モード専用のNintendo Switchで、コントローラーが本体と一体になっています。
+    - テレビへの出力やドックには対応していません。携帯モードに対応したソフトを遊べます。
+    - 画面は約5.5インチ、重さは約275gです。
+    - バッテリーの持ち時間は、ソフトや使い方によって約3.0〜7.0時間です。
+    - 任天堂の価格改定で、2026年5月25日から希望小売価格（税込）が29,980円になりました。
+  facts_src: https://www.nintendo.co.jp/corporate/release/2026/260508.html
+  facts_src_title: 任天堂ニュースリリース
