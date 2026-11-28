@@ -99,7 +99,7 @@ else:
     assert 'name="robots" content="noindex' in xd and "#PS5Pro" in xd and "#ガンプラ" in xd
     # サイトマップ：主なページとカテゴリ・モデル・個別ページ。下書きは入れない
     sm = (out / "sitemap.xml").read_text(encoding="utf-8")
-    assert "https://example-game.jp/ps5/ps5-pro/" in sm and "https://example-game.jp/l/a1/" in sm and "https://example-game.jp/gunpla/" in sm
+    assert "https://example-game.jp/ps5/ps5-pro/" in sm and "https://example-game.jp/l/a1/" not in sm and "https://example-game.jp/gunpla/" in sm   # 11/28：抽選1件ずつのページは検索に出さない
     assert "x-draft" not in sm and "https://example-game.jp/now/" in sm and "https://example-game.jp/calendar/" in sm
     assert "Disallow: /x-draft.html" in (out / "robots.txt").read_text(encoding="utf-8")
     # 個別ページ

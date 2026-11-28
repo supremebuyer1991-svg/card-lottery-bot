@@ -407,6 +407,7 @@ categories:
       note: "公式ストアは毎日12時に商品の在庫を更新しています。新作・再入荷は12時ちょうどに見に行くのがおすすめです。"
       url: "https://www.mellojoyjapan.com/"
       label: "公式ストアを見る"
+      search: "メロジョイ"   # 11/28 ユーザーOK：Xから来た人向けに、楽天・Amazon・メルカリで探すボタンを公式ストアの案内の中に出す
       live: "https://game-watch.supreme-buyer-1991.workers.dev/mellojoy.json"   # 11/25 見張り役が記録した公式ストアの商品・在庫を、ページを開いた時に表示
     color: "#e9a5c0"
     kinds: [lottery, preorder, restock, first_come, release]

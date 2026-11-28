@@ -24,6 +24,7 @@ from datetime import timedelta
 from common import ROOT, load_json, save_json, now, parse_dt, sha, normalize, log
 import detail
 import game_affi
+import game_index
 import gamecats
 import sitegen as sg
 
@@ -80,14 +81,30 @@ def _live_stock_html(src):
             '<p class="note" style="font-size:12px">画像・商品名・値段は公式ストアのものです。在庫は数分おきの記録なので、最新は公式ストアでご確認ください。</p></section>' + js)
 
 
-def _official_html(o):
+def _search_buttons(kw, settings):
+    """11/28 ユーザーOK：Xから来た人がすぐ帰っていた（/mellojoy/ 7日で134人・平均1秒）。ページの上のほうに楽天・Amazon・メルカリで探すボタンを出す。
+    categories.yaml の official.search にさがす言葉を書いたカテゴリだけ。リンクの付け方・IDはほかのページと同じ"""
+    if not kw:
+        return ""
+    from urllib.parse import quote
+    q = quote(kw)
+    aff = game_affi.affiliate_id(settings)
+    st = "display:inline-block;margin:6px 6px 0 0;padding:7px 12px;border-radius:8px;color:#fff;font-weight:700;text-decoration:none;font-size:14px"
+    return ('<p style="margin:10px 0 0;font-size:13px">公式で売り切れのときは、ほかのお店でもさがせます（広告）</p><div class="cat-buy" data-pl="cat-buy">'
+            f'<a href="{escape(game_affi.rakuten_link("https://search.rakuten.co.jp/search/mall/" + q + "/", aff))}" target="_blank" rel="nofollow sponsored noopener" style="{st};background:#bf0000">楽天で探す</a>'
+            f'<a href="https://www.amazon.co.jp/s?k={q}&amp;tag={escape(game_affi.amazon_tag(settings))}" target="_blank" rel="nofollow sponsored noopener" style="{st};background:#232f3e">Amazonで探す</a>'
+            f'<a href="https://jp.mercari.com/search?keyword={q}&amp;status=on_sale&amp;afid=1350793153" target="_blank" rel="nofollow sponsored noopener" style="{st};background:#ff333f">メルカリで探す</a></div>')
+
+
+def _official_html(o, settings=None):
     """カテゴリの公式ストアの案内（11/23 ユーザー「俺のサイトに公式ページのリンク貼ってサイトに誘導させて」：メロジョイの公式ストア・毎日12時に在庫更新）"""
     if not o or not o.get("url"):
         return ""
     return (_DARK_FIX + '<div class="cat-official" style="margin:10px 0;padding:12px 14px;border:2px solid #e9a5c0;border-radius:10px">'
             f'<p style="margin:0 0 6px;font-weight:700">🛒 {escape(o.get("title") or "公式ストア")}</p>'
             + (f'<p style="margin:0 0 8px;font-size:14px;line-height:1.7">{escape(o["note"])}</p>' if o.get("note") else "")
-            + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a></div>'
+            + f'<a href="{escape(o["url"])}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#d9467a;color:#fff;font-weight:700;text-decoration:none">{escape(o.get("label") or "公式ストアを見る")} ↗</a>'
+            + _search_buttons(o.get("search"), settings or {}) + '</div>'
             + (_live_stock_html(o["live"]) if o.get("live") else ""))
 
 
@@ -1217,6 +1234,7 @@ def build(settings=None, out_dir=None, force=False):
     def write(path, meta, sub, trail=None, data_extra=None, body_top="", body_bottom="", noindex=False, list_mode=True, ld_extra=(), cur=None):
         # 11/22 ユーザーOK：題名の【◯/◯更新】は外す（中身が変わらなくても毎日題名が変わっていた。日付はページの「更新」と説明文に出す）
         meta = dict(meta, title=re.sub(r"\s*｜\s*", "｜", re.sub(r"\s*【[^【】]*更新】\s*", " ", meta["title"])).strip())
+        noindex = noindex or not game_index.keep(path)   # 11/28 ユーザーOK：検索に出すページを中身のあるものだけに絞る
         p = out / path / "index.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         canon = f"{site}/{path}" if site else ""
@@ -1385,7 +1403,7 @@ def build(settings=None, out_dir=None, force=False):
                                  "desc": (f"{c['name']}の商品{npd}件の最高買取価格（買取相場）と、" if npd else f"{c['name']}の") + "発売・予約・再販・抽選の情報。楽天・Amazonで売り出されたらXで通知します。",
                                  "h1": f"{c['short']}の商品一覧と発売・再販情報", "sumshort": (f"いま受付中{n}件。弾ごとにまとめています。" if c.get("sets") else f"商品{npd}件・いま受付中{n}件。"), "lead": c["name"], "summary": summary(sub, f"{c['short']}の受付"),
                                  "links": lk, "faq": faq, "og": og_u}, sub, trail=[("トップ", ""), (c["short"], f"{c['slug']}/")], data_extra={"game": g},
-              body_top=_notice_html(c.get("notice")) + _official_html(c.get("official")) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
+              body_top=_notice_html(c.get("notice")) + _official_html(c.get("official"), s) + (_sets_html(c, sub) if c.get("sets") else   # ポケカ・ワンピは弾ごとのまとめ（11/14）
                        f"<style>{game_premium.CSS}</style>" + game_premium.cat_products_html(pidx.get(g, []), c["short"], c.get("subgenres"), has_list=bool(sub))
                        + (f'<p class="note">→ <a href="/souba/{escape(c["slug"])}/">{escape(c["short"])}の買取価格一覧（高い順の表）</a></p>' if len(pidx.get(g, [])) >= 5 else ""))
                        + "".join(f'<p class="note">→ <a href="/guide/{escape(gd_["slug"])}/">{escape(gd_["title"])}</a></p>' for gd_ in _guides_cfg() if gd_.get("game") == g),   # 11/22 カテゴリの解説記事へ
@@ -1493,6 +1511,7 @@ def build(settings=None, out_dir=None, force=False):
         nxt = (f"いま受付中の{cat_by[g]['short']}を見る", f"/{cat_by[g]['slug']}/") if ended else None
         # トレカ抽選ナビから載せたポケカ・ワンピの抽選は、同じ内容のページがトレカ抽選ナビにあるので検索には出さない（自分のサイト同士で競わない。11/14）
         _dup = str(k).startswith("tc") or bool((raw.get(k) or {}).get("from_tcg"))
+        _dup = _dup or not game_index.keep(rec["path"])   # 11/28：抽選1件ずつのページは検索に出さない（表示のあったページは残す）
         html = detail.render(snap, site=site, path=rec["path"], verify=verify, now_dt=t, ended=ended, related=rel, updated=updated,
                              next_link=nxt, brand=dbrand, games=games_map, noindex=_dup, keep_index=sc_protected(rec["path"]))
         html = _theme_detail(_shop_detail(_release_detail(html, snap), snap), side_html(cats, g, counts=False))

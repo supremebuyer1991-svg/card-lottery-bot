@@ -1069,6 +1069,8 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         """1ページ書く。img＝Xなどで共有したときのカードの画像（無ければサイトの共通画像）。noindex＝検索に出さない（情報が少ないページ）"""
         # 11/22 ユーザーOK：題名の【◯/◯更新】は外す（中身が変わらなくても毎日題名が変わっていた。日付はページの中に出す）
         title = re.sub(r"\s*｜\s*", "｜", re.sub(r"\s*【[^【】]*更新】\s*", " ", title)).strip()
+        import game_index
+        noindex = noindex or not game_index.keep(path)   # 11/28 ユーザーOK：検索に出すページを絞る（/new/<JAN>/・/item/ など）
         og = img or f"{site}/og.png"
         html = (f'<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
                 f'<title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{site}/{path}">'
@@ -1189,6 +1191,13 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
         from sitegen_game import sc_protected as _scp
     except Exception:
         _scp = lambda p_: False  # noqa: E731
+
+    def _pidx(x_):
+        import game_index
+        import game_facts as _gf
+        _ov = overrides().get(str(x_["jan"])) or {}
+        return game_index.premium_ok(x_["jan"], len(x_.get("prices") or []), bool(_gf.get(x_["jan"])), bool(_ov.get("facts")),
+                                     _scp(f"premium/{x_['jan']}/"))
     for x in allx + revived:
         q = quote(re.sub(r"\s+", " ", x["name"])[:40])
         intro, extra, ld = seo_parts(x, allx, site, _cats, md)
@@ -1262,7 +1271,9 @@ def write_pages(out, cats, site, brand, live_rows, settings, simple_page, aff_id
              # 11/15 Fable：買取店から消えてすぐ外さず14日待つ。検索に表示されたことのあるページは外さない
              # 11/22 ユーザーOK：検索に載るページが668→175に減った（11/14〜。Googleの中身の判断）。中身の薄い商品ページは検索に出さない：
              #   楽天ブックスの商品説明・メーカー公式などの商品の事実のどちらも無く、買取店が3店以下のページ。検索に表示されたことのあるページは外さない
-             noindex=((bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat()) or not _rich(x)) and not _scp(f"premium/{x['jan']}/"),
+             # 11/28 ユーザーOK：登録済みが 175→133 とまだ減るので、さらに絞る（src/game_index.py の premium_ok）
+             noindex=(bool(x.get("stale")) and x["stale"] < (upd.date() - timedelta(days=14)).isoformat() and not _scp(f"premium/{x['jan']}/"))
+             or not _pidx(x),
              # 11/19 ユーザーOK：材料の少ない商品（買取店1店だけ・商品の事実なし・商品説明なし）はサイトマップに入れない。
              # Googleに「中身のあるページ」から先に見てもらうため。検索に表示されたことのあるページは入れたまま
              sitemap=has_material(x) or _scp(f"premium/{x['jan']}/"))
