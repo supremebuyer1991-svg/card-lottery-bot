@@ -802,6 +802,17 @@
   "store/aeon-85100/": {
     "name": "ふるいちイオンモール神戸北店",
     "items": {
+      "bde82afd7f453fce": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-30T21:01",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "95e723d853a61201": {
         "p": "受け継がれる意志",
         "g": "onepiece",
@@ -2278,6 +2289,28 @@
   "store/gemupuraza-302-fa481/": {
     "name": "ゲームプラザ元気302",
     "items": {
+      "93f3f314bd0f2d6e": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-12-01T23:59",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
+      "14a3311f44594e06": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-12-01T23:59",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "7b70e3c61336c56c": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -5226,6 +5259,17 @@
   "store/cardbox-1247c/": {
     "name": "カードボックス 津店",
     "items": {
+      "655b0d7b4c679152": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "b70842bdfe94c10e": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -5492,6 +5536,17 @@
         "m": "SNS",
         "id": false,
         "mem": "none",
+        "rq": []
+      },
+      "cf17c54623b8a92d": {
+        "p": "REACH THE GOD",
+        "g": "dragonball",
+        "e": "2026-11-29T20:00",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "SNS",
+        "id": true,
+        "mem": "account",
         "rq": []
       },
       "28dc5b9a9f2e6680": {
@@ -8967,6 +9022,17 @@
   "store/hobishopputamutamu-48238/": {
     "name": "ホビーショップタムタム神戸三宮店",
     "items": {
+      "92c3a568af2007fd": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "店頭",
+        "id": false,
+        "mem": "card",
+        "rq": []
+      },
       "d731c0305c912594": {
         "p": "ヒロインズエディション vol.2",
         "g": "onepiece",
@@ -21587,6 +21653,17 @@
   "store/torekashoppufuronto-f01f1/": {
     "name": "トレカショップフロント",
     "items": {
+      "e1f6186617b97ea1": {
+        "p": "世界最強の戦士",
+        "g": "onepiece",
+        "e": "2026-11-29T21:30",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "none",
+        "rq": []
+      },
       "3487add226f33a54": {
         "p": "ハドウシーカー",
         "g": "pokemon",
@@ -30601,6 +30678,17 @@
   "store/furuichi-c8e10/": {
     "name": "古本市場東大阪店",
     "items": {
+      "80a6c7d6a8b063f3": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": []
+      },
       "a0eabf3c0a006884": {
         "p": "世界最強の戦士",
         "g": "onepiece",
@@ -46169,6 +46257,19 @@
   "store/furuichi-8f2d6/": {
     "name": "ふるいち植田店",
     "items": {
+      "ae66aefb9a75ed57": {
+        "p": "神の支配",
+        "g": "onepiece",
+        "e": "2026-11-29T22:00",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "c293061b94f98ef8": {
         "p": "スペシャルデッキセットMEGA",
         "g": "pokemon",
@@ -54799,6 +54900,19 @@
   "store/aeon-9b99e/": {
     "name": "ふるいちイオンモール土岐店",
     "items": {
+      "7c0e69fa971f07f2": {
+        "p": "30th CELEBRATION",
+        "g": "pokemon",
+        "e": "2026-11-29T23:59",
+        "f": "2026-11-28",
+        "c": "store",
+        "m": "店頭",
+        "id": true,
+        "mem": "card",
+        "rq": [
+          "アプリ会員"
+        ]
+      },
       "7ce88ed886994be4": {
         "p": "30th CELEBRATION",
         "g": "pokemon",
@@ -54865,6 +54979,23 @@
         "id": true,
         "mem": "account",
         "rq": []
+      }
+    }
+  },
+  "store/nopao-pao-30191/": {
+    "name": "竜星のPAO・PAO 各店（12店舗）",
+    "items": {
+      "285eb37da8150c78": {
+        "p": "ハドウシーカー",
+        "g": "pokemon",
+        "e": "2026-11-30T23:59",
+        "f": "2026-11-28",
+        "c": "online",
+        "m": "Web",
+        "id": true,
+        "mem": "account",
+        "rq": [],
+        "a": "2026-12-08"
       }
     }
   }
